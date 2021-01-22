@@ -1,10 +1,23 @@
 # Contributing
 
-Any help with maintaining or improving the book is welcome! Contribute via [GitHub](https://github.com/jamadazi/bevy-cheatbook)!
+Any help with maintaining or improving the book is welcome! Contribute via [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook)!
 
 Feel free to submit PRs for anything you consider useful. I will review them with you, so we can edit as needed to bring them to the style and quality desired for this book.
 
 Be civil. If you need a code of conduct, have a look at Bevy's.
+
+## Example Code
+
+All code that uses Bevy APIs should live under `src/code_bevy_release` or `src/code_bevy_master`, depending on the version of Bevy used.
+
+Cookbook recipes should be independent files under `examples`. Only embed the relevant parts into the book page, without unnecessary boilerplate. Link to the full example file at the top of the page.
+
+Cheatsheet code lives in `src/cheatsheet.rs`.
+
+Miscellaneous code in the book should live in `src/lib.rs`.
+
+Always use mdbook anchor syntax to embed code, never line numbers.
+[See here](https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file).
 
 ## Style Guidelines
 
@@ -21,5 +34,5 @@ Follow these guidelines to avoid the need for edits to your PRs and get them mer
    - Don't come up with new/extra terminology of your own.
  - Avoid information overload
    - Cover advanced usage separately from the basics.
-   - Prefer showing related features in a single code example (when not confusing). Avoid repeated/similar examples.
+   - Prefer showing related features in a single code snippet (when not confusing). Avoid repeated/similar snippets.
  - Avoid long lines of code, to keep it readable on small screens.

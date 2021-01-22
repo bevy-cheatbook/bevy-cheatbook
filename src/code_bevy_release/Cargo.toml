@@ -1,7 +1,6 @@
 [package]
 name = "code_bevy_release"
 version = "0.1.0"
-authors = ["Jasen Borisov <jamadazi@protonmail.ch>"]
 edition = "2018"
 
 [dependencies]

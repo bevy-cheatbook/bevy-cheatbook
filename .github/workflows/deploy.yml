@@ -26,7 +26,7 @@ jobs:
         run: git submodule update --init --recursive --remote
 
       - name: Check code
-        run: cargo check
+        run: cargo check --lib --examples
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
