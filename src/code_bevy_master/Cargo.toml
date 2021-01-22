@@ -1,0 +1,8 @@
+[package]
+name = "code_bevy_master"
+version = "0.1.0"
+authors = ["Jasen Borisov <jamadazi@protonmail.ch>"]
+edition = "2018"
+
+[dependencies]
+bevy = { path = "../../bevy" }

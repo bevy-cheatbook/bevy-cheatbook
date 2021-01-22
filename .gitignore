@@ -1,1 +1,3 @@
-book
+/book
+/target
+Cargo.lock

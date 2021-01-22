@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "src/code_bevy_release",
+    "src/code_bevy_master",
+]
+exclude = [
+    "bevy"
+]
+
