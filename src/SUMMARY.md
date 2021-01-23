@@ -11,6 +11,7 @@
   - [for bevy git](./basics/master.md)
 
 - [Advanced Patterns](./patterns/_index.md)
+  - [Event Broadcast](./patterns/event-broadcast.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
   - [Input Handling](./cookbook/input-handling.md)
