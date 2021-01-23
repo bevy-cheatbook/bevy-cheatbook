@@ -4,6 +4,8 @@ Any help with maintaining or improving the book is welcome! Contribute via [GitH
 
 Feel free to submit PRs for anything you consider useful. I will review them with you, so we can edit as needed to bring them to the style and quality desired for this book.
 
+Even if you just have an idea, but don't want to write the content yourself, suggest it in an issue!
+
 Be civil. If you need a code of conduct, have a look at Bevy's.
 
 ## Example Code
