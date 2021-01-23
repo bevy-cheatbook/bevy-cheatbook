@@ -14,6 +14,8 @@ The book has several sections:
  - Bevy Cookbook: examples covering common game development problems
  - Orphanage: archive of unmaintained bevy code found out in the wild
 
+The book is not intended to be read in order. Jump to whatever is useful to you!
+
 ***Welcome! Hope this book serves you well!***
 
 P.S: also check out the [awesome-bevy](https://github.com/bevyengine/awesome-bevy) list,
