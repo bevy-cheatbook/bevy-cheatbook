@@ -12,6 +12,7 @@ The book has several sections:
  - [Bevy Basics](./basics.md): brief one-page explanation of important concepts
  - Advanced Patterns: good practices for using bevy effectively
  - Bevy Cookbook: examples covering common game development problems
+ - Orphanage: archive of unmaintained bevy code found out in the wild
 
 ***Welcome! Hope this book serves you well!***
 
