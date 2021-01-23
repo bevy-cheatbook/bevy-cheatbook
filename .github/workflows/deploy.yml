@@ -22,11 +22,8 @@ jobs:
           toolchain: stable
           override: true
 
-      - name: Pull bevy master
-        run: git submodule update --init --recursive --remote
-
       - name: Check code
-        run: cargo check --lib --examples
+        run: cargo update && cargo check --lib --examples
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
