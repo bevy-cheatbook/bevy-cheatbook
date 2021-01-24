@@ -9,7 +9,7 @@ Designed to be easy to read, straight to the point, using simple language to foc
 The book has several sections:
 
  - [Bevy Cheatsheet](./cheatsheet.md): condensed one-page summary of common bevy syntax and features
- - [Bevy Basics](./basics.md): brief one-page explanation of important concepts
+ - [Bevy Basics](./basics.md): overview of the basics of programming in Bevy
  - Advanced Patterns: good practices for using bevy effectively
  - Bevy Cookbook: examples covering common game development problems
  - Orphanage: archive of unmaintained bevy code found out in the wild

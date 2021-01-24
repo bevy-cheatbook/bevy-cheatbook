@@ -1,10 +1,12 @@
 # Bevy Basics
 
-{{#include _header.md}}
+Overview of the basics of programming in Bevy.
 
-## Versions
+Includes brief explanations of each core concept, with example code to show how
+it might be used in a game.
 
-[Click here for Bevy 0.4](release.md).
+Intended for people learning how to use Bevy.
 
-[Click here for Bevy git](master.md).
-
+If you are already familiar with the concepts, check out
+[Bevy Cheatsheet](../cheatsheet/_index.md)
+for a condensed listing of just the syntax + important usage notes.
