@@ -466,6 +466,37 @@ mod app5 {
     fn quit_app() {}
     fn enemy_ai() {}
     fn unload_level() {}
+// ANCHOR: check-state
+fn check_app_state(app_state: Res<State<AppState>>) {
+    match app_state.current() {
+        AppState::MainMenu => {
+            println!("In the main menu!");
+        }
+        AppState::InGame => {
+            println!("Playing the game!");
+        }
+        AppState::Credits => {
+            println!("Rolling the credits!");
+        }
+    }
+
+    if let Some(prev) = app_state.previous() {
+        println!("The previous app state was {:?}", prev);
+    }
+
+    if let Some(next) = app_state.next() {
+        println!("App state is about to be changed to {:?}", next);
+    }
+}
+// ANCHOR_END: check-state
+
+// ANCHOR: change-state
+fn enter_game(mut app_state: ResMut<State<AppState>>) {
+    app_state.set_next(AppState::InGame).unwrap();
+    // ^ this can fail if we are already in the target state
+    // or if another state change is already queued
+}
+// ANCHOR_END: change-state
 
 // ANCHOR: app-states
 #[derive(Debug, Clone)]
