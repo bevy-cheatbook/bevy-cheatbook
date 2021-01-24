@@ -250,7 +250,7 @@ struct SpriteSheets {
     map_tiles: Handle<TextureAtlas>,
 }
 
-fn check_sprites(
+fn use_sprites(
     handles: Res<SpriteSheets>,
     assets: Res<Assets<TextureAtlas>>,
 ) {
@@ -260,6 +260,34 @@ fn check_sprites(
     }
 }
 // ANCHOR_END: asset-access
+
+// ANCHOR: asset-event
+struct MapTexture {
+    handle: Handle<Texture>,
+}
+
+fn fixup_textures(
+    ev_asset: Res<Events<AssetEvent<Texture>>>,
+    mut evr_asset: Local<EventReader<AssetEvent<Texture>>>,
+    mut assets: ResMut<Assets<Texture>>,
+    map_tex: Res<MapTexture>,
+) {
+    for ev in evr_asset.iter(&ev_asset) {
+        if let AssetEvent::Created { handle } = ev {
+            // a texture was just loaded!
+
+            let texture = assets.get_mut(handle).unwrap();
+            // ^ unwrap is OK, because we know it is loaded now
+
+            if *handle == map_tex.handle {
+                // it is our special map texture!
+            } else {
+                // it is some other texture
+            }
+        }
+    }
+}
+// ANCHOR_END: asset-event
 
 // ANCHOR: asset-server
 struct UiFont(Handle<Font>);
@@ -564,6 +592,7 @@ pub fn _main_all() {
         .add_system(spawn_player.system())
         .add_system(close_menu.system())
         .add_system(make_all_players_hostile.system())
-        .add_system(check_sprites.system())
+        .add_system(use_sprites.system())
+        .add_system(fixup_textures.system())
         .run();
 }

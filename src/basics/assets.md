@@ -5,11 +5,7 @@ asynchronously (in the background, without causing lag spikes in your game).
 
 The data of your loaded assets is stored in an `Assets<T>` resource.
 
-To access a specific asset, you need a `Handle<T>` for it. Handles are just lightweight IDs for a specific asset.
-
-```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:asset-access}}
-```
+To access the asset data, you need a `Handle<T>`. Handles are just lightweight IDs for a specific asset.
 
 To load assets from files, use the `AssetServer` resource.
 
@@ -17,10 +13,31 @@ To load assets from files, use the `AssetServer` resource.
 {{#include ../code_bevy_release/src/basics.rs:asset-server}}
 ```
 
+This queues the asset loading to happen in the background. The asset will not be
+available immediately.
+
+Do this in a system that runs once, either at [startup](./app-builder.md)
+or when [entering your game state](./states.md).
+
 You can also create assets using code and add them to `Assets<T>` manually.
 
 This is useful if you want to create them using code (such as for procedural
 generation), or if you have gotten the data in some other way.
+
+To access your assets from systems, use the `Handle<T>` and `Assets<T>` resource:
+
+```rust,no_run,noplayground
+{{#include ../code_bevy_release/src/basics.rs:asset-access}}
+```
+
+## AssetEvent
+
+If you need to perform specific actions when the asset has finished loading, is
+modified, or removed, you can react to `AssetEvent`s.
+
+```rust,no_run,noplayground
+{{#include ../code_bevy_release/src/basics.rs:asset-event}}
+```
 
 ## Handles
 
