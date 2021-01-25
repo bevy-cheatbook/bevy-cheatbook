@@ -22,7 +22,6 @@
   - [States](./basics/states.md)
 
 - [Advanced Patterns](./patterns/_index.md)
-  - [Event Broadcast](./patterns/event-broadcast.md)
   - [Generic Systems](./patterns/generic-systems.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
