@@ -32,7 +32,5 @@
   - [Grabbing the Mouse](./cookbook/mouse-grab.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
   - [Custom Camera Projection](./cookbook/custom-projection.md)
-- [Orphanage](./orphanage/_index.md)
-  - [Pan + Orbit Camera](./orphanage/pan-orbit-camera.md)
 
 [Contributing](./contributing.md)
