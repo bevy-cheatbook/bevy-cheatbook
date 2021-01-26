@@ -22,9 +22,9 @@ for additional resources to help you on your bevy journey!
 
 ## Maintenance
 
-This version primarily covers Bevy release 0.4.
+This version of the book is for Bevy release 0.4.
 
-An attempt is made to also cover the git version of Bevy, where feasible.
+The cheatsheet also has a version for bevy git. An attempt is made to keep it reasonably up-to-date.
 
 The book is maintained on a best-effort basis. Help with maintaining and improving the book is welcome!
 
