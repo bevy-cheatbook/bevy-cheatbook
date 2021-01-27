@@ -7,6 +7,10 @@ struct ComponentB;
 #[derive(Default)]
 struct ComponentC;
 
+struct ResourceA;
+struct ResourceB;
+struct ResourceC;
+
 // ANCHOR: struct-component
 struct Health {
     hp: f32,
@@ -84,6 +88,13 @@ struct MyState;
 // ANCHOR: local-resource
 fn my_system(mut local: Local<MyState>) {}
 // ANCHOR_END: local-resource
+
+// ANCHOR: sys-param-tuple
+fn complex_system(
+    (a, mut b): (Res<ResourceA>, ResMut<ResourceB>),
+    mut c: ResMut<ResourceC>,
+) {}
+// ANCHOR_END: sys-param-tuple
 
 // ANCHOR: sys-debug-res
 fn debug_start(
@@ -195,16 +206,14 @@ fn spawn_player(
     // get the entity id of the last spawned entity
     let entity = commands.current_entity().unwrap();
     // ^ unwrap is OK, `None` only returned if you haven't spawned first
-}
 
-fn close_menu(
-    commands: &mut Commands,
-    query: Query<Entity, With<MainMenuUI>>,
-) {
-    for entity in query.iter() {
-        // despawn the entity and its children
-        commands.despawn_recursive(entity);
-    }
+    // spawn another entity
+    // NOTE: tuples of arbitrary components are valid bundles
+    commands.spawn((
+        ComponentA::default(),
+        ComponentB::default(),
+        ComponentC::default(),
+    ));
 }
 
 fn make_all_players_hostile(
@@ -220,6 +229,18 @@ fn make_all_players_hostile(
     }
 }
 // ANCHOR_END: example-commands
+
+// ANCHOR: despawn-recursive
+fn close_menu(
+    commands: &mut Commands,
+    query: Query<Entity, With<MainMenuUI>>,
+) {
+    for entity in query.iter() {
+        // despawn the entity and its children
+        commands.despawn_recursive(entity);
+    }
+}
+// ANCHOR_END: despawn-recursive
 
 // ANCHOR: events
 struct LevelUpEvent(Entity);
@@ -589,6 +610,7 @@ pub fn _main_all() {
         .add_system(check_zero_health.system())
         .add_system(reset_health.system())
         .add_system(my_system.system())
+        .add_system(complex_system.system())
         .add_system(spawn_player.system())
         .add_system(close_menu.system())
         .add_system(make_all_players_hostile.system())

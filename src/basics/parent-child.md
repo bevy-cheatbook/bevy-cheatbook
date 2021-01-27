@@ -14,6 +14,12 @@ respective entities.
 Bevy has an internal mechanism to ensure the `Parent` component of the child entity
 and the `Children` component of the parent entity are kept in sync.
 
+You can despawn an entire hierarchy with a single command:
+
+```rust,no_run,noplayground
+{{#include ../code_bevy_release/src/basics.rs:despawn-recursive}}
+```
+
 ## Relative Transforms
 
 To use transforms with hierarchical entities, both the parent and the child must have a `GlobalTransform` and a `Transform`.
