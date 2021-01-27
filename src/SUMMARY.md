@@ -15,11 +15,12 @@
   - [Local Resources](./basics/local.md)
   - [Events](./basics/events.md)
   - [App Builder (main function)](./basics/app-builder.md)
-  - [Plugins](./basics/plugins.md)
   - [Assets](./basics/assets.md)
   - [Hierarchical Entities](./basics/parent-child.md)
+  - [System Chaining](./basics/system-chaining.md)
   - [Stages](./basics/stages.md)
   - [States](./basics/states.md)
+  - [Plugins](./basics/plugins.md)
 
 - [Advanced Patterns](./patterns/_index.md)
   - [Generic Systems](./patterns/generic-systems.md)

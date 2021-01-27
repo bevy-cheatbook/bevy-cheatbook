@@ -595,6 +595,42 @@ fn main() {
 // ANCHOR_END: app-states
 }
 
+#[allow(dead_code)]
+mod app6 {
+    use bevy::prelude::*;
+
+struct MyNetProto;
+
+impl MyNetProto {
+    fn receive_updates(&mut self) -> std::io::Result<()> {
+        Ok(())
+    }
+}
+
+// ANCHOR: system-io
+fn net_receive(mut netcode: ResMut<MyNetProto>) -> std::io::Result<()> {
+    netcode.receive_updates()?;
+
+    Ok(())
+}
+
+fn handle_io_errors(In(result): In<std::io::Result<()>>) {
+    if let Err(e) = result {
+        eprintln!("I/O error occurred: {}", e);
+    }
+}
+// ANCHOR_END: system-io
+// ANCHOR: system-chain
+    fn main() {
+        App::build()
+            // ...
+            .add_system(net_receive.system().chain(handle_io_errors.system()))
+            // ...
+            .run();
+    }
+// ANCHOR_END: system-chain
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::build()
