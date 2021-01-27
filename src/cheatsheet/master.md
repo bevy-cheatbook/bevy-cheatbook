@@ -1,4 +1,4 @@
-# Bevy Cheatsheet (for bevy 0.4)
+# Bevy Cheatsheet (for bevy git)
 
 {{#include _header.md}}
 
