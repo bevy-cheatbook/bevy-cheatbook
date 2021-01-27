@@ -16,7 +16,7 @@ Any Rust type (`struct` or `enum`) can be used as a component.
 
 Types must be unique -- an entity can only have one of each type.
 
-Use newtype structs to make unique components out of simpler types:
+Use wrapper (newtype) structs to make unique components out of simpler types:
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/src/basics.rs:newtype-component}}

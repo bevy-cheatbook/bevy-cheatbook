@@ -26,7 +26,7 @@ This version of the book is for Bevy release 0.4.
 
 The cheatsheet also has a version for bevy git. An attempt is made to keep it reasonably up-to-date.
 
-The book is maintained on a best-effort basis. Help with maintaining and improving the book is welcome!
+## Contributions Welcome!
 
 Development of the book happens on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
 

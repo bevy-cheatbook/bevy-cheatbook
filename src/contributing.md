@@ -16,7 +16,7 @@ Cookbook recipes should be independent files under `examples`. Only embed the re
 
 Cheatsheet code lives in `src/cheatsheet.rs`.
 
-Miscellaneous code in the book should live in `src/lib.rs`.
+Miscellaneous code should live in `src/lib.rs`.
 
 Always use mdbook anchor syntax to embed code, never line numbers.
 [See here](https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file).
