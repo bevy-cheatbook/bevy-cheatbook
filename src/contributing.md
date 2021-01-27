@@ -8,6 +8,16 @@ Even if you just have an idea, but don't want to write the content yourself, sug
 
 Be civil. If you need a code of conduct, have a look at Bevy's.
 
+## Bevy version
+
+The book is targeted at the latest bevy release (0.4).
+
+However, content that covers newer additions in bevy git, is also welcome!
+
+It needs to be clearly marked.
+
+Anything that exists in both the release version and the git version, should be written for the release version.
+
 ## Example Code
 
 All code that uses Bevy APIs should live under `src/code_bevy_release` or `src/code_bevy_master`, depending on the version of Bevy used.
