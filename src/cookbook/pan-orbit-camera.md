@@ -1,6 +1,6 @@
 # Pan + Orbit Camera
 
-[Click here for the full example code.](../code_bevy_release/examples/clear-color.rs)
+[Click here for the full example code.](../code_bevy_release/examples/pan-orbit-camera.rs)
 
 ---
 
