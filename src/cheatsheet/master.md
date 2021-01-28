@@ -80,21 +80,26 @@ Add query filters:
 {{#include ../code_bevy_release/src/cheatsheet.rs:query-filter}}
 ```
 
-Change detection filters:
- - `Added<T>`: detect adding new components to existing entities
- - `Mutated<T>`: detect mutation of existing components
- - `Changed<T>`: detect any change (added or mutated)
-
-
-```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:change-detection}}
-```
-
 Query sets (to resolve component access conflicts):
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/src/cheatsheet.rs:query-set}}
 ```
+
+## Change Detection
+
+[[explain](../basics/change-detection.md)]
+
+Query filters:
+ - `Added<T>`: detect adding new components to existing entities
+ - `Mutated<T>`: detect mutation of existing components
+ - `Changed<T>`: detect any change (added or mutated)
+
+```rust,no_run,noplayground
+{{#include ../code_bevy_release/src/cheatsheet.rs:change-detection}}
+```
+
+**WARNING!** The detecting system must run after the changing system, *during the same frame*.
 
 ## Commands
 

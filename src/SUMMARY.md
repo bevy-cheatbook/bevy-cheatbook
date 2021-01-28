@@ -16,6 +16,7 @@
   - [Events](./basics/events.md)
   - [App Builder (main function)](./basics/app-builder.md)
   - [Assets](./basics/assets.md)
+  - [Change Detection](./basics/change-detection.md)
   - [Hierarchical Entities](./basics/parent-child.md)
   - [System Chaining](./basics/system-chaining.md)
   - [Stages](./basics/stages.md)

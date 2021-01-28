@@ -25,26 +25,11 @@ Add query filters to narrow down the entities you get from the query.
 Multiple filters can be combined:
  - in a tuple to apply all of them (AND logic)
  - using the Or<...> wrapper to detect any of them (OR logic).
- 
-### Filter by Component
 
 Use `With`/`Without` to only get entities that have specific components.
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/src/basics.rs:sys-query-filter}}
-```
-
-### Change Detection
-
-You can optimize your systems by only operating on entities when specific components change.
-
-Use query filters:
- - `Added<T>`: detect adding new components to existing entities
- - `Mutated<T>`: detect mutation of existing components
- - `Changed<T>`: detect any change (added or mutated)
-
-```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:change-detection}}
 ```
 
 ## Query Sets
