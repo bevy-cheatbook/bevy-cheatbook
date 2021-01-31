@@ -84,7 +84,7 @@ fn my_system(a: Res<MyResourceA>, mut b: ResMut<MyResourceB>) {
     fn main() {
         App::build()
             // specific resource value
-            .add_resource(MyResource::new())
+            .insert_resource(MyResource::new())
             // auto-init using `Default` or `FromResources`
             .init_resource::<MyAutoResource>()
             .run();
@@ -352,7 +352,7 @@ fn main() {
         // custom plugin
         .add_plugin(MyPlugin::default())
         // specific resource value
-        .add_resource(MyResource::new())
+        .insert_resource(MyResource::new())
         // auto-init using `Default` or `FromResources`
         .init_resource::<MyAutoResource>()
         // add a custom event type:
@@ -409,7 +409,7 @@ fn main() {
 
     App::build()
         // add the app state resource with initial state
-        .add_resource(State::new(MyState::MainMenu))
+        .insert_resource(State::new(MyState::MainMenu))
         // add the state stage
         .add_stage_before(
             stage::UPDATE, STATE,
