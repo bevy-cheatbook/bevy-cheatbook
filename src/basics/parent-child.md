@@ -4,15 +4,14 @@ Technically, the Entities/Components themselves cannot form a hierarchy (it is a
 flat data structure). However, logical hierarchies are a common pattern in games.
 
 Bevy supports creating such a logical link between entities, to form a virtual
-"hierarchy", by simply adding a `Parent` or `Children` component on the
+"hierarchy", by simply adding `Parent` and  `Children` components on the
 respective entities.
+
+`Commands` has methods for adding children to entities, which automatically add the correct components:
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/src/basics.rs:parenting}}
 ```
-
-Bevy has an internal mechanism to ensure the `Parent` component of the child entity
-and the `Children` component of the parent entity are kept in sync.
 
 You can despawn an entire hierarchy with a single command:
 

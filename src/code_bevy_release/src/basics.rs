@@ -354,9 +354,18 @@ commands.insert_resource(GoalsReached { main_goal: false, bonus: false });
 let parent = commands.spawn(MyBundle::default())
     .current_entity().unwrap();
 
-// spawn a new entity and make it a child of the parent
+// do the same for the child
+let child = commands.spawn(MyBundle::default())
+    .current_entity().unwrap();
+
+// connect them
+commands.push_children(parent, &[child]);
+
+// you can also use `with_children`:
 commands.spawn(MyBundle::default())
-    .with(Parent(parent)); // add the `Parent` component
+    .with_children(|parent| {
+        parent.spawn(MyBundle::default());
+    });
 // ANCHOR_END: parenting
 }
 
