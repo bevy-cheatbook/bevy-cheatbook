@@ -6,6 +6,8 @@
   - [for bevy 0.4](./cheatsheet/release.md)
   - [for bevy git](./cheatsheet/master.md)
 
+- [Common Pitfalls](./pitfalls.md)
+
 - [Bevy Basics](./basics/_index.md)
   - [Entities and Components](./basics/ec.md)
   - [Resources](./basics/res.md)
