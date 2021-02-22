@@ -4,14 +4,15 @@
 
 ---
 
-This code is a community contribution. Thank you, @skairunner !
+This code is a community contribution.
+
+Current version developed by [@mirenbharta](https://github.com/bevy-cheatbook/bevy-cheatbook/pull/1). Initial work by [@skairunner](https://github.com/jamadazi/bevy-cookbook/pull/2).
 
 ---
 
-Camera that pans with left click or scrollwheel, and orbits with right click.
+This is a camera controller similar to the ones in 3D editors like Blender.
 
-Note: The behavior is somewhat broken.
-If you can improve it, please [submit a PR on Github](https://github.com/bevy-cheatbook/bevy-cheatbook)!
+Use the right mouse button to rotate, middle button to pan, scroll wheel to move inwards/outwards.
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/examples/pan-orbit-camera.rs:example}}
