@@ -362,9 +362,9 @@ fn main() {
         // run each frame (in `UPDATE` stage):
         .add_system(game_update.system())
         // add custom stage:
-        .add_stage_before(stage::UPDATE, MY_START, SystemStage::parallel())
+        .add_stage_before(CoreStage::Update, MY_START, SystemStage::parallel())
         // serial stage (parallel system execution disabled)
-        .add_stage_after(stage::UPDATE, DEBUG, SystemStage::serial())
+        .add_stage_after(CoreStage::Update, DEBUG, SystemStage::single_threaded())
         // run system in specific stage:
         .add_system_to_stage(DEBUG, debug_system.system())
         // enter the bevy runtime
@@ -412,7 +412,7 @@ fn main() {
         .insert_resource(State::new(MyState::MainMenu))
         // add the state stage
         .add_stage_before(
-            stage::UPDATE, STATE,
+            CoreStage::Update, STATE,
             StateStage::<MyState>::default()
         )
         // this one goes in `UPDATE` as normal
