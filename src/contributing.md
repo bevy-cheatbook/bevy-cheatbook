@@ -4,17 +4,33 @@ Any help with maintaining or improving the book is welcome! Contribute via [GitH
 
 Feel free to submit PRs for anything you consider useful. I will review them with you, so we can edit as needed to bring them to the style and quality desired for this book.
 
+You should aim to adhere to the guidelines on this page, but don't worry too much about it; I'll happily work with you to improve your contributions.
+
+If you prefer to only write code, that's fine. I can write the text to go with the code for you.
+
 Even if you just have an idea, but don't want to write the content yourself, suggest it in an issue!
 
 Be civil. If you need a code of conduct, have a look at Bevy's.
+
+## Help Wanted
+
+Specific things that I would really appreciate help with:
+
+ - Adding new syntax to the [cheatsheet for the latest Bevy Git](./cheatsheet/master.md).
+ - More content for [Advanced Patterns](./patterns/_index.md), more [Cookbook](./cookbook/_index.md) examples.
+   - Especially if you frequent the Bevy Discord (or other communities) and know what kinds of things people come across.
+
+## Credits
+
+When I merge your contributions to the book, I will mention you by your github username with a link to your PR.
+
+Let me know if you don't want to be credited, or if you prefer to be credited in some other way.
 
 ## Bevy version
 
 The book is targeted at the latest bevy release (0.4).
 
-However, content that covers newer additions in bevy git, is also welcome!
-
-It needs to be clearly marked.
+Content that covers new additions in bevy git, is also welcome! It needs to be clearly marked.
 
 Anything that exists in both the release version and the git version, should be written for the release version.
 
@@ -32,8 +48,12 @@ Always use mdbook anchor syntax to embed code, never line numbers.
 [See here](https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file).
 
 ## Style Guidelines
+ 
+Code snippets in the Cheatsheet should be as concise as possible. Feel free to use meaningless placeholder names; don't try to make them "realistic".
+ 
+Code in other sections, however, should aim to "look realistic", as to illustrate what the feature might actually be used for.
 
-Follow these guidelines to avoid the need for edits to your PRs and get them merged more easily:
+If you are writing text for the book, follow these guidelines to avoid the need for edits to your PRs and get them merged more easily:
 
  - Reduce verbosity. Try to get the point across with simpler code and explanations.
    - "Perfection is achieved not when there is nothing more to add, but when there is nothing more to remove."
