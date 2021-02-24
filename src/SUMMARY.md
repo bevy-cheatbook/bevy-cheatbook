@@ -33,6 +33,7 @@
   - [Quitting the App](./cookbook/quit.md)
   - [Changing the Background Color](./cookbook/clear-color.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
+  - [Track Assets Loading](./cookbook/assets-ready.md)
   - [Grabbing the Mouse](./cookbook/mouse-grab.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
   - [Custom Camera Projection](./cookbook/custom-projection.md)
