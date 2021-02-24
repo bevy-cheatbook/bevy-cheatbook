@@ -1,20 +1,33 @@
 # System Chaining
 
-Systems can take an input and produce an output.
+Systems can take an input and produce an output, and be connected together to run as a single larger system (chain).
 
-One useful application of this is error handling:
+Think of this as "glue", for constructing larger systems out of multiple parts.
+
+One useful application of this is error handling (allowing the use of `?`):
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/src/basics.rs:system-io}}
 ```
 
-Such systems cannot be registered individually (bevy doesn't know what to do
+Such systems cannot be registered individually (Bevy doesn't know what to do
 with the input/output). You have to connect them in a chain:
 
 ```rust,no_run,noplayground
 {{#include ../code_bevy_release/src/basics.rs:system-chain}}
 ```
 
-In general, this pattern is useful for any scenario where you have one system
-that requires data produced from another system.
+Chains are a specialized tool; only use them if you really want to construct large
+systems out of modular parts. Avoid using them as a general-purpose data passing
+mechanism. For most use cases, you probably want to use [Events](./events.md) instead.
+
+## Performance Warning
+
+Beware that Bevy treats the whole chain as if it was a single big system, with
+all the combined resources and queries. This implies that parallelism could be
+limited, affecting performance.
+
+Avoid adding a system that requires mutable access to anything, as part of
+multiple chains. It would block all affected chains from running in parallel.
+
 
