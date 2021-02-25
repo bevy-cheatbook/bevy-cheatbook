@@ -9,7 +9,7 @@ Designed to be easy to read, straight to the point, using simple language to foc
 The book has several sections:
 
  - [Bevy Cheatsheet](./cheatsheet/_index.md): condensed one-page summary of common bevy syntax and features
- - [Common Pitfalls](./pitfalls.md): common issues to watch out for, if you are new to Bevy
+ - [Common Pitfalls](./pitfalls.md): common issues to watch out for
  - [Bevy Basics](./basics/_index.md): overview of the basics of programming in Bevy
  - Advanced Patterns: good practices for using bevy effectively
  - Bevy Cookbook: examples covering common game development problems

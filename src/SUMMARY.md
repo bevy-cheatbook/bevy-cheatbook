@@ -6,8 +6,6 @@
   - [for bevy 0.4](./cheatsheet/release.md)
   - [for bevy git](./cheatsheet/master.md)
 
-- [Common Pitfalls](./pitfalls.md)
-
 - [Bevy Basics](./basics/_index.md)
   - [Entities and Components](./basics/ec.md)
   - [Resources](./basics/res.md)
@@ -27,6 +25,11 @@
 
 - [Advanced Patterns](./patterns/_index.md)
   - [Generic Systems](./patterns/generic-systems.md)
+
+- [Common Pitfalls](./pitfalls/_index.md)
+  - [Slow Performance](./pitfalls/performance.md)
+  - [File Format Support](./pitfalls/file-formats.md)
+  - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
   - [Input Handling](./cookbook/input-handling.md)
