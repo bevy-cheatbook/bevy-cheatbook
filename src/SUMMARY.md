@@ -30,6 +30,7 @@
   - [Slow Performance](./pitfalls/performance.md)
   - [File Format Support](./pitfalls/file-formats.md)
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
+  - [UI layout is inverted](./pitfalls/ui-y-up.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
   - [Input Handling](./cookbook/input-handling.md)
