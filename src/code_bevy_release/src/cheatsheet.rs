@@ -39,6 +39,7 @@ struct MyChildBundle;
 
 struct ComponentA;
 struct ComponentB;
+struct ComponentC;
 
 // ANCHOR: bundle
 #[derive(Bundle)]
@@ -106,10 +107,15 @@ pub fn _silence_warnings() {
 }
 
 // ANCHOR: query
-fn my_system(mut query: Query<(Entity, &ComponentA, &mut ComponentB)>) {
+fn my_system(
+    mut query: Query<(Entity, &ComponentA, &mut ComponentB, Option<&mut ComponentC>)>
+) {
     // operate on all matching entities
-    for (entity, a, mut b) in query.iter_mut() {
+    for (entity, a, mut b, c) in query.iter_mut() {
         // do something with `a` and `b`; `entity` is the Entity id
+        if let Some(mut c) = c {
+            // do something with `c` if it exists
+        }
     }
 }
 // ANCHOR_END: query
