@@ -29,6 +29,7 @@
 - [Common Pitfalls](./pitfalls/_index.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [File Format Support](./pitfalls/file-formats.md)
+  - [Error adding function as system](./pitfalls/into-system.md)
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
 
