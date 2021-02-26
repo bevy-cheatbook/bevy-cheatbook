@@ -12,6 +12,10 @@ Click on "[explain]" links to go to the relevant [Bevy Basics](../basics/_index.
 
 [[explain](../basics/systems.md)]
 
+Regular Rust functions, but can only take special parameter types supported by Bevy:
+
+{{#include ../include/systemparams-master.md}}
+
 ## Entities and Components
 
 [[explain](../basics/ec.md)]
