@@ -27,6 +27,17 @@ This version of the book is for Bevy release 0.4.
 
 The cheatsheet also has a version for bevy git. An attempt is made to keep it reasonably up-to-date.
 
+## License
+
+All code in the book is under
+[CC0](http://creativecommons.org/publicdomain/zero/1.0/) (public domain).
+To the extent possible under law, the relevant Authors have waived all copyright
+and related or neighboring rights to Bevy Cheatbook Example Code.
+
+The text of the book is under
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Copyright © 2021 Jasen Borisov.
+
 ## Contributions Welcome!
 
 Development of the book happens on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).

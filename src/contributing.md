@@ -1,14 +1,24 @@
 # Contributing
 
-Any help with maintaining or improving the book is welcome! Contribute via [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook)!
+If you have any suggestions for the book, such as ideas for new content, or if
+you notice anything that is incorrect or misleading, please file issues in [the
+GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook)!
 
-Feel free to submit PRs for anything you consider useful. I will review them with you, so we can edit as needed to bring them to the style and quality desired for this book.
+Code contributions are welcome! Feel free to directly make PRs for new examples,
+or changes to existing code. Code only. I will take care of the book text / page
+that your code will be displayed on.
 
-You should aim to adhere to the guidelines on this page, but don't worry too much about it; I'll happily work with you to improve your contributions.
+By contributing, you agree to waive all copyright, to the extent possible under
+law, and provide your work under the CC0 public domain license.
 
-If you prefer to only write code, that's fine. I can write the text to go with the code for you.
+If you contribute a cookbook example, I will credit you in the book by your
+github username with a link to the PR. Please let me know if you prefer not to
+be credited, or if you would like to be credited in another way (but no
+commercial self-promotion allowed).
 
-Even if you just have an idea, but don't want to write the content yourself, suggest it in an issue!
+Direct contributions to the book text are *not* accepted. I want to author it
+all myself, so that the book can follow a coherent editorial style, and so that
+there are no complications with copyrights and licensing.
 
 Be civil. If you need a code of conduct, have a look at Bevy's.
 
@@ -17,14 +27,9 @@ Be civil. If you need a code of conduct, have a look at Bevy's.
 Specific things that I would really appreciate help with:
 
  - Adding new syntax to the [cheatsheet for the latest Bevy Git](./cheatsheet/master.md).
- - More content for [Advanced Patterns](./patterns/_index.md), more [Cookbook](./cookbook/_index.md) examples.
+ - More [Cookbook](./cookbook/_index.md) examples.
+ - More content for [Advanced Patterns](./patterns/_index.md) and [Common Pitfalls](./pitfalls/_index.md).
    - Especially if you frequent the Bevy Discord (or other communities) and know what kinds of things people come across.
-
-## Credits
-
-When I merge your contributions to the book, I will mention you by your github username with a link to your PR.
-
-Let me know if you don't want to be credited, or if you prefer to be credited in some other way.
 
 ## Bevy version
 
@@ -36,16 +41,11 @@ Anything that exists in both the release version and the git version, should be 
 
 ## Example Code
 
-All code that uses Bevy APIs should live under `src/code_bevy_release` or `src/code_bevy_master`, depending on the version of Bevy used.
+All code that uses should live under `src/code_bevy_release` or `src/code_bevy_master`, depending on the version of Bevy used.
 
-Cookbook recipes should be independent files under `examples`. Only embed the relevant parts into the book page, without unnecessary boilerplate. Link to the full example file at the top of the page.
+Cookbook recipes should be independent files under `examples`.
 
 Cheatsheet code lives in `src/cheatsheet.rs`.
-
-Miscellaneous code should live in `src/lib.rs`.
-
-Always use mdbook anchor syntax to embed code, never line numbers.
-[See here](https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file).
 
 ## Style Guidelines
  
@@ -53,18 +53,8 @@ Code snippets in the Cheatsheet should be as concise as possible. Feel free to u
  
 Code in other sections, however, should aim to "look realistic", as to illustrate what the feature might actually be used for.
 
-If you are writing text for the book, follow these guidelines to avoid the need for edits to your PRs and get them merged more easily:
+Aim for simplicity and minimalism. Do not include things irrelevant to getting the point across. "Perfection is achieved not when there is nothing more to add, but when there is nothing more to remove."
 
- - Reduce verbosity. Try to get the point across with simpler code and explanations.
-   - "Perfection is achieved not when there is nothing more to add, but when there is nothing more to remove."
- - Avoid repeating information found elsewhere in the book.
- - Don't forget to point out gotchas, workarounds, and other relevant practical considerations.
- - Make it easy to read:
-   - Try to cover all important information without wordy explanations.
-   - Prefer simple English with short sentences.
- - Use the most common/standard terminology and keywords, to make things easy to find.
-   - Don't come up with new/extra terminology of your own.
- - Avoid information overload
-   - Cover advanced usage separately from the basics.
-   - Prefer showing related features in a single code snippet (when not confusing). Avoid repeated/similar snippets.
- - Avoid long lines of code, to keep it readable on small screens.
+Try to use the most common/standard terminology and keywords, to make things easy to find. Don't come up with new/extra terminology of your own.
+
+Avoid long lines of code, to keep it readable on small screens.
