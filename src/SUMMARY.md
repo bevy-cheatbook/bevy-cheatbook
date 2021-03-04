@@ -44,4 +44,6 @@
   - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
 
+- [Bevy on the Web](./web/_index.md)
+
 [Contributing](./contributing.md)
