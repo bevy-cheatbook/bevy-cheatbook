@@ -45,5 +45,6 @@
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
 
 - [Bevy on the Web](./web/_index.md)
+  - [Quick Start](./web/quick-start.md)
 
 [Contributing](./contributing.md)
