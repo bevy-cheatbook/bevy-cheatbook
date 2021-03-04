@@ -46,5 +46,6 @@
 
 - [Bevy on the Web](./web/_index.md)
   - [Quick Start](./web/quick-start.md)
+  - [Better Error Messages](./web/better-errors.md)
 
 [Contributing](./contributing.md)
