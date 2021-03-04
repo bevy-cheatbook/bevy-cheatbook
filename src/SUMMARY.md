@@ -47,5 +47,6 @@
 - [Bevy on the Web](./web/_index.md)
   - [Quick Start](./web/quick-start.md)
   - [Better Error Messages](./web/better-errors.md)
+  - [Multi-Target (Native/WASM)](./web/multi-target.md)
 
 [Contributing](./contributing.md)
