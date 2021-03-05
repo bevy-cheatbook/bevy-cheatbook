@@ -21,7 +21,7 @@ As utilizing `bevy_webgl2` requires loading its Bevy plugin which does not
 compile natively, you will also need a way to only load it when compiling for
 the web. This can be achieved as follows:
 
-```
+```rust
 fn main() {
     let mut app = App::build();
 

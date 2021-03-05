@@ -19,7 +19,7 @@ For additional information and more techniques, refer to the Code Size chapter i
 
 In `Cargo.toml`, add the following:
 
-```
+```toml
 [profile.release]
 lto = true
 ```
@@ -31,14 +31,14 @@ is that compilation will take longer.
 
 In `Cargo.toml`, add the following:
 
-```
+```toml
 [profile.release]
 opt-level = 's'
 ```
 
 Or, an even more aggressive variant:
 
-```
+```toml
 [profile.release]
 opt-level = 'z'
 ```
@@ -52,7 +52,7 @@ WASM-specific compiler tools, amongst which `wasm-opt`. It goes much further
 than what the LLVM compiler can do and can be used to further optimize for
 either speed or size:
 
-```
+```shell
 # Optimize for size.
 wasm-opt -Os -o output.wasm input.wasm
 
@@ -77,14 +77,14 @@ can use [wee-alloc](https://github.com/rustwasm/wee_alloc) instead, which is les
 
 In `Cargo.toml`, add the following:
 
-```
+```toml
 [dependencies]
 wee_alloc = "0.4"
 ```
 
 And now add the following to `main.rs`:
 
-```
+```rust
 #[cfg(target_arch = "wasm32")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;

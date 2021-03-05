@@ -13,7 +13,7 @@ Bevy's rendering back-end currently does not support the web. You will need
 [bevy_webgl2](https://github.com/mrk-its/bevy_webgl2) instead. At the very
 least, you require the following in your `Cargo.toml`:
 
-```
+```toml
 [dependencies]
 bevy = {version = "0.4", default-features = false, features = ["bevy_winit", "render"]}
 bevy_webgl2 = "0.4"
@@ -29,14 +29,14 @@ You are now compiling a WASM-compatible rendering back-end, but you still need
 to load it in Bevy's application builder. In your code simply replace Bevy's
 `DefaultPlugins` with `bevy_webgl2::DefaultPlugins`:
 
-```
+```rust
 App::build()
     .add_plugins(bevy_webgl2::DefaultPlugins)
 ```
 
 or add both Bevy's `DefaultPlugins` and `bevy_webgl2::WebGL2Plugin`:
 
-```
+```rust
 App::build()
     .add_plugins(DefaultPlugins)
     .add_plugin(bevy_webgl2::WebGL2Plugin)
@@ -75,7 +75,7 @@ their project structure then, as well.
 First, you will need to install `wasm-pack`. You can do this with the help of
 cargo:
 
-```
+```shell
 cargo install wasm-pack
 ```
 
@@ -83,7 +83,7 @@ Next, you will have to restructure your project as a library. This is more
 straightforward than it sounds. Simply rename your `main.rs` to `lib.rs` and
 rename your main function as follows:
 
-```
+```rust
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -96,7 +96,7 @@ You still require a `main.rs` if you desire to also run your code natively
 (i.e. on Windows, MacOS and/or Linux), but all that needs to be in it is a call
 to your main library function:
 
-```
+```rust
 fn main() {
     mylib::run();
 }
@@ -105,7 +105,7 @@ fn main() {
 
 Finally, you will need the following additions in `Cargo.toml`:
 
-```
+```toml
 [lib]
 crate-type = ["cdylib", "rlib"]
 
@@ -129,7 +129,7 @@ This template should allow for a project that runs both natively and on the web
 (but do read [Multi-Target](./web/multi-target.md), also), but you'll need
 to adhere to the following setup in your `Cargo.toml`:
 
-```
+```toml
 [features]
 default = [
   "bevy/bevy_gltf",
@@ -152,7 +152,7 @@ bevy_webgl2 = {version="0.4.0", optional=true}
 You can now use `cargo make` commands to run the application in two different
 modes:
 
-```
+```shell
 cargo make run # Run native version
 cargo make --profile release build-native # Build native version
 
@@ -198,7 +198,7 @@ script tag to your webpage:
 
 If you used `wasm-pack` (be sure to rename files for your project):
 
-```
+```html
 <script type="module">
   import init from './myproject.js';
   init('./myproject_bg.wasm').then(function (wasm) { wasm.run(); });
@@ -210,7 +210,7 @@ Refer to the [wasm-pack documentation](https://rustwasm.github.io/docs/wasm-pack
 
 If you used `cargo-make`:
 
-```
+```html
 <script type="module">
   import init from './wasm.js'
   init()
@@ -226,7 +226,7 @@ within the same repository of the source code. You will need the same files
 generated as in the [subsection](#Custom webpage) above.
 
 1. Create an empty branch
-```
+```shell
 git checkout --orphan web
 git reset --hard
 ```

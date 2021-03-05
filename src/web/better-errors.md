@@ -4,7 +4,7 @@ By default a WASM application doesn't give informative error messages in the bro
 
 Add the crate to your dependencies in `Cargo.toml`:
 
-```
+```toml
 [dependencies]
 console_error_panic_hook = "0.1"
 ```
@@ -12,7 +12,7 @@ console_error_panic_hook = "0.1"
 And make the following function call in your main function, making sure it is
 only called once.
 
-```
+```rust
 fn main() {
     set_panic_hook();
 

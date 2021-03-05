@@ -14,7 +14,7 @@ toggle the feature flag on `rand`'s dependency, `getrandom`' yourself.
 
 In your `Cargo.toml`:
 
-```
+```toml
 rand = "0.8"
 getrandom = { version = "0.1", features = ["wasm-bindgen"] }
 ```
