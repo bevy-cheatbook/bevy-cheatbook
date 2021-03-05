@@ -127,7 +127,15 @@ least `Makefile.toml` and `index.html` from that repository.
 
 This template should allow for a project that runs both natively and on the web
 (but do read [Multi-Target](./web/multi-target.md), also), but you'll need
-to adhere to the following setup in your `Cargo.toml`:
+to adhere to a specific project setup..
+
+First, install `cargo-make`:
+
+```shell
+cargo install cargo-make
+```
+
+Next, make sure your `Cargo.toml` looks like this:
 
 ```toml
 [features]
