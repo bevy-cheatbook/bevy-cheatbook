@@ -23,8 +23,9 @@ In `Cargo.toml`, add the following:
 [profile.release]
 lto = true
 ```
+
 This tells LLVM to inline and prune functions much more aggressively, resulting
-in a smaller binary size *and* an execution speed increase. The downside here
+in a smaller binary size _and_ an execution speed increase. The downside here
 is that compilation will take longer.
 
 ## Compiling for size instead of speed
@@ -73,7 +74,6 @@ Note: `wasm-pack` performs this partially by default.
 By default, Rust uses a port of `dlmalloc` for WebAssembly, which is about 10
 kilobytes in size. If you don't need particularly fast memory allocator, you
 can use [wee-alloc](https://github.com/rustwasm/wee_alloc) instead, which is less than a single kilobyte in size.
-
 
 In `Cargo.toml`, add the following:
 
