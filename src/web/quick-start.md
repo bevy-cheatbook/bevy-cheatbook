@@ -60,22 +60,10 @@ JavaScript mappings and potentially other handy files:
 [wasm-pack](https://github.com/rustwasm/wasm-pack) and
 [cargo-make](https://github.com/sagiegurari/cargo-make).
 
-`wasm-pack` lets you not only target the web natively but allows
-interoperability with [Node.js](https://nodejs.org/en/) or otherwise use along
-any JavaScript packages in a workflow such as
-[webpack](https://webpack.js.org/). The downside is that you must adhere to a
-certain project structure, and there is no built-in way to quickly serve a
-webpage for development and testing.
+`wasm-pack` is the recommended approach, as it is easier. If you would prefer
+to use `cargo make`, see [Cargo Make](./web/cargo-make.md).
 
-`cargo-make` is a task runner that lets you define and configure a set of tasks
-in a script to execute upon building. It can not only be used to build for the
-web and generate the necessary JavaScript files, but even to quickly
-serve a webpage for development and testing. The downside here is that we must
-define all this behavior ourselves by creating a build script. There are
-templates you can use, but these are opinionated and you will have to follow
-their project structure then, as well.
-
-### Using `wasm-pack`
+### Building with `wasm-pack`
 
 First, you will need to install `wasm-pack`. You can do this with the help of
 cargo:
@@ -122,57 +110,6 @@ You can then simply build your project for the web by issuing
 `wasm-pack build --target web --release`. The resulting files will be in the
 `pkg/` directory.
 
-### Using `cargo-make`
-
-To actually get `cargo-make` building for the web, you need a build file.
-Writing this file is out of scope for this guide, but luckily the author of
-`bevy_webgl2` has provided [bevy_webgl2_app_template](https://github.com/mrk-its/bevy_webgl2_app_template) which you can use. If you are starting your
-project from scratch you can use the full template, otherwise you will need at
-least `Makefile.toml` and `index.html` from that repository.
-
-This template should allow for a project that runs both natively and on the web
-(but do read [Multi-Target](./web/multi-target.md), also), but you'll need
-to adhere to a specific project setup.
-
-First, use Cargo to install `cargo-make`:
-
-```shell
-cargo install cargo-make
-```
-
-Next, make sure your `Cargo.toml` looks like this:
-
-```toml
-[features]
-default = [
-  "bevy/bevy_gltf",
-  "bevy/bevy_winit",
-  "bevy/render",
-  "bevy/png",
-]
-
-# feature used when building as native app
-native = ["bevy/bevy_wgpu"]
-
-# feature used when building as a WASM web app
-web = ["bevy_webgl2"]
-
-[dependencies]
-bevy = {version="0.4.0", default-features=false}
-bevy_webgl2 = {version="0.4.0", optional=true}
-```
-
-You can now use `cargo make` commands to run the application in two different
-modes:
-
-```shell
-cargo make run # Run native version
-cargo make --profile release build-native # Build native version
-
-cargo make serve # Run WASM version: visit "http://127.0.0.1:4000/" to view
-cargo make --profile release build-web # Build WASM version
-```
-
 ## Deploying to the web
 
 In order for other people to use your application on the web, you must host it
@@ -189,20 +126,6 @@ If you used `wasm-pack`, serve (found in the `/pkg` directory after building):
 ```
 myproject_bg.wasm
 myproject.js
-```
-
-If you used `cargo-make`, serve the following files in the same directory tree
-as they're generated in:
-
-```
-|_ target
-|  |_ wasm32-unknown-unknown
-|  |  |_release
-|  |    |_ myproject.d
-|  |    |_ myproject.wasm
-|  |_ wasm.js
-|  |_ wasm_bg.wasm
-|_ index.html
 ```
 
 Of course, simply serving these files is not enough. You need to actually have
@@ -223,17 +146,6 @@ If you used `wasm-pack` (be sure to rename files for your project):
 With `wasm-pack` you could also publish your project as a `Node.js` package or
 set it up with `webpack`, but that is considered out of scope for this guide.
 Refer to the [wasm-pack documentation](https://rustwasm.github.io/docs/wasm-pack/) for more information.
-
-If you used `cargo-make`:
-
-```html
-<script type="module">
-  import init from "./wasm.js";
-  init();
-</script>
-```
-
-Note that the [bevy_webgl2_app_template](https://github.com/mrk-its/bevy_webgl2_app_template) already has this included in the example `index.html`.
 
 ### GitHub Pages
 

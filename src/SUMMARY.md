@@ -50,5 +50,6 @@
   - [Multi-Target (Native/WASM)](./web/multi-target.md)
   - [Random Number Generation](./web/rng.md)
   - [Binary Size Optimization](./web/binary-size.md)
+  - [Cargo Make as an Alternative](./web/cargo-make.md)
 
 [Contributing](./contributing.md)
