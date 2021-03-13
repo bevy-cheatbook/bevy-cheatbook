@@ -47,7 +47,6 @@
 - [Bevy on the Web](./web/_index.md)
   - [Quick Start](./web/quick-start.md)
   - [Better Error Messages](./web/better-errors.md)
-  - [Multi-Target (Native/WASM)](./web/multi-target.md)
   - [Random Number Generation](./web/rng.md)
   - [Binary Size Optimization](./web/binary-size.md)
   - [Cargo Make as an Alternative](./web/cargo-make.md)
