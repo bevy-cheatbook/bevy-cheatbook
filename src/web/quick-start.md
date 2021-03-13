@@ -7,6 +7,10 @@ want your project to work on native (i.e. Windows, MacOS and/or Linux) _and_
 WASM, you will need to perform additional steps. See
 [Multi-Target](./web/multi-target.md).
 
+Note that by default error messages in a browser context do not forward panic
+messages, making it difficult to debug. See [Better
+Errors](./web/better-errors.md).
+
 ## Getting a WASM-compatible rendering back-end
 
 Bevy's rendering back-end currently does not support the web. You will need
