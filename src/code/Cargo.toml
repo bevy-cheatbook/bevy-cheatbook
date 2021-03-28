@@ -4,5 +4,4 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-bevy = "*"
-
+bevy = { git = "https://github.com/bevyengine/bevy.git", branch = "main" }

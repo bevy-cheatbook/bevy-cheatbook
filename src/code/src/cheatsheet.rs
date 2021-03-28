@@ -15,6 +15,7 @@ impl MyResource {
 struct Foo;
 struct Bar;
 
+#[derive(Default)]
 struct MyComponent;
 
 #[derive(Default)]
@@ -24,18 +25,27 @@ struct MyEvent;
 
 #[derive(Bundle)]
 #[derive(Default)]
-struct MyBundle;
+struct MyBundle {
+    _blah: u8,
+}
 #[derive(Default)]
 #[derive(Bundle)]
-struct ExtraBundle;
+struct ExtraBundle {
+    _blah: u8,
+}
+#[derive(Default)]
 struct ExtraComponent;
 
 #[derive(Default)]
 #[derive(Bundle)]
-struct MyParentBundle;
+struct MyParentBundle {
+    _blah: u8,
+}
 #[derive(Default)]
 #[derive(Bundle)]
-struct MyChildBundle;
+struct MyChildBundle {
+    _blah: u8,
+}
 
 struct ComponentA;
 struct ComponentB;
@@ -57,18 +67,19 @@ impl MyOtherResource {
 
 struct MyFancyResource { /* stuff */ }
 
-// ANCHOR: fromresources
-impl FromResources for MyFancyResource {
-    fn from_resources(resources: &Resources) -> Self {
-        // you have full access to any other resources you need here,
-        // you can even mutate them:
-        let mut x = resources.get_mut::<MyOtherResource>().unwrap();
+// ANCHOR: fromworld
+impl FromWorld for MyFancyResource {
+    fn from_world(world: &mut World) -> Self {
+        // You have full access to anything in the ECS from here.
+
+        // For instance, you can mutate other resources:
+        let mut x = world.get_resource_mut::<MyOtherResource>().unwrap();
         x.do_mut_stuff();
 
         MyFancyResource { /* stuff */ }
     }
 }
-// ANCHOR_END: fromresources
+// ANCHOR_END: fromworld
 
 pub mod res {
 use bevy::prelude::*;
@@ -85,14 +96,14 @@ fn my_system(a: Res<MyResourceA>, mut b: ResMut<MyResourceB>) {
     fn main() {
         App::build()
             // specific resource value
-            .add_resource(MyResource::new())
-            // auto-init using `Default` or `FromResources`
+            .insert_resource(MyResource::new())
+            // auto-init using `Default` or `FromWorld`
             .init_resource::<MyAutoResource>()
             .run();
     }
 // ANCHOR_END: res-app-builder
 
-fn res2(commands: &mut Commands) {
+fn res2(mut commands: Commands) {
 // ANCHOR: res-commands
     commands.insert_resource(MyData::default());
 // ANCHOR_END: res-commands
@@ -173,47 +184,55 @@ fn with_local(local: Local<MyData>) {
 // ANCHOR_END: local
 
 // ANCHOR: commands
-fn manage_entities_components_resources(commands: &mut Commands) {
-    // build and spawn an entity
-    let entity = commands.spawn(MyBundle::default())
-        .with(ExtraComponent)
-        .with_bundle(ExtraBundle::default())
-        // get the entity id
-        .current_entity().unwrap();
-
-    // despawn a single entity
-    commands.despawn(entity);
-
+fn manage_entities_components_resources(mut commands: Commands) {
     // replaces any existing resource of this type
     commands.insert_resource(MyData::default());
 
-    // add components to existing entity
-    commands.insert_one(entity, MyComponent);
-    commands.insert(entity, MyBundle::default());
+    // create/spawn a new entity
+    let id = commands.spawn()
+        // add a bundle
+        .insert_bundle(MyBundle::default())
+        // add a single component
+        .insert(MyComponent::default())
+        // get the entity id
+        .id();
 
-    // remove
-    commands.remove_one::<MyComponent>(entity);
-    commands.remove::<MyBundle>(entity);
+    // shorthand syntax for using a bundle
+    commands.spawn_bundle(MyBundle::default())
+        .insert(ExtraComponent);
+
+    // add components to existing entity
+    commands.entity(id)
+        .insert_bundle(MyBundle::default())
+        .insert(MyComponent::default());
+
+    // remove components from entity
+    commands.entity(id)
+        .remove::<MyComponent>()
+        .remove_bundle::<MyBundle>();
+
+    // despawn an entity
+    commands.entity(id).despawn();
 }
 // ANCHOR_END: commands
 
 // ANCHOR: parent-child
-fn spawn_nested(commands: &mut Commands) {
-    let parent = commands.spawn(MyParentBundle::default())
+fn spawn_nested(mut commands: Commands) {
+    let parent = commands.spawn_bundle(MyParentBundle::default())
         .with_children(|parent| {
-            parent.spawn(MyChildBundle::default());
-        }).current_entity().unwrap();
+            parent.spawn_bundle(MyChildBundle::default());
+        }).id();
 
     // despawn a parent and all its children
-    commands.despawn_recursive(parent);
+    commands.entity(parent).despawn_recursive();
 }
 // ANCHOR_END: parent-child
-fn spawn_nested2(commands: &mut Commands) {
+fn spawn_nested2(mut commands: Commands) {
     let parent = Entity::new(0);
     let child = Entity::new(0);
 
     // ANCHOR: add-parent
-    commands.insert_one(child, Parent(parent));
+    commands.entity(parent).push_children(&[child]);
     // ANCHOR_END: add-parent
 }
 
@@ -222,7 +241,7 @@ use bevy::prelude::*;
 use super::MyData;
 // ANCHOR: system-chaining
 fn output_system(/* system params */) -> MyData {
-    MyData::default()
+    MyData
 }
 
 fn input_system(In(data): In<MyData>) {
@@ -246,22 +265,18 @@ use bevy::prelude::*;
 // ANCHOR: events
 struct MyEvent;
 
-fn sender(mut events: ResMut<Events<MyEvent>>) {
-    events.send(MyEvent);
+fn sender(mut writer: EventWriter<MyEvent>) {
+    writer.send(MyEvent);
 }
 
-fn receiver(
-    events: Res<Events<MyEvent>>,
-    mut reader: Local<EventReader<MyEvent>>,
-) {
-    for event in reader.iter(&events) {
+fn receiver(mut reader: EventReader<MyEvent>) {
+    for event in reader.iter() {
         // handle event
     }
 }
 
 fn main() {
     App::build()
-        .add_plugins(MinimalPlugins)
         .add_event::<MyEvent>()
         // ...
         .run();
@@ -330,11 +345,8 @@ fn generate_asset(mut assets: ResMut<Assets<MyAssetType>>) {
 // ANCHOR_END: asset-new
 
 // ANCHOR: asset-event
-fn asset_events(
-    events: Res<Events<AssetEvent<MyAssetType>>>,
-    mut reader: Local<EventReader<AssetEvent<MyAssetType>>>
-) {
-    for event in reader.iter(&events) {
+fn asset_events(mut reader: EventReader<AssetEvent<MyAssetType>>) {
+    for event in reader.iter() {
         match event {
             AssetEvent::Created { handle } => {
                 // asset just finished loading
@@ -364,8 +376,8 @@ fn main() {
         // custom plugin
         .add_plugin(MyPlugin::default())
         // specific resource value
-        .add_resource(MyResource::new())
-        // auto-init using `Default` or `FromResources`
+        .insert_resource(MyResource::new())
+        // auto-init using `Default` or `FromWorld`
         .init_resource::<MyAutoResource>()
         // add a custom event type:
         .add_event::<MyEvent>()
@@ -374,9 +386,9 @@ fn main() {
         // run each frame (in `UPDATE` stage):
         .add_system(game_update.system())
         // add custom stage:
-        .add_stage_before(stage::UPDATE, MY_START, SystemStage::parallel())
+        .add_stage_before(CoreStage::Update, MY_START, SystemStage::parallel())
         // serial stage (parallel system execution disabled)
-        .add_stage_after(stage::UPDATE, DEBUG, SystemStage::serial())
+        .add_stage_after(CoreStage::Update, DEBUG, SystemStage::single_threaded())
         // run system in specific stage:
         .add_system_to_stage(DEBUG, debug_system.system())
         // enter the bevy runtime
@@ -406,33 +418,34 @@ use super::*;
     fn state_independent() {}
     fn setup_menu() {}
     fn close_menu() {}
-    fn handle_buttons() {}
+    fn update_player() {}
 
 // ANCHOR: states
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 enum MyState {
     MainMenu,
     InGame,
 }
 
 fn main() {
-    // label for the state stage
-    static STATE: &str = "state";
-
     App::build()
-        // add the app state resource with initial state
-        .add_resource(State::new(MyState::MainMenu))
-        // add the state stage
-        .add_stage_before(
-            stage::UPDATE, STATE,
-            StateStage::<MyState>::default()
-        )
-        // this one goes in `UPDATE` as normal
+        // add the app state type
+        .add_state(MyState::MainMenu)
+        // this one will run regardless of state
         .add_system(state_independent.system())
         // add systems to states
-        .on_state_enter(STATE, MyState::MainMenu, setup_menu.system())
-        .on_state_update(STATE, MyState::MainMenu, handle_buttons.system())
-        .on_state_exit(STATE, MyState::MainMenu, close_menu.system())
+        .add_system_set(
+            SystemSet::on_enter(MyState::MainMenu)
+                .with_system(setup_menu.system())
+        )
+        .add_system_set(
+            SystemSet::on_exit(MyState::MainMenu)
+                .with_system(close_menu.system())
+        )
+        .add_system_set(
+            SystemSet::on_update(MyState::InGame)
+                .with_system(update_player.system())
+        )
         .run();
 }
 // ANCHOR_END: states
@@ -440,7 +453,8 @@ fn main() {
 // ANCHOR: res-state
 fn manage_state(mut state: ResMut<State<MyState>>) {
     if *state.current() == MyState::MainMenu {
-        state.set_next(MyState::InGame).unwrap();
+        // FIXME new states
+        state.set(MyState::InGame).unwrap();
         // ^ error if another state change is pending
         // or if already in the target state
     }
