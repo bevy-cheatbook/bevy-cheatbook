@@ -23,9 +23,11 @@ for additional resources to help you on your bevy journey!
 
 ## Maintenance
 
-This version of the book is for Bevy release 0.4.
+This version of the book is for Bevy release 0.5.
 
-The cheatsheet also has a version for bevy git. An attempt is made to keep it reasonably up-to-date.
+You may also access [the `next` branch](https://bevy-cheatbook.github.io/next/).
+It contains any WIP efforts to cover newer developments in Bevy's main git
+branch, in preparation for the next release.
 
 ## License
 
