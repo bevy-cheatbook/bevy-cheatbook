@@ -7,6 +7,7 @@ struct ComponentB;
 #[derive(Default)]
 struct ComponentC;
 
+struct MyResource;
 struct ResourceA;
 struct ResourceB;
 struct ResourceC;
@@ -36,7 +37,19 @@ struct Enemy;
 // ANCHOR_END: marker-component
 
 #[derive(Bundle, Default)]
-struct MyBundle;
+struct MyBundle {
+    _blah: bool,
+}
+
+#[derive(Bundle, Default)]
+struct MyParentBundle {
+    _blah: bool,
+}
+
+#[derive(Bundle, Default)]
+struct MyChildBundle {
+    _blah: bool,
+}
 
 // ANCHOR: bundle
 #[derive(Bundle)]
@@ -63,20 +76,20 @@ impl MyOtherResource {
     fn do_mut_stuff(&mut self) {}
 }
 
-// ANCHOR: fromresources
+// ANCHOR: fromworld
 struct MyFancyResource { /* stuff */ }
 
-impl FromResources for MyFancyResource {
-    fn from_resources(resources: &Resources) -> Self {
-        // you have full access to any other resources you need here,
-        // you can even mutate them:
-        let mut x = resources.get_mut::<MyOtherResource>().unwrap();
+impl FromWorld for MyFancyResource {
+    fn from_world(world: &mut World) -> Self {
+        // You have full access to anything in the ECS from here.
+        // For instance, you can mutate other resources:
+        let mut x = world.get_resource_mut::<MyOtherResource>().unwrap();
         x.do_mut_stuff();
 
         MyFancyResource { /* stuff */ }
     }
 }
-// ANCHOR_END: fromresources
+// ANCHOR_END: fromworld
 
 // ANCHOR: resource-default
 #[derive(Debug, Default)]
@@ -118,7 +131,7 @@ fn check_zero_health(
 
         // center if hp is zero
         if health.hp <= 0.0 {
-            transform.translation = Vec3::zero();
+            transform.translation = Vec3::ZERO;
         }
 
         if let Some(player) = player {
@@ -193,57 +206,64 @@ fn debug_new_hostiles(
 
 // ANCHOR: example-commands
 fn spawn_player(
-    commands: &mut Commands,
+    mut commands: Commands,
 ) {
-    // `spawn` takes a Bundle
-    commands.spawn(PlayerBundle {
+    // create a new entity using `spawn`
+    let entity_id = commands.spawn()
+        // add a component
+        .insert(ComponentA)
+        // add a bundle
+        .insert_bundle(MyBundle::default())
+        // get the Entity ID
+        .id();
+
+    // shorthand for creating an entity with a bundle
+    commands.spawn_bundle(PlayerBundle {
         name: PlayerName("Henry".into()),
         xp: PlayerXp(1000),
         health: Health {
             hp: 100.0, boost: 20.0, stamina: 100.0,
         },
         _p: Player,
-    })
-        // add an extra bundle
-        .with_bundle(MyBundle::default())
-        // add an extra component
-        .with(ComponentA);
-
-    // get the entity id of the last spawned entity
-    let entity = commands.current_entity().unwrap();
-    // ^ unwrap is OK, `None` only returned if you haven't spawned first
+    });
 
     // spawn another entity
     // NOTE: tuples of arbitrary components are valid bundles
-    commands.spawn((
+    let other = commands.spawn_bundle((
         ComponentA::default(),
         ComponentB::default(),
         ComponentC::default(),
-    ));
+    )).id();
+
+    // modify the components of an existing entity:
+    commands.entity(entity_id)
+        .insert(ComponentB)
+        .remove::<ComponentA>()
+        .remove_bundle::<MyBundle>();
+
+    // despawn an entity
+    commands.entity(other).despawn();
 }
 
 fn make_all_players_hostile(
-    commands: &mut Commands,
+    mut commands: Commands,
     query: Query<Entity, With<Player>>,
 ) {
     for entity in query.iter() {
         // add an `Enemy` component to the entity
-        commands.insert_one(entity, Enemy);
-
-        // ensure they have a `MyBundle`
-        commands.insert(entity, MyBundle::default());
+        commands.entity(entity).insert(Enemy);
     }
 }
 // ANCHOR_END: example-commands
 
 // ANCHOR: despawn-recursive
 fn close_menu(
-    commands: &mut Commands,
+    mut commands: Commands,
     query: Query<Entity, With<MainMenuUI>>,
 ) {
     for entity in query.iter() {
         // despawn the entity and its children
-        commands.despawn_recursive(entity);
+        commands.entity(entity).despawn_recursive();
     }
 }
 // ANCHOR_END: despawn-recursive
@@ -252,7 +272,7 @@ fn close_menu(
 struct LevelUpEvent(Entity);
 
 fn player_level_up(
-    mut ev_levelup: ResMut<Events<LevelUpEvent>>,
+    mut ev_levelup: EventWriter<LevelUpEvent>,
     query: Query<(Entity, &PlayerXp)>,
 ) {
     for (entity, xp) in query.iter() {
@@ -263,10 +283,9 @@ fn player_level_up(
 }
 
 fn debug_levelups(
-    events: Res<Events<LevelUpEvent>>,
-    mut event_reader: Local<EventReader<LevelUpEvent>>,
+    mut ev_levelup: EventReader<LevelUpEvent>,
 ) {
-    for ev in event_reader.iter(&events) {
+    for ev in ev_levelup.iter() {
         eprintln!("Entity {:?} leveled up!", ev.0);
     }
 }
@@ -294,12 +313,11 @@ struct MapTexture {
 }
 
 fn fixup_textures(
-    ev_asset: Res<Events<AssetEvent<Texture>>>,
-    mut evr_asset: Local<EventReader<AssetEvent<Texture>>>,
+    mut ev_asset: EventReader<AssetEvent<Texture>>,
     mut assets: ResMut<Assets<Texture>>,
     map_tex: Res<MapTexture>,
 ) {
-    for ev in evr_asset.iter(&ev_asset) {
+    for ev in ev_asset.iter() {
         if let AssetEvent::Created { handle } = ev {
             // a texture was just loaded!
 
@@ -320,7 +338,7 @@ fn fixup_textures(
 struct UiFont(Handle<Font>);
 
 fn load_ui_font(
-    commands: &mut Commands,
+    mut commands: Commands,
     server: Res<AssetServer>
 ) {
     let handle: Handle<Font> = server.load("font.ttf");
@@ -335,7 +353,7 @@ fn load_ui_font(
 struct ExtraAssets(Vec<HandleUntyped>);
 
 fn load_extra_assets(
-    commands: &mut Commands,
+    mut commands: Commands,
     server: Res<AssetServer>,
 ) {
     if let Ok(handles) = server.load_folder("extra") {
@@ -344,33 +362,32 @@ fn load_extra_assets(
 }
 // ANCHOR_END: asset-folder
 
-fn commands_catchall(commands: &mut Commands) {
+fn commands_catchall(mut commands: Commands) {
 // ANCHOR: commands-current-entity
-let e = commands.spawn(MyBundle::default())
-    .current_entity().unwrap();
-// ^ unwrap is OK, `None` only returned if you haven't spawned first
+let e = commands.spawn().id();
 // ANCHOR_END: commands-current-entity
 
 // ANCHOR: commands-resource
 commands.insert_resource(GoalsReached { main_goal: false, bonus: false });
+commands.remove_resource::<MyResource>();
 // ANCHOR_END: commands-resource
 
 // ANCHOR: parenting
 // spawn the parent and get its Entity id
-let parent = commands.spawn(MyBundle::default())
-    .current_entity().unwrap();
+let parent = commands.spawn_bundle(MyParentBundle::default())
+    .id();
 
 // do the same for the child
-let child = commands.spawn(MyBundle::default())
-    .current_entity().unwrap();
+let child = commands.spawn_bundle(MyChildBundle::default())
+    .id();
 
-// connect them
-commands.push_children(parent, &[child]);
+// add the child to the parent
+commands.entity(parent).push_children(&[child]);
 
 // you can also use `with_children`:
-commands.spawn(MyBundle::default())
+commands.spawn_bundle(MyParentBundle::default())
     .with_children(|parent| {
-        parent.spawn(MyBundle::default());
+        parent.spawn_bundle(MyChildBundle::default());
     });
 // ANCHOR_END: parenting
 }
@@ -406,7 +423,7 @@ fn main() {
         // if it implements `Default` or `FromResources`
         .init_resource::<MyFancyResource>()
         // if not, or if you want to set a specific value
-        .add_resource(StartingLevel(3))
+        .insert_resource(StartingLevel(3))
         // ...
         .run();
 }
@@ -427,7 +444,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
 
         // resources:
-        .add_resource(StartingLevel(3))
+        .insert_resource(StartingLevel(3))
         // if it implements `Default` or `FromResources`
         .init_resource::<MyFancyResource>()
 
@@ -496,10 +513,8 @@ fn main() {
         .add_plugins(DefaultPlugins)
 
         // add DEBUG stage after UPDATE
-        // make the stage `serial` (disable parallel execution)
-        // to ensure systems run in the given order
-        // (useful for predictable debug messages)
-        .add_stage_after(stage::UPDATE, DEBUG, SystemStage::serial())
+        // also make it single-threaded
+        .add_stage_after(CoreStage::Update, DEBUG, SystemStage::single_threaded())
 
         // systems are added to the `UPDATE` stage by default
         .add_system(player_gather_xp.system())
@@ -516,6 +531,7 @@ fn main() {
 }
 
 #[allow(dead_code)]
+#[allow(unused_imports)]
 mod app5 {
     use bevy::prelude::*;
     use super::*;
@@ -530,6 +546,7 @@ mod app5 {
     fn quit_app() {}
     fn enemy_ai() {}
     fn unload_level() {}
+
 // ANCHOR: check-state
 fn check_app_state(app_state: Res<State<AppState>>) {
     match app_state.current() {
@@ -539,71 +556,38 @@ fn check_app_state(app_state: Res<State<AppState>>) {
         AppState::InGame => {
             println!("Playing the game!");
         }
-        AppState::Credits => {
-            println!("Rolling the credits!");
-        }
-    }
-
-    if let Some(prev) = app_state.previous() {
-        println!("The previous app state was {:?}", prev);
-    }
-
-    if let Some(next) = app_state.next() {
-        println!("App state is about to be changed to {:?}", next);
     }
 }
 // ANCHOR_END: check-state
 
 // ANCHOR: change-state
 fn enter_game(mut app_state: ResMut<State<AppState>>) {
-    app_state.set_next(AppState::InGame).unwrap();
+    app_state.set(AppState::InGame).unwrap();
     // ^ this can fail if we are already in the target state
     // or if another state change is already queued
 }
 // ANCHOR_END: change-state
 
 // ANCHOR: app-states
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq, Hash)]
 enum AppState {
     MainMenu,
     InGame,
-    Credits,
 }
 
 fn main() {
-    // label for our state stage
-    static STATE: &str = "state";
-
     App::build()
         .add_plugins(DefaultPlugins)
 
-        // add the app state resource; start in menu
-        .add_resource(State::new(AppState::MainMenu))
-
-        // add stage for the state-specific systems
-        // make it run before the main updates
-        .add_stage_before(
-            stage::UPDATE, STATE,
-            StateStage::<AppState>::default()
-        )
+        // add the app state type
+        .add_state(AppState::MainMenu)
 
         // state-independent systems go in `UPDATE`, as normal
         .add_system(maintain_all_uis.system())
 
         // add systems to specific states and transitions
 
-        .on_state_enter(STATE, AppState::MainMenu, spawn_main_menu.system())
-        .on_state_update(STATE, AppState::MainMenu, menu_buttons.system())
-        .on_state_exit(STATE, AppState::MainMenu, close_menu.system())
-
-        .on_state_update(STATE, AppState::Credits, roll_credits.system())
-        .on_state_exit(STATE, AppState::Credits, quit_app.system())
-
-        .on_state_enter(STATE, AppState::InGame, load_map.system())
-        .on_state_update(STATE, AppState::InGame, player_move.system())
-        .on_state_update(STATE, AppState::InGame, player_take_damage.system())
-        .on_state_update(STATE, AppState::InGame, enemy_ai.system())
-        .on_state_exit(STATE, AppState::InGame, unload_level.system())
+        // FIXME STATE STACK
 
         .run();
 }

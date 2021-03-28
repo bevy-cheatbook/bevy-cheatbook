@@ -10,13 +10,13 @@ respective entities.
 `Commands` has methods for adding children to entities, which automatically add the correct components:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:parenting}}
+{{#include ../code/src/basics.rs:parenting}}
 ```
 
 You can despawn an entire hierarchy with a single command:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:despawn-recursive}}
+{{#include ../code/src/basics.rs:despawn-recursive}}
 ```
 
 ## Relative Transforms

@@ -7,14 +7,14 @@ Think of this as "glue", for constructing larger systems out of multiple parts.
 One useful application of this is error handling (allowing the use of `?`):
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:system-io}}
+{{#include ../code/src/basics.rs:system-io}}
 ```
 
 Such systems cannot be registered individually (Bevy doesn't know what to do
 with the input/output). You have to connect them in a chain:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:system-chain}}
+{{#include ../code/src/basics.rs:system-chain}}
 ```
 
 Chains are a specialized tool; only use them if you really want to construct large

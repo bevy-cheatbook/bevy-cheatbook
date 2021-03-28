@@ -5,7 +5,7 @@ use bevy::prelude::*;
 // ANCHOR: system
 use bevy::app::AppExit;
 
-fn exit_system(mut exit: ResMut<Events<AppExit>>) {
+fn exit_system(mut exit: EventWriter<AppExit>) {
     exit.send(AppExit);
 }
 // ANCHOR_END: system

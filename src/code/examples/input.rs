@@ -18,26 +18,15 @@ fn my_simple_system(keys: Res<Input<KeyCode>>, btns: Res<Input<MouseButton>>) {
 
 // ANCHOR: event-input
 fn my_fancy_system(
-    ev_keys: Res<Events<KeyboardInput>>,
-    mut evr_keys: Local<EventReader<KeyboardInput>>,
-
-    ev_cursor: Res<Events<CursorMoved>>,
-    mut evr_cursor: Local<EventReader<CursorMoved>>,
-
-    ev_motion: Res<Events<MouseMotion>>,
-    mut evr_motion: Local<EventReader<MouseMotion>>,
-
-    ev_mousebtn: Res<Events<MouseButtonInput>>,
-    mut evr_mousebtn: Local<EventReader<MouseButtonInput>>,
-
-    ev_scroll: Res<Events<MouseWheel>>,
-    mut evr_scroll: Local<EventReader<MouseWheel>>,
-
-    ev_touch: Res<Events<TouchInput>>,
-    mut evr_touch: Local<EventReader<TouchInput>>,
+    mut evr_keys: EventReader<KeyboardInput>,
+    mut evr_cursor: EventReader<CursorMoved>,
+    mut evr_motion: EventReader<MouseMotion>,
+    mut evr_mousebtn: EventReader<MouseButtonInput>,
+    mut evr_scroll: EventReader<MouseWheel>,
+    mut evr_touch: EventReader<TouchInput>,
 ) {
     // Keyboard input
-    for ev in evr_keys.iter(&ev_keys) {
+    for ev in evr_keys.iter() {
         if ev.state.is_pressed() {
             eprintln!("Just pressed key: {:?}", ev.key_code);
         } else {
@@ -46,17 +35,17 @@ fn my_fancy_system(
     }
 
     // Absolute cursor position (in window coordinates)
-    for ev in evr_cursor.iter(&ev_cursor) {
+    for ev in evr_cursor.iter() {
         eprintln!("Cursor at: {}", ev.position);
     }
 
     // Relative mouse motion
-    for ev in evr_motion.iter(&ev_motion) {
+    for ev in evr_motion.iter() {
         eprintln!("Mouse moved {} pixels", ev.delta);
     }
 
     // Mouse buttons
-    for ev in evr_mousebtn.iter(&ev_mousebtn) {
+    for ev in evr_mousebtn.iter() {
         if ev.state.is_pressed() {
             eprintln!("Just pressed mouse button: {:?}", ev.button);
         } else {
@@ -65,12 +54,12 @@ fn my_fancy_system(
     }
 
     // scrolling (mouse wheel, touchpad, etc.)
-    for ev in evr_scroll.iter(&ev_scroll) {
+    for ev in evr_scroll.iter() {
         eprintln!("Scrolled vertically by {} and horizontally by {}.", ev.y, ev.x);
     }
 
     // touch input
-    for ev in evr_touch.iter(&ev_touch) {
+    for ev in evr_touch.iter() {
         eprintln!("Touch {} in {:?} at {}.", ev.id, ev.phase, ev.position);
     }
 }

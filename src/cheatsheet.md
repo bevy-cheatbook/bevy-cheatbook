@@ -60,7 +60,7 @@ Add when [building the app](#app-builder-main-function):
 {{#include ./code/src/cheatsheet.rs:res-app-builder}}
 ```
 
-Add (or replace existing) using [`Commands`](#commands):
+Manage using [`Commands`](#commands):
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:res-commands}}

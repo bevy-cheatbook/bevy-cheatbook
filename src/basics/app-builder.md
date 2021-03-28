@@ -9,5 +9,5 @@ you are making a full game/app, or `MinimalPlugins` for something like a
 headless server.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:app-builder}}
+{{#include ../code/src/basics.rs:app-builder}}
 ```

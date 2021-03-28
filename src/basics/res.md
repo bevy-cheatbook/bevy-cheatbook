@@ -7,7 +7,7 @@ Any Rust type (`struct` or `enum`) can be used as a resource.
 Types must be unique; there can only be one resource of a given type.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:resource}}
+{{#include ../code/src/basics.rs:resource}}
 ```
 
 Resources can be accessed from systems, using `Res`/`ResMut`.
@@ -17,25 +17,25 @@ Resources can be accessed from systems, using `Res`/`ResMut`.
 Implement `Default` for simple resources:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:resource-default}}
+{{#include ../code/src/basics.rs:resource-default}}
 ```
 
-For resources that need complex initialization, implement `FromResources`:
+For resources that need complex initialization, implement `FromWorld`:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:fromresources}}
+{{#include ../code/src/basics.rs:fromworld}}
 ```
 
 You can create your resources at [`App` creation](./app-builder.md):
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:appinit-resource}}
+{{#include ../code/src/basics.rs:appinit-resource}}
 ```
 
 Or using [`Commands`](./commands.md) from inside a system:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:commands-resource}}
+{{#include ../code/src/basics.rs:commands-resource}}
 ```
 
 If a resource of this type already exists, it will be overwritten.

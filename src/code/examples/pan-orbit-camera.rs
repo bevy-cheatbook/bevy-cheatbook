@@ -14,7 +14,7 @@ struct PanOrbitCamera {
 impl Default for PanOrbitCamera {
     fn default() -> Self {
         PanOrbitCamera {
-            focus: Vec3::zero(),
+            focus: Vec3::ZERO,
             radius: 5.0,
             upside_down: false,
         }
@@ -24,36 +24,34 @@ impl Default for PanOrbitCamera {
 /// Pan the camera with middle mouse click, zoom with scroll wheel, orbit with right mouse click.
 fn pan_orbit_camera(
     windows: Res<Windows>,
-    mut reader_motion: Local<EventReader<MouseMotion>>,
-    mut reader_scroll: Local<EventReader<MouseWheel>>,
-    ev_motion: Res<Events<MouseMotion>>,
-    ev_mouse: Res<Input<MouseButton>>,
-    ev_scroll: Res<Events<MouseWheel>>,
+    mut ev_motion: EventReader<MouseMotion>,
+    mut ev_scroll: EventReader<MouseWheel>,
+    input_mouse: Res<Input<MouseButton>>,
     mut query: Query<(&mut PanOrbitCamera, &mut Transform, &PerspectiveProjection)>,
 ) {
     // change input mapping for orbit and panning here
     let orbit_button = MouseButton::Right;
     let pan_button = MouseButton::Middle;
 
-    let mut pan = Vec2::zero();
-    let mut rotation_move = Vec2::zero();
+    let mut pan = Vec2::ZERO;
+    let mut rotation_move = Vec2::ZERO;
     let mut scroll = 0.0;
     let mut orbit_button_changed = false;
 
-    if ev_mouse.pressed(orbit_button) {
-        for ev in reader_motion.iter(&ev_motion) {
+    if input_mouse.pressed(orbit_button) {
+        for ev in ev_motion.iter() {
             rotation_move += ev.delta;
         }
-    } else if ev_mouse.pressed(pan_button) {
+    } else if input_mouse.pressed(pan_button) {
         // Pan only if we're not rotating at the moment
-        for ev in reader_motion.iter(&ev_motion) {
+        for ev in ev_motion.iter() {
             pan += ev.delta;
         }
     }
-    for ev in reader_scroll.iter(&ev_scroll) {
+    for ev in ev_scroll.iter() {
         scroll += ev.y;
     }
-    if ev_mouse.just_released(orbit_button) || ev_mouse.just_pressed(orbit_button) {
+    if input_mouse.just_released(orbit_button) || input_mouse.just_pressed(orbit_button) {
         orbit_button_changed = true;
     }
 
@@ -61,7 +59,7 @@ fn pan_orbit_camera(
         if orbit_button_changed {
             // only check for upside down when orbiting started or ended this frame
             // if the camera is "upside" down, panning horizontally would be inverted, so invert the input to make it correct
-            let up = transform.rotation * Vec3::unit_y();
+            let up = transform.rotation * Vec3::Y;
             pan_orbit.upside_down = up.y <= 0.0;
         }
 
@@ -84,8 +82,8 @@ fn pan_orbit_camera(
             let window = get_primary_window_size(&windows);
             pan *= Vec2::new(projection.fov * projection.aspect_ratio, projection.fov) / window;
             // translate by local axes
-            let right = transform.rotation * Vec3::unit_x() * -pan.x;
-            let up = transform.rotation * Vec3::unit_y() * pan.y;
+            let right = transform.rotation * Vec3::X * -pan.x;
+            let up = transform.rotation * Vec3::Y * pan.y;
             // make panning proportional to distance away from focus point
             let translation = (right + up) * pan_orbit.radius;
             pan_orbit.focus += translation;
@@ -113,39 +111,37 @@ fn get_primary_window_size(windows: &Res<Windows>) -> Vec2 {
 }
 
 /// Spawn a camera like this
-fn spawn_camera(commands: &mut Commands) {
+fn spawn_camera(mut commands: Commands) {
     let translation = Vec3::new(-2.0, 2.5, 5.0);
     let radius = translation.length();
 
-    commands.spawn(Camera3dBundle {
+    commands.spawn_bundle(PerspectiveCameraBundle {
         transform: Transform::from_translation(translation)
-            .looking_at(Vec3::zero(), Vec3::unit_y()),
+            .looking_at(Vec3::ZERO, Vec3::Y),
         ..Default::default()
-    })
-        .with(PanOrbitCamera {
-            radius,
-            ..Default::default()
-        });
+    }).insert(PanOrbitCamera {
+        radius,
+        ..Default::default()
+    });
 }
 // ANCHOR_END: example
 
 fn spawn_scene(
-    commands: &mut Commands,
+    mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     // spawn a cube and a light
-    commands
-        .spawn(PbrBundle {
-            mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
-            material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-            transform: Transform::from_translation(Vec3::new(0.0, 0.5, 0.0)),
-            ..Default::default()
-        })
-        .spawn(LightBundle {
-            transform: Transform::from_translation(Vec3::new(4.0, 8.0, 4.0)),
-            ..Default::default()
-        });
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+        material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+        transform: Transform::from_translation(Vec3::new(0.0, 0.5, 0.0)),
+        ..Default::default()
+    });
+    commands.spawn_bundle(LightBundle {
+        transform: Transform::from_translation(Vec3::new(4.0, 8.0, 4.0)),
+        ..Default::default()
+    });
 
     spawn_camera(commands);
 }

@@ -10,7 +10,7 @@ To access the asset data, you need a `Handle<T>`. Handles are just lightweight I
 To load assets from files, use the `AssetServer` resource.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:asset-server}}
+{{#include ../code/src/basics.rs:asset-server}}
 ```
 
 This queues the asset loading to happen in the background. The asset will not be
@@ -27,7 +27,7 @@ generation), or if you have gotten the data in some other way.
 To access your assets from systems, use the `Handle<T>` and `Assets<T>` resource:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:asset-access}}
+{{#include ../code/src/basics.rs:asset-access}}
 ```
 
 ## AssetEvent
@@ -36,7 +36,7 @@ If you need to perform specific actions when the asset has finished loading, is
 modified, or removed, you can react to `AssetEvent`s.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:asset-event}}
+{{#include ../code/src/basics.rs:asset-event}}
 ```
 
 ## Handles
@@ -59,7 +59,7 @@ Conveniently, the `AssetServer` supports untyped loading, if you don't know
 what asset type the files are. It also supports loading entire folders.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:asset-folder}}
+{{#include ../code/src/basics.rs:asset-folder}}
 ```
 
 It will try to detect the format of each asset based on the file extension.

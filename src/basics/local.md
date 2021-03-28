@@ -3,7 +3,7 @@
 You can have per-system data, using `Local<T>`.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:local-resource}}
+{{#include ../code/src/basics.rs:local-resource}}
 ```
 
 The type must implement `Default` or `FromResources`. It is automatically initialized.

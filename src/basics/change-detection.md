@@ -8,7 +8,7 @@ Use query filters:
  - `Changed<T>`: detect any change (added or mutated)
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:change-detection}}
+{{#include ../code/src/basics.rs:change-detection}}
 ```
 
 ## WARNING!

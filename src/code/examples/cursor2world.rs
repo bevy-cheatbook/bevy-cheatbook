@@ -4,17 +4,15 @@ use bevy::prelude::*;
 /// Used to help identify our main camera
 struct MainCamera;
 
-fn setup(commands: &mut Commands) {
-    let camera = Camera2dBundle::default();
-
-    commands.spawn(camera)
-        .with(MainCamera);
+fn setup(mut commands: Commands) {
+    commands.spawn()
+        .insert_bundle(OrthographicCameraBundle::new_2d())
+        .insert(MainCamera);
 }
 
 fn my_cursor_system(
     // events to get cursor position
-    ev_cursor: Res<Events<CursorMoved>>,
-    mut evr_cursor: Local<EventReader<CursorMoved>>,
+    mut evr_cursor: EventReader<CursorMoved>,
     // need to get window dimensions
     wnds: Res<Windows>,
     // query to get camera transform
@@ -23,7 +21,7 @@ fn my_cursor_system(
     // assuming there is exactly one main camera entity, so this is OK
     let camera_transform = q_camera.iter().next().unwrap();
 
-    for ev in evr_cursor.iter(&ev_cursor) {
+    for ev in evr_cursor.iter() {
         // get the size of the window that the event is for
         let wnd = wnds.get(ev.id).unwrap();
         let size = Vec2::new(wnd.width() as f32, wnd.height() as f32);

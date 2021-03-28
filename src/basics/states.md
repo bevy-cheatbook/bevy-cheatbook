@@ -9,19 +9,19 @@ You can add systems that only run when transitioning between states.
 States are built using stages.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:app-states}}
+{{#include ../code/src/basics.rs:app-states}}
 ```
 
 Inside of systems, you can check and control the state using the `State<T>` resource:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:check-state}}
+{{#include ../code/src/basics.rs:check-state}}
 ```
 
 To change to another state:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:change-state}}
+{{#include ../code/src/basics.rs:change-state}}
 ```
 
 After the systems of the current state complete, bevy will transition to the next state you set.

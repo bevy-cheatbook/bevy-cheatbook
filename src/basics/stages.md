@@ -19,5 +19,5 @@ after your game logic completes).
 We can add more stages. For example, if we want our debug systems to run after our game logic:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:custom-stage}}
+{{#include ../code/src/basics.rs:custom-stage}}
 ```

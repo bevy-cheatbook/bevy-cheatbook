@@ -3,19 +3,19 @@
 Queries let you access components of entities.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:sys-simple-query}}
+{{#include ../code/src/basics.rs:sys-simple-query}}
 ```
 
 Get the components associated with a specific entity:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:query-get}}
+{{#include ../code/src/basics.rs:query-get}}
 ```
 
 Get the IDs of the entities you access with your queries:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:query-entity}}
+{{#include ../code/src/basics.rs:query-entity}}
 ```
 
 ## Query Filters
@@ -29,7 +29,7 @@ Multiple filters can be combined:
 Use `With`/`Without` to only get entities that have specific components.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:sys-query-filter}}
+{{#include ../code/src/basics.rs:sys-query-filter}}
 ```
 
 ## Query Sets
@@ -39,7 +39,7 @@ For safety reasons, a system cannot have multiple queries with mutability confli
 The solution is to wrap them in a `QuerySet`:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:sys-query-set}}
+{{#include ../code/src/basics.rs:sys-query-set}}
 ```
 
 This ensures that only one of the conflicting queries can be used at the same time.

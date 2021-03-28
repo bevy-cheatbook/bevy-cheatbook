@@ -11,7 +11,7 @@ Components are data that you can attach to entities.
 Any Rust type (`struct` or `enum`) can be used as a component.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:struct-component}}
+{{#include ../code/src/basics.rs:struct-component}}
 ```
 
 Types must be unique -- an entity can only have one of each type.
@@ -19,13 +19,13 @@ Types must be unique -- an entity can only have one of each type.
 Use wrapper (newtype) structs to make unique components out of simpler types:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:newtype-component}}
+{{#include ../code/src/basics.rs:newtype-component}}
 ```
 
 Use empty structs as marker components (tags). Useful with [query filters](./queries.md#filter-by-component).
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:marker-component}}
+{{#include ../code/src/basics.rs:marker-component}}
 ```
 
 Components can be accessed from systems, using [queries](./queries.md). 
@@ -35,5 +35,5 @@ Components can be accessed from systems, using [queries](./queries.md).
 Bundles are like "templates", to make it easy to spawn entities with a common set of components.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/basics.rs:bundle}}
+{{#include ../code/src/basics.rs:bundle}}
 ```

@@ -21,11 +21,11 @@ impl CameraProjection for SimpleOrthoProjection {
     }
 
     fn depth_calculation(&self) -> DepthCalculation {
-        // for orthographic
-        DepthCalculation::ZDifference
+        // for 2D (camera doesn't rotate)
+        //DepthCalculation::ZDifference
 
         // otherwise
-        //DepthCalculation::Distance
+        DepthCalculation::Distance
     }
 }
 
@@ -35,7 +35,7 @@ impl Default for SimpleOrthoProjection {
     }
 }
 
-fn setup(commands: &mut Commands) {
+fn setup(mut commands: Commands) {
     // same components as bevy's Camera2dBundle,
     // but with our custom projection
 
@@ -51,7 +51,7 @@ fn setup(commands: &mut Commands) {
     let mut camera = Camera::default();
     camera.name = Some(cam_name.to_string());
 
-    commands.spawn((
+    commands.spawn_bundle((
         // position the camera like bevy would do by default for 2D:
         Transform::from_translation(Vec3::new(0.0, 0.0, projection.far - 0.1)),
         GlobalTransform::default(),
@@ -71,7 +71,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_startup_system(setup.system())
         .add_system_to_stage(
-            bevy::app::stage::POST_UPDATE,
+            CoreStage::PostUpdate,
             camera_system::<SimpleOrthoProjection>.system(),
         )
         .run();
