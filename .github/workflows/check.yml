@@ -1,8 +1,8 @@
-name: check if code still compiles
+name: check if code still compiles (next)
 
 on:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 8 * * *'
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,6 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: next
 
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install --no-install-recommends pkg-config libx11-dev libasound2-dev libudev-dev
