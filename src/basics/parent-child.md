@@ -21,11 +21,13 @@ You can despawn an entire hierarchy with a single command:
 
 ## Relative Transforms
 
-To use transforms with hierarchical entities, both the parent and the child must have a `GlobalTransform` and a `Transform`.
+If your entities represent "objects in the game world", you probably expect the
+child to be positioned relative to the parent and move with it.
 
-The `GlobalTransform` is managed by bevy internally; do not mutate it yourself.
+All Bundles that come with Bevy provide this behavior automatically.
 
-The `Transform` is what you can manipulate directly. On the child, it will behave relative to the parent.
+If you are not using such a bundle, you need to make sure to add these components to both the parent and the child: `GlobalTransform` and `Transform`.
 
-All component bundles that come with bevy provide this correctly, but if you are
-not using such a bundle, you need to make sure to add both of these components to both entities.
+The `Transform` represents the relative position. You can manipulate it directly.
+
+The `GlobalTransform` represents the absolute position. It is managed by bevy internally; do not manipulate it yourself.

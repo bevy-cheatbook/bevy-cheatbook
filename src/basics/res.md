@@ -1,16 +1,23 @@
 # Resources
 
-Akin to "global variables" or "singletons", used to hold data independent of entities.
+Resources allow you to store a single global instance of some data type, independently of entities.
 
-Any Rust type (`struct` or `enum`) can be used as a resource.
+Use them for data that is truly global for your app, such configuration / settings.
 
-Types must be unique; there can only be one resource of a given type.
+Even if there is only one of a certain thing (such as the player in a
+single-player game), it is still preferable to use an entity instead of a
+resource, because entities are composed of multiple components, some of which
+can be shared with other entities. Resources are monolithic.
+
+Similar to components, any Rust type (`struct` or `enum`) can be used as a resource.
+
+Types must be unique; there can only be one instance of a given type.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:resource}}
 ```
 
-Resources can be accessed from systems, using `Res`/`ResMut`.
+Resources can be accessed from [systems](./systems.md), using `Res`/`ResMut`.
 
 ## Resource Initialization
 
@@ -38,4 +45,4 @@ Or using [`Commands`](./commands.md) from inside a system:
 {{#include ../code/src/basics.rs:commands-resource}}
 ```
 
-If a resource of this type already exists, it will be overwritten.
+If you insert a resource of a type that already exists, it will be overwritten.

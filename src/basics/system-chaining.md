@@ -2,7 +2,7 @@
 
 Systems can take an input and produce an output, and be connected together to run as a single larger system (chain).
 
-Think of this as "glue", for constructing larger systems out of multiple parts.
+Think of this as "glue", for constructing a larger system out of multiple Rust functions.
 
 One useful application of this is error handling (allowing the use of `?`):
 

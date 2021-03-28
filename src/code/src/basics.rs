@@ -15,13 +15,12 @@ struct ResourceC;
 // ANCHOR: struct-component
 struct Health {
     hp: f32,
-    boost: f32,
-    stamina: f32,
+    extra: f32,
 }
 // ANCHOR_END: struct-component
 
+#[derive(Debug, PartialEq, Eq)]
 // ANCHOR: newtype-component
-#[derive(Debug)]
 struct PlayerXp(u32);
 
 struct PlayerName(String);
@@ -91,8 +90,9 @@ impl FromWorld for MyFancyResource {
 }
 // ANCHOR_END: fromworld
 
+#[derive(Debug)]
 // ANCHOR: resource-default
-#[derive(Debug, Default)]
+#[derive(Default)]
 struct StartingLevel(usize);
 // ANCHOR_END: resource-default
 
@@ -105,8 +105,13 @@ fn my_system(mut local: Local<MyState>) {}
 // ANCHOR: sys-param-tuple
 fn complex_system(
     (a, mut b): (Res<ResourceA>, ResMut<ResourceB>),
-    mut c: ResMut<ResourceC>,
-) {}
+    // this resource might not exist, so wrap it in an Option
+    mut c: Option<ResMut<ResourceC>>,
+) {
+    if let Some(mut c) = c {
+        // do something
+    }
+}
 // ANCHOR_END: sys-param-tuple
 
 // ANCHOR: sys-debug-res
@@ -162,7 +167,10 @@ fn debug_player_hp(
 fn reset_health(
     // access the health of enemies and the health of players
     // (note: some entities could be both!)
-    mut q: QuerySet<(Query<&mut Health, With<Enemy>>, Query<&mut Health, With<Player>>)>,
+    mut q: QuerySet<(
+        Query<&mut Health, With<Enemy>>,
+        Query<&mut Health, With<Player>>
+    )>,
 ) {
     // set health of enemies
     for mut health in q.q0_mut().iter_mut() {
@@ -177,7 +185,7 @@ fn reset_health(
 // ANCHOR_END: sys-query-set
 
 // ANCHOR: change-detection
-/// Print friendly player stats when they change
+/// Print the stats of friendly players when they change
 fn debug_stats_change(
     query: Query<
         // components
@@ -188,8 +196,8 @@ fn debug_stats_change(
 ) {
     for (health, xp) in query.iter() {
         eprintln!(
-            "hp: {}+{}, sta: {}, xp: {}",
-            health.hp, health.boost, health.stamina, xp.0
+            "hp: {}+{}, xp: {}",
+            health.hp, health.extra, xp.0
         );
     }
 }
@@ -203,6 +211,25 @@ fn debug_new_hostiles(
     }
 }
 // ANCHOR_END: change-detection
+
+fn maybe_lvl_up(xp: &PlayerXp) -> PlayerXp {
+    unimplemented!()
+}
+
+// ANCHOR: change-if-wrap
+fn update_player_xp(
+    mut query: Query<&mut PlayerXp>,
+) {
+    for mut xp in query.iter_mut() {
+        let new_xp = maybe_lvl_up(&xp);
+
+        // avoid triggering change detection if the value is the same
+        if new_xp != *xp {
+            *xp = new_xp;
+        }
+    }
+}
+// ANCHOR_END: change-if-wrap
 
 // ANCHOR: example-commands
 fn spawn_player(
@@ -222,7 +249,7 @@ fn spawn_player(
         name: PlayerName("Henry".into()),
         xp: PlayerXp(1000),
         health: Health {
-            hp: 100.0, boost: 20.0, stamina: 100.0,
+            hp: 100.0, extra: 20.0
         },
         _p: Player,
     });
@@ -235,7 +262,7 @@ fn spawn_player(
         ComponentC::default(),
     )).id();
 
-    // modify the components of an existing entity:
+    // add/remove components of an existing entity:
     commands.entity(entity_id)
         .insert(ComponentB)
         .remove::<ComponentA>()
@@ -401,6 +428,15 @@ fn query_entities(q: Query<(Entity, /* ... */)>) {
 }
 // ANCHOR_END: query-entity
 
+// ANCHOR: query-single
+fn query_player(mut q: Query<(&Player, &mut Transform)>) {
+    let (player, mut transform) = q.single_mut()
+        .expect("There should always be exactly one player in the game!");
+
+    // do something with the player and its transform
+}
+// ANCHOR_END: query-single
+
 fn query_misc(mut query: Query<(&Health, &mut Transform)>) {
     let entity = Entity::new(0);
     // ANCHOR: query-get
@@ -512,11 +548,11 @@ fn main() {
     App::build()
         .add_plugins(DefaultPlugins)
 
-        // add DEBUG stage after UPDATE
+        // add DEBUG stage after Bevy's Update
         // also make it single-threaded
         .add_stage_after(CoreStage::Update, DEBUG, SystemStage::single_threaded())
 
-        // systems are added to the `UPDATE` stage by default
+        // systems are added to the `CoreStage::Update` stage by default
         .add_system(player_gather_xp.system())
         .add_system(player_take_damage.system())
 
@@ -596,7 +632,7 @@ fn main() {
 
 #[allow(dead_code)]
 mod app6 {
-    use bevy::prelude::*;
+use bevy::prelude::*;
 
 struct MyNetProto;
 
@@ -620,14 +656,40 @@ fn handle_io_errors(In(result): In<std::io::Result<()>>) {
 }
 // ANCHOR_END: system-io
 // ANCHOR: system-chain
-    fn main() {
-        App::build()
-            // ...
-            .add_system(net_receive.system().chain(handle_io_errors.system()))
-            // ...
-            .run();
-    }
+fn main() {
+    App::build()
+        // ...
+        .add_system(net_receive.system().chain(handle_io_errors.system()))
+        // ...
+        .run();
+}
 // ANCHOR_END: system-chain
+}
+
+#[allow(dead_code)]
+mod app7 {
+use bevy::prelude::*;
+
+// ANCHOR: labels
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(StageLabel)]
+enum MyStages {
+    Prepare,
+    Cleanup,
+}
+
+fn main() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+        // Add our custom stages:
+        // note that Bevy's `CoreStage` is an enum just like ours!
+        .add_stage_before(CoreStage::Update, MyStages::Prepare, SystemStage::parallel())
+        .add_stage_after(CoreStage::Update, MyStages::Cleanup, SystemStage::parallel())
+        // we can just use a string for this one:
+        .add_stage_before(CoreStage::PostUpdate, "temp-debug-hack", SystemStage::parallel())
+        .run();
+}
+// ANCHOR_END: labels
 }
 
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
@@ -638,6 +700,7 @@ pub fn _main_all() {
         .add_startup_system(load_extra_assets.system())
         .add_system(commands_catchall.system())
         .add_system(query_entities.system())
+        .add_system(query_player.system())
         .add_system(query_misc.system())
         .add_system(debug_player_hp.system())
         .add_system(debug_stats_change.system())
@@ -651,5 +714,6 @@ pub fn _main_all() {
         .add_system(make_all_players_hostile.system())
         .add_system(use_sprites.system())
         .add_system(fixup_textures.system())
+        .add_system(update_player_xp.system())
         .run();
 }

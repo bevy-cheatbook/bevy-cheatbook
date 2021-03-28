@@ -18,13 +18,19 @@ Get the IDs of the entities you access with your queries:
 {{#include ../code/src/basics.rs:query-entity}}
 ```
 
+If you know that the query should only ever match a single entity, you can use `single`/`single_mut` (returns a `Result`), instead of iterating:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:query-single}}
+```
+
 ## Query Filters
 
 Add query filters to narrow down the entities you get from the query.
 
 Multiple filters can be combined:
  - in a tuple to apply all of them (AND logic)
- - using the Or<...> wrapper to detect any of them (OR logic).
+ - using the `Or<...>` wrapper to detect any of them (OR logic).
 
 Use `With`/`Without` to only get entities that have specific components.
 

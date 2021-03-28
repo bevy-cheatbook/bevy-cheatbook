@@ -1,24 +1,34 @@
 # Change Detection
 
-You can optimize your systems by only operating on entities when specific components change.
+Bevy allows you to easily detect when components are changed.
 
 Use query filters:
  - `Added<T>`: detect adding new components to existing entities
- - `Mutated<T>`: detect mutation of existing components
- - `Changed<T>`: detect any change (added or mutated)
+ - `Changed<T>`: detect when a component is modified
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-detection}}
 ```
 
-## WARNING!
+Change detection is triggered by `DerefMut`. Simply accessing components via a
+mutable query, without it actually being a `&mut` access, will *not* trigger it.
 
-Change information only persists until the end of the current frame!
+This makes change detection quite accurate. You can rely on it to optimize
+your game's performance, or to otherwise trigger things to happen.
 
-If your detecting system runs before the changing system, it will *not* detect
-the changes!
+Also note that when you mutate a component, Bevy does not track if the new value
+is actually different from the old value. It will always trigger the change
+detection. If you want to avoid that, simply check it yourself:
 
-`Added` is especially tricky to use. You need to add components using
-[`Commands`](./commands.md), which are only applied at the end of each
-[stage](./stages.md). The detecting system needs to be in a *later stage* that
-runs during the same frame!
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:change-if-wrap}}
+```
+
+## Possible Pitfalls
+
+Beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). If Bevy runs
+the detecting system before the changing system, the detecting system will
+see the change on the next frame update.
+
+If you need to ensure that changes are handled immediately / during the same frame,
+you can use [explicit system ordering](./system-order.md).

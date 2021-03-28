@@ -6,6 +6,8 @@ You can have per-system data, using `Local<T>`.
 {{#include ../code/src/basics.rs:local-resource}}
 ```
 
-The type must implement `Default` or `FromResources`. It is automatically initialized.
+The type must implement `Default` or `FromWorld`. It is automatically initialized.
 
-If the same type is used in multiple systems, they each get their own instance.
+These are similar to Resources, but each system will have its own instance.
+
+A system can also have multiple `Local`s of the same type.

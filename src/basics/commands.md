@@ -4,7 +4,7 @@ Use `Commands` to spawn/despawn entities, add/remove components on existing enti
 
 These actions only take effect at the end of the stage, not immediately.
 
-(if you are not using stages, that means your systems will see them the next frame, not the current)
+(if you are not using stages, that means your systems will see them [on the next frame update](../pitfalls/frame-delay.md))
 
 Manage Entities and Components:
 

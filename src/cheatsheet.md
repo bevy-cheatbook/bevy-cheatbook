@@ -114,7 +114,7 @@ Change detection is triggered by `DerefMut`. Accessing components via a mutable
 query without it actually being a `&mut` access, will *not* trigger it.
 
 Beware of [frame delay / 1-frame-lag](./pitfalls/frame-delay.md). You may want
-to use [explicit system ordering](#system-ordering).
+to use [explicit system ordering](#system-order-of-execution).
 
 ## Commands
 
@@ -149,7 +149,7 @@ which they are lost. If your systems do not handle events every frame, you could
 miss some.
 
 Beware of [frame delay / 1-frame-lag](./pitfalls/frame-delay.md). You may want
-to use [explicit system ordering](#system-ordering).
+to use [explicit system ordering](#system-order-of-execution).
 
 ## Entity Hierarchies (Parent/Child)
 
@@ -192,6 +192,10 @@ Custom plugin:
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:plugin}}
 ```
+
+## System Order of Execution
+
+[[explain](./basics/system-order.md)]
 
 ## States
 

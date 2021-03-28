@@ -4,9 +4,7 @@ States allow you to structure the runtime "flow" of your app.
 
 You can have different systems running, depending on the state.
 
-You can add systems that only run when transitioning between states.
-
-States are built using stages.
+You can add systems that only run on state transitions, for setup and cleanup.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:app-states}}
