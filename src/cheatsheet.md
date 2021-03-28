@@ -1,6 +1,14 @@
-# Bevy Cheatsheet (for bevy 0.4)
+# Bevy Cheatsheet
 
-{{#include _header.md}}
+One-page overview of common bevy syntax and features.
+
+Concise listing of the syntax + important usage notes, no explanations.
+
+Intended for people who are familiar with the core concepts.
+
+If you are new to bevy or need a refresher, see
+[Bevy Basics](../basics/_index.md)
+for brief explanations of each feature.
 
 ---
 
@@ -14,7 +22,7 @@ Click on "[explain]" links to go to the relevant [Bevy Basics](../basics/_index.
 
 Regular Rust functions, but can only take special parameter types supported by Bevy:
 
-{{#include ../include/systemparams-release.md}}
+{{#include ../include/systemparams-git.md}}
 
 ## Entities and Components
 
@@ -29,7 +37,7 @@ See [`Commands`](#commands) for how to add components to entities and spawn enti
 Component bundles:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:bundle}}
+{{#include ../code/src/cheatsheet.rs:bundle}}
 ```
 
 ## Resources
@@ -43,25 +51,25 @@ Type must be unique; only one instance per type can exist. Use newtypes.
 Access from system:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:res}}
+{{#include ../code/src/cheatsheet.rs:res}}
 ```
 
 Add when [building the app](#app-builder-main-function):
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:res-app-builder}}
+{{#include ../code/src/cheatsheet.rs:res-app-builder}}
 ```
 
 Add (or replace existing) using [`Commands`](#commands):
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:res-commands}}
+{{#include ../code/src/cheatsheet.rs:res-commands}}
 ```
 
-For complex resource initialization, implement `FromResources`:
+For complex resource initialization, implement `FromWorld`:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:fromresources}}
+{{#include ../code/src/cheatsheet.rs:fromworld}}
 ```
 
 ## Queries
@@ -69,25 +77,25 @@ For complex resource initialization, implement `FromResources`:
 [[explain](../basics/queries.md)]
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:query}}
+{{#include ../code/src/cheatsheet.rs:query}}
 ```
 
 To operate on a specific entity:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:query-one}}
+{{#include ../code/src/cheatsheet.rs:query-one}}
 ```
 
 Add query filters:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:query-filter}}
+{{#include ../code/src/cheatsheet.rs:query-filter}}
 ```
 
 Query sets (to resolve component access conflicts):
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:query-set}}
+{{#include ../code/src/cheatsheet.rs:query-set}}
 ```
 
 ## Change Detection
@@ -96,21 +104,24 @@ Query sets (to resolve component access conflicts):
 
 Query filters:
  - `Added<T>`: detect adding new components to existing entities
- - `Mutated<T>`: detect mutation of existing components
- - `Changed<T>`: detect any change (added or mutated)
+ - `Changed<T>`: detect when a component is modified
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:change-detection}}
+{{#include ../code/src/cheatsheet.rs:change-detection}}
 ```
 
-**WARNING!** The detecting system must run after the changing system, *during the same frame*.
+Change detection is triggered by `DerefMut`. Accessing components via a mutable
+query without it actually being a `&mut` access, will *not* trigger it.
+
+Beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). You may want
+to use [explicit system ordering](#system-ordering).
 
 ## Commands
 
 [[explain](../basics/commands.md)]
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:commands}}
+{{#include ../code/src/cheatsheet.rs:commands}}
 ```
 
 These actions are applied at the end of the stage.
@@ -120,33 +131,38 @@ These actions are applied at the end of the stage.
 [[explain](../basics/local.md)]
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:local}}
+{{#include ../code/src/cheatsheet.rs:local}}
 ```
 
-The type must implement `Default` or `FromResources`. It is automatically initialized.
+The type must implement `Default` or `FromWorld`. It is automatically initialized.
 
 ## Events
 
 [[explain](../basics/events.md)]
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:events}}
+{{#include ../code/src/cheatsheet.rs:events}}
 ```
 
-Events don't persist. If you don't handle them every frame, they will be lost.
+Events don't persist. They are stored until the end of the next frame, after
+which they are lost. If your systems do not handle events every frame, you could
+miss some.
+
+Beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). You may want
+to use [explicit system ordering](#system-ordering).
 
 ## Entity Hierarchies (Parent/Child)
 
 [[explain](../basics/parent-child.md)]
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:parent-child}}
+{{#include ../code/src/cheatsheet.rs:parent-child}}
 ```
 
 Reparent an existing entity:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:add-parent}}
+{{#include ../code/src/cheatsheet.rs:add-parent}}
 ```
 
 If you are using `Transform`s, ensure both the parent and the child also have a `GlobalTransform`.
@@ -158,7 +174,7 @@ Child `Transform` is relative to the parent. `GlobalTransform` is internally man
 [[explain](../basics/system-chaining.md)]
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:system-chaining}}
+{{#include ../code/src/cheatsheet.rs:system-chaining}}
 ```
 
 ## App Builder (main function)
@@ -168,13 +184,13 @@ Child `Transform` is relative to the parent. `GlobalTransform` is internally man
 App builder:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:app-builder}}
+{{#include ../code/src/cheatsheet.rs:app-builder}}
 ```
 
 Custom plugin:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:plugin}}
+{{#include ../code/src/cheatsheet.rs:plugin}}
 ```
 
 ## States
@@ -184,13 +200,13 @@ Custom plugin:
 App builder with States:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:states}}
+{{#include ../code/src/cheatsheet.rs:states}}
 ```
 
 Change or check States:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:res-state}}
+{{#include ../code/src/cheatsheet.rs:res-state}}
 ```
 
 ## Assets
@@ -200,23 +216,23 @@ Change or check States:
 Load asset:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:asset-load}}
+{{#include ../code/src/cheatsheet.rs:asset-load}}
 ```
 
 Access assets from systems:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:asset-use}}
+{{#include ../code/src/cheatsheet.rs:asset-use}}
 ```
 
 Create assets from code:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:asset-new}}
+{{#include ../code/src/cheatsheet.rs:asset-new}}
 ```
 
 Asset events:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/src/cheatsheet.rs:asset-event}}
+{{#include ../code/src/cheatsheet.rs:asset-event}}
 ```

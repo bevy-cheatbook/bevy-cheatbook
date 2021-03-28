@@ -42,7 +42,7 @@ These errors are caused by a malformed query.
 
 Note that `Query<Entity>` is correct, because the Entity ID is special; it is not a component.
 
-## Supported types (bevy 0.4)
+## Supported types
 
 It can be difficult to figure out what types are supported from the [API
 docs](https://docs.rs/bevy/0.4.0/bevy/ecs/trait.FetchSystemParam.html), so I
@@ -50,11 +50,7 @@ will give you a nice summary here on this page.
 
 Only the following types are supported as system parameters:
 
-{{#include ../include/systemparams-release.md}}
+{{#include ../include/systemparams.md}}
 
 You can nest tuples as much as you want, to avoid running into the limits on the
 maximum numbers of parameters, or simply to organize your parameters into groups.
-
-## Supported types (bevy git)
-
-{{#include ../include/systemparams-master.md}}

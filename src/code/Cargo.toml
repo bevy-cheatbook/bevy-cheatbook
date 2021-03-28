@@ -1,5 +1,5 @@
 [package]
-name = "code_bevy_release"
+name = "code"
 version = "0.1.0"
 edition = "2018"
 

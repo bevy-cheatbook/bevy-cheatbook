@@ -2,9 +2,7 @@
 
 [Introduction](./introduction.md)
 
-- [Bevy Cheatsheet](./cheatsheet/_index.md)
-  - [(bevy 0.4) Cheatsheet](./cheatsheet/release.md)
-  - [(bevy git) Cheatsheet](./cheatsheet/master.md)
+- [Bevy Cheatsheet](./cheatsheet.md)
 
 - [Bevy Basics](./basics/_index.md)
   - [Entities and Components](./basics/ec.md)
@@ -24,9 +22,9 @@
   - [Plugins](./basics/plugins.md)
 
 - [Common Pitfalls](./pitfalls/_index.md)
+  - [Error adding function as system](./pitfalls/into-system.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [File Format Support](./pitfalls/file-formats.md)
-  - [Error adding function as system](./pitfalls/into-system.md)
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
 
