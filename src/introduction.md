@@ -29,17 +29,23 @@ The cheatsheet also has a version for bevy git. An attempt is made to keep it re
 
 ## License
 
-All code in the book is under
-[CC0](http://creativecommons.org/publicdomain/zero/1.0/) (public domain).
-To the extent possible under law, the relevant Authors have waived all copyright
-and related or neighboring rights to Bevy Cheatbook Example Code.
-
-The text of the book is under
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 Copyright © 2021 Jasen Borisov.
 
-## Contributions Welcome!
+All code in the book is provided under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
 
-Development of the book happens on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
+The text of the book is provided under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-See the [Contributing](./contributing.md) section for advice!
+Exception: If used for the purpose of contribution to the Official Bevy Project
+and/or its Official Documentation, the entire content of the book may be used
+under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
+
+## Contributions
+
+Development of the book is hosted on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
+
+Please file GitHub Issues for any wrong/confusing/misleading information, as
+well as suggestions for new content you'd like to be added to the book.
+
+Contributions are accepted, with some limitations.
+
+See the [Contributing](./contributing.md) section for all the details.

@@ -1,60 +1,93 @@
 # Contributing
 
+Be civil. If you need a code of conduct, have a look at Bevy's.
+
 If you have any suggestions for the book, such as ideas for new content, or if
 you notice anything that is incorrect or misleading, please file issues in [the
 GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook)!
 
-Code contributions are welcome! Feel free to directly make PRs for new examples,
-or changes to existing code. Code only. I will take care of the book text / page
-that your code will be displayed on.
+## Contributing Code
 
-By contributing, you agree to waive all copyright, to the extent possible under
-law, and provide your work under the CC0 public domain license.
+If you simply want to contribute code examples to the book, feel free to make a
+PR. I can take care of writing the book text / page that your code will be
+displayed on.
+
+### Cookbook Examples
+
+The code for cookbook examples should be provided as a full, runnable, example
+file, under `src/code/examples`. The book page will only show the relevant parts
+of the code, without unnecessary boilerplate.
+
+Always use [mdbook anchor syntax](https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file),
+not line numbers, to denote the parts of the code to be shown on the page.
+
+### Credits
 
 If you contribute a cookbook example, I will credit you in the book by your
 github username with a link to the PR. Please let me know if you prefer not to
 be credited, or if you would like to be credited in another way (but no
 commercial self-promotion allowed).
 
-Direct contributions to the book text are *not* accepted. I want to author it
-all myself, so that the book can follow a coherent editorial style, and so that
-there are no complications with copyrights and licensing.
+## Contributing Book Text
 
-Be civil. If you need a code of conduct, have a look at Bevy's.
+I do not directly merge book text written by other people. This is because I
+want the book to follow a consistent editorial style.
 
-## Help Wanted
+If you would like to write new content for the book, feel free to make a PR with
+the content to be included, but note that it will likely not be preserved
+exactly as you wrote it.
 
-Specific things that I would really appreciate help with:
+I will likely merge it into a temporary branch and then edit or rewrite it as I
+see fit, for publishing into the book.
 
- - Adding new syntax to the [cheatsheet for the latest Bevy Git](./cheatsheet/master.md).
- - More [Cookbook](./cookbook/_index.md) examples.
- - More content for [Advanced Patterns](./patterns/_index.md) and [Common Pitfalls](./pitfalls/_index.md).
-   - Especially if you frequent the Bevy Discord (or other communities) and know what kinds of things people come across.
+## Licensing
 
-## Bevy version
+To avoid complications with copyright and licensing, you agree to provide any
+contributions you make to the project under the [MIT-0 No Attribution
+License](https://github.com/bevy-cheatbook/mit-0).
 
-The book is targeted at the latest bevy release (0.4).
+Note that this allows your work to be relicensed without preserving your copyright.
 
-Content that covers new additions in bevy git, is also welcome! It needs to be clearly marked.
-
-Anything that exists in both the release version and the git version, should be written for the release version.
-
-## Example Code
-
-All code that uses should live under `src/code_bevy_release` or `src/code_bevy_master`, depending on the version of Bevy used.
-
-Cookbook recipes should be independent files under `examples`.
-
-Cheatsheet code lives in `src/cheatsheet.rs`.
+As described previously, the actual published content in the book will be my own
+derivative work based on your contributions. I will license it consistently with
+the rest of the book; see: [License](./introduction.md#license).
 
 ## Style Guidelines
- 
-Code snippets in the Cheatsheet should be as concise as possible. Feel free to use meaningless placeholder names; don't try to make them "realistic".
- 
-Code in other sections, however, should aim to "look realistic", as to illustrate what the feature might actually be used for.
 
-Aim for simplicity and minimalism. Do not include things irrelevant to getting the point across. "Perfection is achieved not when there is nothing more to add, but when there is nothing more to remove."
+Aim for simplicity and minimalism. Do not include things irrelevant to getting the point across.
 
-Try to use the most common/standard terminology and keywords, to make things easy to find. Don't come up with new/extra terminology of your own.
+"Perfection is achieved not when there is nothing more to add, but when there is nothing more to remove."
+
+Don't forget to point out potential gotchas and other relevant practical considerations.
+
+Try to use the most common/standard terminology and keywords, to make things
+easy to find. Don't come up with new/extra terminology of your own.
+
+Avoid repeating information found elsewhere in the book, prefer linking to it instead.
+
+### Code Style
+ 
+Code snippets in the Cheatsheet should be as concise as possible. Feel free to
+use meaningless placeholder names; don't try to make them "realistic".
+ 
+Code in other sections, however, should aim to "look realistic", as to
+illustrate what the feature might actually be used for.
 
 Avoid long lines of code, to keep it readable on small screens.
+
+Use reasonable formatting that does not deviate much from the common conventions
+used by the Rust language community. I don't enforce it strictly; there is no
+need to use `rustfmt`. If deviating from those standards allows for the code to
+be presented better in the context of the book, then doing so is preferable.
+
+### Text Style
+
+Make it easy to read.
+
+- Be brief. Try to cover all important information without verbose explanations.
+- Prefer simple English with short sentences.
+- Avoid information overload:
+  - Split things into short paragraphs.
+  - Avoid introducing many (even if related) topics at the same time.
+  - Cover advanced usage separately from the basics.
+

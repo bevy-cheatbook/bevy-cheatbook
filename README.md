@@ -12,24 +12,21 @@ focus on the important information.
 
 ## License
 
-All code in the book is under
-[CC0](http://creativecommons.org/publicdomain/zero/1.0/) (public domain).
-To the extent possible under law, the relevant Authors have waived all copyright
-and related or neighboring rights to Bevy Cheatbook Example Code.
-
-The text of the book is under
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 Copyright © 2021 Jasen Borisov.
 
-## Contributions Welcome!
+All code in the book is provided under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
 
-See the [Contributing](./src/contributing.md) page of the book for advice!
+The text of the book is provided under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-### Help Wanted
+Exception: If used for the purpose of contribution to the Official Bevy Project
+and/or its Official Documentation, the entire content of the book may be used
+under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
 
-Specific things that I would really appreciate help with:
+## Contributions
 
- - Adding new syntax to the [cheatsheet for the latest Bevy Git](https://bevy-cheatbook.github.io/cheatsheet/master.html).
- - More [Cookbook](https://bevy-cheatbook.github.io/cookbook/_index.html) examples.
- - More content for [Advanced Patterns](https://bevy-cheatbook.github.io/patterns/_index.html) and [Common Pitfalls](https://bevy-cheatbook.github.io/pitfalls/_index.html).
-   - Especially if you frequent the Bevy Discord (or other communities) and know what kinds of things people come across.
+Please file GitHub Issues for any wrong/confusing/misleading information, as
+well as suggestions for new content you'd like to be added to the book.
+
+Contributions are accepted, with some limitations.
+
+See the [Contributing](./src/contributing.md) page for all the details.
