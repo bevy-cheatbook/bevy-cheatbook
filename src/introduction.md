@@ -1,10 +1,14 @@
 # Unofficial Bevy Cheat Book
 
-Concise reference to programming in the [Bevy game engine](https://github.com/bevyengine/bevy).
+Concise practical reference to the [Bevy game engine](https://github.com/bevyengine/bevy).
 
 Covers useful syntax, features, programming patterns, and solutions ("recipes") for common game development tasks.
 
 Designed to be easy to read, straight to the point, using simple language to focus on the important information.
+
+It is not a tutorial or guide, and not intended to be read in order. Jump to whatever is useful to you!
+
+The book is not exhaustive / complete. It is my best attempt to cover the most practically-relevant aspects.
 
 The book has several sections:
 
@@ -14,12 +18,14 @@ The book has several sections:
  - [Advanced Patterns](./patterns/_index.md): good practices for using bevy effectively
  - [Bevy Cookbook](./cookbook/_index.md): examples covering common game development problems
 
-The book is not intended to be read in order. Jump to whatever is useful to you!
-
 ***Welcome! Hope this book serves you well!***
 
-P.S: also check out the [awesome-bevy](https://github.com/bevyengine/awesome-bevy) list,
-for additional resources to help you on your bevy journey!
+## Recommended Additional Resources
+
+Bevy has a rich collection of [official code examples](https://github.com/bevyengine/bevy).
+
+Check out the [awesome-bevy](https://github.com/bevyengine/awesome-bevy) list,
+for community-made resources.
 
 ## Maintenance
 
