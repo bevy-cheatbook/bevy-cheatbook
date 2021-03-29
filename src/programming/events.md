@@ -25,7 +25,7 @@ memory use from unhandled events.
 
 Also beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). This can
 occur if Bevy runs the receiving system before the sending system. The receiving
-system will get the events the next time it runs, typically on the next frame update.
+system will only get a chance to receive the events on the next frame update.
 
 If you need to ensure that events are handled immediately / during the same frame,
 you can use [explicit system ordering](./system-order.md).

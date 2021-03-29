@@ -28,6 +28,7 @@ all the combined resources and queries. This implies that parallelism could be
 limited, affecting performance.
 
 Avoid adding a system that requires mutable access to anything, as part of
-multiple chains. It would block all affected chains from running in parallel.
+multiple chains. It would block all affected chains (and other systems accessing
+the same data) from running in parallel.
 
 
