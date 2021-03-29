@@ -6,9 +6,9 @@ Covers useful syntax, features, programming patterns, and solutions for common g
 
 Designed to be easy to read, straight to the point, using simple language to focus on the important information.
 
-It is not intended to be read in order. Jump to whatever is useful to you!
+Not intended to be read in order. Jump to whatever is useful to you!
 
-The book is not exhaustive / complete. It is my best attempt to cover the most practically-relevant aspects.
+It is not exhaustive / complete. It is my best attempt to cover the most practically-relevant aspects.
 
 The book has several sections:
 

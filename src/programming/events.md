@@ -1,10 +1,11 @@
 # Events
 
-Send data between systems, to let your systems communicate with each other!
+Send data between systems! Let your systems communicate with each other!
 
 To send events, use an `EventWriter<T>`. To receive events, use an `EventReader<T>`.
 
-Every reader tracks the events it has read independently, so you can handle the same events from multiple systems.
+Every reader tracks the events it has read independently, so you can handle the
+same events from multiple systems.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:events}}
@@ -22,9 +23,9 @@ miss some.
 The advantage of this design is that you don't have to worry about excessive
 memory use from unhandled events.
 
-Also beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). If Bevy runs
-the receiving system before the sending system, the events will be received on
-the next frame update.
+Also beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). This can
+occur if Bevy runs the receiving system before the sending system. The receiving
+system will get the events the next time it runs, typically on the next frame update.
 
 If you need to ensure that events are handled immediately / during the same frame,
 you can use [explicit system ordering](./system-order.md).

@@ -26,9 +26,10 @@ detection. If you want to avoid that, simply check it yourself:
 
 ## Possible Pitfalls
 
-Beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). If Bevy runs
-the detecting system before the changing system, the detecting system will
-see the change on the next frame update.
+Beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). This can
+occur if Bevy runs the detecting system before the changing system. The
+detecting system will see the change the next time it runs, typically on the
+next frame update.
 
 If you need to ensure that changes are handled immediately / during the same frame,
 you can use [explicit system ordering](./system-order.md).
