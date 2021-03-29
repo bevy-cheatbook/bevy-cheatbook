@@ -33,6 +33,9 @@
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
 
+- [Advanced Patterns](./patterns/_index.md)
+  - [Generic Systems](./patterns/generic-systems.md)
+
 - [Bevy Cookbook](./cookbook/_index.md)
   - [Input Handling](./cookbook/input-handling.md)
   - [Quitting the App](./cookbook/quit.md)
@@ -43,8 +46,5 @@
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
   - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
-
-- [Advanced Patterns](./patterns/_index.md)
-  - [Generic Systems](./patterns/generic-systems.md)
 
 [Contributing](./contributing.md)

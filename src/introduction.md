@@ -16,10 +16,10 @@ The book has several sections:
  - [Bevy Programming](./programming/_index.md): overview of programming in Bevy
  - [Bevy Features](./features/_index.md): usage notes about some common Bevy features
  - [Common Pitfalls](./pitfalls/_index.md): common issues or surprises to watch out for
- - [Bevy Cookbook](./cookbook/_index.md): examples covering common practical use cases
  - [Advanced Patterns](./patterns/_index.md): non-obvious tricks or techniques; may be controversial
+ - [Bevy Cookbook](./cookbook/_index.md): examples covering common practical use cases
 
-***Welcome! Hope this book serves you well!***
+***Welcome! May this book serve you well!***
 
 ## Recommended Additional Resources
 
