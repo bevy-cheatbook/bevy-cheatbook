@@ -2,27 +2,28 @@
 
 Concise practical reference to the [Bevy game engine](https://github.com/bevyengine/bevy).
 
-Covers useful syntax, features, programming patterns, and solutions ("recipes") for common game development tasks.
+Covers useful syntax, features, programming patterns, and solutions for common game development tasks.
 
 Designed to be easy to read, straight to the point, using simple language to focus on the important information.
 
-It is not a tutorial or guide, and not intended to be read in order. Jump to whatever is useful to you!
+It is not intended to be read in order. Jump to whatever is useful to you!
 
 The book is not exhaustive / complete. It is my best attempt to cover the most practically-relevant aspects.
 
 The book has several sections:
 
  - [Bevy Cheatsheet](./cheatsheet/_index.md): condensed one-page summary of common bevy syntax and features
- - [Bevy Basics](./basics/_index.md): overview of the basics of programming in Bevy
- - [Common Pitfalls](./pitfalls/_index.md): common issues to watch out for
- - [Advanced Patterns](./patterns/_index.md): good practices for using bevy effectively
- - [Bevy Cookbook](./cookbook/_index.md): examples covering common game development problems
+ - [Bevy Programming](./programming/_index.md): overview of programming in Bevy
+ - [Bevy Features](./features/_index.md): usage notes about some common Bevy features
+ - [Common Pitfalls](./pitfalls/_index.md): common issues or surprises to watch out for
+ - [Bevy Cookbook](./cookbook/_index.md): examples covering common practical use cases
+ - [Advanced Patterns](./patterns/_index.md): non-obvious tricks or techniques; may be controversial
 
 ***Welcome! Hope this book serves you well!***
 
 ## Recommended Additional Resources
 
-Bevy has a rich collection of [official code examples](https://github.com/bevyengine/bevy).
+Bevy has a rich collection of [official code examples](https://github.com/bevyengine/bevy/tree/latest/examples#examples).
 
 Check out the [awesome-bevy](https://github.com/bevyengine/awesome-bevy) list,
 for community-made resources.

@@ -1,9 +1,12 @@
 # Bevy Cookbook
 
-List of recipes for common problems and tasks in game development.
+This chapter shows you how to do various practical things using Bevy.
 
-The recipes are written to only focus on the relevant information for the task at hand.
+Indended as a supplement to Bevy's [official examples](https://github.com/bevyengine/bevy/tree/latest/examples#examples).
 
-Only the relevant parts of the code are shown. Full example files are available and linked on the page of each recipe.
+The examples are written to only focus on the relevant information for the task at hand.
 
-It is assumed that you are already familiar with Bevy programming. If not, check out [Bevy Basics](../basics/_index.md).
+Only the relevant parts of the code are shown. Full compilable example files are
+available and linked on each page.
+
+It is assumed that you are already familiar with [Bevy Programming](../programming/_index.md).
