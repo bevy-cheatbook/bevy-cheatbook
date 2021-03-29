@@ -1,6 +1,6 @@
 # Track Assets Loading
 
-[Click here for the full example code.](../code_bevy_release/examples/assets-ready.rs)
+[Click here for the full example code.](../code/examples/assets-ready.rs)
 
 ---
 
@@ -12,5 +12,5 @@ can add them all into a single collection. Then we can loop over the collection
 and ask the `AssetServer` about their status.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/assets-ready.rs:example}}
+{{#include ../code/examples/assets-ready.rs:example}}
 ```

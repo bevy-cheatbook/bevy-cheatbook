@@ -1,6 +1,6 @@
 # Custom Camera Projection
 
-[Click here for the full example code.](../code_bevy_release/examples/custom-projection.rs)
+[Click here for the full example code.](../code/examples/custom-projection.rs)
 
 ---
 
@@ -10,5 +10,5 @@ Here we implement a simple orthographic projection that maps `-1.0` to `1.0` to 
 and respects the window's aspect ratio for the horizontal axis:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/custom-projection.rs:example}}
+{{#include ../code/examples/custom-projection.rs:example}}
 ```

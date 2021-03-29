@@ -7,18 +7,18 @@ Concise listing of the syntax + important usage notes, no explanations.
 Intended for people who are familiar with the core concepts.
 
 If you are new to bevy or need a refresher, see
-[Bevy Basics](./basics/_index.md)
+[Bevy Programming](./programming/_index.md)
 for brief explanations of each feature.
 
 ---
 
-Click on "[explain]" links to go to the relevant [Bevy Basics](./basics/_index.md) page!
+Click on "[explain]" links to go to the relevant [Bevy Programming](./programming/_index.md) page!
 
 ---
 
 ## Systems
 
-[[explain](./basics/systems.md)]
+[[explain](./programming/systems.md)]
 
 Regular Rust functions, but can only take special parameter types supported by Bevy:
 
@@ -26,7 +26,7 @@ Regular Rust functions, but can only take special parameter types supported by B
 
 ## Entities and Components
 
-[[explain](./basics/ec.md)]
+[[explain](./programming/ec.md)]
 
 Any Rust type (`struct` or `enum`) can be used as a component.
 
@@ -42,7 +42,7 @@ Component bundles:
 
 ## Resources
 
-[[explain](./basics/res.md)]
+[[explain](./programming/res.md)]
 
 Any Rust type (`struct` or `enum`) can be used as a resource.
 
@@ -74,7 +74,7 @@ For complex resource initialization, implement `FromWorld`:
 
 ## Queries
 
-[[explain](./basics/queries.md)]
+[[explain](./programming/queries.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:query}}
@@ -100,7 +100,7 @@ Query sets (to resolve component access conflicts):
 
 ## Change Detection
 
-[[explain](./basics/change-detection.md)]
+[[explain](./programming/change-detection.md)]
 
 Query filters:
  - `Added<T>`: detect adding new components to existing entities
@@ -118,7 +118,7 @@ to use [explicit system ordering](#system-order-of-execution).
 
 ## Commands
 
-[[explain](./basics/commands.md)]
+[[explain](./programming/commands.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:commands}}
@@ -128,7 +128,7 @@ These actions are applied at the end of the stage.
 
 ## Local (per-system) Resources
 
-[[explain](./basics/local.md)]
+[[explain](./programming/local.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:local}}
@@ -138,7 +138,7 @@ The type must implement `Default` or `FromWorld`. It is automatically initialize
 
 ## Events
 
-[[explain](./basics/events.md)]
+[[explain](./programming/events.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:events}}
@@ -153,7 +153,7 @@ to use [explicit system ordering](#system-order-of-execution).
 
 ## Entity Hierarchies (Parent/Child)
 
-[[explain](./basics/parent-child.md)]
+[[explain](./programming/parent-child.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:parent-child}}
@@ -171,7 +171,7 @@ Child `Transform` is relative to the parent. `GlobalTransform` is internally man
 
 ## System Chaining
 
-[[explain](./basics/system-chaining.md)]
+[[explain](./programming/system-chaining.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:system-chaining}}
@@ -179,7 +179,7 @@ Child `Transform` is relative to the parent. `GlobalTransform` is internally man
 
 ## App Builder (main function)
 
-[[explain](./basics/app-builder.md), [stages](./basics/stages.md), [plugins](./basics/plugins.md)]
+[[explain](./programming/app-builder.md), [stages](./programming/stages.md), [plugins](./programming/plugins.md)]
 
 App builder:
 
@@ -195,11 +195,11 @@ Custom plugin:
 
 ## System Order of Execution
 
-[[explain](./basics/system-order.md)]
+[[explain](./programming/system-order.md)]
 
 ## States
 
-[[explain](./basics/states.md)]
+[[explain](./programming/states.md)]
 
 App builder with States:
 
@@ -215,7 +215,7 @@ Change or check States:
 
 ## Assets
 
-[[explain](./basics/assets.md)]
+[[explain](./features/assets.md)]
 
 Load asset:
 

@@ -1,6 +1,6 @@
 # Pan + Orbit Camera
 
-[Click here for the full example code.](../code_bevy_release/examples/pan-orbit-camera.rs)
+[Click here for the full example code.](../code/examples/pan-orbit-camera.rs)
 
 ---
 
@@ -15,5 +15,5 @@ This is a camera controller similar to the ones in 3D editors like Blender.
 Use the right mouse button to rotate, middle button to pan, scroll wheel to move inwards/outwards.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/pan-orbit-camera.rs:example}}
+{{#include ../code/examples/pan-orbit-camera.rs:example}}
 ```

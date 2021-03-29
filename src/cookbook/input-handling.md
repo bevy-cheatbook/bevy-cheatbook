@@ -1,6 +1,6 @@
 # Input Handling
 
-[Click here for the full example code.](../code_bevy_release/examples/input.rs)
+[Click here for the full example code.](../code/examples/input.rs)
 
 ---
 
@@ -11,11 +11,11 @@ any relevant inputs wherever you need them.
 If you simply need to check the current state of specific keyboard keys or mouse buttons:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/input.rs:res-input}}
+{{#include ../code/examples/input.rs:res-input}}
 ```
 
 For more powerful input handling, to detect all activity, use input events:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/input.rs:event-input}}
+{{#include ../code/examples/input.rs:event-input}}
 ```
