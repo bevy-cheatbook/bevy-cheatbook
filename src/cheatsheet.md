@@ -179,6 +179,18 @@ Child `Transform` is relative to the parent. `GlobalTransform` is internally man
 {{#include ./code/src/cheatsheet.rs:system-chaining}}
 ```
 
+## Labels
+
+[[explain](./programming/labels.md)]
+
+Labels can be strings, or any other type that implements the relevant traits.
+
+For example, a custom enum type:
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:labels}}
+```
+
 ## App Builder (main function)
 
 [[explain](./programming/app-builder.md), [stages](./programming/stages.md), [plugins](./programming/plugins.md)]
@@ -198,6 +210,14 @@ Custom plugin:
 ## System Order of Execution
 
 [[explain](./programming/system-order.md)]
+
+Order is *nondeterministic* and may change every frame!
+
+Use [labels](#labels) to specify order explicitly:
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:system-labels}}
+```
 
 ## States
 

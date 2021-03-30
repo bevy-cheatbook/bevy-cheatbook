@@ -413,6 +413,44 @@ pub fn _silence_warnings() {
 }
 }
 
+#[allow(dead_code)]
+mod systemlabels {
+use bevy::prelude::*;
+
+    fn particle_effects() {}
+    fn map_player_input() {}
+    fn input_parameters() {}
+    fn player_movement() {}
+
+// ANCHOR: labels
+    // required traits:
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    #[derive(StageLabel)] // for stages
+    #[derive(SystemLabel)] // for systems
+    #[derive(RunCriteriaLabel)] // for run criteria
+    #[derive(AmbiguitySetLabel)] // for ambiguity sets
+    enum MyLabels {
+        Input,
+    }
+// ANCHOR_END: labels
+
+// ANCHOR: system-labels
+fn main() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+        // non-deterministic order:
+        .add_system(particle_effects.system())
+        // create labels, because we need to order other systems around these:
+        .add_system(map_player_input.system().label(MyLabels::Input))
+        // this will always run before anything with the Input label
+        .add_system(input_parameters.system().before(MyLabels::Input))
+        // this will always run after anything with the Input label
+        .add_system(player_movement.system().after(MyLabels::Input))
+        .run();
+}
+// ANCHOR_END: system-labels
+}
+
 pub mod appstates{
 use super::*;
     fn state_independent() {}
