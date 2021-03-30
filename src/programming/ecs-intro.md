@@ -34,7 +34,10 @@ cores "for free"; that is, without requiring extra development effort from you.
 
 To improve the chances for parallelism, you can make your data and code more
 granular. Split your data into smaller types / `struct`s. Split your logic into
-multiple smaller systems / functions. This will make your game run faster.
+multiple smaller systems / functions. Have each system access only the data that
+is relevant to it. The fewer access conflicts, the faster your game will run.
+
+The general rule of thumb for Bevy performance is: more granular is better.
 
 ## Note for Programmers coming from Object-Oriented Languages
 
