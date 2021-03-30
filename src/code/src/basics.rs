@@ -697,6 +697,48 @@ fn main() {
 // ANCHOR_END: labels
 }
 
+#[allow(dead_code)]
+mod app8 {
+use bevy::prelude::*;
+
+    fn particle_effects() {}
+    fn npc_behaviors() {}
+    fn enemy_movement() {}
+    fn map_player_input() {}
+    fn update_map() {}
+    fn input_parameters() {}
+    fn player_movement() {}
+
+// ANCHOR: system-labels
+fn main() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+
+        // order doesn't matter for these systems:
+        .add_system(particle_effects.system())
+        .add_system(npc_behaviors.system())
+        .add_system(enemy_movement.system())
+
+        // create labels, because we need to order other systems around these:
+        .add_system(map_player_input.system().label("input"))
+        .add_system(update_map.system().label("map"))
+
+        // this will always run before anything labeled "input"
+        .add_system(input_parameters.system().before("input"))
+
+        // this will always run after anything labeled "input" and "map"
+        // also label it just in case
+        .add_system(
+            player_movement.system()
+                .label("player_movement")
+                .after("input")
+                .after("map")
+        )
+        .run();
+}
+// ANCHOR_END: system-labels
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::build()

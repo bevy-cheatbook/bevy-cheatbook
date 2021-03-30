@@ -33,3 +33,6 @@ next frame update.
 
 If you need to ensure that changes are handled immediately / during the same frame,
 you can use [explicit system ordering](./system-order.md).
+
+However, when detecting component additions with `Added<T>` (which are typically
+done using [`Commands`](./commands.md)), this is not enough; you need [stages](./stages.md).

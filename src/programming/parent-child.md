@@ -31,3 +31,5 @@ If you are not using such a bundle, you need to make sure to add these component
 The `Transform` represents the relative position. You can manipulate it directly.
 
 The `GlobalTransform` represents the absolute position. It is managed by bevy internally; do not manipulate it yourself.
+
+For more info, see the [dedicated page about transforms](../features/transforms.md).
