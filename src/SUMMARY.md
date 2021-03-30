@@ -6,6 +6,7 @@
 
 - [Bevy Programming](./programming/_index.md)
   - [Basics](./programming/_basics.md)
+    - [Intro to ECS](./programming/ecs-intro.md)
     - [Entities and Components](./programming/ec.md)
     - [Resources](./programming/res.md)
     - [Systems](./programming/systems.md)

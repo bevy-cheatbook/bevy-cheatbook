@@ -1,36 +1,9 @@
-# ECS as a Data Structure
-
-Bevy stores and manages all your data for you, using the Bevy ECS (Entity-Component System).
-
-Conceptually, you can think of it by analogy with tables, like in a database or
-spreadsheet. Your different data types (Components) are like the "columns" of a
-table, and there can be arbitrarily many "rows" (Entities) containing values /
-instances of each component.
-
-For example, you could create a `Health` component for your game. You could then
-have many entities representing different things in your game, such as the
-player, NPCs, or monsters, all of which can have a `Health` value (as well as
-other relevant components).
-
-This makes it easy to write game logic ([Systems](./systems.md)) that can operate on any
-entity with the necessary components (such as a health/damage system for
-anything that has `Health`), regardless of whether that's the player, an NPC, or
-a monster (or anything else). This makes your game logic very flexible and
-reusable.
-
-The set / combination of components that a given entity has, is called the
-entity's Archetype.
-
-Note that entities aren't limited to just "objects in the game world". The ECS
-is a general-purpose data structure. You can create entities and components to
-store any data.
-
-## Entities
+# Entities
 
 Entities are just a simple integer ID, that identifies a particular set of
 component values.
 
-## Components
+# Components
 
 Components are the data associated with entities.
 
@@ -57,7 +30,7 @@ components". Useful with [query filters](./queries.md#filter-by-component).
 
 Components can be accessed from [systems](./systems.md), using [queries](./queries.md). 
 
-## Component Bundles
+# Component Bundles
 
 Bundles are like "templates", to make it easy to create entities with a common set of components.
 
