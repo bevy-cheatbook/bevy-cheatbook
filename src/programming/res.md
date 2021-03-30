@@ -44,14 +44,13 @@ If you insert a resource of a type that already exists, it will be overwritten.
 
 ## Usage Advice
 
-Your choice of when to use entities/components vs. resources should be based on
+The choice of when to use entities/components vs. resources is typically about
 how you want to access the data: globally from anywhere (resources), or using
-ECS patterns (entities/components). It should *not* be based on whether there
-will be only one instance or multiple.
+ECS patterns (entities/components).
 
 Even if there is only one of a certain thing in your game (such as the player in
-a single-player game), it is preferable to use an entity instead of a resource,
-because entities are composed of multiple components, some of which can be
-common with other entities. This can make your game logic easier and more
-flexible. For example, you could have a "health/damage system" that works with
-both the player and enemies.
+a single-player game), it can be a good fit to use an entity instead of
+resources, because entities are composed of multiple components, some of which
+can be common with other entities. This can make your game logic more flexible.
+For example, you could have a "health/damage system" that works with both the
+player and enemies.
