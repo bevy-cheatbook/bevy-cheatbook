@@ -27,9 +27,11 @@ Click on "[explain]" links to go to the relevant [Bevy Programming](./programmin
  - [Labels](#labels)
  - [Local Resources](#local-resources)
  - [Parent/Child Hierarchy](#parentchild-hierarchy)
+ - [Plugins](#plugins)
  - [Queries](#queries)
  - [Query Sets](#query-sets)
  - [Resources](#resources)
+ - [Stages](#app-builder)
  - [States](#states)
  - [Systems](#systems)
  - [System Chaining](#system-chaining)
@@ -195,20 +197,20 @@ For example, a custom enum type:
 {{#include ./code/src/cheatsheet.rs:labels}}
 ```
 
-## App Builder
+## Plugins
 
-[(back to top)](#table-of-contents) [[explain](./programming/app-builder.md), [stages](./programming/stages.md), [plugins](./programming/plugins.md)]
-
-App builder:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:app-builder}}
-```
-
-Custom plugin:
+[(back to top)](#table-of-contents) [[explain](./programming/plugins.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:plugin}}
+```
+
+## App Builder
+
+[(back to top)](#table-of-contents) [[explain](./programming/app-builder.md), [stages](./programming/stages.md)]
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:app-builder}}
 ```
 
 ## System Order
