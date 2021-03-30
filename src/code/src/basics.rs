@@ -12,6 +12,35 @@ struct ResourceA;
 struct ResourceB;
 struct ResourceC;
 
+#[allow(dead_code)]
+mod derive_systemparam {
+use bevy::prelude::*;
+pub struct UserKeybindings;
+pub struct GameSaveSettings;
+pub struct GraphicsSettings;
+// ANCHOR: derive-system-param
+use bevy::ecs::system::SystemParam;
+
+#[derive(SystemParam)]
+pub struct MyCommonSettings<'a> {
+    keys: Res<'a, UserKeybindings>,
+    save: Res<'a, GameSaveSettings>,
+    gfx: Res<'a, GraphicsSettings>,
+}
+
+fn read_all_settings(
+    settings: MyCommonSettings,
+) {
+    // ...
+}
+// ANCHOR_END: derive-system-param
+
+fn main() {
+    App::build().add_system(read_all_settings.system()).run();
+}
+
+}
+
 // ANCHOR: struct-component
 struct Health {
     hp: f32,
@@ -461,7 +490,7 @@ mod app1 {
 // ANCHOR: appinit-resource
 fn main() {
     App::build()
-        // if it implements `Default` or `FromResources`
+        // if it implements `Default` or `FromWorld`
         .init_resource::<MyFancyResource>()
         // if not, or if you want to set a specific value
         .insert_resource(StartingLevel(3))
@@ -486,7 +515,7 @@ fn main() {
 
         // resources:
         .insert_resource(StartingLevel(3))
-        // if it implements `Default` or `FromResources`
+        // if it implements `Default` or `FromWorld`
         .init_resource::<MyFancyResource>()
 
         // events:
