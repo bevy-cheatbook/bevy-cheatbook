@@ -6,9 +6,9 @@ Covers useful syntax, features, programming patterns, and solutions for common g
 
 Designed to be easy to read, straight to the point, using simple language to focus on the important information.
 
-Not intended to be read in order. Jump to whatever is useful to you!
-
-It is not exhaustive / complete. It is my best attempt to cover the most practically-relevant aspects.
+While rich in content, this book does not aim to be exhaustive or complete. It
+cannot feasibly cover every feature of bevy. It is my best attempt to teach the
+most practically-relevant aspects.
 
 The book has several sections:
 
@@ -19,7 +19,13 @@ The book has several sections:
  - [Advanced Patterns](./patterns/_index.md): non-obvious tricks or techniques; may be controversial
  - [Bevy Cookbook](./cookbook/_index.md): examples covering common practical use cases
 
+Not intended to be read in order. Jump to whatever is useful to you!
+
 ***Welcome! May this book serve you well!***
+
+(don't forget to
+<a class="github-button" href="https://github.com/bevy-cheatbook/bevy-cheatbook" data-icon="octicon-star" aria-label="Star bevy-cheatbook/bevy-cheatbook on GitHub">Star</a>
+the book's [GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook) 😉)
 
 ## Recommended Additional Resources
 
