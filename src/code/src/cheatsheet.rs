@@ -157,6 +157,11 @@ fn my_system2(mut query: Query<(&ComponentA, &mut ComponentB)>) {
         // entity does not match the query
     }
 // ANCHOR_END: query-one
+
+// ANCHOR: query-single
+    let (a, mut b) = q.single_mut()
+        .expect("There should only be one entity with A and B!");
+// ANCHOR_END: query-single
 }
 
 // ANCHOR: query-filter

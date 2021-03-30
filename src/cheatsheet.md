@@ -112,11 +112,13 @@ These actions are applied at the end of the stage.
 
 [(back to top)](#table-of-contents) [[explain](./programming/queries.md)]
 
+Iterate all matching entities:
+
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:query}}
 ```
 
-When expecting the query to match only one entity (returns `Result`):
+Or, if expecting the query to match only one entity (returns `Result`):
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:query-single}}

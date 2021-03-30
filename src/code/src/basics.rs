@@ -433,6 +433,11 @@ fn commands_catchall(mut commands: Commands) {
 let e = commands.spawn().id();
 // ANCHOR_END: commands-current-entity
 
+// ANCHOR: commands-resource
+commands.insert_resource(GoalsReached { main_goal: false, bonus: false });
+commands.remove_resource::<MyResource>();
+// ANCHOR_END: commands-resource
+
 // ANCHOR: parenting
 // spawn the parent and get its Entity id
 let parent = commands.spawn_bundle(MyParentBundle::default())
