@@ -18,6 +18,7 @@
     - [Hierarchical Entities](./programming/parent-child.md)
     - [Change Detection](./programming/change-detection.md)
     - [System Chaining](./programming/system-chaining.md)
+    - [Query Sets](./programming/query-sets.md)
     - [States](./programming/states.md)
     - [Plugins](./programming/plugins.md)
     - [Stages](./programming/stages.md)

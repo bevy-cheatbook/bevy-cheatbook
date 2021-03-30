@@ -28,24 +28,13 @@ If you know that the query should only ever match a single entity, you can use `
 
 Add query filters to narrow down the entities you get from the query.
 
-Multiple filters can be combined:
- - in a tuple to apply all of them (AND logic)
- - using the `Or<...>` wrapper to detect any of them (OR logic).
-
 Use `With`/`Without` to only get entities that have specific components.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-query-filter}}
 ```
 
-## Query Sets
-
-For safety reasons, a system cannot have multiple queries with mutability conflicts on the same components.
-
-The solution is to wrap them in a `QuerySet`:
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:sys-query-set}}
-```
-
-This ensures that only one of the conflicting queries can be used at the same time.
+Multiple filters can be combined:
+ - in a tuple to apply all of them (AND logic)
+ - using the `Or<(...)>` wrapper to detect any of them (OR logic).
+   - (note the tuple inside)
