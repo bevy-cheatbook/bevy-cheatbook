@@ -18,31 +18,29 @@ Click on "[explain]" links to go to the relevant [Bevy Programming](./programmin
 
 ## Table of Contents
 
- - [Systems](#systems)
- - [Entities and Components](#entities-and-components)
- - [Resources](#resources)
- - [Commands](#commands)
- - [Queries](#queries)
- - [Change Detection](#change-detection)
- - [Query Sets](#query-sets)
- - [Events](#events)
- - [Local Resources](#local-resources)
- - [Labels](#labels)
  - [App Builder](#app-builder)
- - [System Order](#system-order)
- - [States](#states)
- - [Transforms](#transforms)
- - [Parent/Child Hierarchy](#parentchild-hierarchy)
- - [System Chaining](#system-chaining)
  - [Assets](#assets)
+ - [Change Detection](#change-detection)
+ - [Commands](#commands)
+ - [Entities and Components](#entities-and-components)
+ - [Events](#events)
+ - [Labels](#labels)
+ - [Local Resources](#local-resources)
+ - [Parent/Child Hierarchy](#parentchild-hierarchy)
+ - [Queries](#queries)
+ - [Query Sets](#query-sets)
+ - [Resources](#resources)
+ - [States](#states)
+ - [Systems](#systems)
+ - [System Chaining](#system-chaining)
+ - [System Order](#system-order)
+ - [Transforms](#transforms)
 
 ---
 
 ## Systems
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/systems.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/systems.md)]
 
 Regular Rust functions, but can only accept parameters that implement [trait `SystemParam`](TODO DOCS.RS).
 
@@ -52,9 +50,7 @@ The standard system parameter types provided by Bevy:
 
 ## Entities and Components
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/ec.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/ec.md)]
 
 Any Rust type (`struct` or `enum`) can be used as a component.
 
@@ -70,9 +66,7 @@ Component bundles:
 
 ## Resources
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/res.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/res.md)]
 
 Any Rust type (`struct` or `enum`) can be used as a resource.
 
@@ -104,9 +98,7 @@ For complex resource initialization, implement `FromWorld`:
 
 ## Commands
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/commands.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/commands.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:commands}}
@@ -116,9 +108,7 @@ These actions are applied at the end of the stage.
 
 ## Queries
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/queries.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/queries.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:query}}
@@ -144,9 +134,7 @@ Add query filters:
 
 ## Change Detection
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/change-detection.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/change-detection.md)]
 
 Query filters:
  - `Added<T>`: detect adding new components to existing entities
@@ -164,9 +152,7 @@ to use [explicit system ordering](#system-order).
 
 ## Query Sets
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/query-sets.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/query-sets.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:query-set}}
@@ -174,9 +160,7 @@ to use [explicit system ordering](#system-order).
 
 ## Events
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/events.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/events.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:events}}
@@ -191,9 +175,7 @@ to use [explicit system ordering](#system-order).
 
 ## Local Resources
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/local.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/local.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:local}}
@@ -203,9 +185,7 @@ The type must implement `Default` or `FromWorld`. It is automatically initialize
 
 ## Labels
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/labels.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/labels.md)]
 
 Labels can be strings, or any other type that implements the relevant traits.
 
@@ -217,9 +197,7 @@ For example, a custom enum type:
 
 ## App Builder
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/app-builder.md), [stages](./programming/stages.md), [plugins](./programming/plugins.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/app-builder.md), [stages](./programming/stages.md), [plugins](./programming/plugins.md)]
 
 App builder:
 
@@ -235,9 +213,7 @@ Custom plugin:
 
 ## System Order
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/system-order.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/system-order.md)]
 
 Execution order is *nondeterministic* and may change every frame!
 
@@ -249,9 +225,7 @@ Use [labels](#labels) to specify order explicitly:
 
 ## States
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/states.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/states.md)]
 
 App builder with States:
 
@@ -267,9 +241,7 @@ Change or check States:
 
 ## Transforms
 
-[(back to top)](#table-of-contents)
-
-[[explain](./features/transforms.md)]
+[(back to top)](#table-of-contents) [[explain](./features/transforms.md)]
 
 Coordinate system: +X is right, +Y is up, +Z is out of the screen. Right-handed. 3D matches 2D.
 
@@ -279,9 +251,7 @@ The `GlobalTransform` component is the absolute/global transform. Do not modify;
 
 ## Parent/Child Hierarchy
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/parent-child.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/parent-child.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:parent-child}}
@@ -297,9 +267,7 @@ Transforms: Ensure both parent and child have both components: `Transform`, `Glo
 
 ## System Chaining
 
-[(back to top)](#table-of-contents)
-
-[[explain](./programming/system-chaining.md)]
+[(back to top)](#table-of-contents) [[explain](./programming/system-chaining.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:system-chaining}}
@@ -307,9 +275,7 @@ Transforms: Ensure both parent and child have both components: `Transform`, `Glo
 
 ## Assets
 
-[(back to top)](#table-of-contents)
-
-[[explain](./features/assets.md)]
+[(back to top)](#table-of-contents) [[explain](./features/assets.md)]
 
 Load asset:
 
