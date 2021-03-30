@@ -3,9 +3,11 @@
 Bevy has a flexible system for loading and managing your game assets
 asynchronously (in the background, without causing lag spikes in your game).
 
-The data of your loaded assets is stored in an `Assets<T>` resource.
+The data of your loaded assets is stored in `Assets<T>` resources.
 
-To access the asset data, you need a `Handle<T>`. Handles are just lightweight IDs for a specific asset.
+Assets are tracked using handles. Handles are just lightweight IDs for a specific asset.
+
+## Loading using AssetServer
 
 To load assets from files, use the `AssetServer` resource.
 
@@ -13,16 +15,22 @@ To load assets from files, use the `AssetServer` resource.
 {{#include ../code/src/basics.rs:asset-server}}
 ```
 
-This queues the asset loading to happen in the background. The asset will not be
-available immediately.
+This queues the asset loading to happen in the background. The asset will take
+some time to become available. You cannot access it immediately after loading in
+the same system.
 
-Do this in a system that runs once, either at [startup](./app-builder.md)
-or when [entering your game state](./states.md).
+Note that it is OK to call `.load` as many times as you want, regardless of if
+the asset is currently loading, or already loaded. It will just provide you with
+a handle. If the asset is unavailable, it will begin loading.
+
+## Creating your own assets
 
 You can also create assets using code and add them to `Assets<T>` manually.
 
 This is useful if you want to create them using code (such as for procedural
 generation), or if you have gotten the data in some other way.
+
+## Accessing the Assets
 
 To access your assets from systems, use the `Handle<T>` and `Assets<T>` resource:
 
@@ -30,25 +38,40 @@ To access your assets from systems, use the `Handle<T>` and `Assets<T>` resource
 {{#include ../code/src/basics.rs:asset-access}}
 ```
 
-## AssetEvent
+## AssetPath
 
-If you need to perform specific actions when the asset has finished loading, is
-modified, or removed, you can react to `AssetEvent`s.
+Assets from the filesystem are identified by an `AssetPath`, which consists of
+the file path + a label. Labels are used in situations where multiple assets can
+be loaded from the same file. An example of this are GLTF files, which can
+contain meshes, scenes, textures, materials, etc.
+
+Asset paths can be created from a string, with the label (if any) attached after a `#` symbol.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:asset-event}}
 ```
 
-## Handles
+## Working with Handles
 
-Handles have built-in reference counting (similar to `Rc`/`Arc` in Rust).
+Handles are based on asset paths (for loaded assets) or internal UUIDs (for
+manually-added assets). This means that they can easily and deterministically be
+"created out of thin air" at any time. You can always convert an asset path into
+a handle, regardless of if that asset has ever been loaded.
 
-Therefore, you need to `.clone()` them to create multiple handles to the same
+## Handles and Asset Lifetime (Garbage Collection)
+
+Handles have built-in reference counting (similar to `Rc`/`Arc` in Rust). This
+allows Bevy to track if an asset is still needed, and automatically unload it
+if it no longer is.
+
+Handles can be "strong" or "weak". Only strong handles are counted and cause the
+asset to remain loaded.
+
+You can use `.clone()` or `.clone_weak()` to create multiple handles to the same
 asset. The clone is a cheap operation, but it is explicit, to ensure that you
-are aware of when your code is creating more of them.
+are aware of the places in your code that create additional handles and may
+affect the lifetime of assets.
 
-Handles can be "strong" (default) or "weak". If no more strong handles
-exist, the asset's data will be freed/unloaded automatically.
+## Working with Handles
 
 Bevy also has a `HandleUntyped` type. Use this type of handle if you need to
 be able to refer to any asset, regardless of the asset type.
@@ -65,3 +88,11 @@ what asset type the files are. It also supports loading entire folders.
 It will try to detect the format of each asset based on the file extension.
 
 
+## AssetEvent
+
+If you need to perform specific actions when the asset has finished loading, is
+modified, or removed, you can react to `AssetEvent`s.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:asset-event}}
+```
