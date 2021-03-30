@@ -16,7 +16,31 @@ Click on "[explain]" links to go to the relevant [Bevy Programming](./programmin
 
 ---
 
+## Table of Contents
+
+ - [Systems](#systems)
+ - [Entities and Components](#entities-and-components)
+ - [Resources](#resources)
+ - [Commands](#commands)
+ - [Queries](#queries)
+ - [Change Detection](#change-detection)
+ - [Query Sets](#query-sets)
+ - [Events](#events)
+ - [Local Resources](#local-resources)
+ - [Labels](#labels)
+ - [App Builder](#app-builder)
+ - [System Order](#system-order)
+ - [States](#states)
+ - [Transforms](#transforms)
+ - [Parent/Child Hierarchy](#parentchild-hierarchy)
+ - [System Chaining](#system-chaining)
+ - [Assets](#assets)
+
+---
+
 ## Systems
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/systems.md)]
 
@@ -27,6 +51,8 @@ The standard system parameter types provided by Bevy:
 {{#include ./include/systemparams.md}}
 
 ## Entities and Components
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/ec.md)]
 
@@ -43,6 +69,8 @@ Component bundles:
 ```
 
 ## Resources
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/res.md)]
 
@@ -74,12 +102,32 @@ For complex resource initialization, implement `FromWorld`:
 {{#include ./code/src/cheatsheet.rs:fromworld}}
 ```
 
+## Commands
+
+[(back to top)](#table-of-contents)
+
+[[explain](./programming/commands.md)]
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:commands}}
+```
+
+These actions are applied at the end of the stage.
+
 ## Queries
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/queries.md)]
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:query}}
+```
+
+When expecting the query to match only one entity (returns `Result`):
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:query-single}}
 ```
 
 To operate on a specific entity:
@@ -94,13 +142,9 @@ Add query filters:
 {{#include ./code/src/cheatsheet.rs:query-filter}}
 ```
 
-Query sets (to resolve component access conflicts):
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:query-set}}
-```
-
 ## Change Detection
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/change-detection.md)]
 
@@ -116,29 +160,21 @@ Change detection is triggered by `DerefMut`. Accessing components via a mutable
 query without it actually being a `&mut` access, will *not* trigger it.
 
 Beware of [frame delay / 1-frame-lag](./pitfalls/frame-delay.md). You may want
-to use [explicit system ordering](#system-order-of-execution).
+to use [explicit system ordering](#system-order).
 
-## Commands
+## Query Sets
 
-[[explain](./programming/commands.md)]
+[(back to top)](#table-of-contents)
 
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:commands}}
-```
-
-These actions are applied at the end of the stage.
-
-## Local (per-system) Resources
-
-[[explain](./programming/local.md)]
+[[explain](./programming/query-sets.md)]
 
 ```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:local}}
+{{#include ./code/src/cheatsheet.rs:query-set}}
 ```
-
-The type must implement `Default` or `FromWorld`. It is automatically initialized.
 
 ## Events
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/events.md)]
 
@@ -151,35 +187,23 @@ which they are lost. If your systems do not handle events every frame, you could
 miss some.
 
 Beware of [frame delay / 1-frame-lag](./pitfalls/frame-delay.md). You may want
-to use [explicit system ordering](#system-order-of-execution).
+to use [explicit system ordering](#system-order).
 
-## Entity Hierarchies (Parent/Child)
+## Local Resources
 
-[[explain](./programming/parent-child.md)]
+[(back to top)](#table-of-contents)
 
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:parent-child}}
-```
-
-Reparent an existing entity:
+[[explain](./programming/local.md)]
 
 ```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:add-parent}}
+{{#include ./code/src/cheatsheet.rs:local}}
 ```
 
-If you are using `Transform`s, ensure both the parent and the child also have a `GlobalTransform`.
-
-Child `Transform` is relative to the parent. `GlobalTransform` is internally managed by bevy.
-
-## System Chaining
-
-[[explain](./programming/system-chaining.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:system-chaining}}
-```
+The type must implement `Default` or `FromWorld`. It is automatically initialized.
 
 ## Labels
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/labels.md)]
 
@@ -191,7 +215,9 @@ For example, a custom enum type:
 {{#include ./code/src/cheatsheet.rs:labels}}
 ```
 
-## App Builder (main function)
+## App Builder
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/app-builder.md), [stages](./programming/stages.md), [plugins](./programming/plugins.md)]
 
@@ -207,11 +233,13 @@ Custom plugin:
 {{#include ./code/src/cheatsheet.rs:plugin}}
 ```
 
-## System Order of Execution
+## System Order
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/system-order.md)]
 
-Order is *nondeterministic* and may change every frame!
+Execution order is *nondeterministic* and may change every frame!
 
 Use [labels](#labels) to specify order explicitly:
 
@@ -220,6 +248,8 @@ Use [labels](#labels) to specify order explicitly:
 ```
 
 ## States
+
+[(back to top)](#table-of-contents)
 
 [[explain](./programming/states.md)]
 
@@ -235,7 +265,49 @@ Change or check States:
 {{#include ./code/src/cheatsheet.rs:res-state}}
 ```
 
+## Transforms
+
+[(back to top)](#table-of-contents)
+
+[[explain](./features/transforms.md)]
+
+Coordinate system: +X is right, +Y is up, +Z is out of the screen. Right-handed. 3D matches 2D.
+
+The `Transform` component is the relative/local transform. You may modify this directly.
+
+The `GlobalTransform` component is the absolute/global transform. Do not modify; internally managed by Bevy.
+
+## Parent/Child Hierarchy
+
+[(back to top)](#table-of-contents)
+
+[[explain](./programming/parent-child.md)]
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:parent-child}}
+```
+
+Reparent an existing entity:
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:add-parent}}
+```
+
+Transforms: Ensure both parent and child have both components: `Transform`, `GlobalTransform`.
+
+## System Chaining
+
+[(back to top)](#table-of-contents)
+
+[[explain](./programming/system-chaining.md)]
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:system-chaining}}
+```
+
 ## Assets
+
+[(back to top)](#table-of-contents)
 
 [[explain](./features/assets.md)]
 
