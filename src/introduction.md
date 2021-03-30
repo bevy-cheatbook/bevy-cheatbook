@@ -28,6 +28,22 @@ Bevy has a rich collection of [official code examples](https://github.com/bevyen
 Check out the [awesome-bevy](https://github.com/bevyengine/awesome-bevy) list,
 for community-made resources.
 
+Our community is very friendly and helpful. Feel welcome to join the [Bevy
+Discord](https://discord.gg/bevy) to chat, ask questions, or get involved in the project!
+
+## Stability Warning
+
+Bevy is still a very new and experimental game engine! It has only been public
+for less than a year!
+
+While improvements have been happening at an incredible pace, and development is
+active, Bevy simply hasn't yet had the time to mature.
+
+*There are no stability guarantees and breaking changes happen often!*
+
+Usually, it not hard to adapt to changes with new releases (or even track the
+main git development branch), but you have been warned!
+
 ## Maintenance
 
 This version of the book is for Bevy release 0.5.
@@ -35,6 +51,9 @@ This version of the book is for Bevy release 0.5.
 You may also access [the `next` branch](https://bevy-cheatbook.github.io/next/).
 It contains any WIP efforts to cover newer developments in Bevy's main git
 branch, in preparation for the next release.
+
+I intend to keep this book up-to-date and relevant with every new Bevy release.
+I also try to regularly make general improvements to it, when I can manage it.
 
 ## License
 
