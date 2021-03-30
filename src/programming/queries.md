@@ -24,6 +24,14 @@ If you know that the query should only ever match a single entity, you can use `
 {{#include ../code/src/basics.rs:query-single}}
 ```
 
+## Bundles
+
+Queries work with individual components. If you created an entity using a
+[bundle](./ec.md#component-bundles), you need to query for the specific
+components from that bundle that you care about.
+
+A common beginner mistake is to query for the bundle type!
+
 ## Query Filters
 
 Add query filters to narrow down the entities you get from the query.

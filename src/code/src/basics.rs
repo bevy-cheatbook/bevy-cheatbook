@@ -57,6 +57,11 @@ struct PlayerBundle {
     name: PlayerName,
     health: Health,
     _p: Player,
+
+    // We can nest/include another bundle.
+    // Add the components for a standard Bevy Sprite:
+    #[bundle]
+    sprite: SpriteSheetBundle,
 }
 // ANCHOR_END: bundle
 
@@ -252,6 +257,7 @@ fn spawn_player(
             hp: 100.0, extra: 20.0
         },
         _p: Player,
+        sprite: Default::default(),
     });
 
     // spawn another entity
