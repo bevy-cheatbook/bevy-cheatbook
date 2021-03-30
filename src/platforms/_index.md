@@ -13,8 +13,8 @@ Currently, support for these non-desktop platforms is limited:
  - Most Bevy features work OK on the Web. You can make a browser game using
    Bevy, albeit with limited performance (compared to a native desktop version),
    due to lack of multithreading, and some other possible caveats.
- - Mobile support is minimal. It's not hard to get something to run, but it will
-   be broken in various major ways.
+ - Mobile support is minimal and broken. It will build, but may or may not run.
+   Expect to immediately run into major issues.
  - Game console support is still completely non-existent yet.
  
 If you are interested in these other platforms and you'd like to help improve
