@@ -20,7 +20,9 @@ Click on "[explain]" links to go to the relevant [Bevy Programming](./programmin
 
 [[explain](./programming/systems.md)]
 
-Regular Rust functions, but can only take special parameter types supported by Bevy:
+Regular Rust functions, but can only accept parameters that implement [trait `SystemParam`](TODO DOCS.RS).
+
+The standard system parameter types provided by Bevy:
 
 {{#include ./include/systemparams.md}}
 

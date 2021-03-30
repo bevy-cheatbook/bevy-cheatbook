@@ -4,7 +4,9 @@ Systems are functions you write, which are run by Bevy.
 
 This is where you implement all your game logic.
 
-These functions can only take special parameter types, to specify what game data you want to access. [If you use unsupported types in your function, you will get confusing compiler errors!](../pitfalls/into-system.md)
+These functions can only take special parameter types, to specify what game data
+you want to access. [If you use unsupported types in your function, you will get
+confusing compiler errors!](../pitfalls/into-system.md)
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-debug-res}}

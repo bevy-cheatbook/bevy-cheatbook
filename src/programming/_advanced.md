@@ -1,9 +1,8 @@
-# Bevy Programming Advanced
+# Bevy Programming: Advanced
 
-This sub-chapter covers aspects of Bevy programming beyond the absolute basics.
+This sub-chapter covers advanced Bevy programming.
 
-You could get started building simple things with Bevy before you have
-familiarized yourself with these concepts.
+These topics may be useful for specialized scenarios in complex projects.
 
-However, they would probably become useful to you pretty quickly -- you will
-likely need at least some of these features as your project grows in complexity.
+Most typical Bevy users are unlikely to need these features.
+

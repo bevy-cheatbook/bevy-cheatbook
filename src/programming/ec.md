@@ -13,7 +13,7 @@ Any Rust type (`struct` or `enum`) can be used as a component.
 {{#include ../code/src/basics.rs:struct-component}}
 ```
 
-Types must be unique -- an entity can only have one component of each type.
+Types must be unique -- an entity can only have one component per Rust type.
 
 Use wrapper (newtype) structs to make unique components out of simpler types:
 
