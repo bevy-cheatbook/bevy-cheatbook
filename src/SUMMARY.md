@@ -37,6 +37,7 @@
   - [Assets](./features/assets.md)
   - [Cameras](./features/camera.md)
   - [Input Handling](./features/input-handling.md)
+  - [Fixed Timestep](./features/fixed-timestep.md)
 
 - [Common Pitfalls](./pitfalls/_index.md)
   - [Error adding function as system](./pitfalls/into-system.md)
