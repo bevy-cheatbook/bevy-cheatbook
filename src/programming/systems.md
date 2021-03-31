@@ -12,8 +12,12 @@ confusing compiler errors!](../pitfalls/into-system.md)
 {{#include ../code/src/basics.rs:sys-debug-res}}
 ```
 
-System parameters can be grouped into tuples. This is useful for organization.
+System parameters can be grouped into tuples (which can be nested). This is
+useful for organization.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-param-tuple}}
 ```
+
+The maximum number of top-level system parameters, or tuple members, is 11. You
+can group/nest them into tuples, if you need to work around that limitation.

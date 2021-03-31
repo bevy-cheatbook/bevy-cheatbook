@@ -9,3 +9,5 @@ Bevy provides a solution: wrap them in a `QuerySet`:
 ```
 
 This ensures that only one of the conflicting queries can be used at the same time.
+
+The maximum number of queries in a query set is 4.
