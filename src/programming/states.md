@@ -59,7 +59,7 @@ This is how you can implement things like a "game paused" screen, or an overlay
 menu, with the game world still visible / running in the background.
 
 You can have some systems that are still running even when the state is
-"inactive", that is, in the background, with other states are running on top.
+"inactive" (that is, in the background, with other states running on top).
 You can also add one-shot systems to run when "pausing" or "resuming" the state.
 
 In your [app builder](./app-builder.md):
@@ -74,7 +74,7 @@ To manage states like this, use `push`/`pop`:
 {{#include ../code/src/basics.rs:state-push-pop}}
 ```
 
-(using `set` as shown before replaces the active state at the top of the stack)
+(using `.set` as shown before replaces the active state at the top of the stack)
 
 ## Known Pitfalls and Limitations
 
