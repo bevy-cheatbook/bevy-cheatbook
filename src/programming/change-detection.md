@@ -11,7 +11,7 @@ Use query filters:
 ```
 
 Change detection is triggered by `DerefMut`. Simply accessing components via a
-mutable query, without it actually being a `&mut` access, will *not* trigger it.
+mutable query, without actually performing a `&mut` access, will *not* trigger it.
 
 This makes change detection quite accurate. You can rely on it to optimize
 your game's performance, or to otherwise trigger things to happen.

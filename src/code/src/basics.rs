@@ -265,6 +265,44 @@ fn update_player_xp(
 }
 // ANCHOR_END: change-if-wrap
 
+
+use bevy::render::camera::Camera;
+// ANCHOR: query-parent
+fn camera_with_parent(
+    q_child: Query<(&Parent, &Transform), With<Camera>>,
+    q_parent: Query<&GlobalTransform>,
+) {
+    for (parent, child_transform) in q_child.iter() {
+        // `parent` contains the Entity ID we can use
+        // to query components from the parent:
+        let parent_global_transform = q_parent.get(parent.0);
+
+        // do something with the components
+    }
+}
+// ANCHOR_END: query-parent
+
+struct MySquadDamage;
+struct MyUnitHealth;
+
+// ANCHOR: query-child
+fn process_squad_damage(
+    q_parent: Query<(&MySquadDamage, &Children)>,
+    q_child: Query<&MyUnitHealth>,
+) {
+    // get the properties of each squad
+    for (squad_dmg, children) in q_parent.iter() {
+        // `children` is a collection of Entity IDs
+        for &child in children.iter() {
+            // get the health of each child unit
+            let health = q_child.get(child);
+
+            // do something
+        }
+    }
+}
+// ANCHOR_END: query-child
+
 // ANCHOR: example-commands
 fn spawn_player(
     mut commands: Commands,
@@ -882,5 +920,7 @@ pub fn _main_all() {
         .add_system(use_sprites.system())
         .add_system(fixup_textures.system())
         .add_system(update_player_xp.system())
+        .add_system(camera_with_parent.system())
+        .add_system(process_squad_damage.system())
         .run();
 }

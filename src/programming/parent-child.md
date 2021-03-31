@@ -19,6 +19,34 @@ You can despawn an entire hierarchy with a single command:
 {{#include ../code/src/basics.rs:despawn-recursive}}
 ```
 
+## Accessing the Parent or Children
+
+To make a system that works with the hierarchy, you typically need two queries:
+ - one with the components you need from the child entities
+ - one with the components you need from the parent entities
+
+One of the two queries should include the appropriate component, to obtain the
+entity ids to use with the other one:
+ - `Parent` in the child query, if you want to iterate entities and look up
+   their parents, or
+ - `Children` in the parent query, if you want to iterate entities and look up
+   their children
+
+For example, if we want to get the `Transform` of cameras that have a parent,
+and the `GlobalTransform` of their parent:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:query-parent}}
+```
+
+As another example, say we are making a strategy game, and we have Units that are
+children of a Squad. Say we need to make a system that works on each Squad, and it
+needs some information about the children:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:query-child}}
+```
+
 ## Relative Transforms
 
 If your entities represent "objects in the game world", you probably expect the
