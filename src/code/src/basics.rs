@@ -467,6 +467,10 @@ fn load_extra_assets(
 // ANCHOR_END: asset-folder
 
 fn commands_catchall(mut commands: Commands) {
+// ANCHOR: ui-camera
+commands.spawn_bundle(UiCameraBundle::default());
+// ANCHOR_END: ui-camera
+
 // ANCHOR: commands-current-entity
 let e = commands.spawn().id();
 // ANCHOR_END: commands-current-entity
