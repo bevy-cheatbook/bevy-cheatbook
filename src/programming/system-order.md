@@ -56,6 +56,8 @@ You can place multiple labels on one system.
 
 You can also use the same label on multiple systems.
 
+If you want to manage multiple systems together as a group, use [system sets](./system-sets.md).
+
 ## Circular Dependencies
 
 If you have multiple systems mutually depending on each other, then it is

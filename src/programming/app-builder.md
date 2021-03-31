@@ -1,11 +1,12 @@
 # App Builder (main function)
 
 To enter the bevy runtime, you need to configure an `App`, composed of all the
-systems, plugins, event types, and resources, that you want to use.
+[systems](./systems.md), [plugins](./plugins.md), [event](./events.md) types,
+and [resources](./res.md), that you want to use.
 
 Everything must be registered in the `App`, or it will not work.
 
-Component types and local resources do not need to be registered.
+Component types and [local resources](./local.md) do not need to be registered.
 
 Resources can also be created later, using [`Commands`](./commands.md).
 
