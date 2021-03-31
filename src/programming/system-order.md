@@ -42,7 +42,8 @@ would result in annoying lag, so you should probably fix it.
 
 ## Explicit System Ordering
 
-The solution is to use system [labels](./labels.md) to explicitly specify the order you want:
+The solution is to use system [labels](./labels.md) to explicitly specify the
+order you want:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:system-labels}}
@@ -56,7 +57,8 @@ You can place multiple labels on one system.
 
 You can also use the same label on multiple systems.
 
-If you want to manage multiple systems together as a group, use [system sets](./system-sets.md).
+When you have multiple systems with common labels or ordering, it may be
+convenient to use [system sets](./system-sets.md).
 
 ## Circular Dependencies
 
