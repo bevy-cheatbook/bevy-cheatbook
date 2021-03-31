@@ -611,25 +611,20 @@ mod app5 {
     use bevy::prelude::*;
     use super::*;
 
-    fn maintain_all_uis() {}
-    fn spawn_main_menu() {}
-    fn menu_buttons() {}
-    fn load_map() {}
-    fn player_move() {}
-    fn player_take_damage() {}
-    fn roll_credits() {}
-    fn quit_app() {}
-    fn enemy_ai() {}
-    fn unload_level() {}
-
 // ANCHOR: check-state
-fn check_app_state(app_state: Res<State<AppState>>) {
+fn play_music(
+    app_state: Res<State<AppState>>,
+    // ...
+) {
     match app_state.current() {
         AppState::MainMenu => {
-            println!("In the main menu!");
+            // TODO: play menu music
         }
         AppState::InGame => {
-            println!("Playing the game!");
+            // TODO: play game music
+        }
+        AppState::Paused => {
+            // TODO: play pause screen music
         }
     }
 }
@@ -643,11 +638,33 @@ fn enter_game(mut app_state: ResMut<State<AppState>>) {
 }
 // ANCHOR_END: change-state
 
+fn pushpop(mut app_state: ResMut<State<AppState>>) {
+// ANCHOR: state-push-pop
+    // to go into the pause screen
+    app_state.push(AppState::Paused).unwrap();
+    // to go back into the game
+    app_state.pop().unwrap();
+// ANCHOR_END: state-push-pop
+}
+
+// ANCHOR: state-input-clear
+fn esc_to_menu(
+    mut keys: ResMut<Input<KeyCode>>,
+    mut app_state: ResMut<State<AppState>>,
+) {
+    if keys.just_pressed(KeyCode::Escape) {
+        app_state.set(AppState::MainMenu).unwrap();
+        keys.reset(KeyCode::Escape);
+    }
+}
+// ANCHOR_END: state-input-clear
+
 // ANCHOR: app-states
 #[derive(Debug, Clone, Eq, PartialEq, Hash)]
 enum AppState {
     MainMenu,
     InGame,
+    Paused,
 }
 
 fn main() {
@@ -657,16 +674,85 @@ fn main() {
         // add the app state type
         .add_state(AppState::MainMenu)
 
-        // state-independent systems go in `UPDATE`, as normal
-        .add_system(maintain_all_uis.system())
+        // add systems to run regardless of state, as usual
+        .add_system(play_music.system())
 
-        // add systems to specific states and transitions
+        // systems to run only in the main menu
+        .add_system_set(
+            SystemSet::on_update(AppState::MainMenu)
+                .with_system(handle_ui_buttons.system())
+        )
 
-        // FIXME STATE STACK
+        // setup when entering the state
+        .add_system_set(
+            SystemSet::on_enter(AppState::MainMenu)
+                .with_system(setup_menu.system())
+        )
 
+        // cleanup when exiting the state
+        .add_system_set(
+            SystemSet::on_exit(AppState::MainMenu)
+                .with_system(close_menu.system())
+        )
         .run();
 }
 // ANCHOR_END: app-states
+
+    fn animate_trees() {}
+    fn animate_water() {}
+    fn player_movement() {}
+    fn reset_player() {}
+    fn hide_player() {}
+    fn setup_player() {}
+    fn despawn_player() {}
+    fn setup_map() {}
+    fn despawn_map() {}
+    fn handle_ui_buttons() {}
+    fn setup_menu() {}
+    fn close_menu() {}
+
+fn main2() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+        // add the app state type
+        .add_state(AppState::InGame)
+// ANCHOR: state-stack
+        // animate things even while paused
+        .add_system_set(
+            SystemSet::on_inactive_update(AppState::InGame)
+                .with_system(animate_trees.system())
+                .with_system(animate_water.system())
+        )
+        // player movement only when actively playing
+        .add_system_set(
+            SystemSet::on_update(AppState::InGame)
+                .with_system(player_movement.system())
+        )
+        // reset player when unpausing
+        .add_system_set(
+            SystemSet::on_resume(AppState::InGame)
+                .with_system(reset_player.system())
+        )
+        // hide the player when pausing
+        .add_system_set(
+            SystemSet::on_pause(AppState::InGame)
+                .with_system(hide_player.system())
+        )
+        // setup when first entering the game
+        .add_system_set(
+            SystemSet::on_enter(AppState::InGame)
+                .with_system(setup_player.system())
+                .with_system(setup_map.system())
+        )
+        // cleanup when finally exiting the game
+        .add_system_set(
+            SystemSet::on_exit(AppState::InGame)
+                .with_system(despawn_player.system())
+                .with_system(despawn_map.system())
+        )
+// ANCHOR_END: state-stack
+        .run();
+}
 }
 
 #[allow(dead_code)]
