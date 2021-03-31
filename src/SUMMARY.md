@@ -42,6 +42,7 @@
 - [Common Pitfalls](./pitfalls/_index.md)
   - [Error adding function as system](./pitfalls/into-system.md)
   - [Frame Delays / 1-frame-lag](./pitfalls/frame-delay.md)
+  - [UI is not displaying](./pitfalls/ui-camera.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [File Format Support](./pitfalls/file-formats.md)
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
