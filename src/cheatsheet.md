@@ -6,9 +6,8 @@ Concise listing of the syntax + important usage notes, no explanations.
 
 Intended for people who are familiar with the core concepts.
 
-If you are new to bevy or need a refresher, see
-[Bevy Programming](./programming/_index.md)
-for brief explanations of each feature.
+If you are new to bevy or need a refresher, see the
+[Bevy Programming](./programming/_index.md) chapter.
 
 ---
 
@@ -18,25 +17,30 @@ Click on "[explain]" links to go to the relevant [Bevy Programming](./programmin
 
 ## Table of Contents
 
- - [App Builder](#app-builder)
- - [Assets](#assets)
- - [Change Detection](#change-detection)
- - [Commands](#commands)
- - [Entities and Components](#entities-and-components)
- - [Events](#events)
- - [Labels](#labels)
- - [Local Resources](#local-resources)
- - [Parent/Child Hierarchy](#parentchild-hierarchy)
- - [Plugins](#plugins)
- - [Queries](#queries)
- - [Query Sets](#query-sets)
- - [Resources](#resources)
- - [Stages](#app-builder)
- - [States](#states)
- - [Systems](#systems)
- - [System Chaining](#system-chaining)
- - [System Order](#system-order)
- - [Transforms](#transforms)
+Alphabetical index of Bevy features covered on this page.
+
+|Topic | Definition |
+|------|------------|
+|[App Builder](#app-builder) | Bevy entry point; setup all the things to run. |
+|[Assets](#assets) | Load external files into the game. |
+|[Change Detection](#change-detection) | Write logic that responds to data being changed. |
+|[Commands](#commands) | Spawn/despawn entities, manage components and resources. |
+|[Components](#entities-and-components) | Basic data primitive in Bevy. |
+|[Entities](#entities-and-components) | ID for a set of component values. |
+|[Events](#events) | Communicate between systems. Send/receive data. |
+|[Labels](#labels) | Names for systems, stages, and other things. |
+|[Local Resources](#local-resources) | Per-system data. |
+|[Parent/Child Hierarchy](#parentchild-hierarchy) | Entities in a hierarchy. |
+|[Plugins](#plugins) | Use the App Builder in a modular way. |
+|[Queries](#queries) | Access component data; find matching entities. |
+|[Query Sets](#query-sets) | Resolve query conflicts. |
+|[Resources](#resources) | Global data for the whole app. |
+|[Stages](#app-builder) | Hard synchronization points for runtime scheduling. |
+|[States](#states) | Multiple "modes" for your application. |
+|[Systems](#systems) | The functions that contain your game logic. |
+|[System Chaining](#system-chaining) | Combine multiple Rust functions into one big system. |
+|[System Order](#system-order) | Control the runtime order of execution of systems. |
+|[Transforms](#transforms) | Position and orientation of an object in the game world. |
 
 ---
 
@@ -55,6 +59,8 @@ The standard system parameter types provided by Bevy:
 [(back to top)](#table-of-contents) [[explain](./programming/ec.md)]
 
 Any Rust type (`struct` or `enum`) can be used as a component.
+
+An entity is a simple integer ID for a set of components.
 
 Type must be unique; only one instance per type per entity can exist. Use newtypes.
 
@@ -248,6 +254,8 @@ Change or check States:
 [(back to top)](#table-of-contents) [[explain](./features/transforms.md)]
 
 Coordinate system: +X is right, +Y is up, +Z is out of the screen. Right-handed. 3D matches 2D.
+
+Transforms consist of: translation (coordinates), rotation, scale.
 
 The `Transform` component is the relative/local transform. You may modify this directly.
 
