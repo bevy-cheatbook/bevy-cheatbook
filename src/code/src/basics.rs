@@ -837,7 +837,19 @@ fn main() {
 mod app7 {
 use bevy::prelude::*;
 
+    fn keyboard_input() {}
+    fn gamepad_input() {}
+    fn player_movement() {}
+    fn debug_movement() {}
+
 // ANCHOR: labels
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(SystemLabel)]
+enum MySystems {
+    InputSet,
+    Movement,
+}
+
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 #[derive(StageLabel)]
 enum MyStages {
@@ -845,15 +857,36 @@ enum MyStages {
     Cleanup,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(StageLabel)]
+struct DebugStage;
+
 fn main() {
     App::build()
         .add_plugins(DefaultPlugins)
+
+        // Add our game systems:
+        .add_system_set(
+            SystemSet::new()
+                .label(MySystems::InputSet)
+                .with_system(keyboard_input.system())
+                .with_system(gamepad_input.system())
+        )
+        .add_system(player_movement.system().label(MySystems::Movement))
+
+        // temporary debug system, let's just use a string label
+        .add_system(debug_movement.system().label("temp-debug"))
+
         // Add our custom stages:
         // note that Bevy's `CoreStage` is an enum just like ours!
         .add_stage_before(CoreStage::Update, MyStages::Prepare, SystemStage::parallel())
         .add_stage_after(CoreStage::Update, MyStages::Cleanup, SystemStage::parallel())
+
+        .add_stage_after(CoreStage::Update, DebugStage, SystemStage::parallel())
+
         // we can just use a string for this one:
         .add_stage_before(CoreStage::PostUpdate, "temp-debug-hack", SystemStage::parallel())
+
         .run();
 }
 // ANCHOR_END: labels
