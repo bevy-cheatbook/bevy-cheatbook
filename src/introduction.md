@@ -12,7 +12,7 @@ most practically-relevant aspects.
 
 The book has several sections:
 
- - [Bevy Cheatsheet](./cheatsheet/_index.md): condensed one-page summary of common bevy syntax and features
+ - [Bevy Cheatsheet](./cheatsheet/_index.md): condensed one-page listing of common Bevy syntax and features
  - [Bevy Programming](./programming/_index.md): overview of programming in Bevy
  - [Bevy Features](./features/_index.md): usage notes about some common Bevy features
  - [Common Pitfalls](./pitfalls/_index.md): common issues or surprises to watch out for

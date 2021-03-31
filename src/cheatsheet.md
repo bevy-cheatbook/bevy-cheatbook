@@ -1,17 +1,14 @@
 # Bevy Cheatsheet
 
-One-page overview of common bevy syntax and features.
+Condensed single-page listing of common Bevy features and syntax.
 
-Concise listing of the syntax + important usage notes, no explanations.
+Bookmark this page in your browser, for a quick reference when working with Bevy!
 
-Intended for people who are familiar with the core concepts.
+Intended for people who are familiar with the concepts.
 
-If you are new to bevy or need a refresher, see the
-[Bevy Programming](./programming/_index.md) chapter.
-
----
-
-Click on "[explain]" links to go to the relevant [Bevy Programming](./programming/_index.md) page!
+If you are new to bevy or need a refresher, click on the "[explain]" links near
+each feature, to go to the full page about the feature, in the
+[Bevy Programming](./programming/_index.md) chapter!
 
 ---
 
