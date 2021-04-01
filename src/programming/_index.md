@@ -14,5 +14,6 @@ for a condensed listing of just the syntax + important usage notes.
 
 This chapter is split into two sections:
  - [Basics](./_basics.md): Covers the absolute essentials you need to get started.
- - [Advanced](./_advanced.md): The next steps. Things you will likely need for non-trivial projects.
+ - [Next Steps](./_next-steps.md): The next steps. Things you will likely need for non-trivial projects.
+ - [Advanced](./_advanced.md): advanced topics, may be useful for specialized scenarios in complex projects.
 
