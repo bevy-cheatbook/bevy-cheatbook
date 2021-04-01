@@ -133,8 +133,12 @@ struct StartingLevel(usize);
 #[derive(Default)]
 struct MyState;
 // ANCHOR: local-resource
-fn my_system(mut local: Local<MyState>) {
+fn my_system1(mut local: Local<MyState>) {
     // you can do anything you want with the local here
+}
+
+fn my_system2(mut local: Local<MyState>) {
+    // the local in this system is a different instance
 }
 // ANCHOR_END: local-resource
 
@@ -1003,7 +1007,8 @@ pub fn _main_all() {
         .add_system(debug_new_hostiles.system())
         .add_system(check_zero_health.system())
         .add_system(reset_health.system())
-        .add_system(my_system.system())
+        .add_system(my_system1.system())
+        .add_system(my_system2.system())
         .add_system(complex_system.system())
         .add_system(spawn_player.system())
         .add_system(close_menu.system())
