@@ -35,8 +35,8 @@
 - [Bevy Features](./features/_index.md)
   - [Transforms and Coordinates](./features/transforms.md)
   - [Assets](./features/assets.md)
-  - [Cameras](./features/camera.md)
   - [Input Handling](./features/input-handling.md)
+  - [Cameras](./features/camera.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
 
 - [Common Pitfalls](./pitfalls/_index.md)
@@ -50,8 +50,6 @@
 
 - [Advanced Patterns](./patterns/_index.md)
   - [Generic Systems](./patterns/generic-systems.md)
-  - [Custom Commands](./patterns/custom-commands.md)
-  - [Custom System Parameters](./patterns/custom-systemparam.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
   - [Quit the App](./cookbook/quit.md)

@@ -1,6 +1,6 @@
 # Input Handling
 
-[Click here for the full example code.](../code/examples/input.rs)
+[Click here to download the example code.](../code/examples/input.rs)
 
 ---
 

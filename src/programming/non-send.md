@@ -1,3 +1,3 @@
 # Non-Send Resources
 
-(TODO)
+(This page hasn't been written yet...)
