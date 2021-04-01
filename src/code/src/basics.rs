@@ -769,7 +769,7 @@ fn main2() {
         )
         // player idle animation while paused
         .add_system_set(
-            SystemSet::on_inactive(AppState::InGame)
+            SystemSet::on_inactive_update(AppState::InGame)
                 .with_system(player_idle.system())
         )
         // animations both while paused and while active
