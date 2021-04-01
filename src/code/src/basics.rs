@@ -596,6 +596,7 @@ mod app3 {
 
     struct MyEvent;
     fn plugin_init() {}
+    fn my_system() {}
 
 // ANCHOR: plugins
 struct MyPlugin;
@@ -834,6 +835,7 @@ fn handle_io_errors(In(result): In<std::io::Result<()>>) {
     }
 }
 // ANCHOR_END: system-io
+
 // ANCHOR: system-chain
 fn main() {
     App::build()
@@ -990,6 +992,139 @@ fn main() {
         .run();
 }
 // ANCHOR_END: systemset-labels
+}
+
+#[allow(dead_code)]
+mod app10 {
+use bevy::prelude::*;
+
+    fn server_session() {}
+    fn fetch_server_updates() {}
+    fn keyboard_input() {}
+    fn gamepad_input() {}
+    fn host_debug() {}
+    fn host_session() {}
+    fn host_player_movement() {}
+    fn host_enemy_ai() {}
+    fn smoke_particles() {}
+    fn water_animation() {}
+
+    struct MyNetworkSession;
+
+    impl MyNetworkSession {
+        fn is_connected(&self) -> bool {
+            true
+        }
+    }
+
+// ANCHOR: run-criteria
+use bevy::ecs::schedule::ShouldRun;
+
+#[derive(Debug, PartialEq, Eq)]
+enum MultiplayerKind {
+    Client,
+    Host,
+    Local,
+}
+
+fn run_if_connected(
+    mode: Res<MultiplayerKind>,
+    session: Res<MyNetworkSession>,
+) -> ShouldRun
+{
+    if *mode == MultiplayerKind::Client && session.is_connected() {
+        ShouldRun::Yes
+    } else {
+        ShouldRun::No
+    }
+}
+
+fn run_if_host(
+    mode: Res<MultiplayerKind>,
+) -> ShouldRun
+{
+    if *mode == MultiplayerKind::Host || *mode == MultiplayerKind::Local {
+        ShouldRun::Yes
+    } else {
+        ShouldRun::No
+    }
+}
+
+fn main() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+
+        // if we are currently connected to a server,
+        // activate our client systems
+        .add_system_set(
+            SystemSet::new()
+                .with_run_criteria(run_if_connected.system())
+                .before("input")
+                .with_system(server_session.system())
+                .with_system(fetch_server_updates.system())
+        )
+
+        // if we are hosting the game,
+        // activate our game hosting systems
+        .add_system_set(
+            SystemSet::new()
+                .with_run_criteria(run_if_host.system())
+                .before("input")
+                .with_system(host_session.system())
+                .with_system(host_player_movement.system())
+                .with_system(host_enemy_ai.system())
+        )
+
+        // other systems in our game
+        .add_system(smoke_particles.system())
+        .add_system(water_animation.system())
+        .add_system_set(
+            SystemSet::new()
+                .label("input")
+                .with_system(keyboard_input.system())
+                .with_system(gamepad_input.system())
+        )
+        .run();
+}
+// ANCHOR_END: run-criteria
+
+mod sub {
+    use super::*;
+
+// ANCHOR: run-criteria-label
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(RunCriteriaLabel)]
+enum MyRunCriteria {
+    Client,
+    Host,
+}
+
+fn main() {
+    App::build()
+        // ...
+        .add_system_set(
+            SystemSet::new()
+                .with_run_criteria(
+                    // assign it a label
+                    run_if_host.system()
+                        .label(MyRunCriteria::Host)
+                )
+                .before("input")
+                .with_system(host_session.system())
+                .with_system(host_player_movement.system())
+                .with_system(host_enemy_ai.system())
+        )
+
+        // extra system for debugging the host
+        // it can share our previously-registered run criteria
+        .add_system(host_debug.system()
+            .with_run_criteria(MyRunCriteria::Host)
+        )
+        .run();
+}
+
+// ANCHOR_END: run-criteria-label
+}
 }
 
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!

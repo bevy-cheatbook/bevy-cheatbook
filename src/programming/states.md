@@ -2,7 +2,11 @@
 
 States allow you to structure the runtime "flow" of your app.
 
-This is how you can implement things like a main menu screen or a loading screen.
+This is how you can implement things like:
+ - A menu screen or a loading screen
+ - Pausing / unpausing the game
+ - Different game modes
+ - ...
 
 In every state, you can have different systems running. You can also add
 one-shot setup and cleanup systems to run when entering or exiting a state.
@@ -14,10 +18,6 @@ your [app builder](./app-builder.md):
 {{#include ../code/src/basics.rs:app-states}}
 ```
 
-States are implemented using [run criteria](./run-criteria.md) under the hood.
-These special system set constructors are really just helpers to automatically
-add the state management run criteria.
-
 It is OK to have multiple system sets for the same state.
 
 This is useful when you want to place [labels](./labels.md) and use [explicit
@@ -25,6 +25,10 @@ system ordering](./system-order.md).
 
 This can also be useful with [Plugins](./plugins.md). Each plugin can add its
 own set of systems to the same state.
+
+States are implemented using [run criteria](./run-criteria.md) under the hood.
+These special system set constructors are really just helpers to automatically
+add the state management run criteria.
 
 ## Controlling States
 
