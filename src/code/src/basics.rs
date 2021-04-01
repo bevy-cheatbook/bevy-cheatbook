@@ -745,8 +745,9 @@ fn main() {
     fn animate_trees() {}
     fn animate_water() {}
     fn player_movement() {}
+    fn player_idle() {}
     fn reset_player() {}
-    fn hide_player() {}
+    fn hide_enemies() {}
     fn setup_player() {}
     fn despawn_player() {}
     fn setup_map() {}
@@ -761,26 +762,31 @@ fn main2() {
         // add the app state type
         .add_state(AppState::InGame)
 // ANCHOR: state-stack
-        // animate things even while paused
-        .add_system_set(
-            SystemSet::on_inactive_update(AppState::InGame)
-                .with_system(animate_trees.system())
-                .with_system(animate_water.system())
-        )
         // player movement only when actively playing
         .add_system_set(
             SystemSet::on_update(AppState::InGame)
                 .with_system(player_movement.system())
         )
-        // reset player when unpausing
+        // player idle animation while paused
+        .add_system_set(
+            SystemSet::on_inactive(AppState::InGame)
+                .with_system(player_idle.system())
+        )
+        // animations both while paused and while active
+        .add_system_set(
+            SystemSet::on_in_stack_update(AppState::InGame)
+                .with_system(animate_trees.system())
+                .with_system(animate_water.system())
+        )
+        // things to do when becoming inactive
+        .add_system_set(
+            SystemSet::on_pause(AppState::InGame)
+                .with_system(hide_enemies.system())
+        )
+        // things to do when becoming active again
         .add_system_set(
             SystemSet::on_resume(AppState::InGame)
                 .with_system(reset_player.system())
-        )
-        // hide the player when pausing
-        .add_system_set(
-            SystemSet::on_pause(AppState::InGame)
-                .with_system(hide_player.system())
         )
         // setup when first entering the game
         .add_system_set(
