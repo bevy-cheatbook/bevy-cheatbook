@@ -133,7 +133,9 @@ struct StartingLevel(usize);
 #[derive(Default)]
 struct MyState;
 // ANCHOR: local-resource
-fn my_system(mut local: Local<MyState>) {}
+fn my_system(mut local: Local<MyState>) {
+    // you can do anything you want with the local here
+}
 // ANCHOR_END: local-resource
 
 // ANCHOR: sys-param-tuple
