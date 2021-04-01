@@ -1109,7 +1109,6 @@ fn main() {
                     run_if_host.system()
                         .label(MyRunCriteria::Host)
                 )
-                .before("input")
                 .with_system(host_session.system())
                 .with_system(host_player_movement.system())
                 .with_system(host_enemy_ai.system())
