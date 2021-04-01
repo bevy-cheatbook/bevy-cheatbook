@@ -408,14 +408,34 @@ struct SpriteSheets {
 
 fn use_sprites(
     handles: Res<SpriteSheets>,
-    assets: Res<Assets<TextureAtlas>>,
+    atlases: Res<Assets<TextureAtlas>>,
+    textures: Res<Assets<Texture>>,
 ) {
     // Could be `None` if the asset isn't loaded yet
-    if let Some(asset) = assets.get(&handles.map_tiles) {
+    if let Some(atlas) = atlases.get(&handles.map_tiles) {
         // do something with the texture atlas
+    }
+
+    // Can use a path instead of a handle
+    if let Some(map_tex) = textures.get("map.png") {
+        // if "map.png" was loaded, we can use it!
     }
 }
 // ANCHOR_END: asset-access
+
+// ANCHOR: asset-add
+fn add_material(
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    let new_mat = StandardMaterial {
+        base_color: Color::rgba(0.25, 0.50, 0.75, 1.0),
+        unlit: true,
+        ..Default::default()
+    };
+
+    materials.add(new_mat);
+}
+// ANCHOR_END: asset-add
 
 // ANCHOR: asset-event
 struct MapTexture {
@@ -453,11 +473,26 @@ fn load_ui_font(
 ) {
     let handle: Handle<Font> = server.load("font.ttf");
 
-    // store the handle in a resource, so we can
-    // easily access it later to build UIs
+    // we can store the handle in a resource:
+    //  - to prevent the asset from being unloaded
+    //  - if we want to use it to access the asset later
     commands.insert_resource(UiFont(handle));
 }
 // ANCHOR_END: asset-server
+
+// ANCHOR: asset-path-labels
+fn load_gltf_things(
+    mut commands: Commands,
+    server: Res<AssetServer>
+) {
+    // get a specific mesh
+    let my_mesh: Handle<Mesh> = server.load("my_scene.gltf#Mesh0/Primitive0");
+
+    // spawn a whole scene
+    let my_scene: Handle<Scene> = server.load("my_scene.gltf#Scene0");
+    commands.spawn_scene(my_scene);
+}
+// ANCHOR_END: asset-path-labels
 
 // ANCHOR: asset-folder
 struct ExtraAssets(Vec<HandleUntyped>);
@@ -1152,5 +1187,7 @@ pub fn _main_all() {
         .add_system(update_player_xp.system())
         .add_system(camera_with_parent.system())
         .add_system(process_squad_damage.system())
+        .add_system(add_material.system())
+        .add_system(load_gltf_things.system())
         .run();
 }
