@@ -1,16 +1,23 @@
 # Change Detection
 
-Bevy allows you to easily detect when components are changed.
+Bevy allows you to easily detect when data is changed. You can use this to
+perform actions in response to changes.
 
-Use query filters:
- - `Added<T>`: detect adding new components to existing entities
- - `Changed<T>`: detect when a component is modified
+# Components
+
+Use [query filters](./queries.md#query-filters):
+ - `Added<T>`: detect new component instances
+   - if the component was added to an existing entity
+   - if a new entity with the component was spawned
+ - `Changed<T>`: detect component instances that have been changed
+   - triggers when the component is accessed mutably
+   - also triggers in if the component is newly-added (as per `Added`)
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-detection}}
 ```
 
-Change detection is triggered by `DerefMut`. Simply accessing components via a
+`Changed` detection is triggered by `DerefMut`. Simply accessing components via a
 mutable query, without actually performing a `&mut` access, will *not* trigger it.
 
 This makes change detection quite accurate. You can rely on it to optimize
@@ -23,6 +30,11 @@ detection. If you want to avoid that, simply check it yourself:
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-if-wrap}}
 ```
+
+Change detection is reliable -- it will detect any changes that have occured
+since the last time your detecting system ran. If your system only runs
+sometimes (such as with [states](./states.md) or [run criteria](./run-criteria.md)),
+you *do not* have to worry about missing changes.
 
 ## Possible Pitfalls
 
