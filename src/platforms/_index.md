@@ -14,7 +14,7 @@ Currently, support for these non-desktop platforms is limited:
    Bevy, albeit with limited performance (compared to a native desktop version),
    due to lack of multithreading, and some other possible caveats.
  - Mobile support is minimal and broken. It will build, but may or may not run.
-   Expect to immediately run into major issues.
+   Expect to immediately encounter major issues.
  - Game console support is still completely non-existent yet.
  
 If you are interested in these other platforms and you'd like to help improve
