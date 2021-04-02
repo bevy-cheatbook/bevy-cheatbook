@@ -71,4 +71,4 @@ ordering to specify the order you prefer.
 
 In really advanced scenarios, if you insist on all affected systems becoming
 settled during the same frame, you might be able to do it using [Looping Run
-Criteria](./run-criteria-loop.md).
+Criteria](./run-criteria-loop.md) or [states](./states.md).
