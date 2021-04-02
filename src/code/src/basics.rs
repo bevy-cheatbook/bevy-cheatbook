@@ -378,29 +378,6 @@ fn close_menu(
 }
 // ANCHOR_END: despawn-recursive
 
-// ANCHOR: events
-struct LevelUpEvent(Entity);
-
-fn player_level_up(
-    mut ev_levelup: EventWriter<LevelUpEvent>,
-    query: Query<(Entity, &PlayerXp)>,
-) {
-    for (entity, xp) in query.iter() {
-        if xp.0 > 1000 {
-            ev_levelup.send(LevelUpEvent(entity));
-        }
-    }
-}
-
-fn debug_levelups(
-    mut ev_levelup: EventReader<LevelUpEvent>,
-) {
-    for ev in ev_levelup.iter() {
-        eprintln!("Entity {:?} leveled up!", ev.0);
-    }
-}
-// ANCHOR_END: events
-
 // ANCHOR: asset-access
 struct SpriteSheets {
     map_tiles: Handle<TextureAtlas>,
@@ -571,6 +548,34 @@ fn query_misc(mut query: Query<(&Health, &mut Transform)>) {
 }
 
 #[allow(dead_code)]
+mod app0 {
+    use bevy::prelude::*;
+
+    fn init_menu() {}
+    fn debug_start() {}
+    fn move_player() {}
+    fn enemies_ai() {}
+
+// ANCHOR: systems-appbuilder
+fn main() {
+    App::build()
+        // ...
+
+        // run it only once at launch
+        .add_startup_system(init_menu.system())
+        .add_startup_system(debug_start.system())
+
+        // run it every frame update
+        .add_system(move_player.system())
+        .add_system(enemies_ai.system())
+
+        // ...
+        .run();
+}
+// ANCHOR_END: systems-appbuilder
+}
+
+#[allow(dead_code)]
 mod app1 {
     use bevy::prelude::*;
     use super::*;
@@ -578,10 +583,13 @@ mod app1 {
 // ANCHOR: appinit-resource
 fn main() {
     App::build()
+        // ...
+
         // if it implements `Default` or `FromWorld`
         .init_resource::<MyFancyResource>()
         // if not, or if you want to set a specific value
         .insert_resource(StartingLevel(3))
+
         // ...
         .run();
 }
@@ -1159,6 +1167,43 @@ fn main() {
 
 // ANCHOR_END: run-criteria-label
 }
+}
+
+#[allow(dead_code)]
+mod app11 {
+    use bevy::prelude::*;
+    use super::*;
+// ANCHOR: events
+struct LevelUpEvent(Entity);
+
+fn player_level_up(
+    mut ev_levelup: EventWriter<LevelUpEvent>,
+    query: Query<(Entity, &PlayerXp)>,
+) {
+    for (entity, xp) in query.iter() {
+        if xp.0 > 1000 {
+            ev_levelup.send(LevelUpEvent(entity));
+        }
+    }
+}
+
+fn debug_levelups(
+    mut ev_levelup: EventReader<LevelUpEvent>,
+) {
+    for ev in ev_levelup.iter() {
+        eprintln!("Entity {:?} leveled up!", ev.0);
+    }
+}
+// ANCHOR_END: events
+// ANCHOR: events-appbuilder
+fn main() {
+    App::build()
+        // ...
+        .add_event::<LevelUpEvent>()
+        // ...
+        .run();
+}
+// ANCHOR_END: events-appbuilder
 }
 
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!

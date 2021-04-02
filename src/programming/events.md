@@ -11,6 +11,12 @@ same events from multiple systems.
 {{#include ../code/src/basics.rs:events}}
 ```
 
+You need to add your custom event types via the [app builder](./app-builder.md):
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:events-appbuilder}}
+```
+
 Events should be your go-to data flow tool. As events can be sent from any
 system and received by multiple systems, they are *extremely* versatile.
 
