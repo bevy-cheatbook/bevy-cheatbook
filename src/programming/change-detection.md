@@ -11,7 +11,7 @@ Use [query filters](./queries.md#query-filters):
    - if a new entity with the component was spawned
  - `Changed<T>`: detect component instances that have been changed
    - triggers when the component is accessed mutably
-   - also triggers in if the component is newly-added (as per `Added`)
+   - also triggers if the component is newly-added (as per `Added`)
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-detection}}
