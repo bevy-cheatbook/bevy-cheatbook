@@ -52,6 +52,13 @@ As described previously, the actual published content in the book will be my own
 derivative work based on your contributions. I will license it consistently with
 the rest of the book; see: [License](./introduction.md#license).
 
+## Bevy version
+
+Content written for the current Bevy release, is accepted for the `main` branch of the book.
+
+Content written for new developments in Bevy's main branch, is accepted for the
+`next` branch of the book, in preparation for the next upcoming Bevy release.
+
 ## Style Guidelines
 
 Aim for simplicity and minimalism. Do not include things irrelevant to getting the point across.

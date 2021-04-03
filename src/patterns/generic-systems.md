@@ -1,6 +1,6 @@
 # Generic Systems
 
-[Click here to download the code from this page.](../code_bevy_release/src/generic-systems.rs)
+[Click here to download the code from this page.](../code/src/generic-systems.rs)
 
 ---
 
@@ -13,7 +13,7 @@ This is especially useful when combined with bevy states. You can do the same th
 One use-case is for cleanup.
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/generic-systems.rs:cleanup}}
+{{#include ../code/examples/generic-systems.rs:cleanup}}
 ```
 
 Menu entities can be tagged with `cleanup::MenuExit`, entities from the game map can be tagged with `cleanup::LevelUnload`.
@@ -21,6 +21,6 @@ Menu entities can be tagged with `cleanup::MenuExit`, entities from the game map
 We can add the generic cleanup system to our state transitions, to take care of the respective entities:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/generic-systems.rs:main}}
+{{#include ../code/examples/generic-systems.rs:main}}
 ```
 

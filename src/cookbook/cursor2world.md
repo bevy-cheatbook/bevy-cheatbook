@@ -1,6 +1,6 @@
 # Convert cursor to world coordinates
 
-[Click here for the full example code.](../code_bevy_release/examples/cursor2world.rs)
+[Click here for the full example code.](../code/examples/cursor2world.rs)
 
 ---
 
@@ -15,5 +15,5 @@ There is a good (unofficial) plugin: [`bevy_mod_picking`](https://github.com/aev
 For a game using the default bevy 2d orthographic camera:
 
 ```rust,no_run,noplayground
-{{#include ../code_bevy_release/examples/cursor2world.rs:example}}
+{{#include ../code/examples/cursor2world.rs:example}}
 ```

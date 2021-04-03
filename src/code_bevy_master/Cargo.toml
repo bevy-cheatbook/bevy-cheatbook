@@ -1,7 +1,0 @@
-[package]
-name = "code_bevy_master"
-version = "0.1.0"
-edition = "2018"
-
-[dependencies]
-bevy = { git = "https://github.com/bevyengine/bevy.git" }
