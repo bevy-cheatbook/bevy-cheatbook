@@ -602,6 +602,10 @@ mod app2 {
     use super::*;
 
     fn setup() {}
+    fn debug_levelups() {}
+    fn player_level_up() {}
+
+    struct LevelUpEvent;
 
 // ANCHOR: app-builder
 fn main() {
