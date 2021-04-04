@@ -2,7 +2,7 @@
 
 Resources allow you to store a single global instance of some data type, independently of entities.
 
-Use them for data that is truly global for your app, such configuration / settings.
+Use them for data that is truly global for your app, such as configuration / settings.
 
 Similar to components, any Rust type (`struct` or `enum`) can be used as a resource.
 
