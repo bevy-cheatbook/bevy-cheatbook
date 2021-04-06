@@ -83,3 +83,9 @@ well as suggestions for new content you'd like to be added to the book.
 Contributions are accepted, with some limitations.
 
 See the [Contributing](./contributing.md) section for all the details.
+
+## Support Bevy
+
+If you like the Bevy Game Engine, you should consider donating to the official
+project, using [GitHub Sponsors](https://github.com/sponsors/cart). Help it be
+sustainable!
