@@ -44,7 +44,7 @@ things into your game, such as 2D sprites, 3D models, or UI, their respective
 components will need handles for the assets they use.
 
 You could store your handles somewhere that is convenient for you (such as in
-[resources](../basics/res.md)).
+[resources](../programming/res.md)).
 
 If you don't have your handle stored anywhere, you can always generate one from
 a path by calling `asset_server.load`. You could simply do that whenever you

@@ -37,15 +37,15 @@ where the Y axis points down.
 
 ## Bevy's Transforms
 
-In Bevy, transforms are represented by *two* [components](../basics/ec.md):
-`Transform` and `GlobalTransform`. Any [Entity](../basics/ecs-intro.md) that
+In Bevy, transforms are represented by *two* [components](../programming/ec.md):
+`Transform` and `GlobalTransform`. Any [Entity](../programming/ecs-intro.md) that
 represents an object in the game world needs to have both.
 
 `Transform` is what you typically work with. It is a `struct` containing the
 translation, rotation, and scale. To read or manipulate these values, access
-them from your [systems](../basics/systems.md) using a [query](../basics/queries.md).
+them from your [systems](../programming/systems.md) using a [query](../programming/queries.md).
 
-If the entity has a [parent](../basics/parent-child.md), the `Transform`
+If the entity has a [parent](../programming/parent-child.md), the `Transform`
 component is relative to the parent. This means that the child object will
 move/rotate/scale along with the parent.
 
