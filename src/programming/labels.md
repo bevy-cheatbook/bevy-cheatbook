@@ -2,7 +2,7 @@
 
 You need labels to name various things in your app, such as
 [systems](./system-order.md), [run criteria](./run-criteria.md),
-[stages](./stages.md), and [ambiguity sets](TODO).
+[stages](./stages.md), and ambiguity sets<!-- TODO: add a link -->.
 
 Bevy uses some clever Rust type system magic, to allow you to use strings
 as well as your own custom types for labels, and even mix them!

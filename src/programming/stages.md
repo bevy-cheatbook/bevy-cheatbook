@@ -46,4 +46,4 @@ If you have systems that need to rely on the actions that other systems have
 performed by using `Commands`, and need to do so during the same frame, placing
 those systems into separate stages is the only way to accomplish that.
 
-[More information on avoiding frame delays / 1-frame-lag, when using `Commands`.](../pitfalls/frame-lag.md#commands)
+[More information on avoiding frame delays / 1-frame-lag, when using `Commands`.](../pitfalls/frame-delay.md#commands)

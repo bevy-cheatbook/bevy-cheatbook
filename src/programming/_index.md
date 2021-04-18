@@ -9,7 +9,7 @@ considerations for using each feature and to recommend known good practices.
 Intended for people learning how to use Bevy.
 
 If you are already familiar with the concepts, check out
-[Bevy Cheatsheet](../cheatsheet/_index.md)
+[Bevy Cheatsheet](../cheatsheet.md)
 for a condensed listing of just the syntax + important usage notes.
 
 This chapter is split into three sections:
