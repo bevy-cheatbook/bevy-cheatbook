@@ -28,9 +28,7 @@ Plugin groups register multiple plugins at once.
 
 It may be desirable to disable some plugins while keeping the rest. For example, to setup your own `tracing` subscriber you must disable `LogPlugin`:
 ```rust,no_run,noplayground
-.add_plugins_with(DefaultPlugins, |plugins| {
-    plugins.disable::<LogPlugin>()
-})
+{{#include ../code/src/basics.rs:plugin-groups-disable}}
 ```
 
 
