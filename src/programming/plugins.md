@@ -18,6 +18,20 @@ You can decide how plugins fit into the architecture of your game. Some suggesti
  - Create plugins for different [states](./states.md).
  - Create plugins for various sub-systems, like physics or input handling.
 
+## Plugin groups
+
+Plugin groups register multiple plugins at once. 
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:plugin-groups}}
+```
+
+It may be desirable to disable some plugins while keeping the rest. For example, to setup your own `tracing` subscriber you must disable `LogPlugin`:
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:plugin-groups-disable}}
+```
+
+
 ## Publishing Crates
 
 Plugins give you a nice way to publish Bevy-based libraries for other people to

@@ -1210,6 +1210,58 @@ fn main() {
 // ANCHOR_END: events-appbuilder
 }
 
+#[allow(dead_code)]
+mod app12 {
+    use super::*;
+    use bevy::{prelude::*, app::PluginGroupBuilder, log::LogPlugin};
+
+    fn foo_system() {}
+    fn bar_system() {}
+
+    struct FooPlugin;
+
+    impl Plugin for FooPlugin {
+        fn build(&self, app: &mut AppBuilder) {
+            app.add_system(foo_system.system());
+        }
+    }
+
+    struct BarPlugin;
+
+    impl Plugin for BarPlugin {
+        fn build(&self, app: &mut AppBuilder) {
+            app.add_system(bar_system.system());
+        }
+    }
+
+// ANCHOR: plugin-groups
+struct MyPluginGroup;
+
+impl PluginGroup for MyPluginGroup {
+    fn build(&mut self, group: &mut PluginGroupBuilder) {
+        group.add(FooPlugin)
+            .add(BarPlugin);
+    }
+}
+
+fn main() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+        .run();
+}
+// ANCHOR_END: plugin-groups
+
+    fn disable_plugins() {
+// ANCHOR: plugin-groups-disable
+App::build()
+    .add_plugins_with(DefaultPlugins, |plugins| {
+        plugins.disable::<LogPlugin>()
+    })
+    .run();
+// ANCHOR_END: plugin-groups-disable
+    }
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::build()
