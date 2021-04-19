@@ -1,6 +1,6 @@
 # Generic Systems
 
-[Click here to download the code from this page.](../code/src/generic-systems.rs)
+[Click here to download the code from this page.](../code/examples/generic-systems.rs)
 
 ---
 

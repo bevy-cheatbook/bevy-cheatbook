@@ -45,7 +45,7 @@ Alphabetical index of Bevy features covered on this page.
 
 [(back to top)](#table-of-contents) [[explain](./programming/systems.md)]
 
-Regular Rust functions, but can only accept parameters that implement [trait `SystemParam`](https://docs.rs/bevy/0.5.0/bevy/ecs/trait.SystemParam.html).
+Regular Rust functions, but can only accept parameters that implement [trait `SystemParam`](https://docs.rs/bevy/0.5.0/bevy/ecs/system/trait.SystemParam.html).
 
 The standard system parameter types provided by Bevy:
 
