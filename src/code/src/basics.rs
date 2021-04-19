@@ -1213,25 +1213,18 @@ fn main() {
 #[allow(dead_code)]
 mod app12 {
     use super::*;
-    use bevy::{prelude::*, app::PluginGroupBuilder, log::LogPlugin};
-
-    fn foo_system() {}
-    fn bar_system() {}
+    use bevy::{app::PluginGroupBuilder, log::LogPlugin};
 
     struct FooPlugin;
 
     impl Plugin for FooPlugin {
-        fn build(&self, app: &mut AppBuilder) {
-            app.add_system(foo_system.system());
-        }
+        fn build(&self, app: &mut AppBuilder) {}
     }
 
     struct BarPlugin;
 
     impl Plugin for BarPlugin {
-        fn build(&self, app: &mut AppBuilder) {
-            app.add_system(bar_system.system());
-        }
+        fn build(&self, app: &mut AppBuilder) {}
     }
 
 // ANCHOR: plugin-groups
@@ -1239,7 +1232,8 @@ struct MyPluginGroup;
 
 impl PluginGroup for MyPluginGroup {
     fn build(&mut self, group: &mut PluginGroupBuilder) {
-        group.add(FooPlugin)
+        group
+            .add(FooPlugin)
             .add(BarPlugin);
     }
 }
@@ -1247,6 +1241,7 @@ impl PluginGroup for MyPluginGroup {
 fn main() {
     App::build()
         .add_plugins(DefaultPlugins)
+        .add_plugins(MyPluginGroup)
         .run();
 }
 // ANCHOR_END: plugin-groups
