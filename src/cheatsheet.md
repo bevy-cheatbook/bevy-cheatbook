@@ -27,6 +27,7 @@ Alphabetical index of Bevy features covered on this page.
 |[Events](#events) | Communicate between systems. Send/receive data. |
 |[Labels](#labels) | Names for systems, stages, and other things. |
 |[Local Resources](#local-resources) | Per-system data. |
+|[Logging](#logging) | Display logging output. |
 |[Parent/Child Hierarchy](#parentchild-hierarchy) | Entities in a hierarchy. |
 |[Plugins](#plugins) | Use the App Builder in a modular way. |
 |[Queries](#queries) | Access component data; find matching entities. |
@@ -208,6 +209,14 @@ For example, a custom enum type:
 
 ```rust,no_run,noplayground
 {{#include ./code/src/cheatsheet.rs:plugin}}
+```
+
+## Logging
+
+[(back to top)](#table-of-contents) [[explain](./programming/display-logging.md)]
+
+```rust,no_run,noplayground
+{{#include ./code/src/cheatsheet.rs:logging}}
 ```
 
 ## App Builder

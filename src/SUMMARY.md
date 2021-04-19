@@ -55,6 +55,7 @@
   - [Quit the App](./cookbook/quit.md)
   - [Change the Background Color](./cookbook/clear-color.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
+  - [Display logging output](./cookbook/display-logging.md)
   - [Grab the Mouse](./cookbook/mouse-grab.md)
   - [Track Assets Loading](./cookbook/assets-ready.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
