@@ -40,10 +40,11 @@
   - [Fixed Timestep](./features/fixed-timestep.md)
 
 - [Common Pitfalls](./pitfalls/_index.md)
+  - [Slow Performance](./pitfalls/performance.md)
   - [Error adding function as system](./pitfalls/into-system.md)
   - [Frame Delays / 1-frame-lag](./pitfalls/frame-delay.md)
   - [UI is not displaying](./pitfalls/ui-camera.md)
-  - [Slow Performance](./pitfalls/performance.md)
+  - [Cannot see sprites in 2D](./pitfalls/2d-camera-z.md)
   - [File Format Support](./pitfalls/file-formats.md)
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
   - [UI layout is inverted](./pitfalls/ui-y-up.md)

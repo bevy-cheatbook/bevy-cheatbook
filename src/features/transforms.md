@@ -35,6 +35,10 @@ This may feel [unintuitive when working with UI](../pitfalls/ui-y-up.md) (as it
 is the opposite from web pages), or if you are used to working with 2D libraries
 where the Y axis points down.
 
+Also beware of a common pitfall when working in 2D: [the camera must be
+positioned at a far away Z coordinate (=999.9 by default), or you might not be
+able to see your sprites!](../pitfalls/2d-camera-z.md)
+
 ## Bevy's Transforms
 
 In Bevy, transforms are represented by *two* [components](../programming/ec.md):
@@ -53,3 +57,11 @@ move/rotate/scale along with the parent.
 entity does not have a parent, then this will have the same value as the
 `Transform`. The value of `GlobalTransform` is calculated/managed internally by
 Bevy. You should treat it as read-only; do not mutate it.
+
+Beware: The two components are synchronized by a bevy-internal system (the
+"transform propagation system"), which runs in the PostUpdate
+[stage](../programming/stages.md). This is somewhat finnicky and can result in
+tricky pitfalls if you are trying to do advanced things that rely on both the
+relative/local and the absolute/global transforms of entities. When you mutate
+the `Transform`, the `GlobalTransform` is not updated immediately. They will
+be out-of-sync until the transform propagation system runs.
