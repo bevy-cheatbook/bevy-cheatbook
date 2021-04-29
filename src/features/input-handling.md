@@ -8,7 +8,7 @@ This is a complete example that you can run. It will print all input activity to
 
 Bevy supports the following inputs:
   - Keyboard
-  - Mouse (relative motion)
+  - Mouse (relative motion, buttons, scrolling)
   - Cursor (absolute pointer position)
   - Touchscreen (with multi-touch)
   - Most controllers/gamepads/joysticks (via the [gilrs](https://gitlab.com/gilrs-project/gilrs) library)
@@ -16,7 +16,8 @@ Bevy supports the following inputs:
 Sensors like accelerometers, gyroscopes, VR head tracking, are not supported yet.
 
 For most input types (where it makes sense), Bevy provides two ways of dealing
-with them: by checking the current state, or via [events](../programming/events.md).
+with them: by checking the current state via [resources](../programming/res.md),
+or via [events](../programming/events.md). Some inputs are only provided as events.
 
 Checking state is done using [resources](../programming/res.md) such as `Input`
 (for binary inputs like keys or buttons), `Axis` (for analog inputs), `Touches`
