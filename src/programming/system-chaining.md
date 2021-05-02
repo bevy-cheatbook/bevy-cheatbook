@@ -25,6 +25,8 @@ systems, you probably want to use [Events](./events.md) instead.
 
 ## Performance Warning
 
+[(read more about CPU performance pitfalls)](../pitfalls/perf-cpu.md)
+
 Beware that Bevy treats the whole chain as if it was a single big system, with
 all the combined resources and queries. This implies that parallelism could be
 limited, affecting performance.

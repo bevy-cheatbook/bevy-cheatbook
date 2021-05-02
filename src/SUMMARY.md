@@ -43,6 +43,7 @@
   - [Slow Performance](./pitfalls/performance.md)
   - [Error adding function as system](./pitfalls/into-system.md)
   - [Frame Delays / 1-frame-lag](./pitfalls/frame-delay.md)
+  - [Performance Pitfalls (CPU)](./pitfalls/perf-cpu.md)
   - [UI is not displaying](./pitfalls/ui-camera.md)
   - [Cannot see sprites in 2D](./pitfalls/2d-camera-z.md)
   - [File Format Support](./pitfalls/file-formats.md)
