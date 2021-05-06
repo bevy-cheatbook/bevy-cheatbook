@@ -2,13 +2,23 @@
 
 [Click here to read the book!](https://bevy-cheatbook.github.io)
 
-Concise reference to programming in the Bevy game engine.
+Concise practical reference to the Bevy game engine.
 
-Covers useful syntax, features, programming patterns, and solutions ("recipes")
-for common game development tasks.
+Covers useful syntax, features, programming patterns, and solutions for common
+game development tasks.
 
 Designed to be easy to read, straight to the point, using simple language to
 focus on the important information.
+
+## Support Me
+
+If you like this book, please consider supporting me via [GitHub
+Sponsors](https://github.com/sponsors/jamadazi). (Patreon WIP)
+
+I'd like to keep improving and maintaining this book, to provide a high-quality
+independent learning resource for the Bevy community.
+
+Your donation helps me work on such freely-available content. Thank you! ❤️
 
 ## License
 

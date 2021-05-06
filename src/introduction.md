@@ -14,7 +14,7 @@ The book has several sections:
 
  - [Bevy Cheatsheet](./cheatsheet.md): condensed one-page listing of common Bevy syntax and features
  - [Bevy Programming](./programming/_index.md): overview of programming in Bevy
- - [Bevy Features](./features/_index.md): usage notes about some common Bevy features
+ - [Bevy Features](./features/_index.md): how to use various Bevy features
  - [Common Pitfalls](./pitfalls/_index.md): common issues or surprises to watch out for
  - [Advanced Patterns](./patterns/_index.md): non-obvious tricks or techniques; may be controversial
  - [Bevy Cookbook](./cookbook/_index.md): examples covering common practical use cases
@@ -25,7 +25,8 @@ Not intended to be read in order. Jump to whatever is useful to you!
 
 (don't forget to
 <a class="github-button" href="https://github.com/bevy-cheatbook/bevy-cheatbook" data-icon="octicon-star" aria-label="Star bevy-cheatbook/bevy-cheatbook on GitHub">Star</a>
-the book's [GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook) 😉)
+the book's [GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook) 😉
+and consider [donating](#support-me) 🙂)
 
 ## Recommended Additional Resources
 
@@ -37,29 +38,31 @@ for community-made resources.
 Our community is very friendly and helpful. Feel welcome to join the [Bevy
 Discord](https://discord.gg/bevy) to chat, ask questions, or get involved in the project!
 
-## Stability Warning
-
-Bevy is still a very new and experimental game engine! It has only been public
-for less than a year!
-
-While improvements have been happening at an incredible pace, and development is
-active, Bevy simply hasn't yet had the time to mature.
-
-*There are no stability guarantees and breaking changes happen often!*
-
-Usually, it not hard to adapt to changes with new releases (or even track the
-main git development branch), but you have been warned!
-
 ## Maintenance
 
 This version of the book is for Bevy release 0.5.
 
-You may also access [the `next` branch](https://bevy-cheatbook.github.io/next/).
-It contains any WIP efforts to cover newer developments in Bevy's main git
-branch, in preparation for the next release.
-
 I intend to keep this book up-to-date and relevant with every new Bevy release.
-I also try to regularly make general improvements to it, when I can manage it.
+I also try to regularly make improvements to it, when I can manage it.
+
+## Support Me
+
+If you like this book, please consider supporting me via [GitHub
+Sponsors](https://github.com/sponsors/jamadazi). (Patreon WIP)
+
+<a class="github-button" href="https://github.com/sponsors/jamadazi" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @jamadazi on GitHub">Sponsor</a>
+
+I'd like to keep improving and maintaining this book, to provide a high-quality
+independent learning resource for the Bevy community.
+
+Your donation helps me work on such freely-available content. Thank you! ❤️
+
+## Support Bevy
+
+If you like the Bevy Game Engine, you should consider donating to the official
+project.
+
+<a class="github-button" href="https://github.com/sponsors/cart" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @cart on GitHub">Sponsor</a>
 
 ## License
 
@@ -75,7 +78,7 @@ under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
 
 ## Contributions
 
-Development of the book is hosted on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
+Development of this book is hosted on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
 
 Please file GitHub Issues for any wrong/confusing/misleading information, as
 well as suggestions for new content you'd like to be added to the book.
@@ -84,8 +87,15 @@ Contributions are accepted, with some limitations.
 
 See the [Contributing](./contributing.md) section for all the details.
 
-## Support Bevy
+## Stability Warning
 
-If you like the Bevy Game Engine, you should consider donating to the official
-project, using [GitHub Sponsors](https://github.com/sponsors/cart). Help it be
-sustainable!
+Bevy is still a very new and experimental game engine! It has only been public
+since August 2020!
+
+While improvements have been happening at an incredible pace, and development is
+active, Bevy simply hasn't yet had the time to mature.
+
+*There are no stability guarantees and breaking changes happen often!*
+
+Usually, it not hard to adapt to changes with new releases (or even track the
+main git development branch), but you have been warned!
