@@ -64,5 +64,12 @@
   - [List All Resource Types](./cookbook/print-resources.md)
 
 - [Bevy on Different Platforms](./platforms/_index.md)
+  - [Browser (WebAssembly)](./platforms/wasm.md)
+    - [Setup (wasm-pack)](./platforms/wasm/wasm-pack.md)
+    - [Setup (Cargo Make)](./platforms/wasm/cargo-make.md)
+    - [Panic Messages](./platforms/wasm/panic-console.md)
+    - [Random Number Generation](./platforms/wasm/rng.md)
+    - [Optimize for Size](./platforms/wasm/size-opt.md)
+    - [Hosting on GitHub Pages](./platforms/wasm/gh-pages.md)
 
 [Contributing](./contributing.md)
