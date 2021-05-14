@@ -4,9 +4,9 @@ Bevy trivially works out-of-the-box on the major desktop operating systems:
 Linux, macOS, Windows. No special configuration is required.
 
 Bevy aims to also make it easy to target other platforms, such as web browsers
-(via WebAssembly), mobile (Android and iOS), and game consoles. Your Bevy code
-can be the same for all platforms, with differences only in the build process
-and environment setup.
+(via WebAssembly), mobile (Android and iOS), and game consoles. Your Bevy
+code can be the same for all platforms, with differences only in the build
+process and environment setup.
 
 However, that vision is not fully met yet. Currently, support for non-desktop
 platforms is limited, and requires more complex configuration:

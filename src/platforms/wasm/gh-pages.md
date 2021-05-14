@@ -1,14 +1,15 @@
 # Hosting on GitHub Pages
 
-GitHub Pages is a hosting service that allows you to publish your website on
-GitHub's servers.
+GitHub Pages is a hosting service that allows you to publish your website
+on GitHub's servers.
 
-For more details, visit the official [GitHub Pages documentation](https://docs.github.com/en/pages).
+For more details, visit the official [GitHub Pages
+documentation](https://docs.github.com/en/pages).
 
-Deploying a website (like your WASM game) to GitHub pages is done by putting the
-files in a special branch in a GitHub repository. You could create a separate
-repository for this, but you could also do it from the same repository as your
-source code.
+Deploying a website (like your WASM game) to GitHub pages is done by
+putting the files in a special branch in a GitHub repository. You could
+create a separate repository for this, but you could also do it from the
+same repository as your source code.
 
 You will need the final website files for deployment. See the [`wasm-pack`
 setup](./wasm-pack.md) or the [Cargo Make setup](./cargo-make.md) page,
@@ -23,7 +24,8 @@ git reset --hard
 
 You should now be in an empty working directory.
 
-Put all files necessary for hosting, including your HTML, WASM, JavaScript, and `assets` files, and commit them into git:
+Put all files necessary for hosting, including your HTML, WASM, JavaScript,
+and `assets` files, and commit them into git:
 
 ```shell
 git add *

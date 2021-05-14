@@ -1,17 +1,18 @@
 # System Order of Execution
 
-Bevy's scheduling algorithm is designed to deliver maximum performance by
-running as many systems as possible in parallel across the available CPU
-threads.
+Bevy's scheduling algorithm is designed to deliver maximum performance
+by running as many systems as possible in parallel across the available
+CPU threads.
 
 This is possible when the systems do not conflict over the data they need
-to access. However, when a system needs to have mutable (exclusive) access to a
-piece of data, other systems that need to access the same data cannot be run at
-the same time. Bevy determines all of this information from the system's
-function signature (the types of the parameters it takes).
+to access. However, when a system needs to have mutable (exclusive) access
+to a piece of data, other systems that need to access the same data cannot
+be run at the same time. Bevy determines all of this information from the
+system's function signature (the types of the parameters it takes).
 
-In such situations, the order is *nondeterministic* by default. Bevy takes no
-regard for when each system will run, and the order could even change every frame!
+In such situations, the order is *nondeterministic* by default. Bevy takes
+no regard for when each system will run, and the order could even change
+every frame!
 
 ## Does it even matter?
 
@@ -33,17 +34,17 @@ logic bugs!
 It is up to you to decide if this is important.
 
 With many things in typical games, such as juicy visual effects, it probably
-doesn't matter if they get delayed by a frame. It might not be worthwhile to
-bother with it. If you don't care, leaving the order ambiguous may also result
-in better performance.
+doesn't matter if they get delayed by a frame. It might not be worthwhile
+to bother with it. If you don't care, leaving the order ambiguous may also
+result in better performance.
 
-On the other hand, for things like handling the player input controls, this
-would result in annoying lag, so you should probably fix it.
+On the other hand, for things like handling the player input controls,
+this would result in annoying lag, so you should probably fix it.
 
 ## Explicit System Ordering
 
-The solution is to use system [labels](./labels.md) to explicitly specify the
-order you want:
+The solution is to use system [labels](./labels.md) to explicitly specify
+the order you want:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:system-labels}}
@@ -70,5 +71,5 @@ the consequences. You can at least make it behave predictably, using explicit
 ordering to specify the order you prefer.
 
 In really advanced scenarios, if you insist on all affected systems becoming
-settled during the same frame, you might be able to do it using [Looping Run
-Criteria](./run-criteria-loop.md) or [states](./states.md).
+settled during the same frame, you might be able to do it using [Looping
+Run Criteria](./run-criteria-loop.md) or [states](./states.md).

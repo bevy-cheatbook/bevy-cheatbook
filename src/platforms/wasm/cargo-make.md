@@ -7,10 +7,10 @@ general information.
 
 ---
 
-Cargo Make is a `cargo` extension that allows defining custom tasks to automate
-whatever you need. Compared to the [`wasm-pack`](./wasm-pack.md) approach, it is
-more automated and convenient for development, but requires more complicated
-configuration.
+Cargo Make is a `cargo` extension that allows defining custom tasks to
+automate whatever you need. Compared to the [`wasm-pack`](./wasm-pack.md)
+approach, it is more automated and convenient for development, but requires
+more complicated configuration.
 
 This page will show you how to set up a project that supports these features:
   - Can be built for both Web and Desktop (Linux/Mac/Windows).
@@ -21,8 +21,8 @@ To do this easily, we will use [bevy_webgl2_app_template][template_link].
 Remember that Cargo Make is a flexible tool, and templates are opinionated. You
 could write your own configuration, but that is outside the scope of this guide.
 
-The only reason why this page is so short, is because we rely on the template to
-give us the complicated configuration that Cargo Make requires.
+The only reason why this page is so short, is because we rely on the template
+to give us the complicated configuration that Cargo Make requires.
 
 ## Prerequisites
 
@@ -46,8 +46,8 @@ Copy `Makefile.toml` and `index.html` from
 
 ## Cargo
 
-In your `Cargo.toml`, we must configure the features and dependencies, in the
-way that is expected by the template:
+In your `Cargo.toml`, we must configure the features and dependencies,
+in the way that is expected by the template:
 
 ```toml
 [features]
@@ -118,8 +118,8 @@ cargo make --profile release build-native
 
 ## Deploying
 
-To publish your game, you need to create a website. As the bare minimum, you can
-create a simple HTML file (call it `index.html`) containing:
+To publish your game, you need to create a website. As the bare minimum,
+you can create a simple HTML file (call it `index.html`) containing:
 
 ```html
 <html>
@@ -135,11 +135,11 @@ create a simple HTML file (call it `index.html`) containing:
 </html>
 ```
 
-The above HTML is just enough to display your game. You can enhance and extend
-it as much as you want, to make a fancy website.
+The above HTML is just enough to display your game. You can enhance and
+extend it as much as you want, to make a fancy website.
 
-Upload the following files in the same directory tree as they're generated in,
-to your web server:
+Upload the following files in the same directory tree as they're generated
+in, to your web server:
 
 ```
 |_ target

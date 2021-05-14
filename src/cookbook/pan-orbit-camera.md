@@ -13,7 +13,8 @@ Initial work by [**@skairunner**](https://github.com/jamadazi/bevy-cookbook/pull
 
 This is a camera controller similar to the ones in 3D editors like Blender.
 
-Use the right mouse button to rotate, middle button to pan, scroll wheel to move inwards/outwards.
+Use the right mouse button to rotate, middle button to pan, scroll wheel to
+move inwards/outwards.
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/pan-orbit-camera.rs:example}}

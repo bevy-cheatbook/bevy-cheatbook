@@ -4,8 +4,8 @@
 
 ---
 
-We can access the metadata stored inside Bevy ECS to learn about the types of
-things currently stored.
+We can access the metadata stored inside Bevy ECS to learn about the types
+of things currently stored.
 
 This example shows how to print a list of all types that have been added as
 [resources](../programming/res.md).

@@ -1,17 +1,22 @@
-# Slow Performance
+# Performance
 
-(unoptimized debug builds)
+This page is a summary of performance issues when working with Bevy.
 
-Rust without compiler optimizations is *very slow*. With Bevy in particular, the
-default debug build settings will lead to *awful* runtime performance. Assets
-are slow to load and FPS is low.
+(WIP)
+
+## Unoptimized debug builds
+
+Rust without compiler optimizations is *very slow*. With Bevy in
+particular, the default debug build settings will lead to *awful* runtime
+performance. Assets are slow to load and FPS is low.
 
 Common symptoms:
- - Loading high-res 3D models with a lot of large textures, from GLTF files, can
-   take over 20 seconds! This can trick you into thinking that your code is not
-   working, because you will not see anything on the screen until it is ready.
- - After spawning some 2D sprites or 3D models, framerate may drop to unplayable
-   levels.
+  - Loading high-res 3D models with a lot of large textures, from GLTF
+    files, can take over 20 seconds! This can trick you into thinking
+    that your code is not working, because you will not see anything on
+    the screen until it is ready.
+  - After spawning some 2D sprites or 3D models, framerate may drop to
+    unplayable levels.
 
 However, fully-optimized release builds can be slow to compile.
 

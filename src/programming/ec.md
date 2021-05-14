@@ -32,7 +32,8 @@ Components can be accessed from [systems](./systems.md), using [queries](./queri
 
 # Component Bundles
 
-Bundles are like "templates", to make it easy to create entities with a common set of components.
+Bundles are like "templates", to make it easy to create entities with a
+common set of components.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:bundle}}
@@ -46,12 +47,12 @@ Bevy also considers arbitrary tuples of components as bundles:
 
 ## Common Pitfalls
 
-Because both bundles and individual components are regular Rust structs, Bevy /
-the Rust compiler often has no way to distinguish them.
+Because both bundles and individual components are regular Rust structs,
+Bevy / the Rust compiler often has no way to distinguish them.
 
 If you accidentally use a bundle struct somewhere where Bevy expects a
-component, you will not get an error. Bevy will just treat it as a component of
-that struct type!
+component, you will not get an error. Bevy will just treat it as a component
+of that struct type!
 
 For example, this is why we needed the `#[bundle]` annotation to include a
 sub-bundle in the example above.

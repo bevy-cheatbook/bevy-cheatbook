@@ -11,7 +11,8 @@ You may use a value of any type as a label, as long as it has the following
 standard Rust traits: `Clone + Eq + Hash + Debug` (and the implied `+ Send +
 Sync + 'static`).
 
-You need to derive the appropriate trait: `StageLabel`, `SystemLabel`, `RunCriteriaLabel`, or `AmbiguitySetLabel`.
+You need to derive the appropriate trait: `StageLabel`, `SystemLabel`,
+`RunCriteriaLabel`, or `AmbiguitySetLabel`.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:labels}}
@@ -20,5 +21,5 @@ You need to derive the appropriate trait: `StageLabel`, `SystemLabel`, `RunCrite
 For quick prototyping, it is convenient to just use strings as labels.
 
 However, by defining your labels as custom types, the Rust compiler can check
-them for you, and your IDE can auto-complete them. It is the recommended way, as
-it prevents mistakes, and helps you stay organized in larger projects.
+them for you, and your IDE can auto-complete them. It is the recommended way,
+as it prevents mistakes, and helps you stay organized in larger projects.

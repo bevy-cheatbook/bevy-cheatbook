@@ -4,9 +4,9 @@ Systems are functions you write, which are run by Bevy.
 
 This is where you implement all your game logic.
 
-These functions can only take special parameter types, to specify what you need
-access to. [If you use unsupported parameter types in your function, you will
-get confusing compiler errors!](../pitfalls/into-system.md)
+These functions can only take special parameter types, to specify what you
+need access to. [If you use unsupported parameter types in your function,
+you will get confusing compiler errors!](../pitfalls/into-system.md)
 
 Some of the options are:
  - accessing [resources](./res.md) using `Res`/`ResMut`
@@ -39,7 +39,7 @@ To run your systems, you need to add them to Bevy via the [app builder](./app-bu
 The above is enough for simple projects.
 
 As your project grows more complex, you might want to enhance your app builder
-with some of the powerful tools that Bevy offers for managing when/how your
-systems run, such as: [explicit ordering](./system-order.md) with
+with some of the powerful tools that Bevy offers for managing when/how
+your systems run, such as: [explicit ordering](./system-order.md) with
 [labels](./labels.md), [system sets](./system-sets.md), [states](./states.md),
 [run criteria](./run-criteria.md), and [stages](./stages.md).

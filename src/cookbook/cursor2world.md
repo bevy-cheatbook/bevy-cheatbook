@@ -4,11 +4,13 @@
 
 ---
 
-Bevy does not yet provide built-in functions to help with finding out what the cursor is pointing at.
+Bevy does not yet provide built-in functions to help with finding out what
+the cursor is pointing at.
 
 ## 3D games
 
-There is a good (unofficial) plugin: [`bevy_mod_picking`](https://github.com/aevyrie/bevy_mod_picking).
+There is a good (unofficial) plugin:
+[`bevy_mod_picking`](https://github.com/aevyrie/bevy_mod_picking).
 
 ## 2D games
 

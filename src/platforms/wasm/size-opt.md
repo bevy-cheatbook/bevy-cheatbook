@@ -13,11 +13,12 @@ They may come at the cost of longer compile times or less debuggability.
 Depending on the nature of your application, your mileage may vary, and
 performing measurements of binary size and execution speed is recommended.
 
-[Twiggy](https://github.com/rustwasm/twiggy) is a code size profiler for WASM
-binaries, which you can use to make measurements.
+[Twiggy](https://github.com/rustwasm/twiggy) is a code size profiler for
+WASM binaries, which you can use to make measurements.
 
-For additional information and more techniques, refer to the Code Size chapter
-in the [Rust WASM book](https://rustwasm.github.io/docs/book/reference/code-size.html).
+For additional information and more techniques,
+refer to the Code Size chapter in the [Rust WASM
+book](https://rustwasm.github.io/docs/book/reference/code-size.html).
 
 ## Link-Time Optimization (LTO)
 
@@ -28,12 +29,12 @@ In `Cargo.toml`, add the following:
 lto = "thin"
 ```
 
-LTO tells the compiler to optimize all code together, considering all crates as
-if they were one. It may be able to inline and prune functions much more
-aggressively.
+LTO tells the compiler to optimize all code together, considering all
+crates as if they were one. It may be able to inline and prune functions
+much more aggressively.
 
-This typically results in smaller size *and* better performance, but do measure
-to confirm. Sometimes, the size can actually be larger.
+This typically results in smaller size *and* better performance, but do
+measure to confirm. Sometimes, the size can actually be larger.
 
 The downside here is that compilation will take much longer.
 
@@ -57,15 +58,15 @@ opt-level = 'z'
 ```
 
 These are two different profiles for size optimization. Usually, `z` produces
-smaller files than `s`, but sometimes it can be the opposite. Measure to confirm
-which one works better for you.
+smaller files than `s`, but sometimes it can be the opposite. Measure to
+confirm which one works better for you.
 
 ## Use the `wasm-opt` tool
 
 The [binaryen](https://github.com/WebAssembly/binaryen) toolkit is a set of
 extra tools for working with WASM. One of them is `wasm-opt`. It goes much
-further than what the compiler can do, and can be used to further optimize for
-either speed or size:
+further than what the compiler can do, and can be used to further optimize
+for either speed or size:
 
 ```shell
 # Optimize for size (s profile).
@@ -83,11 +84,11 @@ Note: `wasm-pack` performs this partially by default.
 ## Use the `wee-alloc` memory allocator
 
 You can replace Rust's default memory allocator with
-[wee-alloc](https://github.com/rustwasm/wee_alloc),
-which is slower, but is less than a single kilobyte in size.
+[wee-alloc](https://github.com/rustwasm/wee_alloc), which is slower, but is
+less than a single kilobyte in size.
 
-This may result in a significant performance hit. If your game runs fast enough
-with it, the smaller download size may be more important.
+This may result in a significant performance hit. If your game runs fast
+enough with it, the smaller download size may be more important.
 
 In `Cargo.toml`, add the following:
 
