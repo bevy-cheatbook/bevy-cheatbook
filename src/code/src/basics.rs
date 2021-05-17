@@ -1268,6 +1268,47 @@ App::build()
     }
 }
 
+#[allow(dead_code)]
+// ANCHOR: fixed-timestep
+use bevy::core::FixedTimestep;
+
+// The timestep says how many times to run the SystemSet every second
+// For TIMESTEP_2, it's twice every second
+// For TIMESTEP_1, it's once every second
+
+const TIMESTEP_2_PER_SECOND: f64 = 30.0 / 60.0;
+
+const TIMESTEP_1_PER_SECOND: f64 = 60.0 / 60.0;
+
+
+fn main() {
+    App::build()
+        .add_system_set(
+            SystemSet::new()
+                // This prints out "hello world" 2 times per second
+                .with_run_criteria(FixedTimestep::step(TIMESTEP_2_PER_SECOND))
+                .with_system(fast_timestep.system())
+        )
+        .add_system_set(
+            SystemSet::new()
+                // This prints out "goodbye world" once every second
+                .with_run_criteria(FixedTimestep::step(TIMESTEP_1_PER_SECOND))
+                .with_system(slow_timestep.system())
+        )
+        .run();
+}
+
+fn fast_timestep() {
+    println!("hello world");
+
+}
+
+fn slow_timestep() {
+    println!("goodbye world");
+
+}
+// ANCHOR_END: fixed-timestep
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::build()
@@ -1290,6 +1331,8 @@ pub fn _main_all() {
         .add_system(close_menu.system())
         .add_system(make_all_players_hostile.system())
         .add_system(use_sprites.system())
+        .add_system(fast_timestep.system())
+        .add_system(slow_timestep.system())
         .add_system(fixup_textures.system())
         .add_system(update_player_xp.system())
         .add_system(camera_with_parent.system())
