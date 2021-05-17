@@ -48,6 +48,7 @@
   - [File Format Support](./pitfalls/file-formats.md)
   - [Bevy Time vs. Rust/OS time](./pitfalls/time.md)
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
+  - [Textures/Images are flipped](./pitfalls/uv-coordinates.md)
 
 - [Advanced Patterns](./patterns/_index.md)
   - [Generic Systems](./patterns/generic-systems.md)
