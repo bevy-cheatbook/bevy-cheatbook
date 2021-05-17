@@ -83,6 +83,16 @@ To manage states like this, use `push`/`pop`:
 
 ## Known Pitfalls and Limitations
 
+### Events
+
+When receiving [events](./events.md) in systems that don't run all the time, such
+as during a pause state, you will miss any events that are sent during the frames
+when the receiving systems are not running!
+
+To mitigate this, you could implement a [custom cleanup
+strategy](../patterns/manual-event-clear.md), to manually manage the lifetime
+of the relevant event types.
+
 ### Combining with Other Run Criteria
 
 Because states are implemented using run criteria, it is tricky

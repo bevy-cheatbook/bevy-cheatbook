@@ -52,6 +52,7 @@
 
 - [Advanced Patterns](./patterns/_index.md)
   - [Generic Systems](./patterns/generic-systems.md)
+  - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
   - [Quit the App](./cookbook/quit.md)

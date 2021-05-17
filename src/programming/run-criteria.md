@@ -37,6 +37,16 @@ its output, and apply it to everything with the label.
 The run-once property is especially important if you have a complex run
 criteria system that performs mutations or is otherwise non-idempotent.
 
+## Known Pitfalls
+
+When receiving [events](./events.md) in systems that don't run every frame,
+you will miss any events that are sent during the frames when the receiving
+systems are not running!
+
+To mitigate this, you could implement a [custom cleanup
+strategy](../patterns/manual-event-clear.md), to manually manage the lifetime
+of the relevant event types.
+
 ---
 
 (for information about the other `ShouldRun` values besides `Yes`/`No`, see
