@@ -14,6 +14,8 @@ use case is Physics updates), you can use Bevy's `FixedTimestep`
 {{#include ../code/src/basics.rs:fixed-timestep}}
 ```
 
+(thanks **@billyb2** for [contributing this example](https://github.com/bevy-cheatbook/bevy-cheatbook/pull/64))
+
 ## State
 
 You can check the current state of the fixed timestep trackers, by accessing
