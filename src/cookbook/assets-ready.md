@@ -14,3 +14,10 @@ and ask the `AssetServer` about their status.
 ```rust,no_run,noplayground
 {{#include ../code/examples/assets-ready.rs:example}}
 ```
+
+Bevy also provides an API to test the loading status of a collection of
+`HandleId`:
+
+```rust,no_run,noplayground
+{{#include ../code/examples/assets-ready-group.rs:example}}
+```
