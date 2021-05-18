@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 
+#[derive(Default)]
 // ANCHOR: example
 struct AssetsLoading(Vec<HandleUntyped>);
 
@@ -49,6 +50,7 @@ fn check_assets_ready(
 fn main() {
     App::build()
         .add_plugins(DefaultPlugins)
+        .init_resource::<AssetsLoading>()
         .add_startup_system(setup.system())
         .add_system(check_assets_ready.system())
         .run();
