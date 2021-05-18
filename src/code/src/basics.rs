@@ -415,26 +415,32 @@ fn add_material(
 // ANCHOR_END: asset-add
 
 // ANCHOR: asset-event
-struct MapTexture {
+struct MyMapTexture {
     handle: Handle<Texture>,
 }
 
 fn fixup_textures(
     mut ev_asset: EventReader<AssetEvent<Texture>>,
     mut assets: ResMut<Assets<Texture>>,
-    map_tex: Res<MapTexture>,
+    map_tex: Res<MyMapTexture>,
 ) {
     for ev in ev_asset.iter() {
-        if let AssetEvent::Created { handle } = ev {
-            // a texture was just loaded!
+        match ev {
+            AssetEvent::Created { handle } |
+            AssetEvent::Modified { handle } => {
+                // a texture was just loaded or changed!
 
-            let texture = assets.get_mut(handle).unwrap();
-            // ^ unwrap is OK, because we know it is loaded now
+                let texture = assets.get_mut(handle).unwrap();
+                // ^ unwrap is OK, because we know it is loaded now
 
-            if *handle == map_tex.handle {
-                // it is our special map texture!
-            } else {
-                // it is some other texture
+                if *handle == map_tex.handle {
+                    // it is our special map texture!
+                } else {
+                    // it is some other texture
+                }
+            }
+            AssetEvent::Removed { handle } => {
+                // a texture was unloaded
             }
         }
     }

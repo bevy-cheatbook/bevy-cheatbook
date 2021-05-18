@@ -39,6 +39,20 @@ generation), or if you have gotten the data in some other way.
 {{#include ../code/src/basics.rs:asset-add}}
 ```
 
+## Hot-Reloading
+
+At runtime, if you modify an asset file that is loaded into the game (via the
+`AssetServer`), Bevy will detect that and reload the asset automatically. This
+is very useful for quick iteration. You can edit your assets while the game
+is running and see the changes instantly in-game.
+
+Not all file formats and use cases are supported equally well. Typical asset
+types like textures / images should work without issues, but complex GLTF or
+scene files, or assets involving custom logic, might not.
+
+If you need to run custom logic as part of your hot-reloading workflow, you
+could implement it in a system, using [`AssetEvent`](#assetevent).
+
 ## Handles
 
 Handles are the typical way to refer to a particular asset. When you spawn
@@ -123,8 +137,8 @@ It will try to detect the format of each asset based on the file extension.
 
 ## AssetEvent
 
-If you need to perform specific actions when the asset has finished loading,
-is modified, or removed, you can react to `AssetEvent`s.
+If you need to perform specific actions when an asset is created,
+modified, or removed, you can react to `AssetEvent`s.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:asset-event}}
