@@ -11,24 +11,25 @@ fn setup(mut commands: Commands) {
 }
 
 fn my_cursor_system(
-    // events to get cursor position
-    mut evr_cursor: EventReader<CursorMoved>,
     // need to get window dimensions
     wnds: Res<Windows>,
     // query to get camera transform
     q_camera: Query<&Transform, With<MainCamera>>
 ) {
-    // assuming there is exactly one main camera entity, so this is OK
-    let camera_transform = q_camera.iter().next().unwrap();
+    // get the primary window
+    let wnd = wnds.get_primary().unwrap();
 
-    for ev in evr_cursor.iter() {
-        // get the size of the window that the event is for
-        let wnd = wnds.get(ev.id).unwrap();
+    // check if the cursor is in the primary window
+    if let Some(pos) = wnd.cursor_position() {
+        // get the size of the window
         let size = Vec2::new(wnd.width() as f32, wnd.height() as f32);
 
         // the default orthographic projection is in pixels from the center;
         // just undo the translation
-        let p = ev.position - size / 2.0;
+        let p = pos - size / 2.0;
+
+        // assuming there is exactly one main camera entity, so this is OK
+        let camera_transform = q_camera.single().unwrap();
 
         // apply the camera transform
         let pos_wld = camera_transform.compute_matrix() * p.extend(0.0).extend(1.0);

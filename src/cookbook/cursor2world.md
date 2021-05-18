@@ -14,7 +14,7 @@ There is a good (unofficial) plugin:
 
 ## 2D games
 
-For a game using the default bevy 2d orthographic camera:
+Simple hacky solution, for a game using the default Bevy 2d orthographic camera:
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/cursor2world.rs:example}}
