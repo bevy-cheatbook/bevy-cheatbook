@@ -11,5 +11,5 @@ You can enable more formats with cargo features:
 ```toml
 [dependencies.bevy]
 version = "0.4"
-features = ["jpeg", "tga", "bmp", "dds", "flac", "ogg", "wav"]
+features = ["jpeg", "tga", "bmp", "dds", "flac", "vorbis", "wav"]
 ```
