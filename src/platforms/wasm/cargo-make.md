@@ -33,7 +33,7 @@ using `rustup` to manage your Rust installation, you can install it like this:
 rustup target add wasm32-unknown-unknown
 ```
 
-You also need to install `wasm-pack`. You can do that using `cargo`:
+You also need to install `cargo-make`. You can do that using `cargo`:
 
 ```shell
 cargo install cargo-make
