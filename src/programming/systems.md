@@ -25,7 +25,7 @@ useful for organization.
 {{#include ../code/src/basics.rs:sys-param-tuple}}
 ```
 
-The maximum number of top-level system parameters, or tuple members, is 11. You
+The maximum number of top-level system parameters, or tuple members, is 16. You
 can group/nest them into tuples, if you need to work around that limitation.
 
 ## Runtime
