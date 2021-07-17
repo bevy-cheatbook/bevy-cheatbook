@@ -4,10 +4,7 @@ use bevy::prelude::*;
 // ANCHOR: example
 struct AssetsLoading(Vec<HandleUntyped>);
 
-fn setup(
-    server: Res<AssetServer>,
-    mut loading: ResMut<AssetsLoading>,
-) {
+fn setup(server: Res<AssetServer>, mut loading: ResMut<AssetsLoading>) {
     // we can have different asset types
     let font: Handle<Font> = server.load("my_font.ttf");
     let menu_bg: Handle<Texture> = server.load("menu.png");
@@ -20,30 +17,30 @@ fn setup(
 }
 
 fn check_assets_ready(
+    mut commands: Commands,
     server: Res<AssetServer>,
-    loading: Res<AssetsLoading>,
+    loading: Res<AssetsLoading>
 ) {
     use bevy::asset::LoadState;
 
-    let mut ready = true;
+    match server.get_group_load_state(loading.0.iter().map(|h| h.id)) {
+        LoadState::Failed => {
+            // one of our assets had an error
+        }
+        LoadState::Loaded => {
+            // all assets are now ready
 
-    for handle in loading.0.iter() {
-        match server.get_load_state(handle) {
-            LoadState::Failed => {
-                // one of our assets had an error
-            }
-            LoadState::Loaded => {}
-            _ => {
-                ready = false;
-            }
+            // this might be a good place to transition into your in-game state
+
+            // remove the resource to drop the tracking handles
+            commands.remove_resource::<AssetsLoading>();
+            // (note: if you don't have any other handles to the assets
+            // elsewhere, they will get unloaded after this)
+        }
+        _ => {
+            // NotLoaded/Loading: not fully ready yet
         }
     }
-
-    if !ready {
-        return;
-    }
-
-    // all assets are now ready
 }
 // ANCHOR_END: example
 
