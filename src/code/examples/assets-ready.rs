@@ -16,23 +16,31 @@ fn setup(server: Res<AssetServer>, mut loading: ResMut<AssetsLoading>) {
     loading.0.push(scene.clone_untyped());
 }
 
-fn check_assets_ready(server: Res<AssetServer>, loading: Res<AssetsLoading>) {
+fn check_assets_ready(
+    mut commands: Commands,
+    server: Res<AssetServer>,
+    loading: Res<AssetsLoading>
+) {
     use bevy::asset::LoadState;
 
-    // the API requires an iterator of owned HandleId; since they're Copy, we
-    // send the copying iterator
     match server.get_group_load_state(loading.0.iter().map(|h| h.id)) {
         LoadState::Failed => {
             // one of our assets had an error
         }
-        LoadState::Loaded => {}
+        LoadState::Loaded => {
+            // all assets are now ready
+
+            // this might be a good place to transition into your in-game state
+
+            // remove the resource to drop the tracking handles
+            commands.remove_resource::<AssetsLoading>();
+            // (note: if you don't have any other handles to the assets
+            // elsewhere, they will get unloaded after this)
+        }
         _ => {
             // NotLoaded/Loading: not fully ready yet
-            return;
         }
     }
-
-    // all assets are now ready
 }
 // ANCHOR_END: example
 
