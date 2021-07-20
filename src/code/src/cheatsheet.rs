@@ -504,7 +504,24 @@ fn manage_state(mut state: ResMut<State<MyState>>) {
 }
 // ANCHOR_END: res-state
 
-pub fn _silence_warnings() {
+
+pub mod logging {
+    use bevy::prelude::*;
+
+    fn main() {
+// ANCHOR: logging
+App::build()
+    .insert_resource(bevy::log::LogSettings {
+        level: bevy::log::Level::DEBUG,
+        ..Default::default()
+    })
+    .add_plugins(DefaultPlugins)
+    .run();
+// ANCHOR_END: logging
+    }
+}
+
+    pub fn _silence_warnings() {
     let _ = App::build()
         .add_system(manage_state.system());
     main();
