@@ -14,7 +14,7 @@ To use random numbers in your project, add this to your dependencies in
 ```toml
 [dependencies]
 rand = "0.8"
-getrandom = { version = "0.2", features = ["wasm-bindgen"] }
+getrandom = { version = "0.2", features = ["js"] }
 ```
 
 Note that you must ensure that all the versions are compatible. `getrandom`
