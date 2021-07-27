@@ -44,3 +44,9 @@ enough, your events might pile up and waste memory.
 ```rust,no_run,noplayground
 {{#include ../code/examples/manual-event-clear.rs:main}}
 ```
+
+**Hint**: [generic systems](./generic-systems.md) could be very useful for
+this. You could implement your custom event management strategy as a system
+generic over the event type, and then add that system to your App as many
+times as you need, for each event type where you want to use your custom
+behavior.
