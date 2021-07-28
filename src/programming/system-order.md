@@ -69,7 +69,3 @@ clearly impossible to resolve the situation completely like that.
 You should try to redesign your game to avoid such situations, or just accept
 the consequences. You can at least make it behave predictably, using explicit
 ordering to specify the order you prefer.
-
-In really advanced scenarios, if you insist on all affected systems becoming
-settled during the same frame, you might be able to do it using [Looping
-Run Criteria](./run-criteria-loop.md) or [states](./states.md).

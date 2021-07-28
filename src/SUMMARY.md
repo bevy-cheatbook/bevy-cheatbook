@@ -30,7 +30,6 @@
     - [Stages](./programming/stages.md)
     - [Direct World/ECS Access](./programming/world-exclusive.md)
     - [Non-Send Resources](./programming/non-send.md)
-    - [Looping Run Criteria](./programming/run-criteria-loop.md)
 
 - [Bevy Features](./features/_index.md)
   - [Transforms and Coordinates](./features/transforms.md)

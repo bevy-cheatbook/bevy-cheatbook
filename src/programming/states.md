@@ -52,9 +52,6 @@ You can do arbitrarily many state transitions in a single frame update. Bevy
 will handle all of them and execute all the relevant systems (before moving
 on to the next [stage](./stages.md)).
 
-(if you are curious about how this is implemented, see [Looping Run
-Criteria](./run-criteria-loop.md))
-
 ## State Stack
 
 Instead of completely transitioning from one state to another, you can also

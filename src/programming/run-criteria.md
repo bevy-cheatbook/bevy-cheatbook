@@ -49,8 +49,5 @@ of the relevant event types.
 
 ---
 
-(for information about the other `ShouldRun` values besides `Yes`/`No`, see
-[Looping Run Criteria](./run-criteria-loop.md))
-
 Bevy's [fixed timestep](../features/fixed-timestep.md) is also implemented
 using run criteria under the hood.
