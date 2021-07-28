@@ -16,3 +16,16 @@ The type must implement `Default` or `FromWorld`. It is automatically
 initialized.
 
 A system can have multiple `Local`s of the same type.
+
+## Specify an initial value
+
+You can initialize a `Local` to a value other than the type's default, using
+`.config`, when adding your system to your `App`.
+
+`.config` is Bevy's API for "configuring" specific system parameters. Most
+other types of system parameters do not support configuration, but `Local`s
+let you specify the initial value.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:local-config}}
+```

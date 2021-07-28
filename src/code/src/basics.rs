@@ -130,9 +130,10 @@ impl FromWorld for MyFancyResource {
 struct StartingLevel(usize);
 // ANCHOR_END: resource-default
 
+// ANCHOR: local-resource
 #[derive(Default)]
 struct MyState;
-// ANCHOR: local-resource
+
 fn my_system1(mut local: Local<MyState>) {
     // you can do anything you want with the local here
 }
@@ -141,6 +142,44 @@ fn my_system2(mut local: Local<MyState>) {
     // the local in this system is a different instance
 }
 // ANCHOR_END: local-resource
+
+#[allow(dead_code)]
+mod localconfig {
+use bevy::prelude::*;
+struct MyStuff;
+// ANCHOR: local-config
+/// Configuration for `my_system`.
+///
+/// The system will access it using `Local<MyConfig>`.
+/// It will be initialized with the correct value at App build time.
+///
+/// Must still impl `Default`, because of requirement for `Local`.
+#[derive(Default)]
+struct MyConfig {
+    magic: usize,
+}
+
+fn my_system(
+    mut cmd: Commands,
+    my_res: Res<MyStuff>,
+    config: Local<MyConfig>,
+) {
+    // TODO: do stuff
+}
+
+fn main() {
+    App::build()
+        .add_system(my_system.system().config(|params| {
+            // our config is the third parameter in the system fn,
+            // hence `.2`
+            params.2 = Some(MyConfig {
+                magic: 420,
+            });
+        }))
+        .run();
+}
+// ANCHOR_END: local-config
+}
 
 // ANCHOR: sys-param-tuple
 fn complex_system(
