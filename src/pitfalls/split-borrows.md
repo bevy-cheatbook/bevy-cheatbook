@@ -40,6 +40,9 @@ The solution is to use the "reborrow" idiom, a common but non-obvious trick in R
         let thing = &mut *thing;
 ```
 
+Note that this line triggers [change detection](../programming/change-detection.md).
+Even if you don't modify the data afterwards, the component gets marked as changed.
+
 ## Explanation
 
 Bevy typically gives you access to your data via special wrapper types
