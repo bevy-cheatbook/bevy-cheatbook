@@ -42,6 +42,7 @@
   - [Slow Performance](./pitfalls/performance.md)
   - [Error adding function as system](./pitfalls/into-system.md)
   - [Strange Compilation Errors](./pitfalls/build-errors.md)
+  - [Combining Query Filters](./pitfalls/query-filter.md)
   - [Frame Delays / 1-frame-lag](./pitfalls/frame-delay.md)
   - [UI is not displaying](./pitfalls/ui-camera.md)
   - [Cannot see sprites in 2D](./pitfalls/2d-camera-z.md)
