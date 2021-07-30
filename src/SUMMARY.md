@@ -61,6 +61,7 @@
   - [Change the Background Color](./cookbook/clear-color.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
   - [Grab the Mouse](./cookbook/mouse-grab.md)
+  - [Setting the Window Icon](./cookbook/window-icon.md)
   - [Track Assets Loading](./cookbook/assets-ready.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
   - [Custom Camera Projection](./cookbook/custom-projection.md)
