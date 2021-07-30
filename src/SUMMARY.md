@@ -69,6 +69,9 @@
   - [List All Resource Types](./cookbook/print-resources.md)
 
 - [Bevy on Different Platforms](./platforms/_index.md)
+  - [Linux Desktop](./platforms/linux.md)
+  - [macOS Desktop](./platforms/macos.md)
+  - [Windows Desktop](./platforms/windows.md)
   - [Browser (WebAssembly)](./platforms/wasm.md)
     - [Setup (wasm-pack)](./platforms/wasm/wasm-pack.md)
     - [Setup (Cargo Make)](./platforms/wasm/cargo-make.md)

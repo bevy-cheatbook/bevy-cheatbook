@@ -3,6 +3,12 @@
 Bevy trivially works out-of-the-box on the major desktop operating systems:
 Linux, macOS, Windows. No special configuration is required.
 
+See the following pages for specific tips/advice when developing for the
+desktop platforms:
+ - [Linux](./linux.md)
+ - [macOS](./macos.md)
+ - [Windows](./windows.md)
+
 Bevy aims to also make it easy to target other platforms, such as web browsers
 (via WebAssembly), mobile (Android and iOS), and game consoles. Your Bevy
 code can be the same for all platforms, with differences only in the build
