@@ -23,7 +23,7 @@ However, fully-optimized release builds can be slow to compile.
 Solutions:
 
 ```toml
-# in `Cargo.toml` or `.cargo/config`
+# in `Cargo.toml` or `.cargo/config.toml`
 
 # Enable optimizations for dependencies (incl. Bevy), but not for our code:
 [profile.dev.package."*"]
