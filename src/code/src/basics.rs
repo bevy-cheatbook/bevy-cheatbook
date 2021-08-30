@@ -1260,6 +1260,8 @@ fn main() {
     App::build()
         // ...
         .add_event::<LevelUpEvent>()
+        .add_system(player_level_up.system())
+        .add_system(debug_levelups.system())
         // ...
         .run();
 }
