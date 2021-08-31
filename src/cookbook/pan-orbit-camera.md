@@ -7,7 +7,7 @@
 This code is a community contribution.
 
 Current version developed by [**@mirenbharta**](https://github.com/bevy-cheatbook/bevy-cheatbook/pull/1).
-Initial work by [**@skairunner**](https://github.com/jamadazi/bevy-cookbook/pull/2).
+Initial work by [**@skairunner**](https://github.com/inodentry/bevy-cookbook/pull/2).
 
 ---
 

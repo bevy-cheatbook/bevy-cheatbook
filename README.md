@@ -13,7 +13,7 @@ focus on the important information.
 ## Support Me
 
 If you like this book, please consider supporting me via [GitHub
-Sponsors](https://github.com/sponsors/jamadazi). (Patreon WIP)
+Sponsors](https://github.com/sponsors/inodentry). (Patreon WIP)
 
 I'd like to keep improving and maintaining this book, to provide a high-quality
 independent learning resource for the Bevy community.

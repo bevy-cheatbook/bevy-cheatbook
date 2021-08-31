@@ -59,7 +59,7 @@ I also try to regularly make improvements to it, when I can manage it.
 ## Support Me
 
 If you like this book, please consider supporting me via [GitHub
-Sponsors](https://github.com/sponsors/jamadazi). (Patreon WIP)
+Sponsors](https://github.com/sponsors/inodentry). (Patreon WIP)
 
 <a class="github-button" href="https://github.com/sponsors/jamadazi" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @jamadazi on GitHub">Sponsor</a>
 
