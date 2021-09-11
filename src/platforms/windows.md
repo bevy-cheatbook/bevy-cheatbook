@@ -35,6 +35,12 @@ There are two places where you might want to put your application icon:
 
 The EXE icon can be set using a cargo build script.
 
+Add a build dependency of `embed_resources` to your `Cargo.toml` allow embedding assets into your compiled executables
+```toml
+[build-dependencies]
+embed-resource = "1.6.3"
+```
+
 Create a `build.rs` file in your project folder:
 
 ```rust
