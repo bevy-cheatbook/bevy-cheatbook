@@ -17,6 +17,8 @@ The book has several sections:
 
   - [Bevy Cheatsheet](./cheatsheet.md):
     condensed one-page listing of common Bevy syntax and features
+  - [Bevy Setup Tips](./setup/_index.md):
+    Tips and tricks for your development tools (only some may be relevant to you)
   - [Bevy Programming](./programming/_index.md):
     overview of programming in Bevy
   - [Bevy Features](./features/_index.md):
@@ -27,6 +29,8 @@ The book has several sections:
     non-obvious tricks or techniques; may be controversial
   - [Bevy Cookbook](./cookbook/_index.md):
     examples covering common practical use cases
+  - [Bevy on Different Platforms](./platforms/_index.md):
+    information about using Bevy with different platforms and OSs
 
 Not intended to be read in order. Jump to whatever is useful to you!
 

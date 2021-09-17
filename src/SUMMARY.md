@@ -4,6 +4,14 @@
 
 - [Bevy Cheatsheet](./cheatsheet.md)
 
+- [Bevy Setup Tips](./setup/_index.md)
+  - [Text Editor / IDE](./setup/editor.md)
+    - [VSCode](./setup/editor/vscode.md)
+    - [Emacs](./setup/editor/emacs.md)
+    - [Vim](./setup/editor/vim.md)
+    - [JetBrains](./setup/editor/jetbrains.md)
+    - [Kakoune](./setup/editor/kak.md)
+
 - [Bevy Programming](./programming/_index.md)
   - [Basics](./programming/_basics.md)
     - [Intro to ECS](./programming/ecs-intro.md)
