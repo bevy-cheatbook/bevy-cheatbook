@@ -61,7 +61,7 @@ I also try to regularly make improvements to it, when I can manage it.
 If you like this book, please consider supporting me via [GitHub
 Sponsors](https://github.com/sponsors/inodentry). (Patreon WIP)
 
-<a class="github-button" href="https://github.com/sponsors/jamadazi" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @jamadazi on GitHub">Sponsor</a>
+<a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @inodentry on GitHub">Sponsor</a>
 
 I'd like to keep improving and maintaining this book, to provide a high-quality
 independent learning resource for the Bevy community.
