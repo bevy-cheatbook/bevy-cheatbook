@@ -5,6 +5,7 @@
 - [Bevy Cheatsheet](./cheatsheet.md)
 
 - [Bevy Setup Tips](./setup/_index.md)
+  - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
     - [VSCode](./setup/editor/vscode.md)
     - [Emacs](./setup/editor/emacs.md)
