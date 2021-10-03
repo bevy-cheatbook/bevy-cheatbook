@@ -4,6 +4,21 @@ Bevy development moves very fast, and there are often exciting new things that
 are yet unreleased. This page will give you advice about using development
 versions of bevy.
 
+## Quick Start
+
+If you are not using any 3rd-party plugins and just want to use the bevy
+main development branch:
+
+```toml
+[dependencies]
+bevy = "0.5"
+
+[patch.crates-io]
+bevy = { git = "https://github.com/bevyengine/bevy" }
+```
+
+For more info, read on.
+
 ## Should you use bleeding-edge bevy?
 
 Currently, bevy does not make patch releases, only major releases when there
@@ -64,7 +79,7 @@ bevy = "0.5"
 # override it with bevy from git
 bevy = { git = "https://github.com/bevyengine/bevy" }
 # or if you have it cloned locally:
-bevy = { path = "../bevy" }
+#bevy = { path = "../bevy" }
 ```
 
 Doing it this way will tell cargo to replace the version of bevy in your
@@ -83,6 +98,18 @@ another cargo patch, to also override the git repository:
 ```toml
 [patch."https://github.com/bevyengine/bevy"]
 bevy = { path = "../bevy" }
+```
+
+Some 3rd-party plugins depend on specific bevy sub-crates, rather than the
+full bevy. You may additionally have to patch those individually:
+
+```toml
+[patch.crates-io]
+bevy = { path = "../bevy" }
+# specific crates as needed by the plugins you use (check their `Cargo.toml`)
+bevy_ecs = { path = "../bevy/crates/bevy_ecs" }
+bevy_math = { path = "../bevy/crates/bevy_math" }
+# ... and so on
 ```
 
 ## Updating Bevy
