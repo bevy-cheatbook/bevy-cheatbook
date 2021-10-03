@@ -164,7 +164,7 @@ Here is an example for GitHub Actions. This will run at 8:00 AM (UTC) every day
 to verify that your code still compiles. GitHub will notify you when it fails.
 
 ```yaml
-name: check if code still compiles (next)
+name: check if code still compiles
 
 on:
   schedule:
@@ -179,8 +179,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: next
 
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install --no-install-recommends pkg-config libx11-dev libasound2-dev libudev-dev
