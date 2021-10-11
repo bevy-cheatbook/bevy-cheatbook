@@ -1,311 +1,138 @@
-# Bevy Cheatsheet
+# Quick Reference: Alphabetical Index / Glossary
 
-Condensed single-page listing of common Bevy features and syntax.
+This page lists many common terms and concepts that you may come across while working
+with Bevy. It is in alphabetical order. Every entry has a brief definition, and links
+to relevant places in this book, where it is explained, if any.
+
+It contains both bevy-specific jargon (including advanced topics that might
+not yet be covered by this book), as well as general game development or
+computer graphics topics that are relevant to working with Bevy.
+
+The list is not exhaustive. I try my best to expand it to include anything
+that may be useful. If you notice any omissions / want something added,
+file an issue on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook)
+or send me a message on [Discord](https://discord.gg/bevy) (`Ida Iyes#0981`).
 
 Bookmark this page in your browser, for a quick reference when working with Bevy!
 
-Intended for people who are familiar with the concepts.
-
-If you are new to bevy or need a refresher, click on the "[explain]" links near
-each feature, to go to the full page about the feature, in the
-[Bevy Programming](./programming/_index.md) chapter!
+(some of the links may be broken, as they refer to planned or unpublished
+content. This book is WIP/incomplete; thank you for understanding! <3 )
 
 ---
 
-## Table of Contents
-
-Alphabetical index of Bevy features covered on this page.
-
-|Topic | Definition |
-|------|------------|
-|[App Builder](#app-builder) | Bevy entry point; setup all the things to run. |
-|[Assets](#assets) | Load external files into the game. |
-|[Change Detection](#change-detection) | Write logic that responds to data being changed. |
-|[Commands](#commands) | Spawn/despawn entities, manage components and resources. |
-|[Components](#entities-and-components) | Basic data primitive in Bevy. |
-|[Entities](#entities-and-components) | ID for a set of component values. |
-|[Events](#events) | Communicate between systems. Send/receive data. |
-|[Labels](#labels) | Names for systems, stages, and other things. |
-|[Local Resources](#local-resources) | Per-system data. |
-|[Parent/Child Hierarchy](#parentchild-hierarchy) | Entities in a hierarchy. |
-|[Plugins](#plugins) | Use the App Builder in a modular way. |
-|[Queries](#queries) | Access component data; find matching entities. |
-|[Query Sets](#query-sets) | Resolve query conflicts. |
-|[Resources](#resources) | Global data for the whole app. |
-|[Stages](#app-builder) | Hard synchronization points for runtime scheduling. |
-|[States](#states) | Multiple "modes" for your application. |
-|[Systems](#systems) | The functions that contain your game logic. |
-|[System Chaining](#system-chaining) | Combine multiple Rust functions into one big system. |
-|[System Order](#system-order) | Control the runtime order of execution of systems. |
-|[Transforms](#transforms) | Position and orientation of an object in the game world. |
-
----
-
-## Systems
-
-[(back to top)](#table-of-contents) [[explain](./programming/systems.md)]
-
-Regular Rust functions, but can only accept parameters that implement [trait `SystemParam`](https://docs.rs/bevy/0.5.0/bevy/ecs/system/trait.SystemParam.html).
-
-The standard system parameter types provided by Bevy:
-
-{{#include ./include/systemparams.md}}
-
-## Entities and Components
-
-[(back to top)](#table-of-contents) [[explain](./programming/ec.md)]
-
-Any Rust type (`struct` or `enum`) can be used as a component.
-
-An entity is a simple integer ID for a set of components.
-
-Type must be unique; only one instance per type per entity can exist. Use newtypes.
-
-See [`Commands`](#commands) for how to add components to entities and spawn entities.
-
-Component bundles:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:bundle}}
-```
-
-## Resources
-
-[(back to top)](#table-of-contents) [[explain](./programming/res.md)]
-
-Any Rust type (`struct` or `enum`) can be used as a resource.
-
-Type must be unique; only one instance per type can exist. Use newtypes.
-
-Access from system:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:res}}
-```
-
-Add when [building the app](#app-builder-main-function):
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:res-app-builder}}
-```
-
-Manage using [`Commands`](#commands):
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:res-commands}}
-```
-
-For complex resource initialization, implement `FromWorld`:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:fromworld}}
-```
-
-## Commands
-
-[(back to top)](#table-of-contents) [[explain](./programming/commands.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:commands}}
-```
-
-These actions are applied at the end of the stage.
-
-## Queries
-
-[(back to top)](#table-of-contents) [[explain](./programming/queries.md)]
-
-Iterate all matching entities:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:query}}
-```
-
-Or, if expecting the query to match only one entity (returns `Result`):
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:query-single}}
-```
-
-To operate on a specific entity:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:query-one}}
-```
-
-Add query filters:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:query-filter}}
-```
-
-## Change Detection
-
-[(back to top)](#table-of-contents) [[explain](./programming/change-detection.md)]
-
-Query filters:
- - `Added<T>`: detect adding new components to existing entities
- - `Changed<T>`: detect when a component is modified
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:change-detection}}
-```
-
-Change detection is triggered by `DerefMut`. Accessing components via a mutable
-query without it actually being a `&mut` access, will *not* trigger it.
-
-Beware of [frame delay / 1-frame-lag](./pitfalls/frame-delay.md). You may want
-to use [explicit system ordering](#system-order).
-
-## Query Sets
-
-[(back to top)](#table-of-contents) [[explain](./programming/query-sets.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:query-set}}
-```
-
-## Events
-
-[(back to top)](#table-of-contents) [[explain](./programming/events.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:events}}
-```
-
-Events don't persist. They are stored until the end of the next frame, after
-which they are lost. If your systems do not handle events every frame, you could
-miss some.
-
-Beware of [frame delay / 1-frame-lag](./pitfalls/frame-delay.md). You may want
-to use [explicit system ordering](#system-order).
-
-## Local Resources
-
-[(back to top)](#table-of-contents) [[explain](./programming/local.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:local}}
-```
-
-The type must implement `Default` or `FromWorld`. It is automatically initialized.
-
-## Labels
-
-[(back to top)](#table-of-contents) [[explain](./programming/labels.md)]
-
-Labels can be strings, or any other type that implements the relevant traits.
-
-For example, a custom enum type:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:labels}}
-```
-
-## Plugins
-
-[(back to top)](#table-of-contents) [[explain](./programming/plugins.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:plugin}}
-```
-
-## App Builder
-
-[(back to top)](#table-of-contents) [[explain](./programming/app-builder.md), [stages](./programming/stages.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:app-builder}}
-```
-
-## System Order
-
-[(back to top)](#table-of-contents) [[explain](./programming/system-order.md)]
-
-Execution order is *nondeterministic* and may change every frame!
-
-Use [labels](#labels) to specify order explicitly:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:system-labels}}
-```
-
-## States
-
-[(back to top)](#table-of-contents) [[explain](./programming/states.md)]
-
-App builder with States:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:states}}
-```
-
-Change or check States:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:res-state}}
-```
-
-## Transforms
-
-[(back to top)](#table-of-contents) [[explain](./features/transforms.md)]
-
-Coordinate system: +X is right, +Y is up, +Z is out of the screen. Right-handed. 3D matches 2D.
-
-Transforms consist of: translation (coordinates), rotation, scale.
-
-The `Transform` component is the relative/local transform. You may modify this directly.
-
-The `GlobalTransform` component is the absolute/global transform. Do not modify; internally managed by Bevy.
-
-## Parent/Child Hierarchy
-
-[(back to top)](#table-of-contents) [[explain](./programming/parent-child.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:parent-child}}
-```
-
-Reparent an existing entity:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:add-parent}}
-```
-
-Transforms: Ensure both parent and child have both components: `Transform`, `GlobalTransform`.
-
-## System Chaining
-
-[(back to top)](#table-of-contents) [[explain](./programming/system-chaining.md)]
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:system-chaining}}
-```
-
-## Assets
-
-[(back to top)](#table-of-contents) [[explain](./features/assets.md)]
-
-Load asset:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:asset-load}}
-```
-
-Access assets from systems:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:asset-use}}
-```
-
-Create assets from code:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:asset-new}}
-```
-
-Asset events:
-
-```rust,no_run,noplayground
-{{#include ./code/src/cheatsheet.rs:asset-event}}
-```
+## Bevy Programming Jargon
+
+Terms and concepts related to Bevy-specific features and APIs.
+
+|Topic                                                                 | Definition                                                                                                                            |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|[App / App Builder](./programming/app-builder.md)                     | Bevy entry point; setup all the things to run.                                                                                        |
+|[Assets](./features/assets.md)                                        | The data used by your game. Typically loaded from external files, or generated procedurally using code.                               |
+|Asset Loader                                                          | Implementation for loading a specific asset type from a specific file format.                                                         |
+|[`AssetServer`](./features/assets.md#loading-using-assetserver)       | Bevy API for accessing and loading assets from external data files.                                                                   |
+|[Bundles](./programming/ec.md#component-bundles)                      | A "template" for easily spawning entities with a common set of component types.                                                       |
+|[Change Detection](./programming/change-detection.md)                 | Write logic that responds to data being changed.                                                                                      |
+|[Commands](./programming/commands.md)                                 | Spawn/despawn entities, manage components and resources. Deferred until they can be safely applied.                                   |
+|[Components](./programming/ec.md)                                     | Per-entity data. Basic data primitive in Bevy.                                                                                        |
+|[Entities](./programming/ec.md)                                       | ID for a set of component values. Often conceptually represents an "object".                                                          |
+|[Events](./programming/events.md)                                     | Communicate between systems. Send/receive data.                                                                                       |
+|[Exclusive Systems](./programming/world-exclusive.md)                 | Systems that have full access to the whole ECS world and do not run in parallel with any other systems.                               |
+|[Fixed Timestep](./features/fixed-timestep.md)                        | Run some logic at a fixed time interval. Important for physics and simulations.                                                       |
+|[Handles](./features/assets.md#handles)                               | ID for referring to an Asset in your game code. Reference counted (Bevy automatically unloads assets when there are no more handles). |
+|[Hot Reloading](./features/assets.md#hot-reloading)                   | Automatically reloading assets from files if they are changed while the game is running.                                              |
+|[Labels](./programming/labels.md)                                     | Names for systems, stages, and other things.                                                                                          |
+|[Local Resources](./programming/local.md)                             | Per-system data.                                                                                                                      |
+|[Non-Send](./programming/non-send.md)                                 | Data that cannot be used in a multithreaded context, must be confined to a single thread.                                             |
+|[Parent/Child Hierarchy](./programming/parent-child.md)               | Entities in a hierarchical relationship.                                                                                              |
+|[Plugins](./programming/plugins.md)                                   | Build the App in a modular way.                                                                                                       |
+|[Queries](./programming/queries.md)                                   | Find matching entities and access their component data.                                                                               |
+|[Query Filters](./programming/queries.md#query-filters)               | Criteria for narrowing down the entities to be accessed by a query.                                                                   |
+|[Query Sets](./programming/query-sets.md)                             | Resolve query conflicts.                                                                                                              |
+|[Resources](./programming/res.md)                                     | Global data for the whole app.                                                                                                        |
+|[Run Criteria](./programming/run-criteria.md)                         | Low-level primitive for controlling if systems run.                                                                                   |
+|[Scenes](./features/scenes.md)                                        | Collection of preconfigured entities that you can spawn into the world. Similar to "prefabs" in other game engines.                   |
+|[Schedule (systems)](./programming/system-order.md)                   | All the systems that Bevy runs every frame update, optimized to run on the task pool with maximum parallelism and performance.        |
+|[Stages](./programming/stages.md)                                     | Hard synchronization points for runtime scheduling.                                                                                   |
+|[States](./programming/states.md)                                     | Control which systems run, by defining different "modes" your app can be in.                                                          |
+|[Systems](./programming/systems.md)                                   | The functions that contain your game logic.                                                                                           |
+|[`SystemParam`s](./pitfalls/into-system.html#supported-types)         | The acceptable Rust types to be used as function parameters in Bevy systems.                                                          |
+|[System Chaining](./programming/system-chaining.md)                   | Combine multiple Rust functions into one big system.                                                                                  |
+|[System Order](./programming/system-order.md)                         | Control the runtime order of execution of systems.                                                                                    |
+|[System Sets](./programming/system-sets.md)                           | Group multiple systems together to apply common properties (labels, ordering, states, run criteria).                                  |
+|[Texture](./features/textures.md)                                     | Asset type, typically an image (but more generally any data) that can be sampled by the GPU during rendering (in a shader).           |
+|[Transforms](./features/transforms.md)                                | Position and orientation of an object. May be relative to a parent object.                                                            |
+|[Untyped Handles](./features/assets.md#untyped-handles)               | Asset Handle that can refer to an asset regardless of the asset type.                                                                 |
+|[Weak Handles](./features/assets.md#weak-handles)                     | Asset Handles that are not reference-counted (do not prevent the asset from being unloaded).                                          |
+|[World](./programming/world-exclusive.md)                             | The underlying data structure / storage of the ECS. Contains all component and resource data.                                         |
+
+## Ecosystem Jargon
+
+Terms and concepts related to the community and ecosystem around bevy and the
+development of the project, such as libraries and technologies that bevy uses.
+
+|Topic                                                                 | Definition                                                                                                                            |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|Data-driven                                                           | Programming style / paradigm, where functionality is thought of in terms of the data it works with. Bevy is based on this philosophy. |
+|[ECS](./programming/ecs-intro.md)                                     | The data storage / programming paradigm Bevy uses. Conceptually like a database. Bevy is often compared to other ECS implementations. |                                                     |
+|[Features (cargo)](./setup/bevy-config.md#bevy-cargo-features)        | A way to configure what optional functionality is included in your build.                                                             |
+|Flexbox                                                               | The layout model used in Bevy UI (originates from CSS in web browsers).                                                               |
+|[GILRS](./features/input-handling.md#controller--gamepad--joystick)   | The library that Bevy uses for controller/joystick support.                                                                           |
+|[GLTF](./features/gltf.md)                                            | File format for 3D assets; can contain meshes, textures, materials, scenes.                                                           |
+|[Kira](./features/audio.md)                                           | 3rd-party audio library often used with Bevy (`bevy_kira_audio` plugin), much more feature-rich than Bevy's own audio.                |
+|[main (bevy main)](./setup/bevy-git.md)                               | Development version of Bevy; git branch containing the latest unreleased changes.                                                     |
+|Metal                                                                 | Low-level system API for accessing GPU hardware on Apple systems (macOS/iOS).                                                         |
+|OpenGL                                                                | Legacy GPU API for systems that do not support Vulkan. Not yet supported by Bevy.                                                     |
+|[Plugins (3rd-party crates)](./programming/plugins.md)                | Libraries made by the community that can be added to your Bevy App.                                                                   |
+|Vulkan                                                                | Low-level system API for accessing GPU hardware. The interface to the graphics driver. Available on most platforms except Apple.      |
+|[WebAssembly (WASM)](./platforms/wasm.md)                             | New technology that allows running software like Bevy inside of a web browser.                                                        |
+|WebGPU (WGPU)                                                         | The cross-platform GPU API that Bevy uses. Allows using modern GPU features safely across different platforms (desktop/mobile/web).   |
+|[Winit](./features/windowing.md)                                      | The library that Bevy uses for windowing (managing the OS windows to display in)                                                      |
+
+## Game Development Jargon
+
+General game development concepts that are applicable to working with Bevy.
+
+|Topic                                                                 | Definition                                                                                                                            |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|[Assets](./features/assets.md)                                        | The data used by your game. Typically loaded from external files, or generated procedurally using code.                               |
+|[Camera](./features/camera.md)                                        | Entity representing a "view" into the game world, to be rendered.                                                                     |
+|[Coordinate System](./features/transforms.md#bevys-coordinate-system) | Orientation of the X/Y/Z axes, defining the 3D space.                                                                                 |
+|[Fixed Timestep](./features/fixed-timestep.md)                        | Run some logic at a fixed time interval. Important for physics and simulations.                                                       |
+|[Material](./features/materials.md)                                   | The shading properties for a surface to be drawn by the GPU, such as its color/texture, how shiny it is, ...                          |
+|[Mesh](./features/meshes.md)                                          | 3D geometry data, consists of vertices, typically arranged into many triangles. Required for the GPU to draw an object.               |
+|[Parent/Child Hierarchy](./programming/parent-child.md)               | Entities in a hierarchical relationship.                                                                                              |
+|Raycast                                                               | Calculating a simulated "ray" in the game world. Used, for example, for checking what object is under the mouse cursor.               |
+|[Scenes](./features/scenes.md)                                        | Collection of preconfigured entities that you can spawn into the world. Similar to "prefabs" in other game engines.                   |
+|Shaders                                                               | Code that runs on the GPU. Typically for rendering graphics, but also for general computations.                                       |
+|[Sprites](./features/sprites.md)                                      | Game object that is a 2D rectangle displaying an image. Most 2D games are made from these.                                            |
+|[Texture](./features/textures.md)                                     | Typically an image (but more generally any data) that can be sampled by the GPU during rendering (in a shader).                       |
+|[Transforms](./features/transforms.md)                                | Position and orientation of an object. May be relative to a parent object.                                                            |
+|UI                                                                    | User Interfaces like menus and in-game HUDs, typically displayed as overlays on top.                                                  |
+
+## Rendering Jargon
+
+Concepts that come up when working with computer graphics and the GPU, as applicable to bevy.
+
+|Topic                                                                 | Definition                                                                                                                            |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|Anisotropic Filtering                                                 | Method of sampling a texture that accounts for the angle between the surface and the camera, resulting in better visual quality.      |
+|Anti-Aliasing                                                         | Techniques to reduce aliasing artifacts (shimmering or jagged edges, when there is too much detail for the display resolution).       |
+|[Camera](./features/camera.md)                                        | Entity representing a "view" into the game world, to be rendered.                                                                     |
+|Compute Shaders / GPU Compute                                         | A way to use the GPU for general data processing.                                                                                     |
+|[Coordinate System](./features/transforms.md#bevys-coordinate-system) | Orientation of the X/Y/Z axes, defining the 3D space.                                                                                 |
+|[Material](./features/materials.md)                                   | The shading properties for a surface to be drawn by the GPU, such as its color/texture, how shiny it is, ...                          |
+|[Mesh](./features/meshes.md)                                          | 3D geometry data, consists of vertices, typically arranged into many triangles. Required for the GPU to draw an object.               |
+|Mipmaps                                                               | Textures with data available in many sizes (like 64x64, 32x32, 16x16, 8x8, ...). The GPU automatically uses the most appropriate.     |
+|[MSAA](./cookbook/msaa.md)                                            | Multi-Sample Anti-Aliasing: hardware AA method: for pixels along edges of meshes, the GPU will render multiple samples.               |
+|Normals / Normal Vectors                                              | The direction perpendicular to a surface. Useful for shading, to compute how light interacts with the surface.                        |
+|Normal Maps                                                           | A way to add extra detail to a 3D object, using a texture that changes the normals to affect how light interacts with it.             |
+|[Physically-Based Rendering](./features/pbr.md)                       | Modern realistic 3D graphics technique that uses materials that model physical properties, like how rough or metallic a surface is.   |
+|Render Graph                                                          | Bevy's abstraction for modular configurable rendering. Connects "nodes" together to enable various graphical features.                |
+|Render Pipeline                                                       | The procedure to be executed by the GPU to draw something, includes shaders to run, as well as setting fixed hardware parameters.     |
+|Sampler / Sampling (textures)                                         | How the GPU picks a value (like a color) from a specific position on a texture.                                                       |
+|Shaders                                                               | Code that runs on the GPU. Typically for rendering graphics, but also for general computations.                                       |
+|[Texture](./features/textures.md)                                     | Typically an image (but more generally any data) that can be sampled by the GPU during rendering (in a shader).                       |
+|[Transforms](./features/transforms.md)                                | Position and orientation of an object. May be relative to a parent object.                                                            |
+|UVs / UV coordinates                                                  | Texture coordinates, used to map a texture to a mesh. The position on the texture that each vertex corresponds to.                    |
+|[Vertex / Vertices](./features/meshes.md)                             | Building block of Meshes, typically a point in 3D space, with associated vertex attributes.                                           |
+|[Vertex Attributes](./features/meshes.md)                             | Data associated with each vertex in a mesh, such as its position, color, UVs, normals, etc.                                           |

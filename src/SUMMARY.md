@@ -2,7 +2,7 @@
 
 [Introduction](./introduction.md)
 
-- [Bevy Cheatsheet](./cheatsheet.md)
+- [Quick Reference (Alphabetical Index / Glossary)](./cheatsheet.md)
 
 - [Bevy Setup Tips](./setup/_index.md)
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
