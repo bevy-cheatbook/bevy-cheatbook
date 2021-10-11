@@ -72,6 +72,7 @@ development of the project, such as libraries and technologies that bevy uses.
 
 |Topic                                                                 | Definition                                                                                                                            |
 |----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|[Assets; Bevy Assets](https://bevyengine.org/assets)                  | Page on the Bevy Website listing community-made plugins and content (not to be confused with Assets, as in your game's data).         |
 |Data-driven                                                           | Programming style / paradigm, where functionality is thought of in terms of the data it works with. Bevy is based on this philosophy. |
 |[ECS](./programming/ecs-intro.md)                                     | The data storage / programming paradigm Bevy uses. Conceptually like a database. Bevy is often compared to other ECS implementations. |                                                     |
 |[Features (cargo)](./setup/bevy-config.md#bevy-cargo-features)        | A way to configure what optional functionality is included in your build.                                                             |
@@ -101,6 +102,7 @@ General game development concepts that are applicable to working with Bevy.
 |[Material](./features/materials.md)                                   | The shading properties for a surface to be drawn by the GPU, such as its color/texture, how shiny it is, ...                          |
 |[Mesh](./features/meshes.md)                                          | 3D geometry data, consists of vertices, typically arranged into many triangles. Required for the GPU to draw an object.               |
 |[Parent/Child Hierarchy](./programming/parent-child.md)               | Entities in a hierarchical relationship.                                                                                              |
+|Procedural Generation                                                 | Creating game assets using code/math/algorithms (often done at runtime, instead of loading asset files).                              |
 |Raycast                                                               | Calculating a simulated "ray" in the game world. Used, for example, for checking what object is under the mouse cursor.               |
 |[Scenes](./features/scenes.md)                                        | Collection of preconfigured entities that you can spawn into the world. Similar to "prefabs" in other game engines.                   |
 |Shaders                                                               | Code that runs on the GPU. Typically for rendering graphics, but also for general computations.                                       |
@@ -111,15 +113,22 @@ General game development concepts that are applicable to working with Bevy.
 
 ## Rendering Jargon
 
-Concepts that come up when working with computer graphics and the GPU, as applicable to bevy.
+Concepts that come up when working with computer graphics and the GPU, as applicable to Bevy.
 
 |Topic                                                                 | Definition                                                                                                                            |
 |----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 |Anisotropic Filtering                                                 | Method of sampling a texture that accounts for the angle between the surface and the camera, resulting in better visual quality.      |
 |Anti-Aliasing                                                         | Techniques to reduce aliasing artifacts (shimmering or jagged edges, when there is too much detail for the display resolution).       |
+|Batching                                                              | Combining compatible data from many meshes/entities together, so that it can be drawn by the GPU all at once.                         |
 |[Camera](./features/camera.md)                                        | Entity representing a "view" into the game world, to be rendered.                                                                     |
 |Compute Shaders / GPU Compute                                         | A way to use the GPU for general data processing.                                                                                     |
 |[Coordinate System](./features/transforms.md#bevys-coordinate-system) | Orientation of the X/Y/Z axes, defining the 3D space.                                                                                 |
+|Culling                                                               | Figuring out which parts of the scene don't need to be drawn and skipping them to improve performance.                                |
+|Directional Light                                                     | Global light source that illuminates the whole world, at a specified angle/direction. Typically models the sun in outdoor scenes.     |
+|Draw Call                                                             | Telling the GPU to render something. Expensive; for best performance, aim to draw everything you need with the fewest draw calls.     |
+|Frustum                                                               | The space/volume that is visible from a camera. Everything that the camera can see.                                                   |
+|[Indices / Index Buffer](./features/meshes.md)                        | A way to make mesh data more compact (to save memory) by deduplicating vertices.                                                      |
+|Instancing                                                            | A way to tell the GPU to draw many copies of the same mesh efficiently. Useful for things like vegetation (lots of grass / trees).    |
 |[Material](./features/materials.md)                                   | The shading properties for a surface to be drawn by the GPU, such as its color/texture, how shiny it is, ...                          |
 |[Mesh](./features/meshes.md)                                          | 3D geometry data, consists of vertices, typically arranged into many triangles. Required for the GPU to draw an object.               |
 |Mipmaps                                                               | Textures with data available in many sizes (like 64x64, 32x32, 16x16, 8x8, ...). The GPU automatically uses the most appropriate.     |
@@ -127,12 +136,16 @@ Concepts that come up when working with computer graphics and the GPU, as applic
 |Normals / Normal Vectors                                              | The direction perpendicular to a surface. Useful for shading, to compute how light interacts with the surface.                        |
 |Normal Maps                                                           | A way to add extra detail to a 3D object, using a texture that changes the normals to affect how light interacts with it.             |
 |[Physically-Based Rendering](./features/pbr.md)                       | Modern realistic 3D graphics technique that uses materials that model physical properties, like how rough or metallic a surface is.   |
+|Point Light                                                           | A light source that radiates in all directions from a given position, like a lamp or candle.                                          |
+|Post-Processing                                                       | After rendering (but before displaying), apply some visual effects to the whole image.                                                |
 |Render Graph                                                          | Bevy's abstraction for modular configurable rendering. Connects "nodes" together to enable various graphical features.                |
-|Render Pipeline                                                       | The procedure to be executed by the GPU to draw something, includes shaders to run, as well as setting fixed hardware parameters.     |
+|Render Pipeline                                                       | The procedure to be executed by the GPU to draw something. Includes the shaders to run, as well as setting fixed hardware parameters. |
 |Sampler / Sampling (textures)                                         | How the GPU picks a value (like a color) from a specific position on a texture.                                                       |
 |Shaders                                                               | Code that runs on the GPU. Typically for rendering graphics, but also for general computations.                                       |
 |[Texture](./features/textures.md)                                     | Typically an image (but more generally any data) that can be sampled by the GPU during rendering (in a shader).                       |
+|Texel                                                                 | A pixel that is part of a texture.                                                                                                    |
 |[Transforms](./features/transforms.md)                                | Position and orientation of an object. May be relative to a parent object.                                                            |
+|Uniforms                                                              | Shader input data that is "global" for the whole mesh (unlike Vertex Attributes, which are per-vertex).                               |
 |UVs / UV coordinates                                                  | Texture coordinates, used to map a texture to a mesh. The position on the texture that each vertex corresponds to.                    |
 |[Vertex / Vertices](./features/meshes.md)                             | Building block of Meshes, typically a point in 3D space, with associated vertex attributes.                                           |
 |[Vertex Attributes](./features/meshes.md)                             | Data associated with each vertex in a mesh, such as its position, color, UVs, normals, etc.                                           |
