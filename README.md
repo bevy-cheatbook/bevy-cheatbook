@@ -22,7 +22,7 @@ Your donation helps me work on such freely-available content. Thank you! ❤️
 
 ## License
 
-Copyright © 2021 Jasen Borisov.
+Copyright © 2021 Ida Iyes.
 
 All code in the book is provided under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
 
