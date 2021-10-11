@@ -7,6 +7,7 @@
 - [Bevy Setup Tips](./setup/_index.md)
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
+  - [Customizing Bevy (features, modularity)](./setup/bevy-config.md)
 
 - [Bevy Programming](./programming/_index.md)
   - [Basics](./programming/_basics.md)
