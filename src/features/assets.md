@@ -53,6 +53,13 @@ scene files, or assets involving custom logic, might not.
 If you need to run custom logic as part of your hot-reloading workflow, you
 could implement it in a system, using [`AssetEvent`](#assetevent).
 
+Hot reloading is opt-in and has to be enabled in order to work. You can do
+this in a startup system:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:asset-watch}}
+```
+
 ## Handles
 
 Handles are the typical way to refer to a particular asset. When you spawn
@@ -90,9 +97,7 @@ after a `#` symbol.
 {{#include ../code/src/basics.rs:asset-path-labels}}
 ```
 
-(For GLTF, Bevy will generate labels like `Scene0` based on the index of
-each object in the file, but if your GLTF file includes names/labels exported
-from your 3D modeling software, Bevy will make those available, too)
+See the [GLTF page](./gltf.md) for more info about working with 3D models.
 
 ## Handles and Asset Lifetime (Garbage Collection)
 

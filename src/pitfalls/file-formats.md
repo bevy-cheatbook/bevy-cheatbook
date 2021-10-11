@@ -10,6 +10,6 @@ You can enable more formats with cargo features:
 
 ```toml
 [dependencies.bevy]
-version = "0.4"
+version = "0.5"
 features = ["jpeg", "tga", "bmp", "dds", "flac", "vorbis", "wav"]
 ```

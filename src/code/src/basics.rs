@@ -502,6 +502,12 @@ fn load_ui_font(
 }
 // ANCHOR_END: asset-server
 
+fn asset_watch(asset_server: Res<AssetServer>) {
+// ANCHOR: asset-watch
+    asset_server.watch_for_changes().unwrap();
+// ANCHOR_END: asset-watch
+}
+
 // ANCHOR: asset-path-labels
 fn load_gltf_things(
     mut commands: Commands,
@@ -1360,6 +1366,7 @@ pub fn _main_all() {
     App::build()
         .add_startup_system(debug_start.system())
         .add_startup_system(load_ui_font.system())
+        .add_startup_system(asset_watch.system())
         .add_startup_system(load_extra_assets.system())
         .add_system(commands_catchall.system())
         .add_system(query_entities.system())
