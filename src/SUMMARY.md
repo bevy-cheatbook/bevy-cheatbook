@@ -42,6 +42,7 @@
   - [Input Handling](./features/input-handling.md)
   - [Cameras](./features/camera.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
+  - [Audio](./features/audio.md)
 
 - [Common Pitfalls](./pitfalls/_index.md)
   - [Slow Performance](./pitfalls/performance.md)
