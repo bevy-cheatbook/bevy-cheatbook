@@ -535,6 +535,110 @@ fn load_extra_assets(
 }
 // ANCHOR_END: asset-folder
 
+// ANCHOR: spawn-gltf-simple
+fn spawn_gltf(
+    mut commands: Commands,
+    ass: Res<AssetServer>,
+) {
+    // note that we have to include the `Scene0` label
+    let my_gltf = ass.load("my.glb#Scene0");
+
+    // to be able to position our 3d model:
+    // spawn a parent entity with a Transform and GlobalTransform
+    // and spawn our gltf as a scene under it
+    commands.spawn_bundle((
+        Transform::from_xyz(2.0, 0.0, -5.0),
+        GlobalTransform::identity(),
+    )).with_children(|parent| {
+        parent.spawn_scene(my_gltf);
+    });
+}
+// ANCHOR_END: spawn-gltf-simple
+
+// ANCHOR: gltf-complex
+use bevy::gltf::Gltf;
+
+/// Helper resource for tracking our asset
+struct MyAssetPack(Handle<Gltf>);
+
+fn load_gltf(
+    mut commands: Commands,
+    ass: Res<AssetServer>,
+) {
+    let gltf = ass.load("my_asset_pack.glb");
+    commands.insert_resource(MyAssetPack(gltf));
+}
+
+fn spawn_gltf_objects(
+    mut commands: Commands,
+    my: Res<MyAssetPack>,
+    assets_gltf: Res<Assets<Gltf>>,
+) {
+    // if the GLTF has loaded, we can navigate its contents
+    if let Some(gltf) = assets_gltf.get(&my.0) {
+        // spawn the first scene in the file
+        commands.spawn_scene(gltf.scenes[0].clone());
+
+        // spawn the scene named "YellowCar"
+        // do it under a parent entity, to position it in the world
+        commands.spawn_bundle((
+            Transform::from_xyz(1.0, 2.0, 3.0),
+            GlobalTransform::identity(),
+        )).with_children(|parent| {
+            parent.spawn_scene(gltf.named_scenes["YellowCar"].clone());
+        });
+
+        // PERF: the `.clone()`s are just for asset handles, don't worry :)
+    }
+}
+// ANCHOR_END: gltf-complex
+
+// ANCHOR: gltf-manual-pbr
+use bevy::gltf::GltfMesh;
+
+fn gltf_manual_entity(
+    mut commands: Commands,
+    my: Res<MyAssetPack>,
+    assets_gltf: Res<Assets<Gltf>>,
+    assets_gltfmesh: Res<Assets<GltfMesh>>,
+) {
+    if let Some(gltf) = assets_gltf.get(&my.0) {
+        // Get the GLTF Mesh named "CarWheel"
+        // (unwrap safety: we know the GLTF has loaded already)
+        let carwheel = assets_gltfmesh.get(&gltf.named_meshes["CarWheel"]).unwrap();
+
+        // Spawn a PBR entity with the mesh and material of the first GLTF Primitive
+        commands.spawn_bundle(PbrBundle {
+            mesh: carwheel.primitives[0].mesh.clone(),
+            // (unwrap: material is optional, we assume this primitive has one)
+            material: carwheel.primitives[0].material.clone().unwrap(),
+            ..Default::default()
+        });
+    }
+}
+// ANCHOR_END: gltf-manual-pbr
+
+// ANCHOR: gltf-assetpath
+fn use_gltf_things(
+    mut commands: Commands,
+    ass: Res<AssetServer>,
+) {
+    // spawn the first scene in the file
+    let scene0 = ass.load("my_asset_pack.glb#Scene0");
+    commands.spawn_scene(scene0);
+
+    // spawn the second scene under a parent entity
+    // (to move it)
+    let scene1 = ass.load("my_asset_pack.glb#Scene1");
+    commands.spawn_bundle((
+        Transform::from_xyz(1.0, 2.0, 3.0),
+        GlobalTransform::identity(),
+    )).with_children(|parent| {
+        parent.spawn_scene(scene1);
+    });
+}
+// ANCHOR_END: gltf-assetpath
+
 fn commands_catchall(mut commands: Commands) {
 // ANCHOR: ui-camera
 commands.spawn_bundle(UiCameraBundle::default());
@@ -1368,6 +1472,11 @@ pub fn _main_all() {
         .add_startup_system(load_ui_font.system())
         .add_startup_system(asset_watch.system())
         .add_startup_system(load_extra_assets.system())
+        .add_startup_system(spawn_gltf.system())
+        .add_startup_system(load_gltf.system())
+        .add_startup_system(spawn_gltf_objects.system())
+        .add_startup_system(use_gltf_things.system())
+        .add_startup_system(gltf_manual_entity.system())
         .add_system(commands_catchall.system())
         .add_system(query_entities.system())
         .add_system(query_player.system())
