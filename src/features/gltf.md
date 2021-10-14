@@ -155,7 +155,7 @@ just use scenes)
 
 ### AssetPath with Labels
 
-This is another way to access specific sub-assets. It is more limited,
+This is another way to access specific sub-assets. It is less reliable,
 but may be easier to use in some cases.
 
 Use the `AssetServer` to convert a path string into a `Handle`.
@@ -163,8 +163,10 @@ Use the `AssetServer` to convert a path string into a `Handle`.
 The advantage is that you can get handles to your sub-assets immediately,
 even if your GLTF file hasn't loaded yet.
 
-The disadvantage is that currently only using a numerial index is
-supported. You cannot address sub-assets by name.
+The disadvantage is that it is more error-prone. If you specify a sub-asset
+that doesn't actually exist in the file, or mis-type the label, or use the
+wrong label, it will just silently not work. Also, currently only using a
+numerial index is supported. You cannot address sub-assets by name.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:gltf-assetpath}}
