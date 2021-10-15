@@ -2,6 +2,8 @@
 
 Bevy uses the GLTF 2.0 file format for 3D assets.
 
+(other formats such as Wavefront OBJ may be unofficially available via 3rd-party plugins)
+
 ## Quick-Start: Spawning 3D Models into your World
 
 The simplest use case is to just load a "3D model" and spawn it into the game world.
