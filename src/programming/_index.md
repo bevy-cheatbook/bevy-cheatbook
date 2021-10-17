@@ -2,15 +2,11 @@
 
 Overview of programming in Bevy.
 
-Includes concise explanations of each core concept, with example code to
+Includes concise explanations of each core concept, with code snippets to
 show how it might be used in a game. Care is taken to point out any important
 considerations for using each feature and to recommend known good practices.
 
 Intended for people learning how to use Bevy.
-
-If you are already familiar with the concepts, check out
-[Bevy Cheatsheet](../cheatsheet.md)
-for a condensed listing of just the syntax + important usage notes.
 
 This chapter is split into three sections:
   - [Basics](./_basics.md):
