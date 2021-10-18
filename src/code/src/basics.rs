@@ -1440,6 +1440,7 @@ const TIMESTEP_2_PER_SECOND: f64 = 30.0 / 60.0;
 
 fn main() {
     App::build()
+        .add_plugins(DefaultPlugins)
         .add_system_set(
             SystemSet::new()
                 // This prints out "hello world" once every second
