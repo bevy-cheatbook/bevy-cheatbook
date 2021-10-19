@@ -40,6 +40,18 @@ page to find even more things. :)
 
 [These are listed on a separate page.](./bevy-tools.md)
 
+### Code Helpers
+
+[`bevy_loading`](https://github.com/inodentry/bevy_loading) is a helper for
+[state](../programming/states.md) transitions. It lets you register systems
+that report their progress, tracks the progress, and transitions to the next
+state when they are all ready. Most useful for loading screens, but can be used
+more generally. Can also track the loading of [assets](../features/assets.md).
+
+[`bevy_asset_loader`](https://github.com/NiklasEi/bevy_asset_loader) is a
+more flexible and opinionated helper for managing and loading game assets.
+Uses custom annotations to let you declare your assets more conveniently.
+
 ### Audio
 
 Use [`bevy_kira_audio`](https://github.com/NiklasEi/bevy_kira_audio) instead of the built-in `bevy_audio`.
@@ -119,15 +131,3 @@ For 3D skeletal animation, unfortunately, there do not seem to be plugins yet.
 Also, a long time ago, there was [this PR](https://github.com/bevyengine/bevy/pull/1429)
 with an attempt to contribute a full-featured animation system to Bevy. To
 my knowledge, it has not (yet) been made available as a separate plugin.
-
-### Code Helpers
-
-[`bevy_loading`](https://github.com/inodentry/bevy_loading) is a helper for
-[state](../programming/states.md) transitions. It lets you register systems
-that report their progress, tracks the progress, and transitions to the next
-state when they are all ready. Most useful for loading screens, but can be used
-more generally. Can also track the loading of [assets](../features/assets.md).
-
-[`bevy_asset_loader`](https://github.com/NiklasEi/bevy_asset_loader) is a
-more flexible and opinionated helper for managing and loading game assets.
-Uses custom annotations to let you declare your assets more conveniently.

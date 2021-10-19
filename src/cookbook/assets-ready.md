@@ -4,6 +4,12 @@
 
 ---
 
+You might want to use a 3rd-party library for this. See [my recommendations
+for helper crates](../setup/unofficial-plugins.md#code-helpers) that can do
+this for you. Otherwise, this page shows you how to roll your own.
+
+---
+
 You might want to know when your various assets have all finished loading, and
 take some action, such as exiting your loading screen and starting gameplay.
 
