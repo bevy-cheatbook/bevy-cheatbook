@@ -47,12 +47,16 @@ and consider [donating](#support-me) 🙂)
 Bevy has a rich collection of [official code
 examples](https://github.com/bevyengine/bevy/tree/latest/examples#examples).
 
-Check out [bevy-assets](https://bevyengine.org/assets/#assets)
-, for community-made resources.
+Check out [bevy-assets](https://bevyengine.org/assets),
+for community-made resources.
 
 Our community is very friendly and helpful. Feel welcome to join the [Bevy
 Discord](https://discord.gg/bevy) to chat, ask questions, or get involved
 in the project!
+
+If you want to see some games made with Bevy, see
+[itch.io](https://itch.io/games/tag-bevy) or [Bevy
+Assets](https://bevyengine.org/assets/#games).
 
 ## Maintenance
 

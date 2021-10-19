@@ -8,6 +8,8 @@
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
   - [Customizing Bevy (features, modularity)](./setup/bevy-config.md)
+  - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
+  - [3rd-party Plugin Recommendations](./setup/unofficial-plugins.md)
 
 - [Bevy Programming](./programming/_index.md)
   - [Basics](./programming/_basics.md)

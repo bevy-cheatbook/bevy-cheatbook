@@ -83,7 +83,7 @@ development of the project, such as libraries and technologies that bevy uses.
 |[main (bevy main)](./setup/bevy-git.md)                               | Development version of Bevy; git branch containing the latest unreleased changes.                                                     |
 |Metal                                                                 | Low-level system API for accessing GPU hardware on Apple systems (macOS/iOS).                                                         |
 |OpenGL                                                                | Legacy GPU API for systems that do not support Vulkan. Not yet supported by Bevy.                                                     |
-|[Plugins (3rd-party crates)](./programming/plugins.md)                | Libraries made by the community that can be added to your Bevy App.                                                                   |
+|[Plugins (3rd-party crates)](./setup/unofficial-plugins.md)           | Libraries made by the community that can be added to your Bevy App.                                                                   |
 |Vulkan                                                                | Low-level system API for accessing GPU hardware. The interface to the graphics driver. Available on most platforms except Apple.      |
 |[WebAssembly (WASM)](./platforms/wasm.md)                             | New technology that allows running software like Bevy inside of a web browser.                                                        |
 |WebGPU (WGPU)                                                         | The cross-platform GPU API that Bevy uses. Allows using modern GPU features safely across different platforms (desktop/mobile/web).   |
