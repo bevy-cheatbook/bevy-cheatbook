@@ -334,6 +334,30 @@ fn check_res_added(
 }
 // ANCHOR_END: changed-res
 
+// ANCHOR: res-removal-detection
+fn detect_removed_res(
+    my_res: Option<Res<MyResource>>,
+    mut my_res_existed: Local<bool>,
+) {
+    if let Some(my_res) = my_res {
+        // the resource exists!
+
+        // remember that!
+        *my_res_existed = true;
+
+        // (... you can do something with the resource here if you want ...)
+    } else if *my_res_existed {
+        // the resource does not exist, but we remember it existed!
+        // (it was removed)
+
+        // forget about it!
+        *my_res_existed = false;
+
+        // ... do something now that it is gone ...
+    }
+}
+// ANCHOR_END: res-removal-detection
+
 use bevy::render::camera::Camera;
 // ANCHOR: query-parent
 fn camera_with_parent(
@@ -1489,6 +1513,49 @@ fn fast_timestep() {
 // ANCHOR_END: fixed-timestep
 }
 
+#[allow(dead_code)]
+mod app14 {
+use super::*;
+// ANCHOR: removal-detection
+/// Some component type for the sake of this example.
+struct Seen;
+
+fn main() {
+    App::build()
+        .add_plugins(DefaultPlugins)
+        // we could add our system to Bevy's `PreUpdate` stage
+        // (alternatively, you could create your own stage)
+        .add_system_to_stage(CoreStage::PreUpdate, remove_components.system())
+        // our detection system runs in a later stage
+        // (in this case: Bevy's default `Update` stage)
+        .add_system(detect_removals.system())
+        .run();
+}
+
+fn remove_components(
+    mut commands: Commands,
+    q: Query<(Entity, &Transform), With<Seen>>,
+) {
+    for (e, transform) in q.iter() {
+        if transform.translation.y < -10.0 {
+            // remove the `Seen` component from the entity
+            commands.entity(e)
+                .remove::<Seen>();
+        }
+    }
+}
+
+fn detect_removals(
+    removals: RemovedComponents<Seen>,
+    // ... (maybe Commands or a Query ?) ...
+) {
+    for entity in removals.iter() {
+        // do something with the entity
+    }
+}
+// ANCHOR_END: removal-detection
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::build()
@@ -1501,6 +1568,7 @@ pub fn _main_all() {
         .add_startup_system(spawn_gltf_objects.system())
         .add_startup_system(use_gltf_things.system())
         .add_startup_system(gltf_manual_entity.system())
+        .add_system(detect_removed_res.system())
         .add_system(check_res_added.system())
         .add_system(check_res_changed.system())
         .add_system(commands_catchall.system())

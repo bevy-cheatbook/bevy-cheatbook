@@ -13,6 +13,10 @@ Use [query filters](./queries.md#query-filters):
    - triggers when the component is accessed mutably
    - also triggers if the component is newly-added (as per `Added`)
 
+(If you want to react to removals, see the page on [removal
+detection](./removal-detection.md). It works differently and is much
+trickier to use.)
+
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-detection}}
 ```

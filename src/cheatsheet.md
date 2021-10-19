@@ -48,6 +48,7 @@ Terms and concepts related to Bevy-specific features and APIs.
 |[Queries](./programming/queries.md)                                   | Find matching entities and access their component data.                                                                               |
 |[Query Filters](./programming/queries.md#query-filters)               | Criteria for narrowing down the entities to be accessed by a query.                                                                   |
 |[Query Sets](./programming/query-sets.md)                             | Resolve query conflicts.                                                                                                              |
+|[Removal Detection](./programming/removal-detection.md)               | Write logic that responds to data being removed from the ECS.                                                                         |
 |[Resources](./programming/res.md)                                     | Global data for the whole app.                                                                                                        |
 |[Run Criteria](./programming/run-criteria.md)                         | Low-level primitive for controlling if systems run.                                                                                   |
 |[Scenes](./features/scenes.md)                                        | Collection of preconfigured entities that you can spawn into the world. Similar to "prefabs" in other game engines.                   |

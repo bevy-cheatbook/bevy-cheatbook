@@ -35,6 +35,7 @@
     - [Labels](./programming/labels.md)
   - [Advanced](./programming/_advanced.md)
     - [Stages](./programming/stages.md)
+    - [Removal Detection](./programming/removal-detection.md)
     - [[WIP] Direct World/ECS Access](./programming/world-exclusive.md)
     - [[WIP] Non-Send Resources](./programming/non-send.md)
 
