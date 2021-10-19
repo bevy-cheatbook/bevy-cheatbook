@@ -310,6 +310,29 @@ fn update_player_xp(
 }
 // ANCHOR_END: change-if-wrap
 
+// ANCHOR: changed-res
+fn check_res_changed(
+    my_res: Res<MyResource>,
+) {
+    if my_res.is_changed() {
+        // do something
+    }
+}
+
+fn check_res_added(
+    // use Option, not to panic if the resource doesn't exist yet
+    my_res: Option<Res<MyResource>>,
+) {
+    if let Some(my_res) = my_res {
+        // the resource exists
+
+        if my_res.is_added() {
+            // it was just added
+            // do something
+        }
+    }
+}
+// ANCHOR_END: changed-res
 
 use bevy::render::camera::Camera;
 // ANCHOR: query-parent
@@ -1478,6 +1501,8 @@ pub fn _main_all() {
         .add_startup_system(spawn_gltf_objects.system())
         .add_startup_system(use_gltf_things.system())
         .add_startup_system(gltf_manual_entity.system())
+        .add_system(check_res_added.system())
+        .add_system(check_res_changed.system())
         .add_system(commands_catchall.system())
         .add_system(query_entities.system())
         .add_system(query_player.system())

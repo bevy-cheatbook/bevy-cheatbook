@@ -3,7 +3,7 @@
 Bevy allows you to easily detect when data is changed. You can use this to
 perform actions in response to changes.
 
-# Components
+## Components
 
 Use [query filters](./queries.md#query-filters):
  - `Added<T>`: detect new component instances
@@ -37,6 +37,17 @@ have occured since the last time your detecting system ran. If your
 system only runs sometimes (such as with [states](./states.md) or [run
 criteria](./run-criteria.md)), you *do not* have to worry about missing
 changes.
+
+## Resources
+
+For resources, change detection is provided via methods on the
+`Res`/`ResMut` system parameters.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:changed-res}}
+```
+
+This works the same way as change detection for components.
 
 ## Possible Pitfalls
 
