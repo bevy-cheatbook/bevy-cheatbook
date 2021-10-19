@@ -22,14 +22,6 @@ Some suggestions:
  - Create plugins for different [states](./states.md).
  - Create plugins for various sub-systems, like physics or input handling.
 
-## Publishing Crates
-
-Plugins give you a nice way to publish Bevy-based libraries for other people
-to easily include into their projects.
-
-If you intend to publish plugins as crates for public use, you should read
-[the official guidelines for plugin authors](https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md).
-
 ## Plugin groups
 
 Plugin groups register multiple plugins at once. Bevy's `DefaultPlugins`
@@ -56,3 +48,19 @@ be compiled into your program.
 If you want to slim down your build, you should look at disabling Bevy's
 default cargo features, or depending on the various Bevy sub-crates
 individually.
+
+## Publishing Crates
+
+Plugins give you a nice way to publish Bevy-based libraries for other people
+to easily include into their projects.
+
+If you intend to publish plugins as crates for public use, you should read
+[the official guidelines for plugin authors](https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md).
+
+Don't forget to submit an entry to [Bevy Assets](https://bevyengine.org/assets)
+on the official website, so that people can find your plugin
+more easily. You can do this by making a PR in [the Github
+repo](https://github.com/bevyengine/bevy-assets).
+
+If you are interested in supporting bleeding-edge Bevy (main), [see here
+for advice](../setup/bevy-git.md#advice-for-plugin-authors).
