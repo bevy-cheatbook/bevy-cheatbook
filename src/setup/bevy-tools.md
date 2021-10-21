@@ -26,6 +26,9 @@ is a tool to help visualize your [App Schedule](../programming/app-builder.md)
 their [ordering dependencies](../programming/system-order.md) and
 [stages](../programming/stages.md)), and the Bevy Render Graph.
 
+[`bevy_lint`](https://github.com/MinerSebas/bevy_lint) is a linter (based on
+`dylint`) that can automatically check your Bevy code for some common issues.
+
 If you are getting confusing/cryptic compiler error messages (like
 [these](../pitfalls/into-system.md)) and you cannot figure them out,
 [`bevycheck`](https://github.com/jakobhellermann/bevycheck) is a tool you

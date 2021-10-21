@@ -61,6 +61,18 @@ need this plugin for pretty much any game with audio.
 
 See [this page](../features/audio.md) for help on how to set it up.
 
+### Camera
+
+[`bevy_config_cam`](https://github.com/BlackPhlox/bevy_config_cam) is a nice
+plugin for easily adding camera controls to your Bevy 3D project. It gives
+you a a choice of various common camera behaviors (like follow, top-view,
+FPS-style, free-roaming).
+
+Cameras are something that can be very game-specific. As you progress with
+your project, you would probably want to implement your own custom camera
+control logic for your game. However, this plugin is amazing when you are
+starting out on a new project.
+
 ### Tilemap
 
 If you are making a 2D game based on a tile-map, there are plugins to
