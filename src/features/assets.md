@@ -1,5 +1,11 @@
 # Assets
 
+Relevant official examples:
+[`asset_loading`](https://github.com/bevyengine/bevy/blob/latest/examples/asset/asset_loading.rs),
+[`hot_asset_reloading`](https://github.com/bevyengine/bevy/blob/latest/examples/asset/hot_asset_reloading.rs).
+
+---
+
 Bevy has a flexible system for loading and managing your game assets
 asynchronously (in the background, without causing lag spikes in your game).
 

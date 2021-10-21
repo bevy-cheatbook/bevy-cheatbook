@@ -1,5 +1,10 @@
 # System Chaining
 
+Relevant official examples:
+[`system_chaining`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/system_chaining.rs).
+
+---
+
 Systems can take an input and produce an output, and be connected together
 to run as a single larger system (chain).
 

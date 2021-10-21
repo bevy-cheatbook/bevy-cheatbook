@@ -1,5 +1,10 @@
 # ECS as a Data Structure
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+
+---
+
 Bevy stores and manages all your data for you, using the Bevy ECS
 (Entity-Component System).
 

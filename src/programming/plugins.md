@@ -1,5 +1,11 @@
 # Plugins
 
+Relevant official examples:
+[`plugin`](https://github.com/bevyengine/bevy/blob/latest/examples/app/plugin.rs),
+[`plugin_group`](https://github.com/bevyengine/bevy/blob/latest/examples/app/plugin_group.rs).
+
+---
+
 As your project grows, it can be useful to make it more modular. You can
 split it into plugins.
 

@@ -1,5 +1,11 @@
 # Hierarchical (Parent/Child) Entities
 
+Relevant official examples:
+[`hierarchy`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/hierarchy.rs),
+[`parenting`](https://github.com/bevyengine/bevy/blob/latest/examples/3d/parenting.rs).
+
+---
+
 Technically, the Entities/Components themselves cannot form a hierarchy
 (it is a flat data structure). However, logical hierarchies are a common
 pattern in games.

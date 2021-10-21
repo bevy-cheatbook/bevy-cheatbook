@@ -1,5 +1,11 @@
 # 3D Models (GLTF)
 
+Relevant official examples:
+[`load_gltf`](https://github.com/bevyengine/bevy/blob/latest/examples/3d/load_gltf.rs),
+[`update_gltf_scene`](https://github.com/bevyengine/bevy/blob/latest/examples/3d/update_gltf_scene.rs).
+
+---
+
 Bevy uses the GLTF 2.0 file format for 3D assets.
 
 (other formats such as Wavefront OBJ may be unofficially available via 3rd-party plugins)

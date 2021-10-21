@@ -1,5 +1,10 @@
 # Commands
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+
+---
+
 Use `Commands` to spawn/despawn entities, add/remove components on existing
 entities, manage resources.
 

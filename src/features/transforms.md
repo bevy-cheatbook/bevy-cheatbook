@@ -1,5 +1,10 @@
 # Transforms and Coordinates
 
+Relevant official examples:
+[`parenting`](https://github.com/bevyengine/bevy/blob/latest/examples/3d/parenting.rs).
+
+---
+
 First, a quick definition, if you are new to game development:
 
 a Transform is what allows you to place an object in the game world. It

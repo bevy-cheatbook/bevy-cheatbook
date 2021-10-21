@@ -1,5 +1,10 @@
 # Resources
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+
+---
+
 Resources allow you to store a single global instance of some data type,
 independently of entities.
 

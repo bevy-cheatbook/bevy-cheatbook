@@ -1,5 +1,10 @@
 # Local Resources
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+
+---
+
 `Local<T>` is a system parameter similar to `ResMut<T>`, which gives you
 full mutable access to an instance of some data type, that is independent
 from entities and components.

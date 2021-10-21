@@ -1,8 +1,7 @@
 # Fixed Timestep
 
-[official example]: https://github.com/bevyengine/bevy/blob/latest/examples/ecs/fixed_timestep.rs
-
-(consult the [official example] for more details)
+Relevant official examples:
+[`fixed_timestep`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/fixed_timestep.rs).
 
 ---
 

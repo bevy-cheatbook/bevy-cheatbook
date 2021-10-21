@@ -1,5 +1,14 @@
 # App Builder (main function)
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs),
+[`hello_world`](https://github.com/bevyengine/bevy/blob/latest/examples/hello_world.rs),
+[`empty`](https://github.com/bevyengine/bevy/blob/latest/examples/app/empty.rs),
+[`empty_defaults`](https://github.com/bevyengine/bevy/blob/latest/examples/app/empty_defaults.rs),
+[`headless`](https://github.com/bevyengine/bevy/blob/latest/examples/app/headless.rs).
+
+---
+
 To enter the bevy runtime, you need to configure an `App`, composed of all
 the [systems](./systems.md), [plugins](./plugins.md), [event](./events.md)
 types, and [resources](./res.md), that you want to use.

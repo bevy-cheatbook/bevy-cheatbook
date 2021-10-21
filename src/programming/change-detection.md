@@ -1,5 +1,10 @@
 # Change Detection
 
+Relevant official examples:
+[`change_detection`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/change_detection.rs).
+
+---
+
 Bevy allows you to easily detect when data is changed. You can use this to
 perform actions in response to changes.
 

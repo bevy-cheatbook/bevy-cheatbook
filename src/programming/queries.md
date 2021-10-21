@@ -1,5 +1,10 @@
 # Queries
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+
+---
+
 Queries let you access components of entities.
 
 ```rust,no_run,noplayground

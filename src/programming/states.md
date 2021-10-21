@@ -1,5 +1,10 @@
 # States
 
+Relevant official examples:
+[`state`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/state.rs).
+
+---
+
 States allow you to structure the runtime "flow" of your app.
 
 This is how you can implement things like:

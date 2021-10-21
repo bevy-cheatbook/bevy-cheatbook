@@ -1,5 +1,9 @@
 # Input Handling
 
+Relevant official examples: [everything in the "Input" category](https://github.com/bevyengine/bevy/tree/latest/examples#input).
+
+---
+
 [Click here to download the example code.](../code/examples/input.rs)
 
 This is a complete example that you can run. It will print all input activity

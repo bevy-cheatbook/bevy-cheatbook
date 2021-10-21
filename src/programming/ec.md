@@ -1,3 +1,8 @@
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+
+---
+
 # Entities
 
 Entities are just a simple integer ID, that identifies a particular set of

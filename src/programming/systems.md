@@ -1,5 +1,12 @@
 # Systems
 
+Relevant official examples:
+[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs),
+[`startup_system`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/startup_system.rs),
+[`system_param`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/system_param.rs).
+
+---
+
 Systems are functions you write, which are run by Bevy.
 
 This is where you implement all your game logic.

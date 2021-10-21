@@ -1,5 +1,10 @@
 # Events
 
+Relevant official examples:
+[`event`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/event.rs).
+
+---
+
 Send data between systems! Let your systems communicate with each other!
 
 To send events, use an `EventWriter<T>`.
