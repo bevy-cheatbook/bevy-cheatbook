@@ -37,6 +37,7 @@
     - [Stages](./programming/stages.md)
     - [Removal Detection](./programming/removal-detection.md)
     - [[WIP] Direct World/ECS Access](./programming/world-exclusive.md)
+    - [Writing Tests for Systems](./programming/system-tests.md)
     - [[WIP] Non-Send Resources](./programming/non-send.md)
 
 - [Bevy Features](./features/_index.md)
