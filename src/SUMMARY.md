@@ -58,11 +58,11 @@
   - [Audio](./features/audio.md)
 
 - [Common Pitfalls](./pitfalls/_index.md)
-  - [Slow Performance](./pitfalls/performance.md)
+  - [Strange build errors (like "failed to select a version")](./pitfalls/build-errors.md)
   - [Error adding function as system](./pitfalls/into-system.md)
-  - [Strange Compilation Errors](./pitfalls/build-errors.md)
   - [Combining Query Filters](./pitfalls/query-filter.md)
   - [Borrow multiple fields from struct](./pitfalls/split-borrows.md)
+  - [Slow Performance](./pitfalls/performance.md)
   - [Frame Delays / 1-frame-lag](./pitfalls/frame-delay.md)
   - [UI is not displaying](./pitfalls/ui-camera.md)
   - [Cannot see sprites in 2D](./pitfalls/2d-camera-z.md)

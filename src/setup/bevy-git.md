@@ -48,23 +48,25 @@ going on, get help, or participate in discussions.
 
 ## Common pitfall: mysterious compile errors
 
-When changing between different versions of bevy (say, transitioning an existing
+When changing between different versions of Bevy (say, transitioning an existing
 project from the released version to the git version), you might get lots of
 strange unexpected build errors.
 
-This tends to happen because cargo hasn't fully updated the whole dependency
-tree. It is often fixed by removing `Cargo.lock` and the `target` directory:
+You can typically fix them by removing `Cargo.lock` and the `target` directory:
 
 ```sh
 rm -rf Cargo.lock target
 ```
 
-If you are still getting lots of strange build errors, it is probably
-because cargo is trying to use multiple different versions of bevy in your
-dependency tree simultaneously. This can happen if some of the plugins you
-use have specified a different bevy version from your project. This is
-annoying, but easy to fix. Read the next section below for advice on how to
-configure your project in a way that minimizes the chances of this happening.
+See [this page](../pitfalls/build-errors.md) for more info. See this [cargo
+issue](https://github.com/rust-lang/cargo/issues/9994) about this bug.
+
+If you are still getting errors, it is probably because cargo is trying
+to use multiple different versions of bevy in your dependency tree
+simultaneously. This can happen if some of the plugins you use have specified
+a different bevy version from your project. This is annoying, but easy to
+fix. Read the next section below for advice on how to configure your project
+in a way that minimizes the chances of this happening.
 
 ## How to use bleeding-edge bevy?
 
