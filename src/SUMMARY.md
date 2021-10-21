@@ -43,6 +43,7 @@
 - [Bevy Features](./features/_index.md)
   - [Transforms and Coordinates](./features/transforms.md)
   - [Assets](./features/assets.md)
+  - [Hot-Reloading Assets](./features/hot-reload.md)
   - [Input Handling](./features/input-handling.md)
   - [[WIP] Window Management](./features/windowing.md)
   - [[WIP] Cameras](./features/camera.md)
