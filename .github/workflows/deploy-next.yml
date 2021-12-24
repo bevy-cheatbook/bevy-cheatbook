@@ -19,6 +19,8 @@ jobs:
         with:
           mdbook-version: "latest"
 
+      - run: sh -c "echo '<meta name=\"robots\" content=\"noindex\">' >> theme/head.hbs"
+
       - run: mdbook build
 
       - name: Deploy to Github pages
