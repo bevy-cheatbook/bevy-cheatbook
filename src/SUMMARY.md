@@ -60,7 +60,6 @@
 - [Common Pitfalls](./pitfalls/_index.md)
   - [Strange build errors (like "failed to select a version")](./pitfalls/build-errors.md)
   - [Error adding function as system](./pitfalls/into-system.md)
-  - [Combining Query Filters](./pitfalls/query-filter.md)
   - [Borrow multiple fields from struct](./pitfalls/split-borrows.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [Frame Delays / 1-frame-lag](./pitfalls/frame-delay.md)
