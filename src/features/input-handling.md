@@ -67,6 +67,8 @@ delays](../pitfalls/frame-delay.md).
 
 Keyboard keys can be identified by Scan Code or Key Code.
 
+Note: Command Key on Mac corresponds to the Super/Windows Key on PC.
+
 Scan Codes represent the physical key on the keyboard, regardless of the
 system layout. Key Codes represent the symbol/letter on each key and are
 dependent on the keyboard layout.
