@@ -11,9 +11,8 @@ without such abstractions, if you really need more direct control.
 Run Criteria can be applied to individual [systems](./systems.md), [system
 sets](./system-sets.md), and [stages](./stages.md).
 
-Run Criteria are Bevy systems that return a value of type [`enum
-ShouldRun`](https://docs.rs/bevy/0.5.0/bevy/ecs/schedule/enum.ShouldRun.html).
-They can accept any system parameters, like a normal system.
+Run Criteria are Bevy systems that return a value of type `enum
+ShouldRun`. They can accept any system parameters, like a normal system.
 
 This example shows how run criteria might be used to implement different
 multiplayer modes:

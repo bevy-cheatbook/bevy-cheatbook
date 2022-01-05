@@ -12,9 +12,9 @@ fn exit_system(mut exit: EventWriter<AppExit>) {
 
 // ANCHOR: main
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_system(bevy::input::system::exit_on_esc_system.system())
+        .add_system(bevy::input::system::exit_on_esc_system)
         .run();
 }
 // ANCHOR_END: main

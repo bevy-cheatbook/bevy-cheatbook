@@ -11,7 +11,7 @@ main development branch:
 
 ```toml
 [dependencies]
-bevy = "0.5"
+bevy = "0.6"
 
 [patch.crates-io]
 bevy = { git = "https://github.com/bevyengine/bevy" }
@@ -75,7 +75,7 @@ The recommended way is using a cargo patch:
 ```toml
 [dependencies]
 # keep this as normal
-bevy = "0.5"
+bevy = "0.6"
 
 [patch.crates-io]
 # override it with bevy from git
@@ -86,7 +86,7 @@ bevy = { git = "https://github.com/bevyengine/bevy" }
 
 Doing it this way will tell cargo to replace the version of bevy in your
 entire dependency tree, including for 3rd-party plugins (assuming that they
-also list the crates-io version (`bevy = "0.5"`) in their dependencies).
+also list the crates-io version (`bevy = "0.6"`) in their dependencies).
 
 This works better than specifying the `git` or `path` directly in your
 `[dependencies]`, because you avoid the risk of potentially having multiple

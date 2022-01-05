@@ -23,23 +23,21 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.5"
+version = "0.6"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
   # These are the default features:
   # (keep whichever you like)
-  "bevy_dynamic_plugin",
   "render",
-  "bevy_wgpu",
   "bevy_winit",
   "bevy_gilrs",
-  "bevy_gltf",
   "bevy_audio",
   "png",
   "hdr",
-  "mp3",
+  "vorbis",
   "x11",
+  "filesystem_watcher",
   # These are other features that may be of interest:
   # (add any of these that you need)
   "bmp",
@@ -48,29 +46,28 @@ features = [
   "jpeg",
   "wav"
   "flac",
-  "vorbis",
+  "mp3",
+  "subpixel_glyph_atlas",
   "dynamic",
   "serialize",
   "trace",
+  "trace_tracy",
+  "trace_chrome",
   "wgpu_trace",
   "wayland"
 ]
 ```
 
-(See [here](https://docs.rs/crate/bevy/0.5.0/features) for a full list of
+(See [here](https://docs.rs/crate/bevy/0.6.0/features) for a full list of
 Bevy's cargo features.)
 
 ### Graphics / Rendering
 
-For a standalone/desktop graphical application or game (most Bevy projects),
-you need `render`, `bevy_winit`, and `bevy_wgpu`.
+For a graphical application or game (most Bevy projects),
+you need `render`, `bevy_winit`.
 
 If you don't need graphics (like for a dedicated game server, scientific
 simulation, etc.), you may remove these features.
-
-For a [web project](../platforms/wasm.md) (on bevy 0.5), remove `bevy_wgpu`,
-and instead use the `bevy_webgl2` 3rd-party plugin crate. This will no longer
-be required in the future Bevy 0.6 version.
 
 There are also [community-made alternative backend
 crates](https://bevyengine.org/assets/#backends) that could replace Bevy's
@@ -81,7 +78,7 @@ default graphics, if you want that for any reason.
 Bevy's audio is very limited in functionality and
 somewhat broken. It is recommended that you use the
 [`bevy_kira_audio`](https://github.com/NiklasEi/bevy_kira_audio) plugin
-instead. Disable `bevy_audio` and `mp3`.
+instead. Disable `bevy_audio` and `vorbis`.
 
 See [this page](../features/audio.md) for more information.
 
@@ -91,9 +88,6 @@ You can use the relevant cargo features to enable/disable support for loading
 assets (images/textures and audio) with various different file formats.
 
 See [this page](../pitfalls/file-formats.md) for more information.
-
-If you do not need support for [the GLTF file format for 3D
-models](../features/gltf.md), you can disable `bevy_gltf`.
 
 ### Input Devices
 

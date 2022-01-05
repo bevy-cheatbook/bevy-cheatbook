@@ -2,6 +2,7 @@ use bevy::prelude::*;
 
 // ANCHOR: example
 /// Used to help identify our main camera
+#[derive(Component)]
 struct MainCamera;
 
 fn setup(mut commands: Commands) {
@@ -29,7 +30,7 @@ fn my_cursor_system(
         let p = pos - size / 2.0;
 
         // assuming there is exactly one main camera entity, so this is OK
-        let camera_transform = q_camera.single().unwrap();
+        let camera_transform = q_camera.single();
 
         // apply the camera transform
         let pos_wld = camera_transform.compute_matrix() * p.extend(0.0).extend(1.0);
@@ -39,9 +40,9 @@ fn my_cursor_system(
 // ANCHOR_END: example
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(setup.system())
-        .add_system(my_cursor_system.system())
+        .add_startup_system(setup)
+        .add_system(my_cursor_system)
         .run();
 }

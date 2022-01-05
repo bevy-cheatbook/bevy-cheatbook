@@ -10,7 +10,7 @@ Create Issues or PRs on
 
 Windows is one of the best-supported platforms by Bevy.
 
-As of Bevy 0.5, both the MSVC and the GNU compiler toolchains should work.
+Both the MSVC and the GNU compiler toolchains should work.
 
 ## Distributing Your App
 

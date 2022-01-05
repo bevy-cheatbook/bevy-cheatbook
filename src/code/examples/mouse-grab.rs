@@ -21,8 +21,8 @@ fn cursor_grab_system(
 // ANCHOR_END: example
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_system(cursor_grab_system.system())
+        .add_system(cursor_grab_system)
         .run();
 }

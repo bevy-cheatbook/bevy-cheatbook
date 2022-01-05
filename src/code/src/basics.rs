@@ -1,10 +1,13 @@
 use bevy::prelude::*;
 
 #[derive(Default)]
+#[derive(Component)]
 struct ComponentA;
 #[derive(Default)]
+#[derive(Component)]
 struct ComponentB;
 #[derive(Default)]
+#[derive(Component)]
 struct ComponentC;
 
 struct MyResource;
@@ -22,13 +25,19 @@ pub struct GraphicsSettings;
 use bevy::ecs::system::SystemParam;
 
 #[derive(SystemParam)]
-pub struct MyCommonSettings<'a> {
-    keys: Res<'a, UserKeybindings>,
-    save: Res<'a, GameSaveSettings>,
-    gfx: Res<'a, GraphicsSettings>,
+/// Define a common set of system parameters.
+/// 'w: the World lifetime, needed for resources and queries (anything fetching data from the ECS).
+/// 's: the system lifetime, needed for Locals and queries (anything with per-system state).
+pub struct MyCommonSettings<'w, 's> {
+    keys: Res<'w, UserKeybindings>,
+    save: Res<'w, GameSaveSettings>,
+    gfx: Res<'w, GraphicsSettings>,
+    extra: Local<'s, bool>,
+    q_transforms: Query<'w, 's, &'static Transform>,
 }
 
 fn read_all_settings(
+    // we can just access our stuff from here now
     settings: MyCommonSettings,
 ) {
     // ...
@@ -36,12 +45,13 @@ fn read_all_settings(
 // ANCHOR_END: derive-system-param
 
 fn main() {
-    App::build().add_system(read_all_settings.system()).run();
+    App::new().add_system(read_all_settings).run();
 }
 
 }
 
 // ANCHOR: struct-component
+#[derive(Component)]
 struct Health {
     hp: f32,
     extra: f32,
@@ -50,33 +60,38 @@ struct Health {
 
 #[derive(Debug, PartialEq, Eq)]
 // ANCHOR: newtype-component
+#[derive(Component)]
 struct PlayerXp(u32);
 
+#[derive(Component)]
 struct PlayerName(String);
 // ANCHOR_END: newtype-component
 
 // ANCHOR: marker-component
 /// Add this to all menu ui entities to help identify them
+#[derive(Component)]
 struct MainMenuUI;
 /// Marker to help identify the player
+#[derive(Component)]
 struct Player;
 /// Marker for hostiles
+#[derive(Component)]
 struct Enemy;
 // ANCHOR_END: marker-component
 
 #[derive(Bundle, Default)]
 struct MyBundle {
-    _blah: bool,
+    _blah: ComponentA,
 }
 
 #[derive(Bundle, Default)]
 struct MyParentBundle {
-    _blah: bool,
+    _blah: ComponentA,
 }
 
 #[derive(Bundle, Default)]
 struct MyChildBundle {
-    _blah: bool,
+    _blah: ComponentA,
 }
 
 // ANCHOR: bundle
@@ -168,8 +183,8 @@ fn my_system(
 }
 
 fn main() {
-    App::build()
-        .add_system(my_system.system().config(|params| {
+    App::new()
+        .add_system(my_system.config(|params| {
             // our config is the third parameter in the system fn,
             // hence `.2`
             params.2 = Some(MyConfig {
@@ -247,17 +262,17 @@ fn reset_health(
     // access the health of enemies and the health of players
     // (note: some entities could be both!)
     mut q: QuerySet<(
-        Query<&mut Health, With<Enemy>>,
-        Query<&mut Health, With<Player>>
+        QueryState<&mut Health, With<Enemy>>,
+        QueryState<&mut Health, With<Player>>
     )>,
 ) {
     // set health of enemies
-    for mut health in q.q0_mut().iter_mut() {
+    for mut health in q.q0().iter_mut() {
         health.hp = 50.0;
     }
 
     // set health of players
-    for mut health in q.q1_mut().iter_mut() {
+    for mut health in q.q1().iter_mut() {
         health.hp = 100.0;
     }
 }
@@ -374,7 +389,9 @@ fn camera_with_parent(
 }
 // ANCHOR_END: query-parent
 
+#[derive(Component)]
 struct MySquadDamage;
+#[derive(Component)]
 struct MyUnitHealth;
 
 // ANCHOR: query-child
@@ -472,7 +489,7 @@ struct SpriteSheets {
 fn use_sprites(
     handles: Res<SpriteSheets>,
     atlases: Res<Assets<TextureAtlas>>,
-    textures: Res<Assets<Texture>>,
+    images: Res<Assets<Image>>,
 ) {
     // Could be `None` if the asset isn't loaded yet
     if let Some(atlas) = atlases.get(&handles.map_tiles) {
@@ -480,7 +497,7 @@ fn use_sprites(
     }
 
     // Can use a path instead of a handle
-    if let Some(map_tex) = textures.get("map.png") {
+    if let Some(map_tex) = images.get("map.png") {
         // if "map.png" was loaded, we can use it!
     }
 }
@@ -501,14 +518,14 @@ fn add_material(
 // ANCHOR_END: asset-add
 
 // ANCHOR: asset-event
-struct MyMapTexture {
-    handle: Handle<Texture>,
+struct MyMapImage {
+    handle: Handle<Image>,
 }
 
-fn fixup_textures(
-    mut ev_asset: EventReader<AssetEvent<Texture>>,
-    mut assets: ResMut<Assets<Texture>>,
-    map_tex: Res<MyMapTexture>,
+fn fixup_images(
+    mut ev_asset: EventReader<AssetEvent<Image>>,
+    mut assets: ResMut<Assets<Image>>,
+    map_img: Res<MyMapImage>,
 ) {
     for ev in ev_asset.iter() {
         match ev {
@@ -519,14 +536,14 @@ fn fixup_textures(
                 let texture = assets.get_mut(handle).unwrap();
                 // ^ unwrap is OK, because we know it is loaded now
 
-                if *handle == map_tex.handle {
-                    // it is our special map texture!
+                if *handle == map_img.handle {
+                    // it is our special map image!
                 } else {
-                    // it is some other texture
+                    // it is some other image
                 }
             }
             AssetEvent::Removed { handle } => {
-                // a texture was unloaded
+                // an image was unloaded
             }
         }
     }
@@ -742,15 +759,14 @@ fn query_entities(q: Query<(Entity, /* ... */)>) {
 
 // ANCHOR: query-single
 fn query_player(mut q: Query<(&Player, &mut Transform)>) {
-    let (player, mut transform) = q.single_mut()
-        .expect("There should always be exactly one player in the game!");
+    let (player, mut transform) = q.single_mut();
 
     // do something with the player and its transform
 }
 // ANCHOR_END: query-single
 
 fn query_misc(mut query: Query<(&Health, &mut Transform)>) {
-    let entity = Entity::new(0);
+    let entity = Entity::from_raw(0);
     // ANCHOR: query-get
     if let Ok((health, mut transform)) = query.get_mut(entity) {
         // do something with the components
@@ -771,16 +787,16 @@ mod app0 {
 
 // ANCHOR: systems-appbuilder
 fn main() {
-    App::build()
+    App::new()
         // ...
 
         // run it only once at launch
-        .add_startup_system(init_menu.system())
-        .add_startup_system(debug_start.system())
+        .add_startup_system(init_menu)
+        .add_startup_system(debug_start)
 
         // run it every frame update
-        .add_system(move_player.system())
-        .add_system(enemies_ai.system())
+        .add_system(move_player)
+        .add_system(enemies_ai)
 
         // ...
         .run();
@@ -795,7 +811,7 @@ mod app1 {
 
 // ANCHOR: appinit-resource
 fn main() {
-    App::build()
+    App::new()
         // ...
 
         // if it implements `Default` or `FromWorld`
@@ -822,7 +838,7 @@ mod app2 {
 
 // ANCHOR: app-builder
 fn main() {
-    App::build()
+    App::new()
         // bevy
         .add_plugins(DefaultPlugins)
 
@@ -835,12 +851,12 @@ fn main() {
         .add_event::<LevelUpEvent>()
 
         // systems to run once at startup:
-        .add_startup_system(spawn_player.system())
+        .add_startup_system(spawn_player)
 
         // systems to run each frame:
-        .add_system(player_level_up.system())
-        .add_system(debug_levelups.system())
-        .add_system(debug_stats_change.system())
+        .add_system(player_level_up)
+        .add_system(debug_levelups)
+        .add_system(debug_stats_change)
         // ...
 
         // launch the app!
@@ -862,17 +878,17 @@ mod app3 {
 struct MyPlugin;
 
 impl Plugin for MyPlugin {
-    fn build(&self, app: &mut AppBuilder) {
+    fn build(&self, app: &mut App) {
         app
             .init_resource::<MyOtherResource>()
             .add_event::<MyEvent>()
-            .add_startup_system(plugin_init.system())
-            .add_system(my_system.system());
+            .add_startup_system(plugin_init)
+            .add_system(my_system);
     }
 }
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         .add_plugin(MyPlugin)
         .run();
@@ -893,7 +909,7 @@ fn main() {
     // label for our debug stage
     static DEBUG: &str = "debug";
 
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // add DEBUG stage after Bevy's Update
@@ -901,13 +917,13 @@ fn main() {
         .add_stage_after(CoreStage::Update, DEBUG, SystemStage::single_threaded())
 
         // systems are added to the `CoreStage::Update` stage by default
-        .add_system(player_gather_xp.system())
-        .add_system(player_take_damage.system())
+        .add_system(player_gather_xp)
+        .add_system(player_take_damage)
 
         // add our debug systems
-        .add_system_to_stage(DEBUG, debug_player_hp.system())
-        .add_system_to_stage(DEBUG, debug_stats_change.system())
-        .add_system_to_stage(DEBUG, debug_new_hostiles.system())
+        .add_system_to_stage(DEBUG, debug_player_hp)
+        .add_system_to_stage(DEBUG, debug_stats_change)
+        .add_system_to_stage(DEBUG, debug_new_hostiles)
 
         .run();
 }
@@ -977,31 +993,31 @@ enum AppState {
 }
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // add the app state type
         .add_state(AppState::MainMenu)
 
         // add systems to run regardless of state, as usual
-        .add_system(play_music.system())
+        .add_system(play_music)
 
         // systems to run only in the main menu
         .add_system_set(
             SystemSet::on_update(AppState::MainMenu)
-                .with_system(handle_ui_buttons.system())
+                .with_system(handle_ui_buttons)
         )
 
         // setup when entering the state
         .add_system_set(
             SystemSet::on_enter(AppState::MainMenu)
-                .with_system(setup_menu.system())
+                .with_system(setup_menu)
         )
 
         // cleanup when exiting the state
         .add_system_set(
             SystemSet::on_exit(AppState::MainMenu)
-                .with_system(close_menu.system())
+                .with_system(close_menu)
         )
         .run();
 }
@@ -1022,7 +1038,7 @@ fn main() {
     fn close_menu() {}
 
 fn main2() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         // add the app state type
         .add_state(AppState::InGame)
@@ -1030,40 +1046,40 @@ fn main2() {
         // player movement only when actively playing
         .add_system_set(
             SystemSet::on_update(AppState::InGame)
-                .with_system(player_movement.system())
+                .with_system(player_movement)
         )
         // player idle animation while paused
         .add_system_set(
             SystemSet::on_inactive_update(AppState::InGame)
-                .with_system(player_idle.system())
+                .with_system(player_idle)
         )
         // animations both while paused and while active
         .add_system_set(
             SystemSet::on_in_stack_update(AppState::InGame)
-                .with_system(animate_trees.system())
-                .with_system(animate_water.system())
+                .with_system(animate_trees)
+                .with_system(animate_water)
         )
         // things to do when becoming inactive
         .add_system_set(
             SystemSet::on_pause(AppState::InGame)
-                .with_system(hide_enemies.system())
+                .with_system(hide_enemies)
         )
         // things to do when becoming active again
         .add_system_set(
             SystemSet::on_resume(AppState::InGame)
-                .with_system(reset_player.system())
+                .with_system(reset_player)
         )
         // setup when first entering the game
         .add_system_set(
             SystemSet::on_enter(AppState::InGame)
-                .with_system(setup_player.system())
-                .with_system(setup_map.system())
+                .with_system(setup_player)
+                .with_system(setup_map)
         )
         // cleanup when finally exiting the game
         .add_system_set(
             SystemSet::on_exit(AppState::InGame)
-                .with_system(despawn_player.system())
-                .with_system(despawn_map.system())
+                .with_system(despawn_player)
+                .with_system(despawn_map)
         )
 // ANCHOR_END: state-stack
         .run();
@@ -1098,9 +1114,9 @@ fn handle_io_errors(In(result): In<std::io::Result<()>>) {
 
 // ANCHOR: system-chain
 fn main() {
-    App::build()
+    App::new()
         // ...
-        .add_system(net_receive.system().chain(handle_io_errors.system()))
+        .add_system(net_receive.chain(handle_io_errors))
         // ...
         .run();
 }
@@ -1136,20 +1152,20 @@ enum MyStages {
 struct DebugStage;
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // Add our game systems:
         .add_system_set(
             SystemSet::new()
                 .label(MySystems::InputSet)
-                .with_system(keyboard_input.system())
-                .with_system(gamepad_input.system())
+                .with_system(keyboard_input)
+                .with_system(gamepad_input)
         )
-        .add_system(player_movement.system().label(MySystems::Movement))
+        .add_system(player_movement.label(MySystems::Movement))
 
         // temporary debug system, let's just use a string label
-        .add_system(debug_movement.system().label("temp-debug"))
+        .add_system(debug_movement.label("temp-debug"))
 
         // Add our custom stages:
         // note that Bevy's `CoreStage` is an enum just like ours!
@@ -1180,25 +1196,25 @@ use bevy::prelude::*;
 
 // ANCHOR: system-labels
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // order doesn't matter for these systems:
-        .add_system(particle_effects.system())
-        .add_system(npc_behaviors.system())
-        .add_system(enemy_movement.system())
+        .add_system(particle_effects)
+        .add_system(npc_behaviors)
+        .add_system(enemy_movement)
 
         // create labels, because we need to order other systems around these:
-        .add_system(map_player_input.system().label("input"))
-        .add_system(update_map.system().label("map"))
+        .add_system(map_player_input.label("input"))
+        .add_system(update_map.label("map"))
 
         // this will always run before anything labeled "input"
-        .add_system(input_parameters.system().before("input"))
+        .add_system(input_parameters.before("input"))
 
         // this will always run after anything labeled "input" and "map"
         // also label it just in case
         .add_system(
-            player_movement.system()
+            player_movement
                 .label("player_movement")
                 .after("input")
                 .after("map")
@@ -1222,15 +1238,15 @@ use bevy::prelude::*;
 
 // ANCHOR: systemset-labels
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // group our input handling systems into a set
         .add_system_set(
             SystemSet::new()
                 .label("input")
-                .with_system(keyboard_input.system())
-                .with_system(gamepad_input.system())
+                .with_system(keyboard_input)
+                .with_system(gamepad_input)
         )
 
         // our "net" systems should run before "input"
@@ -1240,14 +1256,14 @@ fn main() {
                 .before("input")
                 // individual systems can still have
                 // their own labels (and ordering)
-                .with_system(server_session.system().label("session"))
-                .with_system(server_updates.system().after("session"))
+                .with_system(server_session.label("session"))
+                .with_system(server_updates.after("session"))
         )
 
         // some ungrouped systems
-        .add_system(player_movement.system().after("input"))
-        .add_system(session_ui.system().after("session"))
-        .add_system(smoke_particles.system())
+        .add_system(player_movement.after("input"))
+        .add_system(session_ui.after("session"))
+        .add_system(smoke_particles)
 
         .run();
 }
@@ -1311,38 +1327,38 @@ fn run_if_host(
 }
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // if we are currently connected to a server,
         // activate our client systems
         .add_system_set(
             SystemSet::new()
-                .with_run_criteria(run_if_connected.system())
+                .with_run_criteria(run_if_connected)
                 .before("input")
-                .with_system(server_session.system())
-                .with_system(fetch_server_updates.system())
+                .with_system(server_session)
+                .with_system(fetch_server_updates)
         )
 
         // if we are hosting the game,
         // activate our game hosting systems
         .add_system_set(
             SystemSet::new()
-                .with_run_criteria(run_if_host.system())
+                .with_run_criteria(run_if_host)
                 .before("input")
-                .with_system(host_session.system())
-                .with_system(host_player_movement.system())
-                .with_system(host_enemy_ai.system())
+                .with_system(host_session)
+                .with_system(host_player_movement)
+                .with_system(host_enemy_ai)
         )
 
         // other systems in our game
-        .add_system(smoke_particles.system())
-        .add_system(water_animation.system())
+        .add_system(smoke_particles)
+        .add_system(water_animation)
         .add_system_set(
             SystemSet::new()
                 .label("input")
-                .with_system(keyboard_input.system())
-                .with_system(gamepad_input.system())
+                .with_system(keyboard_input)
+                .with_system(gamepad_input)
         )
         .run();
 }
@@ -1360,23 +1376,23 @@ enum MyRunCriteria {
 }
 
 fn main() {
-    App::build()
+    App::new()
         // ...
         .add_system_set(
             SystemSet::new()
                 .with_run_criteria(
                     // assign it a label
-                    run_if_host.system()
+                    run_if_host
                         .label(MyRunCriteria::Host)
                 )
-                .with_system(host_session.system())
-                .with_system(host_player_movement.system())
-                .with_system(host_enemy_ai.system())
+                .with_system(host_session)
+                .with_system(host_player_movement)
+                .with_system(host_enemy_ai)
         )
 
         // extra system for debugging the host
         // it can share our previously-registered run criteria
-        .add_system(host_debug.system()
+        .add_system(host_debug
             .with_run_criteria(MyRunCriteria::Host)
         )
         .run();
@@ -1414,11 +1430,11 @@ fn debug_levelups(
 // ANCHOR_END: events
 // ANCHOR: events-appbuilder
 fn main() {
-    App::build()
+    App::new()
         // ...
         .add_event::<LevelUpEvent>()
-        .add_system(player_level_up.system())
-        .add_system(debug_levelups.system())
+        .add_system(player_level_up)
+        .add_system(debug_levelups)
         // ...
         .run();
 }
@@ -1433,13 +1449,13 @@ mod app12 {
     struct FooPlugin;
 
     impl Plugin for FooPlugin {
-        fn build(&self, app: &mut AppBuilder) {}
+        fn build(&self, app: &mut App) {}
     }
 
     struct BarPlugin;
 
     impl Plugin for BarPlugin {
-        fn build(&self, app: &mut AppBuilder) {}
+        fn build(&self, app: &mut App) {}
     }
 
 // ANCHOR: plugin-groups
@@ -1454,7 +1470,7 @@ impl PluginGroup for MyPluginGroup {
 }
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         .add_plugins(MyPluginGroup)
         .run();
@@ -1463,7 +1479,7 @@ fn main() {
 
     fn disable_plugins() {
 // ANCHOR: plugin-groups-disable
-App::build()
+App::new()
     .add_plugins_with(DefaultPlugins, |plugins| {
         plugins.disable::<LogPlugin>()
     })
@@ -1486,19 +1502,19 @@ const TIMESTEP_1_PER_SECOND: f64 = 60.0 / 60.0;
 const TIMESTEP_2_PER_SECOND: f64 = 30.0 / 60.0;
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         .add_system_set(
             SystemSet::new()
                 // This prints out "hello world" once every second
                 .with_run_criteria(FixedTimestep::step(TIMESTEP_1_PER_SECOND))
-                .with_system(slow_timestep.system())
+                .with_system(slow_timestep)
         )
         .add_system_set(
             SystemSet::new()
                 // This prints out "goodbye world" twice every second
                 .with_run_criteria(FixedTimestep::step(TIMESTEP_2_PER_SECOND))
-                .with_system(fast_timestep.system())
+                .with_system(fast_timestep)
         )
         .run();
 }
@@ -1518,17 +1534,18 @@ mod app14 {
 use super::*;
 // ANCHOR: removal-detection
 /// Some component type for the sake of this example.
+#[derive(Component)]
 struct Seen;
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         // we could add our system to Bevy's `PreUpdate` stage
         // (alternatively, you could create your own stage)
-        .add_system_to_stage(CoreStage::PreUpdate, remove_components.system())
+        .add_system_to_stage(CoreStage::PreUpdate, remove_components)
         // our detection system runs in a later stage
         // (in this case: Bevy's default `Update` stage)
-        .add_system(detect_removals.system())
+        .add_system(detect_removals)
         .run();
 }
 
@@ -1558,40 +1575,40 @@ fn detect_removals(
 
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
-    App::build()
-        .add_startup_system(debug_start.system())
-        .add_startup_system(load_ui_font.system())
-        .add_startup_system(asset_watch.system())
-        .add_startup_system(load_extra_assets.system())
-        .add_startup_system(spawn_gltf.system())
-        .add_startup_system(load_gltf.system())
-        .add_startup_system(spawn_gltf_objects.system())
-        .add_startup_system(use_gltf_things.system())
-        .add_startup_system(gltf_manual_entity.system())
-        .add_system(detect_removed_res.system())
-        .add_system(check_res_added.system())
-        .add_system(check_res_changed.system())
-        .add_system(commands_catchall.system())
-        .add_system(query_entities.system())
-        .add_system(query_player.system())
-        .add_system(query_misc.system())
-        .add_system(debug_player_hp.system())
-        .add_system(debug_stats_change.system())
-        .add_system(debug_new_hostiles.system())
-        .add_system(check_zero_health.system())
-        .add_system(reset_health.system())
-        .add_system(my_system1.system())
-        .add_system(my_system2.system())
-        .add_system(complex_system.system())
-        .add_system(spawn_player.system())
-        .add_system(close_menu.system())
-        .add_system(make_all_players_hostile.system())
-        .add_system(use_sprites.system())
-        .add_system(fixup_textures.system())
-        .add_system(update_player_xp.system())
-        .add_system(camera_with_parent.system())
-        .add_system(process_squad_damage.system())
-        .add_system(add_material.system())
-        .add_system(load_gltf_things.system())
+    App::new()
+        .add_startup_system(debug_start)
+        .add_startup_system(load_ui_font)
+        .add_startup_system(asset_watch)
+        .add_startup_system(load_extra_assets)
+        .add_startup_system(spawn_gltf)
+        .add_startup_system(load_gltf)
+        .add_startup_system(spawn_gltf_objects)
+        .add_startup_system(use_gltf_things)
+        .add_startup_system(gltf_manual_entity)
+        .add_system(detect_removed_res)
+        .add_system(check_res_added)
+        .add_system(check_res_changed)
+        .add_system(commands_catchall)
+        .add_system(query_entities)
+        .add_system(query_player)
+        .add_system(query_misc)
+        .add_system(debug_player_hp)
+        .add_system(debug_stats_change)
+        .add_system(debug_new_hostiles)
+        .add_system(check_zero_health)
+        .add_system(reset_health)
+        .add_system(my_system1)
+        .add_system(my_system2)
+        .add_system(complex_system)
+        .add_system(spawn_player)
+        .add_system(close_menu)
+        .add_system(make_all_players_hostile)
+        .add_system(use_sprites)
+        .add_system(fixup_images)
+        .add_system(update_player_xp)
+        .add_system(camera_with_parent)
+        .add_system(process_squad_damage)
+        .add_system(add_material)
+        .add_system(load_gltf_things)
         .run();
 }

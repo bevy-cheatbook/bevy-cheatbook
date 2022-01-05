@@ -257,19 +257,19 @@ fn touch_events(
 // ANCHOR_END: touch-events
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_system(keyboard_input.system())
-        .add_system(keyboard_events.system())
-        .add_system(mouse_button_input.system())
-        .add_system(mouse_button_events.system())
-        .add_system(mouse_motion.system())
-        .add_system(cursor_events.system())
-        .add_system(cursor_position.system())
-        .add_system(scroll_events.system())
-        .add_system(gamepad_connections.system())
-        .add_system(gamepad_input.system())
-        .add_system(touches.system())
-        .add_system(touch_events.system())
+        .add_system(keyboard_input)
+        .add_system(keyboard_events)
+        .add_system(mouse_button_input)
+        .add_system(mouse_button_events)
+        .add_system(mouse_motion)
+        .add_system(cursor_events)
+        .add_system(cursor_position)
+        .add_system(scroll_events)
+        .add_system(gamepad_connections)
+        .add_system(gamepad_input)
+        .add_system(touches)
+        .add_system(touch_events)
         .run();
 }

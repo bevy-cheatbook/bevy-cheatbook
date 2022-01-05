@@ -27,9 +27,9 @@ fn set_window_icon(
 }
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(set_window_icon.system())
+        .add_startup_system(set_window_icon)
         .run();
 }
 // ANCHOR_END: main

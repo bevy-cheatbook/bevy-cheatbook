@@ -21,28 +21,26 @@ disable individual default features, so you need to disable all default bevy
 features and re-enable the ones you need.
 
 You must not include the `bevy_audio` feature, or any of the audio file
-formats (such as the default `mp3`). Enable the file formats you care about on
-`bevy_kira_audio` instead of Bevy.
+formats (such as the default `vorbis`). Enable the file formats you care
+about on `bevy_kira_audio` instead of Bevy.
 
 ```toml
 [dependencies.bevy]
-version = "0.5"
+version = "0.6"
 default-features = false
 # These are the remaining default features other than `bevy_audio` and `mp3`
 features = [
-  "bevy_dynamic_plugin",
   "render",
-  "bevy_wgpu",
   "bevy_winit",
   "bevy_gilrs",
-  "bevy_gltf",
   "png",
   "hdr",
+  "filesystem_watcher",
   "x11"
 ]
 
 [dependencies.bevy_kira_audio]
-version = "0.5.0"
+version = "0.7.0"
 # `ogg` format support is enabled by default, disable if you don't want it
 default-features = false
 # enable the features you care about

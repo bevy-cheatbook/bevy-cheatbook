@@ -7,7 +7,7 @@ struct AssetsLoading(Vec<HandleUntyped>);
 fn setup(server: Res<AssetServer>, mut loading: ResMut<AssetsLoading>) {
     // we can have different asset types
     let font: Handle<Font> = server.load("my_font.ttf");
-    let menu_bg: Handle<Texture> = server.load("menu.png");
+    let menu_bg: Handle<Image> = server.load("menu.png");
     let scene: Handle<Scene> = server.load("level01.gltf#Scene0");
 
     // add them all to our collection for tracking
@@ -45,10 +45,10 @@ fn check_assets_ready(
 // ANCHOR_END: example
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         .init_resource::<AssetsLoading>()
-        .add_startup_system(setup.system())
-        .add_system(check_assets_ready.system())
+        .add_startup_system(setup)
+        .add_system(check_assets_ready)
         .run();
 }

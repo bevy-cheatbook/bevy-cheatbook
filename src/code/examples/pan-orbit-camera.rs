@@ -4,6 +4,7 @@ use bevy::render::camera::PerspectiveProjection;
 
 // ANCHOR: example
 /// Tags an entity as capable of panning and orbiting.
+#[derive(Component)]
 struct PanOrbitCamera {
     /// The "focus point" to orbit around. It is automatically updated when panning the camera
     pub focus: Vec3,
@@ -138,7 +139,7 @@ fn spawn_scene(
         transform: Transform::from_translation(Vec3::new(0.0, 0.5, 0.0)),
         ..Default::default()
     });
-    commands.spawn_bundle(LightBundle {
+    commands.spawn_bundle(PointLightBundle {
         transform: Transform::from_translation(Vec3::new(4.0, 8.0, 4.0)),
         ..Default::default()
     });
@@ -147,13 +148,13 @@ fn spawn_scene(
 }
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(spawn_scene.system())
-        .add_system(pan_orbit_camera.system())
+        .add_startup_system(spawn_scene)
+        .add_system(pan_orbit_camera)
         .run();
 
     // just to catch compilation errors
-    let _ = App::build()
-        .add_startup_system(spawn_camera.system());
+    let _ = App::new()
+        .add_startup_system(spawn_camera);
 }

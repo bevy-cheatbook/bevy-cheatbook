@@ -1,8 +1,10 @@
 use bevy::prelude::*;
 
 // ANCHOR: example
-use bevy::render::camera::{Camera, CameraProjection, DepthCalculation, VisibleEntities};
+use bevy::render::camera::{Camera, CameraProjection, DepthCalculation, CameraPlugin};
+use bevy::render::view::VisibleEntities;
 
+#[derive(Component)]
 struct SimpleOrthoProjection {
     far: f32,
     aspect: f32,
@@ -27,6 +29,10 @@ impl CameraProjection for SimpleOrthoProjection {
         // otherwise
         DepthCalculation::Distance
     }
+
+    fn far(&self) -> f32 {
+        self.far
+    }
 }
 
 impl Default for SimpleOrthoProjection {
@@ -46,7 +52,7 @@ fn setup(mut commands: Commands) {
     // Bevy uses this name to find the camera and configure the rendering.
     // Since this example is a 2d camera:
 
-    let cam_name = bevy::render::render_graph::base::camera::CAMERA_2D;
+    let cam_name = CameraPlugin::CAMERA_2D;
 
     let mut camera = Camera::default();
     camera.name = Some(cam_name.to_string());
@@ -67,12 +73,12 @@ fn main() {
 
     use bevy::render::camera::camera_system;
 
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(setup.system())
+        .add_startup_system(setup)
         .add_system_to_stage(
             CoreStage::PostUpdate,
-            camera_system::<SimpleOrthoProjection>.system(),
+            camera_system::<SimpleOrthoProjection>,
         )
         .run();
 }

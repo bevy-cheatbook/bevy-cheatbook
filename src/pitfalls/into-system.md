@@ -42,7 +42,7 @@ it is not a component.
 ## Supported types
 
 It can be difficult to figure out what types are supported from the [API
-docs](https://docs.rs/bevy/0.5.0/bevy/ecs/trait.SystemParam.html), so here
+docs](https://docs.rs/bevy/0.6.0/bevy/ecs/trait.SystemParam.html), so here
 is a list:
 
 Only the following types are supported as system parameters:

@@ -9,7 +9,7 @@ struct MyRegularEvent;
 use bevy::app::Events;
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
 
         // add the `Events<T>` resource manually
@@ -20,7 +20,7 @@ fn main() {
         .add_event::<MyRegularEvent>()
 
         // add the cleanup systems
-        .add_system(my_event_manager.system())
+        .add_system(my_event_manager)
         .run();
 }
 

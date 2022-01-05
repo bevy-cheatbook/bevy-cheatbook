@@ -1,11 +1,12 @@
 [package]
-name = "code"
+name = "cheatbook"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-bevy = { version = "0.5" }
+#bevy = { version = "0.6" }
+bevy = { git = "https://github.com/bevyengine/bevy" }
 
 [dev-dependencies]
 image = "0.23"
-winit = "0.24"
+winit = "0.26"
