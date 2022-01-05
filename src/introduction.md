@@ -95,9 +95,14 @@ At your option, you may also use it under the regular MIT License.
 The text of the book is provided under the
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-Exception: If used for the purpose of contribution to the Official Bevy
-Project and/or its Official Documentation, the entire content of the book
-may be used under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
+Exception: If used for the purpose of contribution to the "Official Bevy
+Project", the entire content of the book may be used under the [MIT-0
+License](https://github.com/bevy-cheatbook/mit-0).
+
+"Official Bevy Project" is defined as:
+ - Any files contained in the Git repository hosted at [https://github.com/bevyengine/bevy](https://github.com/bevyengine/bevy)
+ - Any files contained in the Git repository hosted at [https://github.com/bevyengine/bevy-website](https://github.com/bevyengine/bevy-website)
+ - Anything publicly visible on the [bevyengine.org](https://bevyengine.org) website
 
 ## Contributions
 
