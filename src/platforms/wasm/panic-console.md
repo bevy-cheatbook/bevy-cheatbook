@@ -16,9 +16,7 @@ Add the crate to your dependencies in `Cargo.toml`:
 console_error_panic_hook = "0.1"
 ```
 
-At the start of your main function (either `fn run()` in `lib.rs` when
-[using `wasm-pack`](./wasm-pack.md), or `fn main()` in `main.rs`), before
-doing anything else, add this:
+At the start of your main function, before doing anything else, add this:
 
 ```rust,no_run,noplayground
     // When building for WASM, print panics to the browser console

@@ -82,10 +82,7 @@
   - [macOS Desktop](./platforms/macos.md)
   - [Windows Desktop](./platforms/windows.md)
   - [Browser (WebAssembly)](./platforms/wasm.md)
-    - [Setup (wasm-pack)](./platforms/wasm/wasm-pack.md)
-    - [Setup (Cargo Make)](./platforms/wasm/cargo-make.md)
     - [Panic Messages](./platforms/wasm/panic-console.md)
-    - [Random Number Generation](./platforms/wasm/rng.md)
     - [Optimize for Size](./platforms/wasm/size-opt.md)
     - [Hosting on GitHub Pages](./platforms/wasm/gh-pages.md)
 

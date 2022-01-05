@@ -20,24 +20,6 @@ For additional information and more techniques,
 refer to the Code Size chapter in the [Rust WASM
 book](https://rustwasm.github.io/docs/book/reference/code-size.html).
 
-## Link-Time Optimization (LTO)
-
-In `Cargo.toml`, add the following:
-
-```toml
-[profile.release]
-lto = "thin"
-```
-
-LTO tells the compiler to optimize all code together, considering all
-crates as if they were one. It may be able to inline and prune functions
-much more aggressively.
-
-This typically results in smaller size *and* better performance, but do
-measure to confirm. Sometimes, the size can actually be larger.
-
-The downside here is that compilation will take much longer.
-
 ## Compiling for size instead of speed
 
 You can change the optimization profile of the compiler, to tell it to
@@ -61,6 +43,25 @@ These are two different profiles for size optimization. Usually, `z` produces
 smaller files than `s`, but sometimes it can be the opposite. Measure to
 confirm which one works better for you.
 
+## Link-Time Optimization (LTO)
+
+In `Cargo.toml`, add the following:
+
+```toml
+[profile.release]
+lto = "thin"
+```
+
+LTO tells the compiler to optimize all code together, considering all
+crates as if they were one. It may be able to inline and prune functions
+much more aggressively.
+
+This typically results in smaller size *and* better performance, but do
+measure to confirm. Sometimes, the size can actually be larger.
+
+The downside here is that compilation will take much longer. Do this only
+for release builds you publish for other users.
+
 ## Use the `wasm-opt` tool
 
 The [binaryen](https://github.com/WebAssembly/binaryen) toolkit is a set of
@@ -78,8 +79,6 @@ wasm-opt -Oz -o output.wasm input.wasm
 # Optimize aggressively for speed.
 wasm-opt -O3 -o output.wasm input.wasm
 ```
-
-Note: `wasm-pack` performs this partially by default.
 
 ## Use the `wee-alloc` memory allocator
 

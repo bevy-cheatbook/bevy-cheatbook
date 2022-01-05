@@ -11,9 +11,9 @@ putting the files in a special branch in a GitHub repository. You could
 create a separate repository for this, but you could also do it from the
 same repository as your source code.
 
-You will need the final website files for deployment. See the [`wasm-pack`
-setup](./wasm-pack.md) or the [Cargo Make setup](./cargo-make.md) page,
-whichever is applicable to your project, for more information about that.
+You will need the final website files for deployment. You are probably
+generating these using a tool like `wasm-bindgen` or `wasm-pack`, maybe
+as part of a larger website.
 
 Create an empty branch in your git repository:
 
