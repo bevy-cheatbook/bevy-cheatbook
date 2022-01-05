@@ -39,8 +39,8 @@ Not intended to be read in order. Jump to whatever is useful to you!
 
 (don't forget to
 <a class="github-button" href="https://github.com/bevy-cheatbook/bevy-cheatbook" data-icon="octicon-star" aria-label="Star bevy-cheatbook/bevy-cheatbook on GitHub">Star</a>
-the book's [GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook) 😉
-and consider [donating](#support-me) 🙂)
+the book's [GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook),
+and consider [donating](https://github.com/sponsors/inodentry) 🙂)
 
 ## Recommended Additional Resources
 
@@ -67,10 +67,7 @@ I also try to regularly make improvements to it, when I can manage it.
 
 ## Support Me
 
-If you like this book, please consider supporting me via [GitHub
-Sponsors](https://github.com/sponsors/inodentry). (Patreon WIP)
-
-<a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @inodentry on GitHub">Sponsor</a>
+<a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @inodentry on GitHub">GitHub Sponsors</a>
 
 I'd like to keep improving and maintaining this book, to provide a high-quality
 independent learning resource for the Bevy community.
@@ -82,7 +79,7 @@ Your donation helps me work on such freely-available content. Thank you! ❤️
 If you like the Bevy Game Engine, you should consider donating to the
 official project.
 
-<a class="github-button" href="https://github.com/sponsors/cart" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @cart on GitHub">Sponsor</a>
+<a class="github-button" href="https://github.com/sponsors/cart" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @cart on GitHub">GitHub Sponsors</a>
 
 ## License
 
