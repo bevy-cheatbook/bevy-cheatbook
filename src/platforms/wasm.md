@@ -102,7 +102,10 @@ wasm-bindgen --out-dir ./out/ --target web ./target/
 
 You need to put these on your web server.
 
-### `wasm-pack`
+### Higher-level Tools
 
-As an alternative, [`wasm-pack`](https://github.com/rustwasm/wasm-pack)
-is another, higher-level, tool, with its own opinionated workflow.
+Here are some higher-level alternatives. These tools can do more for you
+and automate more of your workflow, but are more opinionated in how they work.
+
+- [Trunk](https://trunkrs.dev/)
+- [`wasm-pack`](https://github.com/rustwasm/wasm-pack)

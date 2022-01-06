@@ -11,9 +11,9 @@ putting the files in a special branch in a GitHub repository. You could
 create a separate repository for this, but you could also do it from the
 same repository as your source code.
 
-You will need the final website files for deployment. You are probably
-generating these using a tool like `wasm-bindgen` or `wasm-pack`, maybe
-as part of a larger website.
+You will need the final website files for deployment.
+
+---
 
 Create an empty branch in your git repository:
 
