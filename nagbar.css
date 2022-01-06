@@ -1,0 +1,18 @@
+html,body {
+    height: 100%;
+}
+
+.nagbar {
+    padding: 16pt;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.page {
+    flex-grow: 1;
+    flex-direction: column;
+}
