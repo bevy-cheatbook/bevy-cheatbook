@@ -3,9 +3,7 @@
 This chapter is a collection of platform-specific information, about using
 Bevy with different operating systems or environments.
 
-If you know of anything that would be nice to add, please file an issue on
-[GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook) or ping me
-on Discord (`@Ida Iyes#0981`).
+Feel free to suggest things to add.
 
 ---
 

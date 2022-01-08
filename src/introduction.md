@@ -13,28 +13,6 @@ While rich in content, this book does not aim to be exhaustive or complete. It
 cannot feasibly cover every feature of bevy. It is my best attempt to teach
 the most practically-relevant aspects.
 
-The book has several sections:
-
-  - [Quick Reference](./cheatsheet.md):
-    alphabetical listing of various Bevy and game dev jargon and concepts,
-    with quick definitions and links to relevant pages in the book
-  - [Bevy Setup Tips](./setup/_index.md):
-    Tips and tricks for your development tools (only some may be relevant to you)
-  - [Bevy Programming](./programming/_index.md):
-    overview of programming in Bevy
-  - [Bevy Features](./features/_index.md):
-    how to use various Bevy game engine features
-  - [Common Pitfalls](./pitfalls/_index.md):
-    common issues or surprises to watch out for
-  - [Advanced Patterns](./patterns/_index.md):
-    expert topics; non-obvious tricks or techniques; may be controversial
-  - [Bevy Cookbook](./cookbook/_index.md):
-    miscellaneous examples for specific common tasks
-  - [Bevy on Different Platforms](./platforms/_index.md):
-    information about using Bevy with different platforms and OSs
-
-Not intended to be read in order. Jump to whatever is useful to you!
-
 ***Welcome! May this book serve you well!***
 
 (don't forget to

@@ -8,16 +8,6 @@ It contains both bevy-specific jargon (including advanced topics that might
 not yet be covered by this book), as well as general game development or
 computer graphics topics that are relevant to working with Bevy.
 
-The list is not exhaustive. I try my best to expand it to include anything
-that may be useful. If you notice any omissions / want something added,
-file an issue on [GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook)
-or send me a message on [Discord](https://discord.gg/bevy) (`Ida Iyes#0981`).
-
-Bookmark this page in your browser, for a quick reference when working with Bevy!
-
-(some of the links may be broken, as they refer to planned or unpublished
-content. This book is WIP/incomplete; thank you for understanding! <3 )
-
 ---
 
 ## Bevy Programming Jargon

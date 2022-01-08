@@ -6,10 +6,7 @@ Bevy is, for the most part, like any other Rust project. If your editor/IDE
 is set up for Rust, that might be all you need. This page contains additional
 information that may be useful for Bevy specifically.
 
-If you have any suggestions for how to improve this page, file an issue on
-[GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook) or ping me on
-Discord (`@Ida Iyes#0981`).
-Your help collecting useful information would be much appreciated! <3
+Please help improve this page by providing suggestions for things to add.
 
 ## `CARGO_MANIFEST_DIR`
 
