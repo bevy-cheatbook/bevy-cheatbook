@@ -24,7 +24,7 @@ process and environment setup.
 However, that vision is not fully met yet. Currently, support for non-desktop
 platforms is limited, and requires more complex configuration:
 
- - [Web Browsers](./wasm.md): It is possible to make a web game, with some caveats.
+ - [Web Browsers](./wasm.md): Bevy works quite well on web, but with some limitations.
  - Mobile: support is minimal and broken. It will build, but may or may not run.
    Expect to immediately encounter major issues.
  - Game consoles: support is still completely non-existent yet.
