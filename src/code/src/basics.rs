@@ -71,12 +71,14 @@ struct PlayerName(String);
 /// Add this to all menu ui entities to help identify them
 #[derive(Component)]
 struct MainMenuUI;
-/// Marker to help identify the player
-#[derive(Component)]
-struct Player;
-/// Marker for hostiles
+
+/// Marker for hostile game units
 #[derive(Component)]
 struct Enemy;
+
+/// This will be used to identify the main player entity
+#[derive(Component)]
+struct Player;
 // ANCHOR_END: marker-component
 
 #[derive(Bundle, Default)]

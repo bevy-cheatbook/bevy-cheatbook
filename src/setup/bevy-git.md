@@ -21,10 +21,9 @@ For more info, read on.
 
 ## Should you use bleeding-edge bevy?
 
-Currently, bevy does not make patch releases, only major releases when there
-are enough exciting new changes for a flashy press release. The latest release
-is often missing the latest bug fixes, usability improvements, and features. It
-may be compelling to join in on the action!
+Currently, bevy does not make patch releases, only major releases. The
+latest release is often missing the latest bug fixes, usability improvements,
+and features. It may be compelling to join in on the action!
 
 If you are new to bevy, this might not be for you; you might be more
 comfortable using the released version. It will have the best compatibility

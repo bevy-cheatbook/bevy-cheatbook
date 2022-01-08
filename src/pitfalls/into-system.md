@@ -6,8 +6,7 @@ systems to your Bevy app.
 The errors can look like this:
 
 ```
-no method named `system` found for fn item `for<'r, 's> fn(...) {my_system}` in the current scope
-`my_system` is a function, perhaps you wish to call it
+the trait bound `for<'r, 's, 't0> fn(bevy::prelude::Query<'r, 's, (&'t0 Param)) {my_system}: IntoSystem<(), (), _>` is not satisfied
 ```
 
 This is caused by your function having incompatible parameters. Bevy can

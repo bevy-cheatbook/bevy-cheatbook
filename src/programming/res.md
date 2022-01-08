@@ -11,8 +11,9 @@ independently of entities.
 Use them for data that is truly global for your app, such as configuration
 / settings.
 
-Similar to components, any Rust type (`struct` or `enum`) can be used as
-a resource.
+Any Rust type (`struct` or `enum`) can be used as a resource. Currently,
+no special trait or derive is required, but that may change in future Bevy
+versions (similar to how Components require it).
 
 Types must be unique; there can only be one instance of a given type.
 
@@ -36,13 +37,14 @@ For resources that need complex initialization, implement `FromWorld`:
 {{#include ../code/src/basics.rs:fromworld}}
 ```
 
-You can create your resources at [`App` creation](./app-builder.md):
+You can initialize your resources at [`App` creation](./app-builder.md):
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:appinit-resource}}
 ```
 
-Or using [`Commands`](./commands.md) from inside a system:
+[`Commands`](./commands.md) can be used to create/remove resources from
+inside a system:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:commands-resource}}
@@ -60,5 +62,5 @@ Even if there is only one of a certain thing in your game (such as the
 player in a single-player game), it can be a good fit to use an entity
 instead of resources, because entities are composed of multiple components,
 some of which can be common with other entities. This can make your game
-logic more flexible.  For example, you could have a "health/damage system"
+logic more flexible. For example, you could have a "health/damage system"
 that works with both the player and enemies.

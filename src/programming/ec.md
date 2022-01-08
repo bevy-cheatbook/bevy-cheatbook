@@ -12,7 +12,8 @@ component values.
 
 Components are the data associated with entities.
 
-Any Rust type (`struct` or `enum`) can be used as a component.
+To create a new component type, simply define a Rust `struct` or `enum`, and
+derive the `Component` trait.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:struct-component}}
@@ -49,19 +50,3 @@ Bevy also considers arbitrary tuples of components as bundles:
 ```
 (ComponentA, ComponentB, ComponentC)
 ```
-
-## Common Pitfalls
-
-Because both bundles and individual components are regular Rust structs,
-Bevy / the Rust compiler often has no way to distinguish them.
-
-If you accidentally use a bundle struct somewhere where Bevy expects a
-component, you will not get an error. Bevy will just treat it as a component
-of that struct type!
-
-For example, this is why we needed the `#[bundle]` annotation to include a
-sub-bundle in the example above.
-
-Other places where this issue may come up are: when using
-[`Commands`](./commands.md), and when [querying](./queries.md) (queries *only*
-work with components!).

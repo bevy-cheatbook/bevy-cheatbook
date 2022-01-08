@@ -12,8 +12,7 @@
  - `Bundles`
  - `Archetypes`
  - `RemovedComponents<T>`
- - `Arc<parking_lot::Mutex<Commands>>`
- - `DrawContext`
+ - `SystemChangeTick`
  - tuples containing any of these types, with up to 16 members
  
 Your function can have a maximum of 16 total parameters. If you need more, group
