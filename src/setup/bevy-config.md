@@ -132,5 +132,7 @@ cargo run --features bevy/dynamic
 
 #### Tracing
 
-The features `trace` and `wgpu_trace` may be useful for profiling and
-diagnosing performance issues.
+The features `trace`, `wgpu_trace`, `trace_chrome` and `trace_tracy` may be
+useful for profiling and diagnosing performance issues. See [the dedicated
+page on profiling](../cookbook/profiling.md) for instructions on how to use
+those features.

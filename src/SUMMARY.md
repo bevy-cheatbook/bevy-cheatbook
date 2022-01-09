@@ -73,6 +73,7 @@
   - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
   - [List All Resource Types](./cookbook/print-resources.md)
+  - [Profiling](./cookbook/profiling.md)
 
 - [Bevy on Different Platforms](./platforms/_index.md)
   - [Linux Desktop](./platforms/linux.md)

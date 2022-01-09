@@ -34,3 +34,10 @@ If you are getting confusing/cryptic compiler error messages (like
 [`bevycheck`](https://github.com/jakobhellermann/bevycheck) is a tool you
 could use to help diagnose them. It tries to provide more user-friendly
 Bevy-specific error messages.
+
+## Profiling
+
+To find performance bottlenecks in your bevy app, the [official bevy
+doc](https://github.com/bevyengine/bevy/blob/main/docs/profiling.md) gives some
+pointers. This book goes into more details on how to profile your bevy app at
+the [_Profiling_ page](../cookbook/profiling.md).
