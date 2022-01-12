@@ -32,6 +32,8 @@ jobs:
 
       - run: mdbook build
 
+      - run: cp ./robots.txt ./book/
+
       - name: Deploy to Github pages
         uses: peaceiris/actions-gh-pages@v3
         with:
