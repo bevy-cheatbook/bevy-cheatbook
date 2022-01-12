@@ -1,4 +1,4 @@
-# Cannot see sprites in 2D
+# 2D objects not displaying
 
 Bevy's 2D [coordinate space](../features/transforms.md) is set up so that
 your background can be at Z=0.0, and other sprite layers can be at positive

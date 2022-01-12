@@ -14,7 +14,7 @@ If you are using `rustup` to manage your Rust installation, you can run
 rustup update
 ```
 
-## Fix: Clear the cargo state
+## Clear the cargo state
 
 Many kinds of build errors can often be fixed by forcing `cargo` to regenerate
 its internal state (recompute dependencies, etc.). You can do this by deleting
@@ -34,6 +34,10 @@ community via GitHub or Discord, and ask for help.
 If you are using bleeding-edge Bevy ("main"), and the above does not solve
 the problem, your errors might be caused by 3rd-party plugins. See [this
 page](../setup/bevy-git.md#how-to-use-bleeding-edge-bevy) for solutions.
+
+{{#include ../include/resolver2.md}}
+
+---
 
 ## What errors?
 

@@ -1,4 +1,4 @@
-# Cannot see 3D model
+# 3D objects not displaying
 
 This page will list some common issues that you may encounter, if you are
 trying to spawn a 3D object, but cannot see it on the screen.

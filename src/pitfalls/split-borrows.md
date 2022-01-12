@@ -2,7 +2,7 @@
 
 When you have a component or resource, that is larger struct with multiple
 fields, sometimes you want to borrow several of the fields at the same time,
-possibly mutably. This can result in a compiler error about conflicting borrows:
+possibly mutably.
 
 ```rust,no_run,noplayground
 struct MyThing {
@@ -10,18 +10,18 @@ struct MyThing {
     b: Bar,
 }
 
-fn helper_func(foo: &Foo, bar: &mut Bar) {
-    // do something
-}
-
 fn my_system(mut q: Query<&mut MyThing>) {
     for thing in q.iter_mut() {
         helper_func(&thing.a, &mut thing.b); // ERROR!
     }
 }
+
+fn helper_func(foo: &Foo, bar: &mut Bar) {
+    // do something
+}
 ```
 
-The error:
+This can result in a compiler error about conflicting borrows:
 
 ```
 error[E0502]: cannot borrow `thing` as mutable because it is also borrowed as immutable
