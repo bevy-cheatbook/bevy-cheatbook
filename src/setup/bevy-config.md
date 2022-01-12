@@ -87,7 +87,7 @@ See [this page](../features/audio.md) for more information.
 You can use the relevant cargo features to enable/disable support for loading
 assets (images/textures and audio) with various different file formats.
 
-See [this page](../pitfalls/file-formats.md) for more information.
+See [this page](../features/file-formats.md) for more information.
 
 ### Input Devices
 
