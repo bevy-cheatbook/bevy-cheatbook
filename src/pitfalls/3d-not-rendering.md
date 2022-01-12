@@ -30,9 +30,7 @@ a specific GLTF Primitive. Or just use Scenes. :)
 
 ## Unsupported GLTF
 
-Bevy's GLTF support is still limited in features. See the [Limitations
-section in the GLTF page](../features/gltf.md#bevy-limitations) for some
-considerations.
+{{#include ../include/gltf-limitations.md}}
 
 ## Unoptimized / Debug builds
 
