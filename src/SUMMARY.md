@@ -32,6 +32,7 @@
   - [Commands](./programming/commands.md)
   - [Events](./programming/events.md)
   - [App Builder (fn main)](./programming/app-builder.md)
+  - [Quit the App](./programming/quit.md)
   - [Local Resources](./programming/local.md)
   - [Plugins](./programming/plugins.md)
   - [System Order of Execution](./programming/system-order.md)
@@ -63,7 +64,6 @@
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
 - [Bevy Cookbook](./cookbook/_index.md)
-  - [Quit the App](./cookbook/quit.md)
   - [Change the Background Color](./cookbook/clear-color.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
   - [Grab the Mouse](./cookbook/mouse-grab.md)
