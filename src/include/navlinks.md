@@ -3,9 +3,11 @@
 [cb::commands]: /programming/commands.md
 [cb::component]: /programming/ec.md#components
 [cb::ec]: /programming/ec.md
+[cb::ecs-intro]: /programming/ecs-intro.md
 [cb::event]: /programming/events.md
 [cb::gltf-asset-path]: /features/gltf.md#assetpath-with-labels
 [cb::gltf-master]: /features/gltf.md#gltf-master-asset
+[cb::hierarchy]: /features/parent-child.md
 [cb::local]: /programming/local.md
 [cb::nonsend]: /programming/non-send.md
 [cb::query]: /programming/queries.md
@@ -18,3 +20,5 @@
 [cb::system-order]: /programming/system-order.md
 [cb::system]: /programming/systems.md
 [pitfall::intosystem]: /pitfalls/into-system.md
+[pitfall::ui-y-up]: /pitfalls/ui-y-up.md
+[pitfall::2d-camera-z]: /pitfalls/2d-camera-z.md
