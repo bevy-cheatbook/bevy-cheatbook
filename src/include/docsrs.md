@@ -20,6 +20,7 @@
 [bevy::Bundles]: https://docs.rs/bevy/0.6.0/bevy/ecs/bundle/struct.Bundles.html
 [bevy::ButtonBundle]: https://docs.rs/bevy/0.6.0/bevy/ui/entity/struct.ButtonBundle.html
 [bevy::Button]: https://docs.rs/bevy/0.6.0/bevy/ui/widget/struct.Button.html
+[bevy::CameraProjection]: https://docs.rs/bevy/0.6.0/bevy/render/camera/trait.CameraProjection.html
 [bevy::Camera]: https://docs.rs/bevy/0.6.0/bevy/render/camera/struct.Camera.html
 [bevy::ChangeTrackers]: https://docs.rs/bevy/0.6.0/bevy/ecs/query/struct.ChangeTrackers.html
 [bevy::Changed]: https://docs.rs/bevy/0.6.0/bevy/ecs/query/struct.Changed.html

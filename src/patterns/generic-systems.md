@@ -1,15 +1,18 @@
 # Generic Systems
 
-Bevy systems are just plain rust functions, which means they can be
-generic. You can add the same system multiple times, parametrized to work
-on different Rust types or values.
+{{#include ../include/navlinks.md}}
+{{#include ../include/docsrs.md}}
+
+Bevy [systems][cb::system] are just plain rust functions, which means they
+can be generic. You can add the same system multiple times, parametrized to
+work on different Rust types or values.
 
 ## Generic over Component types
 
 You can use the generic type parameter to specify what compnent types (and
 hence what entities) your system should operate on.
 
-This can be useful when combined with Bevy [states](../programming/states.md).
+This can be useful when combined with Bevy [states][cb::state].
 You can do the same thing to different sets of entities depending on state.
 
 ### Example: Cleanup
@@ -34,28 +37,30 @@ of the respective entities:
 
 ## Using Traits
 
-You can use this in combination with Traits, for when you need some sort of varying
-implementation/functionality for each type.
+You can use this in combination with Traits, for when you need some sort of
+varying implementation/functionality for each type.
 
 ### Example: Bevy's Camera Projections
 
 (this is a use-case within Bevy itself)
 
-Bevy has a `CameraProjection` trait. Different projection types like `PerspectiveProjection` and
-`OrthographicProjection` implement that trait, providing the correct logic for how to respond
-to resizing the window, calculating the projection matrix, etc.
+Bevy has a [`CameraProjection`][bevy::CameraProjection] trait. Different
+projection types like [`PerspectiveProjection`][bevy::PerspectiveProjection]
+and [`OrthographicProjection`][bevy::OrthographicProjection] implement that
+trait, providing the correct logic for how to respond to resizing the window,
+calculating the projection matrix, etc.
 
-There is a generic system `fn camera_system::<T: CameraProjection + Component>`, which handles
-all the cameras with a given projection type. It will call the trait methods when appropriate
-(like on window resize events).
+There is a generic system `fn camera_system::<T: CameraProjection +
+Component>`, which handles all the cameras with a given projection type. It
+will call the trait methods when appropriate (like on window resize events).
 
-The [Bevy Cookbook Custom Camera Projection Example](../cookbook/custom-projection.md) shows
-this API in action.
+The [Bevy Cookbook Custom Camera Projection
+Example][cb::camera-custom-projection] shows this API in action.
 
 ## Using Const Generics
 
-Now that Rust has support for Const Generics, functions can also be parametrized by values,
-not just types.
+Now that Rust has support for Const Generics, functions can also be
+parametrized by values, not just types.
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/generic-systems.rs:const}}
@@ -66,7 +71,7 @@ some cases, when you might suspect that you could use const generics, you might 
 you actually want a runtime value.
 
 If you need to "configure" your system by passing in some data, you could, instead, use a
-[Resource](../programming/res.md) or [Local](../programming/local.md).
+[Resource][cb::res] or [Local][cb::local].
 
 Note: As of Rust 1.53, support for using `enum` values as const generics is not yet stable. To
 use `enum`s, you need Rust Nightly, and to enable the experimental/unstable feature (put this

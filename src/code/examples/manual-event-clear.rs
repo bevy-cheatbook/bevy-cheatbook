@@ -20,12 +20,15 @@ fn main() {
         .add_event::<MyRegularEvent>()
 
         // add the cleanup systems
-        .add_system(my_event_manager)
+        .add_system(my_event_manager::<MySpecialEvent>)
         .run();
 }
 
-fn my_event_manager(
-    mut events: ResMut<Events<MySpecialEvent>>,
+/// Custom cleanup strategy for events
+///
+/// Generic to allow using for any custom event type
+fn my_event_manager<T: 'static + Send + Sync>(
+    mut events: ResMut<Events<T>>,
 ) {
     // TODO: implement your custom logic
     // for deciding when to clear the events
@@ -40,7 +43,7 @@ fn my_event_manager(
     // or drain them, if you want to iterate,
     // to access the values:
     for event in events.drain() {
-        // TODO do something with each event
+        // TODO: do something with each event
     }
 }
 // ANCHOR_END: main
