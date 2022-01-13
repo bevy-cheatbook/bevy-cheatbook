@@ -1,6 +1,4 @@
-# Bevy Features
+# Bevy Game Engine Basics
 
-This chapter covers the various features of Bevy as a Game Engine. Here you
-will learn how various common Game Development concepts work in Bevy.
-
-Intended for people learning how to use Bevy.
+This chapter covers the foundational information about the game engine aspects of Bevy.
+It serves as an addition to the [Bevy Programming Framework](../programming/_index.md) chapter.
