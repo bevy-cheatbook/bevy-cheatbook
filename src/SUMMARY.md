@@ -31,7 +31,7 @@
 - [Bevy Game Engine Basics](./features/_index.md)
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
-  - [Parent/Child Hierarchies](./programming/parent-child.md)
+  - [Parent/Child Hierarchies](./features/parent-child.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
   - [Assets](./features/assets.md)
   - [Hot-Reloading Assets](./features/hot-reload.md)
