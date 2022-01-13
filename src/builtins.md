@@ -15,6 +15,7 @@ by Bevy.
  - [Events (Input)](#input-events)
  - [Events (System/Control)](#system-and-control-events)
  - [Components](#components)
+ - [GLTF Asset Labels](#gltf-asset-labels)
  - [Stages](#stages)
 
 ## SystemParams
@@ -91,6 +92,12 @@ See: [(List in API Docs)][bevy::impl::Component]
 Curated/opinionated list of the most important built-in component types:
 
 {{#include ./include/builtins.md:components}}
+
+## GLTF Asset Labels
+
+[Asset path labels to refer to GLTF sub-assets.][cb::gltf-asset-path]
+
+{{#include ./include/builtins.md:gltf-asset-labels}}
 
 ## Stages
 
