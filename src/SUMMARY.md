@@ -9,14 +9,14 @@
 
 ---
 
-- [Bevy Setup Tips](./setup/_index.md)
+- [Bevy Setup Tips](./setup.md)
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
   - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
   - [3rd-party Plugins](./setup/unofficial-plugins.md)
   - [Customizing Bevy (features, modularity)](./setup/bevy-config.md)
 
-- [Common Pitfalls](./pitfalls/_index.md)
+- [Common Pitfalls](./pitfalls.md)
   - [Strange compile errors from Bevy or dependencies](./pitfalls/build-errors.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [Error adding function as system](./pitfalls/into-system.md)
@@ -28,7 +28,7 @@
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
   - [Textures/Images are flipped](./pitfalls/uv-coordinates.md)
 
-- [Bevy Game Engine Basics](./features/_index.md)
+- [Bevy Game Engine Core](./features.md)
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)
@@ -40,7 +40,7 @@
   - [3D Models (GLTF)](./features/gltf.md)
   - [Audio](./features/audio.md)
 
-- [Bevy Programming Framework](./programming/_index.md)
+- [Bevy Programming Framework](./programming.md)
   - [Intro to ECS](./programming/ecs-intro.md)
   - [Entities and Components](./programming/ec.md)
   - [Resources](./programming/res.md)
@@ -68,11 +68,11 @@
   - [[WIP] Non-Send](./programming/non-send.md)
   - [Writing Tests for Systems](./programming/system-tests.md)
 
-- [Programming Patterns](./patterns/_index.md)
+- [Programming Patterns](./patterns.md)
   - [Generic Systems](./patterns/generic-systems.md)
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
-- [Bevy Cookbook](./cookbook/_index.md)
+- [Bevy Cookbook](./cookbook.md)
   - [Change the Background Color](./cookbook/clear-color.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
   - [Grab the Mouse](./cookbook/mouse-grab.md)
@@ -83,7 +83,7 @@
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
   - [List All Resource Types](./cookbook/print-resources.md)
 
-- [Bevy on Different Platforms](./platforms/_index.md)
+- [Bevy on Different Platforms](./platforms.md)
   - [Linux Desktop](./platforms/linux.md)
   - [macOS Desktop](./platforms/macos.md)
   - [Windows Desktop](./platforms/windows.md)

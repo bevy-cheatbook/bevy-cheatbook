@@ -1,6 +1,6 @@
 # Programming Patterns
 
-{{#include ../include/navlinks.md}}
+{{#include ./include/navlinks.md}}
 
 This chapter is about any non-obvious tricks, programming techniques,
 patterns and idioms, that may be useful when programming with Bevy.
