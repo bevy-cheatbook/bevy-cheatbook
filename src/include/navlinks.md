@@ -4,6 +4,7 @@
 [cb::component]: /programming/ec.md#components
 [cb::ec]: /programming/ec.md
 [cb::event]: /programming/events.md
+[cb::gltf-asset-path]: /features/gltf.md#assetpath-with-labels
 [cb::gltf-master]: /features/gltf.md#gltf-master-asset
 [cb::local]: /programming/local.md
 [cb::nonsend]: /programming/non-send.md

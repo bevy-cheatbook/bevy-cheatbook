@@ -2,7 +2,12 @@
 
 [Introduction](./introduction.md)
 
-- [Quick Reference (Alphabetical Index / Glossary)](./cheatsheet.md)
+---
+
+[List of Bevy Builtins](./builtins.md)
+[Alphabetical Index / Glossary](./cheatsheet.md)
+
+---
 
 - [Bevy Setup Tips](./setup/_index.md)
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
@@ -82,5 +87,7 @@
     - [Panic Messages](./platforms/wasm/panic-console.md)
     - [Optimize for Size](./platforms/wasm/size-opt.md)
     - [Hosting on GitHub Pages](./platforms/wasm/gh-pages.md)
+
+---
 
 [Contributing](./contributing.md)

@@ -1,5 +1,8 @@
 # 3D Models (GLTF)
 
+{{#include ../include/navlinks.md}}
+{{#include ../include/docsrs.md}}
+
 Relevant official examples:
 [`load_gltf`](https://github.com/bevyengine/bevy/blob/latest/examples/3d/load_gltf.rs),
 [`update_gltf_scene`](https://github.com/bevyengine/bevy/blob/latest/examples/3d/update_gltf_scene.rs).
@@ -180,19 +183,12 @@ numerial index is supported. You cannot address sub-assets by name.
 {{#include ../code/src/basics.rs:gltf-assetpath}}
 ```
 
-The following asset labels are supported (`{}` is the numerical index):
-  - `Scene{}`: GLTF Scene as Bevy `Scene`
-  - `Node{}`: GLTF Node as `GltfNode`
-  - `Mesh{}`: GLTF Mesh as `GltfMesh`
-  - `Mesh{}/Primitive{}`: GLTF Primitive as Bevy `Mesh`
-  - `Material{}`: GLTF Material as Bevy `StandardMaterial`
-  - `DefaultMaterial`: as above, if the GLTF file contains a default material with no index
-  - `Texture{}`: GLTF Texture as Bevy `Texture`
+{{#include ../include/builtins.md:gltf-asset-labels}}
 
 The `GltfNode` and `GltfMesh` asset types are only useful to help you navigate
 the contents of your GLTF file. They are not core Bevy renderer types, and
 not used by Bevy in any other way. The Bevy renderer expects Entities with
-`PbrBundle`; for that you need the `Mesh` and `StandardMaterial`.
+`MaterialMeshBundle`; for that you need the `Mesh` and `StandardMaterial`.
 
 ## Bevy Limitations
 

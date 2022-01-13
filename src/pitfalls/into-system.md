@@ -1,5 +1,8 @@
 # Error adding function as system
 
+{{#include ../include/navlinks.md}}
+{{#include ../include/docsrs.md}}
+
 You can sometimes get confusing arcane compiler errors when you try to add
 systems to your Bevy app.
 
@@ -40,14 +43,6 @@ it is not a component.
 
 ## Supported types
 
-It can be difficult to figure out what types are supported from the [API
-docs](https://docs.rs/bevy/0.6.0/bevy/ecs/trait.SystemParam.html), so here
-is a list:
-
 Only the following types are supported as system parameters:
 
-{{#include ../include/systemparams.md}}
-
-You can nest tuples as much as you want, to avoid running into the limits
-on the maximum numbers of parameters, or simply to organize your parameters
-into groups.
+{{#include ../include/builtins.md:systemparams}}
