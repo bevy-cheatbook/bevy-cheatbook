@@ -761,12 +761,11 @@ fn query_entities(q: Query<(Entity, /* ... */)>) {
 
 // ANCHOR: query-single
 fn query_player(mut q: Query<(&Player, &mut Transform)>) {
-    // Panics if 0 or more than 1 players found
+    // panic if 0 or more than 1 players found
     let (player, mut transform) = q.single_mut();
-    
     // do something with the player and its transform
     
-    // Returns QuerySingleError if 0 or more than 1 players found
+    // return QuerySingleError if 0 or more than 1 players found
     if let Ok((player, mut transform)) = q.get_single_mut() {
         // do something with the player and its transform
     }
