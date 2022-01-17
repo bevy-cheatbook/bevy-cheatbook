@@ -24,7 +24,7 @@ Get the IDs of the entities you access with your queries:
 ```
 
 If you know that the query should only ever match a single entity, you can
-use `single`/`single_mut` (returns a `Result`), instead of iterating:
+use `single`/`single_mut` (panics), or `get_single`/`get_single_mut` (returns a `Result`), instead of iterating:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:query-single}}
