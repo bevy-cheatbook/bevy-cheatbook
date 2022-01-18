@@ -1,14 +1,18 @@
 # Linux Desktop
 
+{{#include ../include/links.md}}
+
 If you have any additional Linux-specific knowledge,
 please help improve this page!
 
-Create Issues or PRs on
-[GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
+Create Issues or PRs on [GitHub][project::cb].
 
 ---
 
 Desktop Linux is one of the best-supported platforms by Bevy.
+
+There are some development dependencies you may need to setup, depending on your
+distribution. [See instructions in official Bevy repo.][bevy::linux-dependencies]
 
 ## GPU Drivers
 

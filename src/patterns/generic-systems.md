@@ -1,7 +1,6 @@
 # Generic Systems
 
-{{#include ../include/navlinks.md}}
-{{#include ../include/docsrs.md}}
+{{#include ../include/links.md}}
 
 Bevy [systems][cb::system] are just plain rust functions, which means they
 can be generic. You can add the same system multiple times, parametrized to

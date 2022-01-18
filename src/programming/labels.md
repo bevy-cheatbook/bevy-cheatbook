@@ -1,18 +1,29 @@
 # Labels
 
-You need labels to name various things in your app, such as
-[systems](./system-order.md), [run criteria](./run-criteria.md),
-[stages](./stages.md), and ambiguity sets<!-- TODO: add a link -->.
+{{#include ../include/links.md}}
+
+You need labels to name various things in your [app][cb::app], such as
+[systems][cb::system] (for [order control][cb::system-order]), [run
+criteria][cb::runcriteria], [stages][cb::stage], and ambiguity sets.
 
 Bevy uses some clever Rust type system magic, to allow you to use strings
 as well as your own custom types for labels, and even mix them!
 
-You may use a value of any type as a label, as long as it has the following
-standard Rust traits: `Clone + Eq + Hash + Debug` (and the implied `+ Send +
-Sync + 'static`).
+Using strings for labels is quick and easy for prototyping. However, they
+are easy to mistype and are unstructured. The compiler cannot validate them
+for you, to catch mistakes.
 
-You need to derive the appropriate trait: `StageLabel`, `SystemLabel`,
-`RunCriteriaLabel`, or `AmbiguitySetLabel`.
+You can also use custom types (usually `enum`s) to define your labels. This
+allows the compiler to check them, and helps you stay organized in larger
+projects.
+
+You need to derive the appropriate trait, depending on what they will be
+used for: `StageLabel`, `SystemLabel`, `RunCriteriaLabel`, or `AmbiguitySetLabel`.
+
+Any Rust type is suitable, as long as it has the following standard Rust
+traits: [`Clone`][std::Clone] + [`Eq`][std::Eq] + [`Hash`][std::Hash]
++ [`Debug`][std::Debug] (and the implied [`Send`][std::Send] +
+[`Sync`][std::Sync] + `'static`).
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:labels}}

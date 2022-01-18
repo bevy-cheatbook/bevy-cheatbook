@@ -1,7 +1,9 @@
 # Resources
 
+{{#include ../include/links.md}}
+
 Relevant official examples:
-[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+[`ecs_guide`][example::ecs_guide].
 
 ---
 
@@ -13,7 +15,7 @@ Use them for data that is truly global for your app, such as configuration
 
 Any Rust type (`struct` or `enum`) can be used as a resource. Currently,
 no special trait or derive is required, but that may change in future Bevy
-versions (similar to how Components require it).
+versions (similar to how [Components][cb::component] require it).
 
 Types must be unique; there can only be one instance of a given type.
 
@@ -21,7 +23,7 @@ Types must be unique; there can only be one instance of a given type.
 {{#include ../code/src/basics.rs:resource}}
 ```
 
-Resources can be accessed from [systems](./systems.md), using `Res`/`ResMut`.
+Resources can be accessed from [systems][cb::system], using `Res`/`ResMut`.
 
 ## Resource Initialization
 
@@ -37,13 +39,13 @@ For resources that need complex initialization, implement `FromWorld`:
 {{#include ../code/src/basics.rs:fromworld}}
 ```
 
-You can initialize your resources at [`App` creation](./app-builder.md):
+You can initialize your resources at [`App` creation][cb::app]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:appinit-resource}}
 ```
 
-[`Commands`](./commands.md) can be used to create/remove resources from
+[`Commands`][cb::commands] can be used to create/remove resources from
 inside a system:
 
 ```rust,no_run,noplayground

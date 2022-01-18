@@ -1,5 +1,7 @@
 # Bevy on Different Platforms
 
+{{#include ./include/links.md}}
+
 This chapter is a collection of platform-specific information, about using
 Bevy with different operating systems or environments.
 
@@ -12,9 +14,9 @@ Linux, macOS, Windows. No special configuration is required.
 
 See the following pages for specific tips/advice when developing for the
 desktop platforms:
- - [Linux](./linux.md)
- - [macOS](./macos.md)
- - [Windows](./windows.md)
+ - [Linux][platform::linux]
+ - [macOS][platform::macos]
+ - [Windows][platform::windows]
 
 Bevy aims to also make it easy to target other platforms, such as web browsers
 (via WebAssembly), mobile (Android and iOS), and game consoles. Your Bevy
@@ -24,7 +26,7 @@ process and environment setup.
 However, that vision is not fully met yet. Currently, support for non-desktop
 platforms is limited, and requires more complex configuration:
 
- - [Web Browsers](./wasm.md): Bevy works quite well on web, but with some limitations.
+ - [Web Browsers][platform::wasm]: Bevy works quite well on web, but with some limitations.
  - Mobile: support is minimal and broken. It will build, but may or may not run.
    Expect to immediately encounter major issues.
  - Game consoles: support is still completely non-existent yet.

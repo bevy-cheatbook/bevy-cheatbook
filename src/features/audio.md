@@ -1,17 +1,19 @@
 # Audio
 
+{{#include ../include/links.md}}
+
 Bevy's own built-in audio support is extremely barebones and limited. It
 can play sounds, but that's about it. It doesn't even have volume control.
 
 Instead, we recommend that you try the
-[`bevy_kira_audio`](https://github.com/NiklasEi/bevy_kira_audio) community
-plugin, which integrates the Kira sound library with bevy. Kira is much
-more feature-rich, including support for managing many audio tracks (like
-background music and sound effects), with volume control, stereo panning,
-playback rate, and streaming. It also has [web](../platforms/wasm.md) support.
+[`bevy_kira_audio`][project::bevy_kira_audio] community plugin, which
+integrates the Kira sound library with bevy. Kira is much more feature-rich,
+including support for managing many audio tracks (like background music
+and sound effects), with volume control, stereo panning, playback rate,
+and streaming. It also has [web][platform::wasm] support.
 
 The community largely considers Bevy's audio to be obsolete and useless;
-it will probably be removed and replaced with something else (maybe
+it will probably be removed and replaced with something else (likely
 `bevy_kira_audio`).
 
 Using `bevy_kira_audio` in your project requires some extra configuration,
@@ -52,5 +54,4 @@ features = [
 ]
 ```
 
-See [this page](../setup/bevy-modular.md#bevy-cargo-features) for more
-information about Bevy's cargo features.
+See [this page][cb::features] for more information about Bevy's cargo features.

@@ -1,40 +1,46 @@
 # Queries
 
+{{#include ../include/links.md}}
+
 Relevant official examples:
-[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+[`ecs_guide`][example::ecs_guide].
 
 ---
 
-Queries let you access components of entities.
+Queries let you access [components of entities][cb::ecs-intro].
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-simple-query}}
 ```
 
-Get the components associated with a specific entity:
+Get the [components][cb::component] associated with a specific
+[entity][cb::entity]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:query-get}}
 ```
 
-Get the IDs of the entities you access with your queries:
+Get the IDs ([`Entity`][bevy::Entity]) of the entities you access with
+your queries:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:query-entity}}
 ```
 
 If you know that the query should only ever match a single entity, you can
-use `single`/`single_mut` (returns a `Result`), instead of iterating:
+use `single`/`single_mut`, instead of iterating:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:query-single}}
 ```
 
+(this will panic if the query matches more than one entity)
+
 ## Bundles
 
 Queries work with individual components. If you created an entity using a
-[bundle](./ec.md#component-bundles), you need to query for the specific
-components from that bundle that you care about.
+[bundle][cb::bundle], you need to query for the specific components from
+that bundle that you care about.
 
 A common beginner mistake is to query for the bundle type!
 
@@ -42,7 +48,8 @@ A common beginner mistake is to query for the bundle type!
 
 Add query filters to narrow down the entities you get from the query.
 
-Use `With`/`Without` to only get entities that have specific components.
+Use [`With`][bevy::With]/[`Without`][bevy::Without] to only get entities
+that have specific components.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-query-filter}}

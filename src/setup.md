@@ -1,11 +1,11 @@
 # Bevy Setup Tips
 
-{{#include ./include/navlinks.md}}
+{{#include ./include/links.md}}
 
 This chapter is a collection of additional tips for configuring
 your project or development tools, collected from the Bevy
 community, beyond what is covered in Bevy's [official setup
-documentation](https://bevyengine.org/learn/book/getting-started).
+documentation][bevy::book-getting-started].
 
 Feel free to suggest things to add under this chapter.
 

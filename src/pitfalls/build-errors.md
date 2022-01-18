@@ -1,5 +1,7 @@
 # Strange Build Errors
 
+{{#include ../include/links.md}}
+
 Sometimes, you can get strange and confusing build errors when trying to
 compile your project.
 
@@ -8,7 +10,8 @@ compile your project.
 First, make sure your Rust is up-to-date. When using Bevy, you must use at
 least the latest stable version of Rust (or nightly).
 
-If you are using `rustup` to manage your Rust installation, you can run
+If you are using [`rustup`][rustup] to manage your Rust installation, you
+can run:
 
 ```shell
 rustup update
@@ -29,7 +32,7 @@ mysterious errors will go away.
 
 This trick often fixes the broken build, but if it doesn't help you,
 your issue might require further investigation. Reach out to the Bevy
-community via GitHub or Discord, and ask for help.
+community via GitHub or [Discord][bevy::discord], and ask for help.
 
 If you are using bleeding-edge Bevy ("main"), and the above does not solve
 the problem, your errors might be caused by 3rd-party plugins. See [this
@@ -80,6 +83,5 @@ try to link multiple versions of Bevy into your project. This often occurs when
 transitioning your project between the release and the git version of Bevy. Cargo
 remembers the versions it was previously using, and gets confused.
 
-See this [cargo issue](https://github.com/rust-lang/cargo/issues/9994) about
-this bug. If you have any interesting information to add, you can help
-by contributing to that issue.
+See this [cargo issue][cargo::9994] about this bug. If you have any interesting
+information to add, you can help by contributing to that issue.

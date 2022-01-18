@@ -1,13 +1,18 @@
 # Query Sets
 
-For safety reasons, a system cannot have multiple queries with mutability
-conflicts on the same components.
+{{#include ../include/links.md}}
 
-Bevy provides a solution: wrap them in a `QuerySet`:
+For safety reasons, a [system][cb::system] cannot have multiple
+[queries][cb::query] with mutability conflicts on the same
+[components][cb::component].
+
+Bevy provides a solution: wrap them in a [`QuerySet`][bevy::QuerySet]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-query-set}}
 ```
+
+(Note: you have to use [`QueryState`][bevy::QueryState] instead of [`Query`][bevy::Query])
 
 This ensures only one of the conflicting queries can be used at the same time.
 

@@ -1,7 +1,6 @@
 # Manual Event Clearing
 
-{{#include ../include/navlinks.md}}
-{{#include ../include/docsrs.md}}
+{{#include ../include/links.md}}
 
 [Click here to download a full example file with the code from this page.][cbexample::manual-event-clear]
 

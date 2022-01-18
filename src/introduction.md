@@ -1,40 +1,29 @@
 # Unofficial Bevy Cheat Book
 
-Concise practical reference to the
-[Bevy game engine](https://github.com/bevyengine/bevy).
+{{#include ./include/links.md}}
 
-Covers useful syntax, features, programming patterns, and solutions for
-common game development tasks.
-
-Designed to be easy to read, straight to the point, using simple language
-to focus on the important information.
-
-While rich in content, this book does not aim to be exhaustive or complete. It
-cannot feasibly cover every feature of bevy. It is my best attempt to teach
-the most practically-relevant aspects.
+Concise practical reference to the [Bevy game engine][bevy::website]
+([GitHub][project::bevy]).
 
 ***Welcome! May this book serve you well!***
 
 (don't forget to
 <a class="github-button" href="https://github.com/bevy-cheatbook/bevy-cheatbook" data-icon="octicon-star" aria-label="Star bevy-cheatbook/bevy-cheatbook on GitHub">Star</a>
-the book's [GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook),
+the book's [GitHub repository][project::cb],
 and consider [donating](https://github.com/sponsors/inodentry) 🙂)
 
 ## Recommended Additional Resources
 
 Bevy has a rich collection of [official code
-examples](https://github.com/bevyengine/bevy/tree/latest/examples#examples).
+examples][bevy::examples].
 
-Check out [bevy-assets](https://bevyengine.org/assets),
-for community-made resources.
+Check out [bevy-assets][bevyassets], for community-made resources.
 
 Our community is very friendly and helpful. Feel welcome to join the [Bevy
-Discord](https://discord.gg/bevy) to chat, ask questions, or get involved
-in the project!
+Discord][bevy::discord] to chat, ask questions, or get involved in the project!
 
-If you want to see some games made with Bevy, see
-[itch.io](https://itch.io/games/tag-bevy) or [Bevy
-Assets](https://bevyengine.org/assets/#games).
+If you want to see some games made with Bevy, see [itch.io][itchio::bevy]
+or [Bevy Assets][bevyassets::games].
 
 ## Maintenance
 
@@ -81,15 +70,14 @@ License](https://github.com/bevy-cheatbook/mit-0).
 
 ## Contributions
 
-Development of this book is hosted on
-[GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
+Development of this book is hosted on [GitHub][project::cb].
 
 Please file GitHub Issues for any wrong/confusing/misleading information,
 as well as suggestions for new content you'd like to be added to the book.
 
 Contributions are accepted, with some limitations.
 
-See the [Contributing](./contributing.md) section for all the details.
+See the [Contributing][cb::contributing] section for all the details.
 
 ## Stability Warning
 

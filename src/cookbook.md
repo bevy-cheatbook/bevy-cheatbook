@@ -1,11 +1,10 @@
 # Bevy Cookbook
 
-{{#include ./include/navlinks.md}}
+{{#include ./include/links.md}}
 
 This chapter shows you how to do various practical things using Bevy.
 
-Indended as a supplement to Bevy's [official
-examples](https://github.com/bevyengine/bevy/tree/latest/examples#examples).
+Indended as a supplement to Bevy's [official examples][bevy::examples].
 
 The examples are written to only focus on the relevant information for the
 task at hand.

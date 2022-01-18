@@ -1,5 +1,7 @@
 # Using bleeding-edge Bevy (bevy main)
 
+{{#include ../include/links.md}}
+
 Bevy development moves very fast, and there are often exciting new things that
 are yet unreleased. This page will give you advice about using development
 versions of bevy.
@@ -40,10 +42,9 @@ The frequent breaking changes might not be a problem for you, though. Thanks
 to cargo, you can update bevy at your convenience, whenever you feel ready
 to handle any possible breaking changes.
 
-If you choose to use bevy main, you are highly encouraged to
-interact with the Bevy community on [Discord](https://discord.gg/bevy) and
-[GitHub](https://github.com/bevyengine/bevy), so you can keep track of what's
-going on, get help, or participate in discussions.
+If you choose to use bevy main, you are highly encouraged to interact with
+the Bevy community on [Discord][bevy::discord] and [GitHub][project::bevy], so
+you can keep track of what's going on, get help, or participate in discussions.
 
 ## Common pitfall: mysterious compile errors
 
@@ -57,8 +58,8 @@ You can typically fix them by removing `Cargo.lock` and the `target` directory:
 rm -rf Cargo.lock target
 ```
 
-See [this page](../pitfalls/build-errors.md) for more info. See this [cargo
-issue](https://github.com/rust-lang/cargo/issues/9994) about this bug.
+See [this page][pitfall::build-errors] for more info. See this [cargo
+issue][cargo::9994] about this bug.
 
 If you are still getting errors, it is probably because cargo is trying
 to use multiple different versions of bevy in your dependency tree

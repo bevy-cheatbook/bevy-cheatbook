@@ -1,5 +1,7 @@
 # Configuring Bevy
 
+{{#include ../include/links.md}}
+
 Bevy is very modular and configurable. It is implemented as many separate
 cargo crates, allowing you to remove the parts you don't need. Higher-level
 functionality is built on top of lower-level foundational crates, and can
@@ -58,8 +60,7 @@ features = [
 ]
 ```
 
-(See [here](https://docs.rs/crate/bevy/0.6.0/features) for a full list of
-Bevy's cargo features.)
+(See [here][bevy::features] for a full list of Bevy's cargo features.)
 
 ### Graphics / Rendering
 
@@ -69,33 +70,29 @@ you need `render`, `bevy_winit`.
 If you don't need graphics (like for a dedicated game server, scientific
 simulation, etc.), you may remove these features.
 
-There are also [community-made alternative backend
-crates](https://bevyengine.org/assets/#backends) that could replace Bevy's
-default graphics, if you want that for any reason.
-
 ### Audio
 
-Bevy's audio is very limited in functionality and
-somewhat broken. It is recommended that you use the
-[`bevy_kira_audio`](https://github.com/NiklasEi/bevy_kira_audio) plugin
-instead. Disable `bevy_audio` and `vorbis`.
+Bevy's audio is very limited in functionality and somewhat broken. It is
+recommended that you use the [`bevy_kira_audio`][project::bevy_kira_audio]
+plugin instead. Disable `bevy_audio` and `vorbis`.
 
-See [this page](../features/audio.md) for more information.
+See [this page][cb::audio] for more information.
 
 ### File Formats
 
 You can use the relevant cargo features to enable/disable support for loading
-assets (images/textures and audio) with various different file formats.
+assets with various different file formats.
 
-See [this page](../features/file-formats.md) for more information.
+See [this page][cb::file-format] for more information.
 
 ### Input Devices
 
-If you do not care about controller/joystick support, you can disable `bevy_gilrs`.
+If you do not care about [controller/joystick][input::gamepad] support,
+you can disable `bevy_gilrs`.
 
 ### Linux Windowing Backend
 
-On [Linux](../platforms/linux.md), you can choose to support X11, Wayland,
+On [Linux][platform::linux], you can choose to support X11, Wayland,
 or both. Only `x11` is enabled by default, as it is the legacy system
 that should be compatible with most/all distributions, to make your builds
 smaller and compile faster. You might want to additionally enable `wayland`,
@@ -108,12 +105,11 @@ While you are developing your project, these features might be useful:
 
 #### Dynamic Linking
 
-`dynamic` causes Bevy to be built and linked as a shared/dynamic library
-(`*.so` on Linux, `*.dylib` on macOS, `*.DLL` on Windows). This will make
-incremental builds *much* faster, which can reduce frustration when you are
-trying to test out changes to your code. On my machine, my projects recompile
-in ~2 sec without this option, and in ~0.5 sec with it enabled. This makes
-starting the game feel almost instant.
+`dynamic` causes Bevy to be built and linked as a shared/dynamic library. This
+will make incremental builds *much* faster, which can reduce frustration
+when you are trying to test out changes to your code. On my machine, my
+projects recompile in ~2 sec without this option, and in ~0.5 sec with it
+enabled. This makes starting the game feel almost instant.
 
 This is known to work very well on Linux, but you may encounter issues on
 other platforms. YMMV. I've heard people have issues on Windows.
@@ -134,3 +130,6 @@ cargo run --features bevy/dynamic
 
 The features `trace` and `wgpu_trace` may be useful for profiling and
 diagnosing performance issues.
+
+`trace_chrome` and `trace_tracy` choose the backend you want to use to
+visualize the traces.

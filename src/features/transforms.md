@@ -1,8 +1,6 @@
 # Transforms
 
-{{#include ../include/navlinks.md}}
-{{#include ../include/docsrs.md}}
-{{#include ../include/bevy-examples.md}}
+{{#include ../include/links.md}}
 
 Relevant official examples:
 [`parenting`][example::parenting],

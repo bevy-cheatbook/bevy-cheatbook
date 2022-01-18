@@ -1,8 +1,10 @@
 # Borrow multiple fields from struct
 
-When you have a component or resource, that is larger struct with multiple
-fields, sometimes you want to borrow several of the fields at the same time,
-possibly mutably.
+{{#include ../include/links.md}}
+
+When you have a [component][cb::component] or [resource][cb::res], that is
+larger struct with multiple fields, sometimes you want to borrow several of
+the fields at the same time, possibly mutably.
 
 ```rust,no_run,noplayground
 struct MyThing {
@@ -40,22 +42,25 @@ The solution is to use the "reborrow" idiom, a common but non-obvious trick in R
         let thing = &mut *thing;
 ```
 
-Note that this line triggers [change detection](../programming/change-detection.md).
-Even if you don't modify the data afterwards, the component gets marked as changed.
+Note that this line triggers [change detection][cb::change-detection]. Even if
+you don't modify the data afterwards, the component gets marked as changed.
 
 ## Explanation
 
-Bevy typically gives you access to your data via special wrapper types
-(like `Res<T>`, `ResMut<T>`, and `Mut<T>` (when querying for components
-mutably)). This lets Bevy track access to the data.
+Bevy typically gives you access to your data via special wrapper types (like
+[`Res<T>`][bevy::Res], [`ResMut<T>`][bevy::ResMut], and [`Mut<T>`][bevy::Mut]
+(when [querying][cb::query] for components mutably)). This lets Bevy track
+access to the data.
 
-These are "smart pointer" types that use the Rust `Deref` trait to dereference
-to your data. They usually work seamlessly and you don't even notice them.
+These are "smart pointer" types that use the Rust [`Deref`][std::Deref]
+trait to dereference to your data. They usually work seamlessly and you
+don't even notice them.
 
 However, in a sense, they are opaque to the compiler. The Rust language
 allows fields of a struct to be borrowed individually, when you have direct
 access to the struct, but this does not work when it is wrapped in another type.
 
-The "reborrow" trick shown above, effectively converts the wrapper into a regular
-Rust reference. `*thing` dereferences the wrapper via `Deref`, and then `&mut`
-borrows it mutably. You now have `&mut MyStuff` instead of `Mut<MyStuff>`.
+The "reborrow" trick shown above, effectively converts the wrapper
+into a regular Rust reference. `*thing` dereferences the wrapper via
+[`DerefMut`][std::DerefMut], and then `&mut` borrows it mutably. You now have
+`&mut MyStuff` instead of `Mut<MyStuff>`.

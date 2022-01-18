@@ -1,10 +1,12 @@
 # Hosting on GitHub Pages
 
+{{#include ../../include/links.md}}
+
 GitHub Pages is a hosting service that allows you to publish your website
 on GitHub's servers.
 
 For more details, visit the official [GitHub Pages
-documentation](https://docs.github.com/en/pages).
+documentation][ghpages::docs].
 
 Deploying a website (like your WASM game) to GitHub pages is done by
 putting the files in a special branch in a GitHub repository. You could

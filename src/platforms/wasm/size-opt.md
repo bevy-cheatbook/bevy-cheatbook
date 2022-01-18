@@ -1,5 +1,7 @@
 # Optimize for Size
 
+{{#include ../../include/links.md}}
+
 When serving a WASM binary, the smaller it is, the faster the browser can
 download it. Faster downloads means faster page load times and less data
 bandwidth use, and that means happier users.
@@ -13,12 +15,11 @@ They may come at the cost of longer compile times or less debuggability.
 Depending on the nature of your application, your mileage may vary, and
 performing measurements of binary size and execution speed is recommended.
 
-[Twiggy](https://github.com/rustwasm/twiggy) is a code size profiler for
-WASM binaries, which you can use to make measurements.
+[Twiggy][project::twiggy] is a code size profiler for WASM binaries, which
+you can use to make measurements.
 
-For additional information and more techniques,
-refer to the Code Size chapter in the [Rust WASM
-book](https://rustwasm.github.io/docs/book/reference/code-size.html).
+For additional information and more techniques, refer to the Code Size
+chapter in the [Rust WASM book][rustwasmbook::code-size].
 
 ## Compiling for size instead of speed
 
@@ -64,10 +65,9 @@ for release builds you publish for other users.
 
 ## Use the `wasm-opt` tool
 
-The [binaryen](https://github.com/WebAssembly/binaryen) toolkit is a set of
-extra tools for working with WASM. One of them is `wasm-opt`. It goes much
-further than what the compiler can do, and can be used to further optimize
-for either speed or size:
+The [binaryen][project::binaryen] toolkit is a set of extra tools for working
+with WASM. One of them is `wasm-opt`. It goes much further than what the
+compiler can do, and can be used to further optimize for either speed or size:
 
 ```shell
 # Optimize for size (s profile).
@@ -83,8 +83,8 @@ wasm-opt -O3 -o output.wasm input.wasm
 ## Use the `wee-alloc` memory allocator
 
 You can replace Rust's default memory allocator with
-[wee-alloc](https://github.com/rustwasm/wee_alloc), which is slower, but is
-less than a single kilobyte in size.
+[wee-alloc][project::wee_alloc], which is slower, but is less than a single
+kilobyte in size.
 
 This may result in a significant performance hit. If your game runs fast
 enough with it, the smaller download size may be more important.
@@ -107,5 +107,4 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 ---
 
 Do you know of more WASM size-optimization techniques? Post about them in the
-[GitHub Issue Tracker](https://github.com/bevy-cheatbook/bevy-cheatbook/issues)
-so that they can be added to this page!
+[GitHub Issue Tracker][project::cb] so that they can be added to this page!

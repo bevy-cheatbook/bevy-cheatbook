@@ -1,6 +1,6 @@
 # Coordinate System
 
-{{#include ../include/navlinks.md}}
+{{#include ../include/links.md}}
 
 Bevy uses a right-handed Y-up coordinate system.
 

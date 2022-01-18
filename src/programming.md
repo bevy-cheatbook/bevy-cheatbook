@@ -1,6 +1,6 @@
 # Bevy Programming Framework
 
-{{#include ./include/navlinks.md}}
+{{#include ./include/links.md}}
 
 This chapter presents the features of the Bevy core programming framework. This
 covers the ECS (Entity Component System), App and Scheduling.

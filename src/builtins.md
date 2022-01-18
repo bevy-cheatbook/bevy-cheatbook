@@ -1,7 +1,6 @@
 # List of Bevy Builtins
 
-{{#include ./include/navlinks.md}}
-{{#include ./include/docsrs.md}}
+{{#include ./include/links.md}}
 
 This page is a quick condensed listing of all the important things provided
 by Bevy.

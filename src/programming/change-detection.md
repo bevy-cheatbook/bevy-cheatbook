@@ -1,7 +1,9 @@
 # Change Detection
 
+{{#include ../include/links.md}}
+
 Relevant official examples:
-[`change_detection`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/change_detection.rs).
+[`component_change_detection`][example::component_change_detection].
 
 ---
 
@@ -10,25 +12,25 @@ perform actions in response to changes.
 
 ## Components
 
-Use [query filters](./queries.md#query-filters):
- - `Added<T>`: detect new component instances
+Use [query filters][cb::query-filter]:
+ - [`Added<T>`][bevy::Added]: detect new component instances
    - if the component was added to an existing entity
    - if a new entity with the component was spawned
- - `Changed<T>`: detect component instances that have been changed
+ - [`Changed<T>`][bevy::Changed]: detect component instances that have been changed
    - triggers when the component is accessed mutably
-   - also triggers if the component is newly-added (as per `Added`)
+   - also triggers if the component is newly-added (as per [`Added`][bevy::Added])
 
 (If you want to react to removals, see the page on [removal
-detection](./removal-detection.md). It works differently and is much
+detection][cb::removal-detection]. It works differently and is much
 trickier to use.)
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-detection}}
 ```
 
-`Changed` detection is triggered by `DerefMut`. Simply accessing components
-via a mutable query, without actually performing a `&mut` access, will *not*
-trigger it.
+[`Changed`][bevy::Changed] detection is triggered by
+[`DerefMut`][std::DerefMut]. Simply accessing components via a mutable query,
+without actually performing a `&mut` access, will *not* trigger it.
 
 This makes change detection quite accurate. You can rely on it to optimize
 your game's performance, or to otherwise trigger things to happen.
@@ -43,14 +45,13 @@ change detection. If you want to avoid that, simply check it yourself:
 
 Change detection is reliable -- it will detect any changes that
 have occured since the last time your detecting system ran. If your
-system only runs sometimes (such as with [states](./states.md) or [run
-criteria](./run-criteria.md)), you *do not* have to worry about missing
-changes.
+system only runs sometimes (such as with [states][cb::state] or [run
+criteria][cb::runcriteria]), you *do not* have to worry about missing changes.
 
 ## Resources
 
-For resources, change detection is provided via methods on the
-`Res`/`ResMut` system parameters.
+For [resources][cb::res], change detection is provided via methods on the
+[`Res`][bevy::Res]/[`ResMut`][bevy::ResMut] system parameters.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:changed-res}}
@@ -58,16 +59,19 @@ For resources, change detection is provided via methods on the
 
 This works the same way as change detection for components.
 
+Note that change detection cannot currently be used to detect
+[states][cb::state] changes (via the [`State`][bevy::State]
+[resource][cb::res]) ([bug][bevy::2343]).
+
 ## Possible Pitfalls
 
-Beware of [frame delay / 1-frame-lag](../pitfalls/frame-delay.md). This can
-occur if Bevy runs the detecting system before the changing system. The
-detecting system will see the change the next time it runs, typically on
-the next frame update.
+Beware of frame delay / 1-frame-lag. This can occur if Bevy runs the detecting
+system before the changing system. The detecting system will see the change
+the next time it runs, typically on the next frame update.
 
 If you need to ensure that changes are handled immediately / during the same
-frame, you can use [explicit system ordering](./system-order.md).
+frame, you can use [explicit system ordering][cb::system-order].
 
-However, when detecting component additions with `Added<T>` (which are
-typically done using [`Commands`](./commands.md)), this is not enough;
-you need [stages](./stages.md).
+However, when detecting component additions with [`Added<T>`][bevy::Added]
+(which are typically done using [`Commands`][cb::commands]), this is not
+enough; you need [stages][cb::stage].

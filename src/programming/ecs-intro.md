@@ -1,7 +1,13 @@
 # ECS as a Data Structure
 
+{{#include ../include/links.md}}
+
 Relevant official examples:
-[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs).
+[`ecs_guide`][example::ecs_guide].
+
+Also check out the complete game examples:
+[`alien_cake_addict`][example::alien_cake_addict],
+[`breakout`][example::breakout].
 
 ---
 
@@ -18,7 +24,7 @@ then have many entities representing different things in your game, such
 as the player, NPCs, or monsters, all of which can have a `Health` value
 (as well as other relevant components).
 
-This makes it easy to write game logic ([Systems](./systems.md)) that can
+This makes it easy to write game logic ([Systems][cb::system]) that can
 operate on any entity with the necessary components (such as a health/damage
 system for anything that has `Health`), regardless of whether that's the
 player, an NPC, or a monster (or anything else). This makes your game logic
@@ -59,14 +65,15 @@ it more difficult to work with your data, and limit performance.
 Instead, you should make things granular, when different pieces of data may
 be accessed independently.
 
-For example, represent the Player in your game as an entity, composed of
-separate component types (separate `struct`s) for things like the health,
-XP, or whatever is relevant to your game. You can also attach standard Bevy
-components like `Transform` to it.
+For example, represent the Player in your game as an entity, composed
+of separate component types (separate `struct`s) for things like the
+health, XP, or whatever is relevant to your game. You can also attach
+standard Bevy components like [`Transform`][bevy::Transform] ([transforms
+explained][cb::transform]) to it.
 
 This will make it easier for you to develop your systems (game logic /
 behaviors), as well as make your game's runtime performance better.
 
-However, something like a `Transform`, or a set of coordinates, still makes
-sense as a single `struct`, because its fields are not likely to be useful
-independently.
+However, something like a [`Transform`][bevy::Transform], or a set of
+coordinates, still makes sense as a single `struct`, because its fields are
+not likely to be useful independently.

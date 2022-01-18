@@ -1,10 +1,11 @@
 # Windows Desktop
 
+{{#include ../include/links.md}}
+
 If you have any additional Windows-specific knowledge,
 please help improve this page!
 
-Create Issues or PRs on
-[GitHub](https://github.com/bevy-cheatbook/bevy-cheatbook).
+Create Issues or PRs on [GitHub][project::cb].
 
 ---
 
@@ -31,7 +32,7 @@ There are two places where you might want to put your application icon:
 
 ### Setting the EXE icon
 
-(adapted from [here](https://github.com/NiklasEi/bevy_game_template))
+(adapted from [here][project::bevy_game_template])
 
 The EXE icon can be set using a cargo build script.
 
@@ -64,5 +65,5 @@ Create your icon as `icon.ico` in your project folder.
 
 ### Setting the Window Icon
 
-See [Bevy Cookbook: Setting the Window Icon](../cookbook/window-icon.md).
+See [Bevy Cookbook: Setting the Window Icon][cookbook::window-icon].
 

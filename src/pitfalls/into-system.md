@@ -1,7 +1,6 @@
 # Error adding function as system
 
-{{#include ../include/navlinks.md}}
-{{#include ../include/docsrs.md}}
+{{#include ../include/links.md}}
 
 You can sometimes get confusing arcane compiler errors when you try to add
 systems to your Bevy app.
@@ -30,12 +29,12 @@ These errors are caused by a malformed query.
 
 ## Common beginner mistakes
 
-  - Using `&mut Commands` (bevy 0.4 syntax) instead of `Commands`.
+  - Using `&mut Commands` (bevy 0.4 syntax) instead of [`Commands`][bevy::Commands].
   - Using `Query<MyStuff>` instead of `Query<&MyStuff>` or `Query<&mut MyStuff>`.
   - Using `Query<&ComponentA, &ComponentB>` instead of `Query<(&ComponentA, &ComponentB)>`
     (forgetting the tuple)
-  - Using your resource types directly without `Res` or `ResMut`.
-  - Using your component types directly without putting them in a `Query`.
+  - Using your resource types directly without [`Res`][bevy::Res] or [`ResMut`][bevy::ResMut].
+  - Using your component types directly without putting them in a [`Query`][bevy::Query].
   - Using other arbitrary types in your function.
 
 Note that `Query<Entity>` is correct, because the Entity ID is special;

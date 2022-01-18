@@ -1,7 +1,9 @@
 # UI layout is inverted
 
+{{#include ../include/links.md}}
+
 [In bevy, the Y axis always points *UP*. When working with UI, the origin
-is at the *bottom left* corner of the screen.](../features/transforms.md)
+is at the *bottom left* corner of the screen.][cb::coords]
 
 This means that UI is laid out from bottom to top.
 

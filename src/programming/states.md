@@ -1,7 +1,9 @@
 # States
 
+{{#include ../include/links.md}}
+
 Relevant official examples:
-[`state`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/state.rs).
+[`state`][example::state].
 
 ---
 
@@ -13,11 +15,12 @@ This is how you can implement things like:
  - Different game modes
  - ...
 
-In every state, you can have different systems running. You can also add
-one-shot setup and cleanup systems to run when entering or exiting a state.
+In every state, you can have different [systems][cb::system] running. You
+can also add one-shot setup and cleanup systems to run when entering or
+exiting a state.
 
-To use states, define an enum type and add [system sets](./system-sets.md)
-to your [app builder](./app-builder.md):
+To use states, define an enum type and add [system sets][cb::systemset]
+to your [app builder][cb::app]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:app-states}}
@@ -25,20 +28,20 @@ to your [app builder](./app-builder.md):
 
 It is OK to have multiple system sets for the same state.
 
-This is useful when you want to place [labels](./labels.md) and use [explicit
-system ordering](./system-order.md).
+This is useful when you want to place [labels][cb::label] and use [explicit
+system ordering][cb::system-order].
 
-This can also be useful with [Plugins](./plugins.md). Each plugin can add
+This can also be useful with [Plugins][cb::plugin]. Each plugin can add
 its own set of systems to the same state.
 
-States are implemented using [run criteria](./run-criteria.md) under the hood.
+States are implemented using [run criteria][cb::runcriteria] under the hood.
 These special system set constructors are really just helpers to automatically
 add the state management run criteria.
 
 ## Controlling States
 
-Inside of systems, you can check and control the state using the `State<T>`
-resource:
+Inside of systems, you can check and control the state using the
+[`State<T>`][bevy::State] resource:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:check-state}}
@@ -55,7 +58,7 @@ the next state you set.
 
 You can do arbitrarily many state transitions in a single frame update. Bevy
 will handle all of them and execute all the relevant systems (before moving
-on to the next [stage](./stages.md)).
+on to the next [stage][cb::stage]).
 
 ## State Stack
 
@@ -69,7 +72,7 @@ You can have some systems that are still running even when the state is
 "inactive" (that is, in the background, with other states running on top). You
 can also add one-shot systems to run when "pausing" or "resuming" the state.
 
-In your [app builder](./app-builder.md):
+In your [app builder][cb::app]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:state-stack}}
@@ -87,19 +90,19 @@ To manage states like this, use `push`/`pop`:
 
 ### Events
 
-When receiving [events](./events.md) in systems that don't run all the time, such
+When receiving [events][cb::event] in systems that don't run all the time, such
 as during a pause state, you will miss any events that are sent during the frames
 when the receiving systems are not running!
 
 To mitigate this, you could implement a [custom cleanup
-strategy](../patterns/manual-event-clear.md), to manually manage the lifetime
-of the relevant event types.
+strategy][cb::event-manual], to manually manage the lifetime of the relevant
+event types.
 
 ### Combining with Other Run Criteria
 
-Because states are implemented using run criteria, it is tricky
-to combine them with other uses of run criteria, such as [fixed
-timestep](../features/fixed-timestep.md).
+Because states are implemented using [run criteria][cb::runcriteria], it
+is tricky to combine them with other uses of run criteria, such as [fixed
+timestep][cb::fixedtimestep].
 
 If you try to add another run criteria to your system set, it would replace
 Bevy's state-management run criteria! This would make the system set no
@@ -111,22 +114,20 @@ It may still be possible to accomplish such use cases using some trickery.
 
 ### With Input
 
-If you want to use `Input<T>` to trigger state transitions using a button/key
-press, you need to clear the input manually by calling `.reset`:
+If you want to use [`Input<T>`][bevy::Input] to trigger state transitions using
+a button/key press, you need to clear the input manually by calling `.reset`:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:state-input-clear}}
 ```
 
-(note that this requires `ResMut`)
+(note that this requires [`ResMut`][bevy::ResMut])
 
-Not doing this can cause [issues](https://github.com/bevyengine/bevy/issues/1700).
+Not doing this can cause [issues][bevy::1700].
 
 ### Multiple Stages
 
-(TODO) move this under the [Advanced Patterns](../patterns/_index.md) chapter.
-
-If you need state-dependent systems in multiple [stages](./stages.md),
+If you need state-dependent systems in multiple [stages][cb::stage],
 a workaround is required.
 
 You must add the state to one stage only, and then call `.get_driver()`

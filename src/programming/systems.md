@@ -1,9 +1,11 @@
 # Systems
 
+{{#include ../include/links.md}}
+
 Relevant official examples:
-[`ecs_guide`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/ecs_guide.rs),
-[`startup_system`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/startup_system.rs),
-[`system_param`](https://github.com/bevyengine/bevy/blob/latest/examples/ecs/system_param.rs).
+[`ecs_guide`][example::ecs_guide],
+[`startup_system`][example::startup_system],
+[`system_param`][example::system_param].
 
 ---
 
@@ -11,15 +13,15 @@ Systems are functions you write, which are run by Bevy.
 
 This is where you implement all your game logic.
 
-These functions can only take special parameter types, to specify what you
-need access to. [If you use unsupported parameter types in your function,
-you will get confusing compiler errors!](../pitfalls/into-system.md)
+These functions can only take [special parameter types][builtins::systemparam],
+to specify what you need access to. [If you use unsupported parameter types
+in your function, you will get confusing compiler errors!][pitfall::intosystem]
 
 Some of the options are:
- - accessing [resources](./res.md) using `Res`/`ResMut`
- - accessing [components of entities](./ec.md) using [queries](./queries.md)
- - creating/destroying entities, components, and resources using [`Commands`](./commands.md)
- - sending/receiving [events](./events.md) using `EventWriter`/`EventReader`.
+ - accessing [resources][cb::res] using [`Res`][bevy::Res]/[`ResMut`][bevy::ResMut]
+ - accessing [components of entities][cb::component] using [queries][cb::query] ([`Query`][bevy::Query])
+ - creating/destroying entities, components, and resources using [Commands][cb::commands] ([`Commands`][bevy::Commands])
+ - sending/receiving [events][cb::event] using [`EventWriter`][bevy::EventWriter]/[`EventReader`][bevy::EventReader]
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:sys-debug-res}}
@@ -32,12 +34,11 @@ useful for organization.
 {{#include ../code/src/basics.rs:sys-param-tuple}}
 ```
 
-The maximum number of top-level system parameters, or tuple members, is 16. You
-can group/nest them into tuples, if you need to work around that limitation.
+{{#include ../include/builtins.md:systemparam-limits}}
 
 ## Runtime
 
-To run your systems, you need to add them to Bevy via the [app builder](./app-builder.md):
+To run your systems, you need to add them to Bevy via the [app builder][cb::app]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:systems-appbuilder}}
@@ -47,6 +48,6 @@ The above is enough for simple projects.
 
 As your project grows more complex, you might want to enhance your app builder
 with some of the powerful tools that Bevy offers for managing when/how
-your systems run, such as: [explicit ordering](./system-order.md) with
-[labels](./labels.md), [system sets](./system-sets.md), [states](./states.md),
-[run criteria](./run-criteria.md), and [stages](./stages.md).
+your systems run, such as: [explicit ordering][cb::system-order] with
+[labels][cb::label], [system sets][cb::systemset], [states][cb::state],
+[run criteria][cb::runcriteria], and [stages][cb::stage].
