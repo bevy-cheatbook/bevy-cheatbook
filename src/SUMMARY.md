@@ -5,7 +5,6 @@
 ---
 
 [List of Bevy Builtins](./builtins.md)
-[Alphabetical Glossary](./glossary.md)
 
 ---
 
