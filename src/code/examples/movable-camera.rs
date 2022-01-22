@@ -109,8 +109,9 @@ fn net_movement(keys: &Res<Input<KeyCode>>, negative: KeyCode, positive: KeyCode
 fn lock_cursor(
    mut windows: ResMut<Windows>,
    buttons: Res<Input<MouseButton>>,
-   mut cam: ResMut<MovableCamera>,
+   mut cam: Query<&mut MovableCamera>,
 ) {
+   let mut cam = cam.single_mut();
    if buttons.just_pressed(MouseButton::Right) {
       if let Some(window) = windows.get_primary_mut() {
          window.set_cursor_lock_mode(true);
