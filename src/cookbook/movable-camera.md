@@ -11,9 +11,9 @@ Initial work by [**@skairunner**](https://github.com/inodentry/bevy-cookbook/pul
 
 ---
 
-This is a camera controller similar to the one in in Roblox Studio.
+This is a camera controller similar to the one in Roblox Studio.
 
-Move the camera with QWEASD, zoom with wheel, focus at camera pos with F, and rotate/orbit with right mouse button.
+Move the camera with QWEASD, zoom with mouse wheel, focus at camera pos with F, and rotate/orbit with right mouse button.
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/movable-camera.rs:example}}
