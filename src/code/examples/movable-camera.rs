@@ -8,20 +8,41 @@ use bevy::{
 };
 
 // ANCHOR: example
-/// Some defaults for camera behavior. These should be replaced
-/// with a configurable setup.
-const DEFAULT_SPEED: f32 = 1.0;
-const ACCELERATION: f32 = 1.0;
-const SLOW_SPEED: f32 = 0.1;
-const SCROLL_SNAP: f32 = 1.0;
-const FORWARD: KeyCode = KeyCode::W;
-const BACKWARD: KeyCode = KeyCode::S;
-const LEFT: KeyCode = KeyCode::A;
-const RIGHT: KeyCode = KeyCode::D;
-const UPWARD: KeyCode = KeyCode::E;
-const DOWNWARD: KeyCode = KeyCode::Q;
-const CHANGE_SPEED: KeyCode = KeyCode::LShift;
-const FOCUS: KeyCode = KeyCode::F;
+/// Struct for customizing camera behavior.
+#[derive(Component)]
+pub struct MovableCameraParams {
+   pub default_speed: f32,
+   pub acceleration: f32,
+   pub slow_speed: f32,
+   pub scroll_snap: f32,
+   pub forward: KeyCode,
+   pub back: KeyCode,
+   pub left: KeyCode,
+   pub right: KeyCode,
+   pub up: KeyCode,
+   pub down: KeyCode,
+   pub change_speed: KeyCode,
+   pub focus: KeyCode,
+}
+
+impl Default for MovableCameraParams {
+   fn default() -> Self {
+      Self {
+         default_speed: 1.0,
+         acceleration: 1.0,
+         slow_speed: 0.1,
+         scroll_snap: 1.0,
+         forward: KeyCode::W,
+         back: KeyCode::S,
+         left: KeyCode::A,
+         right: KeyCode::D,
+         up: KeyCode::E,
+         down: KeyCode::Q,
+         change_speed: KeyCode::LShift,
+         focus: KeyCode::F,
+      }
+   }
+}
 
 /// Tags an entity as being capable of moving, rotating, and orbiting.
 #[derive(Component)]
@@ -36,8 +57,8 @@ struct MovableCamera {
 impl Default for MovableCamera {
    fn default() -> Self {
       Self {
-         speed: DEFAULT_SPEED,
-         angular_speed: DEFAULT_SPEED,
+         speed: MovableCameraParams::default().default_speed,
+         angular_speed: MovableCameraParams::default().default_speed,
          slow: false,
          cursor_pos: Vec2::default(),
          focused: false,
@@ -132,24 +153,33 @@ fn lock_cursor(
 fn adjust_cam_speed(
    time: Res<Time>,
    keys: Res<Input<KeyCode>>,
+   cam_params: Res<MovableCameraParams>,
    mut cam: Query<&mut MovableCamera>,
 ) {
    let mut cam = cam.single_mut();
-   if keys.just_pressed(CHANGE_SPEED) {
+   if keys.just_pressed(cam_params.change_speed) {
       cam.slow = !cam.slow;
       if !cam.slow {
-         cam.speed = DEFAULT_SPEED;
+         cam.speed = cam_params.default_speed;
+         cam.angular_speed = cam_params.default_speed;
       }
    }
 
    if cam.slow {
-      cam.speed = SLOW_SPEED;
-      cam.angular_speed = SLOW_SPEED;
-   } else if keys.any_pressed([LEFT, RIGHT, UPWARD, BACKWARD, DOWNWARD, FORWARD]) {
-      cam.speed += ACCELERATION.mul(time.delta_seconds());
+      cam.speed = cam_params.slow_speed;
+      cam.angular_speed = cam_params.slow_speed;
+   } else if keys.any_pressed([
+      cam_params.left,
+      cam_params.right,
+      cam_params.up,
+      cam_params.back,
+      cam_params.down,
+      cam_params.forward,
+   ]) {
+      cam.speed += cam_params.acceleration.mul(time.delta_seconds());
    } else {
-      cam.speed = DEFAULT_SPEED;
-      cam.angular_speed = DEFAULT_SPEED;
+      cam.speed = cam_params.default_speed;
+      cam.angular_speed = cam_params.default_speed;
    }
 }
 
@@ -162,6 +192,7 @@ fn movable_camera(
    buttons: Res<Input<MouseButton>>,
    mut motion: EventReader<MouseMotion>,
    mut scroll_events: EventReader<MouseWheel>,
+   cam_params: Res<MovableCameraParams>,
    mut q_child: Query<(
       &Parent,
       &mut Transform,
@@ -172,7 +203,14 @@ fn movable_camera(
 ) {
    for (parent, mut transform_child, mut cam, ..) in q_child.iter_mut() {
       if cam.focused {
-         if keys.any_pressed([LEFT, RIGHT, UPWARD, BACKWARD, DOWNWARD, FORWARD]) {
+         if keys.any_pressed([
+            cam_params.left,
+            cam_params.right,
+            cam_params.up,
+            cam_params.back,
+            cam_params.down,
+            cam_params.forward,
+         ]) {
             if let Ok((mut transform_parent, ..)) = q_parent.get_mut(parent.0) {
                let zoom = transform_child.translation.z;
                // Set child transform to parent transform
@@ -184,7 +222,7 @@ fn movable_camera(
             }
             cam.focused = false;
          }
-      } else if keys.just_pressed(FOCUS) {
+      } else if keys.just_pressed(cam_params.focus) {
          if let Ok((mut transform_parent, ..)) = q_parent.get_mut(parent.0) {
             // Hand off position and orientation information to parent
             *transform_parent = *transform_child;
@@ -225,7 +263,7 @@ fn movable_camera(
          // mutate child's z
          if scroll.abs() > 0.0 {
             transform_child.translation -= Vec3::new(0.0, 0.0, 1.0)
-               .mul(SCROLL_SNAP)
+               .mul(cam_params.scroll_snap)
                .mul(scroll)
                .mul(cam.speed);
             // Clamp the child's translation so it can't go past focus (the parent)
@@ -249,15 +287,15 @@ fn movable_camera(
             let transform_clone = *transform_child;
             transform_child.translation += transform_clone
                .forward()
-               .mul(SCROLL_SNAP)
+               .mul(cam_params.scroll_snap)
                .mul(scroll)
                .mul(cam.speed);
          }
 
          let mut translate_move = Vec3::new(
-            net_movement(&keys, RIGHT, LEFT),
-            net_movement(&keys, DOWNWARD, UPWARD),
-            net_movement(&keys, BACKWARD, FORWARD),
+            net_movement(&keys, cam_params.right, cam_params.left),
+            net_movement(&keys, cam_params.down, cam_params.up),
+            net_movement(&keys, cam_params.back, cam_params.forward),
          )
          .normalize_or_zero();
 
@@ -342,8 +380,9 @@ fn main() {
       .add_plugins(DefaultPlugins)
       .add_startup_system(setup)
       .add_startup_system(spawn_camera)
-      .add_system(lock_cursor)
+      .insert_resource(MovableCameraParams::default())
       .add_system(adjust_cam_speed)
       .add_system(movable_camera)
+      .add_system(lock_cursor)
       .run();
 }
