@@ -188,7 +188,6 @@ fn movable_camera<P>(
    P: MovableCameraParams,
 {
    for (parent, mut transform_child, mut cam, ..) in q_child.iter_mut() {
-      // Focused Camera
       if cam.focused {
          if keys.any_pressed([
             CameraParams::LEFT,
@@ -231,6 +230,7 @@ fn movable_camera<P>(
          scroll += ev.y;
       }
 
+      // Focused Camera
       if cam.focused {
          // Orbit the camera
          if rotation_move.length_squared() > 0.0 {
