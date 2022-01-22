@@ -1,4 +1,4 @@
-# Pan + Orbit Camera
+# Movable Camera
 
 [Click here for the full example code.](../code/examples/movable-camera.rs)
 
