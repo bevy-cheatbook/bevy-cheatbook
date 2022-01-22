@@ -227,7 +227,7 @@ fn movable_camera<P>(
          }
       }
 
-      for ev in scroll_evr.iter() {
+      for event in scroll_events.iter() {
          scroll += ev.y;
       }
 
