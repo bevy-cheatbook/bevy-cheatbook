@@ -90,6 +90,7 @@
     - [Panic Messages](./platforms/wasm/panic-console.md)
     - [Optimize for Size](./platforms/wasm/size-opt.md)
     - [Hosting on GitHub Pages](./platforms/wasm/gh-pages.md)
+    - [General Tips](./platforms/wasm/tips.md)
 
 ---
 
