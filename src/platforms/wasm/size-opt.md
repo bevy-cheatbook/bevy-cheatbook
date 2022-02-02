@@ -78,6 +78,9 @@ wasm-opt -Oz -o output.wasm input.wasm
 
 # Optimize aggressively for speed.
 wasm-opt -O3 -o output.wasm input.wasm
+
+# Optimize aggressively for both size and speed.
+wasm-opt -O -ol 100 -s 100 -o output.wasm input.wasm
 ```
 
 ## Use the `wee-alloc` memory allocator
