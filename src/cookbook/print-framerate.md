@@ -1,6 +1,8 @@
 # Show Framerate in Console
 
-[Click here for the full example code.](../code/examples/print-framerate.rs)
+{{#include ../include/links.md}}
+
+[Click here for the full example code.][cbexample::print-framerate]
 
 ---
 

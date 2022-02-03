@@ -12,6 +12,7 @@
 [cb::asset]: /features/assets.md
 [cb::asset-hotreload]: /features/asset-hotreload.md
 [cb::3rdparty]: /setup/unofficial-plugins.md
+[cb::3rdparty::code-helpers]: /setup/unofficial-plugins.md#code-helpers
 [cb::app]: /programming/app-builder.md
 [cb::appexit]: /programming/quit.md
 [cb::audio]: /features/audio.md
@@ -60,6 +61,7 @@
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /features/transforms.md
 [cb::world]: /programming/world.md
+[chapter::builtins]: /builtins.md
 [chapter::cookbook]: /cookbook.md
 [chapter::features]: /features.md
 [chapter::patterns]: /patterns.md

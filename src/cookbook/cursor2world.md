@@ -1,6 +1,8 @@
 # Convert cursor to world coordinates
 
-[Click here for the full example code.](../code/examples/cursor2world.rs)
+{{#include ../include/links.md}}
+
+[Click here for the full example code.][cbexample::cursor2world]
 
 ---
 
@@ -10,7 +12,7 @@ the cursor is pointing at.
 ## 3D games
 
 There is a good (unofficial) plugin:
-[`bevy_mod_picking`](https://github.com/aevyrie/bevy_mod_picking).
+[`bevy_mod_picking`][project::bevy_mod_picking].
 
 ## 2D games
 
