@@ -7,9 +7,13 @@ about developing for Windows generally)
 
 ---
 
-## First-Time Setup
+Rust offers two different toolchains for building for Windows:
+ - [MSVC](#first-time-setup-msvc): the default when working in Windows, requires downloading Microsoft SDKs
+ - [GNU](#first-time-setup-gnu): alternative MINGW-based build, may be easier to setup
 
-### Rust Toolchain
+## First-Time Setup (MSVC)
+
+### Rust Toolchain (MSVC)
 
 You can actually use the same MSVC-based Rust toolchain, that is the standard
 when working on Windows, from Linux.
@@ -44,7 +48,7 @@ For example, to install to `/opt/xwin/`:
 xwin --accept-license 1 splat --output /opt/xwin
 ```
 
-### Linking
+### Linking (MSVC)
 
 Rust needs to know how to link the final EXE file.
 
@@ -67,6 +71,30 @@ rustflags = [
 ]
 ```
 
+## First-Time Setup (GNU)
+
+### Rust Toolchain (GNU)
+
+You can also use the alternative GNU-based Windows toolchain.
+
+Add the target to your Rust installation (assuming you use [`rustup`][rustup]):
+
+```sh
+rustup target add x86_64-pc-windows-gnu
+```
+
+This installs the files Rust needs to compile for Windows, including the
+Rust standard library.
+
+### MINGW
+
+The GNU toolchain requires the MINGW environment to be installed. Your distro likely
+provides a package for it. Search your distro for a cross-compilation mingw package.
+
+It might be called something like: `cross-x86_64-w64-mingw32`, but that varies in different distros.
+
+You don't need any files from Microsoft.
+
 ## Building Your Project
 
 Finally, with all the setup done, you can just build your Rust/Bevy projects
@@ -74,5 +102,9 @@ for Windows:
 
 ```sh
 cargo build --target=x86_64-pc-windows-msvc --release
+```
+
+```sh
+cargo build --target=x86_64-pc-windows-gnu --release
 ```
 
