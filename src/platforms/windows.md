@@ -13,6 +13,8 @@ Windows is one of the best-supported platforms by Bevy.
 
 Both the MSVC and the GNU compiler toolchains should work.
 
+[You can also build Windows EXEs while working in Linux][cross::linux-windows].
+
 ## Distributing Your App
 
 The EXE built with `cargo build` can work standalone without any extra files or DLLs.

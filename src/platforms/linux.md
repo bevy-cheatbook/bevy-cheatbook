@@ -14,6 +14,8 @@ Desktop Linux is one of the best-supported platforms by Bevy.
 There are some development dependencies you may need to setup, depending on your
 distribution. [See instructions in official Bevy repo.][bevy::linux-dependencies]
 
+[See here if you also want to build Windows EXEs from Linux][cross::linux-windows].
+
 ## GPU Drivers
 
 Support for the Vulkan graphics API is required to run Bevy apps. You (and your

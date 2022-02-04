@@ -70,6 +70,7 @@
 [chapter::programming]: /programming.md
 [chapter::setup]: /setup.md
 [cookbook::window-icon]: /cookbook/window-icon.md
+[cross::linux-windows]: /setup/cross/linux-windows.md
 [input::char]: /input/char.md
 [input::cursor]: /input/mouse.md
 [input::gamepad]: /input/gamepad.md
