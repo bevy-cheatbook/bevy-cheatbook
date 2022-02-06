@@ -15,7 +15,7 @@ fn my_cursor_system(
     // need to get window dimensions
     wnds: Res<Windows>,
     // query to get camera transform
-    q_camera: Query<&Transform, With<MainCamera>>
+    q_camera: Query<(&Transform, &OrthographicProjection), With<MainCamera>>
 ) {
     // get the primary window
     let wnd = wnds.get_primary().unwrap();
@@ -30,10 +30,10 @@ fn my_cursor_system(
         let p = pos - size / 2.0;
 
         // assuming there is exactly one main camera entity, so this is OK
-        let camera_transform = q_camera.single();
+        let (camera_transform, ortho_projection) = q_camera.single();
 
-        // apply the camera transform
-        let pos_wld = camera_transform.compute_matrix() * p.extend(0.0).extend(1.0);
+        // undo orthographic scale and apply the camera transform
+        let pos_wld = camera_transform.compute_matrix() * p.extend(0.0).extend(1.0 / ortho_projection.scale);
         eprintln!("World coords: {}/{}", pos_wld.x, pos_wld.y);
     }
 }
