@@ -9,7 +9,7 @@
 [bevy::plugins_guidelines]: https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md
 [bevy::system-test]: https://github.com/bevyengine/bevy/blob/main/tests/how_to_test_systems.rs
 [bevy::website]: https://bevyengine.org
-[bevyassets::games]: https://bevyengine.org/assets/#input
+[bevyassets::games]: https://bevyengine.org/assets/#games
 [bevyassets::input]: https://bevyengine.org/assets/#input
 [bevyassets]: https://bevyengine.org/assets
 [cargo::9994]: https://github.com/rust-lang/cargo/issues/9994
