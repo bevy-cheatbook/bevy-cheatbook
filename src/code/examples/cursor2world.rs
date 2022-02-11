@@ -38,7 +38,7 @@ fn my_cursor_system(
         }
 
         // undo orthographic scale and apply the camera transform
-        let pos_wld = camera_transform.compute_matrix() * p.extend(0.0).extend(1.0 / scale);
+        let pos_wld = camera_transform.compute_matrix() * p.extend(0.0).extend(scale);
         eprintln!("World coords: {}/{}", pos_wld.x, pos_wld.y);
     }
 }
