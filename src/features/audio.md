@@ -42,7 +42,7 @@ features = [
 ]
 
 [dependencies.bevy_kira_audio]
-version = "0.7.0"
+version = "0.8.0"
 # `ogg` format support is enabled by default, disable if you don't want it
 default-features = false
 # enable the features you care about
