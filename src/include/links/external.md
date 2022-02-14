@@ -44,6 +44,7 @@
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
 [project::egui]: https://github.com/emilk/egui
 [project::gilrs]: https://gitlab.com/gilrs-project/gilrs
+[project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
 [project::rapier]: https://rapier.rs/
 [project::trunkrs]: https://trunkrs.dev
 [project::twiggy]: https://github.com/rustwasm/twiggy

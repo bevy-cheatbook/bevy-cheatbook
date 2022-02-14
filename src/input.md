@@ -49,7 +49,8 @@ bindings, etc). You need to come up with your own way of translating the
 inputs into logical actions in your game/app.
 
 There are some community-made plugins that may help with that: [see the
-input-section on bevy-assets][bevyassets::input].
+input-section on bevy-assets][bevyassets::input]. My personal recommendation:
+[Input Manager plugin by Leafwing Studios][project::lwim].
 
 It may be a good idea to build your own abstractions specific to your
 game. For example, if you need to handle player movement, you might want to

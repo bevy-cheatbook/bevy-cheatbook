@@ -52,6 +52,12 @@ more generally. Can also track the loading of [assets](../features/assets.md).
 and opinionated helper for managing and loading game assets. Uses custom
 annotations to let you declare your assets more conveniently.
 
+### Input Mappings
+
+To help with your game's [input handling][chapter::input] needs, try the
+[Input Manager plugin by Leafwing Studios][project::lwim]. It is a very
+flexible way to handle your game's bindings / mappings.
+
 ### Audio
 
 Use [`bevy_kira_audio`][project::bevy_kira_audio] instead of the built-in `bevy_audio`.
