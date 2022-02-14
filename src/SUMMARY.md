@@ -37,9 +37,17 @@
   - [Assets](./features/assets.md)
   - [Hot-Reloading Assets](./features/hot-reload.md)
   - [File Format Support](./features/file-formats.md)
-  - [Input Handling](./features/input-handling.md)
   - [3D Models (GLTF)](./features/gltf.md)
   - [Audio](./features/audio.md)
+
+- [Input Handling](./input.md)
+  - [Keyboard](./input/keyboard.md)
+  - [Mouse](./input/mouse.md)
+  - [Text / Character](./input/char.md)
+  - [Gamepad (Controller, Joystick)](./input/gamepad.md)
+  - [Touchscreen](./input/touch.md)
+  - [Drag-and-Drop (Files)](./input/dnd.md)
+  - [MIDI (Musical Instrument)](./input/midi.md)
 
 - [Bevy Programming Framework](./programming.md)
   - [Intro to ECS](./programming/ecs-intro.md)

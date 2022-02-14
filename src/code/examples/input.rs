@@ -1,3 +1,6 @@
+#![allow(unused_variables)]
+
+use bevy::input::gamepad::{GamepadSettings, AxisSettings, ButtonSettings};
 use bevy::prelude::*;
 use bevy::input::mouse::{MouseMotion, MouseButtonInput, MouseWheel};
 use bevy::input::keyboard::KeyboardInput;
@@ -190,17 +193,18 @@ fn gamepad_input(
         // combine X and Y into one vector
         let left_stick_pos = Vec2::new(x, y);
 
-        // implement a dead-zone to ignore small inputs
-        if left_stick_pos.length() > 0.1 {
-            // do something with the position of the left stick
+        // Example: check if the stick is pushed up
+        if left_stick_pos.length() > 0.9 && left_stick_pos.y > 0.5 {
+            // do something
         }
     }
 
+    // In a real game, the buttons would be configurable, but here we hardcode them
     let jump_button = GamepadButton(gamepad, GamepadButtonType::South);
     let heal_button = GamepadButton(gamepad, GamepadButtonType::East);
 
     if buttons.just_pressed(jump_button) {
-        // button pressed: make the player jump
+        // button just pressed: make the player jump
     }
 
     if buttons.pressed(heal_button) {
@@ -208,6 +212,153 @@ fn gamepad_input(
     }
 }
 // ANCHOR_END: gamepad-input
+
+// ANCHOR: gamepad-input-events
+fn gamepad_input_events(
+    my_gamepad: Option<Res<MyGamepad>>,
+    mut gamepad_evr: EventReader<GamepadEvent>,
+) {
+    let gamepad = if let Some(gp) = my_gamepad {
+        // a gamepad is connected, we have the id
+        gp.0
+    } else {
+        // no gamepad is connected
+        return;
+    };
+
+    for GamepadEvent(id, kind) in gamepad_evr.iter() {
+        if id.0 != gamepad.0 {
+            // event not from our gamepad
+            continue;
+        }
+
+        use GamepadEventType::{AxisChanged, ButtonChanged};
+
+        match kind {
+            AxisChanged(GamepadAxisType::RightStickX, x) => {
+                // Right Stick moved (X)
+            }
+            AxisChanged(GamepadAxisType::RightStickY, y) => {
+                // Right Stick moved (Y)
+            }
+            ButtonChanged(GamepadButtonType::DPadDown, val) => {
+                // buttons are also reported as analog, so use a threshold
+                if *val > 0.5 {
+                    // button pressed
+                }
+            }
+            _ => {} // don't care about other inputs
+        }
+    }
+}
+// ANCHOR_END: gamepad-input-events
+
+fn gamepad_print_allevents(
+    mut gamepad_evr: EventReader<GamepadEvent>,
+) {
+    for GamepadEvent(id, kind) in gamepad_evr.iter() {
+        match kind {
+            GamepadEventType::Connected => println!("Gamepad {}: Connected", id.0),
+            GamepadEventType::Disconnected => println!("Gamepad {}: Disconnected", id.0),
+            GamepadEventType::ButtonChanged(button, val) => {
+                println!("Gamepad {}: {:?} changed: {}", id.0, button, val);
+            },
+            GamepadEventType::AxisChanged(axis, val) => {
+                println!("Gamepad {}: {:?} changed: {}", id.0, axis, val);
+            },
+        }
+    }
+}
+
+// ANCHOR: gamepad-settings
+// this should be run once, when the game is starting
+// (transition entering your in-game state might be a good place to put it)
+fn configure_gamepads(
+    my_gamepad: Option<Res<MyGamepad>>,
+    mut settings: ResMut<GamepadSettings>,
+) {
+    let gamepad = if let Some(gp) = my_gamepad {
+        // a gamepad is connected, we have the id
+        gp.0
+    } else {
+        // no gamepad is connected
+        return;
+    };
+
+    // add a larger default dead-zone to all axes (ignore small inputs, round to zero)
+    settings.default_axis_settings.negative_low = -0.1;
+    settings.default_axis_settings.positive_low = 0.1;
+
+    // make the right stick "binary", squash higher values to 1.0 and lower values to 0.0
+    let right_stick_settings = AxisSettings {
+        positive_high:  0.5, // values  0.5 to  1.0, become  1.0
+        positive_low:   0.5, // values  0.0 to  0.5, become  0.0
+        negative_low:  -0.5, // values -0.5 to  0.0, become  0.0
+        negative_high: -0.5, // values -1.0 to -0.5, become -1.0
+        // the raw value should change by at least this much,
+        // for Bevy to register an input event:
+        threshold: 0.01,
+    };
+
+    // make the triggers work in big/coarse steps, to get fewer events
+    // reduces noise and precision
+    let trigger_settings = AxisSettings {
+        threshold: 0.2,
+        // also set some conservative deadzones
+        positive_high: 0.8,
+        positive_low: 0.2,
+        negative_high: -0.8,
+        negative_low: -0.2,
+    };
+
+    // set these settings for the gamepad we use for our player
+    settings.axis_settings.insert(
+        GamepadAxis(gamepad, GamepadAxisType::RightStickX),
+        right_stick_settings.clone()
+    );
+    settings.axis_settings.insert(
+        GamepadAxis(gamepad, GamepadAxisType::RightStickY),
+        right_stick_settings.clone()
+    );
+    settings.axis_settings.insert(
+        GamepadAxis(gamepad, GamepadAxisType::LeftZ),
+        trigger_settings.clone()
+    );
+    settings.axis_settings.insert(
+        GamepadAxis(gamepad, GamepadAxisType::RightZ),
+        trigger_settings.clone()
+    );
+
+    // for buttons (or axes treated as buttons), make them less sensitive
+    let button_settings = ButtonSettings {
+        // require them to be pressed almost all the way, to count
+        press: 0.9,
+        // require them to be released almost all the way, to count
+        release: 0.1,
+    };
+
+    settings.default_button_settings = button_settings;
+}
+// ANCHOR_END: gamepad-settings
+
+// ANCHOR: text
+/// prints every char coming in; press enter to echo the full string
+fn text_input(
+    mut char_evr: EventReader<ReceivedCharacter>,
+    keys: Res<Input<KeyCode>>,
+    mut string: Local<String>,
+) {
+    for ev in char_evr.iter() {
+        println!("Got char: '{}'", ev.char);
+        string.push(ev.char);
+    }
+
+    if keys.just_pressed(KeyCode::Return) {
+        println!("Text input: {}", *string);
+        string.clear();
+    }
+}
+// ANCHOR_END: text
 
 // ANCHOR: touches
 fn touches(
@@ -238,6 +389,7 @@ fn touch_events(
 ) {
     use bevy::input::touch::TouchPhase;
     for ev in touch_evr.iter() {
+        // in real apps you probably want to store and track touch ids somewhere
         match ev.phase {
             TouchPhase::Started => {
                 println!("Touch {} started at: {:?}", ev.id, ev.position);
@@ -256,9 +408,40 @@ fn touch_events(
 }
 // ANCHOR_END: touch-events
 
+// ANCHOR: dnd-file
+#[derive(Component)]
+struct MyDropTarget;
+
+fn file_drop(
+    mut dnd_evr: EventReader<FileDragAndDrop>,
+    query_ui_droptarget: Query<&Interaction, With<MyDropTarget>>,
+) {
+    for ev in dnd_evr.iter() {
+        println!("{:?}", ev);
+        if let FileDragAndDrop::DroppedFile { id, path_buf } = ev {
+            println!("Dropped file with path: {:?}", path_buf);
+
+            if id.is_primary() {
+                // it was dropped over the main window
+            }
+
+            for interaction in query_ui_droptarget.iter() {
+                if *interaction == Interaction::Hovered {
+                    // it was dropped over our UI element
+                    // (our UI element is being hovered over)
+                }
+            }
+        }
+    }
+}
+// ANCHOR_END: dnd-file
+
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
+        .add_startup_system(configure_gamepads)
+        .add_system(file_drop)
+        .add_system(text_input)
         .add_system(keyboard_input)
         .add_system(keyboard_events)
         .add_system(mouse_button_input)
@@ -269,6 +452,8 @@ fn main() {
         .add_system(scroll_events)
         .add_system(gamepad_connections)
         .add_system(gamepad_input)
+        .add_system(gamepad_input_events)
+        .add_system(gamepad_print_allevents)
         .add_system(touches)
         .add_system(touch_events)
         .run();

@@ -1,5 +1,6 @@
 [bevy::1031]: https://github.com/bevyengine/bevy/issues/1031
 [bevy::1700]: https://github.com/bevyengine/bevy/issues/1700
+[bevy::2052]: https://github.com/bevyengine/bevy/issues/2052
 [bevy::2268]: https://github.com/bevyengine/bevy/pull/2268
 [bevy::2343]: https://github.com/bevyengine/bevy/issues/2343
 [bevy::book-getting-started]: https://bevyengine.org/learn/book/getting-started
@@ -29,6 +30,7 @@
 [project::bevy_egui]: https://github.com/mvlabat/bevy_egui
 [project::bevy_game_template]: https://github.com/NiklasEi/bevy_game_template
 [project::bevy_kira_audio]: https://github.com/NiklasEi/bevy_kira_audio
+[project::bevy_midi]: https://github.com/BlackPhlox/bevy_midi
 [project::bevy_mod_picking]: https://github.com/aevyrie/bevy_mod_picking
 [project::bevy_prototype_lyon]: https://github.com/Nilirad/bevy_prototype_lyon
 [project::bevy_rapier]: https://github.com/dimforge/bevy_rapier
