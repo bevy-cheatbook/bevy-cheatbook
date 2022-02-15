@@ -25,3 +25,8 @@ a Bevy startup system.
 ```rust,no_run,noplayground
 {{#include ../code/examples/window-icon.rs:main}}
 ```
+
+Note: you need to add `winit` to your project's dependencies, and it must
+be the same version as the one used by Bevy. You can use `cargo tree` to
+visualize the dependency tree and see which is the correct version. As of
+Bevy 0.6, that should be `winit = "0.26"`.
