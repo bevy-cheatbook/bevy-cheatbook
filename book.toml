@@ -7,4 +7,4 @@ title = "Unofficial Bevy Cheat Book"
 
 [output.html]
 additional-js = ["nagbar.js"]
-additional-css = ["nagbar.css"]
+additional-css = ["nagbar.css", "sidebar.css"]
