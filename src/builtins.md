@@ -43,12 +43,12 @@ kinds of entities.
 These resources allow you to change the settings for how various parts of Bevy work.
 
 Some of them affect the low-level initialization of the engine, so must be present from the
-start to take effect. You need to insert these at the start of your [app builder][cb::app].
+start to take effect. You need to insert these at the start of your [app builder][cb::app]:
 
 {{#include ./include/builtins.md:resources-config-init}}
 
 These may be inserted at the start, but should also be fine to change at runtime (from a
-[system][cb::system]).
+[system][cb::system]):
 
 {{#include ./include/builtins.md:resources-config}}
 

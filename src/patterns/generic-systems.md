@@ -8,8 +8,9 @@ work on different Rust types or values.
 
 ## Generic over Component types
 
-You can use the generic type parameter to specify what compnent types (and
-hence what entities) your system should operate on.
+You can use the generic type parameter to specify what
+[component][cb::component] types (and hence what [entities][cb::ecs-intro])
+your [system][cb::system] should operate on.
 
 This can be useful when combined with Bevy [states][cb::state].
 You can do the same thing to different sets of entities depending on state.
@@ -65,17 +66,18 @@ parametrized by values, not just types.
 {{#include ../code/examples/generic-systems.rs:const}}
 ```
 
-Note that these values are static / constant at compile-time. This can be a severe limitation. In
-some cases, when you might suspect that you could use const generics, you might realize that
-you actually want a runtime value.
+Note that these values are static / constant at compile-time. This can be
+a severe limitation. In some cases, when you might suspect that you could
+use const generics, you might realize that you actually want a runtime value.
 
-If you need to "configure" your system by passing in some data, you could, instead, use a
-[Resource][cb::res] or [Local][cb::local].
+If you need to "configure" your system by passing in some data, you could,
+instead, use a [Resource][cb::res] or [Local][cb::local].
 
-Note: As of Rust 1.53, support for using `enum` values as const generics is not yet stable. To
-use `enum`s, you need Rust Nightly, and to enable the experimental/unstable feature (put this
-at the top of your `main.rs` or `lib.rs`):
+Note: As of Rust 1.59, support for using `enum` values as const generics is
+not yet stable. To use `enum`s, you need Rust Nightly, and to enable the
+experimental/unstable feature (put this at the top of your `main.rs` or
+`lib.rs`):
 
 ```rust,no_run,noplayground
-#![feature(const_generics)]
+#![feature(adt_const_params)]
 ```

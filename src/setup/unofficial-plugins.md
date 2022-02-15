@@ -33,8 +33,8 @@ The plugins listed here are compatible with the latest Bevy release and use
 permissive licenses (like Bevy itself).
 
 This page is very limited. I can only recommend plugins I know enough
-about. Please also check the [Bevy Assets](https://bevyengine.org/assets)
-page to find even more things. :)
+about. Please also check the [Bevy Assets][bevyassets] page to find even
+more things. :)
 
 ### Development Tools and Editors
 
