@@ -37,7 +37,7 @@
 [cb::gltf-master]: /features/gltf.md#gltf-master-asset
 [cb::gltf]: /features/gltf.md
 [cb::hierarchy]: /features/parent-child.md
-[cb::label]: /features/labels.md
+[cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
 [cb::nonsend]: /programming/non-send.md
 [cb::plugin]: /programming/plugins.md
