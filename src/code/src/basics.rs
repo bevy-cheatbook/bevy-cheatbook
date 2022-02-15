@@ -841,7 +841,13 @@ mod app2 {
 // ANCHOR: app-builder
 fn main() {
     App::new()
-        // bevy
+        // make sure to add any config resources first, before Bevy:
+        .insert_resource(WindowDescriptor {
+            // ...
+            ..Default::default()
+        }) // etc...
+
+        // Bevy itself:
         .add_plugins(DefaultPlugins)
 
         // resources:
