@@ -103,4 +103,9 @@
 
 ---
 
-[Contributing](./contributing.md)
+[Credits](./credits.md)
+
+---
+
+[Contribute to Bevy](./contributing-bevy.md)
+[Contribute to this Book](./contributing.md)

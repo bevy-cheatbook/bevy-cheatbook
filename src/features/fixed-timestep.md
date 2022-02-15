@@ -16,8 +16,6 @@ your [app][cb::app] using Bevy's [`FixedTimestep`][bevy::FixedTimestep]
 {{#include ../code/src/basics.rs:fixed-timestep}}
 ```
 
-(thanks **@billyb2** for [contributing this example][cb::64])
-
 ## State
 
 You can check the current state of the fixed timestep trackers, by accessing

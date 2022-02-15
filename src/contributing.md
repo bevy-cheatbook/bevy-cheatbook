@@ -4,7 +4,7 @@ Be civil. If you need a code of conduct, have a look at Bevy's.
 
 If you have any suggestions for the book, such as ideas for new content, or
 if you notice anything that is incorrect or misleading, please file issues in
-[the GitHub repository](https://github.com/bevy-cheatbook/bevy-cheatbook)!
+[the GitHub repository][project::cb]!
 
 ## Contributing Code
 
@@ -18,8 +18,8 @@ The code for cookbook examples should be provided as a full, runnable,
 example file, under `src/code/examples`. The book page will only show the
 relevant parts of the code, without unnecessary boilerplate.
 
-Always use [mdbook anchor syntax](https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file),
-not line numbers, to denote the parts of the code to be shown on the page.
+Always use [mdbook anchor syntax][mdbook::anchor-syntax], not line numbers,
+to denote the parts of the code to be shown on the page.
 
 ### Credits
 
@@ -79,12 +79,6 @@ Avoid repeating information found elsewhere in the book, prefer linking to
 it instead.
 
 ### Code Style
-
-Code snippets in the Cheatsheet should be as concise as possible. Feel free
-to use meaningless placeholder names; don't try to make them "realistic".
-
-Code in other sections, however, should aim to "look realistic", as to
-illustrate what the feature might actually be used for.
 
 Avoid long lines of code, to keep it readable on small screens.
 

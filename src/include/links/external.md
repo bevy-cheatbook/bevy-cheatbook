@@ -4,6 +4,7 @@
 [bevy::2268]: https://github.com/bevyengine/bevy/pull/2268
 [bevy::2343]: https://github.com/bevyengine/bevy/issues/2343
 [bevy::book-getting-started]: https://bevyengine.org/learn/book/getting-started
+[bevy::contributing]: https://github.com/bevyengine/bevy/blob/main/CONTRIBUTING.md
 [bevy::discord]: https://discord.gg/bevy
 [bevy::examples]: https://github.com/bevyengine/bevy/tree/latest/examples#examples
 [bevy::linux-dependencies]: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
@@ -23,6 +24,7 @@
 [gltf-export-maya2]: https://kashika.co.jp/product/gltfexporter/
 [gltf-export-maya]: https://doc.babylonjs.com/extensions/Exporters/Maya_to_glTF
 [itchio::bevy]: https://itch.io/games/tag-bevy
+[mdbook::anchor-syntax]: https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file
 [project::bevy]: https://github.com/bevyengine/bevy
 [project::bevy_asset_loader]: https://github.com/NiklasEi/bevy_asset_loader
 [project::bevy_config_cam]: https://github.com/BlackPhlox/bevy_config_cam
@@ -41,6 +43,7 @@
 [project::big-brain]: https://github.com/zkat/big-brain
 [project::binaryen]: https://github.com/WebAssembly/binaryen
 [project::cb]: https://github.com/bevy-cheatbook/bevy-cheatbook
+[project::cb::issues]: https://github.com/bevy-cheatbook/bevy-cheatbook/issues
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
 [project::egui]: https://github.com/emilk/egui
 [project::gilrs]: https://gitlab.com/gilrs-project/gilrs
@@ -53,3 +56,4 @@
 [project::wee_alloc]: https://github.com/rustwasm/wee_alloc
 [rustup]: https://rustup.rs
 [rustwasmbook::code-size]: https://rustwasm.github.io/docs/book/reference/code-size.html
+[sponsors]: https://github.com/sponsors/inodentry
