@@ -16,7 +16,13 @@ There is a good (unofficial) plugin:
 
 ## 2D games
 
-Simple hacky solution, for a game using the default Bevy 2d orthographic camera:
+This code should work for 2D games with orthographic projections. It is
+"undoing" the projection and camera transformations.
+
+(there will likely be *slight* inaccuracy from floating-point calculations)
+
+This should work regardless of the scaling settings of your projection, and
+camera [transform][cb::transform].
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/cursor2world.rs:example}}
