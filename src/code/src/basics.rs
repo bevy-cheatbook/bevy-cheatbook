@@ -308,6 +308,25 @@ fn debug_new_hostiles(
 }
 // ANCHOR_END: change-detection
 
+// ANCHOR: changetrackers
+/// Make sprites flash red on frames when the Health changes
+fn debug_damage(
+    mut query: Query<(&mut Sprite, ChangeTrackers<Health>)>,
+) {
+    for (mut sprite, tracker) in query.iter_mut() {
+        // detect if the Health changed this frame
+        if tracker.is_changed() {
+            sprite.color = Color::RED;
+        } else {
+            // extra check so we don't mutate on every frame without changes
+            if sprite.color != Color::WHITE {
+                sprite.color = Color::WHITE;
+            }
+        }
+    }
+}
+// ANCHOR_END: changetrackers
+
 fn maybe_lvl_up(xp: &PlayerXp) -> PlayerXp {
     unimplemented!()
 }
@@ -1603,6 +1622,7 @@ pub fn _main_all() {
         .add_system(debug_player_hp)
         .add_system(debug_stats_change)
         .add_system(debug_new_hostiles)
+        .add_system(debug_damage)
         .add_system(check_zero_health)
         .add_system(reset_health)
         .add_system(my_system1)
