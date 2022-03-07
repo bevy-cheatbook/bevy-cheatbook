@@ -32,7 +32,7 @@ By default, when you run a Bevy app (or any Rust program for that matter)
 on Windows, a Console window also shows up. To disable this,
 place this Rust attribute at the top of your `main.rs`:
 
-```rust
+```rust,no_run,noplayground
 #![windows_subsystem = "windows")]
 ```
 
@@ -43,7 +43,7 @@ However, the console can be useful for development, to see log messages.
 You can disable it only for release builds, and leave it enabled in debug
 builds, like this:
 
-```rust
+```rust,no_run,noplayground
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 ```
 
@@ -67,7 +67,7 @@ embed-resource = "1.6.3"
 
 Create a `build.rs` file in your project folder:
 
-```rust
+```rust,no_run,noplayground
 extern crate embed_resource;
 
 fn main() {
