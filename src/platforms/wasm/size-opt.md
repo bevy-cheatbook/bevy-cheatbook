@@ -83,30 +83,6 @@ wasm-opt -O3 -o output.wasm input.wasm
 wasm-opt -O -ol 100 -s 100 -o output.wasm input.wasm
 ```
 
-## Use the `wee-alloc` memory allocator
-
-You can replace Rust's default memory allocator with
-[wee-alloc][project::wee_alloc], which is slower, but is less than a single
-kilobyte in size.
-
-This may result in a significant performance hit. If your game runs fast
-enough with it, the smaller download size may be more important.
-
-In `Cargo.toml`, add the following:
-
-```toml
-[dependencies]
-wee_alloc = "0.4"
-```
-
-And now add the following to `main.rs`:
-
-```rust
-#[cfg(target_arch = "wasm32")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-```
-
 ---
 
 Do you know of more WASM size-optimization techniques? Post about them in the
