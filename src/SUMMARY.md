@@ -12,7 +12,7 @@
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
   - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
-  - [3rd-party Plugins](./setup/unofficial-plugins.md)
+  - [Community Plugin Ecosystem](./setup/unofficial-plugins.md)
   - [Customizing Bevy (features, modularity)](./setup/bevy-config.md)
   - [Cross-Compilation](./setup/cross.md)
     - [From Linux to Windows](./setup/cross/linux-windows.md)
