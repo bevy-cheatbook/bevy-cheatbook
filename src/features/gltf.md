@@ -124,7 +124,7 @@ A single GLTF file might be used:
   - To represent a piece of a level/map, such as a room.
   - To contain a set of many different "3D models", each as a separate GLTF Scene.
     This lets you load and manage the whole collection at once and spawn them individually as needed.
-  - ... others?
+  - … others?
 
 ## Tools for Creating GLTF Assets
 

@@ -534,7 +534,9 @@ fn add_material(
         ..Default::default()
     };
 
-    materials.add(new_mat);
+    let handle = materials.add(new_mat);
+
+    // do something with the handle
 }
 // ANCHOR_END: asset-add
 

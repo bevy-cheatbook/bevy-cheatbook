@@ -10,8 +10,13 @@
 [builtins::res-input]: /builtins.md#input-handling-resources
 [builtins::stage]: /builtins.md#stages
 [builtins::systemparam]: /builtins.md#systemparams
-[cb::asset]: /features/assets.md
-[cb::asset-hotreload]: /features/asset-hotreload.md
+[cb::asset]: /assets.md
+[cb::asset-data]: /assets/data.md
+[cb::asset-data::add]: /assets/data.md
+[cb::asset-hotreload]: /assets/hot-reload.md
+[cb::assetevent]: /assets/assetevent.md
+[cb::assetpath]: /assets/assetserver.md#assetpath-and-labels
+[cb::assetserver]: /assets/assetserver.md
 [cb::3rdparty]: /setup/unofficial-plugins.md
 [cb::3rdparty::code-helpers]: /setup/unofficial-plugins.md#code-helpers
 [cb::3rdparty::file-formats]: /setup/unofficial-plugins.md#file-formats
@@ -38,6 +43,8 @@
 [cb::gltf-asset-path]: /features/gltf.md#assetpath-with-labels
 [cb::gltf-master]: /features/gltf.md#gltf-master-asset
 [cb::gltf]: /features/gltf.md
+[cb::handle]: /assets/handles.md
+[cb::handleuntyped]: /assets/handles.md#untyped-handles
 [cb::hierarchy]: /features/parent-child.md
 [cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
@@ -51,6 +58,7 @@
 [cb::removal-detection]: /programming/removal-detection.md
 [cb::res]: /programming/res.md
 [cb::runcriteria]: /programming/run-criteria.md
+[cb::sprite]: /2d/sprites.md
 [cb::stage]: /programming/stages.md
 [cb::state]: /programming/states.md
 [cb::subapp]: /programming/sub-apps.md
