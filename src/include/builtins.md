@@ -77,6 +77,35 @@ Bevy UI:
    (internal use for text rendering)
 []:#(ANCHOR_END: assets)
 
+[]:#(ANCHOR: file-formats)
+Image formats (loaded as [`Image`][bevy::Image] assets):
+
+|Format|Cargo feature|Default?|Filename extensions|
+|------|-------------|--------|-------------------|
+|PNG   |`"png"`      |Yes     |`.png`             |
+|HDR   |`"hdr"`      |Yes     |`.hdr`             |
+|JPEG  |`"jpeg"`     |No      |`.jpg`, `.jpeg`    |
+|TGA   |`"tga"`      |No      |`.tga`             |
+|BMP   |`"bmp"`      |No      |`.bmp`             |
+|DDS   |`"dds"`      |No      |`.dds`             |
+
+Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
+
+|Format    |Cargo feature|Default?|Filename extensions|
+|----------|-------------|--------|-------------------|
+|OGG Vorbis|`"vorbis"`   |Yes     |`.ogg`             |
+|FLAC      |`"flac"`     |No      |`.flac`            |
+|WAV       |`"wav"`      |No      |`.wav`             |
+|MP3       |`"mp3"`      |No      |`.mp3`             |
+
+3D asset (model or scene) formats:
+
+|Format|Cargo feature|Default?|Filename extensions|
+|------|-------------|--------|-------------------|
+|GLTF  |`"bevy_gltf"`|Yes     |`.gltf`, `.glb`    |
+
+[]:#(ANCHOR_END: file-formats)
+
 []:#(ANCHOR: resources-config-init)
  - [`LogSettings`][bevy::LogSettings]:
    Configure what messages get logged to the console

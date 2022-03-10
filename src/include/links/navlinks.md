@@ -3,6 +3,7 @@
 [builtins::component]: /builtins.md#components
 [builtins::event-input]: /builtins.md#input-events
 [builtins::event-sys]: /builtins.md#system-and-control-events
+[builtins::file-formats]: /builtins.md#file-formats
 [builtins::gltf-assetlabel]: /builtins.md#gltf-asset-labels
 [builtins::res-config]: /builtins.md#configuration-resources
 [builtins::res-core]: /builtins.md#engine-resources
@@ -13,6 +14,7 @@
 [cb::asset-hotreload]: /features/asset-hotreload.md
 [cb::3rdparty]: /setup/unofficial-plugins.md
 [cb::3rdparty::code-helpers]: /setup/unofficial-plugins.md#code-helpers
+[cb::3rdparty::file-formats]: /setup/unofficial-plugins.md#file-formats
 [cb::app]: /programming/app-builder.md
 [cb::appexit]: /programming/quit.md
 [cb::audio]: /features/audio.md
@@ -64,6 +66,7 @@
 [chapter::builtins]: /builtins.md
 [chapter::cookbook]: /cookbook.md
 [chapter::features]: /features.md
+[chapter::input]: /input.md
 [chapter::patterns]: /patterns.md
 [chapter::pitfalls]: /pitfalls.md
 [chapter::platforms]: /platforms.md

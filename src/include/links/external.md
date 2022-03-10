@@ -37,13 +37,16 @@
 [project::bevy_kira_audio]: https://github.com/NiklasEi/bevy_kira_audio
 [project::bevy_midi]: https://github.com/BlackPhlox/bevy_midi
 [project::bevy_mod_picking]: https://github.com/aevyrie/bevy_mod_picking
+[project::bevy_obj]: https://github.com/AmionSky/bevy_obj
 [project::bevy_prototype_lyon]: https://github.com/Nilirad/bevy_prototype_lyon
 [project::bevy_rapier]: https://github.com/dimforge/bevy_rapier
 [project::bevy_tweening]: https://github.com/djeedai/bevy_tweening
 [project::bevy-ui-navigation]: https://github.com/nicopap/ui-navigation
 [project::heron]: https://github.com/jcornaz/heron
 [project::bevy_simple_tilemap]: https://github.com/forbjok/bevy_simple_tilemap
+[project::bevy_stl]: https://github.com/nilclass/bevy_stl
 [project::bevy_tilemap]: https://github.com/joshuajbouw/bevy_tilemap
+[project::bevy_vox]: https://github.com/erasin/bevy_vox
 [project::bevyassets]: https://github.com/bevyengine/bevy-assets
 [project::big-brain]: https://github.com/zkat/big-brain
 [project::binaryen]: https://github.com/WebAssembly/binaryen

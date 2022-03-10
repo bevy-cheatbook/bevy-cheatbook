@@ -158,3 +158,12 @@ has not (yet) been made available as a separate plugin.
 
 Proper built-in animation support is one of the main current development
 focuses for the Bevy project. Coming soon!
+
+### File Formats
+
+Additional asset loaders, for loading assets from file formats other than
+[those that Bevy officially supports][builtins::file-formats].
+
+ - Wavefront OBJ 3D models: [`bevy_obj`][project::bevy_obj]
+ - STL 3D models: [`bevy_stl`][project::bevy_stl]
+ - MagicaVoxel VOX: [`bevy_vox`][project::bevy_vox]

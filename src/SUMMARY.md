@@ -36,7 +36,6 @@
   - [Fixed Timestep](./features/fixed-timestep.md)
   - [Assets](./features/assets.md)
   - [Hot-Reloading Assets](./features/hot-reload.md)
-  - [File Format Support](./features/file-formats.md)
   - [3D Models (GLTF)](./features/gltf.md)
   - [Audio](./features/audio.md)
 
