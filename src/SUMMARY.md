@@ -14,8 +14,6 @@
   - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
   - [Community Plugin Ecosystem](./setup/unofficial-plugins.md)
   - [Customizing Bevy (features, modularity)](./setup/bevy-config.md)
-  - [Cross-Compilation](./setup/cross.md)
-    - [From Linux to Windows](./setup/cross/linux-windows.md)
 
 - [Common Pitfalls](./pitfalls.md)
   - [Strange compile errors from Bevy or dependencies](./pitfalls/build-errors.md)
@@ -95,6 +93,8 @@
   - [Linux Desktop](./platforms/linux.md)
   - [macOS Desktop](./platforms/macos.md)
   - [Windows Desktop](./platforms/windows.md)
+  - [Cross-Compilation](./setup/cross.md)
+    - [From Linux to Windows](./setup/cross/linux-windows.md)
   - [Browser (WebAssembly)](./platforms/wasm.md)
     - [Panic Messages](./platforms/wasm/panic-console.md)
     - [Optimize for Size](./platforms/wasm/size-opt.md)
