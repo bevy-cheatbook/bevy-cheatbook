@@ -31,17 +31,39 @@ default-features = false
 features = [
   # These are the default features:
   # (keep whichever you like)
-  "render",
-  "bevy_winit",
-  "bevy_gilrs",
-  "bevy_audio",
+
+  # Bevy functionality:
+  "bevy_gilrs",         # Gamepad input support
+  "bevy_audio",         # Builtin audio
+  "filesystem_watcher", # Asset hot-reloading
+  "bevy_winit",         # Window management
+  "x11",                # Linux: Support X11 windowing system
+  "render",             # Graphics Rendering
+
+  ## "render" actually just includes:
+  ## (feel free to use just a subset of these, instead of "render")
+  "bevy_render",        # Rendering framework core
+  "bevy_core_pipeline", # Higher-level rendering abstractions
+  "bevy_sprite",        # 2D (sprites) rendering
+  "bevy_pbr",           # 3D (physically-based) rendering
+  "bevy_gltf",          # GLTF 3D assets format support
+  "bevy_text",          # Text/font rendering
+  "bevy_ui",            # UI toolkit
+
+  # File formats:
   "png",
   "hdr",
   "vorbis",
-  "x11",
-  "filesystem_watcher",
+
   # These are other features that may be of interest:
   # (add any of these that you need)
+
+  # Bevy functionality:
+  "wayland",              # Linux: Support Wayland windowing system
+  "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
+  "serialize",            # Support for `serde` Serialize/Deserialize
+
+  # File formats:
   "bmp",
   "tga",
   "dds",
@@ -49,14 +71,13 @@ features = [
   "wav"
   "flac",
   "mp3",
-  "subpixel_glyph_atlas",
-  "dynamic",
-  "serialize",
-  "trace",
-  "trace_tracy",
-  "trace_chrome",
-  "wgpu_trace",
-  "wayland"
+
+  # Development/Debug features:
+  "dynamic",      # Dynamic linking for faster compile-times
+  "trace",        # Enable tracing for performance measurement
+  "trace_tracy",  # Tracing using `tracy`
+  "trace_chrome", # Tracing using the Chrome format
+  "wgpu_trace",   # WGPU/rendering tracing
 ]
 ```
 
@@ -64,17 +85,32 @@ features = [
 
 ### Graphics / Rendering
 
-For a graphical application or game (most Bevy projects),
-you need `render`, `bevy_winit`.
+For a graphical application or game (most Bevy projects), you can include
+`render` and `bevy_winit`. For [Linux][platform::linux] support, you need
+at least one of: `x11` or `wayland`.
 
-If you don't need graphics (like for a dedicated game server, scientific
+However, `render` is a meta-feature; it simply enables all the graphics-related
+features of Bevy. If you want, you can strip it down and include only what
+you need.
+
+`bevy_render` and `bevy_core_pipeline` are required for any application using
+Bevy rendering.
+
+If you only need 2D and no 3D, add `bevy_sprite`.
+
+If you only need 3D and no 2D, add `bevy_pbr`. If you are [loading 3D models
+from GLTF files][cb::gltf], add `bevy_gltf`.
+
+If you are not using Bevy UI, you can omit `bevy_text` and `bevy_ui`.
+
+If you don't need any graphics (like for a dedicated game server, scientific
 simulation, etc.), you may remove these features.
 
 ### Audio
 
-Bevy's audio is very limited in functionality and somewhat broken. It is
-recommended that you use the [`bevy_kira_audio`][project::bevy_kira_audio]
-plugin instead. Disable `bevy_audio` and `vorbis`.
+Bevy's audio is very limited in functionality. It is recommended that you
+use the [`bevy_kira_audio`][project::bevy_kira_audio] plugin instead. Disable
+`bevy_audio` and `vorbis`.
 
 See [this page][cb::audio] for more information.
 
@@ -83,12 +119,12 @@ See [this page][cb::audio] for more information.
 You can use the relevant cargo features to enable/disable support for loading
 assets with various different file formats.
 
-See [this page][cb::file-format] for more information.
+See [here][builtins::file-formats] for more information.
 
 ### Input Devices
 
-If you do not care about [controller/joystick][input::gamepad] support,
-you can disable `bevy_gilrs`.
+If you do not care about [gamepad (controller/joystick)][input::gamepad]
+support, you can disable `bevy_gilrs`.
 
 ### Linux Windowing Backend
 
@@ -99,6 +135,11 @@ smaller and compile faster. You might want to additionally enable `wayland`,
 to fully and natively support modern Linux environments. This will add a few
 extra transitive dependencies to your project.
 
+### Asset hot-reloading
+
+The `filesystem_watcher` feature controls support for [hot-reloading of
+assets][cb::asset-hotreload], supported on desktop platforms.
+
 ### Development Features
 
 While you are developing your project, these features might be useful:
@@ -108,7 +149,7 @@ While you are developing your project, these features might be useful:
 `dynamic` causes Bevy to be built and linked as a shared/dynamic library. This
 will make incremental builds *much* faster, which can reduce frustration
 when you are trying to test out changes to your code. On my machine, my
-projects recompile in ~2 sec without this option, and in ~0.5 sec with it
+projects recompile in ~2-3 sec without this option, and in ~0.5-1.0 sec with it
 enabled. This makes starting the game feel almost instant.
 
 This is known to work very well on Linux, but you may encounter issues on
