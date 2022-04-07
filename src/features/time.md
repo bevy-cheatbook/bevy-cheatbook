@@ -2,15 +2,14 @@
 
 {{#include ../include/links.md}}
 
-Time is one of the most important variables in game development – you need
-it to move or animate anything, trigger things to happen, etc.
-
 ## Time
 
 The [`Time`][bevy::Time] [resource][cb::res] is your main global source
 of timing information, that you can access from any [system][cb::system]
 that does anything that needs time. [You should derive all timings from
 it][pitfall::time].
+
+Bevy updates these values at the beginning of every frame.
 
 ### Delta Time
 
@@ -23,7 +22,7 @@ can happen smoothly, regardless of the game's frame rate.
 {{#include ../code/src/basics.rs:time-delta}}
 ```
 
-### Running Time
+### Ongoing Time
 
 [`Time`][bevy::Time] can also give you the total running time since startup.
 Use this if you need a cumulative, increasing, measurement of time.
@@ -53,23 +52,29 @@ has elapsed. Timers have a set duration. They can be "repeating" or
 Both kinds can be manually "reset" (start counting the time interval from the
 beginning) and "paused" (they will not progress even if you keep ticking them).
 
-Repeating timers will automatically reset themselves after they reach their set duration.
+Repeating timers will automatically reset themselves after they reach their
+set duration.
 
-Use `.finished()` to detect when a timer has reached its set duration. For non-repeating timers,
-you can also use `.just_finished()`, if you need to respond only on the exact update when the
-duration was reached.
+Use `.finished()` to detect when a timer has reached its set duration. For
+non-repeating timers, you can also use `.just_finished()`, if you need to
+respond only on the exact update when the duration was reached.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:timer}}
 ```
+
+Note that Bevy's timers do *not* work like typical real-life timers (which
+count downwards toward zero). Bevy's timers start from zero and count *up*
+towards their set duration. They are basically like stopwatches with extra
+features: a maximum duration and optional auto-reset.
 
 ### Stopwatch
 
 [`Stopwatch`][bevy::Stopwatch] allow you to track how much time has passed
 since a certain point.
 
-It will just keep accumulating time, which you can check with `.elapsed()`/`.elapsed_secs()`.
-You can manually reset it at any time.
+It will just keep accumulating time, which you can check with
+`.elapsed()`/`.elapsed_secs()`. You can manually reset it at any time.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:stopwatch}}
