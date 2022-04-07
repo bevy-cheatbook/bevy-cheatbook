@@ -68,6 +68,7 @@
 [cb::system-tests]: /programming/system-tests.md
 [cb::system]: /programming/systems.md
 [cb::systemset]: /programming/system-sets.md
+[cb::time]: /features/time.md
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /features/transforms.md
 [cb::world]: /programming/world.md

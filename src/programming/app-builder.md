@@ -12,7 +12,7 @@ In particular, check out the complete game examples:
 
 To enter the bevy runtime, you need to configure an [`App`][bevy::App]. The app is how you
 define the structure of all the things that make up your project: [plugins][cb::plugin],
-[systems][cb::system], [event][cb::event] types, [states][cb::state], [stages][cb::stage]...
+[systems][cb::system], [event][cb::event] types, [states][cb::state], [stages][cb::stage]…
 
 Technically, the [`App`][bevy::App] contains the ECS World(s) (where all the data is stored)
 and Schedule(s) (where all the [systems][cb::system] to run are stored). For advanced use-cases,

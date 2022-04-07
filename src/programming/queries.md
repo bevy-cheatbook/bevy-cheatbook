@@ -57,5 +57,5 @@ that have specific components.
 
 Multiple filters can be combined:
  - in a tuple to apply all of them (AND logic)
- - using the `Or<(...)>` wrapper to detect any of them (OR logic).
+ - using the `Or<(…)>` wrapper to detect any of them (OR logic).
    - (note the tuple inside)
