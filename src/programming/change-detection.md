@@ -81,10 +81,12 @@ change detection. If you want to avoid that, simply check it yourself:
 {{#include ../code/src/basics.rs:change-if-wrap}}
 ```
 
-Change detection is reliable -- it will detect any changes that
-have occured since the last time your detecting system ran. If your
-system only runs sometimes (such as with [states][cb::state] or [run
-criteria][cb::runcriteria]), you *do not* have to worry about missing changes.
+Change detection works on a per-[system][cb::system] granularity, and is
+reliable. A system will not detect changes that it made itself, only those
+done by other systems, and only if it has not seen them before (the changes
+happened since the last time it ran). If your system only runs sometimes
+(such as with [states][cb::state] or [run criteria][cb::runcriteria]),
+you do *not* have to worry about missing changes.
 
 ## Possible Pitfalls
 
