@@ -73,7 +73,7 @@
   - [Labels](./programming/labels.md)
   - [Stages](./programming/stages.md)
   - [[WIP] Direct World/ECS Access](./programming/world.md)
-  - [[WIP] Exclusive Systems](./programming/exclusive.md)
+  - [Exclusive Systems](./programming/exclusive.md)
   - [Removal Detection](./programming/removal-detection.md)
   - [Query Sets](./programming/query-sets.md)
   - [System Chaining](./programming/system-chaining.md)
