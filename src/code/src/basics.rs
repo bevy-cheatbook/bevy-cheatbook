@@ -1,4 +1,6 @@
 use bevy::prelude::*;
+use bevy::window::WindowId;
+use bevy::winit::WinitWindows;
 
 #[derive(Default)]
 #[derive(Component)]
@@ -308,6 +310,25 @@ fn debug_new_hostiles(
 }
 // ANCHOR_END: change-detection
 
+// ANCHOR: changetrackers
+/// Make sprites flash red on frames when the Health changes
+fn debug_damage(
+    mut query: Query<(&mut Sprite, ChangeTrackers<Health>)>,
+) {
+    for (mut sprite, tracker) in query.iter_mut() {
+        // detect if the Health changed this frame
+        if tracker.is_changed() {
+            sprite.color = Color::RED;
+        } else {
+            // extra check so we don't mutate on every frame without changes
+            if sprite.color != Color::WHITE {
+                sprite.color = Color::WHITE;
+            }
+        }
+    }
+}
+// ANCHOR_END: changetrackers
+
 fn maybe_lvl_up(xp: &PlayerXp) -> PlayerXp {
     unimplemented!()
 }
@@ -515,7 +536,9 @@ fn add_material(
         ..Default::default()
     };
 
-    materials.add(new_mat);
+    let handle = materials.add(new_mat);
+
+    // do something with the handle
 }
 // ANCHOR_END: asset-add
 
@@ -805,6 +828,126 @@ fn main() {
 }
 // ANCHOR_END: systems-appbuilder
 }
+
+#[derive(Component)]
+struct Asteroid;
+
+// ANCHOR: time-delta
+fn asteroids_fly(
+    time: Res<Time>,
+    mut q: Query<&mut Transform, With<Asteroid>>,
+) {
+    for mut transform in q.iter_mut() {
+        // move our asteroids along the X axis
+        // at a speed of 10.0 units per second
+        transform.translation.x += 10.0 * time.delta_seconds();
+    }
+}
+// ANCHOR_END: time-delta
+
+// ANCHOR: time-monotonic
+use std::time::Instant;
+
+/// Say, for whatever reason, we want to keep track
+/// of when exactly some specific entities were spawned.
+#[derive(Component)]
+struct SpawnedTime(Instant);
+
+fn spawn_my_stuff(
+    mut commands: Commands,
+    time: Res<Time>,
+) {
+    commands.spawn()
+        .insert(SpawnedTime(time.startup() + time.time_since_startup()));
+}
+// ANCHOR_END: time-monotonic
+
+// ANCHOR: timer
+use std::time::Duration;
+
+#[derive(Component)]
+struct FuseTime {
+    /// track when the bomb should explode (non-repeating timer)
+    timer: Timer,
+}
+
+fn explode_bombs(
+    mut commands: Commands,
+    mut q: Query<(Entity, &mut FuseTime)>,
+    time: Res<Time>,
+) {
+    for (entity, mut fuse_timer) in q.iter_mut() {
+        // timers gotta be ticked, to work
+        fuse_timer.timer.tick(time.delta());
+
+        // if it finished, despawn the bomb
+        if fuse_timer.timer.finished() {
+            commands.entity(entity).despawn();
+        }
+    }
+}
+
+struct BombsSpawnConfig {
+    /// How often to spawn a new bomb? (repeating timer)
+    timer: Timer,
+}
+
+/// Spawn a new bomb in set intervals of time
+fn spawn_bombs(
+    mut commands: Commands,
+    time: Res<Time>,
+    mut config: ResMut<BombsSpawnConfig>,
+) {
+    // tick the timer
+    config.timer.tick(time.delta());
+
+    if config.timer.finished() {
+        commands.spawn()
+            .insert(FuseTime {
+                // create the non-repeating fuse timer
+                timer: Timer::new(Duration::from_secs(5), false),
+            });
+    }
+}
+
+/// Configure our bomb spawning algorithm
+fn setup_bomb_spawning(
+    mut commands: Commands,
+) {
+    commands.insert_resource(BombsSpawnConfig {
+        // create the repeating timer
+        timer: Timer::new(Duration::from_secs(10), true),
+    })
+}
+// ANCHOR_END: timer
+
+// ANCHOR: stopwatch
+use bevy::core::Stopwatch;
+
+#[derive(Component)]
+struct JumpDuration {
+    time: Stopwatch,
+}
+
+fn jump_duration(
+    time: Res<Time>,
+    mut q_player: Query<&mut JumpDuration, With<Player>>,
+    kbd: Res<Input<KeyCode>>,
+) {
+    // assume we have exactly one player that jumps with Spacebar
+    let mut jump = q_player.single_mut();
+
+    if kbd.just_pressed(KeyCode::Space) {
+        jump.time.reset();
+    }
+
+    if kbd.pressed(KeyCode::Space) {
+        println!("Jumping for {} seconds.", jump.time.elapsed_secs());
+        // stopwatch has to be ticked to progress
+        jump.time.tick(time.delta());
+    }
+}
+// ANCHOR_END: stopwatch
 
 #[allow(dead_code)]
 mod app1 {
@@ -1581,6 +1724,60 @@ fn detect_removals(
 // ANCHOR_END: removal-detection
 }
 
+#[allow(dead_code)]
+mod app15 {
+use super::*;
+
+struct OSAudioMagic {
+    ptr: *mut u32,
+}
+
+impl OSAudioMagic {
+    fn init() -> Self {
+        Self {
+            ptr: 0xDEADBEEF as *mut u32,
+        }
+    }
+}
+
+// ANCHOR: insert-nonsend
+fn setup_platform_audio(world: &mut World) {
+    // assuming `OSAudioMagic` is some primitive that is not thread-safe
+    let instance = OSAudioMagic::init();
+
+    world.insert_non_send(instance);
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_startup_system(setup_platform_audio.exclusive_system())
+        .run();
+}
+// ANCHOR_END: insert-nonsend
+}
+
+#[allow(dead_code)]
+mod app16 {
+use super::*;
+// ANCHOR: nonsend
+fn setup_raw_window(mut windows: NonSend<WinitWindows>) {
+    let raw_window = windows.get_window(WindowId::primary()).unwrap();
+    // do some special things
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        // just add it as a normal system;
+        // Bevy will notice the NonSend parameter
+        // and ensure it runs on the main thread
+        .add_startup_system(setup_raw_window)
+        .run();
+}
+// ANCHOR_END: nonsend
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::new()
@@ -1593,6 +1790,7 @@ pub fn _main_all() {
         .add_startup_system(spawn_gltf_objects)
         .add_startup_system(use_gltf_things)
         .add_startup_system(gltf_manual_entity)
+        .add_startup_system(setup_bomb_spawning)
         .add_system(detect_removed_res)
         .add_system(check_res_added)
         .add_system(check_res_changed)
@@ -1603,6 +1801,7 @@ pub fn _main_all() {
         .add_system(debug_player_hp)
         .add_system(debug_stats_change)
         .add_system(debug_new_hostiles)
+        .add_system(debug_damage)
         .add_system(check_zero_health)
         .add_system(reset_health)
         .add_system(my_system1)
@@ -1618,5 +1817,10 @@ pub fn _main_all() {
         .add_system(process_squad_damage)
         .add_system(add_material)
         .add_system(load_gltf_things)
+        .add_system(spawn_my_stuff)
+        .add_system(explode_bombs)
+        .add_system(spawn_bombs)
+        .add_system(jump_duration)
+        .add_system(asteroids_fly)
         .run();
 }

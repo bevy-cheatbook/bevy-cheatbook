@@ -2,8 +2,9 @@
 
 {{#include ../include/links.md}}
 
-Do *not* use [`std::time::Instant::now()`][std::Instant] to get the current
-time. Use Bevy's [`Res<Time>`][bevy::Time].
+Do *not* use [`std::time::Instant::now()`][std::Instant] to get the
+current time. [Get your timing information from Bevy][cb::time], using
+[`Res<Time>`][bevy::Time].
 
 Rust (and the OS) give you the precise time of the moment you call that
 function. However, that's not what you want.

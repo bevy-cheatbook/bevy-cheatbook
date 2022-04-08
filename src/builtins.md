@@ -7,6 +7,7 @@ by Bevy.
 
  - [SystemParams](#systemparams)
  - [Assets](#assets)
+ - [File Formats](#file-formats)
  - [Bundles](#bundles)
  - [Resources (Configuration)](#configuration-resources)
  - [Resources (Engine User)](#engine-resources)
@@ -28,6 +29,17 @@ These are all the special types that can be used as [system][cb::system] paramet
 These are the Asset types registered by Bevy by default.
 
 {{#include ./include/builtins.md:assets}}
+
+## File Formats
+
+These are the asset file formats (asset loaders) supported by Bevy. Support
+for each one can be enabled/disabled using [cargo features][cb::features]. Some
+are enabled by default, many are not.
+
+{{#include ./include/builtins.md:file-formats}}
+
+There are [unofficial plugins][cb::3rdparty::file-formats] available for adding
+support for even more file formats.
 
 ## Bundles
 

@@ -13,7 +13,7 @@ This is how you can implement things like:
  - A menu screen or a loading screen
  - Pausing / unpausing the game
  - Different game modes
- - ...
+ - …
 
 In every state, you can have different [systems][cb::system] running. You
 can also add one-shot setup and cleanup systems to run when entering or

@@ -1,9 +1,9 @@
-# Using 3rd-party Plugins
+# Community Plugins Ecosystem
 
 {{#include ../include/links.md}}
 
-There is a growing ecosystem of unofficial community-made plugins for Bevy,
-which provide a lot of functionality that is not officially included with the
+There is a growing ecosystem of unofficial community-made plugins for Bevy.
+They provide a lot of functionality that is not officially included with the
 engine. You might greatly benefit from using some of these in your projects.
 
 To find such plugins, you should search the [Bevy Assets][bevyassets]
@@ -32,9 +32,8 @@ so you can start working on the kinds of games you want to make. :)
 The plugins listed here are compatible with the latest Bevy release and use
 permissive licenses (like Bevy itself).
 
-This page is very limited. I can only recommend plugins I know enough
-about. Please also check the [Bevy Assets][bevyassets] page to find even
-more things. :)
+This page is limited. I can only recommend plugins I know enough about. Please
+also check the [Bevy Assets][bevyassets] page to find even more things. :)
 
 ### Development Tools and Editors
 
@@ -87,14 +86,12 @@ of these plugins, instead of just spawning lots of individual Bevy
 sprites for each tile.
 
   - [`bevy_ecs_tilemap`][project::bevy_ecs_tilemap]
-    - Uses one ECS Entity per tile, with efficient custom rendering.
-    - Lets you work with the tilemap in an ECS-idiomatic way.
-    - Can be a little complex to set up / configure / spawn the tilemap.
-    - Lots of features: Square/Hexagon/Isometric grids, animation, layers, chunks, optional ldtk/tiled support, ...
+    - Uses one ECS Entity per tile, lets you work with the tilemap in an ECS-idiomatic way.
+    - Very efficient rendering, using techniques like texture arrays, chunks, morton encoding, …
+    - Lots of features: Square/Hexagon/Isometric grids, animation, layers, chunks, …
   - [`bevy_tilemap`][project::bevy_tilemap]
     - Another feature-rich plugin, but this one is not ECS-idiomatic (the whole map is one entity).
     - Designed to work well for infinite/endless or dynamically-generated maps.
-    - API is quite refined and stable, has good documentation.
   - [`bevy_simple_tilemap`][project::bevy_simple_tilemap]
     - Limited in features, easy to use if you just need to efficiently render a grid of square tiles.
 
@@ -109,16 +106,25 @@ If you want to draw 2D shapes, use the
 
 ### GUI
 
-If you want an alternative to Bevy UI, see [`bevy_egui`][project::bevy_egui].
-This integrates the [`egui` toolkit][project::egui] into Bevy.
+There are a few alternatives to Bevy UI available.
 
-It is an immediate-mode GUI library (like the popular Dear Imgui, but in Rust).
+[`bevy_egui`][project::bevy_egui] integrates the [`egui`
+toolkit][project::egui] into Bevy. It is a mature immediate-mode GUI library
+(like the popular Dear Imgui, but in Rust). It is very feature-rich and
+provides lots of widgets. It was not really designed for making flashy
+gamey UIs (though it may very well be fine for your game). It's great for
+editor-like UIs, debug UIs, or non-game applications.
 
-It is very feature-rich and contains lots of widgets.
+[`kayak_ui`][project::kayak_ui] is a new experimental game-centric UI library
+for Bevy, which uses a XML-like declarative syntax for constructing UIs.
 
-It was not really designed for making flashy gamey UIs (though it may very
-well be fine for your game). It's great for editor-like UIs, debug UIs,
-or non-game applications.
+[`ui4`][project::ui4] is another notable experimental UI library for Bevy.
+
+#### UI Navigation
+
+If you are using the builtin Bevy UI, there is a nice plugin available
+for navigation (moving between buttons and other focusable UI elements):
+[`bevy-ui-navigation`][project::bevy-ui-navigation].
 
 ### Physics
 
@@ -129,18 +135,18 @@ There are two plugins you can choose from:
   - [`bevy_rapier`][project::bevy_rapier]
     - Maintained officially by the Rapier project developers.
     - This is a "raw" plugin that gives you direct access to Rapier.
-    - Gives you the most control, but may be harder to use and not idiomatic-Bevy.
+    - Gives you the most control, but may be hard to use and not idiomatic-Bevy.
     - You will probably need to read a lot of documentation, harder to learn.
   - [`heron`][project::heron]
-    - An attempt to make a plugin that is more idiomatic to Bevy. More opinionated.
+    - Idiomatic Bevy wrapper around `bevy_rapier`. Nice user-friendly integration and workflow.
     - Likely to be easier to use and more intuitive than `bevy_rapier`.
     - May have more limited functionality.
 
 ### Animation
 
 For simple "smooth motion" (easing/tweening/interpolation), try
-[`bevy_easings`][project::bevy_easings]. This might be good enough for moving
-2D objects around, moving the camera, or other such transitions.
+[`bevy_tweening`][project::bevy_tweening]. This might be good enough for
+moving 2D objects around, moving the camera, or other such transitions.
 
 For animating 2D sprites, try [`benimator`][project::benimator].
 
@@ -149,3 +155,15 @@ For 3D skeletal animation, unfortunately, there do not seem to be plugins yet.
 Also, a long time ago, there was [this PR][bevy::1429] with an attempt to
 contribute a full-featured animation system to Bevy. To my knowledge, it
 has not (yet) been made available as a separate plugin.
+
+Proper built-in animation support is one of the main current development
+focuses for the Bevy project. Coming soon!
+
+### File Formats
+
+Additional asset loaders, for loading assets from file formats other than
+[those that Bevy officially supports][builtins::file-formats].
+
+ - Wavefront OBJ 3D models: [`bevy_obj`][project::bevy_obj]
+ - STL 3D models: [`bevy_stl`][project::bevy_stl]
+ - MagicaVoxel VOX: [`bevy_vox`][project::bevy_vox]

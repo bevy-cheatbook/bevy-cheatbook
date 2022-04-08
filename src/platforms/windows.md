@@ -26,6 +26,27 @@ The easiest way to give your game to other people to play is to put them
 together in a ZIP file. If you use some other method of installation,
 install the `assets` folder and the EXE to the same path.
 
+## Disabling the Windows Console
+
+By default, when you run a Bevy app (or any Rust program for that matter)
+on Windows, a Console window also shows up. To disable this,
+place this Rust attribute at the top of your `main.rs`:
+
+```rust,no_run,noplayground
+#![windows_subsystem = "windows")]
+```
+
+This tells Windows that your executable is a graphical application, not a
+command-line program. Windows will know not display a console.
+
+However, the console can be useful for development, to see log messages.
+You can disable it only for release builds, and leave it enabled in debug
+builds, like this:
+
+```rust,no_run,noplayground
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+```
+
 ## Creating an icon for your app
 
 There are two places where you might want to put your application icon:
@@ -46,7 +67,7 @@ embed-resource = "1.6.3"
 
 Create a `build.rs` file in your project folder:
 
-```rust
+```rust,no_run,noplayground
 extern crate embed_resource;
 
 fn main() {

@@ -3,13 +3,12 @@
 {{#include ../include/links.md}}
 
 Relevant official examples:
-[`hot_asset_reloading`][example::hot_asset_reloading],
-[`hot_shader_reloading`][example::hot_shader_reloading].
+[`hot_asset_reloading`][example::hot_asset_reloading].
 
 ---
 
-At runtime, if you modify the file of an [asset][cb::asset] that is loaded
-into the game (via the [`AssetServer`][bevy::AssetServer]), Bevy will detect
+At runtime, if you modify the file of an [asset][cb::assets] that is loaded
+into the game (via the [`AssetServer`][bevy::AssetServer]), Bevy can detect
 that and reload the asset automatically. This is very useful for quick
 iteration. You can edit your assets while the game is running and see the
 changes instantly in-game.
@@ -30,10 +29,17 @@ this in a [startup system][cb::app]:
 {{#include ../code/src/basics.rs:asset-watch}}
 ```
 
+Note that this requires the `filesystem_watcher` [Bevy cargo
+feature][cb::features]. It is enabled by default, but if you have disabled
+default features to customize Bevy, be sure to include it if you need it.
+
 ## Shaders
 
 Bevy also supports hot-reloading for shaders. You can edit your
-custom shader code and see the changes immediately. This only works
-if you are loading your shaders through the bevy asset system
-(via the [`AssetServer`][bevy::AssetServer]). See the [official
-example][example::hot_shader_reloading].
+custom shader code and see the changes immediately.
+
+This only works if you are loading your shaders through the bevy asset
+system (via the [`AssetServer`][bevy::AssetServer]).
+
+Shader code that does not come from asset files, such as if you include
+it as a static string in your source code, cannot be hot-reloaded.

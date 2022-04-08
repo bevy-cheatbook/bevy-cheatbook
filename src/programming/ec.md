@@ -32,7 +32,7 @@ Use wrapper (newtype) structs to make unique components out of simpler types:
 ```
 
 You can use empty structs to help you identify specific entities. These are
-known as "marker components". Useful with [query filters][cb::queryfilter].
+known as "marker components". Useful with [query filters][cb::query-filter].
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:marker-component}}

@@ -6,6 +6,7 @@ use bevy::winit::WinitWindows;
 use winit::window::Icon;
 
 fn set_window_icon(
+    // we have to use `NonSend` here
     windows: NonSend<WinitWindows>,
 ) {
     let primary = windows.get_window(WindowId::primary()).unwrap();

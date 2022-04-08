@@ -10,7 +10,17 @@ Relevant official examples:
 Bevy allows you to easily detect when data is changed. You can use this to
 perform actions in response to changes.
 
+One of the main use cases is optimization – avoiding unnecessary work by
+only doing it if the relevant data has changed. Another use case is triggering
+special actions to occur on changes, like configuring something or sending
+the data somewhere.
+
 ## Components
+
+### Filtering
+
+You can make a [query][cb::query] that only yields entities if specific
+[components][cb::component] on them have been modified.
 
 Use [query filters][cb::query-filter]:
  - [`Added<T>`][bevy::Added]: detect new component instances
@@ -27,6 +37,34 @@ trickier to use.)
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:change-detection}}
 ```
+
+### Checking
+
+If you want to access all the entities, as normal, regardless of if they have
+been modified, but you just want to check the status, you can use the special
+[`ChangeTrackers<T>`][bevy::ChangeTrackers] query parameter.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:changetrackers}}
+```
+
+This is useful for processing all entities, but doing different things
+depending on if they have been modified.
+
+## Resources
+
+For [resources][cb::res], change detection is provided via methods on the
+[`Res`][bevy::Res]/[`ResMut`][bevy::ResMut] system parameters.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:changed-res}}
+```
+
+Note that change detection cannot currently be used to detect
+[states][cb::state] changes (via the [`State`][bevy::State]
+[resource][cb::res]) ([bug][bevy::2343]).
+
+## What gets detected?
 
 [`Changed`][bevy::Changed] detection is triggered by
 [`DerefMut`][std::DerefMut]. Simply accessing components via a mutable query,
@@ -47,21 +85,6 @@ Change detection is reliable -- it will detect any changes that
 have occured since the last time your detecting system ran. If your
 system only runs sometimes (such as with [states][cb::state] or [run
 criteria][cb::runcriteria]), you *do not* have to worry about missing changes.
-
-## Resources
-
-For [resources][cb::res], change detection is provided via methods on the
-[`Res`][bevy::Res]/[`ResMut`][bevy::ResMut] system parameters.
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:changed-res}}
-```
-
-This works the same way as change detection for components.
-
-Note that change detection cannot currently be used to detect
-[states][cb::state] changes (via the [`State`][bevy::State]
-[resource][cb::res]) ([bug][bevy::2343]).
 
 ## Possible Pitfalls
 
