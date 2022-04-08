@@ -78,7 +78,7 @@
   - [Query Sets](./programming/query-sets.md)
   - [System Chaining](./programming/system-chaining.md)
   - [[WIP] Sub-Apps](./programming/sub-apps.md)
-  - [[WIP] Non-Send](./programming/non-send.md)
+  - [Non-Send](./programming/non-send.md)
   - [Writing Tests for Systems](./programming/system-tests.md)
 
 - [Programming Patterns](./patterns.md)

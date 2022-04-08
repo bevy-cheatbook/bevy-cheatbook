@@ -1,4 +1,6 @@
 use bevy::prelude::*;
+use bevy::window::WindowId;
+use bevy::winit::WinitWindows;
 
 #[derive(Default)]
 #[derive(Component)]
@@ -1722,6 +1724,60 @@ fn detect_removals(
 // ANCHOR_END: removal-detection
 }
 
+#[allow(dead_code)]
+mod app15 {
+use super::*;
+
+struct OSAudioMagic {
+    ptr: *mut u32,
+}
+
+impl OSAudioMagic {
+    fn init() -> Self {
+        Self {
+            ptr: 0xDEADBEEF as *mut u32,
+        }
+    }
+}
+
+// ANCHOR: insert-nonsend
+fn setup_platform_audio(world: &mut World) {
+    // assuming `OSAudioMagic` is some primitive that is not thread-safe
+    let instance = OSAudioMagic::init();
+
+    world.insert_non_send(instance);
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_startup_system(setup_platform_audio.exclusive_system())
+        .run();
+}
+// ANCHOR_END: insert-nonsend
+}
+
+#[allow(dead_code)]
+mod app16 {
+use super::*;
+// ANCHOR: nonsend
+fn setup_raw_window(mut windows: NonSend<WinitWindows>) {
+    let raw_window = windows.get_window(WindowId::primary()).unwrap();
+    // do some special things
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        // just add it as a normal system;
+        // Bevy will notice the NonSend parameter
+        // and ensure it runs on the main thread
+        .add_startup_system(setup_raw_window)
+        .run();
+}
+// ANCHOR_END: nonsend
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::new()
@@ -1765,5 +1821,6 @@ pub fn _main_all() {
         .add_system(explode_bombs)
         .add_system(spawn_bombs)
         .add_system(jump_duration)
+        .add_system(asteroids_fly)
         .run();
 }
