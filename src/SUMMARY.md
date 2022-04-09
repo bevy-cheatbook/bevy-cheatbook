@@ -13,6 +13,7 @@
 ---
 
 - [Bevy Setup Tips](./setup.md)
+  - [Getting Started](./setup/getting-started.md)
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
   - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
