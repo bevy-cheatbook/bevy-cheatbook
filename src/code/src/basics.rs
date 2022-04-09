@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use bevy::prelude::*;
 use bevy::window::WindowId;
 use bevy::winit::WinitWindows;
@@ -51,6 +53,31 @@ fn main() {
 }
 
 }
+
+// ANCHOR: component-storage
+/// Component for entities that can cast magic spells
+#[derive(Component)] // Use the default table storage
+struct Mana {
+    mana: f32,
+}
+
+/// Component for enemies that currently "see" the player
+/// Every frame, add/remove to entities based on visibility
+/// (use sparse-set storage due to frequent add/remove)
+#[derive(Component)]
+#[component(storage = "SparseSet")]
+struct CanSeePlayer;
+
+/// Component for entities that are currently taking bleed damage
+/// Add to entities to apply bleed effect, remove when done
+/// (use sparse-set storage to not fragment tables,
+/// as this is a "temporary effect")
+#[derive(Component)]
+#[component(storage = "SparseSet")]
+struct Bleeding {
+    damage_rate: f32,
+}
+// ANCHOR_END: component-storage
 
 // ANCHOR: struct-component
 #[derive(Component)]

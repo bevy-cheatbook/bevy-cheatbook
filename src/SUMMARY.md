@@ -101,6 +101,7 @@
 
 - [Programming Patterns](./patterns.md)
   - [Generic Systems](./patterns/generic-systems.md)
+  - [Component Storage (Table/Sparse-Set)](./patterns/component-storage.md)
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
 - [[WIP] Bevy Render (GPU) Framework](./gpu.md)
