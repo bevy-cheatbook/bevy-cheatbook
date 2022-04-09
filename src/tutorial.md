@@ -89,6 +89,7 @@ can familiarize yourself with these, to become a proficient Bevy user.
    - [Stages][cb::stage]
  - [Programming Patterns][chapter::patterns]
    - [Generic Systems][cb::system-generic]
+   - [Component Storage][cb::component-storage]
  - [Bevy Asset Management][chapter::assets]:
    - [Access the Asset Data][cb::asset-data]
    - [React to Changes with Asset Events][cb::assetevent]
