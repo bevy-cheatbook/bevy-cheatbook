@@ -33,7 +33,6 @@
   - [Time and Timers](./features/time.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
-  - [3D Models (GLTF)](./features/gltf.md)
   - [Audio](./features/audio.md)
 
 - [Bevy Asset Management](./assets.md)
@@ -52,6 +51,20 @@
   - [Touchscreen](./input/touch.md)
   - [Drag-and-Drop (Files)](./input/dnd.md)
   - [MIDI (Musical Instrument)](./input/midi.md)
+
+- [Window Management](./window.md)
+  - [[WIP] Window Properties](./window/props.md)
+  - [Change the Background Color](./window/clear-color.md)
+  - [Grab/Capture the Mouse Cursor](./window/mouse-grab.md)
+  - [Set the Window Icon](./window/icon.md)
+
+- [Bevy 2D](./2d.md)
+  - [[WIP] 2D Camera Setup](./2d/camera.md)
+  - [[WIP] Sprites and Atlases](./2d/sprites.md)
+
+- [Bevy 3D](./3d.md)
+  - [[WIP] 3D Camera Setup](./3d/camera.md)
+  - [3D Models and Scenes (GLTF)](./3d/gltf.md)
 
 - [Bevy Programming Framework](./programming.md)
   - [Intro to ECS](./programming/ecs-intro.md)
@@ -72,11 +85,11 @@
   - [Run Criteria](./programming/run-criteria.md)
   - [Labels](./programming/labels.md)
   - [Stages](./programming/stages.md)
-  - [[WIP] Direct World/ECS Access](./programming/world.md)
-  - [Exclusive Systems](./programming/exclusive.md)
   - [Removal Detection](./programming/removal-detection.md)
   - [Query Sets](./programming/query-sets.md)
   - [System Chaining](./programming/system-chaining.md)
+  - [Direct ECS World Access](./programming/world.md)
+  - [Exclusive Systems](./programming/exclusive.md)
   - [[WIP] Sub-Apps](./programming/sub-apps.md)
   - [Non-Send](./programming/non-send.md)
   - [Writing Tests for Systems](./programming/system-tests.md)
@@ -85,11 +98,10 @@
   - [Generic Systems](./patterns/generic-systems.md)
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
+- [[WIP] Bevy Render (GPU) Framework](./gpu.md)
+
 - [Bevy Cookbook](./cookbook.md)
-  - [Change the Background Color](./cookbook/clear-color.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
-  - [Grab the Mouse](./cookbook/mouse-grab.md)
-  - [Setting the Window Icon](./cookbook/window-icon.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
   - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)

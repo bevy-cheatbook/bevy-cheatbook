@@ -5,7 +5,7 @@
 This chapter is a collection of additional tips for configuring
 your project or development tools, collected from the Bevy
 community, beyond what is covered in Bevy's [official setup
-documentation][bevy::book-getting-started].
+documentation][bevy::getting-started].
 
 Feel free to suggest things to add under this chapter.
 

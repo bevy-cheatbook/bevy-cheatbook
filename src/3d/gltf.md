@@ -1,4 +1,4 @@
-# 3D Models (GLTF)
+# 3D Models and Scenes (GLTF)
 
 {{#include ../include/links.md}}
 

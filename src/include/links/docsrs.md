@@ -131,6 +131,8 @@
 [bevy::Style]: https://docs.rs/bevy/0.6.0/bevy/ui/struct.Style.html
 [bevy::SystemChangeTick]: https://docs.rs/bevy/0.6.0/bevy/ecs/system/struct.SystemChangeTick.html
 [bevy::SystemSet]: https://docs.rs/bevy/0.6.0/bevy/ecs/schedule/struct.SystemSet.html
+[bevy::SystemStage]: https://docs.rs/bevy/0.6.0/bevy/ecs/schedule/struct.SystemStage.html
+[bevy::SystemState]: https://docs.rs/bevy/0.6.0/bevy/ecs/system/struct.SystemState.html
 [bevy::Text2dBundle]: https://docs.rs/bevy/0.6.0/bevy/text/struct.Text2dBundle.html
 [bevy::TextBundle]: https://docs.rs/bevy/0.6.0/bevy/ui/entity/struct.TextBundle.html
 [bevy::Text]: https://docs.rs/bevy/0.6.0/bevy/text/struct.Text.html
