@@ -4,6 +4,10 @@
 
 ---
 
+[New to Bevy? Guided Tutorial!](./tutorial.md)
+
+---
+
 [List of Bevy Builtins](./builtins.md)
 
 ---
