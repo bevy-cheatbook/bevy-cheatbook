@@ -18,6 +18,13 @@ fn keyboard_input(
     if keys.pressed(KeyCode::W) {
         // W is being held down
     }
+    // we can check multiple at once with `.any_*`
+    if keys.any_pressed([KeyCode::LShift, KeyCode::RShift]) {
+        // Either the left or right shift are being held down
+    }
+    if keys.any_just_pressed([KeyCode::Delete, KeyCode::Back]) {
+        // Either delete or backspace was just pressed
+    }
 }
 // ANCHOR_END: keyboard-input
 
@@ -52,6 +59,10 @@ fn mouse_button_input(
     }
     if buttons.pressed(MouseButton::Right) {
         // Right Button is being held down
+    }
+    // we can check multiple at once with `.any_*`
+    if buttons.any_just_pressed([MouseButton::Left, MouseButton::Right]) {
+        // Either the left or the right button was just pressed
     }
 }
 // ANCHOR_END: mouse-button-input
