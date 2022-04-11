@@ -2,8 +2,23 @@
 
 {{#include ./include/links.md}}
 
-Concise practical reference to the [Bevy game engine][bevy::website]
+This is a reference-style book for the [Bevy game engine][bevy::website]
 ([GitHub][project::bevy]).
+
+It aims to teach Bevy concepts in a concise way, help you be productive,
+and discover the knowledge you need.
+
+This book aggregates a lot of community wisdom that is often not covered
+by official documentation, saving you the need to struggle with issues that
+others have figured out already!
+
+While it aims to be exhaustive, documenting an entire game engine is
+a monumental task. I focus my time on whatever I believe the community
+needs most.
+
+Therefore, there are still a lot of omissions, both for basics and advanced
+topics. Nevertheless, I am confident this book will prove to be a valuable
+resource to you!
 
 ***Welcome! May this book serve you well!***
 
@@ -11,6 +26,25 @@ Concise practical reference to the [Bevy game engine][bevy::website]
 <a class="github-button" href="https://github.com/bevy-cheatbook/bevy-cheatbook" data-icon="octicon-star" aria-label="Star bevy-cheatbook/bevy-cheatbook on GitHub">Star</a>
 the book's [GitHub repository][project::cb],
 and consider [donating](https://github.com/sponsors/inodentry) 🙂)
+
+## How to use this book
+
+The pages in this book are not designed to be read in order. Each page covers
+a standalone topic. Feel free to jump to whatever interests you.
+
+If you have a specific topic in mind that you would like to learn about, you
+can find it from the table-of-contents (sidebar) or using the search function
+(in the top bar).
+
+The [Chapter Overview][chapter::overview] page will give you a general idea
+of how the book is structured.
+
+If you are new to Bevy, or would like a more guided experience, try the
+[tutorial page][chapter::tutorial]. It will help you navigate the book in
+an order that makes sense for learning, from beginner to advanced topics.
+
+The [Bevy Builtins][chapter::builtins] page is a concise cheatsheet of useful
+information about types and features provided by Bevy.
 
 ## Recommended Additional Resources
 

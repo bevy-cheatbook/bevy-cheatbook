@@ -89,6 +89,7 @@
 [chapter::features]: /features.md
 [chapter::gpu]: /gpu.md
 [chapter::input]: /input.md
+[chapter::overview]: /overview.md
 [chapter::patterns]: /patterns.md
 [chapter::pitfalls]: /pitfalls.md
 [chapter::platforms]: /platforms.md
