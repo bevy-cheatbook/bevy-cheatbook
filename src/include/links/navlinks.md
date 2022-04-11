@@ -32,8 +32,8 @@
 [cb::clearcolor]: /window/clear-color.md
 [cb::commands]: /programming/commands.md
 [cb::component]: /programming/ec.md#components
-[cb::component-marker]: /patterns/marker-components.md
-[cb::component-newtype]: /patterns/newtype-components.md
+[cb::component-marker]: /programming/ec.md#components
+[cb::component-newtype]: /programming/ec.md#components
 [cb::component-storage]: /patterns/component-storage.md
 [cb::contributing]: /contributing.md
 [cb::coords]: /features/coords.md
