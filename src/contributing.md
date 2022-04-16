@@ -1,5 +1,7 @@
 # Contributing
 
+{{#include ./include/links.md}}
+
 Be civil. If you need a code of conduct, have a look at Bevy's.
 
 If you have any suggestions for the book, such as ideas for new content, or
