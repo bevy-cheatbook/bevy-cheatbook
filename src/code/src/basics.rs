@@ -194,12 +194,6 @@ mod localconfig {
 use bevy::prelude::*;
 struct MyStuff;
 // ANCHOR: local-config
-/// Configuration for `my_system`.
-///
-/// The system will access it using `Local<MyConfig>`.
-/// It will be initialized with the correct value at App build time.
-///
-/// Must still impl `Default`, because of requirement for `Local`.
 #[derive(Default)]
 struct MyConfig {
     magic: usize,
@@ -208,20 +202,20 @@ struct MyConfig {
 fn my_system(
     mut cmd: Commands,
     my_res: Res<MyStuff>,
-    config: Local<MyConfig>,
+    config: &MyConfig,
 ) {
     // TODO: do stuff
 }
 
 fn main() {
+    let config = MyConfig {
+        magic: 420,
+    };
+
     App::new()
-        .add_system(my_system.config(|params| {
-            // our config is the third parameter in the system fn,
-            // hence `.2`
-            params.2 = Some(MyConfig {
-                magic: 420,
-            });
-        }))
+        .add_system(move |cmd: Commands, res: Res<MyStuff>| {
+            my_system(cmd, res, &config);
+        })
         .run();
 }
 // ANCHOR_END: local-config
@@ -292,18 +286,18 @@ fn debug_player_hp(
 fn reset_health(
     // access the health of enemies and the health of players
     // (note: some entities could be both!)
-    mut q: QuerySet<(
-        QueryState<&mut Health, With<Enemy>>,
-        QueryState<&mut Health, With<Player>>
+    mut q: ParamSet<(
+        Query<&mut Health, With<Enemy>>,
+        Query<&mut Health, With<Player>>
     )>,
 ) {
     // set health of enemies
-    for mut health in q.q0().iter_mut() {
+    for mut health in q.p0().iter_mut() {
         health.hp = 50.0;
     }
 
     // set health of players
-    for mut health in q.q1().iter_mut() {
+    for mut health in q.p1().iter_mut() {
         health.hp = 100.0;
     }
 }
@@ -1772,7 +1766,7 @@ fn setup_platform_audio(world: &mut World) {
     // assuming `OSAudioMagic` is some primitive that is not thread-safe
     let instance = OSAudioMagic::init();
 
-    world.insert_non_send(instance);
+    world.insert_non_send_resource(instance);
 }
 
 fn main() {

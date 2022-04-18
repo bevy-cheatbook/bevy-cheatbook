@@ -6,7 +6,7 @@ struct MySpecialEvent;
 struct MyRegularEvent;
 
 // ANCHOR: main
-use bevy::app::Events;
+use bevy::ecs::event::Events;
 
 fn main() {
     App::new()
