@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy::render::camera::RenderTarget;
 
 // ANCHOR: example
 /// Used to help identify our main camera
@@ -21,8 +22,12 @@ fn my_cursor_system(
     // assuming there is exactly one main camera entity, so query::single() is OK
     let (camera, camera_transform) = q_camera.single();
 
-    // get the window that the camera is displaying to
-    let wnd = wnds.get(camera.window).unwrap();
+    // get the window that the camera is displaying to (or the primary window)
+    let wnd = if let RenderTarget::Window(id) = camera.target {
+        wnds.get(id).unwrap()
+    } else {
+        wnds.get_primary().unwrap()
+    };
 
     // check if the cursor is inside the window and get its position
     if let Some(screen_pos) = wnd.cursor_position() {
