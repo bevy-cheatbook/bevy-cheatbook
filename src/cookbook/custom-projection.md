@@ -17,6 +17,12 @@ Here we implement a simple orthographic projection that maps `-1.0` to `1.0`
 to the vertical axis of the window, and respects the window's aspect ratio
 for the horizontal axis:
 
+See how Bevy constructs its camera bundles, for reference:
+[orthographic](https://docs.rs/bevy_render/0.7.0/src/bevy_render/camera/bundle.rs.html#73-167),
+[perspective](https://docs.rs/bevy_render/0.7.0/src/bevy_render/camera/bundle.rs.html#21-71).
+
+This example is based on the setup for a 2D camera:
+
 ```rust,no_run,noplayground
 {{#include ../code/examples/custom-projection.rs:example}}
 ```
