@@ -4,6 +4,12 @@
 
 Any tuples of up to 15 [`Component`][bevy::Component] types are valid bundles.
 
+General:
+ - [`TransformBundle`][bevy::TransformBundle]:
+   Contains the [transform][cb::transform] types
+   [`Transform`][bevy::Transform] and [`GlobalTransform`][bevy::GlobalTransform]
+   to enable using the entity in a [parent-child hierarchy][cb::hierarchy]
+
 Bevy 3D:
  - [`PerspectiveCameraBundle`][bevy::PerspectiveCameraBundle]:
    3D camera with a perspective projection
@@ -52,11 +58,13 @@ Bevy UI:
  - [`Mesh`][bevy::Mesh]:
    3D Mesh (geometry data), contains vertex attributes (like position, UVs, normals)
  - [`Shader`][bevy::Shader]:
-   Raw GPU shader source code, in one of the supported languages (WGSL or SPIR-V)
+   GPU shader code, in one of the supported languages (WGSL/SPIR-V/GLSL)
  - [`ColorMaterial`][bevy::ColorMaterial]:
    Basic "2D material": contains color, optionally an image
  - [`StandardMaterial`][bevy::StandardMaterial]:
    "3D material" with support for Physically-Based Rendering
+ - [`AnimationClip`][bevy::AnimationClip]:
+   Data for a single animation sequence, can be used with [`AnimationPlayer`][bevy::AnimationPlayer]
  - [`Font`][bevy::Font]:
    Font data used for text rendering
  - [`Scene`][bevy::Scene]:
@@ -73,21 +81,27 @@ Bevy UI:
    Single unit to be rendered, contains the Mesh and Material to use
  - [`AudioSource`][bevy::AudioSource]:
    Raw audio data for `bevy_audio`
+ - [`AudioSink`][bevy::AudioSink]:
+   Audio that is currently active, can be used to control playback
  - [`FontAtlasSet`][bevy::FontAtlasSet]:
    (internal use for text rendering)
+ - [`SkinnedMeshInverseBindposes`][bevy::SkinnedMeshInverseBindposes]:
+   (internal use for skeletal animation)
 []:#(ANCHOR_END: assets)
 
 []:#(ANCHOR: file-formats)
 Image formats (loaded as [`Image`][bevy::Image] assets):
 
-|Format|Cargo feature|Default?|Filename extensions|
-|------|-------------|--------|-------------------|
-|PNG   |`"png"`      |Yes     |`.png`             |
-|HDR   |`"hdr"`      |Yes     |`.hdr`             |
-|JPEG  |`"jpeg"`     |No      |`.jpg`, `.jpeg`    |
-|TGA   |`"tga"`      |No      |`.tga`             |
-|BMP   |`"bmp"`      |No      |`.bmp`             |
-|DDS   |`"dds"`      |No      |`.dds`             |
+|Format|Cargo feature      |Default?|Filename extensions|
+|------|-------------------|--------|-------------------|
+|PNG   |`"png"`            |Yes     |`.png`             |
+|HDR   |`"hdr"`            |Yes     |`.hdr`             |
+|JPEG  |`"jpeg"`           |No      |`.jpg`, `.jpeg`    |
+|TGA   |`"tga"`            |No      |`.tga`             |
+|BMP   |`"bmp"`            |No      |`.bmp`             |
+|DDS   |`"dds"`            |No      |`.dds`             |
+|KTX2  |`"ktx2"`           |No      |`.ktx2`            |
+|Basis |`"basis-universal"`|No      | `.basis`          |
 
 Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
 
@@ -104,6 +118,21 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
 |------|-------------|--------|-------------------|
 |GLTF  |`"bevy_gltf"`|Yes     |`.gltf`, `.glb`    |
 
+Shader formats (loaded as [`Shader`][bevy::Shader] assets):
+
+|Format|Cargo feature|Default?|Filename extensions|
+|------|-------------|--------|-------------------|
+|SPIR-V|n/a          |Yes     |`.spv`             |
+|WGSL  |n/a          |Yes     |`.wgsl`            |
+|GLSL  |n/a          |Yes     |`.vert`, `.frag`   |
+
+Font formats (loaded as [`Font`][bevy::Font] assets):
+
+|Format  |Cargo feature|Default?|Filename extensions|
+|--------|-------------|--------|-------------------|
+|TrueType|n/a          |Yes     |`.ttf`             |
+|OpenType|n/a          |Yes     |`.otf`             |
+
 []:#(ANCHOR_END: file-formats)
 
 []:#(ANCHOR: resources-config-init)
@@ -111,10 +140,14 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
    Configure what messages get logged to the console
  - [`WindowDescriptor`][bevy::WindowDescriptor]:
    Settings for the primary application window
- - [`WgpuOptions`][bevy::WgpuOptions]:
+ - [`WgpuSettings`][bevy::WgpuSettings]:
    Low-level settings for the GPU API and backends
  - [`AssetServerSettings`][bevy::AssetServerSettings]:
-   Advanced configuration of the [`AssetServer`][bevy::AssetServer]
+   Configuration of the [`AssetServer`][bevy::AssetServer]
+ - [`DefaultTaskPoolOptions`][bevy::DefaultTaskPoolOptions]:
+   Settings for the CPU task pools (multithreading)
+ - [`WinitSettings`][bevy::WinitSettings]:
+   Settings for the OS Windowing backend, including update loop / power-management settings
 []:#(ANCHOR_END: resources-config-init)
 
 []:#(ANCHOR: resources-config)
@@ -124,6 +157,10 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
    Global renderer "fake lighting", so that shadows don't look too dark / black
  - [`Msaa`][bevy::Msaa]:
    Global renderer setting for Multi-Sample Anti-Aliasing (some platforms might only support the values 1 and 4)
+ - [`ClusterConfig`][bevy::ClusterConfig]:
+   Configuration of the light clustering algorithm, affects the performance of 3D scenes with many lights
+ - [`WireframeConfig`][bevy::WireframeConfig]:
+   Global toggle to make everything be rendered as wireframe
  - [`GamepadSettings`][bevy::GamepadSettings]:
    Gamepad input device settings, like joystick deadzones and button sensitivities
 []:#(ANCHOR_END: resources-config)
@@ -139,7 +176,7 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
    List of IDs for all currently-detected (connected) gamepad devices
  - [`Windows`][bevy::Windows]:
    All the open windows (the primary window + any additional windows in a multi-window gui app)
- - [`WinitWindows`][bevy::WinitWindows]:
+ - [`WinitWindows`][bevy::WinitWindows] ([non-send][cb::non-send]):
    Raw state of the `winit` backend for each window
  - [`Audio`][bevy::Audio]:
    Use this to play sounds via `bevy_audio`
@@ -153,6 +190,10 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
    Diagnostic data collected by the engine (like frame times)
  - [`SceneSpawner`][bevy::SceneSpawner]:
    Direct control over spawning Scenes into the main app World
+ - [`TypeRegistryArc`][bevy::TypeRegistryArc]:
+   Access to the Reflection Type Registry
+ - [`AdapterInfo`][bevy::AdapterInfo]:
+   Information about the GPU hardware that Bevy is running on
 []:#(ANCHOR_END: resources-engine)
 
 []:#(ANCHOR: resources-input)
@@ -192,6 +233,8 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
 []:#(ANCHOR_END: events-input)
 
 []:#(ANCHOR: events-system)
+ - [`RequestRedraw`][bevy::RequestRedraw]:
+   In an app that does not refresh continuously, request one more update before going to sleep
  - [`AppExit`][bevy::AppExit]:
    Tell Bevy to shut down
  - [`CloseWindow`][bevy::CloseWindow]:
@@ -244,8 +287,8 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
    Exclusive (mutable) access to a resource that may not exist
  - [`Query<T, F = ()>`][bevy::Query] (can contain tuples of up to 15 types):
    Access to [entities and components][cb::ec]
- - [`QuerySet`][bevy::QuerySet] (with up to 4 queries):
-   Resolve [conflicting queries][cb::queryset]
+ - [`ParamSet`][bevy::ParamSet] (with up to 8 params):
+   Resolve [conflicts between incompatible system parameters][cb::paramset]
  - [`Local<T>`][bevy::Local]:
    Data [local][cb::local] to the system
  - [`EventReader<T>`][bevy::EventReader]:
@@ -258,6 +301,8 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
    Shared access to [Non-`Send`][cb::nonsend] (main thread only) data
  - [`NonSendMut<T>`][bevy::NonSendMut]:
    Mut access to [Non-`Send`][cb::nonsend] (main thread only) data
+ - [`&World`][bevy::World]:
+   Read-only [direct access to the ECS World][cb::world]
  - [`Entities`][bevy::Entities]:
    Low-level ECS metadata: All entities
  - [`Components`][bevy::Components]:
@@ -289,18 +334,22 @@ group them into tuples to work around the limit. Tuples can contain up to
    Entity's parent, if in a hierarchy
  - [`Children`][bevy::Children]:
    Entity's children, if in a hierarchy
- - [`Timer`][bevy::Timer]:
-   Track if a time interval has elapsed
- - [`Stopwatch`][bevy::Stopwatch]:
-   Track how much time has passed
  - [`Handle<T>`][bevy::Handle]:
    Reference to an asset of specific type
  - [`Visibility`][bevy::Visibility]:
    Manually control visibility, whether to display the entity (hide/show)
  - [`RenderLayers`][bevy::RenderLayers]:
    Group entities into "layers" and control which "layers" a camera should display
+ - [`AnimationPlayer`][bevy::AnimationPlayer]:
+   Make the entity capable of playing animations; used to control animations
  - [`Camera`][bevy::Camera]:
    Camera used for rendering
+ - [`CameraUi`][bevy::CameraUi]:
+   Marker to identify the camera used for the UI render pass
+ - [`Camera2d`][bevy::Camera2d]:
+   Marker to identify the camera used for the main 2D render pass
+ - [`Camera3d`][bevy::Camera3d]:
+   Marker to identify the camera used for the main 3D render pass
  - [`OrthographicProjection`][bevy::OrthographicProjection]:
    Orthographic projection for a camera
  - [`PerspectiveProjection`][bevy::PerspectiveProjection]:
@@ -313,6 +362,8 @@ group them into tuples to work around the limit. Tuples can contain up to
    (3D) Properties of a point light
  - [`DirectionalLight`][bevy::DirectionalLight]:
    (3D) Properties of a directional light
+ - [`NoFrustumCulling`][bevy::NoFrustumCulling]:
+   (3D) Cause this mesh to always be drawn, even when not visible by any camera
  - [`NotShadowCaster`][bevy::NotShadowCaster]:
    (3D) Disable entity from producing dynamic shadows
  - [`NotShadowReceiver`][bevy::NotShadowReceiver]:
@@ -323,10 +374,14 @@ group them into tuples to work around the limit. Tuples can contain up to
    (UI) Mark entity as being controlled by the UI layout system
  - [`Style`][bevy::Style]:
    (UI) Layout properties of the node
- - [`Button`][bevy::Button]:
-   (UI) Marker for a pressable button
  - [`Interaction`][bevy::Interaction]:
    (UI) Track interaction/selection state: if the node is clicked or hovered over
+ - [`UiImage`][bevy::UiImage]:
+   (UI) Image to be displayed as part of a UI node
+ - [`UiColor`][bevy::UiColor]:
+   (UI) Color to use for a UI node
+ - [`Button`][bevy::Button]:
+   (UI) Marker for a pressable button
  - [`Text`][bevy::Text]:
    Text to be displayed
 
@@ -341,4 +396,6 @@ The following asset labels are supported (`{}` is the numerical index):
   - `Texture{}`: GLTF Texture as Bevy [`Image`][bevy::Image]
   - `Material{}`: GLTF Material as Bevy [`StandardMaterial`][bevy::StandardMaterial]
   - `DefaultMaterial`: as above, if the GLTF file contains a default material with no index
+  - `Animation{}`: GLTF Animation as Bevy [`AnimationClip`][bevy::AnimationClip]
+  - `Skin{}`: GLTF mesh skin as Bevy [`SkinnedMeshInverseBindposes`][bevy::SkinnedMeshInverseBindposes]
 []:#(ANCHOR_END: gltf-asset-labels)
