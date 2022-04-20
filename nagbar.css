@@ -3,7 +3,8 @@ html,body {
 }
 
 .nagbar {
-    padding: 16pt;
+    overflow-y: visible;
+    padding: 16px;
 }
 
 .page-wrapper {
@@ -15,4 +16,8 @@ html,body {
 .page {
     flex-grow: 1;
     flex-direction: column;
+}
+
+.content {
+    padding-bottom: 0px;
 }

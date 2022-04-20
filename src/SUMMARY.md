@@ -131,5 +131,9 @@
 
 ---
 
+[Contact Me](./contact.md)
+
+---
+
 [Contribute to Bevy](./contributing-bevy.md)
 [Contribute to this Book](./contributing.md)
