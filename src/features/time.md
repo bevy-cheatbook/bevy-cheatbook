@@ -2,6 +2,12 @@
 
 {{#include ../include/links.md}}
 
+Relevant official examples:
+[`timers`][example::timers],
+[`move_sprite`][example::move_sprite].
+
+---
+
 ## Time
 
 The [`Time`][bevy::Time] [resource][cb::res] is your main global source

@@ -3,6 +3,12 @@
 {{#include ../include/links.md}}
 
 Relevant official examples:
+[`transform`][example::transform],
+[`translation`][example::translation],
+[`rotation`][example::rotation],
+[`3d_rotation`][example::3d_rotation],
+[`scale`][example::scale],
+[`move_sprite`][example::move_sprite],
 [`parenting`][example::parenting],
 anything that spawns 2D or 3D objects.
 

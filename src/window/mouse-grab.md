@@ -4,6 +4,9 @@
 
 [Click here for the full example code.][cbexample::mouse-grab]
 
+Relevant official examples:
+[`mouse_grab`][example::mouse_grab].
+
 ---
 
 You can lock/release the mouse cursor using bevy's [window settings
