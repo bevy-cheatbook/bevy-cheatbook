@@ -41,15 +41,14 @@ also check the [Bevy Assets][bevyassets] page to find even more things. :)
 
 ### Code Helpers
 
-[`bevy_loading`](https://github.com/inodentry/bevy_loading) is a helper for
-[state](../programming/states.md) transitions. It lets you register systems
-that report their progress, tracks the progress, and transitions to the next
-state when they are all ready. Most useful for loading screens, but can be used
-more generally. Can also track the loading of [assets](../features/assets.md).
+[`bevy_asset_loader`][project::bevy_asset_loader] is a more flexible and
+opinionated helper for managing and loading [assets][cb::assets]. Uses custom
+syntax to let you declare your assets more conveniently.
 
-[`bevy_asset_loader`][project::bevy_asset_loader] is a more flexible
-and opinionated helper for managing and loading game assets. Uses custom
-annotations to let you declare your assets more conveniently.
+[`iyes_loopless`][project::iyes_loopless] provides alternative improved
+implementations of [states][cb::state], [run criteria][cb::runcriteria],
+and [fixed timestep][cb::fixedtimestep], that do not suffer from the major
+usability limitations of the ones provided with Bevy.
 
 ### Input Mappings
 
@@ -85,20 +84,18 @@ help do it efficiently with high performance. It is better to use one
 of these plugins, instead of just spawning lots of individual Bevy
 sprites for each tile.
 
-  - [`bevy_ecs_tilemap`][project::bevy_ecs_tilemap]
-    - Uses one ECS Entity per tile, lets you work with the tilemap in an ECS-idiomatic way.
-    - Very efficient rendering, using techniques like texture arrays, chunks, morton encoding, …
-    - Lots of features: Square/Hexagon/Isometric grids, animation, layers, chunks, …
-  - [`bevy_tilemap`][project::bevy_tilemap]
-    - Another feature-rich plugin, but this one is not ECS-idiomatic (the whole map is one entity).
-    - Designed to work well for infinite/endless or dynamically-generated maps.
-  - [`bevy_simple_tilemap`][project::bevy_simple_tilemap]
-    - Limited in features, easy to use if you just need to efficiently render a grid of square tiles.
+[`bevy_ecs_tilemap`][project::bevy_ecs_tilemap]:
+  - Uses one ECS Entity per tile, lets you work with the tilemap in an ECS-idiomatic way.
+  - Very efficient rendering, using techniques like texture arrays, chunks, morton encoding, …
+  - Lots of features: Square/Hexagon/Isometric grids, animation, layers, chunks, …
+
+[`bevy_ecs_ldtk`][project::bevy_ecs_ldtk] implements loading of
+entire maps/levels created with the LDTK editor, into Bevy. Based on
+`bevy_ecs_tilemap` internally, for efficient performance.
 
 ### Shapes / Vector Graphics / Canvas
 
-If you want to draw 2D shapes, use the
-[`bevy_prototype_lyon`][project::bevy_prototype_lyon] plugin.
+If you want to draw 2D shapes, use the [`bevy_prototype_lyon`][project::bevy_prototype_lyon] plugin.
 
 ### Game AI
 
@@ -132,32 +129,27 @@ Bevy can integrate with the [Rapier physics engine][project::rapier].
 
 There are two plugins you can choose from:
 
+  - [`heron`][project::heron]
+    - Idiomatic to Bevy. Nice user-friendly integration and workflow.
+    - Likely to be easier to use and more intuitive than `bevy_rapier`.
+    - May have more limited functionality.
   - [`bevy_rapier`][project::bevy_rapier]
-    - Maintained officially by the Rapier project developers.
     - This is a "raw" plugin that gives you direct access to Rapier.
     - Gives you the most control, but may be hard to use and not idiomatic-Bevy.
     - You will probably need to read a lot of documentation, harder to learn.
-  - [`heron`][project::heron]
-    - Idiomatic Bevy wrapper around `bevy_rapier`. Nice user-friendly integration and workflow.
-    - Likely to be easier to use and more intuitive than `bevy_rapier`.
-    - May have more limited functionality.
 
 ### Animation
 
-For simple "smooth motion" (easing/tweening/interpolation), try
-[`bevy_tweening`][project::bevy_tweening]. This might be good enough for
-moving 2D objects around, moving the camera, or other such transitions.
+Starting from Bevy 0.7, there is built-in support for playing predefined
+asset-driven animations, including 3D skeletal animation.
 
-For animating 2D sprites, try [`benimator`][project::benimator].
+However, for "programmatic" / code-driven animation, you may need something
+else. Try [`bevy_tweening`][project::bevy_tweening]. This might be good
+enough for moving objects around, moving the camera, smoothly changing colors,
+or other such transitions.
 
-For 3D skeletal animation, unfortunately, there do not seem to be plugins yet.
-
-Also, a long time ago, there was [this PR][bevy::1429] with an attempt to
-contribute a full-featured animation system to Bevy. To my knowledge, it
-has not (yet) been made available as a separate plugin.
-
-Proper built-in animation support is one of the main current development
-focuses for the Bevy project. Coming soon!
+For animated 2D sprites, try [`benimator`][project::benimator]. This is
+for using sprite-sheet assets with many frames of animation.
 
 ### File Formats
 
