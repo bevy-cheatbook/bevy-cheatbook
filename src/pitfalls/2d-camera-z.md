@@ -6,8 +6,8 @@ Bevy's 2D [coordinate space][cb::coords] is set up so that your background
 can be at Z=0.0, and other sprite layers can be at positive +Z coordinates
 above that.
 
-However, this means that, to see your scene, the camera needs to be placed
-far away, at a large +Z coordinate, looking towards -Z.
+Therefore, to see your scene, the camera needs to be placed far away, at a
+large +Z coordinate, looking towards -Z.
 
 If you are overriding the camera [transform][cb::transform] / creating your
 own transform, *you need to do this!* The default transform (with Z=0.0)

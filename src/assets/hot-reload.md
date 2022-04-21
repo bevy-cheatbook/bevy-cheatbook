@@ -7,7 +7,7 @@ Relevant official examples:
 
 ---
 
-At runtime, if you modify the file of an [asset][cb::assets] that is loaded
+At runtime, if you modify the file of an [asset][cb::asset] that is loaded
 into the game (via the [`AssetServer`][bevy::AssetServer]), Bevy can detect
 that and reload the asset automatically. This is very useful for quick
 iteration. You can edit your assets while the game is running and see the

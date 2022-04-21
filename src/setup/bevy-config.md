@@ -89,7 +89,7 @@ features = [
 
 For a graphical application or game (most Bevy projects), you can include
 `render` and `bevy_winit`. For [Linux][platform::linux] support, you need
-at least one of: `x11` or `wayland`.
+at least one of `x11` or `wayland`.
 
 However, `render` is a meta-feature; it simply enables all the graphics-related
 features of Bevy. If you want, you can strip it down and include only what
@@ -103,10 +103,10 @@ If you only need 2D and no 3D, add `bevy_sprite`.
 If you only need 3D and no 2D, add `bevy_pbr`. If you are [loading 3D models
 from GLTF files][cb::gltf], add `bevy_gltf`.
 
-If you are not using Bevy UI, you can omit `bevy_text` and `bevy_ui`.
+If you are using Bevy UI, you need `bevy_text` and `bevy_ui`.
 
 If you don't need any graphics (like for a dedicated game server, scientific
-simulation, etc.), you may remove these features.
+simulation, etc.), you may remove all of these features.
 
 ### Audio
 
@@ -148,14 +148,11 @@ While you are developing your project, these features might be useful:
 
 #### Dynamic Linking
 
-`dynamic` causes Bevy to be built and linked as a shared/dynamic library. This
-will make incremental builds *much* faster, which can reduce frustration
-when you are trying to test out changes to your code. On my machine, my
-projects recompile in ~2-3 sec without this option, and in ~0.5-1.0 sec with it
-enabled. This makes starting the game feel almost instant.
+`dynamic` causes Bevy to be built and linked as a shared/dynamic library.
+This will make incremental builds *much* faster.
 
-This is known to work very well on Linux, but you may encounter issues on
-other platforms. YMMV. I've heard people have issues on Windows.
+This is only supported on desktop platforms. Known to work very well on Linux,
+Windows/macOS should work, but might have issues.
 
 Do not enable this for release builds you intend to publish to other people;
 it introduces unneeded complexity (you need to bundle extra files) and

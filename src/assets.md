@@ -9,7 +9,7 @@ and more!
 Bevy has a flexible system for loading and managing your game assets
 asynchronously (in the background, without causing lag spikes in your game).
 
-In your code, you refer to individual assets using [*handles*][cb::handle].
+In your code, you refer to individual assets using [handles][cb::handle].
 
 Asset data can be [loaded from files][cb::assetserver] and also [accessed from
 code][cb::asset-data]. [Hot-reloading][cb::asset-hotreload] is supported to

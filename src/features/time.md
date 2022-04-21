@@ -35,9 +35,8 @@ Use this if you need a cumulative, increasing, measurement of time.
 
 There are also facilities to help you track specific intervals or timings:
 [`Timer`][bevy::Timer] and [`Stopwatch`][bevy::Stopwatch]. You can create
-many instances of these, to track whatever you want. You can add them
-as [components][cb::ec] to your entities, nest/wrap them in your own
-[component][cb::component] or [resource][cb::res] types, etc.
+many instances of these, to track whatever you want. You can use them in
+your own [component][cb::component] or [resource][cb::res] types.
 
 Timers and Stopwatches need to be ticked. You need to have some system
 calling `.tick(delta)`, for it to make progress, or it will be inactive.

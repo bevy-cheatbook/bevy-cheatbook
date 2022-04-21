@@ -52,11 +52,10 @@ If you are spawning a GLTF Mesh, it won't work.
 
 ## Unoptimized / Debug builds
 
-Maybe your asset just takes a while to load? Bevy (and Rust in general)
-is very slow without compiler optimizations. It's actually possible that
-complex GLTF files with big textures can take over a minute to load and
-show up on the screen. It would be almost instant in optimized builds. [See
-here][pitfall::perf].
+Maybe your asset just takes a while to load? Bevy is very slow without
+compiler optimizations. It's actually possible that complex GLTF files with
+big textures can take over a minute to load and show up on the screen. It
+would be almost instant in optimized builds. [See here][pitfall::perf].
 
 ## Vertex Order and Culling
 
