@@ -202,6 +202,7 @@ struct MyConfig {
 fn my_system(
     mut cmd: Commands,
     my_res: Res<MyStuff>,
+    // note this isn't a valid system parameter
     config: &MyConfig,
 ) {
     // TODO: do stuff
@@ -213,7 +214,10 @@ fn main() {
     };
 
     App::new()
+        // create a "move closure", so we can use the `config`
+        // variable that we created above
         .add_system(move |cmd: Commands, res: Res<MyStuff>| {
+            // call our function from inside the closure
             my_system(cmd, res, &config);
         })
         .run();

@@ -29,13 +29,15 @@ A system can have multiple [`Local`][bevy::Local]s of the same type.
 
 ## Specify an initial value
 
-You can initialize a [`Local`][bevy::Local] to a value other than the
-type's default, using `.config`, when [adding your system][cb::app] to your
-[`App`][bevy::App].
+[`Local<T>`][bevy::Local] is always automatically initialized using the
+default value for the type.
 
-`.config` is Bevy's API for "configuring" specific system parameters. Most
-other types of system parameters do not support configuration, but
-[`Local`][bevy::Local]s let you specify the initial value.
+If you need specific data, you can use a closure instead. Rust closures
+that take system parameters are valid Bevy systems, just like standalone
+functions. Using a closure allows you to "move data into the function".
+
+This example shows how to initialize some data to configure a system,
+without using [`Local<T>`][bevy::Local]:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:local-config}}
