@@ -654,12 +654,12 @@ fn spawn_gltf(
     let my_gltf = ass.load("my.glb#Scene0");
 
     // to be able to position our 3d model:
-    // spawn a parent entity with a Transform and GlobalTransform
+    // spawn a parent entity with a TransformBundle
     // and spawn our gltf as a scene under it
-    commands.spawn_bundle((
-        Transform::from_xyz(2.0, 0.0, -5.0),
-        GlobalTransform::identity(),
-    )).with_children(|parent| {
+    commands.spawn_bundle(TransformBundle {
+        local: Transform::from_xyz(2.0, 0.0, -5.0),
+        global: GlobalTransform::identity(),
+    }).with_children(|parent| {
         parent.spawn_scene(my_gltf);
     });
 }
@@ -691,10 +691,10 @@ fn spawn_gltf_objects(
 
         // spawn the scene named "YellowCar"
         // do it under a parent entity, to position it in the world
-        commands.spawn_bundle((
-            Transform::from_xyz(1.0, 2.0, 3.0),
-            GlobalTransform::identity(),
-        )).with_children(|parent| {
+        commands.spawn_bundle(TransformBundle {
+            local: Transform::from_xyz(1.0, 2.0, 3.0),
+            global: GlobalTransform::identity(),
+        }).with_children(|parent| {
             parent.spawn_scene(gltf.named_scenes["YellowCar"].clone());
         });
 
@@ -740,10 +740,10 @@ fn use_gltf_things(
     // spawn the second scene under a parent entity
     // (to move it)
     let scene1 = ass.load("my_asset_pack.glb#Scene1");
-    commands.spawn_bundle((
-        Transform::from_xyz(1.0, 2.0, 3.0),
-        GlobalTransform::identity(),
-    )).with_children(|parent| {
+    commands.spawn_bundle(TransformBundle {
+        local: Transform::from_xyz(1.0, 2.0, 3.0),
+        global: GlobalTransform::identity(),
+    }).with_children(|parent| {
         parent.spawn_scene(scene1);
     });
 }

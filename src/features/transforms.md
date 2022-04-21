@@ -22,7 +22,9 @@ the rotation, and make them larger or smaller by modifying the scale.
 In Bevy, transforms are represented by *two* [components][cb::component]:
 [`Transform`][bevy::Transform] and [`GlobalTransform`][bevy::GlobalTransform].
 Any [Entity][cb::ecs-intro] that represents an object in the game world
-needs to have both.
+needs to have both. All of Bevy's [bundle types][builtins::bundle]
+include them.  If you are creating a custom entity, you can use
+[`TransformBundle`][bevy::TransformBundle] to ensure you don't miss them.
 
 [`Transform`][bevy::Transform] is what you typically work with. It is
 a `struct` containing the translation, rotation, and scale. To read or

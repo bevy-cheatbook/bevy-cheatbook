@@ -64,16 +64,9 @@ each Squad, and it needs some information about the children:
 If your entities represent "objects in the game world", you probably expect
 the child to be positioned relative to the parent and move with it.
 
-All Bundles that come with Bevy provide this behavior automatically.
-
-If you are not using such a bundle, you need to make sure
-to add these components to both the parent and the child entities:
-[`GlobalTransform`][bevy::GlobalTransform] and [`Transform`][bevy::Transform].
-
-The [`Transform`][bevy::Transform] represents the relative position.
-You can manipulate it directly.
-
-The [`GlobalTransform`][bevy::GlobalTransform] represents the absolute position.
-It is managed by bevy internally; do not manipulate it yourself.
+All [Bundles that come with Bevy][builtins::bundle] provide
+this behavior automatically. You should at least use the basic
+[`TransformBundle`][bevy::TransformBundle] if you don't need anything else.
 
 For more info, see the [dedicated page about transforms][cb::transform].
+
