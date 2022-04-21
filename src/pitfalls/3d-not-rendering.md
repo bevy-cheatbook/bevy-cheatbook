@@ -5,6 +5,25 @@
 This page will list some common issues that you may encounter, if you are
 trying to spawn a 3D object, but cannot see it on the screen.
 
+## Missing Vertex Attributes
+
+Make sure your [`Mesh`][bevy::Mesh] includes all vertex attributes required
+by your shader/material.
+
+Bevy's default PBR [`StandardMaterial`][bevy::StandardMaterial]
+requires all meshes to have:
+ - Positions
+ - Normals
+ - UVs (even if there are no textures / just a solid color)
+ - Tangents (if using normal maps, otherwise not required)
+
+If you are generating your own mesh data, make sure to include all of the
+above.
+
+If you are loading it from asset files, make sure they include everything
+that is needed. In particular, if you are using normal maps, make sure
+to include Tangents when creating your GLTF files.
+
 ## Incorrect usage of Bevy GLTF assets
 
 Refer to the [GLTF page][cb::gltf] to learn how to correctly
@@ -26,10 +45,6 @@ asset_server.load("my.gltf#Scene0");
 If you are spawning the top-level [`Gltf`][bevy::Gltf] [master asset][cb::gltf-master], it won't work.
 
 If you are spawning a GLTF Mesh, it won't work.
-
-If you are using the top-level `Gltf` master asset or a `GltfMesh` on a Bevy
-`PbrBundle` entity that you have created yourself, it won't work. You need
-a specific GLTF Primitive. Or just use Scenes. :)
 
 ## Unsupported GLTF
 

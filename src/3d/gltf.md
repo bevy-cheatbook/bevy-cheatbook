@@ -25,9 +25,9 @@ This is why your GLTF "model" is represented by Bevy as a Scene.  This way,
 you can easily spawn it, and Bevy will create all the relevant [child
 entities][cb::hierarchy] and configure them correctly.
 
-So that you can treat the whole thing as "a single object" and position
-it in the world, you can just [spawn it under a parent entity, and use its
-`Transform`][cb::transform].
+So that you can treat the whole thing as "a single object" and position it
+in the world, you can just [spawn it under a parent entity][cb::hierarchy],
+and use its [transform][cb::transform].
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:spawn-gltf-simple}}
@@ -112,7 +112,14 @@ given Texture. Bevy does not keep these separate; this data is stored
 inside the Bevy [`Image`][bevy::Image] asset (the `sampler` field of type
 [`SamplerDescriptor`][bevy::SamplerDescriptor]).
 
+GLTF **Animations** describe animations that interpolate various values,
+such as transforms or mesh skeletons, over time. In Bevy, these are loaded
+as [`AnimationClip`][bevy::AnimationClip] assets.
+
 ## GLTF Usage Patterns
+
+A single GLTF file can contain any number of sub-assets of any of the above
+types, referring to each other however they like.
 
 Because GLTF is so flexible, it is up to you how to structure your assets.
 
@@ -121,7 +128,8 @@ A single GLTF file might be used:
     GLTF Scene with the model, so you can spawn it into your game.
   - To represent a whole level, as a GLTF Scene, possibly also including
     the camera. This lets you load and spawn a whole level/map at once.
-  - To represent a piece of a level/map, such as a room.
+  - To represent sections of a level/map, such as a rooms, as separate GLTF Scenes.
+    They can share meshes and textures if needed.
   - To contain a set of many different "3D models", each as a separate GLTF Scene.
     This lets you load and manage the whole collection at once and spawn them individually as needed.
   - … others?
@@ -145,7 +153,7 @@ The various sub-assets contained in a GLTF file can be addressed in two ways:
     when creating the asset, which can be exported into the GLTF)
 
 To get handles to the respective assets in Bevy, you can use the
-[`Gltf`][bevy::Gltf] ["master asset"][#gltf-master-asset], or alternatively,
+[`Gltf`][bevy::Gltf] ["master asset"](#gltf-master-asset), or alternatively,
 [AssetPath with Labels](#assetpath-with-labels).
 
 ### `Gltf` master asset
