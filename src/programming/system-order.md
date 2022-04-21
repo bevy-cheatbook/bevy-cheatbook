@@ -44,20 +44,29 @@ this would result in annoying lag, so you should probably fix it.
 
 ## Explicit System Ordering
 
-The solution is to use system [labels][cb::label] to explicitly specify
-the order you want:
+If a specific system must always run before or after some other systems,
+you can add ordering constraints:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:system-order}}
+```
+
+`.before`/`.after` may be used as many times as you need on one system.
+
+## Labels
+
+For more advanced use cases, you can use [labels][cb::label]. Labels can
+either be strings, or custom types (like `enum`s) that derive `SystemLabel`.
+
+This allows you to affect multiple systems at once, with the same constraints. 
+You can place multiple labels on one system. You can also use the same label
+on multiple systems.
+
+Each label is a reference point that other systems can be ordered around.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:system-labels}}
 ```
-
-Each label is a reference point that other systems can be ordered around.
-
-`.label`/`.before`/`.after` may be used as many times as you need on one system.
-
-You can place multiple labels on one system.
-
-You can also use the same label on multiple systems.
 
 When you have multiple systems with common labels or ordering, it may be
 convenient to use [system sets][cb::systemset].

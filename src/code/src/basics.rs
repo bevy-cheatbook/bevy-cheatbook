@@ -1355,18 +1355,16 @@ fn main() {
 }
 
 #[allow(dead_code)]
-mod app8 {
+mod app8a {
 use bevy::prelude::*;
 
     fn particle_effects() {}
     fn npc_behaviors() {}
     fn enemy_movement() {}
-    fn map_player_input() {}
-    fn update_map() {}
-    fn input_parameters() {}
     fn player_movement() {}
+    fn input_handling() {}
 
-// ANCHOR: system-labels
+// ANCHOR: system-order
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
@@ -1376,20 +1374,59 @@ fn main() {
         .add_system(npc_behaviors)
         .add_system(enemy_movement)
 
-        // create labels, because we need to order other systems around these:
-        .add_system(map_player_input.label("input"))
-        .add_system(update_map.label("map"))
+        .add_system(input_handling)
 
-        // this will always run before anything labeled "input"
-        .add_system(input_parameters.before("input"))
-
-        // this will always run after anything labeled "input" and "map"
-        // also label it just in case
         .add_system(
             player_movement
+                // `player_movement` must always run before `enemy_movement`
+                .before(enemy_movement)
+                // `player_movement` must always run after `input_handling`
+                .after(input_handling)
+        )
+        .run();
+}
+// ANCHOR_END: system-order
+}
+
+#[allow(dead_code)]
+mod app8b {
+use bevy::prelude::*;
+
+    fn input_joystick() {}
+    fn input_keyboard() {}
+    fn input_touch() {}
+    fn input_parameters() {}
+    fn player_movement() {}
+
+// ANCHOR: system-labels
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(SystemLabel)]
+enum MyLabel {
+    Input,
+    Player,
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+
+        // create labels, because we want to have multiple affected systems
+        .add_system(input_joystick.label(MyLabel::Input))
+        .add_system(input_keyboard.label(MyLabel::Input))
+        .add_system(input_touch.label(MyLabel::Input))
+
+        // this will always run before anything labeled "input"
+        .add_system(input_parameters.before(MyLabel::Input))
+
+        // this will always run after anything labeled "input" and "map"
+        // also give it a few labels it just in case
+        .add_system(
+            player_movement
+                // can also just use strings
                 .label("player_movement")
-                .after("input")
-                .after("map")
+                .label(MyLabel::Player)
+                .after(MyLabel::Input)
         )
         .run();
 }
