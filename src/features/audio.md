@@ -28,11 +28,12 @@ about on `bevy_kira_audio` instead of Bevy.
 
 ```toml
 [dependencies.bevy]
-version = "0.6"
+version = "0.7"
 default-features = false
 # These are the remaining default features other than `bevy_audio` and `mp3`
 features = [
   "render",
+  "animation",
   "bevy_winit",
   "bevy_gilrs",
   "png",
@@ -42,7 +43,7 @@ features = [
 ]
 
 [dependencies.bevy_kira_audio]
-version = "0.8.0"
+version = "0.9.0"
 # `ogg` format support is enabled by default, disable if you don't want it
 default-features = false
 # enable the features you care about
@@ -53,5 +54,3 @@ features = [
   "ogg",
 ]
 ```
-
-See [this page][cb::features] for more information about Bevy's cargo features.

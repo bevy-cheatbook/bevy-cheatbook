@@ -14,8 +14,6 @@ standalone, or integrated into otherwise non-Bevy projects.
 
 In Bevy projects, you can enable/disable various parts of Bevy using cargo features.
 
-Here I will explain some of them and why you might want to change them.
-
 Many common features are enabled by default. If you want to disable some of
 them, note that, unfortunately, Cargo does not let you disable individual
 default features, so you need to disable all default bevy features and
@@ -25,19 +23,20 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.6"
+version = "0.7"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
   # These are the default features:
-  # (keep whichever you like)
+  # (re-enable whichever you like)
 
   # Bevy functionality:
+  "animation",          # Animation support
   "bevy_gilrs",         # Gamepad input support
   "bevy_audio",         # Builtin audio
-  "filesystem_watcher", # Asset hot-reloading
   "bevy_winit",         # Window management
   "x11",                # Linux: Support X11 windowing system
+  "filesystem_watcher", # Asset hot-reloading
   "render",             # Graphics Rendering
 
   ## "render" actually just includes:
@@ -64,13 +63,16 @@ features = [
   "serialize",            # Support for `serde` Serialize/Deserialize
 
   # File formats:
-  "bmp",
-  "tga",
+  "ktx2", # preferred format for GPU textures
   "dds",
   "jpeg",
-  "wav"
+  "bmp",
+  "tga",
+  "basis-universal",
+  "zstd", # needed if using zstd in KTX2 files
   "flac",
   "mp3",
+  "wav",
 
   # Development/Debug features:
   "dynamic",      # Dynamic linking for faster compile-times

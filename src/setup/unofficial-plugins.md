@@ -29,7 +29,7 @@ featuring the most important plugins (in my opinion) in the Bevy ecosystem.
 My goal here is to help direct new Bevy users to some known-good resources,
 so you can start working on the kinds of games you want to make. :)
 
-The plugins listed here are compatible with the latest Bevy release and use
+The plugins listed here are compatible with the current Bevy release and use
 permissive licenses (like Bevy itself).
 
 This page is limited. I can only recommend plugins I know enough about. Please
