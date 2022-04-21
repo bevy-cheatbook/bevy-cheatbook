@@ -56,6 +56,7 @@
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
 [project::egui]: https://github.com/emilk/egui
 [project::gilrs]: https://gitlab.com/gilrs-project/gilrs
+[project::iyes_loopless]: https://github.com/IyesGames/iyes_loopless
 [project::kayak_ui]: https://github.com/StarArawn/kayak_ui
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
 [project::rapier]: https://rapier.rs/

@@ -1,14 +1,16 @@
 # Run Criteria
 
+Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which
+provides an alternative implementation that does not suffer from the
+[usability issues](#known-pitfalls) of the one in Bevy.
+
+---
+
 {{#include ../include/links.md}}
 
 Run Criteria are a mechanism for controlling if Bevy should run specific
 [systems][cb::system], at runtime. This is how you can make functionality
 that only runs under certain conditions.
-
-Run Criteria are a lower-level primitive. Bevy provides higher-level
-abstractions on top, such as [States][cb::state]. You can use Run Criteria
-without such abstractions, if you really need more direct control.
 
 Run Criteria can be applied to individual [systems][cb::system], [system
 sets][cb::systemset], and [stages][cb::stage].
@@ -24,22 +26,20 @@ multiplayer modes:
 {{#include ../code/src/basics.rs:run-criteria}}
 ```
 
-## Run Criteria Labels
-
-If you have multiple systems or system sets that you want to share the same
-run criteria, you can give it a [label][cb::label].
-
-When you use a label, Bevy will only execute the run criteria once, remember
-its output, and apply it to everything with the label.
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:run-criteria-label}}
-```
-
-The run-once property is especially important if you have a complex run
-criteria system that performs mutations or is otherwise non-idempotent.
-
 ## Known Pitfalls
+
+### Combining Multiple Run Criteria
+
+It is not possible to make a system that is conditional on multiple run
+criteria. Bevy has a `.pipe` method that allows you to "chain" run criteria,
+which could let you modify the output of a run criteria, but this is very
+limiting in practice.
+
+Consider using [`iyes_loopless`][project::iyes_loopless]. It allows you to
+use any number of run conditions to control your systems, and does not prevent
+you from using [states][cb::state] or [fixed timestep][cb::fixedtimestep].
+
+### Events
 
 When receiving [events][cb::event] in systems that don't run every frame,
 you will miss any events that are sent during the frames when the receiving
@@ -48,8 +48,3 @@ systems are not running!
 To mitigate this, you could implement a [custom cleanup
 strategy][cb::event-manual], to manually manage the lifetime of the relevant
 event types.
-
----
-
-Bevy's [fixed timestep][cb::fixedtimestep] is also implemented
-using run criteria under the hood.

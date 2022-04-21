@@ -5,6 +5,10 @@
 Relevant official examples:
 [`fixed_timestep`][example::fixed_timestep].
 
+Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which
+provides an alternative implementation that does not suffer from the
+[usability issues](#caveats) of the one in Bevy.
+
 ---
 
 If you need something to happen at fixed time intervals (a common use case
@@ -27,9 +31,16 @@ See the [official example][example::fixed_timestep], which illustrates this.
 
 ## Caveats
 
-As this feature is implemented using [Run Criteria][cb::runcriteria], the
-[systems][cb::system] are still called as part of the regular frame-update
-cycle, along with all of the normal systems. So, the timing is not exact.
+The major problem with Bevy's fixed timestep comes from the fact that
+it is implemented using [Run Criteria][cb::runcriteria]. It cannot be
+combined with other run criteria, such as [states][cb::state]. This makes
+it unusable for most projects, which need to rely on states for things
+like implementing the main menu / loading screen / etc. Consider using
+[`iyes_loopless`][project::iyes_loopless], which does not have this problem.
+
+Also, note that your [systems][cb::system] are still called as part of the
+regular frame-update cycle, along with all of the normal systems. So, the
+timing is not exact.
 
 The [`FixedTimestep`][bevy::FixedTimestep] run criteria simply checks how much
 time passed since the last time your systems were ran, and decides whether

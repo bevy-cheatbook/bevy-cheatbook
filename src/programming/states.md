@@ -5,6 +5,10 @@
 Relevant official examples:
 [`state`][example::state].
 
+Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which
+provides an alternative implementation that does not suffer from the
+[usability issues](#known-pitfalls-and-limitations) of the one in Bevy.
+
 ---
 
 States allow you to structure the runtime "flow" of your app.
@@ -88,29 +92,31 @@ To manage states like this, use `push`/`pop`:
 
 ## Known Pitfalls and Limitations
 
-### Events
-
-When receiving [events][cb::event] in systems that don't run all the time, such
-as during a pause state, you will miss any events that are sent during the frames
-when the receiving systems are not running!
-
-To mitigate this, you could implement a [custom cleanup
-strategy][cb::event-manual], to manually manage the lifetime of the relevant
-event types.
-
 ### Combining with Other Run Criteria
 
-Because states are implemented using [run criteria][cb::runcriteria], it
-is tricky to combine them with other uses of run criteria, such as [fixed
+Because states are implemented using [run criteria][cb::runcriteria],
+they cannot be combined with other uses of run criteria, such as [fixed
 timestep][cb::fixedtimestep].
 
 If you try to add another run criteria to your system set, it would replace
 Bevy's state-management run criteria! This would make the system set no
 longer constrained to run as part of a state!
 
-It may still be possible to accomplish such use cases using some trickery.
+Consider using [`iyes_loopless`][project::iyes_loopless], which does not
+have such limitations.
 
-(TODO) show an example of how it could be done.
+### Multiple Stages
+
+Bevy states cannot work across multiple [stages][cb::stage]. Workarounds
+are available, but they are broken and buggy.
+
+This is a huge limitation in practice, as it greatly limits how you can use
+[commands][cb::commands]. Not being able to use Commands is a big deal,
+as you cannot do things like spawn entities and operate on them during the
+same frame, among other important use cases.
+
+Consider using [`iyes_loopless`][project::iyes_loopless], which does not
+have such limitations.
 
 ### With Input
 
@@ -125,13 +131,14 @@ a button/key press, you need to clear the input manually by calling `.reset`:
 
 Not doing this can cause [issues][bevy::1700].
 
-### Multiple Stages
+[`iyes_loopless`][project::iyes_loopless] does not have this issue.
 
-If you need state-dependent systems in multiple [stages][cb::stage],
-a workaround is required.
+### Events
 
-You must add the state to one stage only, and then call `.get_driver()`
-and add that to the other stages before any state-dependent system sets in
-those stages.
+When receiving [events][cb::event] in systems that don't run all the time, such
+as during a pause state, you will miss any events that are sent during the frames
+when the receiving systems are not running!
 
-(TODO) example
+To mitigate this, you could implement a [custom cleanup
+strategy][cb::event-manual], to manually manage the lifetime of the relevant
+event types.
