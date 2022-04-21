@@ -92,7 +92,7 @@
   - [Labels](./programming/labels.md)
   - [Stages](./programming/stages.md)
   - [Removal Detection](./programming/removal-detection.md)
-  - [Query Sets](./programming/query-sets.md)
+  - [ParamSet](./programming/paramset.md)
   - [System Chaining](./programming/system-chaining.md)
   - [Direct ECS World Access](./programming/world.md)
   - [Exclusive Systems](./programming/exclusive.md)
