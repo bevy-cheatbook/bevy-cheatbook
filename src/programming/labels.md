@@ -21,9 +21,9 @@ You need to derive the appropriate trait, depending on what they will be
 used for: `StageLabel`, `SystemLabel`, `RunCriteriaLabel`, or `AmbiguitySetLabel`.
 
 Any Rust type is suitable, as long as it has the following standard Rust
-traits: [`Clone`][std::Clone] + [`Eq`][std::Eq] + [`Hash`][std::Hash]
-+ [`Debug`][std::Debug] (and the implied [`Send`][std::Send] +
-[`Sync`][std::Sync] + `'static`).
+traits: [`Clone`][std::Clone] + [`PartialEq`][std::PartialEq] + [`Eq`][std::Eq] +
+[`Hash`][std::Hash] + [`Debug`][std::Debug] (and the implied [`Send`][std::Send]
++ [`Sync`][std::Sync] + `'static`).
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:labels}}
