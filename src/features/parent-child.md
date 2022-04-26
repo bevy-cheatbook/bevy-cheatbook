@@ -59,6 +59,16 @@ each Squad, and it needs some information about the children:
 {{#include ../code/src/basics.rs:query-child}}
 ```
 
+Be sure to call `remove_children` to disassociate a child entity from it's parent before
+despawning it. If you despawn a child entity without disassociating it from it's parent
+then the next query for that parent entity's children will yield an invalid entity and
+any attempt to manipulate it will likely lead to this error:
+
+```
+thread 'main' panicked at 'Attempting to create an EntityCommands for entity 7v0, which doesn't exist.'
+```
+
+
 ## Relative Transforms
 
 If your entities represent "objects in the game world", you probably expect
