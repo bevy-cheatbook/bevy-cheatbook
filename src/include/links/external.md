@@ -4,10 +4,11 @@
 [bevy::2052]: https://github.com/bevyengine/bevy/issues/2052
 [bevy::2268]: https://github.com/bevyengine/bevy/pull/2268
 [bevy::2343]: https://github.com/bevyengine/bevy/issues/2343
-[bevy::getting-started]: https://bevyengine.org/learn/book/getting-started/setup/
+[bevy::blog::0.6]: https://bevyengine.org/news/bevy-0-6
 [bevy::contributing]: https://github.com/bevyengine/bevy/blob/main/CONTRIBUTING.md
 [bevy::discord]: https://discord.gg/bevy
 [bevy::examples]: https://github.com/bevyengine/bevy/tree/latest/examples#examples
+[bevy::getting-started]: https://bevyengine.org/learn/book/getting-started/setup/
 [bevy::ghdiscussions]: https://github.com/bevyengine/bevy/discussions
 [bevy::linux-dependencies]: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
 [bevy::plugins_guidelines]: https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md
@@ -66,6 +67,7 @@
 [project::wasm-pack]: https://github.com/rustwasm/wasm-pack
 [project::wasm-server-runner]: https://github.com/jakobhellermann/wasm-server-runner
 [project::wee_alloc]: https://github.com/rustwasm/wee_alloc
+[project::wgpu]: https://github.com/gfx-rs/wgpu
 [rust::getting-started]: https://www.rust-lang.org/learn/get-started
 [rustup]: https://rustup.rs
 [rustwasmbook::code-size]: https://rustwasm.github.io/docs/book/reference/code-size.html

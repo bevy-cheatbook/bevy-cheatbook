@@ -271,6 +271,15 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
 `Extract`, `Prepare`, `Queue`, `PhaseSort`, `Render`, `Cleanup`
 []:#(ANCHOR_END: stages)
 
+[]:#(ANCHOR: render-stages)
+ - `Extract`: quickly copy the minimal data you need from the main World to the render World
+ - `Prepare`: send data to the GPU (buffers, textures, bind groups)
+ - `Queue`: generate the render jobs to be run ([phase items][cb::render::phaseitem])
+ - `PhaseSort`: sort and batch [phase items][cb::render::phaseitem] for efficient rendering
+ - `Render`: execute the [render graph][cb::render::graph] to produce actual GPU commands and do the work
+ - `Cleanup`: clear any data from the render World that should not persist to the next frame
+[]:#(ANCHOR_END: render-stages)
+
 []:#(ANCHOR: systemparams)
 
 [(List in API Docs)][bevy::impl::SystemParam]

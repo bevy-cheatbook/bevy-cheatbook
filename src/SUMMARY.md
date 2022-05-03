@@ -106,6 +106,7 @@
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
 - [[WIP] Bevy Render (GPU) Framework](./gpu.md)
+  - [Render Architecture Overview](./gpu/intro.md)
 
 - [Bevy Cookbook](./cookbook.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)
