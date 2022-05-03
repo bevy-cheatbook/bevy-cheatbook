@@ -196,6 +196,7 @@
 [std::Hash]: https://doc.rust-lang.org/stable/std/hash/trait.Hash.html
 [std::Instant]: https://doc.rust-lang.org/stable/std/time/struct.Instant.html
 [std::Option]: https://doc.rust-lang.org/stable/std/option/enum.Option.html
+[std::PartialEq]: https://doc.rust-lang.org/stable/std/cmp/trait.PartialEq.html
 [std::Rc]: https://doc.rust-lang.org/stable/std/rc/struct.Rc.html
 [std::Result]: https://doc.rust-lang.org/stable/std/result/enum.Result.html
 [std::Send]: https://doc.rust-lang.org/stable/std/marker/trait.Send.html
