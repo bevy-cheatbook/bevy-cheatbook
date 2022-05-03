@@ -408,3 +408,14 @@ The following asset labels are supported (`{}` is the numerical index):
   - `Animation{}`: GLTF Animation as Bevy [`AnimationClip`][bevy::AnimationClip]
   - `Skin{}`: GLTF mesh skin as Bevy [`SkinnedMeshInverseBindposes`][bevy::SkinnedMeshInverseBindposes]
 []:#(ANCHOR_END: gltf-asset-labels)
+
+[]:#(ANCHOR: wgpu-backends)
+[`wgpu`][project::wgpu] (and hence Bevy) supports the following backends for each platform:
+ - Vulkan (Linux/Windows/Android)
+ - DirectX 12 (Windows)
+ - Metal (Apple)
+ - WebGL2 (Web)
+ - WebGPU (Web; experimental)
+ - GLES3 (Linux/Android; legacy)
+ - DirectX 11 (Windows; legacy; WIP (not yet ready for use))
+[]:#(ANCHOR_END: wgpu-backends)
