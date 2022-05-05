@@ -57,12 +57,12 @@ need to add some of your own systems to at least some of the render stages:
    If you have some custom data stored in [resources][cb::res], you can let it
    stay for the next frame, or add a system to clear it, if you want.
 
-The way Bevy is set up, you shouldn't need to do anything in Render
-or PhaseSort. If your custom rendering is part of the Bevy [render
-graph][cb::render::graph], it will just be handled automatically when Bevy
-executes the render graph in the Render stage. If you are implementing custom
-[phase items][cb::render::phaseitem], the Main Pass render graph node will
-render them together with everything else.
+The way Bevy is set up, you shouldn't need to do anything in [Render](#render)
+or [PhaseSort](#phasesort). If your custom rendering is part of the Bevy
+[render graph][cb::render::graph], it will just be handled automatically
+when Bevy executes the render graph in the [Render](#render) stage. If you
+are implementing custom [phase items][cb::render::phaseitem], the Main Pass
+render graph node will render them together with everything else.
 
 You can add your rendering systems to the respective stages, using the render
 [sub-app][cb::subapp]:
@@ -93,6 +93,11 @@ For example, Bevy's 2D sprites uses a [`struct
 ExtractedSprite`][bevy::ExtractedSprite], where it copies the relevant data
 from the "user-facing" components of sprite and spritesheet entities in the
 main World.
+
+Bevy **reserves Entity IDs** in the render World, matching all the Entities
+existing in the main World. In most cases, you do not need to *spawn*
+new entities in the render World. You can just [insert components with
+Commands][cb::commands] on the same Entity IDs as from the main World.
 
 ```
 // TODO: code example
@@ -131,8 +136,8 @@ For other things, analogously, Queue is where you would set up the workloads
 ## PhaseSort
 
 This stage exists for Bevy to sort all of the [phase
-items][cb::render::phaseitem] that were set up during the Queue stage,
-before rendering in the Render stage.
+items][cb::render::phaseitem] that were set up during the [Queue](#queue)
+stage, before rendering in the [Render](#render) stage.
 
 It is unlikely that you will need to add anything custom here. I'm not aware
 of use cases. [Let me know][contact] if you know of any.
