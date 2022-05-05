@@ -37,6 +37,8 @@ frame, store it in resources. Dynamic data that could change every frame
 should be copied into the render world in the Extract stage, and typically
 stored using entities and components.
 
+![Diagram of pipelined rendering timings in app-bound and render-bound cases](/img/pipelined-rendering.png)
+
 ## Core Architecture
 
 The renderer operates in multiple [render stages][cb::render::stage]. This

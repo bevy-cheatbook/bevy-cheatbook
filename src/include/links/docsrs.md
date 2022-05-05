@@ -57,6 +57,7 @@
 [bevy::EventReader]: https://docs.rs/bevy/0.7.0/bevy/ecs/event/struct.EventReader.html
 [bevy::EventWriter]: https://docs.rs/bevy/0.7.0/bevy/ecs/event/struct.EventWriter.html
 [bevy::Events]: https://docs.rs/bevy/0.7.0/bevy/ecs/event/struct.Events.html
+[bevy::ExtractedSprite]: https://docs.rs/bevy/0.7.0/bevy/sprite/struct.ExtractedSprite.html
 [bevy::FileDragAndDrop]: https://docs.rs/bevy/0.7.0/bevy/window/enum.FileDragAndDrop.html
 [bevy::FixedTimestep]: https://docs.rs/bevy/0.7.0/bevy/core/struct.FixedTimestep.html
 [bevy::FixedTimesteps]: https://docs.rs/bevy/0.7.0/bevy/core/struct.FixedTimesteps.html

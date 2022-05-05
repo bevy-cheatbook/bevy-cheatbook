@@ -65,6 +65,8 @@
 [cb::quit]: /programming/quit.md
 [cb::removal-detection]: /programming/removal-detection.md
 [cb::render::asset]: /TODO.md
+[cb::render::bindgroup]: /TODO.md
+[cb::render::buffer]: /TODO.md
 [cb::render::compute]: /TODO.md
 [cb::render::drawcall]: /TODO.md
 [cb::render::drawfunction]: /TODO.md
@@ -83,7 +85,7 @@
 [cb::render::pipelinecache]: /TODO.md
 [cb::render::rendercommand]: /TODO.md
 [cb::render::shader]: /TODO.md
-[cb::render::stage]: /TODO.md
+[cb::render::stage]: /gpu/stages.md
 [cb::render::texture]: /TODO.md
 [cb::render::texturecache]: /TODO.md
 [cb::render::vertexattribute]: /TODO.md
@@ -102,6 +104,7 @@
 [cb::time]: /features/time.md
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /features/transforms.md
+[cb::vsync]: /TODO.md
 [cb::window]: /window/props.md
 [cb::world]: /programming/world.md
 [chapter::2d]: /2d.md
@@ -120,6 +123,7 @@
 [chapter::setup]: /setup.md
 [chapter::tutorial]: /tutorial.md
 [chapter::window]: /window.md
+[contact]: /contact.md
 [cookbook::window-icon]: /window/icon.md
 [cookbook::mouse-grab]: /window/mouse-grab.md
 [cookbook::pan-orbit-camera]: /cookbook/pan-orbit-camera.md
