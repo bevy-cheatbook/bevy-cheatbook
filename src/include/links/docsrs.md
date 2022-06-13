@@ -192,6 +192,7 @@
 [std::DerefMut]: https://doc.rust-lang.org/stable/std/ops/trait.DerefMut.html
 [std::Deref]: https://doc.rust-lang.org/stable/std/ops/trait.Deref.html
 [std::Eq]: https://doc.rust-lang.org/stable/std/cmp/trait.Eq.html
+[std::fmt]: https://doc.rust-lang.org/std/fmt/
 [std::HashMap]: https://doc.rust-lang.org/stable/std/collections/struct.HashMap.html
 [std::HashSet]: https://doc.rust-lang.org/stable/std/collections/struct.HashSet.html
 [std::Hash]: https://doc.rust-lang.org/stable/std/hash/trait.Hash.html

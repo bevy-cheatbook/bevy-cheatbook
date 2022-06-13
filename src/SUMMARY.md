@@ -37,6 +37,7 @@
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
   - [Time and Timers](./features/time.md)
+  - [Logging, Console Messages](./features/log.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
   - [Audio](./features/audio.md)

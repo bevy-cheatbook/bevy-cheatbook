@@ -150,6 +150,7 @@
 [platform::macos]: /platforms/macos.md
 [platform::wasm]: /platforms/wasm.md
 [platform::windows]: /platforms/windows.md
+[platform::windows::noconsole]: /platforms/windows.md#disabling-the-windows-console
 [wasm::gh-pages]: /platforms/wasm/gh-pages.md
 [wasm::panic-console]: /platforms/wasm/panic-console.md
 [wasm::size-opt]: /platforms/wasm/size-opt.md
