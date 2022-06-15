@@ -10,6 +10,7 @@
 ---
 
 [List of Bevy Builtins](./builtins.md)
+[List of Bevy Conecpts](./concepts.md)
 
 ---
 
