@@ -1,6 +1,7 @@
 *~
 *.swp
 *.swo
+.idea/
 /book
 /target
 Cargo.lock
