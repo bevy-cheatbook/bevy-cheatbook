@@ -80,12 +80,20 @@ It will automatically run a minimal local webserver and open your game in your b
 
 `wasm-bindgen` is the tool to generate all the files needed to put the game on your website.
 
+Install:
+
+```sh
+cargo install wasm-bindgen-cli
+```
+
 Run:
 
 ```sh
 cargo build --release --target wasm32-unknown-unknown
-wasm-bindgen --out-dir ./out/ --target web ./target/
+wasm-bindgen --out-dir ./out/ --target web ./target/wasm32-unknown-unknown/{profile_name}/{app_name}.wasm
 ```
+
+`profile_name` - debug, release, etc...
 
 `./out/` is the directory where it will place the output files.
 
