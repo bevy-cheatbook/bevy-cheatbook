@@ -803,6 +803,10 @@ commands.spawn_bundle(MyParentBundle::default())
     .with_children(|parent| {
         parent.spawn_bundle(MyChildBundle::default());
     });
+    
+// or create the relation in reverse by specifying the parent:
+commands.spawn_bundle(MyChildBundle::default())
+    .insert(Parent(parent));
 // ANCHOR_END: parenting
 }
 
