@@ -68,6 +68,13 @@ or globally in your user home folder):
 runner = "wasm-server-runner"
 ```
 
+Alternatively, you can also set ```CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER``` environment
+variable with the runner:
+
+```
+CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER=wasm-server-runner
+```
+
 Now you can just run your game with:
 
 ```sh
