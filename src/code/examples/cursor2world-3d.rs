@@ -6,9 +6,31 @@ use bevy::render::camera::RenderTarget;
 #[derive(Component)]
 struct MainCamera;
 
-fn setup(mut commands: Commands) {
-    commands.spawn()
-        .insert_bundle(OrthographicCameraBundle::new_2d())
+fn setup(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    // Floor
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Plane { size: 10.0 })),
+        material: materials.add(Color::rgb(1.0, 1.0, 1.0).into()),
+        ..default()
+    });
+
+    // ambient light
+    commands.insert_resource(AmbientLight {
+        color: Color::WHITE,
+        brightness: 1.0,
+    });
+
+    commands
+        .spawn()
+        .insert_bundle(PerspectiveCameraBundle {
+            transform: Transform::from_xyz(-5.0, 10.0, 5.0)
+                .looking_at(Vec3::ZERO, Vec3::Y),
+            ..default()
+        })
         .insert(MainCamera);
 }
 
@@ -16,7 +38,7 @@ fn my_cursor_system(
     // need to get window dimensions
     wnds: Res<Windows>,
     // query to get camera transform
-    q_camera: Query<(&Camera, &GlobalTransform), With<MainCamera>>
+    q_camera: Query<(&Camera, &GlobalTransform), With<MainCamera>>,
 ) {
     // get the camera info and transform
     // assuming there is exactly one main camera entity, so query::single() is OK
@@ -52,7 +74,10 @@ fn my_cursor_system(
         // find postion on plane
         let zero_plane_pos = world_pos + ray_length * ray_dir;
 
-        eprintln!("World coords on y = 0 plane: {}/{}/{}", zero_plane_pos.x, zero_plane_pos.y, zero_plane_pos.z);
+        eprintln!(
+            "World coords on y = 0 plane: {}/{}/{}",
+            zero_plane_pos.x, zero_plane_pos.y, zero_plane_pos.z
+        );
     }
 }
 // ANCHOR_END: example
