@@ -2,7 +2,6 @@ use bevy::prelude::*;
 use bevy::render::camera::RenderTarget;
 
 // ANCHOR: example
-/// Used to help identify our main camera
 #[derive(Component)]
 struct MainCamera;
 
