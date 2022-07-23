@@ -14,6 +14,12 @@ the cursor is pointing at.
 There is a good (unofficial) plugin:
 [`bevy_mod_picking`][project::bevy_mod_picking].
 
+This code should work for getting the world space mouse position on the y = 0 plane when using a 3dCamera.
+
+```rust,no_run,noplayground
+{{#include ../code/examples/cursor2world-3d.rs:example}}
+```
+
 ## 2D games
 
 This code should work for 2D games with orthographic projections. It is
