@@ -72,7 +72,7 @@ Alternatively, you can also set ```CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER```
 variable with the runner:
 
 ```
-CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER=wasm-server-runner
+export CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER=wasm-server-runner
 ```
 
 Now you can just run your game with:
