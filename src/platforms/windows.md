@@ -33,7 +33,7 @@ on Windows, a Console window also shows up. To disable this,
 place this Rust attribute at the top of your `main.rs`:
 
 ```rust,no_run,noplayground
-#![windows_subsystem = "windows")]
+#![windows_subsystem = "windows"]
 ```
 
 This tells Windows that your executable is a graphical application, not a
