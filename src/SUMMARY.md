@@ -25,7 +25,6 @@
   - [Strange compile errors from Bevy or dependencies](./pitfalls/build-errors.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [Error adding function as system](./pitfalls/into-system.md)
-  - [UI is not displaying](./pitfalls/ui-camera.md)
   - [2D objects not displaying](./pitfalls/2d-camera-z.md)
   - [3D objects not displaying](./pitfalls/3d-not-rendering.md)
   - [Borrow multiple fields from struct](./pitfalls/split-borrows.md)
