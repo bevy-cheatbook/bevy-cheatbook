@@ -10,7 +10,7 @@ Relevant official examples:
 
 Bevy uses the GLTF 2.0 file format for 3D assets.
 
-(other formats such as Wavefront OBJ may be unofficially available via 3rd-party plugins)
+(other formats may be unofficially available via 3rd-party plugins)
 
 ## Quick-Start: Spawning 3D Models into your World
 
@@ -21,23 +21,17 @@ house: the windows, roof, doors, etc., are separate pieces, that are likely
 made of multiple meshes, materials, and textures. Bevy would technically
 need multiple ECS Entities to represent and render the whole thing.
 
-This is why your GLTF "model" is represented by Bevy as a Scene.  This way,
-you can easily spawn it, and Bevy will create all the relevant [child
-entities][cb::hierarchy] and configure them correctly.
-
-So that you can treat the whole thing as "a single object" and position it
-in the world, you can just [spawn it under a parent entity][cb::hierarchy],
-and use its [transform][cb::transform].
+This is why your GLTF "model" is represented by Bevy as a
+[Scene][cb::scene]. This way, you can easily spawn it, and Bevy will create
+all the relevant [child entities][cb::hierarchy] and configure them correctly.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:spawn-gltf-simple}}
 ```
 
-If your GLTF Scene represents "a whole level/map", rather than "an individual
-3d model", and you don't need to move it around, you can just spawn the
-scene directly, without creating a parent entity.
+You could also use GLTF files to load an entire map/level. It works the same way.
 
-Also, this example assumes that you have a simple GLTF file containing only
+The above example assumes that you have a simple GLTF file containing only
 one "default scene". GLTF is a very flexible file format. A single file can
 contain many "models" or more complex "scenes". To get a better understanding
 of GLTF and possible workflows, read the rest of this page. :)
@@ -53,9 +47,9 @@ for packaging the assets with your game. The text format may be useful for
 development, as it can be easier to manually inspect using a text editor.
 
 A GLTF file can contain many objects (sub-assets): meshes, materials,
-textures, scenes. When loading a GLTF file, Bevy will load all of the assets
-contained inside. They will be mapped to the [appropriate Bevy-internal
-asset types][builtins::asset].
+textures, scenes, animation clips. When loading a GLTF file, Bevy will load
+all of the assets contained inside. They will be mapped to the [appropriate
+Bevy-internal asset types][builtins::asset].
 
 ## The GLTF sub-assets
 
@@ -78,7 +72,7 @@ Scenes with all the child ECS entities.
 GLTF Scenes are composed of GLTF **Nodes**. These describe the "objects"
 in the scene, typically GLTF Meshes, but can also be other things like
 Cameras and Lights. Each GLTF Node has a transform for positioning it in
-the scene.  GLTF Nodes do not have a core Bevy equivalent; Bevy just uses
+the scene. GLTF Nodes do not have a core Bevy equivalent; Bevy just uses
 this data to create the ECS Entities inside of a Scene. Bevy has a special
 [`GltfNode`][bevy::GltfNode] asset type, if you need access to this data.
 
@@ -103,7 +97,7 @@ PBR 3D renderer.
 
 GLTF **Textures** (images) can be embedded inside the GLTF file, or stored
 externally in separate image files alongside it. For example, you can have
-your textures as separate PNG or JPEG files for ease of development, or
+your textures as separate PNG/JPEG/KTX2 files for ease of development, or
 package them all inside the GLTF file for ease of distribution. In Bevy,
 GLTF textures are loaded as Bevy [`Image`][bevy::Image] assets.
 
@@ -144,6 +138,40 @@ For other tools, you can try these exporter plugins:
   - [3DSMax][gltf-export-3dsmax]
   - [Autodesk Maya][gltf-export-maya]
     - (or this [alternative][gltf-export-maya2])
+
+Be sure to check your export settings to make sure the GLTF file contains
+everything you expect.
+
+If you need Tangents for normal maps, it is recommended that you include them
+in your GLTF files. This avoids Bevy having to autogenerate them at runtime.
+Many 3D editors do not enable this option by default.
+
+### Textures
+
+For your Textures / image data, the GLTF format specification officially
+limits the supported formats to just PNG, JPEG, or Basis. However, Bevy does
+not enforce such "artificial limitations". You can use any [image format
+supported by Bevy][builtins::file-formats].
+
+Your 3D editor will likely export your GLTF with PNG textures. This will
+"just work" and is nice for simple use cases.
+
+However, mipmaps and compressed textures are very important to get good GPU
+performance, memory (VRAM) usage, and visual quality. You will only get these
+benefits if you use a format like KTX2 or DDS, that supports these features.
+
+We recommend that you use KTX2, which natively supports all GPU texture
+functionality + additional `zstd` compression on top, to reduce file size.
+If you do this, don't forget to enable the `ktx2` and `zstd` [cargo
+features][cb::features] for Bevy.
+
+You can use the [`klafsa`][project::klafsa] tool to convert all the textures
+used in your GLTF files from PNG/JPEG into KTX2, with mipmaps and GPU texture
+compression of your choice.
+
+```
+TODO: show an example workflow for converting textures into the "optimal" format
+```
 
 ## Using GLTF Sub-Assets in Bevy
 

@@ -11,18 +11,23 @@ Make sure your [`Mesh`][bevy::Mesh] includes all vertex attributes required
 by your shader/material.
 
 Bevy's default PBR [`StandardMaterial`][bevy::StandardMaterial]
-requires all meshes to have:
+requires *all* meshes to have:
  - Positions
  - Normals
- - UVs (even if there are no textures / just a solid color)
- - Tangents (if using normal maps, otherwise not required)
 
-If you are generating your own mesh data, make sure to include all of the
-above.
+Some others that may be required:
+ - UVs (if using textures in the material)
+ - Tangents (only if using normal maps, otherwise not required)
 
-If you are loading it from asset files, make sure they include everything
-that is needed. In particular, if you are using normal maps, make sure
-to include Tangents when creating your GLTF files.
+If you are generating your own mesh data, make sure to provide everything
+you need.
+
+If you are loading meshes from asset files, make sure they include everything
+that is needed (check your export settings).
+
+If you need Tangents for normal maps, it is recommended that you include them
+in your GLTF files. This avoids Bevy having to autogenerate them at runtime.
+Many 3D editors (like Blender) do not enable this option by default.
 
 ## Incorrect usage of Bevy GLTF assets
 

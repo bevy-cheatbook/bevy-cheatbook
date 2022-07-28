@@ -67,6 +67,7 @@
 [project::iyes_loopless]: https://github.com/IyesGames/iyes_loopless
 [project::iyes_progress]: https://github.com/IyesGames/iyes_progress
 [project::kayak_ui]: https://github.com/StarArawn/kayak_ui
+[project::klafsa]: https://github.com/superdump/klafsa
 [project::ldtk]: https://ldtk.io
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
 [project::rapier]: https://rapier.rs/
