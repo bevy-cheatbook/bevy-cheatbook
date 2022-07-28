@@ -35,6 +35,7 @@
 - [General Game Engine Features](./features.md)
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
+  - [Visibility](./features/visibility.md)
   - [Time and Timers](./features/time.md)
   - [Logging, Console Messages](./features/log.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)

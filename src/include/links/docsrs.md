@@ -39,6 +39,7 @@
 [bevy::Commands]: https://docs.rs/bevy/0.7.0/bevy/ecs/system/struct.Commands.html
 [bevy::Component]: https://docs.rs/bevy/0.7.0/bevy/ecs/component/trait.Component.html
 [bevy::Components]: https://docs.rs/bevy/0.7.0/bevy/ecs/component/struct.Components.html
+[bevy::ComputedVisibility]: https://docs.rs/bevy/0.7.0/bevy/render/view/visibility/struct.ComputedVisibility.html
 [bevy::ComputeTaskPool]: https://docs.rs/bevy/0.7.0/bevy/tasks/struct.ComputeTaskPool.html
 [bevy::CoreStage]: https://docs.rs/bevy/0.7.0/bevy/app/enum.CoreStage.html
 [bevy::CreateWindow]: https://docs.rs/bevy/0.7.0/bevy/window/struct.CreateWindow.html
@@ -133,6 +134,7 @@
 [bevy::Shader]: https://docs.rs/bevy/0.7.0/bevy/render/render_resource/struct.Shader.html
 [bevy::ShouldRun]: https://docs.rs/bevy/0.7.0/bevy/ecs/schedule/enum.ShouldRun.html
 [bevy::SkinnedMeshInverseBindposes]: https://docs.rs/bevy/0.7.0/bevy/render/mesh/skinning/struct.SkinnedMeshInverseBindposes.html
+[bevy::SpatialBundle]: https://docs.rs/bevy/0.7.0/bevy/render/prelude/struct.SpatialBundle.html
 [bevy::SpriteBundle]: https://docs.rs/bevy/0.7.0/bevy/sprite/struct.SpriteBundle.html
 [bevy::SpriteSheetBundle]: https://docs.rs/bevy/0.7.0/bevy/sprite/struct.SpriteSheetBundle.html
 [bevy::Sprite]: https://docs.rs/bevy/0.7.0/bevy/sprite/struct.Sprite.html
@@ -157,12 +159,15 @@
 [bevy::Touch]: https://docs.rs/bevy/0.7.0/bevy/input/touch/struct.Touch.html
 [bevy::Touches]: https://docs.rs/bevy/0.7.0/bevy/input/touch/struct.Touches.html
 [bevy::TransformBundle]: https://docs.rs/bevy/0.7.0/bevy/transform/struct.TransformBundle.html
+[bevy::TransformSystem]: https://docs.rs/bevy/0.7.0/bevy/transform/enum.TransformSystem.html
 [bevy::Transform]: https://docs.rs/bevy/0.7.0/bevy/transform/components/struct.Transform.html
 [bevy::TypeRegistryArc]: https://docs.rs/bevy/0.7.0/bevy/reflect/struct.TypeRegistryArc.html
 [bevy::UiCameraBundle]: https://docs.rs/bevy/0.7.0/bevy/ui/entity/struct.UiCameraBundle.html
 [bevy::UiColor]: https://docs.rs/bevy/0.7.0/bevy/ui/struct.UiColor.html
 [bevy::UiImage]: https://docs.rs/bevy/0.7.0/bevy/ui/struct.UiImage.html
 [bevy::Visibility]: https://docs.rs/bevy/0.7.0/bevy/render/view/visibility/struct.Visibility.html
+[bevy::VisibilityBundle]: https://docs.rs/bevy/0.7.0/bevy/render/view/visibility/struct.VisibilityBundle.html
+[bevy::VisibilitySystems]: https://docs.rs/bevy/0.7.0/bevy/render/view/visibility/struct.VisibilitySystems.html
 [bevy::WgpuSettings]: https://docs.rs/bevy/0.7.0/bevy/render/settings/struct.WgpuSettings.html
 [bevy::WindowBackendScaleFactorChanged]: https://docs.rs/bevy/0.7.0/bevy/window/struct.WindowBackendScaleFactorChanged.html
 [bevy::WindowCloseRequested]: https://docs.rs/bevy/0.7.0/bevy/window/struct.WindowCloseRequested.html

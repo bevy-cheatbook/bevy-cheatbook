@@ -105,6 +105,7 @@
 [cb::time]: /features/time.md
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /features/transforms.md
+[cb::visibility]: /features/visibility.md
 [cb::vsync]: /TODO.md
 [cb::window]: /window/props.md
 [cb::world]: /programming/world.md
