@@ -6,17 +6,24 @@ In Bevy, the vertical axis for the pixels of textures / images, and when
 sampling textures in a shader, points *downwards*, from top to bottom. The
 origin is at the top left.
 
-This is consistent with how most image file formats store pixel data, and
-with how most graphics APIs work (including DirectX, Vulkan, Metal, WebGPU,
-but *not* OpenGL).
+This is inconsistent with the [World-coordinate system used everywhere else
+in Bevy][cb::coords], where the Y axis points up.
 
-This is different from OpenGL (and frameworks based on it). If your prior
-experience is with these, you may find that the textures on your meshes are
-flipped vertically. You will have to reexport / regenerate your meshes in
-the correct UV format.
+It is, however, consistent with how most image file formats store pixel data,
+and with how most graphics APIs work (including DirectX, Vulkan, Metal,
+WebGPU, but *not* OpenGL).
 
-This is also inconsistent with the [World-coordinate system used everywhere
-else in Bevy][cb::coords], where the Y axis points up.
+OpenGL (and frameworks based on it) is different. If your prior experience
+is with that, you may find that your textures appear flipped vertically.
+
+---
+
+If you are using a mesh, make sure it has the correct UV values. If it was
+created with other software, be sure to select the correct settings.
+
+If you are writing a custom shader, make sure your UV arithmetic is correct.
+
+## Sprites
 
 If the images of your 2D sprites are flipped (for whatever reason), you can
 correct that using Bevy's sprite-flipping feature:
