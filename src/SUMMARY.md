@@ -32,7 +32,7 @@
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
   - [Textures/Images are flipped](./pitfalls/uv-coordinates.md)
 
-- [Bevy Game Engine Core](./features.md)
+- [General Game Engine Features](./features.md)
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
   - [Time and Timers](./features/time.md)
@@ -41,7 +41,7 @@
   - [Fixed Timestep](./features/fixed-timestep.md)
   - [Audio](./features/audio.md)
 
-- [Bevy Asset Management](./assets.md)
+- [Asset Management](./assets.md)
   - [Handles](./assets/handles.md)
   - [Load Assets from Files](./assets/assetserver.md)
   - [Access the Asset Data](./assets/data.md)
@@ -64,11 +64,11 @@
   - [Grab/Capture the Mouse Cursor](./window/mouse-grab.md)
   - [Set the Window Icon](./window/icon.md)
 
-- [Bevy 2D](./2d.md)
+- [Working with 2D](./2d.md)
   - [[WIP] 2D Camera Setup](./2d/camera.md)
   - [[WIP] Sprites and Atlases](./2d/sprites.md)
 
-- [Bevy 3D](./3d.md)
+- [Working with 3D](./3d.md)
   - [[WIP] 3D Camera Setup](./3d/camera.md)
   - [3D Models and Scenes (GLTF)](./3d/gltf.md)
 
