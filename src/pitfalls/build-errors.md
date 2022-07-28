@@ -82,6 +82,3 @@ it is because of dependencies not being resolved properly, causing cargo to
 try to link multiple versions of Bevy into your project. This often occurs when
 transitioning your project between the release and the git version of Bevy. Cargo
 remembers the versions it was previously using, and gets confused.
-
-See this [cargo issue][cargo::9994] about this bug. If you have any interesting
-information to add, you can help by contributing to that issue.
