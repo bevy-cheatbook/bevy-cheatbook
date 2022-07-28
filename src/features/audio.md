@@ -27,12 +27,14 @@ about on `bevy_kira_audio` instead of Bevy.
 
 ```toml
 [dependencies.bevy]
-version = "0.7"
+version = "0.8"
 default-features = false
-# These are the remaining default features other than `bevy_audio` and `mp3`
+# These are the remaining default features other than `bevy_audio` and `vorbis`
 features = [
   "render",
   "animation",
+  "bevy_asset",
+  "bevy_scene",
   "bevy_winit",
   "bevy_gilrs",
   "png",
@@ -42,7 +44,7 @@ features = [
 ]
 
 [dependencies.bevy_kira_audio]
-version = "0.9.0"
+version = "0.11"
 # `ogg` format support is enabled by default, disable if you don't want it
 default-features = false
 # enable the features you care about

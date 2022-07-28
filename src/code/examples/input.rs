@@ -32,14 +32,14 @@ fn keyboard_input(
 fn keyboard_events(
     mut key_evr: EventReader<KeyboardInput>,
 ) {
-    use bevy::input::ElementState;
+    use bevy::input::ButtonState;
 
     for ev in key_evr.iter() {
         match ev.state {
-            ElementState::Pressed => {
+            ButtonState::Pressed => {
                 println!("Key press: {:?} ({})", ev.key_code, ev.scan_code);
             }
-            ElementState::Released => {
+            ButtonState::Released => {
                 println!("Key release: {:?} ({})", ev.key_code, ev.scan_code);
             }
         }
@@ -71,14 +71,14 @@ fn mouse_button_input(
 fn mouse_button_events(
     mut mousebtn_evr: EventReader<MouseButtonInput>,
 ) {
-    use bevy::input::ElementState;
+    use bevy::input::ButtonState;
 
     for ev in mousebtn_evr.iter() {
         match ev.state {
-            ElementState::Pressed => {
+            ButtonState::Pressed => {
                 println!("Mouse button press: {:?}", ev.button);
             }
-            ElementState::Released => {
+            ButtonState::Released => {
                 println!("Mouse button release: {:?}", ev.button);
             }
         }
@@ -153,14 +153,16 @@ fn gamepad_connections(
     my_gamepad: Option<Res<MyGamepad>>,
     mut gamepad_evr: EventReader<GamepadEvent>,
 ) {
-    for GamepadEvent(id, kind) in gamepad_evr.iter() {
-        match kind {
+    for ev in gamepad_evr.iter() {
+        // the ID of the gamepad
+        let id = ev.gamepad;
+        match ev.event_type {
             GamepadEventType::Connected => {
                 println!("New gamepad connected with ID: {:?}", id);
 
                 // if we don't have any gamepad yet, use this one
                 if my_gamepad.is_none() {
-                    commands.insert_resource(MyGamepad(*id));
+                    commands.insert_resource(MyGamepad(id));
                 }
             }
             GamepadEventType::Disconnected => {
@@ -169,7 +171,7 @@ fn gamepad_connections(
                 // if it's the one we previously associated with the player,
                 // disassociate it:
                 if let Some(MyGamepad(old_id)) = my_gamepad.as_deref() {
-                    if old_id == id {
+                    if *old_id == id {
                         commands.remove_resource::<MyGamepad>();
                     }
                 }
@@ -196,9 +198,12 @@ fn gamepad_input(
     };
 
     // The joysticks are represented using a separate axis for X and Y
-
-    let axis_lx = GamepadAxis(gamepad, GamepadAxisType::LeftStickX);
-    let axis_ly = GamepadAxis(gamepad, GamepadAxisType::LeftStickY);
+    let axis_lx = GamepadAxis {
+        gamepad, axis_type: GamepadAxisType::LeftStickX
+    };
+    let axis_ly = GamepadAxis {
+        gamepad, axis_type: GamepadAxisType::LeftStickY
+    };
 
     if let (Some(x), Some(y)) = (axes.get(axis_lx), axes.get(axis_ly)) {
         // combine X and Y into one vector
@@ -211,8 +216,12 @@ fn gamepad_input(
     }
 
     // In a real game, the buttons would be configurable, but here we hardcode them
-    let jump_button = GamepadButton(gamepad, GamepadButtonType::South);
-    let heal_button = GamepadButton(gamepad, GamepadButtonType::East);
+    let jump_button = GamepadButton {
+        gamepad, button_type: GamepadButtonType::South
+    };
+    let heal_button = GamepadButton {
+        gamepad, button_type: GamepadButtonType::East
+    };
 
     if buttons.just_pressed(jump_button) {
         // button just pressed: make the player jump
@@ -237,15 +246,15 @@ fn gamepad_input_events(
         return;
     };
 
-    for GamepadEvent(id, kind) in gamepad_evr.iter() {
-        if id.0 != gamepad.0 {
+    for ev in gamepad_evr.iter() {
+        if ev.gamepad != gamepad {
             // event not from our gamepad
             continue;
         }
 
         use GamepadEventType::{AxisChanged, ButtonChanged};
 
-        match kind {
+        match ev.event_type {
             AxisChanged(GamepadAxisType::RightStickX, x) => {
                 // Right Stick moved (X)
             }
@@ -254,7 +263,7 @@ fn gamepad_input_events(
             }
             ButtonChanged(GamepadButtonType::DPadDown, val) => {
                 // buttons are also reported as analog, so use a threshold
-                if *val > 0.5 {
+                if val > 0.5 {
                     // button pressed
                 }
             }
@@ -267,15 +276,15 @@ fn gamepad_input_events(
 fn gamepad_print_allevents(
     mut gamepad_evr: EventReader<GamepadEvent>,
 ) {
-    for GamepadEvent(id, kind) in gamepad_evr.iter() {
-        match kind {
-            GamepadEventType::Connected => println!("Gamepad {}: Connected", id.0),
-            GamepadEventType::Disconnected => println!("Gamepad {}: Disconnected", id.0),
+    for ev in gamepad_evr.iter() {
+        match ev.event_type {
+            GamepadEventType::Connected => println!("Gamepad {:?}: Connected", ev.gamepad),
+            GamepadEventType::Disconnected => println!("Gamepad {:?}: Disconnected", ev.gamepad),
             GamepadEventType::ButtonChanged(button, val) => {
-                println!("Gamepad {}: {:?} changed: {}", id.0, button, val);
+                println!("Gamepad {:?}: {:?} changed: {}", ev.gamepad, button, val);
             },
             GamepadEventType::AxisChanged(axis, val) => {
-                println!("Gamepad {}: {:?} changed: {}", id.0, axis, val);
+                println!("Gamepad {:?}: {:?} changed: {}", ev.gamepad, axis, val);
             },
         }
     }
@@ -324,19 +333,19 @@ fn configure_gamepads(
 
     // set these settings for the gamepad we use for our player
     settings.axis_settings.insert(
-        GamepadAxis(gamepad, GamepadAxisType::RightStickX),
+        GamepadAxis { gamepad, axis_type: GamepadAxisType::RightStickX },
         right_stick_settings.clone()
     );
     settings.axis_settings.insert(
-        GamepadAxis(gamepad, GamepadAxisType::RightStickY),
+        GamepadAxis { gamepad, axis_type: GamepadAxisType::RightStickY },
         right_stick_settings.clone()
     );
     settings.axis_settings.insert(
-        GamepadAxis(gamepad, GamepadAxisType::LeftZ),
+        GamepadAxis { gamepad, axis_type: GamepadAxisType::LeftZ },
         trigger_settings.clone()
     );
     settings.axis_settings.insert(
-        GamepadAxis(gamepad, GamepadAxisType::RightZ),
+        GamepadAxis { gamepad, axis_type: GamepadAxisType::RightZ },
         trigger_settings.clone()
     );
 

@@ -23,7 +23,7 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.7"
+version = "0.8"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
@@ -31,10 +31,12 @@ features = [
   # (re-enable whichever you like)
 
   # Bevy functionality:
-  "animation",          # Animation support
+  "bevy_asset",         # Assets management
+  "bevy_scene",         # Scenes management
   "bevy_gilrs",         # Gamepad input support
   "bevy_audio",         # Builtin audio
   "bevy_winit",         # Window management
+  "animation",          # Animation support
   "x11",                # Linux: Support X11 windowing system
   "filesystem_watcher", # Asset hot-reloading
   "render",             # Graphics Rendering
@@ -42,7 +44,7 @@ features = [
   ## "render" actually just includes:
   ## (feel free to use just a subset of these, instead of "render")
   "bevy_render",        # Rendering framework core
-  "bevy_core_pipeline", # Higher-level rendering abstractions
+  "bevy_core_pipeline", # Common rendering abstractions
   "bevy_sprite",        # 2D (sprites) rendering
   "bevy_pbr",           # 3D (physically-based) rendering
   "bevy_gltf",          # GLTF 3D assets format support

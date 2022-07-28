@@ -61,7 +61,7 @@ or [Bevy Assets][bevyassets::games].
 
 ## Maintenance
 
-This version of the book is for Bevy release 0.7.
+This version of the book is for Bevy release 0.8.
 
 I intend to keep this book up-to-date and relevant with every new Bevy release.
 I also try to regularly make improvements to it, when I can manage it.

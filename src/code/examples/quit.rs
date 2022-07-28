@@ -14,7 +14,7 @@ fn exit_system(mut exit: EventWriter<AppExit>) {
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_system(bevy::input::system::exit_on_esc_system)
+        .add_system(bevy::window::close_on_esc)
         .run();
 }
 // ANCHOR_END: main

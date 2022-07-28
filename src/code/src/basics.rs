@@ -438,7 +438,7 @@ fn camera_with_parent(
     for (parent, child_transform) in q_child.iter() {
         // `parent` contains the Entity ID we can use
         // to query components from the parent:
-        let parent_global_transform = q_parent.get(parent.0);
+        let parent_global_transform = q_parent.get(parent.get());
 
         // do something with the components
     }
@@ -551,11 +551,6 @@ fn use_sprites(
     if let Some(atlas) = atlases.get(&handles.map_tiles) {
         // do something with the texture atlas
     }
-
-    // Can use a path instead of a handle
-    if let Some(map_tex) = images.get("map.png") {
-        // if "map.png" was loaded, we can use it!
-    }
 }
 // ANCHOR_END: asset-access
 
@@ -640,7 +635,10 @@ fn load_gltf_things(
 
     // spawn a whole scene
     let my_scene: Handle<Scene> = server.load("my_scene.gltf#Scene0");
-    commands.spawn_scene(my_scene);
+    commands.spawn_bundle(SceneBundle {
+        scene: my_scene,
+        ..Default::default()
+    });
 }
 // ANCHOR_END: asset-path-labels
 
@@ -665,14 +663,12 @@ fn spawn_gltf(
     // note that we have to include the `Scene0` label
     let my_gltf = ass.load("my.glb#Scene0");
 
-    // to be able to position our 3d model:
-    // spawn a parent entity with a TransformBundle
-    // and spawn our gltf as a scene under it
-    commands.spawn_bundle(TransformBundle {
-        local: Transform::from_xyz(2.0, 0.0, -5.0),
-        global: GlobalTransform::identity(),
-    }).with_children(|parent| {
-        parent.spawn_scene(my_gltf);
+    // to position our 3d model, simply use the Transform
+    // in the SceneBundle
+    commands.spawn_bundle(SceneBundle {
+        scene: my_gltf,
+        transform: Transform::from_xyz(2.0, 0.0, -5.0),
+        ..Default::default()
     });
 }
 // ANCHOR_END: spawn-gltf-simple
@@ -699,15 +695,16 @@ fn spawn_gltf_objects(
     // if the GLTF has loaded, we can navigate its contents
     if let Some(gltf) = assets_gltf.get(&my.0) {
         // spawn the first scene in the file
-        commands.spawn_scene(gltf.scenes[0].clone());
+        commands.spawn_bundle(SceneBundle {
+            scene: gltf.scenes[0].clone(),
+            ..Default::default()
+        });
 
         // spawn the scene named "YellowCar"
-        // do it under a parent entity, to position it in the world
-        commands.spawn_bundle(TransformBundle {
-            local: Transform::from_xyz(1.0, 2.0, 3.0),
-            global: GlobalTransform::identity(),
-        }).with_children(|parent| {
-            parent.spawn_scene(gltf.named_scenes["YellowCar"].clone());
+        commands.spawn_bundle(SceneBundle {
+            scene: gltf.named_scenes["YellowCar"].clone(),
+            transform: Transform::from_xyz(1.0, 2.0, 3.0),
+            ..Default::default()
         });
 
         // PERF: the `.clone()`s are just for asset handles, don't worry :)
@@ -747,24 +744,22 @@ fn use_gltf_things(
 ) {
     // spawn the first scene in the file
     let scene0 = ass.load("my_asset_pack.glb#Scene0");
-    commands.spawn_scene(scene0);
+    commands.spawn_bundle(SceneBundle {
+        scene: scene0,
+        ..Default::default()
+    });
 
-    // spawn the second scene under a parent entity
-    // (to move it)
+    // spawn the second scene
     let scene1 = ass.load("my_asset_pack.glb#Scene1");
-    commands.spawn_bundle(TransformBundle {
-        local: Transform::from_xyz(1.0, 2.0, 3.0),
-        global: GlobalTransform::identity(),
-    }).with_children(|parent| {
-        parent.spawn_scene(scene1);
+    commands.spawn_bundle(SceneBundle {
+        scene: scene1,
+        transform: Transform::from_xyz(1.0, 2.0, 3.0),
+        ..Default::default()
     });
 }
 // ANCHOR_END: gltf-assetpath
 
 fn commands_catchall(mut commands: Commands) {
-// ANCHOR: ui-camera
-commands.spawn_bundle(UiCameraBundle::default());
-// ANCHOR_END: ui-camera
 
 // ANCHOR: sprite-flipping
 commands.spawn_bundle(SpriteBundle {
@@ -955,7 +950,7 @@ fn setup_bomb_spawning(
 // ANCHOR_END: timer
 
 // ANCHOR: stopwatch
-use bevy::core::Stopwatch;
+use bevy::time::Stopwatch;
 
 #[derive(Component)]
 struct JumpDuration {
@@ -1713,7 +1708,7 @@ App::new()
 mod app13 {
 use super::*;
 // ANCHOR: fixed-timestep
-use bevy::core::FixedTimestep;
+use bevy::time::FixedTimestep;
 
 // The timestep says how many times to run the SystemSet every second
 // For TIMESTEP_1, it's once every second
