@@ -33,9 +33,14 @@
 [project::benimator]: https://github.com/jcornaz/benimator
 [project::bevy]: https://github.com/bevyengine/bevy
 [project::bevy_asset_loader]: https://github.com/NiklasEi/bevy_asset_loader
+[project::bevy_common_assets]: https://github.com/NiklasEi/bevy_common_assets
 [project::bevy_config_cam]: https://github.com/BlackPhlox/bevy_config_cam
+[project::bevy_debug_lines]: https://github.com/Toqozz/bevy_debug_lines
+[project::bevy_discord_presence]: https://github.com/jewlexx/bevy-discord-rpc
+[project::bevy_ecs_ldtk]: https://github.com/Trouv/bevy_ecs_ldtk
 [project::bevy_ecs_tilemap]: https://github.com/StarArawn/bevy_ecs_tilemap
 [project::bevy_egui]: https://github.com/mvlabat/bevy_egui
+[project::bevy_embedded_assets]: https://github.com/vleue/bevy_embedded_assets
 [project::bevy_game_template]: https://github.com/NiklasEi/bevy_game_template
 [project::bevy_kira_audio]: https://github.com/NiklasEi/bevy_kira_audio
 [project::bevy_midi]: https://github.com/BlackPhlox/bevy_midi
@@ -47,6 +52,7 @@
 [project::bevy-ui-navigation]: https://github.com/nicopap/ui-navigation
 [project::heron]: https://github.com/jcornaz/heron
 [project::bevy_simple_tilemap]: https://github.com/forbjok/bevy_simple_tilemap
+[project::bevy_steamworks]: https://github.com/james7132/bevy-steamworks
 [project::bevy_stl]: https://github.com/nilclass/bevy_stl
 [project::bevy_tilemap]: https://github.com/joshuajbouw/bevy_tilemap
 [project::bevy_vox]: https://github.com/erasin/bevy_vox
@@ -59,12 +65,13 @@
 [project::egui]: https://github.com/emilk/egui
 [project::gilrs]: https://gitlab.com/gilrs-project/gilrs
 [project::iyes_loopless]: https://github.com/IyesGames/iyes_loopless
+[project::iyes_progress]: https://github.com/IyesGames/iyes_progress
 [project::kayak_ui]: https://github.com/StarArawn/kayak_ui
+[project::ldtk]: https://ldtk.io
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
 [project::rapier]: https://rapier.rs/
 [project::trunkrs]: https://trunkrs.dev
 [project::twiggy]: https://github.com/rustwasm/twiggy
-[project::ui4]: https://github.com/TheRawMeatball/ui4
 [project::wasm-pack]: https://github.com/rustwasm/wasm-pack
 [project::wasm-server-runner]: https://github.com/jakobhellermann/wasm-server-runner
 [project::wee_alloc]: https://github.com/rustwasm/wee_alloc
