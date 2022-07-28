@@ -151,15 +151,15 @@ While you are developing your project, these features might be useful:
 `dynamic` causes Bevy to be built and linked as a shared/dynamic library.
 This will make incremental builds *much* faster.
 
-This is only supported on desktop platforms. Known to work very well on Linux,
-Windows/macOS should work, but might have issues.
+This is only supported on desktop platforms. Known to work very well on Linux.
+Windows and macOS might have issues.
 
-Do not enable this for release builds you intend to publish to other people;
-it introduces unneeded complexity (you need to bundle extra files) and
+Do not enable this for release builds you intend to publish to other people.
+It introduces unneeded complexity (you need to bundle extra files) and
 potential for things to not work correctly. Use this only during development.
 
 For this reason, it may be convenient to specify the feature as a commandline
-option to cargo, instead of putting it in your `Cargo.toml`. Simply run your
+option to `cargo`, instead of putting it in your `Cargo.toml`. Simply run your
 project like this:
 
 ```sh

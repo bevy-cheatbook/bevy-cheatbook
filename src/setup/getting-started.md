@@ -43,8 +43,9 @@ edition = "2021"
 bevy = "0.7"
 ```
 
-The `src/main.rs` file is your main source code file. This is where you start
-writing your Rust code. For a minimal Bevy app, you need at least the following:
+The `src/main.rs` file is your main source code file. This is where you
+start writing your Rust code. For a minimal Bevy [app][cb::app], you need
+at least the following:
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/minimal.rs}}
@@ -63,10 +64,10 @@ cargo run
 You will likely quickly run into unusably slow performance with the default
 Rust unoptimized dev builds. [See here how to fix.][pitfall::perf]
 
-Also, iterative recompilation speed is important to keep you productive,
-so you don't have to wait long for the Rust compiler to rebuild your
-project every time you want to test your game. [Bevy's getting started
-page][bevy::getting-started] has advice about how to speed up compile times.
+Iterative recompilation speed is important to keep you productive, so you don't
+have to wait long for the Rust compiler to rebuild your project every time you
+want to test your game. [Bevy's getting started page][bevy::getting-started]
+has advice about how to speed up compile times.
 
 Also have a look in the [Dev Tools and Editors][cb::tools] page for suggestions
 about additional external dev tools that may be helpful.
@@ -77,7 +78,8 @@ Have a look at the [guided tutorial][chapter::tutorial] page of this book,
 and Bevy's [official examples][bevy::examples].
 
 Check out the [Bevy Assets Website][bevy::assets] to find other tutorials
-and learning resources from the community, and plugins to use in your project.
+and learning resources from the community, and [plugins][cb::3rdparty]
+to use in your project.
 
 Join the community on [Discord][bevy::discord] to chat with us!
 

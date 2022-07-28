@@ -17,10 +17,16 @@ allows `cargo run` to work correctly from the terminal.
 If you are using your editor/IDE to run your project in a non-standard way
 (say, inside a debugger), you have to be sure to set that correctly.
 
+If this is not set, Bevy will search for `assets` alongside the executable
+binary, in the same folder where it is located. This makes things easy for
+distribution. However, during development, since your executable is located
+in the `target` directory where `cargo` placed it, Bevy will be unable to
+find the `assets`.
+
 ## VSCode
 
 Here is a snippet showing how to create a run configuration for debugging Bevy
-(with lldb):
+(with `lldb`):
 
 (this is for development on Bevy itself, and testing with the `breakout` example)
 
