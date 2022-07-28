@@ -57,11 +57,12 @@
 [cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
 [cb::nonsend]: /programming/non-send.md
+[cb::paramset]: /programming/paramset.md
 [cb::plugin]: /programming/plugins.md
 [cb::plugingroup]: /programming/plugins.md#plugin-groups
 [cb::query-filter]: /programming/queries.md#query-filters
 [cb::query]: /programming/queries.md
-[cb::queryset]: /programming/query-sets.md
+[cb::queryset]: /programming/paramset.md
 [cb::quit]: /programming/quit.md
 [cb::removal-detection]: /programming/removal-detection.md
 [cb::render::asset]: /TODO.md

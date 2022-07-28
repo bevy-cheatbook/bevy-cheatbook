@@ -6,7 +6,7 @@ Welcome to Bevy! :) We are glad to have you in our community!
 
 Make sure to also look at [the official Bevy examples][bevy::examples]. If
 you need help, use [GitHub Discussions][bevy::ghdiscussions], or feel welcome
-to come chat and ask for help in [Discord][bevy::discord].
+to join us to chat and ask for help in [Discord][bevy::discord].
 
 ---
 
@@ -70,7 +70,7 @@ quickly need to learn more.
 
 ## Next Steps
 
-You will likely need to learn about at least some of these topics, to make
+You will likely need to learn about at least some of these topics to make
 a non-trivial Bevy project. After you are confident with the basics, you
 can familiarize yourself with these, to become a proficient Bevy user.
 
@@ -85,7 +85,8 @@ can familiarize yourself with these, to become a proficient Bevy user.
    - [Labels][cb::label]
    - [States][cb::state]
    - [Change Detection][cb::change-detection]
-   - [Query Sets][cb::queryset]
+   - [Removal Detection][cb::removal-detection]
+   - [Param Sets][cb::paramset]
    - [Stages][cb::stage]
  - [Programming Patterns][chapter::patterns]
    - [Generic Systems][cb::system-generic]
@@ -102,7 +103,6 @@ typical Bevy users are unlikely to need to know these.
 
  - [Bevy Programming Framework][chapter::programming]
    - [Run Criteria][cb::runcriteria]
-   - [Removal Detection][cb::removal-detection]
    - [System Chaining][cb::system-chain]
    - [Direct World Access][cb::world]
    - [Exclusive Systems][cb::exclusive]
