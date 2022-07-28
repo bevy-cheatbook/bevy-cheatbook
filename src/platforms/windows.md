@@ -26,6 +26,9 @@ The easiest way to give your game to other people to play is to put them
 together in a ZIP file. If you use some other method of installation,
 install the `assets` folder and the EXE to the same path.
 
+If built with the MSVC toolchain, your users may need the Microsoft C/C++
+Runtime Redistributables installed.
+
 ## Disabling the Windows Console
 
 By default, when you run a Bevy app (or any Rust program for that matter)
