@@ -125,8 +125,8 @@ See the [Contributing][cb::contributing] section for all the details.
 
 ## Stability Warning
 
-Bevy is still a very new and experimental game engine! It has only been
-public since August 2020!
+Bevy is still a new and experimental game engine! It has only been public
+since August 2020!
 
 While improvements have been happening at an incredible pace, and development
 is active, Bevy simply hasn't yet had the time to mature.
