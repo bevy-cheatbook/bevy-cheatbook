@@ -22,21 +22,31 @@ Your donation helps me work on such freely-available content. Thank you! ❤️
 
 ## License
 
-Copyright © 2021 Ida Iyes.
-
-All code in the book is provided under the [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
+All code in the book is provided under the
+[MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
 At your option, you may also use it under the regular MIT License.
 
-The text of the book is provided under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The text of the book is provided under the
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 Exception: If used for the purpose of contribution to the "Official Bevy
 Project", the entire content of the book may be used under the [MIT-0
 License](https://github.com/bevy-cheatbook/mit-0).
 
 "Official Bevy Project" is defined as:
- - Any files contained in the Git repository hosted at [https://github.com/bevyengine/bevy](https://github.com/bevyengine/bevy)
- - Any files contained in the Git repository hosted at [https://github.com/bevyengine/bevy-website](https://github.com/bevyengine/bevy-website)
+ - Contents of the Git repository hosted at [https://github.com/bevyengine/bevy](https://github.com/bevyengine/bevy)
+ - Contents of the Git repository hosted at [https://github.com/bevyengine/bevy-website](https://github.com/bevyengine/bevy-website)
  - Anything publicly visible on the [bevyengine.org](https://bevyengine.org) website
+
+The MIT-0 license applies as soon as your contribution has been accepted upstream.
+
+GitHub Forks and Pull Requests created for the purposes of contributing to
+the Official Bevy Project are given the following license exception: the
+Attribution requirements of CC BY-NC-SA 4.0 are waived for as long as the
+work is pending upstream review (Pull Request Open). If upstream rejects
+your contribution, you are given a period of 1 month to comply with the
+full terms of the CC BY-NC-SA 4.0 license or delete your work. If upstream
+accepts your contribution, the MIT-0 license applies.
 
 ## Contributions
 
