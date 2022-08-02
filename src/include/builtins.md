@@ -5,16 +5,23 @@
 Any tuples of up to 15 [`Component`][bevy::Component] types are valid bundles.
 
 General:
+ - [`SpatialBundle`][bevy::SpatialBundle]:
+   Contains the required [transform][cb::transform] and [visibility][cb::visibility]
+   components that must be included on *all* entities that need rendering or [hierarchy][cb::hierarchy]
  - [`TransformBundle`][bevy::TransformBundle]:
-   Contains the [transform][cb::transform] types
-   [`Transform`][bevy::Transform] and [`GlobalTransform`][bevy::GlobalTransform]
-   to enable using the entity in a [parent-child hierarchy][cb::hierarchy]
+   Contains only the transform types, subset of `SpatialBundle`
+ - [`VisibilityBundle`][bevy::VisibilityBundle]:
+   Contains only the visibility types, subset of `SpatialBundle`
+
+Scenes:
+ - [`SceneBundle`][bevy::SceneBundle]:
+   Used for spawning scenes
+ - [`DynamicSceneBundle`][bevy::DynamicSceneBundle]:
+   Used for spawning dynamic scenes
 
 Bevy 3D:
- - [`PerspectiveCameraBundle`][bevy::PerspectiveCameraBundle]:
-   3D camera with a perspective projection
- - [`OrthographicCameraBundle`][bevy::OrthographicCameraBundle]:
-   Camera with an orthographic projection, 2D or 3D
+ - [`Camera3dBundle`][bevy::Camera3dBundle]:
+   3D camera, can use perspective (default) or orthographic projection
  - [`MaterialMeshBundle`][bevy::MaterialMeshBundle]:
    3D Object/Primitive: a Mesh and the Material to draw it with
  - [`PbrBundle`][bevy::PbrBundle]:
@@ -23,10 +30,12 @@ Bevy 3D:
    3D directional light (like the sun)
  - [`PointLightBundle`][bevy::PointLightBundle]: 
    3D point light (like a lamp or candle)
+ - [`SpotLightBundle`][bevy::SpotLightBundle]: 
+   3D spot light (like a projector or flashlight)
 
 Bevy 2D:
- - [`OrthographicCameraBundle`][bevy::OrthographicCameraBundle]:
-   Camera with an orthographic projection, 2D or 3D
+ - [`Camera2dBundle`][bevy::Camera2dBundle]:
+   2D camera, uses orthographic projection + other special configuration for 2D
  - [`SpriteBundle`][bevy::SpriteBundle]: 
    2D sprite, using a whole image ([`Image`][bevy::Image] asset)
  - [`SpriteSheetBundle`][bevy::SpriteSheetBundle]:
@@ -37,8 +46,6 @@ Bevy 2D:
    Text to be drawn in the 2D world (not the UI)
 
 Bevy UI:
- - [`UiCameraBundle`][bevy::UiCameraBundle]:
-   The UI Camera
  - [`NodeBundle`][bevy::NodeBundle]:
    Empty node element (like HTML `<div>`)
  - [`ButtonBundle`][bevy::ButtonBundle]:
@@ -157,6 +164,8 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    Global renderer "fake lighting", so that shadows don't look too dark / black
  - [`Msaa`][bevy::Msaa]:
    Global renderer setting for Multi-Sample Anti-Aliasing (some platforms might only support the values 1 and 4)
+ - [`ImageSettings`][bevy::ImageSettings]:
+ - Configure the default sampler settings (incl. texture filtering mode) for [`Image`][bevy::Image] assets
  - [`ClusterConfig`][bevy::ClusterConfig]:
    Configuration of the light clustering algorithm, affects the performance of 3D scenes with many lights
  - [`WireframeConfig`][bevy::WireframeConfig]:
@@ -176,7 +185,7 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    List of IDs for all currently-detected (connected) gamepad devices
  - [`Windows`][bevy::Windows]:
    All the open windows (the primary window + any additional windows in a multi-window gui app)
- - [`WinitWindows`][bevy::WinitWindows] ([non-send][cb::non-send]):
+ - [`WinitWindows`][bevy::WinitWindows] ([non-send][cb::nonsend]):
    Raw state of the `winit` backend for each window
  - [`Audio`][bevy::Audio]:
    Use this to play sounds via `bevy_audio`
@@ -192,6 +201,8 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    Direct control over spawning Scenes into the main app World
  - [`TypeRegistryArc`][bevy::TypeRegistryArc]:
    Access to the Reflection Type Registry
+ - [`RenderDevice`][bevy::RenderDevice]:
+   The GPU used for rendering; use this for direct lowlevel access to `wgpu` APIs from the main World
  - [`AdapterInfo`][bevy::AdapterInfo]:
    Information about the GPU hardware that Bevy is running on
 []:#(ANCHOR_END: resources-engine)
@@ -237,8 +248,6 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    In an app that does not refresh continuously, request one more update before going to sleep
  - [`AppExit`][bevy::AppExit]:
    Tell Bevy to shut down
- - [`CloseWindow`][bevy::CloseWindow]:
-   Tell Bevy to close a window
  - [`CreateWindow`][bevy::CreateWindow]:
    Tell Bevy to open a new window
  - [`FileDragAndDrop`][bevy::FileDragAndDrop]:
@@ -304,12 +313,16 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
    Receive [events][cb::event]
  - [`EventWriter<T>`][bevy::EventWriter]:
    Send [events][cb::event]
+ - [`Extract<T>`][bevy::Extract]:
+   [Extract stage][cb::render::stage] only! `T` is a system parameter type to access from the main World
  - [`RemovedComponents<T>`][bevy::RemovedComponents]:
    [Removal detection][cb::removal-detection]
  - [`NonSend<T>`][bevy::NonSend]:
    Shared access to [Non-`Send`][cb::nonsend] (main thread only) data
  - [`NonSendMut<T>`][bevy::NonSendMut]:
    Mut access to [Non-`Send`][cb::nonsend] (main thread only) data
+ - [`ParallelCommands`][bevy::ParallelCommands]:
+   Abstraction to help use `Commands` when you will do your own parallelism
  - [`&World`][bevy::World]:
    Read-only [direct access to the ECS World][cb::world]
  - [`Entities`][bevy::Entities]:
@@ -347,18 +360,20 @@ group them into tuples to work around the limit. Tuples can contain up to
    Reference to an asset of specific type
  - [`Visibility`][bevy::Visibility]:
    Manually control visibility, whether to display the entity (hide/show)
+ - [`ComputedVisibility`][bevy::ComputedVisibility]:
+   Check if an entity should be rendered (is it hidden? is it culled?)
  - [`RenderLayers`][bevy::RenderLayers]:
    Group entities into "layers" and control which "layers" a camera should display
  - [`AnimationPlayer`][bevy::AnimationPlayer]:
    Make the entity capable of playing animations; used to control animations
  - [`Camera`][bevy::Camera]:
    Camera used for rendering
- - [`CameraUi`][bevy::CameraUi]:
-   Marker to identify the camera used for the UI render pass
+ - [`UiCameraConfig`][bevy::UiCameraConfig]:
+   Can be used to disable or configure UI rendering for a specific camera
  - [`Camera2d`][bevy::Camera2d]:
-   Marker to identify the camera used for the main 2D render pass
+   Configuration parameters for 2D cameras
  - [`Camera3d`][bevy::Camera3d]:
-   Marker to identify the camera used for the main 3D render pass
+   Configuration parameters for 3D cameras
  - [`OrthographicProjection`][bevy::OrthographicProjection]:
    Orthographic projection for a camera
  - [`PerspectiveProjection`][bevy::PerspectiveProjection]:
@@ -369,6 +384,8 @@ group them into tuples to work around the limit. Tuples can contain up to
    (2D) Properties of a sprite, using a sprite sheet
  - [`PointLight`][bevy::PointLight]:
    (3D) Properties of a point light
+ - [`SpotLight`][bevy::SpotLight]:
+   (3D) Properties of a spot light
  - [`DirectionalLight`][bevy::DirectionalLight]:
    (3D) Properties of a directional light
  - [`NoFrustumCulling`][bevy::NoFrustumCulling]:
