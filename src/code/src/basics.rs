@@ -699,10 +699,11 @@ fn fixup_images(
 ) {
     for ev in ev_asset.iter() {
         match ev {
-            AssetEvent::Created { handle } |
-            AssetEvent::Modified { handle } => {
+            AssetEvent::Created { handle } => {
                 // a texture was just loaded or changed!
 
+                // WARNING: this mutable access will cause another
+                // AssetEvent (Modified) to be emitted!
                 let texture = assets.get_mut(handle).unwrap();
                 // ^ unwrap is OK, because we know it is loaded now
 
@@ -711,6 +712,9 @@ fn fixup_images(
                 } else {
                     // it is some other image
                 }
+            }
+            AssetEvent::Modified { handle } => {
+                // an image was modified
             }
             AssetEvent::Removed { handle } => {
                 // an image was unloaded

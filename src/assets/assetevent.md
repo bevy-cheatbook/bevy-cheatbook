@@ -9,3 +9,8 @@ modified, or removed, you can make a [system][cb::system] that reacts to
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:asset-event}}
 ```
+
+**Note:** If you are handling `Modified` events and doing a mutable access to
+the data, the `.get_mut` will trigger another `Modified` event for the same
+asset. If you are not careful, this could result in an infinite loop! (from
+events caused by your own system)
