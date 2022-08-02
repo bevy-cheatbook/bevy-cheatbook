@@ -35,11 +35,13 @@ default features to customize Bevy, be sure to include it if you need it.
 
 ## Shaders
 
-Bevy also supports hot-reloading for shaders. You can edit your
-custom shader code and see the changes immediately.
+Bevy also supports hot-reloading for shaders. You can edit your custom shader
+code and see the changes immediately.
 
-This only works if you are loading your shaders through the bevy asset
-system (via the [`AssetServer`][bevy::AssetServer]).
+This works for any shader loaded from a file path, such as shaders specified
+in your Materials definitions, or shaders [loaded][cb::assetserver] via the
+[`AssetServer`][bevy::AssetServer].
 
-Shader code that does not come from asset files, such as if you include
-it as a static string in your source code, cannot be hot-reloaded.
+Shader code that does not come from asset files, such as if you include it
+as a static string in your source code, cannot be hot-reloaded (for obvious
+reasons).
