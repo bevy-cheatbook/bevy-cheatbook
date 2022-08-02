@@ -37,9 +37,11 @@ The final render (the framebuffer with the pixels to show in the
 [window][cb::window]) is *presented* to the OS/driver at the end of the
 [Render](#render) stage.
 
-Currently Bevy updates its [timing information][cb::time] (in [`Res<Time>`][bevy::Time])
-at the start of the First stage in the main App schedule. Note that this is not linked
-to rendering in any way. This is a [known issue][bevy::4669].
+Bevy updates its [timing information][cb::time] (in [`Res<Time>`][bevy::Time])
+at the start of the First stage in the main App schedule. The value to
+use is measured at "presentation time", in the render world, and the
+[`Instant`][std::Instant] is sent over a channel, to be applied on the
+next frame.
 
 ## Adding Systems to Render Stages
 
@@ -48,7 +50,8 @@ need to add some of your own systems to at least some of the render stages:
 
  - Anything that needs data from your main App World will need a system in
    [Extract](#extract) to copy that data. In practice, this is almost everything,
-   unless it is fully contained on the GPU / in VRAM.
+   unless it is fully contained on the GPU, or only uses renderer-internal
+   generated data.
 
  - Most use cases will need to do some setup of GPU resources
    in [Prepare](#prepare) and/or [Queue](#queue).
@@ -145,6 +148,10 @@ of use cases. [Let me know][contact] if you know of any.
 ## Render
 
 Render is the stage where Bevy executes the [Render Graph][cb::render::graph].
+
+The built-in behavior is configured using Cameras. For each active Camera,
+Bevy will execute its associated render graph, configured to output to its
+associated render target.
 
 If you are using any of the [standard render phases][cb::render::phase-core],
 you don't need to do anything. Your custom [phase items][cb::render::phaseitem]
