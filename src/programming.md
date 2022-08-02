@@ -13,9 +13,9 @@ something other than a game engine. For example: using just the ECS for a
 scientific simulation.
 
 Hence, this chapter does not cover the game-engine parts of Bevy. Those
-features are covered in other chapters of the book, like the [Bevy Game
-Engine Core][chapter::features] chapter.
+features are covered in other chapters of the book, like the [General Game
+Engine Features][chapter::features] chapter.
 
-Includes concise explanations of each core concept, with code snippets to
-show how it might be used in a game. Care is taken to point out any important
-considerations for using each feature and to recommend known good practices.
+Includes concise explanations of each core concept, with code snippets to show
+how it might be used. Care is taken to point out any important considerations
+for using each feature and to recommend known good practices.
