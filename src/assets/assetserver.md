@@ -37,16 +37,21 @@ is selected based on the file extension.
 If you want an [untyped handle][cb::handleuntyped], you can use
 `asset_server.load_untyped(…)` instead.
 
+Untyped loading is possible, because Bevy always detects the file type from
+the file extension anyway.
+
+### Loading Folders
+
 You can also load an entire folder of assets, regardless of how many
 files are inside, using `asset_server.load_folder(…)`. This gives you a
-`Vec<HandleUntyped>` with all the untyped handles.
+`Vec<HandleUntyped>` with all the [untyped handles][cb::handleuntyped].
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:asset-folder}}
 ```
 
-Untyped loading is possible, because Bevy always detects the file type from
-the file extension anyway.
+Loading folders is not supported by all I/O backends. Notably, it does not
+work on WASM/Web.
 
 ## AssetPath and Labels
 
@@ -71,8 +76,8 @@ The asset server internally relies on an implementation of the
 [`AssetIo`][bevy::AssetIo] Rust trait, which is Bevy's way of providing
 "backends" for fetching data from different types of storage.
 
-Bevy provides its own default built-in I/O backend for desktop platforms
-and for WebAssembly.
+Bevy provides its own default built-in I/O backends for each [supported
+platform][chapter::platforms].
 
 On desktop platforms, it treats asset paths as relative to a folder called
 `assets`, that must be placed at one of the following locations:
@@ -83,6 +88,7 @@ On desktop platforms, it treats asset paths as relative to a folder called
 On the web, it fetches assets using HTTP URLs pointing within an `assets`
 folder located alongside the game's `.wasm` file.
 
-There are [unofficial plugins][cb::3rdparty] available that provide additional
+There are [unofficial plugins][cb::3rdparty] available that provide alternative
 I/O backend implementations, such as for loading assets from inside archive
-files.
+files (`.zip`), embedded inside the game executable, using a network protocol,
+… many other possibilities.
