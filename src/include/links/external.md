@@ -11,6 +11,7 @@
 [bevy::examples]: https://github.com/bevyengine/bevy/tree/latest/examples#examples
 [bevy::getting-started]: https://bevyengine.org/learn/book/getting-started/setup/
 [bevy::ghdiscussions]: https://github.com/bevyengine/bevy/discussions
+[bevy::jam-01]: https://itch.io/jam/bevy-jam-1/entries
 [bevy::linux-dependencies]: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
 [bevy::plugins_guidelines]: https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md
 [bevy::readme]: https://github.com/bevyengine/bevy/blob/main/README.md

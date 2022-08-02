@@ -98,6 +98,7 @@
 [cb::subapp]: /programming/sub-apps.md
 [cb::system-chain]: /programming/system-chaining.md
 [cb::system-generic]: /patterns/generic-systems.md
+[cb::system-label]: /programming/system-order.md#labels
 [cb::system-order]: /programming/system-order.md
 [cb::system-tests]: /programming/system-tests.md
 [cb::system]: /programming/systems.md
