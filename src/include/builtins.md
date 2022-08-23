@@ -274,6 +274,8 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
 
 []:#(ANCHOR: stages)
 Internally, Bevy has at least these built-in [stages][cb::stage]:
+ - In the [main_app][cb::app] ([`StartupStage`][bevy::StartupStage]):
+ `PreStartup`, `Startup`, `PostStartup`
  - In the [main app][cb::app] ([`CoreStage`][bevy::CoreStage]):
 `First`, `PreUpdate`, `Update`, `PostUpdate`, `Last`
  - In the render [sub-app][cb::subapp] ([`RenderStage`][bevy::RenderStage]):
