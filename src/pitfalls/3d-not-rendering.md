@@ -69,3 +69,14 @@ back-face culling enabled.
 
 If you are generating your [`Mesh`][bevy::Mesh] from code, make sure your
 vertices are in the correct order.
+
+## Missing Visibility component on parent
+
+Even if parent entities has nothing to render they need to have a [`Visibility`][bevy::Visibility] component.
+Fix it by inserting a [`VisibilityBundle`][bevy::VisibilityBundle].
+
+```rust
+// for each parent in the hierarchy
+parent_commands
+    .insert_bundle(VisibilityBundle::default());
+```
