@@ -68,8 +68,7 @@ or globally in your user home folder):
 runner = "wasm-server-runner"
 ```
 
-Alternatively, you can also set ```CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER``` environment
-variable with the runner:
+Alternatively, you can also set the runner using an environment variable:
 
 ```
 export CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_RUNNER=wasm-server-runner
