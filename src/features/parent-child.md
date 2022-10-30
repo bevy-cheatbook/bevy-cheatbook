@@ -75,3 +75,23 @@ this behavior automatically.
 
 Otherwise, you can use [`SpatialBundle`][bevy::TransformBundle] to make sure
 your entities have all the necessary components.
+
+## Known Pitfalls
+
+### Despawning Child Entities
+
+If you despawn an entity that has a parent, Bevy does not remove it from the
+parent's [`Children`][bevy::Children].
+
+If you then query for that parent entity's children, you will get an invaild
+entity, and any attempt to manipulate it will likely lead to this error:
+
+```
+thread 'main' panicked at 'Attempting to create an EntityCommands for entity 7v0, which doesn't exist.'
+```
+
+The workaround is to manually call `remove_children` alongside the `despawn`:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:despawn-child}}
+```
