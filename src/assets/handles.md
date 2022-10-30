@@ -22,7 +22,7 @@ they become ready.
 If you are [loading an asset from a file][cb::assetserver], the
 `asset_server.load(…)` call will give you the handle. The loading of the
 data happens in the background, meaning that the handle will initially refer
-to an unloaded asset, and the actual data will become available later.
+to an unavailable asset, and the actual data will become available later.
 
 If you are [creating your own asset data from code][cb::asset-data::add],
 the `assets.add(…)` call will give you the handle.
@@ -52,13 +52,15 @@ asset type.
 This allows you to store a collection (such as [`Vec`][std::Vec] or
 [`HashMap`][std::HashMap]) containing assets of mixed types.
 
-Just like regular handles, untyped handles can be strong or weak, and can
-be used to [access asset data][cb::asset-data].
-
 You can create an untyped handle using `.clone_untyped()` on an existing
 handle.
 
+Just like regular handles, untyped handles can be strong or weak.
+
+You need to do this to [access the asset data][cb::asset-data].
+
 You can convert an untyped handle into a typed handle with `.typed::<T>()`,
-specifying the type to use.
+specifying the type to use. You need to do this to [access the asset
+data][cb::asset-data].
 
 

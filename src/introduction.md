@@ -61,7 +61,7 @@ or [Bevy Assets][bevyassets::games].
 
 ## Maintenance
 
-This version of the book is for Bevy release 0.7.
+This version of the book is for Bevy release 0.8.
 
 I intend to keep this book up-to-date and relevant with every new Bevy release.
 I also try to regularly make improvements to it, when I can manage it.
@@ -98,9 +98,19 @@ Project", the entire content of the book may be used under the [MIT-0
 License](https://github.com/bevy-cheatbook/mit-0).
 
 "Official Bevy Project" is defined as:
- - Any files contained in the Git repository hosted at [https://github.com/bevyengine/bevy](https://github.com/bevyengine/bevy)
- - Any files contained in the Git repository hosted at [https://github.com/bevyengine/bevy-website](https://github.com/bevyengine/bevy-website)
+ - Contents of the Git repository hosted at [https://github.com/bevyengine/bevy](https://github.com/bevyengine/bevy)
+ - Contents of the Git repository hosted at [https://github.com/bevyengine/bevy-website](https://github.com/bevyengine/bevy-website)
  - Anything publicly visible on the [bevyengine.org](https://bevyengine.org) website
+
+The MIT-0 license applies as soon as your contribution has been accepted upstream.
+
+GitHub Forks and Pull Requests created for the purposes of contributing to
+the Official Bevy Project are given the following license exception: the
+Attribution requirements of CC BY-NC-SA 4.0 are waived for as long as the
+work is pending upstream review (Pull Request Open). If upstream rejects
+your contribution, you are given a period of 1 month to comply with the
+full terms of the CC BY-NC-SA 4.0 license or delete your work. If upstream
+accepts your contribution, the MIT-0 license applies.
 
 ## Contributions
 
@@ -115,8 +125,8 @@ See the [Contributing][cb::contributing] section for all the details.
 
 ## Stability Warning
 
-Bevy is still a very new and experimental game engine! It has only been
-public since August 2020!
+Bevy is still a new and experimental game engine! It has only been public
+since August 2020!
 
 While improvements have been happening at an incredible pace, and development
 is active, Bevy simply hasn't yet had the time to mature.

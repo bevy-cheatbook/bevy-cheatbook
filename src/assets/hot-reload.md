@@ -7,11 +7,11 @@ Relevant official examples:
 
 ---
 
-At runtime, if you modify the file of an [asset][cb::asset] that is loaded
-into the game (via the [`AssetServer`][bevy::AssetServer]), Bevy can detect
-that and reload the asset automatically. This is very useful for quick
-iteration. You can edit your assets while the game is running and see the
-changes instantly in-game.
+At runtime, if you modify the file of an [asset][cb::asset]
+that is [loaded][cb::assetserver] into the game (via the
+[`AssetServer`][bevy::AssetServer]), Bevy can detect that and reload the
+asset automatically. This is very useful for quick iteration. You can edit
+your assets while the game is running and see the changes instantly in-game.
 
 Not all [file formats][builtins::file-formats] and use cases are supported
 equally well. Typical asset types like textures / images should work without
@@ -35,11 +35,13 @@ default features to customize Bevy, be sure to include it if you need it.
 
 ## Shaders
 
-Bevy also supports hot-reloading for shaders. You can edit your
-custom shader code and see the changes immediately.
+Bevy also supports hot-reloading for shaders. You can edit your custom shader
+code and see the changes immediately.
 
-This only works if you are loading your shaders through the bevy asset
-system (via the [`AssetServer`][bevy::AssetServer]).
+This works for any shader loaded from a file path, such as shaders specified
+in your Materials definitions, or shaders [loaded][cb::assetserver] via the
+[`AssetServer`][bevy::AssetServer].
 
-Shader code that does not come from asset files, such as if you include
-it as a static string in your source code, cannot be hot-reloaded.
+Shader code that does not come from asset files, such as if you include it
+as a static string in your source code, cannot be hot-reloaded (for obvious
+reasons).

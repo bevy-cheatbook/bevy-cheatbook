@@ -2,10 +2,11 @@ use bevy::prelude::*;
 
 // ANCHOR: example
 use bevy::render::primitives::Frustum;
-use bevy::render::camera::{Camera, Camera2d, CameraProjection, DepthCalculation};
+use bevy::render::camera::{Camera, CameraProjection, DepthCalculation};
 use bevy::render::view::VisibleEntities;
 
-#[derive(Component)]
+#[derive(Component, Debug, Clone, Reflect)]
+#[reflect(Component, Default)]
 struct SimpleOrthoProjection {
     near: f32,
     far: f32,
@@ -45,15 +46,15 @@ impl Default for SimpleOrthoProjection {
 
 fn setup(mut commands: Commands) {
     // We need all the components that Bevy's built-in camera bundles would add
+    // Refer to the Bevy source code to make sure you do it correctly:
+
+    // here we show a 2d example
 
     let projection = SimpleOrthoProjection::default();
-    let camera = Camera {
-        near: projection.near,
-        far: projection.far,
-        ..default()
-    };
+
     // position the camera like bevy would do by default for 2D:
     let transform = Transform::from_xyz(0.0, 0.0, projection.far - 0.1);
+
     // frustum construction code copied from Bevy
     let view_projection =
         projection.get_projection_matrix() * transform.compute_matrix().inverse();
@@ -65,29 +66,26 @@ fn setup(mut commands: Commands) {
     );
 
     commands.spawn_bundle((
-        camera,
+        bevy::render::camera::CameraRenderGraph::new(bevy::core_pipeline::core_2d::graph::NAME),
         projection,
         frustum,
-        VisibleEntities::default(),
         transform,
         GlobalTransform::default(),
-        Camera2d,
+        VisibleEntities::default(),
+        Camera::default(),
+        Camera2d::default(),
     ));
 }
 
 fn main() {
-    // need to add a bevy-internal camera system to update
-    // the projection on window resizing
-
-    use bevy::render::camera::camera_system;
+    // need to add bevy-internal camera projection management functionality
+    // for our custom projection type
+    use bevy::render::camera::CameraProjectionPlugin;
 
     App::new()
         .add_plugins(DefaultPlugins)
         .add_startup_system(setup)
-        .add_system_to_stage(
-            CoreStage::PostUpdate,
-            camera_system::<SimpleOrthoProjection>,
-        )
+        .add_plugin(CameraProjectionPlugin::<SimpleOrthoProjection>::default())
         .run();
 }
 // ANCHOR_END: example

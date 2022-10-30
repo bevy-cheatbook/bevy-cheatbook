@@ -23,7 +23,7 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.7"
+version = "0.8"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
@@ -31,10 +31,12 @@ features = [
   # (re-enable whichever you like)
 
   # Bevy functionality:
-  "animation",          # Animation support
+  "bevy_asset",         # Assets management
+  "bevy_scene",         # Scenes management
   "bevy_gilrs",         # Gamepad input support
   "bevy_audio",         # Builtin audio
   "bevy_winit",         # Window management
+  "animation",          # Animation support
   "x11",                # Linux: Support X11 windowing system
   "filesystem_watcher", # Asset hot-reloading
   "render",             # Graphics Rendering
@@ -42,7 +44,7 @@ features = [
   ## "render" actually just includes:
   ## (feel free to use just a subset of these, instead of "render")
   "bevy_render",        # Rendering framework core
-  "bevy_core_pipeline", # Higher-level rendering abstractions
+  "bevy_core_pipeline", # Common rendering abstractions
   "bevy_sprite",        # 2D (sprites) rendering
   "bevy_pbr",           # 3D (physically-based) rendering
   "bevy_gltf",          # GLTF 3D assets format support
@@ -151,15 +153,15 @@ While you are developing your project, these features might be useful:
 `dynamic` causes Bevy to be built and linked as a shared/dynamic library.
 This will make incremental builds *much* faster.
 
-This is only supported on desktop platforms. Known to work very well on Linux,
-Windows/macOS should work, but might have issues.
+This is only supported on desktop platforms. Known to work very well on Linux.
+Windows and macOS might have issues.
 
-Do not enable this for release builds you intend to publish to other people;
-it introduces unneeded complexity (you need to bundle extra files) and
+Do not enable this for release builds you intend to publish to other people.
+It introduces unneeded complexity (you need to bundle extra files) and
 potential for things to not work correctly. Use this only during development.
 
 For this reason, it may be convenient to specify the feature as a commandline
-option to cargo, instead of putting it in your `Cargo.toml`. Simply run your
+option to `cargo`, instead of putting it in your `Cargo.toml`. Simply run your
 project like this:
 
 ```sh

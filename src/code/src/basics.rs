@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![allow(unreachable_code)]
 
 use bevy::prelude::*;
 use bevy::window::WindowId;
@@ -272,7 +273,7 @@ fn check_zero_health(
 
 // ANCHOR: sys-query-filter
 fn debug_player_hp(
-    // access the health, only for friendly players, optionally with name
+    // access the health (and optionally the PlayerName, if present), only for friendly players
     query: Query<(&Health, Option<&PlayerName>), (With<Player>, Without<Enemy>)>,
 ) {
     // get all matching entities
@@ -314,6 +315,122 @@ fn reset_health(
     // everything is safe and our code can compile; ParamSet guarantees this
 }
 // ANCHOR_END: sys-query-set
+
+fn example_transforms() {
+// ANCHOR: transform-init
+// To simply position something at specific coordinates
+let xf_pos567 = Transform::from_xyz(5.0, 6.0, 7.0);
+
+// To scale an object, making it twice as big in all dimensions
+let xf_scale = Transform::from_scale(Vec3::splat(2.0));
+
+// To rotate an object in 2D (Z-axis rotation) by 30°
+// (angles are in radians! must convert from degrees!)
+let xf_rot2d = Transform::from_rotation(Quat::from_rotation_z((30.0_f32).to_radians()));
+
+// 3D rotations can be complicated; explore the methods available on `Quat`
+
+// Simple 3D rotation by Euler-angles (X, Y, Z)
+let xf_rot2d = Transform::from_rotation(Quat::from_euler(
+    EulerRot::XYZ,
+    (20.0_f32).to_radians(),
+    (10.0_f32).to_radians(),
+    (30.0_f32).to_radians(),
+));
+
+// Everything:
+let xf = Transform::from_xyz(1.0, 2.0, 3.0)
+    .with_scale(Vec3::new(0.5, 0.5, 1.0))
+    .with_rotation(Quat::from_rotation_y(0.125 * std::f32::consts::PI));
+// ANCHOR_END: transform-init
+}
+
+#[derive(Component)]
+struct Balloon;
+
+// ANCHOR: transform-mut
+fn inflate_balloons(
+    mut query: Query<&mut Transform, With<Balloon>>,
+    keyboard: Res<Input<KeyCode>>,
+) {
+    // every time the Spacebar is pressed,
+    // make all the balloons in the game bigger by 25%
+    if keyboard.just_pressed(KeyCode::Space) {
+        for mut transform in query.iter_mut() {
+            transform.scale *= 1.25;
+        }
+    }
+}
+// ANCHOR_END: transform-mut
+
+// ANCHOR: spatialbundle
+fn spawn_special_entity(
+    mut commands: Commands,
+) {
+    // create an entity that does not use one of the common Bevy bundles,
+    // but still needs transforms and visibility
+    commands.spawn()
+        .insert(ComponentA)
+        .insert(ComponentB)
+        .insert_bundle(SpatialBundle {
+            transform: Transform::from_scale(Vec3::splat(3.0)),
+            visibility: Visibility {
+                is_visible: false,
+            },
+            ..Default::default()
+        });
+}
+// ANCHOR_END: spatialbundle
+
+// ANCHOR: propagation
+fn spawn_toplevel_entity(
+    mut commands: Commands,
+) {
+    // this can be a top-level entity that controls a hierarchy of children
+    let parent = commands.spawn_bundle(SpatialBundle {
+        transform: Transform::from_scale(Vec3::splat(3.0)),
+        visibility: Visibility {
+            is_visible: false,
+        },
+        ..Default::default()
+    }).id();
+
+    // Child transforms behave relative to the parent.
+    // For visibility: if the parent is hidden, that also hides the children.
+    let child = commands.spawn_bundle(SpatialBundle {
+        transform: Transform::from_xyz(1.0, 2.0, 3.0),
+        ..Default::default()
+    }).id();
+
+   commands.entity(parent).push_children(&[child]);
+}
+// ANCHOR_END: propagation
+
+#[derive(Component)]
+struct GameMapEntity;
+
+// ANCHOR: visibility
+/// Prepare the game map, but do not display it until later
+fn setup_map_hidden(
+    mut commands: Commands,
+) {
+    commands.spawn_bundle(SceneBundle {
+        scene: todo!(),
+        visibility: Visibility {
+            is_visible: false,
+        },
+        ..Default::default()
+    }).insert(GameMapEntity);
+}
+
+/// When everything is ready, un-hide the game map
+fn reveal_map(
+    mut query: Query<&mut Visibility, With<GameMapEntity>>,
+) {
+    let mut vis_map = query.single_mut();
+    vis_map.is_visible = true;
+}
+// ANCHOR_END: visibility
 
 // ANCHOR: change-detection
 /// Print the stats of friendly players when they change
@@ -438,7 +555,7 @@ fn camera_with_parent(
     for (parent, child_transform) in q_child.iter() {
         // `parent` contains the Entity ID we can use
         // to query components from the parent:
-        let parent_global_transform = q_parent.get(parent.0);
+        let parent_global_transform = q_parent.get(parent.get());
 
         // do something with the components
     }
@@ -562,11 +679,6 @@ fn use_sprites(
     if let Some(atlas) = atlases.get(&handles.map_tiles) {
         // do something with the texture atlas
     }
-
-    // Can use a path instead of a handle
-    if let Some(map_tex) = images.get("map.png") {
-        // if "map.png" was loaded, we can use it!
-    }
 }
 // ANCHOR_END: asset-access
 
@@ -598,10 +710,11 @@ fn fixup_images(
 ) {
     for ev in ev_asset.iter() {
         match ev {
-            AssetEvent::Created { handle } |
-            AssetEvent::Modified { handle } => {
+            AssetEvent::Created { handle } => {
                 // a texture was just loaded or changed!
 
+                // WARNING: this mutable access will cause another
+                // AssetEvent (Modified) to be emitted!
                 let texture = assets.get_mut(handle).unwrap();
                 // ^ unwrap is OK, because we know it is loaded now
 
@@ -610,6 +723,9 @@ fn fixup_images(
                 } else {
                     // it is some other image
                 }
+            }
+            AssetEvent::Modified { handle } => {
+                // an image was modified
             }
             AssetEvent::Removed { handle } => {
                 // an image was unloaded
@@ -651,7 +767,10 @@ fn load_gltf_things(
 
     // spawn a whole scene
     let my_scene: Handle<Scene> = server.load("my_scene.gltf#Scene0");
-    commands.spawn_scene(my_scene);
+    commands.spawn_bundle(SceneBundle {
+        scene: my_scene,
+        ..Default::default()
+    });
 }
 // ANCHOR_END: asset-path-labels
 
@@ -676,14 +795,12 @@ fn spawn_gltf(
     // note that we have to include the `Scene0` label
     let my_gltf = ass.load("my.glb#Scene0");
 
-    // to be able to position our 3d model:
-    // spawn a parent entity with a TransformBundle
-    // and spawn our gltf as a scene under it
-    commands.spawn_bundle(TransformBundle {
-        local: Transform::from_xyz(2.0, 0.0, -5.0),
-        global: GlobalTransform::identity(),
-    }).with_children(|parent| {
-        parent.spawn_scene(my_gltf);
+    // to position our 3d model, simply use the Transform
+    // in the SceneBundle
+    commands.spawn_bundle(SceneBundle {
+        scene: my_gltf,
+        transform: Transform::from_xyz(2.0, 0.0, -5.0),
+        ..Default::default()
     });
 }
 // ANCHOR_END: spawn-gltf-simple
@@ -710,15 +827,16 @@ fn spawn_gltf_objects(
     // if the GLTF has loaded, we can navigate its contents
     if let Some(gltf) = assets_gltf.get(&my.0) {
         // spawn the first scene in the file
-        commands.spawn_scene(gltf.scenes[0].clone());
+        commands.spawn_bundle(SceneBundle {
+            scene: gltf.scenes[0].clone(),
+            ..Default::default()
+        });
 
         // spawn the scene named "YellowCar"
-        // do it under a parent entity, to position it in the world
-        commands.spawn_bundle(TransformBundle {
-            local: Transform::from_xyz(1.0, 2.0, 3.0),
-            global: GlobalTransform::identity(),
-        }).with_children(|parent| {
-            parent.spawn_scene(gltf.named_scenes["YellowCar"].clone());
+        commands.spawn_bundle(SceneBundle {
+            scene: gltf.named_scenes["YellowCar"].clone(),
+            transform: Transform::from_xyz(1.0, 2.0, 3.0),
+            ..Default::default()
         });
 
         // PERF: the `.clone()`s are just for asset handles, don't worry :)
@@ -758,24 +876,22 @@ fn use_gltf_things(
 ) {
     // spawn the first scene in the file
     let scene0 = ass.load("my_asset_pack.glb#Scene0");
-    commands.spawn_scene(scene0);
+    commands.spawn_bundle(SceneBundle {
+        scene: scene0,
+        ..Default::default()
+    });
 
-    // spawn the second scene under a parent entity
-    // (to move it)
+    // spawn the second scene
     let scene1 = ass.load("my_asset_pack.glb#Scene1");
-    commands.spawn_bundle(TransformBundle {
-        local: Transform::from_xyz(1.0, 2.0, 3.0),
-        global: GlobalTransform::identity(),
-    }).with_children(|parent| {
-        parent.spawn_scene(scene1);
+    commands.spawn_bundle(SceneBundle {
+        scene: scene1,
+        transform: Transform::from_xyz(1.0, 2.0, 3.0),
+        ..Default::default()
     });
 }
 // ANCHOR_END: gltf-assetpath
 
 fn commands_catchall(mut commands: Commands) {
-// ANCHOR: ui-camera
-commands.spawn_bundle(UiCameraBundle::default());
-// ANCHOR_END: ui-camera
 
 // ANCHOR: sprite-flipping
 commands.spawn_bundle(SpriteBundle {
@@ -967,7 +1083,7 @@ fn setup_bomb_spawning(
 // ANCHOR_END: timer
 
 // ANCHOR: stopwatch
-use bevy::core::Stopwatch;
+use bevy::time::Stopwatch;
 
 #[derive(Component)]
 struct JumpDuration {
@@ -1427,31 +1543,40 @@ use bevy::prelude::*;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[derive(SystemLabel)]
 enum MyLabel {
+    /// everything that handles input
     Input,
+    /// everything that updates player state
     Player,
+    /// everything that moves things (works with transforms)
+    Movement,
+    /// systems that update the world map
+    Map,
 }
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
 
-        // create labels, because we want to have multiple affected systems
+        // use labels, because we want to have multiple affected systems
         .add_system(input_joystick.label(MyLabel::Input))
         .add_system(input_keyboard.label(MyLabel::Input))
         .add_system(input_touch.label(MyLabel::Input))
 
-        // this will always run before anything labeled "input"
         .add_system(input_parameters.before(MyLabel::Input))
 
-        // this will always run after anything labeled "input" and "map"
-        // also give it a few labels it just in case
         .add_system(
             player_movement
-                // can also just use strings
-                .label("player_movement")
-                .label(MyLabel::Player)
+                .before(MyLabel::Map)
                 .after(MyLabel::Input)
+                // we can have multiple labels on this system
+                .label(MyLabel::Player)
+                .label(MyLabel::Movement)
+                // can also use loose strings as labels
+                .label("player_movement")
         )
+
+        // … and so on …
+
         .run();
 }
 // ANCHOR_END: system-labels
@@ -1725,7 +1850,7 @@ App::new()
 mod app13 {
 use super::*;
 // ANCHOR: fixed-timestep
-use bevy::core::FixedTimestep;
+use bevy::time::FixedTimestep;
 
 // The timestep says how many times to run the SystemSet every second
 // For TIMESTEP_1, it's once every second
@@ -1893,6 +2018,85 @@ fn main() {
 // ANCHOR_END: exclusive-app
 }
 
+#[allow(dead_code)]
+mod app18 {
+use super::*;
+// ANCHOR: globaltransform
+/// Print the up-to-date global coordinates of the player as of **this frame**.
+fn debug_globaltransform(
+    query: Query<&GlobalTransform, With<Player>>,
+) {
+    let gxf = query.single();
+    debug!("Player at: {:?}", gxf.translation());
+}
+
+fn main() {
+    // the label to use for ordering
+    use bevy::transform::TransformSystem;
+
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_system_to_stage(
+            CoreStage::PostUpdate,
+            debug_globaltransform
+                .after(TransformSystem::TransformPropagate)
+        )
+        .run();
+}
+// ANCHOR_END: globaltransform
+}
+
+#[allow(dead_code)]
+mod app19 {
+use super::*;
+// ANCHOR: computedvisibility
+/// Check if the Player was hidden manually
+fn debug_player_visibility(
+    query: Query<&ComputedVisibility, With<Player>>,
+) {
+    let vis = query.single();
+
+    // check if it was manually hidden via Visibility
+    // (incl. by any parent entity)
+    debug!("Player visible due to hierachy: {:?}", vis.is_visible_in_hierarchy());
+}
+
+/// Check if balloons are seen by any Camera, Light, etc… (not culled)
+fn debug_balloon_visibility(
+    query: Query<&ComputedVisibility, With<Balloon>>,
+) {
+    for vis in query.iter() {
+        debug!("Balloon is in view: {:?}", vis.is_visible_in_view());
+
+        // check overall final actual visibility
+        // (combines visible-in-hierarchy and visible-in-view)
+        debug!("Balloon is visible: {:?}", vis.is_visible());
+    }
+}
+
+fn main() {
+    // the labels to use for ordering
+    use bevy::render::view::VisibilitySystems;
+
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_system_to_stage(
+            CoreStage::PostUpdate,
+            debug_balloon_visibility
+                // in-view visibility (culling) is done here:
+                .after(VisibilitySystems::CheckVisibility)
+        )
+        .add_system_to_stage(
+            CoreStage::PostUpdate,
+            debug_player_visibility
+                // hierarchy propagation is done here:
+                .after(VisibilitySystems::VisibilityPropagate)
+        )
+        .run();
+}
+// ANCHOR_END: computedvisibility
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::new()
@@ -1906,6 +2110,9 @@ pub fn _main_all() {
         .add_startup_system(use_gltf_things)
         .add_startup_system(gltf_manual_entity)
         .add_startup_system(setup_bomb_spawning)
+        .add_startup_system(spawn_special_entity)
+        .add_startup_system(spawn_toplevel_entity)
+        .add_startup_system(setup_map_hidden)
         .add_system(detect_removed_res)
         .add_system(check_res_added)
         .add_system(check_res_changed)
@@ -1938,5 +2145,7 @@ pub fn _main_all() {
         .add_system(jump_duration)
         .add_system(asteroids_fly)
         .add_system(despawn_child)
+        .add_system(inflate_balloons)
+        .add_system(reveal_map)
         .run();
 }

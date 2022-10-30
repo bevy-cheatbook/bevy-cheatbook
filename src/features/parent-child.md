@@ -59,16 +59,22 @@ each Squad, and it needs some information about the children:
 {{#include ../code/src/basics.rs:query-child}}
 ```
 
-## Relative Transforms
+## Transform and Visibility Propagation
 
 If your entities represent "objects in the game world", you probably expect
-the child to be positioned relative to the parent and move with it.
+the children to be affected by the parent.
+
+[Transform][cb::transform] propagation allows children to be positioned
+relative to their parent and move with it.
+
+[Visibility][cb::visibility] propagation allows children to be hidden if
+you manually hide their parent.
 
 All [Bundles that come with Bevy][builtins::bundle] provide
-this behavior automatically. You should at least use the basic
-[`TransformBundle`][bevy::TransformBundle] if you don't need anything else.
+this behavior automatically.
 
-For more info, see the [dedicated page about transforms][cb::transform].
+Otherwise, you can use [`SpatialBundle`][bevy::TransformBundle] to make sure
+your entities have all the necessary components.
 
 ## Known Pitfalls
 

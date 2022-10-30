@@ -2,9 +2,9 @@
 
 {{#include ../include/links.md}}
 
-Exclusive systems are [systems][cb::system] that Bevy will not run in
-parallel with any other system. They can have full unrestricted access to
-the whole ECS [`World`][bevy::World], by taking a `&mut World` parameter.
+Exclusive systems are [systems][cb::system] that Bevy will not run in parallel
+with any other system. They can have [full unrestricted access][cb::world]
+to the whole ECS [`World`][bevy::World], by taking a `&mut World` parameter.
 
 Inside of an exclusive system, you have full control over all data stored
 in the ECS. You can do whatever you want.

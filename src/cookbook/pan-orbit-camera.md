@@ -2,7 +2,7 @@
 
 {{#include ../include/links.md}}
 
-[Click here for the full example code.][cbexample::pan-orbit-camera.rs]
+[Click here for the full example code.][cbexample::pan-orbit-camera]
 
 ---
 

@@ -19,10 +19,11 @@ Bevy updates these values at the beginning of every frame.
 
 ### Delta Time
 
-The most common use case is "delta time" – how much time passed between the
-previous frame update and the current one. This tells you how fast the game
-is running, so you can scale things like movement and animations, so they
-can happen smoothly, regardless of the game's frame rate.
+The most common use case is "delta time" – how much time passed between
+the previous frame update and the current one. This tells you how fast the
+game is running, so you can scale things like movement and animations. This
+way everything can happen smoothly and run at the same speed, regardless of
+the game's frame rate.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:time-delta}}
@@ -60,9 +61,9 @@ beginning) and "paused" (they will not progress even if you keep ticking them).
 Repeating timers will automatically reset themselves after they reach their
 set duration.
 
-Use `.finished()` to detect when a timer has reached its set duration. For
-non-repeating timers, you can also use `.just_finished()`, if you need to
-respond only on the exact update when the duration was reached.
+Use `.finished()` to detect when a timer has reached its set duration. Use
+`.just_finished()`, if you need to detect only on the exact tick when the
+duration was reached.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:timer}}

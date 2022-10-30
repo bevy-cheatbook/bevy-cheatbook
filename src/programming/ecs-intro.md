@@ -17,7 +17,7 @@ Bevy stores and manages all your data for you, using the Bevy ECS
 Conceptually, you can think of it by analogy with tables, like in a database
 or spreadsheet. Your different data types (Components) are like the "columns"
 of a table, and there can be arbitrarily many "rows" (Entities) containing
-values / instances of each component.
+values / instances of various components.
 
 For example, you could create a `Health` component for your game. You could
 then have many entities representing different things in your game, such

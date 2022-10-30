@@ -9,8 +9,8 @@ Relevant official examples:
 
 Send data between systems! Let your [systems][cb::system] communicate with each other!
 
-To send events, use an [`EventWriter<T>`][bevy::EventWriter].
-To receive events, use an [`EventReader<T>`][bevy::EventReader].
+ - To send events, use an [`EventWriter<T>`][bevy::EventWriter].
+ - To receive events, use an [`EventReader<T>`][bevy::EventReader].
 
 Every reader tracks the events it has read independently, so you can handle
 the same events from multiple [systems][cb::system].

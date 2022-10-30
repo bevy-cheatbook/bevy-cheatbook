@@ -10,13 +10,15 @@ In particular, check out the complete game examples:
 
 ---
 
-To enter the bevy runtime, you need to configure an [`App`][bevy::App]. The app is how you
-define the structure of all the things that make up your project: [plugins][cb::plugin],
-[systems][cb::system], [event][cb::event] types, [states][cb::state], [stages][cb::stage]…
+To enter the bevy runtime, you need to configure an [`App`][bevy::App]. The app
+is how you define the structure of all the things that make up your project:
+[plugins][cb::plugin], [systems][cb::system], [event][cb::event] types,
+[states][cb::state], [stages][cb::stage]…
 
-Technically, the [`App`][bevy::App] contains the ECS World(s) (where all the data is stored)
-and Schedule(s) (where all the [systems][cb::system] to run are stored). For advanced use-cases,
-[Sub-apps][cb::subapp] are a way to have more than one ECS World and Schedule.
+Technically, the [`App`][bevy::App] contains the ECS World(s) (where all
+the data is stored) and Schedule(s) (where all the [systems][cb::system]
+to run are stored). For advanced use-cases, [Sub-apps][cb::subapp] are a
+way to have more than one ECS World and Schedule.
 
 [Local resources][cb::local] do not need to be registered. They are part of
 their respective [systems][cb::system].
@@ -38,7 +40,8 @@ using [Commands][cb::commands], or [exclusive systems][cb::exclusive] using
 
 ---
 
-You also need to add the [plugin group][cb::plugingroup] with Bevy's built-in functionality: either
+You also need to add the [plugin group][cb::plugingroup] with Bevy's built-in
+functionality: either
 [`DefaultPlugins`][bevy::DefaultPlugins] if you are making a full game/app, or
 [`MinimalPlugins`][bevy::MinimalPlugins] for something like a headless server.
 

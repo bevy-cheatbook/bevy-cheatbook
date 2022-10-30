@@ -83,6 +83,12 @@ Note that you can only get the position of the mouse inside a window;
 you cannot get the global position of the mouse in the whole OS Desktop /
 on the screen as a whole.
 
+The coordinates you get are in "window space". They represent window
+pixels, and the origin is the bottom left corner of the window. They do not
+relate to your camera or in-game coordinates in any way. [See this cookbook
+example][cookbook::cursor2world] for converting these window cursor coordinates
+into world-space coordinates.
+
 To track when the mouse cursor enters and leaves your window(s), use
 [`CursorEntered`][bevy::CursorEntered] and [`CursorLeft`][bevy::CursorLeft]
 [events][cb::event].

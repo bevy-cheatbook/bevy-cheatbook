@@ -25,7 +25,6 @@
   - [Strange compile errors from Bevy or dependencies](./pitfalls/build-errors.md)
   - [Slow Performance](./pitfalls/performance.md)
   - [Error adding function as system](./pitfalls/into-system.md)
-  - [UI is not displaying](./pitfalls/ui-camera.md)
   - [2D objects not displaying](./pitfalls/2d-camera-z.md)
   - [3D objects not displaying](./pitfalls/3d-not-rendering.md)
   - [Borrow multiple fields from struct](./pitfalls/split-borrows.md)
@@ -33,15 +32,17 @@
   - [UI layout is inverted](./pitfalls/ui-y-up.md)
   - [Textures/Images are flipped](./pitfalls/uv-coordinates.md)
 
-- [Bevy Game Engine Core](./features.md)
+- [General Game Engine Features](./features.md)
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
+  - [Visibility](./features/visibility.md)
   - [Time and Timers](./features/time.md)
+  - [Logging, Console Messages](./features/log.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
   - [Audio](./features/audio.md)
 
-- [Bevy Asset Management](./assets.md)
+- [Asset Management](./assets.md)
   - [Handles](./assets/handles.md)
   - [Load Assets from Files](./assets/assetserver.md)
   - [Access the Asset Data](./assets/data.md)
@@ -64,11 +65,11 @@
   - [Grab/Capture the Mouse Cursor](./window/mouse-grab.md)
   - [Set the Window Icon](./window/icon.md)
 
-- [Bevy 2D](./2d.md)
+- [Working with 2D](./2d.md)
   - [[WIP] 2D Camera Setup](./2d/camera.md)
   - [[WIP] Sprites and Atlases](./2d/sprites.md)
 
-- [Bevy 3D](./3d.md)
+- [Working with 3D](./3d.md)
   - [[WIP] 3D Camera Setup](./3d/camera.md)
   - [3D Models and Scenes (GLTF)](./3d/gltf.md)
 
@@ -106,6 +107,8 @@
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
 
 - [[WIP] Bevy Render (GPU) Framework](./gpu.md)
+  - [Render Architecture Overview](./gpu/intro.md)
+  - [Render Stages](./gpu/stages.md)
 
 - [Bevy Cookbook](./cookbook.md)
   - [Show Framerate in Console](./cookbook/print-framerate.md)

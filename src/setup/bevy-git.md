@@ -22,11 +22,11 @@ of this page. You will likely need to do more to make everything compatible.
 ## Should you use bleeding-edge Bevy?
 
 Currently, Bevy does not make patch releases (with rare exceptions for
-critical bugs), only major releases. The latest release is often missing the
-latest bug fixes, usability improvements, and features. It may be compelling
-to join in on the action!
+critical bugs), only major releases. The latest release is often missing
+the freshest bug fixes, usability improvements, and features. It may be
+compelling to join in on the action!
 
-If you are new to Bevy, this might not be for you; you might be more
+If you are new to Bevy, this might not be for you. You might be more
 comfortable using the released version. It will have the best compatibility
 with community plugins and documentation.
 
@@ -40,6 +40,10 @@ in Bevy main, and you may have to fix it yourself.
 The frequent breaking changes might not be a problem for you, though. Thanks
 to cargo, you can update bevy at your convenience, whenever you feel ready
 to handle any possible breaking changes.
+
+You may want to consider forking the repositories of any plugins you use.
+This allows you to easily apply fixes if needed, or edit their `Cargo.toml`
+for any special configuration to make your project work.
 
 If you choose to use Bevy main, you are highly encouraged to interact with
 the Bevy community on [Discord][bevy::discord] and [GitHub][project::bevy], so
@@ -57,16 +61,16 @@ You can typically fix them by removing `Cargo.lock` and the `target` directory:
 rm -rf Cargo.lock target
 ```
 
-See [this page][pitfall::build-errors] for more info. See this [cargo
-issue][cargo::9994] about this bug.
+See [this page][pitfall::build-errors] for more info.
 
 If you are still getting errors, it is probably because cargo is trying
 to use multiple different versions of bevy in your dependency tree
 simultaneously. This can happen if some of the plugins you use have specified
 a different Bevy version/commit from your project.
 
-Make sure you use the correct branch of each plugin you depend on, with
-support for Bevy main.
+Make sure you use the correct branch of each plugin you depend on, with support
+for Bevy main. If you have your own forks, check that the dependencies are
+correctly and consistently specified everywhere.
 
 If you have issues, they might still be fixable. Read the next section
 below for advice on how to configure your project in a way that minimizes
@@ -88,8 +92,8 @@ bevy_thing = { git = "https://github.com/author/bevy_thing?branch=bevy_main" }
 
 # If they have specified a different commit:
 # (you need to figure this out)
-[patch."https://github.com/bevyengine/bevy?rev=146123ea"]
-bevy = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" }
+[patch."https://github.com/bevyengine/bevy?rev=146123ea"] # their bevy commit
+bevy = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" } # ours
 
 # For those that have not specified anything:
 [patch."https://github.com/bevyengine/bevy"]
@@ -149,8 +153,9 @@ If you are publishing a plugin crate, here are some recommendations:
   - Set up CI to notify you if your plugin is broken by new changes in bevy
 
 Feel free to follow all the advice from this page, including cargo patches
-as needed. They only apply when you build your project directly, not as a
-dependency, so they do not affect your users.
+as needed. Cargo patches only apply when you build your project directly,
+not as a dependency, so they do not affect your users and can be safely kept
+in your `Cargo.toml`.
 
 ### CI Setup
 

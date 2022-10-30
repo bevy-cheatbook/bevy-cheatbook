@@ -8,6 +8,7 @@ by Bevy.
  - [SystemParams](#systemparams)
  - [Assets](#assets)
  - [File Formats](#file-formats)
+ - [`wgpu` Backends](#wgpu-backends)
  - [Bundles](#bundles)
  - [Resources (Configuration)](#configuration-resources)
  - [Resources (Engine User)](#engine-resources)
@@ -40,6 +41,10 @@ are enabled by default, many are not.
 
 There are [unofficial plugins][cb::3rdparty::file-formats] available for adding
 support for even more file formats.
+
+## `wgpu` Backends
+
+{{#include ./include/builtins.md:wgpu-backends}}
 
 ## Bundles
 

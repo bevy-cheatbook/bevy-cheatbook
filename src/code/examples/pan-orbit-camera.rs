@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use bevy::input::mouse::{MouseWheel,MouseMotion};
-use bevy::render::camera::PerspectiveProjection;
+use bevy::render::camera::Projection;
 
 // ANCHOR: example
 /// Tags an entity as capable of panning and orbiting.
@@ -28,7 +28,7 @@ fn pan_orbit_camera(
     mut ev_motion: EventReader<MouseMotion>,
     mut ev_scroll: EventReader<MouseWheel>,
     input_mouse: Res<Input<MouseButton>>,
-    mut query: Query<(&mut PanOrbitCamera, &mut Transform, &PerspectiveProjection)>,
+    mut query: Query<(&mut PanOrbitCamera, &mut Transform, &Projection)>,
 ) {
     // change input mapping for orbit and panning here
     let orbit_button = MouseButton::Right;
@@ -81,7 +81,9 @@ fn pan_orbit_camera(
             any = true;
             // make panning distance independent of resolution and FOV,
             let window = get_primary_window_size(&windows);
-            pan *= Vec2::new(projection.fov * projection.aspect_ratio, projection.fov) / window;
+            if let Projection::Perspective(projection) = projection {
+                pan *= Vec2::new(projection.fov * projection.aspect_ratio, projection.fov) / window;
+            }
             // translate by local axes
             let right = transform.rotation * Vec3::X * -pan.x;
             let up = transform.rotation * Vec3::Y * pan.y;
@@ -116,7 +118,7 @@ fn spawn_camera(mut commands: Commands) {
     let translation = Vec3::new(-2.0, 2.5, 5.0);
     let radius = translation.length();
 
-    commands.spawn_bundle(PerspectiveCameraBundle {
+    commands.spawn_bundle(Camera3dBundle {
         transform: Transform::from_translation(translation)
             .looking_at(Vec3::ZERO, Vec3::Y),
         ..Default::default()

@@ -5,9 +5,9 @@
 To access the actual asset data from systems, use the
 [`Assets<T>`][bevy::Assets] [resource][cb::res].
 
-You can identify your desired asset using either the [handle][cb::handle]
-([untyped handles][cb::handleuntyped] can also be used) or the [asset
-path][cb::assetpath]:
+You can identify your desired asset using the [handle][cb::handle].
+
+[untyped handles][cb::handleuntyped] need to be "upgraded" into typed handles.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:asset-access}}

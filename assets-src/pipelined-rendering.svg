@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="800"
+   height="500"
+   viewBox="0 0 211.66667 132.29167"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="pipelined-rendering.svg"
+   inkscape:export-filename="/home/iyes/dev/bevy-cheatbook/src/img/pipelined-rendering.png"
+   inkscape:export-xdpi="95.999992"
+   inkscape:export-ydpi="95.999992"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     width="1200px"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="464.21559"
+     inkscape:cy="288.85311"
+     inkscape:window-width="2556"
+     inkscape:window-height="1390"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient407513">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop407509" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="1"
+         id="stop407511" />
+    </linearGradient>
+    <rect
+       x="334"
+       y="313.5"
+       width="76"
+       height="50"
+       id="rect346409" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.4,0,0,0.4,4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path329592" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path329595" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker329990"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path329988" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(1.1,0,0,1.1,1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path329604" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path329607" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DiamondLend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DiamondLend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-5.6,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path329683" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker329876"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DiamondS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path329874" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DiamondS"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DiamondS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path329671" />
+    </marker>
+    <marker
+       inkscape:stockid="DistanceStart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="DistanceStart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <g
+         id="g2300">
+        <path
+           id="path2306"
+           d="M 0,0 H 2"
+           style="fill:none;stroke:context-fill;stroke-width:1.15;stroke-linecap:square" />
+        <path
+           id="path2302"
+           d="M 0,0 13,4 9,0 13,-4 Z"
+           style="fill:context-stroke;fill-rule:evenodd;stroke:none" />
+        <path
+           id="path2304"
+           d="M 0,-4 V 40"
+           style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:square" />
+      </g>
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient166364">
+      <stop
+         style="stop-color:#8080ff;stop-opacity:1"
+         offset="0"
+         id="stop166360" />
+      <stop
+         style="stop-color:#ff8080;stop-opacity:1"
+         offset="1"
+         id="stop166362" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient166334"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#80ffff;stop-opacity:1;"
+         offset="0"
+         id="stop166332" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient166364"
+       id="linearGradient383891"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(11.072018,1.7142883)"
+       x1="175.15416"
+       y1="53.229164"
+       x2="191.15416"
+       y2="53.229164" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient166364"
+       id="linearGradient390361"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-73.927982,1.7142883)"
+       x1="175.15416"
+       y1="53.229164"
+       x2="191.15416"
+       y2="53.229164" />
+    <rect
+       x="334"
+       y="313.5"
+       width="76"
+       height="50"
+       id="rect390722" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient166364"
+       id="linearGradient390730"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-158.92799,1.7142883)"
+       x1="175.15416"
+       y1="53.229164"
+       x2="191.15416"
+       y2="53.229164" />
+    <rect
+       x="334"
+       y="313.5"
+       width="76"
+       height="50"
+       id="rect390814" />
+    <rect
+       x="334"
+       y="313.5"
+       width="76"
+       height="50"
+       id="rect390816" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient166364"
+       id="linearGradient390818"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-158.92799,74.210121)"
+       x1="175.15416"
+       y1="53.229164"
+       x2="191.15416"
+       y2="53.229164" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient166364"
+       id="linearGradient390820"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-73.927982,74.210121)"
+       x1="175.15416"
+       y1="53.229164"
+       x2="191.15416"
+       y2="53.229164" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient166364"
+       id="linearGradient390822"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(11.072018,74.210121)"
+       x1="175.15416"
+       y1="53.229164"
+       x2="191.15416"
+       y2="53.229164" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient407513"
+       id="linearGradient407515"
+       x1="1.8691595"
+       y1="66.013535"
+       x2="15.345833"
+       y2="66.013537"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient407513"
+       id="linearGradient407907"
+       gradientUnits="userSpaceOnUse"
+       x1="1.4949821"
+       y1="66.013535"
+       x2="15.345833"
+       y2="66.013537"
+       gradientTransform="translate(-212.58269,-132.249)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect57468"
+       width="75"
+       height="20"
+       x="26.226177"
+       y="14.943454"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="28.47514"
+       y="29.230951"
+       id="text80748"><tspan
+         sodipodi:role="line"
+         id="tspan80746"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         x="28.47514"
+         y="29.230951">First|PreUpdate|Update|PostUpdate|Last</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="31.120964"
+       y="23.145536"
+       id="text133464"><tspan
+         sodipodi:role="line"
+         id="tspan133462"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="31.120964"
+         y="23.145536">App World:</tspan></text>
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect329396"
+       width="60"
+       height="20"
+       x="26.226177"
+       y="34.943455"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke-width:0.264583"
+       x="27.889149"
+       y="50.024719"
+       id="text329400"><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="27.889149"
+         y="50.024719"
+         id="tspan329398">Prepare|Queue|PhaseSort|Render|Cleanup</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="31.120968"
+       y="43.542412"
+       id="text329404"><tspan
+         sodipodi:role="line"
+         id="tspan329402"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="31.120968"
+         y="43.542412">Render World:</tspan></text>
+    <rect
+       style="fill:url(#linearGradient383891);fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect383885"
+       width="10"
+       height="40"
+       x="186.22618"
+       y="14.943454"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="18.357164"
+       y="-188.87088"
+       id="text383889"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan383887"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         x="18.357164"
+         y="-188.87088">EXTRACT</tspan></text>
+    <rect
+       style="fill:url(#linearGradient390361);fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390355"
+       width="10"
+       height="40"
+       x="101.22618"
+       y="14.943454"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="18.357164"
+       y="-103.87088"
+       id="text390359"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan390357"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         x="18.357164"
+         y="-103.87088">EXTRACT</tspan></text>
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390698"
+       width="75"
+       height="20"
+       x="111.22618"
+       y="14.943454"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="113.47514"
+       y="29.230951"
+       id="text390702"><tspan
+         sodipodi:role="line"
+         id="tspan390700"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         x="113.47514"
+         y="29.230951">First|PreUpdate|Update|PostUpdate|Last</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="116.12096"
+       y="23.145536"
+       id="text390706"><tspan
+         sodipodi:role="line"
+         id="tspan390704"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="116.12096"
+         y="23.145536">App World:</tspan></text>
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390708"
+       width="60"
+       height="20"
+       x="111.22618"
+       y="34.943455"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke-width:0.264583"
+       x="112.88914"
+       y="50.024719"
+       id="text390712"><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="112.88914"
+         y="50.024719"
+         id="tspan390710">Prepare|Queue|PhaseSort|Render|Cleanup</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="116.12097"
+       y="43.542412"
+       id="text390716"><tspan
+         sodipodi:role="line"
+         id="tspan390714"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="116.12097"
+         y="43.542412">Render World:</tspan></text>
+    <rect
+       style="fill:url(#linearGradient390730);fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390724"
+       width="10"
+       height="40"
+       x="16.226177"
+       y="14.943454"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="18.357164"
+       y="-18.870876"
+       id="text390728"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan390726"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         x="18.357164"
+         y="-18.870876">EXTRACT</tspan></text>
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390732"
+       width="75"
+       height="20"
+       x="-58.773827"
+       y="14.943454"
+       rx="4" />
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390734"
+       width="60"
+       height="20"
+       x="196.22618"
+       y="34.943455"
+       rx="4" />
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390736"
+       width="75"
+       height="20"
+       x="196.22618"
+       y="14.943454"
+       rx="4" />
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390738"
+       width="60"
+       height="20"
+       x="26.226177"
+       y="87.439285"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="28.47514"
+       y="101.72678"
+       id="text390742"><tspan
+         sodipodi:role="line"
+         id="tspan390740"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         x="28.47514"
+         y="101.72678">First|PreUpdate|Update|PostUpdate|Last</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="31.120964"
+       y="95.641365"
+       id="text390746"><tspan
+         sodipodi:role="line"
+         id="tspan390744"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="31.120964"
+         y="95.641365">App World:</tspan></text>
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390752"
+       width="75"
+       height="20"
+       x="26.226177"
+       y="107.43929"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke-width:0.264583"
+       x="27.889149"
+       y="122.52055"
+       id="text390756"><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="27.889149"
+         y="122.52055"
+         id="tspan390754">Prepare|Queue|PhaseSort|Render|Cleanup</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="31.120968"
+       y="116.03824"
+       id="text390760"><tspan
+         sodipodi:role="line"
+         id="tspan390758"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="31.120968"
+         y="116.03824">Render World:</tspan></text>
+    <rect
+       style="fill:url(#linearGradient390822);fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390766"
+       width="10"
+       height="40"
+       x="186.22618"
+       y="87.439285"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="90.852997"
+       y="-188.87088"
+       id="text390770"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan390768"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         x="90.852997"
+         y="-188.87088">EXTRACT</tspan></text>
+    <rect
+       style="fill:url(#linearGradient390820);fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390772"
+       width="10"
+       height="40"
+       x="101.22618"
+       y="87.439285"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="90.852997"
+       y="-103.87088"
+       id="text390776"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan390774"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         x="90.852997"
+         y="-103.87088">EXTRACT</tspan></text>
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390778"
+       width="60"
+       height="20"
+       x="111.22618"
+       y="87.439285"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="113.47514"
+       y="101.72678"
+       id="text390782"><tspan
+         sodipodi:role="line"
+         id="tspan390780"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         x="113.47514"
+         y="101.72678">First|PreUpdate|Update|PostUpdate|Last</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="116.12096"
+       y="95.641365"
+       id="text390786"><tspan
+         sodipodi:role="line"
+         id="tspan390784"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="116.12096"
+         y="95.641365">App World:</tspan></text>
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390788"
+       width="75"
+       height="20"
+       x="111.22618"
+       y="107.43929"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke-width:0.264583"
+       x="112.88914"
+       y="122.52055"
+       id="text390792"><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="112.88914"
+         y="122.52055"
+         id="tspan390790">Prepare|Queue|PhaseSort|Render|Cleanup</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="116.12097"
+       y="116.03824"
+       id="text390796"><tspan
+         sodipodi:role="line"
+         id="tspan390794"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="116.12097"
+         y="116.03824">Render World:</tspan></text>
+    <rect
+       style="fill:url(#linearGradient390818);fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390802"
+       width="10"
+       height="40"
+       x="16.226177"
+       y="87.439285"
+       rx="4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="90.852997"
+       y="-18.870876"
+       id="text390806"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan390804"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+         x="90.852997"
+         y="-18.870876">EXTRACT</tspan></text>
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390810"
+       width="60"
+       height="20"
+       x="196.22618"
+       y="107.43929"
+       rx="4" />
+    <rect
+       style="fill:#8080ff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect390812"
+       width="75"
+       height="20"
+       x="196.22618"
+       y="87.439285"
+       rx="4" />
+    <rect
+       style="fill:#ff8080;stroke:#000004;stroke-width:0.529167;stroke-linecap:round;stroke-opacity:1"
+       id="rect406803"
+       width="75"
+       height="20"
+       x="-58.773827"
+       y="107.43929"
+       rx="4" />
+    <rect
+       style="fill:url(#linearGradient407515);fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect407507"
+       width="16.139589"
+       height="135.20206"
+       x="4.712125e-07"
+       y="-2.6458335"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="11.146213"
+       y="7.9799438"
+       id="text232510"><tspan
+         sodipodi:role="line"
+         id="tspan232508"
+         style="stroke-width:0.264583"
+         x="11.146213"
+         y="7.9799438">App-Bound Scenario (app takes longer than render):</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="11.146213"
+       y="80.475777"
+       id="text390750"><tspan
+         sodipodi:role="line"
+         id="tspan390748"
+         style="stroke-width:0.264583"
+         x="11.146213"
+         y="80.475777">Render-Bound Scenario (render takes longer than app):</tspan></text>
+    <rect
+       style="fill:url(#linearGradient407907);fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect407905"
+       width="16.139589"
+       height="135.20206"
+       x="-212.58269"
+       y="-134.89482"
+       ry="0"
+       transform="scale(-1)" />
+  </g>
+</svg>

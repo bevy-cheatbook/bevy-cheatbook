@@ -2,23 +2,30 @@
 
 ## Unoptimized debug builds
 
-You can enable compiler optimizations in debug/dev mode!
+You can partially enable compiler optimizations in debug/dev mode!
 
-Even `opt-level=1` is enough to make Bevy not painfully slow! You can also
-enable higher optimizations for dependencies, but not your own code, to keep
-recompilations fast!
+You can enable higher optimizations for dependencies (incl. Bevy), but not
+your own code, to keep recompilations fast!
+
+In `Cargo.toml` or `.cargo/config.toml`:
 
 ```toml
-# in `Cargo.toml` or `.cargo/config.toml`
+# Enable max optimizations for dependencies, but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+```
 
+The above is enough to make Bevy run fast. It will only slow down clean
+builds, without affecting recompilation times for your project.
+
+If your own code does CPU-intensive work, you might want to also enable some
+optimization for it. However, this might greatly affect compile times in some
+projects (similar to a full release build), so it is not generally recommended.
+
+```toml
 # Enable only a small amount of optimization in debug mode
 [profile.dev]
 opt-level = 1
-
-# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
-[profile.dev.package."*"]
-opt-level = 3
-
 ```
 
 ### Why is this necessary?

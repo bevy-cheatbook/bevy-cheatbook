@@ -28,7 +28,16 @@ Direct world access lets you do things like:
  - Freely spawn/despawn entities, insert/remove resources, etc., taking effect immediately
    (no delay like when using [`Commands`] from a regular [system][cb::system])
  - Access any component, entities, and resources you want
- - Manually run systems or stages
+ - Manually run arbitrary systems or stages
+
+This is especially useful if you want to do things that do not fit within
+Bevy's typical execution model/flow of just running systems once every frame
+(organized with [stages][cb::stage] and [labels][cb::system-label]).
+
+With direct world access, you can implement custom control flow, like
+looping some systems multiple times, selecting different systems to run in
+different circumstances, exporting/importing data from files like scenes or
+game saves, …
 
 ## Working with the `World`
 
