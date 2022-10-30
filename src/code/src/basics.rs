@@ -588,8 +588,8 @@ fn process_squad_damage(
 fn despawn_child(
     mut commands: Commands,
 ) {
-    let parent_entity = Entity::default();
-    let child_entity = Entity::default();
+    let parent_entity = Entity::from_raw(0);
+    let child_entity = Entity::from_raw(0);
 // ANCHOR: despawn-child
     commands.entity(parent_entity).remove_children(&[child_entity]);
     commands.entity(child_entity).despawn();
@@ -1005,7 +1005,6 @@ fn asteroids_fly(
 }
 // ANCHOR_END: time-delta
 
-use std::process::Child;
 // ANCHOR: time-monotonic
 use std::time::Instant;
 
