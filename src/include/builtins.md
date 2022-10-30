@@ -274,7 +274,9 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
 
 []:#(ANCHOR: stages)
 Internally, Bevy has at least these built-in [stages][cb::stage]:
- - In the [main app][cb::app] ([`CoreStage`][bevy::CoreStage]):
+ - In the [main_app][cb::app] ([`StartupStage`][bevy::StartupStage], run once at app startup):
+ `PreStartup`, `Startup`, `PostStartup`
+ - In the [main app][cb::app] ([`CoreStage`][bevy::CoreStage], run every frame update):
 `First`, `PreUpdate`, `Update`, `PostUpdate`, `Last`
  - In the render [sub-app][cb::subapp] ([`RenderStage`][bevy::RenderStage]):
 `Extract`, `Prepare`, `Queue`, `PhaseSort`, `Render`, `Cleanup`

@@ -146,6 +146,7 @@
 [bevy::Sprite]: https://docs.rs/bevy/0.8.0/bevy/sprite/struct.Sprite.html
 [bevy::Stage]: https://docs.rs/bevy/0.8.0/bevy/ecs/schedule/trait.Stage.html
 [bevy::StandardMaterial]: https://docs.rs/bevy/0.8.0/bevy/pbr/struct.StandardMaterial.html
+[bevy::StartupStage]: https://docs.rs/bevy/0.8.0/bevy/app/enum.StartupStage.html
 [bevy::State]: https://docs.rs/bevy/0.8.0/bevy/ecs/schedule/struct.State.html
 [bevy::Stopwatch]: https://docs.rs/bevy/0.8.0/bevy/time/struct.Stopwatch.html
 [bevy::Style]: https://docs.rs/bevy/0.8.0/bevy/ui/struct.Style.html
