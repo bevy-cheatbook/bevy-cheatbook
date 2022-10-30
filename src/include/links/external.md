@@ -82,3 +82,4 @@
 [rustup]: https://rustup.rs
 [rustwasmbook::code-size]: https://rustwasm.github.io/docs/book/reference/code-size.html
 [sponsors]: https://github.com/sponsors/inodentry
+[winit::1737]: https://github.com/rust-windowing/winit/issues/1737

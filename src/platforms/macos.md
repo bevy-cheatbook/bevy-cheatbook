@@ -13,6 +13,10 @@ Create Issues or PRs on [GitHub][project::cb].
 
 ### Window Management Apps Compatability
 
-Bevy applications making use of `winit` encounter performance issues where the window is slow to drag around the screen when apps like `Magnet` are used to orginize the user's workspace. Closing the workspace manager apps should significantly ehance the performance of app.
+Bevy apps can encounter performance issues (such as lag when dragging the window
+around the screen) when window management apps like "Magnet" are used. This is a
+bug in `winit` (the OS window management library that Bevy uses). This issue can
+be tracked [here][winit::1737].
 
-This issue can be tracked here: https://github.com/rust-windowing/winit/issues/1737
+Until that bug is fixed, advise closing the window management apps, if
+encountering performance issues.
