@@ -18,8 +18,9 @@ end of that stage.
 
 {{#include ../include/builtins.md:stages}}
 
-By default, when you add your systems, they are added to `CoreStage::Update` 
-whereas startup systems are added to `StartupStage::Startup`.
+By default, when you add your systems, they are added to
+[`CoreStage::Update`][bevy::CoreStage]. Startup systems are added to
+[`StartupStage::Startup`][bevy::StartupStage].
 
 Bevy's internal systems are in the other stages, to ensure they are ordered
 correctly relative to your game logic.
