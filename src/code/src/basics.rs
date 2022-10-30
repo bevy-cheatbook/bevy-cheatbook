@@ -273,7 +273,7 @@ fn check_zero_health(
 
 // ANCHOR: sys-query-filter
 fn debug_player_hp(
-    // access the health, only for friendly players, optionally with name
+    // access the health (and optionally the PlayerName, if present), only for friendly players
     query: Query<(&Health, Option<&PlayerName>), (With<Player>, Without<Enemy>)>,
 ) {
     // get all matching entities
