@@ -59,16 +59,6 @@ each Squad, and it needs some information about the children:
 {{#include ../code/src/basics.rs:query-child}}
 ```
 
-Be sure to call `remove_children` to disassociate a child entity from it's parent before
-despawning it. If you despawn a child entity without disassociating it from it's parent
-then the next query for that parent entity's children will yield an invalid entity and
-any attempt to manipulate it will likely lead to this error:
-
-```
-thread 'main' panicked at 'Attempting to create an EntityCommands for entity 7v0, which doesn't exist.'
-```
-
-
 ## Relative Transforms
 
 If your entities represent "objects in the game world", you probably expect
@@ -80,3 +70,22 @@ this behavior automatically. You should at least use the basic
 
 For more info, see the [dedicated page about transforms][cb::transform].
 
+## Known Pitfalls
+
+### Despawning Child Entities
+
+If you despawn an entity that has a parent, Bevy does not remove it from the
+parent's [`Children`][bevy::Children].
+
+If you then query for that parent entity's children, you will get an invaild
+entity, and any attempt to manipulate it will likely lead to this error:
+
+```
+thread 'main' panicked at 'Attempting to create an EntityCommands for entity 7v0, which doesn't exist.'
+```
+
+The workaround is to manually call `remove_children` alongside the `despawn`:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:despawn-child}}
+```

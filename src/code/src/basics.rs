@@ -468,6 +468,17 @@ fn process_squad_damage(
 }
 // ANCHOR_END: query-child
 
+fn despawn_child(
+    mut commands: Commands,
+) {
+    let parent_entity = Entity::default();
+    let child_entity = Entity::default();
+// ANCHOR: despawn-child
+    commands.entity(parent_entity).remove_children(&[child_entity]);
+    commands.entity(child_entity).despawn();
+// ANCHOR_END: despawn-child
+}
+
 // ANCHOR: example-commands
 fn spawn_player(
     mut commands: Commands,
@@ -878,6 +889,7 @@ fn asteroids_fly(
 }
 // ANCHOR_END: time-delta
 
+use std::process::Child;
 // ANCHOR: time-monotonic
 use std::time::Instant;
 
@@ -1925,5 +1937,6 @@ pub fn _main_all() {
         .add_system(spawn_bombs)
         .add_system(jump_duration)
         .add_system(asteroids_fly)
+        .add_system(despawn_child)
         .run();
 }
