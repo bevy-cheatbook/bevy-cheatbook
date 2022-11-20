@@ -3,7 +3,7 @@
 {{#include ../include/links.md}}
 
 Relevant official examples:
-[`event`][cb::event].
+[`event`][example::event].
 
 ---
 
