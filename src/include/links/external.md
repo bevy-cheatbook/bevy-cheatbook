@@ -28,6 +28,7 @@
 [gltf-export-blender-old]: https://doc.babylonjs.com/extensions/Exporters/Blender_to_glTF
 [gltf-export-maya2]: https://kashika.co.jp/product/gltfexporter/
 [gltf-export-maya]: https://doc.babylonjs.com/extensions/Exporters/Maya_to_glTF
+[intellij-rust::6908]: https://github.com/intellij-rust/intellij-rust/issues/6908
 [itchio::bevy]: https://itch.io/games/tag-bevy
 [mdbook::anchor-syntax]: https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file
 [project::benimator]: https://github.com/jcornaz/benimator
