@@ -27,7 +27,7 @@ about on `bevy_kira_audio` instead of Bevy.
 
 ```toml
 [dependencies.bevy]
-version = "0.8"
+version = "0.9"
 default-features = false
 # These are the remaining default features other than `bevy_audio` and `vorbis`
 features = [

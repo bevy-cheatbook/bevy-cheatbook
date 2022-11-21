@@ -9,7 +9,7 @@ is structured in a sequence of "render stages":
 
 ## Timings
 
-Note: Pipelined rendering is not yet actually enabled in Bevy 0.8. This section
+Note: Pipelined rendering is not yet actually enabled in Bevy 0.9. This section
 explains the intended behavior, which will land in a future Bevy version. You
 have to understand it, because any custom rendering code you write will have to
 work with it in mind.

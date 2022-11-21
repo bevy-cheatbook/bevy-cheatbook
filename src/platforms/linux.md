@@ -50,7 +50,7 @@ To enable native Wayland support for Bevy, enable the `wayland` cargo feature:
 
 ```toml
 [dependencies]
-bevy = { version = "0.8", features = ["wayland"] }
+bevy = { version = "0.9", features = ["wayland"] }
 ```
 
 Now your app will be built with support for both X11 and Wayland.

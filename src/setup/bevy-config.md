@@ -23,7 +23,7 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.8"
+version = "0.9"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [

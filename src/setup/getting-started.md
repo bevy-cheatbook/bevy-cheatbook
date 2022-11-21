@@ -40,7 +40,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = "0.8"
+bevy = "0.9"
 ```
 
 The `src/main.rs` file is your main source code file. This is where you

@@ -21,8 +21,8 @@ to the vertical axis of the window, and respects the window's aspect ratio
 for the horizontal axis:
 
 See how Bevy constructs its camera bundles, for reference:
- - [2d](https://github.com/bevyengine/bevy/blob/v0.8.0/crates/bevy_core_pipeline/src/core_2d/camera_2d.rs#L47)
- - [3d](https://github.com/bevyengine/bevy/blob/v0.8.0/crates/bevy_core_pipeline/src/core_3d/camera_3d.rs#L72)
+ - [2d](https://github.com/bevyengine/bevy/blob/v0.9.0/crates/bevy_core_pipeline/src/core_2d/camera_2d.rs#L46)
+ - [3d](https://github.com/bevyengine/bevy/blob/v0.9.0/crates/bevy_core_pipeline/src/core_3d/camera_3d.rs#L72)
 
 This example is based on the setup for a 2D camera:
 
