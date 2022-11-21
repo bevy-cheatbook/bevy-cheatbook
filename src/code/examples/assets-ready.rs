@@ -2,6 +2,7 @@ use bevy::prelude::*;
 
 #[derive(Default)]
 // ANCHOR: example
+#[derive(Resource)]
 struct AssetsLoading(Vec<HandleUntyped>);
 
 fn setup(server: Res<AssetServer>, mut loading: ResMut<AssetsLoading>) {

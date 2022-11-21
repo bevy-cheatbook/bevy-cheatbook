@@ -1,8 +1,9 @@
 use bevy::prelude::*;
 
 // ANCHOR: example
+use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy::render::primitives::Frustum;
-use bevy::render::camera::{Camera, CameraProjection, DepthCalculation};
+use bevy::render::camera::{Camera, CameraProjection};
 use bevy::render::view::VisibleEntities;
 
 #[derive(Component, Debug, Clone, Reflect)]
@@ -23,14 +24,6 @@ impl CameraProjection for SimpleOrthoProjection {
     // what to do on window resize
     fn update(&mut self, width: f32, height: f32) {
         self.aspect = width / height;
-    }
-
-    fn depth_calculation(&self) -> DepthCalculation {
-        // for 2D (camera doesn't rotate)
-        DepthCalculation::ZDifference
-
-        // otherwise
-        //DepthCalculation::Distance
     }
 
     fn far(&self) -> f32 {
@@ -65,7 +58,7 @@ fn setup(mut commands: Commands) {
         projection.far,
     );
 
-    commands.spawn_bundle((
+    commands.spawn((
         bevy::render::camera::CameraRenderGraph::new(bevy::core_pipeline::core_2d::graph::NAME),
         projection,
         frustum,
@@ -74,6 +67,7 @@ fn setup(mut commands: Commands) {
         VisibleEntities::default(),
         Camera::default(),
         Camera2d::default(),
+        Tonemapping::Disabled,
     ));
 }
 

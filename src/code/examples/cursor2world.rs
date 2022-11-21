@@ -7,9 +7,10 @@ use bevy::render::camera::RenderTarget;
 struct MainCamera;
 
 fn setup(mut commands: Commands) {
-    commands.spawn()
-        .insert_bundle(Camera2dBundle::default())
-        .insert(MainCamera);
+    commands.spawn((
+        Camera2dBundle::default(),
+        MainCamera,
+    ));
 }
 
 fn my_cursor_system(

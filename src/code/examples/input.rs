@@ -146,6 +146,7 @@ fn scroll_events(
 // ANCHOR: gamepad-connect-disconnect
 /// Simple resource to store the ID of the connected gamepad.
 /// We need to know which gamepad to use for player input.
+#[derive(Resource)]
 struct MyGamepad(Gamepad);
 
 fn gamepad_connections(
@@ -156,9 +157,9 @@ fn gamepad_connections(
     for ev in gamepad_evr.iter() {
         // the ID of the gamepad
         let id = ev.gamepad;
-        match ev.event_type {
-            GamepadEventType::Connected => {
-                println!("New gamepad connected with ID: {:?}", id);
+        match &ev.event_type {
+            GamepadEventType::Connected(info) => {
+                println!("New gamepad connected with ID: {:?}, name: {}", id, info.name);
 
                 // if we don't have any gamepad yet, use this one
                 if my_gamepad.is_none() {
@@ -277,8 +278,8 @@ fn gamepad_print_allevents(
     mut gamepad_evr: EventReader<GamepadEvent>,
 ) {
     for ev in gamepad_evr.iter() {
-        match ev.event_type {
-            GamepadEventType::Connected => println!("Gamepad {:?}: Connected", ev.gamepad),
+        match &ev.event_type {
+            GamepadEventType::Connected(info) => println!("Gamepad {:?}: Connected ({})", ev.gamepad, info.name),
             GamepadEventType::Disconnected => println!("Gamepad {:?}: Disconnected", ev.gamepad),
             GamepadEventType::ButtonChanged(button, val) => {
                 println!("Gamepad {:?}: {:?} changed: {}", ev.gamepad, button, val);
@@ -306,30 +307,23 @@ fn configure_gamepads(
     };
 
     // add a larger default dead-zone to all axes (ignore small inputs, round to zero)
-    settings.default_axis_settings.negative_low = -0.1;
-    settings.default_axis_settings.positive_low = 0.1;
+    settings.default_axis_settings.set_deadzone_lowerbound(-0.1);
+    settings.default_axis_settings.set_deadzone_upperbound(0.1);
 
     // make the right stick "binary", squash higher values to 1.0 and lower values to 0.0
-    let right_stick_settings = AxisSettings {
-        positive_high:  0.5, // values  0.5 to  1.0, become  1.0
-        positive_low:   0.5, // values  0.0 to  0.5, become  0.0
-        negative_low:  -0.5, // values -0.5 to  0.0, become  0.0
-        negative_high: -0.5, // values -1.0 to -0.5, become -1.0
-        // the raw value should change by at least this much,
-        // for Bevy to register an input event:
-        threshold: 0.01,
-    };
+    let mut right_stick_settings = AxisSettings::default();
+    right_stick_settings.set_deadzone_lowerbound(-0.5);
+    right_stick_settings.set_deadzone_upperbound(0.5);
+    right_stick_settings.set_livezone_lowerbound(-0.5);
+    right_stick_settings.set_livezone_upperbound(0.5);
+    // the raw value should change by at least this much,
+    // for Bevy to register an input event:
+    right_stick_settings.set_threshold(0.01);
 
     // make the triggers work in big/coarse steps, to get fewer events
     // reduces noise and precision
-    let trigger_settings = AxisSettings {
-        threshold: 0.2,
-        // also set some conservative deadzones
-        positive_high: 0.8,
-        positive_low: 0.2,
-        negative_high: -0.8,
-        negative_low: -0.2,
-    };
+    let mut trigger_settings = AxisSettings::default();
+    trigger_settings.set_threshold(0.25);
 
     // set these settings for the gamepad we use for our player
     settings.axis_settings.insert(
@@ -349,13 +343,12 @@ fn configure_gamepads(
         trigger_settings.clone()
     );
 
-    // for buttons (or axes treated as buttons), make them less sensitive
-    let button_settings = ButtonSettings {
-        // require them to be pressed almost all the way, to count
-        press: 0.9,
-        // require them to be released almost all the way, to count
-        release: 0.1,
-    };
+    // for buttons (or axes treated as buttons):
+    let mut button_settings = ButtonSettings::default();
+    // require them to be pressed almost all the way, to count
+    button_settings.set_press_threshold(0.9);
+    // require them to be released almost all the way, to count
+    button_settings.set_release_threshold(0.1);
 
     settings.default_button_settings = button_settings;
 }

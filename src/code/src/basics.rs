@@ -15,16 +15,23 @@ struct ComponentB;
 #[derive(Component)]
 struct ComponentC;
 
+#[derive(Resource)]
 struct MyResource;
+#[derive(Resource)]
 struct ResourceA;
+#[derive(Resource)]
 struct ResourceB;
+#[derive(Resource)]
 struct ResourceC;
 
 #[allow(dead_code)]
 mod derive_systemparam {
 use bevy::prelude::*;
+#[derive(Resource)]
 pub struct UserKeybindings;
+#[derive(Resource)]
 pub struct GameSaveSettings;
+#[derive(Resource)]
 pub struct GraphicsSettings;
 // ANCHOR: derive-system-param
 use bevy::ecs::system::SystemParam;
@@ -109,6 +116,10 @@ struct Enemy;
 /// This will be used to identify the main player entity
 #[derive(Component)]
 struct Player;
+
+/// Tag all creatures that are currently friendly towards the player
+#[derive(Component)]
+struct Friendly;
 // ANCHOR_END: marker-component
 
 #[derive(Bundle, Default)]
@@ -143,13 +154,14 @@ struct PlayerBundle {
 
 #[allow(dead_code)]
 // ANCHOR: resource
+#[derive(Resource)]
 struct GoalsReached {
     main_goal: bool,
     bonus: bool,
 }
 // ANCHOR_END: resource
 
-#[derive(Default)]
+#[derive(Resource, Default)]
 struct MyOtherResource;
 
 impl MyOtherResource {
@@ -157,6 +169,7 @@ impl MyOtherResource {
 }
 
 // ANCHOR: fromworld
+#[derive(Resource)]
 struct MyFancyResource { /* stuff */ }
 
 impl FromWorld for MyFancyResource {
@@ -171,9 +184,8 @@ impl FromWorld for MyFancyResource {
 }
 // ANCHOR_END: fromworld
 
-#[derive(Debug)]
 // ANCHOR: resource-default
-#[derive(Default)]
+#[derive(Resource, Default, Debug)]
 struct StartingLevel(usize);
 // ANCHOR_END: resource-default
 
@@ -193,6 +205,7 @@ fn my_system2(mut local: Local<MyState>) {
 #[allow(dead_code)]
 mod localconfig {
 use bevy::prelude::*;
+#[derive(Resource)]
 struct MyStuff;
 // ANCHOR: local-config
 #[derive(Default)]
@@ -369,16 +382,17 @@ fn spawn_special_entity(
 ) {
     // create an entity that does not use one of the common Bevy bundles,
     // but still needs transforms and visibility
-    commands.spawn()
-        .insert(ComponentA)
-        .insert(ComponentB)
-        .insert_bundle(SpatialBundle {
+    commands.spawn((
+        ComponentA,
+        ComponentB,
+        SpatialBundle {
             transform: Transform::from_scale(Vec3::splat(3.0)),
             visibility: Visibility {
                 is_visible: false,
             },
             ..Default::default()
-        });
+        },
+    ));
 }
 // ANCHOR_END: spatialbundle
 
@@ -388,7 +402,7 @@ fn insert_visibilitybundle(
     let parent = Entity::from_raw(0);
 // ANCHOR: insert-visibilitybundle
     commands.entity(parent)
-        .insert_bundle(VisibilityBundle::default());
+        .insert(VisibilityBundle::default());
 // ANCHOR_END: insert-visibilitybundle
 }
 
@@ -397,7 +411,7 @@ fn spawn_toplevel_entity(
     mut commands: Commands,
 ) {
     // this can be a top-level entity that controls a hierarchy of children
-    let parent = commands.spawn_bundle(SpatialBundle {
+    let parent = commands.spawn(SpatialBundle {
         transform: Transform::from_scale(Vec3::splat(3.0)),
         visibility: Visibility {
             is_visible: false,
@@ -407,7 +421,7 @@ fn spawn_toplevel_entity(
 
     // Child transforms behave relative to the parent.
     // For visibility: if the parent is hidden, that also hides the children.
-    let child = commands.spawn_bundle(SpatialBundle {
+    let child = commands.spawn(SpatialBundle {
         transform: Transform::from_xyz(1.0, 2.0, 3.0),
         ..Default::default()
     }).id();
@@ -424,13 +438,16 @@ struct GameMapEntity;
 fn setup_map_hidden(
     mut commands: Commands,
 ) {
-    commands.spawn_bundle(SceneBundle {
-        scene: todo!(),
-        visibility: Visibility {
-            is_visible: false,
+    commands.spawn((
+        GameMapEntity,
+        SceneBundle {
+            scene: todo!(),
+            visibility: Visibility {
+                is_visible: false,
+            },
+            ..Default::default()
         },
-        ..Default::default()
-    }).insert(GameMapEntity);
+    ));
 }
 
 /// When everything is ready, un-hide the game map
@@ -607,24 +624,17 @@ fn despawn_child(
 }
 
 // ANCHOR: example-commands
-fn spawn_player(
+fn spawn_things(
     mut commands: Commands,
 ) {
     // manage resources
     commands.insert_resource(GoalsReached { main_goal: false, bonus: false });
     commands.remove_resource::<MyResource>();
 
-    // create a new entity using `spawn`
-    let entity_id = commands.spawn()
-        // add a component
-        .insert(ComponentA)
-        // add a bundle
-        .insert_bundle(MyBundle::default())
-        // get the Entity ID
-        .id();
-
-    // shorthand for creating an entity with a bundle
-    commands.spawn_bundle(PlayerBundle {
+    // create a new entity using `spawn`,
+    // providing the data for the components it should have
+    // (typically using a Bundle)
+    commands.spawn(PlayerBundle {
         name: PlayerName("Henry".into()),
         xp: PlayerXp(1000),
         health: Health {
@@ -634,33 +644,48 @@ fn spawn_player(
         sprite: Default::default(),
     });
 
-    // spawn another entity
-    // NOTE: tuples of arbitrary components are valid bundles
-    let other = commands.spawn_bundle((
-        ComponentA::default(),
+    // you can use a tuple if you need additional components or bundles
+    // (tuples of component and bundle types are considered bundles)
+    // (note the extra parentheses)
+    let my_entity_id = commands.spawn((
+        // add some components
+        ComponentA,
         ComponentB::default(),
-        ComponentC::default(),
-    )).id();
+        // add some bundles
+        MyBundle::default(),
+        TransformBundle::default(),
+    )).id(); // get the Entity (id) by calling `.id()` at the end
 
     // add/remove components of an existing entity
-    commands.entity(entity_id)
-        .insert(ComponentB)
+    commands.entity(my_entity_id)
+        .insert(ComponentC::default())
         .remove::<ComponentA>()
-        .remove_bundle::<MyBundle>();
-
-    // despawn an entity
-    commands.entity(other).despawn();
+        .remove::<(ComponentB, MyBundle)>();
 }
 
 fn make_all_players_hostile(
     mut commands: Commands,
+    // we need the Entity id, to perform commands on specific entities
     query: Query<Entity, With<Player>>,
 ) {
     for entity in query.iter() {
-        // add an `Enemy` component to the entity
-        commands.entity(entity).insert(Enemy);
+        commands.entity(entity)
+            // add an `Enemy` component to the entity
+            .insert(Enemy)
+            // remove the `Friendly` component
+            .remove::<Friendly>();
     }
 }
+
+fn despawn_all_enemies(
+    mut commands: Commands,
+    query: Query<Entity, With<Enemy>>,
+) {
+    for entity in query.iter() {
+        commands.entity(entity).despawn();
+    }
+}
+
 // ANCHOR_END: example-commands
 
 // ANCHOR: despawn-recursive
@@ -676,6 +701,7 @@ fn close_menu(
 // ANCHOR_END: despawn-recursive
 
 // ANCHOR: asset-access
+#[derive(Resource)]
 struct SpriteSheets {
     map_tiles: Handle<TextureAtlas>,
 }
@@ -709,6 +735,7 @@ fn add_material(
 // ANCHOR_END: asset-add
 
 // ANCHOR: asset-event
+#[derive(Resource)]
 struct MyMapImage {
     handle: Handle<Image>,
 }
@@ -746,6 +773,7 @@ fn fixup_images(
 // ANCHOR_END: asset-event
 
 // ANCHOR: asset-server
+#[derive(Resource)]
 struct UiFont(Handle<Font>);
 
 fn load_ui_font(
@@ -761,12 +789,6 @@ fn load_ui_font(
 }
 // ANCHOR_END: asset-server
 
-fn asset_watch(asset_server: Res<AssetServer>) {
-// ANCHOR: asset-watch
-    asset_server.watch_for_changes().unwrap();
-// ANCHOR_END: asset-watch
-}
-
 // ANCHOR: asset-path-labels
 fn load_gltf_things(
     mut commands: Commands,
@@ -777,7 +799,7 @@ fn load_gltf_things(
 
     // spawn a whole scene
     let my_scene: Handle<Scene> = server.load("my_scene.gltf#Scene0");
-    commands.spawn_bundle(SceneBundle {
+    commands.spawn(SceneBundle {
         scene: my_scene,
         ..Default::default()
     });
@@ -785,6 +807,7 @@ fn load_gltf_things(
 // ANCHOR_END: asset-path-labels
 
 // ANCHOR: asset-folder
+#[derive(Resource)]
 struct ExtraAssets(Vec<HandleUntyped>);
 
 fn load_extra_assets(
@@ -807,7 +830,7 @@ fn spawn_gltf(
 
     // to position our 3d model, simply use the Transform
     // in the SceneBundle
-    commands.spawn_bundle(SceneBundle {
+    commands.spawn(SceneBundle {
         scene: my_gltf,
         transform: Transform::from_xyz(2.0, 0.0, -5.0),
         ..Default::default()
@@ -819,6 +842,7 @@ fn spawn_gltf(
 use bevy::gltf::Gltf;
 
 /// Helper resource for tracking our asset
+#[derive(Resource)]
 struct MyAssetPack(Handle<Gltf>);
 
 fn load_gltf(
@@ -837,13 +861,13 @@ fn spawn_gltf_objects(
     // if the GLTF has loaded, we can navigate its contents
     if let Some(gltf) = assets_gltf.get(&my.0) {
         // spawn the first scene in the file
-        commands.spawn_bundle(SceneBundle {
+        commands.spawn(SceneBundle {
             scene: gltf.scenes[0].clone(),
             ..Default::default()
         });
 
         // spawn the scene named "YellowCar"
-        commands.spawn_bundle(SceneBundle {
+        commands.spawn(SceneBundle {
             scene: gltf.named_scenes["YellowCar"].clone(),
             transform: Transform::from_xyz(1.0, 2.0, 3.0),
             ..Default::default()
@@ -869,7 +893,7 @@ fn gltf_manual_entity(
         let carwheel = assets_gltfmesh.get(&gltf.named_meshes["CarWheel"]).unwrap();
 
         // Spawn a PBR entity with the mesh and material of the first GLTF Primitive
-        commands.spawn_bundle(PbrBundle {
+        commands.spawn(PbrBundle {
             mesh: carwheel.primitives[0].mesh.clone(),
             // (unwrap: material is optional, we assume this primitive has one)
             material: carwheel.primitives[0].material.clone().unwrap(),
@@ -886,14 +910,14 @@ fn use_gltf_things(
 ) {
     // spawn the first scene in the file
     let scene0 = ass.load("my_asset_pack.glb#Scene0");
-    commands.spawn_bundle(SceneBundle {
+    commands.spawn(SceneBundle {
         scene: scene0,
         ..Default::default()
     });
 
     // spawn the second scene
     let scene1 = ass.load("my_asset_pack.glb#Scene1");
-    commands.spawn_bundle(SceneBundle {
+    commands.spawn(SceneBundle {
         scene: scene1,
         transform: Transform::from_xyz(1.0, 2.0, 3.0),
         ..Default::default()
@@ -904,7 +928,7 @@ fn use_gltf_things(
 fn commands_catchall(mut commands: Commands) {
 
 // ANCHOR: sprite-flipping
-commands.spawn_bundle(SpriteBundle {
+commands.spawn(SpriteBundle {
     sprite: Sprite {
         flip_y: true,
         flip_x: false,
@@ -915,7 +939,7 @@ commands.spawn_bundle(SpriteBundle {
 // ANCHOR_END: sprite-flipping
 
 // ANCHOR: commands-current-entity
-let e = commands.spawn().id();
+let e = commands.spawn(()).id();
 // ANCHOR_END: commands-current-entity
 
 // ANCHOR: commands-resource
@@ -925,20 +949,18 @@ commands.remove_resource::<MyResource>();
 
 // ANCHOR: parenting
 // spawn the parent and get its Entity id
-let parent = commands.spawn_bundle(MyParentBundle::default())
-    .id();
+let parent = commands.spawn(MyParentBundle::default()).id();
 
 // do the same for the child
-let child = commands.spawn_bundle(MyChildBundle::default())
-    .id();
+let child = commands.spawn(MyChildBundle::default()).id();
 
 // add the child to the parent
 commands.entity(parent).push_children(&[child]);
 
 // you can also use `with_children`:
-commands.spawn_bundle(MyParentBundle::default())
+commands.spawn(MyParentBundle::default())
     .with_children(|parent| {
-        parent.spawn_bundle(MyChildBundle::default());
+        parent.spawn(MyChildBundle::default());
     });
 // ANCHOR_END: parenting
 }
@@ -1027,8 +1049,11 @@ fn spawn_my_stuff(
     mut commands: Commands,
     time: Res<Time>,
 ) {
-    commands.spawn()
-        .insert(SpawnedTime(time.startup() + time.time_since_startup()));
+    commands.spawn((/* ... */))
+        // we can use startup time and elapsed duration
+        .insert(SpawnedTime(time.startup() + time.elapsed()))
+        // or just the time of last update
+        .insert(SpawnedTime(time.last_update().unwrap()));
 }
 // ANCHOR_END: time-monotonic
 
@@ -1057,6 +1082,7 @@ fn explode_bombs(
     }
 }
 
+#[derive(Resource)]
 struct BombsSpawnConfig {
     /// How often to spawn a new bomb? (repeating timer)
     timer: Timer,
@@ -1072,11 +1098,13 @@ fn spawn_bombs(
     config.timer.tick(time.delta());
 
     if config.timer.finished() {
-        commands.spawn()
-            .insert(FuseTime {
+        commands.spawn((
+            FuseTime {
                 // create the non-repeating fuse timer
-                timer: Timer::new(Duration::from_secs(5), false),
-            });
+                timer: Timer::new(Duration::from_secs(5), TimerMode::Once),
+            },
+            // ... other components ...
+        ));
     }
 }
 
@@ -1086,7 +1114,7 @@ fn setup_bomb_spawning(
 ) {
     commands.insert_resource(BombsSpawnConfig {
         // create the repeating timer
-        timer: Timer::new(Duration::from_secs(10), true),
+        timer: Timer::new(Duration::from_secs(10), TimerMode::Repeating),
     })
 }
 // ANCHOR_END: timer
@@ -1154,12 +1182,6 @@ mod app2 {
 // ANCHOR: app-builder
 fn main() {
     App::new()
-        // make sure to add any config resources first, before Bevy:
-        .insert_resource(WindowDescriptor {
-            // ...
-            ..Default::default()
-        }) // etc...
-
         // Bevy itself:
         .add_plugins(DefaultPlugins)
 
@@ -1172,7 +1194,7 @@ fn main() {
         .add_event::<LevelUpEvent>()
 
         // systems to run once at startup:
-        .add_startup_system(spawn_player)
+        .add_startup_system(spawn_things)
 
         // systems to run each frame:
         .add_system(player_level_up)
@@ -1411,6 +1433,7 @@ fn main2() {
 mod app6 {
 use bevy::prelude::*;
 
+#[derive(Resource)]
 struct MyNetProto;
 
 impl MyNetProto {
@@ -1433,15 +1456,15 @@ fn handle_io_errors(In(result): In<std::io::Result<()>>) {
 }
 // ANCHOR_END: system-io
 
-// ANCHOR: system-chain
+// ANCHOR: system-pipe
 fn main() {
     App::new()
         // ...
-        .add_system(net_receive.chain(handle_io_errors))
+        .add_system(net_receive.pipe(handle_io_errors))
         // ...
         .run();
 }
-// ANCHOR_END: system-chain
+// ANCHOR_END: system-pipe
 }
 
 #[allow(dead_code)]
@@ -1652,6 +1675,7 @@ use bevy::prelude::*;
     fn smoke_particles() {}
     fn water_animation() {}
 
+    #[derive(Resource)]
     struct MyNetworkSession;
 
     impl MyNetworkSession {
@@ -1664,6 +1688,7 @@ use bevy::prelude::*;
 use bevy::ecs::schedule::ShouldRun;
 
 #[derive(Debug, PartialEq, Eq)]
+#[derive(Resource)]
 enum MultiplayerKind {
     Client,
     Host,
@@ -1829,10 +1854,10 @@ mod app12 {
 struct MyPluginGroup;
 
 impl PluginGroup for MyPluginGroup {
-    fn build(&mut self, group: &mut PluginGroupBuilder) {
-        group
+    fn build(self) -> PluginGroupBuilder {
+        PluginGroupBuilder::start::<Self>()
             .add(FooPlugin)
-            .add(BarPlugin);
+            .add(BarPlugin)
     }
 }
 
@@ -1847,9 +1872,10 @@ fn main() {
     fn disable_plugins() {
 // ANCHOR: plugin-groups-disable
 App::new()
-    .add_plugins_with(DefaultPlugins, |plugins| {
-        plugins.disable::<LogPlugin>()
-    })
+    .add_plugins(
+        DefaultPlugins.build()
+            .disable::<LogPlugin>()
+    )
     .run();
 // ANCHOR_END: plugin-groups-disable
     }
@@ -1967,7 +1993,7 @@ fn setup_platform_audio(world: &mut World) {
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(setup_platform_audio.exclusive_system())
+        .add_startup_system(setup_platform_audio)
         .run();
 }
 // ANCHOR_END: insert-nonsend
@@ -2012,13 +2038,12 @@ fn main() {
         .add_plugins(DefaultPlugins)
 
         // this will run at the start of CoreStage::Update (the default stage)
-        .add_system(do_crazy_things.exclusive_system())
+        .add_system(do_crazy_things)
 
         // this will run at the end of CoreStage::PostUpdate
         .add_system_to_stage(
             CoreStage::PostUpdate,
             some_more_things
-                .exclusive_system()
                 .at_end()
         )
 
@@ -2111,7 +2136,6 @@ pub fn _main_all() {
     App::new()
         .add_startup_system(debug_start)
         .add_startup_system(load_ui_font)
-        .add_startup_system(asset_watch)
         .add_startup_system(load_extra_assets)
         .add_startup_system(spawn_gltf)
         .add_startup_system(load_gltf)
@@ -2138,7 +2162,7 @@ pub fn _main_all() {
         .add_system(my_system1)
         .add_system(my_system2)
         .add_system(complex_system)
-        .add_system(spawn_player)
+        .add_system(spawn_things)
         .add_system(close_menu)
         .add_system(make_all_players_hostile)
         .add_system(use_sprites)

@@ -3,16 +3,18 @@ use bevy::prelude::*;
 
 // ANCHOR: example
 fn print_resources(archetypes: &Archetypes, components: &Components) {
-    let mut r: Vec<_> = archetypes
-        .resource()
-        .components()
-        .map(|id| components.get_info(id).unwrap())
-        .map(|info| info.name())
-        .collect();
+    // TODO FIX THIS WHEN BEVY 0.9.1 IS RELEASED
 
-    // sort list alphebetically
-    r.sort();
-    r.iter().for_each(|name| println!("{}", name));
+    // let mut r: Vec<_> = archetypes
+    //     .resource()
+    //     .components()
+    //     .map(|id| components.get_info(id).unwrap())
+    //     .map(|info| info.name())
+    //     .collect();
+
+    // // sort list alphebetically
+    // r.sort();
+    // r.iter().for_each(|name| println!("{}", name));
 }
 // ANCHOR_END: example
 

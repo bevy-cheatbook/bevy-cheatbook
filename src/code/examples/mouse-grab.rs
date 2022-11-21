@@ -1,6 +1,8 @@
 use bevy::prelude::*;
 
 // ANCHOR: example
+use bevy::window::CursorGrabMode;
+
 fn cursor_grab_system(
     mut windows: ResMut<Windows>,
     btn: Res<Input<MouseButton>>,
@@ -9,12 +11,19 @@ fn cursor_grab_system(
     let window = windows.get_primary_mut().unwrap();
 
     if btn.just_pressed(MouseButton::Left) {
-        window.set_cursor_lock_mode(true);
+        // if you want to use the cursor, but not let it leave the window,
+        // use `Confined` mode:
+        window.set_cursor_grab_mode(CursorGrabMode::Confined);
+
+        // for a game that doesn't use the cursor (like a shooter):
+        // use `Locked` mode to keep the cursor in one place
+        window.set_cursor_grab_mode(CursorGrabMode::Locked);
+        // also hide the cursor
         window.set_cursor_visibility(false);
     }
 
     if key.just_pressed(KeyCode::Escape) {
-        window.set_cursor_lock_mode(false);
+        window.set_cursor_grab_mode(CursorGrabMode::None);
         window.set_cursor_visibility(true);
     }
 }
