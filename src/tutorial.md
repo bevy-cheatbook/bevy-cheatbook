@@ -53,7 +53,7 @@ quickly need to learn more.
    - [Queries][cb::query]
    - [Commands][cb::commands]
    - [Events][cb::event]
- - [Bevy Game Engine Core][chapter::features]:
+ - [General Game Engine Features][chapter::features]:
    Basic features of Bevy, needed for making any game
    - [Coordinate System][cb::coords]
    - [Transforms][cb::transform]
@@ -84,10 +84,10 @@ can familiarize yourself with these, to become a proficient Bevy user.
    - [Plugins][cb::plugin]
    - [Labels][cb::label]
    - [States][cb::state]
+   - [Stages][cb::stage]
    - [Change Detection][cb::change-detection]
    - [Removal Detection][cb::removal-detection]
    - [Param Sets][cb::paramset]
-   - [Stages][cb::stage]
  - [Programming Patterns][chapter::patterns]
    - [Generic Systems][cb::system-generic]
    - [Component Storage][cb::component-storage]

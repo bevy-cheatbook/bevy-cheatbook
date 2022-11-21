@@ -18,7 +18,7 @@ Thanks to everyone who has submitted [GitHub issues][project::cb::issues] with s
 
 ---
 
-Big thanks to all [sponsors]! ❤️ You all are making this pay off, literally!
+Big thanks to all [sponsors]! ❤️ 
 
 Thanks to you, I can actually keep working on this book, improving and maintaining it!
 
