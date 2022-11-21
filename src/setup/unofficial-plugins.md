@@ -135,16 +135,8 @@ for navigation (moving between buttons and other focusable UI elements):
 
 Bevy can integrate with the [Rapier physics engine][project::rapier].
 
-There are two plugins you can choose from:
-
-  - [`heron`][project::heron]
-    - Idiomatic to Bevy. Nice user-friendly integration and workflow.
-    - Likely to be easier to use and more intuitive than `bevy_rapier`.
-    - May have more limited functionality.
-  - [`bevy_rapier`][project::bevy_rapier]
-    - This is a "raw" plugin that gives you direct access to Rapier.
-    - Gives you the most control, but may be harder to use and not idiomatic-Bevy.
-    - You will probably need to read a lot of documentation, harder to learn.
+Use the [`bevy_rapier`][project::bevy_rapier] plugin. It provides a nice API to
+bridge between Bevy and Rapier.
 
 ### Animation
 
