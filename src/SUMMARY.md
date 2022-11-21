@@ -94,7 +94,7 @@
   - [Stages](./programming/stages.md)
   - [Removal Detection](./programming/removal-detection.md)
   - [ParamSet](./programming/paramset.md)
-  - [System Chaining](./programming/system-chaining.md)
+  - [System Piping](./programming/system-piping.md)
   - [Direct ECS World Access](./programming/world.md)
   - [Exclusive Systems](./programming/exclusive.md)
   - [[WIP] Sub-Apps](./programming/sub-apps.md)

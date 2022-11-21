@@ -103,7 +103,7 @@ typical Bevy users are unlikely to need to know these.
 
  - [Bevy Programming Framework][chapter::programming]
    - [Run Criteria][cb::runcriteria]
-   - [System Chaining][cb::system-chain]
+   - [System Piping][cb::system-pipe]
    - [Direct World Access][cb::world]
    - [Exclusive Systems][cb::exclusive]
    - [Non-Send][cb::nonsend]

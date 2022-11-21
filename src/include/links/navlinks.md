@@ -96,7 +96,7 @@
 [cb::stage]: /programming/stages.md
 [cb::state]: /programming/states.md
 [cb::subapp]: /programming/sub-apps.md
-[cb::system-chain]: /programming/system-chaining.md
+[cb::system-pipe]: /programming/system-piping.md
 [cb::system-generic]: /patterns/generic-systems.md
 [cb::system-label]: /programming/system-order.md#labels
 [cb::system-order]: /programming/system-order.md
