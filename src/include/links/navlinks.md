@@ -148,7 +148,6 @@
 [pitfall::perf]: /pitfalls/performance.md
 [pitfall::time]: /pitfalls/time.md
 [pitfall::ui-camera]: /pitfalls/ui-camera.md
-[pitfall::ui-y-up]: /pitfalls/ui-y-up.md
 [platform::linux]: /platforms/linux.md
 [platform::macos]: /platforms/macos.md
 [platform::wasm]: /platforms/wasm.md

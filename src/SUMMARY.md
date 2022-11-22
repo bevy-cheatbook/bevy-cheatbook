@@ -29,7 +29,6 @@
   - [3D objects not displaying](./pitfalls/3d-not-rendering.md)
   - [Borrow multiple fields from struct](./pitfalls/split-borrows.md)
   - [Jittering Time (choppy movement/animation)](./pitfalls/time.md)
-  - [UI layout is inverted](./pitfalls/ui-y-up.md)
   - [Textures/Images are flipped](./pitfalls/uv-coordinates.md)
 
 - [General Game Engine Features](./features.md)
