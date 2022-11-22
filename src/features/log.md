@@ -48,15 +48,11 @@ trace!("entity transform: {:?}", transform);
 
 ## Filtering messages
 
-To control what messages you would like to see, you can
-use the [`LogSettings`][bevy::LogSettings] [configuration
-resource][builtins::res-config].
+To control what messages you would like to see, you can configure Bevy's
+[`LogPlugin`][bevy::LogPlugin]:
 
 ```rust
-app.insert_resource(LogSettings {
-    filter: "info,wgpu_core=warn,wgpu_hal=warn,mygame=debug".into(),
-    level: bevy::log::Level::DEBUG,
-});
+{{#include ../code/examples/log-settings.rs:log-settings}}
 ```
 
 The `filter` field is a string specifying a list of rules for what level to
@@ -89,26 +85,14 @@ RUST_LOG="debug" cargo run
 
 will cause your console to also be filled with debug messages from `cargo`.
 
-### Different LogSettings for debug and release builds
+### Different settings for debug and release builds
 
 If you want to do different things in your Rust code for debug/release
 builds, an easy way to achieve it is using conditional compilation on
 "debug assertions".
 
 ```rust
-// this code is compiled only if debug assertions are enabled (debug mode)
-#![cfg(debug_assertions)]
-app.insert_resource(LogSettings {
-    filter: "info,wgpu_core=warn,wgpu_hal=warn,minewars=debug".into(),
-    level: bevy::log::Level::DEBUG,
-});
-
-// this code is compiled only if debug assertions are disabled (release mode)
-#![cfg(not(debug_assertions))]
-app.insert_resource(LogSettings {
-    filter: "warn".into(),
-    level: bevy::log::Level::WARN,
-});
+{{#include ../code/examples/log-settings.rs:log-settings-debugrelease}}
 ```
 
 This is a good reason why [you should not use release mode during development
