@@ -7,47 +7,35 @@ use bevy::render::camera::RenderTarget;
 struct MainCamera;
 
 fn setup(mut commands: Commands) {
-    commands.spawn((
-        Camera2dBundle::default(),
-        MainCamera,
-    ));
+    commands.spawn((Camera2dBundle::default(), MainCamera));
 }
 
 fn my_cursor_system(
     // need to get window dimensions
-    wnds: Res<Windows>,
+    windows: Res<Windows>,
     // query to get camera transform
-    q_camera: Query<(&Camera, &GlobalTransform), With<MainCamera>>
+    camera_q: Query<(&Camera, &GlobalTransform), With<MainCamera>>,
 ) {
     // get the camera info and transform
     // assuming there is exactly one main camera entity, so query::single() is OK
-    let (camera, camera_transform) = q_camera.single();
+    let (camera, camera_transform) = camera_q.single();
 
     // get the window that the camera is displaying to (or the primary window)
-    let wnd = if let RenderTarget::Window(id) = camera.target {
-        wnds.get(id).unwrap()
+    let window = if let RenderTarget::Window(id) = camera.target {
+        windows.get(id).unwrap()
     } else {
-        wnds.get_primary().unwrap()
+        windows.get_primary().unwrap()
     };
 
     // check if the cursor is inside the window and get its position
-    if let Some(screen_pos) = wnd.cursor_position() {
-        // get the size of the window
-        let window_size = Vec2::new(wnd.width() as f32, wnd.height() as f32);
+    if let Some(screen_position) = window.cursor_position() {
+        // check if it is possible to create a ray from screen coordinates to world coordinates
+        if let Some(ray) = camera.viewport_to_world(camera_transform, screen_position) {
+            // get 2d world mouse coordinates from the ray
+            let world_position: Vec2 = ray.origin.truncate();
 
-        // convert screen position [0..resolution] to ndc [-1..1] (gpu coordinates)
-        let ndc = (screen_pos / window_size) * 2.0 - Vec2::ONE;
-
-        // matrix for undoing the projection and camera transform
-        let ndc_to_world = camera_transform.compute_matrix() * camera.projection_matrix().inverse();
-
-        // use it to convert ndc to world-space coordinates
-        let world_pos = ndc_to_world.project_point3(ndc.extend(-1.0));
-
-        // reduce it to a 2D value
-        let world_pos: Vec2 = world_pos.truncate();
-
-        eprintln!("World coords: {}/{}", world_pos.x, world_pos.y);
+            eprintln!("World coords: {}/{}", world_position.x, world_position.y);
+        }
     }
 }
 // ANCHOR_END: example
