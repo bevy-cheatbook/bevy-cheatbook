@@ -19,6 +19,7 @@
 [bevy::Audio]: https://docs.rs/bevy/0.9.0/bevy/audio/struct.Audio.html
 [bevy::AxisSettings]: https://docs.rs/bevy/0.9.0/bevy/input/gamepad/struct.AxisSettings.html
 [bevy::Axis]: https://docs.rs/bevy/0.9.0/bevy/input/struct.Axis.html
+[bevy::BackgroundColor]: https://docs.rs/bevy/0.9.0/bevy/ui/struct.BackgroundColor.html
 [bevy::Bundle]: https://docs.rs/bevy/0.9.0/bevy/ecs/bundle/trait.Bundle.html
 [bevy::Bundles]: https://docs.rs/bevy/0.9.0/bevy/ecs/bundle/struct.Bundles.html
 [bevy::ButtonBundle]: https://docs.rs/bevy/0.9.0/bevy/ui/node_bundles/struct.ButtonBundle.html
@@ -127,6 +128,7 @@
 [bevy::RequestRedraw]: https://docs.rs/bevy/0.9.0/bevy/window/struct.RequestRedraw.html
 [bevy::ResMut]: https://docs.rs/bevy/0.9.0/bevy/ecs/system/struct.ResMut.html
 [bevy::Res]: https://docs.rs/bevy/0.9.0/bevy/ecs/system/struct.Res.html
+[bevy::Resource]: https://docs.rs/bevy/0.9.0/bevy/ecs/system/trait.Resource.html
 [bevy::SamplerDescriptor]: https://docs.rs/bevy/0.9.0/bevy/render/render_resource/struct.SamplerDescriptor.html
 [bevy::SceneBundle]: https://docs.rs/bevy/0.9.0/bevy/scene/struct.SceneBundle.html
 [bevy::SceneSpawner]: https://docs.rs/bevy/0.9.0/bevy/scene/struct.SceneSpawner.html
@@ -166,7 +168,6 @@
 [bevy::Transform]: https://docs.rs/bevy/0.9.0/bevy/transform/components/struct.Transform.html
 [bevy::TypeRegistryArc]: https://docs.rs/bevy/0.9.0/bevy/reflect/struct.TypeRegistryArc.html
 [bevy::UiCameraConfig]: https://docs.rs/bevy/0.9.0/bevy/ui/camera_config/struct.UiCameraConfig.html
-[bevy::BackgroundColor]: https://docs.rs/bevy/0.9.0/bevy/ui/struct.BackgroundColor.html
 [bevy::UiImage]: https://docs.rs/bevy/0.9.0/bevy/ui/struct.UiImage.html
 [bevy::VisibilityBundle]: https://docs.rs/bevy/0.9.0/bevy/render/view/visibility/struct.VisibilityBundle.html
 [bevy::VisibilitySystems]: https://docs.rs/bevy/0.9.0/bevy/render/view/visibility/enum.VisibilitySystems.html
