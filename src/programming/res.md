@@ -13,9 +13,9 @@ independently of entities.
 Use them for data that is truly global for your app, such as configuration
 / settings.
 
-Any Rust type (`struct` or `enum`) can be used as a resource. Currently,
-no special trait or derive is required, but that may change in future Bevy
-versions (similar to how [Components][cb::component] require it).
+To create a new resource type, simply define a Rust `struct` or `enum`, and
+derive the [`Resource`][bevy::Resource] trait, similar to
+[components][cb::component].
 
 Types must be unique; there can only be one instance of a given type.
 
