@@ -41,7 +41,7 @@ also check the [Bevy Assets][bevyassets] page to find even more things. :)
 ### Code Helpers
 
 [`bevy_asset_loader`][project::bevy_asset_loader] is a more flexible and
-opinionated helper for managing and loading [assets][cb::assets]. Uses custom
+opinionated helper for managing and loading [assets][cb::asset]. Uses custom
 syntax to let you declare your assets more conveniently. It can track loading
 progress and perform a state transition for you.
 
@@ -77,27 +77,32 @@ See [this page][cb::audio] for help on how to set it up.
 
 ### Camera
 
-[`bevy_config_cam`][project::bevy_config_cam] is a nice plugin for easily
-adding camera controls to your Bevy 3D project. It gives you a a choice
-of various common camera behaviors (like follow, top-view, FPS-style,
-free-roaming).
+[`smooth-bevy-cameras`][project::smooth-bevy-cameras] is a nice plugin for easily
+adding camera controls to your Bevy 3D project.
 
-Cameras are something that can be very game-specific. As you progress with
-your project, you would probably want to implement your own custom camera
-control logic for your game. However, this plugin is amazing when you are
-starting out on a new project.
+Cameras are something that can be very game-specific. As you progress with your
+project, you would probably want to implement your own custom camera control
+logic for your game. However, this plugin can be useful when you are starting
+out on a new project.
+
+## Graphics
+
+If you need particle effects, try [`bevy_hanabi`][project::bevy_hanabi].
+
+Experimental 3D Path Traced Global Illumination: [`bevy_hikari`][project::bevy_hikari].
 
 ### Tilemap
 
-If you are making a 2D game based on a tile-map, there are plugins to
-help do it efficiently with high performance. It is better to use one
-of these plugins, instead of just spawning lots of individual Bevy
-sprites for each tile.
+If you are making a 2D game based on a tile-map, there are plugins to help do it
+efficiently with high performance. It is much better than just spawning lots of
+individual Bevy sprites for each tile.
 
 [`bevy_ecs_tilemap`][project::bevy_ecs_tilemap]:
   - Uses one ECS Entity per tile, lets you work with the tilemap in an ECS-idiomatic way.
   - Efficient rendering, using techniques like texture arrays, chunks, morton encoding, …
   - Lots of features: Square/Hexagon/Isometric grids, animation, layers, chunks, …
+
+### 2D Maps / Levels
 
 [`bevy_ecs_ldtk`][project::bevy_ecs_ldtk] implements loading of entire
 maps/levels created with the [LDTK editor][project::ldtk], into Bevy. Based on
@@ -106,6 +111,8 @@ maps/levels created with the [LDTK editor][project::ldtk], into Bevy. Based on
 ### Shapes / Vector Graphics / Canvas
 
 If you want to draw 2D shapes, use the [`bevy_prototype_lyon`][project::bevy_prototype_lyon] plugin.
+
+For SDFs (signed-distance-functions), see [`bevy_smud`][project::bevy_smud].
 
 ### Game AI
 
