@@ -65,6 +65,7 @@
 [cb::queryset]: /programming/paramset.md
 [cb::quit]: /programming/quit.md
 [cb::removal-detection]: /programming/removal-detection.md
+[cb::render-architecture]: /gpu/intro.md
 [cb::render::asset]: /TODO.md
 [cb::render::bindgroup]: /TODO.md
 [cb::render::buffer]: /TODO.md

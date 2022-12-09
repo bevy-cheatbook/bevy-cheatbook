@@ -4,6 +4,7 @@
 [bevy::AnimationClip]: https://docs.rs/bevy/0.9.1/bevy/animation/struct.AnimationClip.html
 [bevy::AnimationPlayer]: https://docs.rs/bevy/0.9.1/bevy/animation/struct.AnimationPlayer.html
 [bevy::AppExit]: https://docs.rs/bevy/0.9.1/bevy/app/struct.AppExit.html
+[bevy::AppTypeRegistry]: https://docs.rs/bevy/0.9.1/bevy/app/struct.AppTypeRegistry.html
 [bevy::App]: https://docs.rs/bevy/0.9.1/bevy/app/struct.App.html
 [bevy::Archetypes]: https://docs.rs/bevy/0.9.1/bevy/ecs/archetype/struct.Archetypes.html
 [bevy::AssetEvent]: https://docs.rs/bevy/0.9.1/bevy/asset/enum.AssetEvent.html
@@ -47,6 +48,7 @@
 [bevy::CursorEntered]: https://docs.rs/bevy/0.9.1/bevy/window/struct.CursorEntered.html
 [bevy::CursorLeft]: https://docs.rs/bevy/0.9.1/bevy/window/struct.CursorLeft.html
 [bevy::CursorMoved]: https://docs.rs/bevy/0.9.1/bevy/window/struct.CursorMoved.html
+[bevy::DefaultImageSampler]: https://docs.rs/bevy/0.9.1/bevy/render/texture/struct.DefaultImageSampler.html
 [bevy::DefaultPlugins]: https://docs.rs/bevy/0.9.1/bevy/struct.DefaultPlugins.html
 [bevy::Diagnostics]: https://docs.rs/bevy/0.9.1/bevy/diagnostic/struct.Diagnostics.html
 [bevy::DirectionalLightBundle]: https://docs.rs/bevy/0.9.1/bevy/pbr/struct.DirectionalLightBundle.html
@@ -60,11 +62,13 @@
 [bevy::Events]: https://docs.rs/bevy/0.9.1/bevy/ecs/event/struct.Events.html
 [bevy::Extract]: https://docs.rs/bevy/0.9.1/bevy/render/struct.Extract.html
 [bevy::ExtractedSprite]: https://docs.rs/bevy/0.9.1/bevy/sprite/struct.ExtractedSprite.html
+[bevy::FallbackImage]: https://docs.rs/bevy/0.9.1/bevy/render/texture/struct.FallbackImage.html
 [bevy::FileDragAndDrop]: https://docs.rs/bevy/0.9.1/bevy/window/enum.FileDragAndDrop.html
 [bevy::FixedTimestep]: https://docs.rs/bevy/0.9.1/bevy/time/struct.FixedTimestep.html
 [bevy::FixedTimesteps]: https://docs.rs/bevy/0.9.1/bevy/time/struct.FixedTimesteps.html
 [bevy::FontAtlasSet]: https://docs.rs/bevy/0.9.1/bevy/text/struct.FontAtlasSet.html
 [bevy::Font]: https://docs.rs/bevy/0.9.1/bevy/text/struct.Font.html
+[bevy::FrameCount]: https://docs.rs/bevy/0.9.1/bevy/core/struct.FrameCount.html
 [bevy::FromWorld]: https://docs.rs/bevy/0.9.1/bevy/ecs/world/trait.FromWorld.html
 [bevy::GamepadAxis]: https://docs.rs/bevy/0.9.1/bevy/input/gamepad/struct.GamepadAxis.html
 [bevy::GamepadButton]: https://docs.rs/bevy/0.9.1/bevy/input/gamepad/struct.GamepadButton.html
@@ -81,6 +85,7 @@
 [bevy::HandleId]: https://docs.rs/bevy/0.9.1/bevy/asset/enum.HandleId.html
 [bevy::HandleUntyped]: https://docs.rs/bevy/0.9.1/bevy/asset/struct.HandleUntyped.html
 [bevy::Handle]: https://docs.rs/bevy/0.9.1/bevy/asset/struct.Handle.html
+[bevy::HierarchyEvent]: https://docs.rs/bevy/0.9.1/bevy/hierarchy/enum.HierarchyEvent.html
 [bevy::ImageBundle]: https://docs.rs/bevy/0.9.1/bevy/ui/node_bundles/struct.ImageBundle.html
 [bevy::Image]: https://docs.rs/bevy/0.9.1/bevy/render/texture/struct.Image.html
 [bevy::Input]: https://docs.rs/bevy/0.9.1/bevy/input/struct.Input.html
@@ -105,6 +110,7 @@
 [bevy::NoFrustumCulling]: https://docs.rs/bevy/0.9.1/bevy/render/view/visibility/struct.NoFrustumCulling.html
 [bevy::NodeBundle]: https://docs.rs/bevy/0.9.1/bevy/ui/node_bundles/struct.NodeBundle.html
 [bevy::Node]: https://docs.rs/bevy/0.9.1/bevy/ui/struct.Node.html
+[bevy::NonSendMarker]: https://docs.rs/bevy/0.9.1/bevy/render/view/struct.NonSendMarker.html
 [bevy::NonSendMut]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.NonSendMut.html
 [bevy::NonSend]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.NonSend.html
 [bevy::NotShadowCaster]: https://docs.rs/bevy/0.9.1/bevy/pbr/struct.NotShadowCaster.html
@@ -115,14 +121,21 @@
 [bevy::Parent]: https://docs.rs/bevy/0.9.1/bevy/hierarchy/struct.Parent.html
 [bevy::PbrBundle]: https://docs.rs/bevy/0.9.1/bevy/pbr/type.PbrBundle.html
 [bevy::PerspectiveProjection]: https://docs.rs/bevy/0.9.1/bevy/render/camera/struct.PerspectiveProjection.html
+[bevy::PipelineCache]: https://docs.rs/bevy/0.9.1/bevy/render/render_resource/struct.PipelineCache.html
 [bevy::PluginGroup]: https://docs.rs/bevy/0.9.1/bevy/app/trait.PluginGroup.html
 [bevy::Plugin]: https://docs.rs/bevy/0.9.1/bevy/app/trait.Plugin.html
 [bevy::PointLightBundle]: https://docs.rs/bevy/0.9.1/bevy/pbr/struct.PointLightBundle.html
 [bevy::PointLight]: https://docs.rs/bevy/0.9.1/bevy/pbr/struct.PointLight.html
+[bevy::Projection]: https://docs.rs/bevy/0.9.1/bevy/render/camera/enum.Projection.html
+[bevy::QueryState]: https://docs.rs/bevy/0.9.1/bevy/ecs/query/struct.QueryState.html
 [bevy::Query]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.Query.html
 [bevy::ReceivedCharacter]: https://docs.rs/bevy/0.9.1/bevy/window/struct.ReceivedCharacter.html
 [bevy::RemovedComponents]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.RemovedComponents.html
+[bevy::RenderAdapterInfo]: https://docs.rs/bevy/0.9.1/bevy/render/renderer/struct.RenderAdapterInfo.html
+[bevy::RenderAdapter]: https://docs.rs/bevy/0.9.1/bevy/render/renderer/struct.RenderAdapter.html
+[bevy::RenderAssets]: https://docs.rs/bevy/0.9.1/bevy/render/render_asset/struct.RenderAssets.html
 [bevy::RenderDevice]: https://docs.rs/bevy/0.9.1/bevy/render/renderer/struct.RenderDevice.html
+[bevy::RenderGraph]: https://docs.rs/bevy/0.9.1/bevy/render/render_graph/struct.RenderGraph.html
 [bevy::RenderLayers]: https://docs.rs/bevy/0.9.1/bevy/render/view/visibility/struct.RenderLayers.html
 [bevy::RenderStage]: https://docs.rs/bevy/0.9.1/bevy/render/enum.RenderStage.html
 [bevy::RequestRedraw]: https://docs.rs/bevy/0.9.1/bevy/window/struct.RequestRedraw.html
@@ -146,9 +159,11 @@
 [bevy::StandardMaterial]: https://docs.rs/bevy/0.9.1/bevy/pbr/struct.StandardMaterial.html
 [bevy::StartupStage]: https://docs.rs/bevy/0.9.1/bevy/app/enum.StartupStage.html
 [bevy::State]: https://docs.rs/bevy/0.9.1/bevy/ecs/schedule/struct.State.html
+[bevy::StaticSystemParam]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.StaticSystemParam.html
 [bevy::Stopwatch]: https://docs.rs/bevy/0.9.1/bevy/time/struct.Stopwatch.html
 [bevy::Style]: https://docs.rs/bevy/0.9.1/bevy/ui/struct.Style.html
 [bevy::SystemChangeTick]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.SystemChangeTick.html
+[bevy::SystemName]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.SystemName.html
 [bevy::SystemSet]: https://docs.rs/bevy/0.9.1/bevy/ecs/schedule/struct.SystemSet.html
 [bevy::SystemStage]: https://docs.rs/bevy/0.9.1/bevy/ecs/schedule/struct.SystemStage.html
 [bevy::SystemState]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.SystemState.html
@@ -157,6 +172,7 @@
 [bevy::Text]: https://docs.rs/bevy/0.9.1/bevy/text/struct.Text.html
 [bevy::TextureAtlasSprite]: https://docs.rs/bevy/0.9.1/bevy/sprite/struct.TextureAtlasSprite.html
 [bevy::TextureAtlas]: https://docs.rs/bevy/0.9.1/bevy/sprite/struct.TextureAtlas.html
+[bevy::TextureCache]: https://docs.rs/bevy/0.9.1/bevy/render/texture/struct.TextureCache.html
 [bevy::Time]: https://docs.rs/bevy/0.9.1/bevy/time/struct.Time.html
 [bevy::Timer]: https://docs.rs/bevy/0.9.1/bevy/time/struct.Timer.html
 [bevy::TouchInput]: https://docs.rs/bevy/0.9.1/bevy/input/touch/struct.TouchInput.html
@@ -166,7 +182,6 @@
 [bevy::TransformBundle]: https://docs.rs/bevy/0.9.1/bevy/transform/struct.TransformBundle.html
 [bevy::TransformSystem]: https://docs.rs/bevy/0.9.1/bevy/transform/enum.TransformSystem.html
 [bevy::Transform]: https://docs.rs/bevy/0.9.1/bevy/transform/components/struct.Transform.html
-[bevy::TypeRegistryArc]: https://docs.rs/bevy/0.9.1/bevy/reflect/struct.TypeRegistryArc.html
 [bevy::UiCameraConfig]: https://docs.rs/bevy/0.9.1/bevy/ui/camera_config/struct.UiCameraConfig.html
 [bevy::UiImage]: https://docs.rs/bevy/0.9.1/bevy/ui/struct.UiImage.html
 [bevy::VisibilityBundle]: https://docs.rs/bevy/0.9.1/bevy/render/view/visibility/struct.VisibilityBundle.html

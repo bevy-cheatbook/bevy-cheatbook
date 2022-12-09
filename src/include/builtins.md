@@ -1,61 +1,3 @@
-[]:#(ANCHOR: bundles)
-
-[(List in API Docs)][bevy::impl::Bundle]
-
-Any tuples of up to 15 [`Component`][bevy::Component] types are valid bundles.
-
-General:
- - [`SpatialBundle`][bevy::SpatialBundle]:
-   Contains the required [transform][cb::transform] and [visibility][cb::visibility]
-   components that must be included on *all* entities that need rendering or [hierarchy][cb::hierarchy]
- - [`TransformBundle`][bevy::TransformBundle]:
-   Contains only the transform types, subset of `SpatialBundle`
- - [`VisibilityBundle`][bevy::VisibilityBundle]:
-   Contains only the visibility types, subset of `SpatialBundle`
-
-Scenes:
- - [`SceneBundle`][bevy::SceneBundle]:
-   Used for spawning scenes
- - [`DynamicSceneBundle`][bevy::DynamicSceneBundle]:
-   Used for spawning dynamic scenes
-
-Bevy 3D:
- - [`Camera3dBundle`][bevy::Camera3dBundle]:
-   3D camera, can use perspective (default) or orthographic projection
- - [`MaterialMeshBundle`][bevy::MaterialMeshBundle]:
-   3D Object/Primitive: a Mesh and the Material to draw it with
- - [`PbrBundle`][bevy::PbrBundle]:
-   3D object with the standard Physically-Based Material (`MaterialMeshBundle<StandardMaterial>`)
- - [`DirectionalLightBundle`][bevy::DirectionalLightBundle]: 
-   3D directional light (like the sun)
- - [`PointLightBundle`][bevy::PointLightBundle]: 
-   3D point light (like a lamp or candle)
- - [`SpotLightBundle`][bevy::SpotLightBundle]: 
-   3D spot light (like a projector or flashlight)
-
-Bevy 2D:
- - [`Camera2dBundle`][bevy::Camera2dBundle]:
-   2D camera, uses orthographic projection + other special configuration for 2D
- - [`SpriteBundle`][bevy::SpriteBundle]: 
-   2D sprite, using a whole image ([`Image`][bevy::Image] asset)
- - [`SpriteSheetBundle`][bevy::SpriteSheetBundle]:
-   2D sprite, using a sub-rectangle in a larger image ([`TextureAtlas`][bevy::TextureAtlas] asset)
- - [`MaterialMesh2dBundle`][bevy::MaterialMesh2dBundle]:
-   2D shape, with custom Mesh and Material (similar to 3D objects)
- - [`Text2dBundle`][bevy::Text2dBundle]:
-   Text to be drawn in the 2D world (not the UI)
-
-Bevy UI:
- - [`NodeBundle`][bevy::NodeBundle]:
-   Empty node element (like HTML `<div>`)
- - [`ButtonBundle`][bevy::ButtonBundle]:
-   Button element
- - [`ImageBundle`][bevy::ImageBundle]:
-   Image element
- - [`TextBundle`][bevy::TextBundle]:
-   Text element
-[]:#(ANCHOR_END: bundles)
-
 []:#(ANCHOR: assets)
  - [`Image`][bevy::Image]:
    Pixel data, used as a texture for 2D and 3D rendering;
@@ -127,11 +69,11 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
 
 Shader formats (loaded as [`Shader`][bevy::Shader] assets):
 
-|Format|Cargo feature|Default?|Filename extensions|
-|------|-------------|--------|-------------------|
-|SPIR-V|n/a          |Yes     |`.spv`             |
-|WGSL  |n/a          |Yes     |`.wgsl`            |
-|GLSL  |n/a          |Yes     |`.vert`, `.frag`   |
+|Format|Cargo feature|Default?|Filename extensions      |
+|------|-------------|--------|-------------------------|
+|SPIR-V|n/a          |Yes     |`.spv`                   |
+|WGSL  |n/a          |Yes     |`.wgsl`                  |
+|GLSL  |n/a          |Yes     |`.vert`, `.frag`, `.comp`|
 
 Font formats (loaded as [`Font`][bevy::Font] assets):
 
@@ -140,21 +82,86 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
 |TrueType|n/a          |Yes     |`.ttf`             |
 |OpenType|n/a          |Yes     |`.otf`             |
 
+Bevy Scenes:
+
+|Format              |Filename extensions|
+|--------------------|-------------------|
+|RON-serialized scene|`.scn`,`.scn.ron`  |
+
 []:#(ANCHOR_END: file-formats)
 
+[]:#(ANCHOR: wgpu-backends)
+[`wgpu`][project::wgpu] (and hence Bevy) supports the following backends for each platform:
+ - Vulkan (Linux/Windows/Android)
+ - DirectX 12 (Windows)
+ - Metal (Apple)
+ - WebGL2 (Web)
+ - WebGPU (Web; experimental)
+ - GLES3 (Linux/Android; legacy)
+ - DirectX 11 (Windows; legacy; WIP (not yet ready for use))
+[]:#(ANCHOR_END: wgpu-backends)
+
+[]:#(ANCHOR: bundles)
+
+[(List in API Docs)][bevy::impl::Bundle]
+
+Any tuples of up to 15 [`Component`][bevy::Component] types are valid bundles.
+
+General:
+ - [`SpatialBundle`][bevy::SpatialBundle]:
+   Contains the required [transform][cb::transform] and [visibility][cb::visibility]
+   components that must be included on *all* entities that need rendering or [hierarchy][cb::hierarchy]
+ - [`TransformBundle`][bevy::TransformBundle]:
+   Contains only the transform types, subset of `SpatialBundle`
+ - [`VisibilityBundle`][bevy::VisibilityBundle]:
+   Contains only the visibility types, subset of `SpatialBundle`
+
+Scenes:
+ - [`SceneBundle`][bevy::SceneBundle]:
+   Used for spawning scenes
+ - [`DynamicSceneBundle`][bevy::DynamicSceneBundle]:
+   Used for spawning dynamic scenes
+
+Bevy 3D:
+ - [`Camera3dBundle`][bevy::Camera3dBundle]:
+   3D camera, can use perspective (default) or orthographic projection
+ - [`MaterialMeshBundle`][bevy::MaterialMeshBundle]:
+   3D Object/Primitive: a Mesh and the Material to draw it with
+ - [`PbrBundle`][bevy::PbrBundle]:
+   `MaterialMeshBundle` with the standard Physically-Based Material [`StandardMaterial`][bevy::StandardMaterial]
+ - [`DirectionalLightBundle`][bevy::DirectionalLightBundle]: 
+   3D directional light (like the sun)
+ - [`PointLightBundle`][bevy::PointLightBundle]: 
+   3D point light (like a lamp or candle)
+ - [`SpotLightBundle`][bevy::SpotLightBundle]: 
+   3D spot light (like a projector or flashlight)
+
+Bevy 2D:
+ - [`Camera2dBundle`][bevy::Camera2dBundle]:
+   2D camera, uses orthographic projection + other special configuration for 2D
+ - [`SpriteBundle`][bevy::SpriteBundle]: 
+   2D sprite ([`Image`][bevy::Image] asset type)
+ - [`SpriteSheetBundle`][bevy::SpriteSheetBundle]:
+   2D sprite ([`TextureAtlas`][bevy::TextureAtlas] asset type)
+ - [`MaterialMesh2dBundle`][bevy::MaterialMesh2dBundle]:
+   2D shape, with custom Mesh and Material (similar to 3D objects)
+ - [`Text2dBundle`][bevy::Text2dBundle]:
+   Text to be drawn in the 2D world (not the UI)
+
+Bevy UI:
+ - [`NodeBundle`][bevy::NodeBundle]:
+   Empty node element (like HTML `<div>`)
+ - [`ButtonBundle`][bevy::ButtonBundle]:
+   Button element
+ - [`ImageBundle`][bevy::ImageBundle]:
+   Image element
+ - [`TextBundle`][bevy::TextBundle]:
+   Text element
+[]:#(ANCHOR_END: bundles)
+
 []:#(ANCHOR: resources-config-init)
- - [`LogSettings`][bevy::LogSettings]:
-   Configure what messages get logged to the console
- - [`WindowDescriptor`][bevy::WindowDescriptor]:
-   Settings for the primary application window
  - [`WgpuSettings`][bevy::WgpuSettings]:
    Low-level settings for the GPU API and backends
- - [`AssetServerSettings`][bevy::AssetServerSettings]:
-   Configuration of the [`AssetServer`][bevy::AssetServer]
- - [`DefaultTaskPoolOptions`][bevy::DefaultTaskPoolOptions]:
-   Settings for the CPU task pools (multithreading)
- - [`WinitSettings`][bevy::WinitSettings]:
-   Settings for the OS Windowing backend, including update loop / power-management settings
 []:#(ANCHOR_END: resources-config-init)
 
 []:#(ANCHOR: resources-config)
@@ -164,23 +171,25 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    Global renderer "fake lighting", so that shadows don't look too dark / black
  - [`Msaa`][bevy::Msaa]:
    Global renderer setting for Multi-Sample Anti-Aliasing (some platforms might only support the values 1 and 4)
- - [`ImageSettings`][bevy::ImageSettings]:
- - Configure the default sampler settings (incl. texture filtering mode) for [`Image`][bevy::Image] assets
  - [`ClusterConfig`][bevy::ClusterConfig]:
    Configuration of the light clustering algorithm, affects the performance of 3D scenes with many lights
  - [`WireframeConfig`][bevy::WireframeConfig]:
    Global toggle to make everything be rendered as wireframe
  - [`GamepadSettings`][bevy::GamepadSettings]:
    Gamepad input device settings, like joystick deadzones and button sensitivities
+ - [`WinitSettings`][bevy::WinitSettings]:
+   Settings for the OS Windowing backend, including update loop / power-management settings
 []:#(ANCHOR_END: resources-config)
 
-[]:#(ANCHOR: resources-engine)
- - [`FixedTimesteps`][bevy::FixedTimesteps]:
-   The state of all registered [`FixedTimestep`][bevy::FixedTimestep] drivers
+[]:#(ANCHOR: resources-main)
  - [`Time`][bevy::Time]:
    Global time-related information (current frame delta time, time since startup, etc.)
  - [`AssetServer`][bevy::AssetServer]:
    Control the asset system: Load assets, check load status, etc.
+ - [`Assets<T>`][bevy::Assets]:
+   Contains the actual data of the loaded assets of a given type
+ - [`State<T>`][bevy::State]:
+   Control over [app states][cb::state]
  - [`Gamepads`][bevy::Gamepads]:
    List of IDs for all currently-detected (connected) gamepad devices
  - [`Windows`][bevy::Windows]:
@@ -189,23 +198,54 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    Raw state of the `winit` backend for each window
  - [`Audio`][bevy::Audio]:
    Use this to play sounds via `bevy_audio`
+ - [`SceneSpawner`][bevy::SceneSpawner]:
+   Direct control over spawning Scenes into the main app World
+ - [`AppTypeRegistry`][bevy::AppTypeRegistry]:
+   Access to the Reflection Type Registry
+ - [`FixedTimesteps`][bevy::FixedTimesteps]:
+   The state of all registered [`FixedTimestep`][bevy::FixedTimestep] drivers
  - [`AsyncComputeTaskPool`][bevy::AsyncComputeTaskPool]:
    Task pool for running background CPU tasks
  - [`ComputeTaskPool`][bevy::ComputeTaskPool]:
    Task pool where the main app schedule (all the systems) runs
  - [`IoTaskPool`][bevy::IoTaskPool]:
    Task pool where background i/o tasks run (like asset loading)
+ - [`FrameCount`][bevy::FrameCount]:
+   Global time-related information (current frame delta time, time since startup, etc.)
  - [`Diagnostics`][bevy::Diagnostics]:
    Diagnostic data collected by the engine (like frame times)
- - [`SceneSpawner`][bevy::SceneSpawner]:
-   Direct control over spawning Scenes into the main app World
- - [`TypeRegistryArc`][bevy::TypeRegistryArc]:
-   Access to the Reflection Type Registry
+ - [`NonSendMarker`][bevy::NonSendMarker]:
+   Dummy resource to ensure a system always runs on the main thread
+[]:#(ANCHOR_END: resources-main)
+
+[]:#(ANCHOR: resources-wgpu)
  - [`RenderDevice`][bevy::RenderDevice]:
-   The GPU used for rendering; use this for direct lowlevel access to `wgpu` APIs from the main World
- - [`AdapterInfo`][bevy::AdapterInfo]:
+   The GPU device, used for creating hardware resources for rendering/compute
+ - [`RenderQueue`][bevy::RenderDevice]:
+   The GPU queue for submitting work to the hardware
+ - [`RenderAdapter`][bevy::RenderAdapter]:
+   Handle to the physical GPU hardware
+ - [`RenderAdapterInfo`][bevy::RenderAdapterInfo]:
    Information about the GPU hardware that Bevy is running on
-[]:#(ANCHOR_END: resources-engine)
+[]:#(ANCHOR_END: resources-wgpu)
+
+[]:#(ANCHOR: resources-render)
+ - [`RenderGraph`][bevy::RenderGraph]:
+   [The Bevy Render Graph][cb::render::graph]
+ - [`PipelineCache`][bevy::PipelineCache]:
+   Bevy's manager of render pipelines. Used to store render pipelines used by the app, to avoid
+   recreating them more than once.
+ - [`TextureCache`][bevy::TextureCache]:
+   Bevy's manager of temporary textures. Useful when you need textures to use internally
+   during rendering.
+ - [`RenderAssets<T>`][bevy::RenderAssets]:
+   Contains handles to the GPU representations of currently loaded asset data
+ - [`DefaultImageSampler`][bevy::DefaultImageSampler]:
+   The default sampler for [`Image`][bevy::Image] asset textures
+ - [`FallbackImage`][bevy::FallbackImage]:
+   Dummy 1x1 pixel white texture. Useful for shaders that normally need a texture, when
+   you don't have one available.
+[]:#(ANCHOR_END: resources-render)
 
 []:#(ANCHOR: resources-input)
  - [`Input<KeyCode>`][bevy::KeyCode]:
@@ -220,6 +260,8 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    Gamepad buttons, represented as an analog [Axis][bevy::Axis] value
  - [`Touches`][bevy::Touches]:
    The state of all fingers currently touching the touchscreen
+ - [`Gamepads`][bevy::Gamepads]:
+   Registry of all the connected [`Gamepad`][bevy::Gamepad] IDs
 []:#(ANCHOR_END: resources-input)
 
 []:#(ANCHOR: events-input)
@@ -246,8 +288,6 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
 []:#(ANCHOR: events-system)
  - [`RequestRedraw`][bevy::RequestRedraw]:
    In an app that does not refresh continuously, request one more update before going to sleep
- - [`AppExit`][bevy::AppExit]:
-   Tell Bevy to shut down
  - [`CreateWindow`][bevy::CreateWindow]:
    Tell Bevy to open a new window
  - [`FileDragAndDrop`][bevy::FileDragAndDrop]:
@@ -272,28 +312,20 @@ Font formats (loaded as [`Font`][bevy::Font] assets):
    OS reports change in DPI scaling factor for a window
 []:#(ANCHOR_END: events-system)
 
-[]:#(ANCHOR: stages)
-Internally, Bevy has at least these built-in [stages][cb::stage]:
- - In the [main_app][cb::app] ([`StartupStage`][bevy::StartupStage], run once at app startup):
- `PreStartup`, `Startup`, `PostStartup`
- - In the [main app][cb::app] ([`CoreStage`][bevy::CoreStage], run every frame update):
-`First`, `PreUpdate`, `Update`, `PostUpdate`, `Last`
- - In the render [sub-app][cb::subapp] ([`RenderStage`][bevy::RenderStage]):
-`Extract`, `Prepare`, `Queue`, `PhaseSort`, `Render`, `Cleanup`
-[]:#(ANCHOR_END: stages)
-
-[]:#(ANCHOR: render-stages)
- - `Extract`: quickly copy the minimal data you need from the main World to the render World
- - `Prepare`: send data to the GPU (buffers, textures, bind groups)
- - `Queue`: generate the render jobs to be run (usually [phase items][cb::render::phaseitem])
- - `PhaseSort`: sort and batch [phase items][cb::render::phaseitem] for efficient rendering
- - `Render`: execute the [render graph][cb::render::graph] to produce actual GPU commands and do the work
- - `Cleanup`: clear any data from the render World that should not persist to the next frame
-[]:#(ANCHOR_END: render-stages)
+[]:#(ANCHOR: events-engine)
+ - [`AssetEvent<T>`][bevy::AssetEvent]:
+   Sent by Bevy when [asset data][cb::asset] has been added/modified/removed; [can be used to detect changes to assets][cb::assetevent]
+ - [`HierarchyEvent`][bevy::HierarchyEvent]:
+   Sent by Bevy when entity [parents/children][cb::hierarchy] change
+ - [`AppExit`][bevy::AppExit]:
+   Tell Bevy to shut down
+[]:#(ANCHOR_END: events-engine)
 
 []:#(ANCHOR: systemparams)
 
 [(List in API Docs)][bevy::impl::SystemParam]
+
+In regular [systems][cb::system]:
 
  - [`Commands`][bevy::Commands]:
    Manipulate the ECS using [commands][cb::commands]
@@ -315,8 +347,6 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
    Receive [events][cb::event]
  - [`EventWriter<T>`][bevy::EventWriter]:
    Send [events][cb::event]
- - [`Extract<T>`][bevy::Extract]:
-   [Extract stage][cb::render::stage] only! `T` is a system parameter type to access from the main World
  - [`RemovedComponents<T>`][bevy::RemovedComponents]:
    [Removal detection][cb::removal-detection]
  - [`NonSend<T>`][bevy::NonSend]:
@@ -325,6 +355,8 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
    Mut access to [Non-`Send`][cb::nonsend] (main thread only) data
  - [`ParallelCommands`][bevy::ParallelCommands]:
    Abstraction to help use `Commands` when you will do your own parallelism
+ - [`SystemName`][bevy::SystemName]:
+   The name (string) of the system, may be useful for debugging
  - [`&World`][bevy::World]:
    Read-only [direct access to the ECS World][cb::world]
  - [`Entities`][bevy::Entities]:
@@ -337,7 +369,21 @@ Internally, Bevy has at least these built-in [stages][cb::stage]:
    Low-level ECS metadata: All archetypes
  - [`SystemChangeTick`][bevy::SystemChangeTick]:
    Low-level ECS metadata: Tick used for change detection
+ - [`StaticSystemParam`][bevy::StaticSystemParam]:
+   Helper for generic system abstractions, to avoid lifetime annotations
  - tuples containing any of these types, with up to 16 members
+
+In [exclusive systems][cb::exclusive]:
+ - [`&mut World`][bevy::World]:
+   Full [direct access to the ECS World][cb::world]
+ - [`Local<T>`][bevy::Local]:
+   Data [local][cb::local] to the system
+ - [`SystemState<P>`][bevy::SystemState]:
+   Emulates a regular system, allowing you to easily access data from the World.
+   `P` are the system parameters.
+ - [`QueryState<Q, F = ()>`][bevy::QueryState]:
+   Allows you to perform queries on the World, similar to a [`Query`][bevy::Query]
+   in regular systems.
  
 []:#(ANCHOR: systemparam-limits)
 
@@ -346,6 +392,10 @@ group them into tuples to work around the limit. Tuples can contain up to
 16 members, but can be nested indefinitely.
 
 []:#(ANCHOR_END: systemparam-limits)
+
+Systems running during the [Extract stage][cb::render-stages] can also use
+[`Extract<T>`][bevy::Extract], to access data from the Main World instead of the
+Render World. `T` can be any other system parameter type.
 
 []:#(ANCHOR_END: systemparams)
 
@@ -377,9 +427,9 @@ group them into tuples to work around the limit. Tuples can contain up to
  - [`Camera3d`][bevy::Camera3d]:
    Configuration parameters for 3D cameras
  - [`OrthographicProjection`][bevy::OrthographicProjection]:
-   Orthographic projection for a camera
- - [`PerspectiveProjection`][bevy::PerspectiveProjection]:
-   Perspective projection for a camera
+   Orthographic projection for a 2D camera
+ - [`Projection`][bevy::Projection]:
+   Projection for a 3D camera (perspective or orthographic)
  - [`Sprite`][bevy::Sprite]:
    (2D) Properties of a sprite, using a whole image
  - [`TextureAtlasSprite`][bevy::TextureAtlasSprite]:
@@ -406,7 +456,7 @@ group them into tuples to work around the limit. Tuples can contain up to
    (UI) Track interaction/selection state: if the node is clicked or hovered over
  - [`UiImage`][bevy::UiImage]:
    (UI) Image to be displayed as part of a UI node
- - [`UiColor`][bevy::UiColor]:
+ - [`BackgroundColor`][bevy::BackgroundColor]:
    (UI) Color to use for a UI node
  - [`Button`][bevy::Button]:
    (UI) Marker for a pressable button
@@ -428,13 +478,21 @@ The following asset labels are supported (`{}` is the numerical index):
   - `Skin{}`: GLTF mesh skin as Bevy [`SkinnedMeshInverseBindposes`][bevy::SkinnedMeshInverseBindposes]
 []:#(ANCHOR_END: gltf-asset-labels)
 
-[]:#(ANCHOR: wgpu-backends)
-[`wgpu`][project::wgpu] (and hence Bevy) supports the following backends for each platform:
- - Vulkan (Linux/Windows/Android)
- - DirectX 12 (Windows)
- - Metal (Apple)
- - WebGL2 (Web)
- - WebGPU (Web; experimental)
- - GLES3 (Linux/Android; legacy)
- - DirectX 11 (Windows; legacy; WIP (not yet ready for use))
-[]:#(ANCHOR_END: wgpu-backends)
+[]:#(ANCHOR: stages)
+Internally, Bevy has at least these built-in [stages][cb::stage]:
+ - In the [main_app][cb::app] ([`StartupStage`][bevy::StartupStage], run once at app startup):
+ `PreStartup`, `Startup`, `PostStartup`
+ - In the [main app][cb::app] ([`CoreStage`][bevy::CoreStage], run every frame update):
+`First`, `PreUpdate`, `Update`, `PostUpdate`, `Last`
+ - In the render [sub-app][cb::subapp] ([`RenderStage`][bevy::RenderStage]):
+`Extract`, `Prepare`, `Queue`, `PhaseSort`, `Render`, `Cleanup`
+[]:#(ANCHOR_END: stages)
+
+[]:#(ANCHOR: render-stages)
+ - `Extract`: quickly copy the minimal data you need from the main World to the render World
+ - `Prepare`: send data to the GPU (buffers, textures, bind groups)
+ - `Queue`: generate the render jobs to be run (usually [phase items][cb::render::phaseitem])
+ - `PhaseSort`: sort and batch [phase items][cb::render::phaseitem] for efficient rendering
+ - `Render`: execute the [render graph][cb::render::graph] to produce actual GPU commands and do the work
+ - `Cleanup`: clear any data from the render World that should not persist to the next frame
+[]:#(ANCHOR_END: render-stages)
