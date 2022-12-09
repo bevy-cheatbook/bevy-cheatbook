@@ -10,8 +10,10 @@ Your users will also need to satisfy this requirement.
 If Bevy is not working, install the latest drivers, or check with your Linux
 distribution whether Vulkan needs additional packages to be installed.
 
-OpenGL and DirectX 11 support for legacy systems is planned, but not available yet.
+OpenGL should work as a fallback, for systems that do not support other APIs,
+but might not be in such a good state as other APIs. DirectX 11 support for
+legacy systems is planned, but not available yet.
 
-macOS should work without any special driver setup, using Metal.
+macOS/iOS should work without any special driver setup, using Metal.
 
 Web games are supported and should work in any modern browser, using WebGL2.

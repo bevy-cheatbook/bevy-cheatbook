@@ -17,8 +17,6 @@ On Linux, you need the development files for some system libraries. See the
 Also see the [Setup page in the official Bevy Book][bevy::getting-started]
 and the [official Bevy Readme][bevy::readme].
 
-{{#include ../include/gpu-driver-requirements.md}}
-
 ## Creating a New Project
 
 You can simply create a new Rust project, either from your IDE/editor, or the commandline:
@@ -92,3 +90,6 @@ members have encountered are documented there.
 
 If you need help, use [GitHub Discussions][bevy::ghdiscussions], or feel
 welcome to come chat and ask for help in [Discord][bevy::discord].
+
+{{#include ../include/gpu-driver-requirements.md}}
+
