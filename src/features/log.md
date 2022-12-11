@@ -2,6 +2,11 @@
 
 {{#include ../include/links.md}}
 
+Relevant official examples:
+[`logs`][example::logs].
+
+---
+
 You may have noticed how, when you run your Bevy project, you get messages
 in your console window. For example:
 

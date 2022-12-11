@@ -393,7 +393,7 @@ group them into tuples to work around the limit. Tuples can contain up to
 
 []:#(ANCHOR_END: systemparam-limits)
 
-Systems running during the [Extract stage][cb::render-stages] can also use
+Systems running during the [Extract stage][cb::render::stage] can also use
 [`Extract<T>`][bevy::Extract], to access data from the Main World instead of the
 Render World. `T` can be any other system parameter type.
 

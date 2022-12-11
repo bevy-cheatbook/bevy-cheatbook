@@ -58,6 +58,7 @@ quickly need to learn more.
    - [Coordinate System][cb::coords]
    - [Transforms][cb::transform]
    - [Time and Timers][cb::time]
+   - [Parent/Child Hierarchies][cb::hierarchy]
  - [Bevy Asset Management][chapter::assets]:
    How to work with assets
    - [Handles][cb::handle]

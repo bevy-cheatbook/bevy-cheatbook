@@ -143,6 +143,7 @@
 [bevy::Res]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/struct.Res.html
 [bevy::Resource]: https://docs.rs/bevy/0.9.1/bevy/ecs/system/trait.Resource.html
 [bevy::SamplerDescriptor]: https://docs.rs/bevy/0.9.1/bevy/render/render_resource/struct.SamplerDescriptor.html
+[bevy::ScanCode]: https://docs.rs/bevy/0.9.1/bevy/input/keyboard/struct.ScanCode.html
 [bevy::SceneBundle]: https://docs.rs/bevy/0.9.1/bevy/scene/struct.SceneBundle.html
 [bevy::SceneSpawner]: https://docs.rs/bevy/0.9.1/bevy/scene/struct.SceneSpawner.html
 [bevy::Scene]: https://docs.rs/bevy/0.9.1/bevy/scene/struct.Scene.html
