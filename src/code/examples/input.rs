@@ -422,28 +422,13 @@ fn touch_events(
 // ANCHOR_END: touch-events
 
 // ANCHOR: dnd-file
-#[derive(Component)]
-struct MyDropTarget;
-
 fn file_drop(
     mut dnd_evr: EventReader<FileDragAndDrop>,
-    query_ui_droptarget: Query<&Interaction, With<MyDropTarget>>,
 ) {
     for ev in dnd_evr.iter() {
         println!("{:?}", ev);
         if let FileDragAndDrop::DroppedFile { id, path_buf } = ev {
-            println!("Dropped file with path: {:?}", path_buf);
-
-            if id.is_primary() {
-                // it was dropped over the main window
-            }
-
-            for interaction in query_ui_droptarget.iter() {
-                if *interaction == Interaction::Hovered {
-                    // it was dropped over our UI element
-                    // (our UI element is being hovered over)
-                }
-            }
+            println!("Dropped file with path: {:?}, in window id: {:?}", path_buf, id);
         }
     }
 }
