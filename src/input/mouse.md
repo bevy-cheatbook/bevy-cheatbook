@@ -44,6 +44,11 @@ scrolling, like laptop touchpads.
 You should probably handle each of these differently (with different
 sensitivity settings), to provide a good experience on both types of hardware.
 
+**Note:** the `Line` unit is not guaranteed to have whole number values/steps!
+At least macOS does non-linear scaling / acceleration of scrolling at the OS
+level, meaning your app will get a fractional number of lines even when using a
+regular PC mouse with a scroll wheel.
+
 ## Mouse Motion
 
 Use this if you don't care about the exact position of the mouse cursor,
