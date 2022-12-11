@@ -16,9 +16,10 @@ Note: Command Key on Mac corresponds to the Super/Windows Key on PC.
 
 ## Checking Key State
 
-Checking the state of specific keys can currently only be done by Key Code,
-using the `Input<KeyCode>` ([`Input`][bevy::Input], [`KeyCode`][bevy::KeyCode])
-[resource][cb::res]:
+Most commonly, you might be interested in specific known keys and detecting when
+they are pressed or released. You can check specific [Key Codes or Scan
+Codes](#key-codes-and-scan-codes) using the
+[`Input<KeyCode>` / `Input<ScanCode>`][bevy::Input] [resources][cb::res].
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/input.rs:keyboard-input}}
@@ -34,38 +35,38 @@ To get all keyboard activity, you can use
 ```
 
 These events give you both the Key Code and Scan Code.
-The Scan Code is represented as an arbitrary `u32` integer ID.
 
 ## Key Codes and Scan Codes
 
 Keyboard keys can be identified by Key Code or Scan Code.
 
-Key Codes represent the symbol/letter on each key and are dependent on the
-keyboard layout currently active in the user's OS. Bevy represents them with
-the [`KeyCode`][bevy::KeyCode] enum.
+Key Codes represent the logical meaning of each key (usually the symbol/letter,
+or function it performs). They are dependent on the keyboard layout currently
+active in the user's OS. Bevy represents them with the [`KeyCode`][bevy::KeyCode] enum.
 
-Scan Codes represent the physical key on the keyboard, regardless of the
-system layout. Unfortunately, they are just arbitrary integer IDs and
-platform-dependent. There is no easy way to know what to display in the
-game's UI for the user, from the scan code.
+Scan Codes represent the physical key on the keyboard, regardless of the system
+layout. Bevy represents them using [`ScanCode`][bevy::ScanCode], which contains
+an integer ID. The exact value of the integer is meaningless and OS-dependent,
+but a given physical key on the keyboard will always produce the same value,
+regardless of the user's language and keyboard layout settings.
 
-Additionally, support for using Scan Codes in Bevy is limited. This can be
-annoying for people with multiple or non-QWERTY keyboard layouts.
+## Best Practices for Key Bindings
 
-See [Bevy Issue #2052][bevy::2052] for efforts to improve this situation.
+Here is some advice for how to implement user-friendly remappable key-bindings
+for your game, that can work well for international users or those with
+non-QWERTY keyboard layouts.
 
-### Layout-Agnostic Key Bindings
+This section assumes that you have implemented some sort of system to allow the
+user to reconfigure their keybindings. You want to prompt the user to press
+their preferred key for a given in-game action, so you can store/remember it
+and later use it for gameplay.
 
-You could try to provide a better experience for players, regardless of these
-limitations, by:
- - Internally recording and storing key bindings as Scan Codes
- - Handling input using [events](#keyboard-events) and using Scan Codes to identify the key
- - Storing Key Codes only for displaying the name of a key in the UI
+The problem is that, if you simply use Key Codes, then users might accidentally
+switch their OS keyboard layout mid-game and suddenly have their keyboard not
+work as expected.
 
-Doing things this way means that users with multiple keyboard layouts in the
-OS will not have their keybindings break if they accidentally switch their
-layout mid-game, or start the game with the wrong layout.
+You should detect and store the user's chosen keys using Scan Codes, and use
+Scan Codes for detecting keyboard input during gameplay.
 
-Unfortunately, this also means your game UI will display the symbol from the
-layout that was used when registering the key bindings. This may be wrong
-or confusing if the user has changed the currently active layout.
+Key Codes can still be used for UI purposes, like to display the chosen key
+to the user.
