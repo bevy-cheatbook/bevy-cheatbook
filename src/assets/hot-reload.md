@@ -22,8 +22,7 @@ If you need to run custom logic as part of your hot-reloading
 workflow, you could implement it in a [system][cb::system], using
 [`AssetEvent`][bevy::AssetEvent] ([learn more][cb::assetevent]).
 
-Hot reloading is opt-in and has to be enabled in order to work. You can do
-this in a [startup system][cb::app]:
+Hot reloading is opt-in and has to be enabled in order to work:
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:asset-watch}}

@@ -2131,6 +2131,21 @@ fn main() {
 // ANCHOR_END: computedvisibility
 }
 
+#[allow(dead_code)]
+mod app20 {
+use super::*;
+// ANCHOR: asset-watch
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins.set(AssetPlugin {
+            watch_for_changes: true,
+            ..Default::default()
+        }))
+        .run();
+}
+// ANCHOR_END: asset-watch
+}
+
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::new()
