@@ -76,10 +76,11 @@ relative to their parent and move with it.
 [Visibility][cb::visibility] propagation allows children to be hidden if
 you manually hide their parent.
 
-All [Bundles that come with Bevy][builtins::bundle] provide
-this behavior automatically.
+Most [Bundles that come with Bevy][builtins::bundle] provide these behaviors
+automatically. Check the docs for the bundles you are using.  Camera bundles,
+for example, have transforms, but not visibility.
 
-Otherwise, you can use [`SpatialBundle`][bevy::TransformBundle] to make sure
+Otherwise, you can use [`SpatialBundle`][bevy::SpatialBundle] to make sure
 your entities have all the necessary components.
 
 ## Known Pitfalls
