@@ -39,6 +39,9 @@ so that your game can load fast and not waste data bandwidth.
 Some minor extra configuration is needed to be able to:
  - [See Rust panic messages][wasm::panic-console]
 
+Note: the `dynamic` [feature flag][cb::features] is not supported for
+WASM builds. You cannot use it.
+
 ## Quick Start
 
 First, add WASM support to your Rust installation. Using Rustup:
