@@ -42,10 +42,10 @@ cargo install xwin
 Now, use `xwin` to accept the Microsoft license, download all the files
 from Microsoft servers, and install them to a directory of your choosing.
 
-For example, to install to `/opt/xwin/`:
+For example, to install to `~/.xwin/`:
 
 ```sh
-xwin --accept-license 1 splat --output /opt/xwin
+xwin --accept-license splat --output ~/.xwin
 ```
 
 ### Linking (MSVC)
@@ -65,9 +65,9 @@ Add this to `.cargo/config.toml` (in your home folder or in your bevy project):
 [target.x86_64-pc-windows-msvc]
 linker = "lld"
 rustflags = [
-  "-Lnative=/opt/xwin/crt/lib/x86_64",
-  "-Lnative=/opt/xwin/sdk/lib/um/x86_64",
-  "-Lnative=/opt/xwin/sdk/lib/ucrt/x86_64"
+  "-Lnative=/home/me/.xwin/crt/lib/x86_64",
+  "-Lnative=/home/me/.xwin/sdk/lib/um/x86_64",
+  "-Lnative=/home/me/.xwin/sdk/lib/ucrt/x86_64"
 ]
 ```
 
@@ -100,10 +100,12 @@ You don't need any files from Microsoft.
 Finally, with all the setup done, you can just build your Rust/Bevy projects
 for Windows:
 
+MSVC:
 ```sh
 cargo build --target=x86_64-pc-windows-msvc --release
 ```
 
+MinGW:
 ```sh
 cargo build --target=x86_64-pc-windows-gnu --release
 ```
