@@ -26,7 +26,7 @@ in the Bevy ECS:
 
 Direct world access lets you do things like:
  - Freely spawn/despawn entities, insert/remove resources, etc., taking effect immediately
-   (no delay like when using [`Commands`] from a regular [system][cb::system])
+   (no delay like when using [`Commands`][cb::commands] from a regular [system][cb::system])
  - Access any component, entities, and resources you want
  - Manually run arbitrary systems or stages
 

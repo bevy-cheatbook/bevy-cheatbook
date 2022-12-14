@@ -228,6 +228,7 @@ fn main() {
     };
 
     App::new()
+        .add_plugins(DefaultPlugins)
         // create a "move closure", so we can use the `config`
         // variable that we created above
         .add_system(move |cmd: Commands, res: Res<MyStuff>| {
@@ -237,6 +238,103 @@ fn main() {
         .run();
 }
 // ANCHOR_END: local-config
+}
+
+#[allow(dead_code)]
+mod localconfig2 {
+use bevy::prelude::*;
+#[derive(Resource)]
+struct MyStuff;
+// ANCHOR: local-config-return
+#[derive(Default)]
+struct MyConfig {
+    magic: usize,
+}
+
+fn main() {
+    // create a "constructor" closure, which can initialize
+    // our data and move it into a closure that bevy can run as a system
+    let constructor = || {
+        // create the `MyConfig`
+        let config = MyConfig {
+            magic: 420,
+        };
+
+        // this is the actual system that bevy will run
+        move |mut commands: Commands, res: Res<MyStuff>| {
+            // we can use `config` here, the value from above will be "moved in"
+            // we can also use our system params: `commands`, `res`
+        }
+    };
+
+    App::new()
+        .add_plugins(DefaultPlugins)
+        // note the parentheses `()`
+        // we are calling the "constructor" we made above,
+        // which will return the actual system that gets added to bevy
+        .add_system(constructor())
+        .run();
+}
+// ANCHOR_END: local-config-return
+}
+
+#[allow(dead_code)]
+mod pluginconfig {
+use bevy::prelude::*;
+fn health_system() {}
+fn movement_system() {}
+fn player_invincibility() {}
+fn free_camera() {}
+// ANCHOR: plugin-config
+
+struct MyGameplayPlugin {
+    /// Should we enable dev hacks?
+    enable_dev_hacks: bool,
+}
+
+impl Plugin for MyGameplayPlugin {
+    fn build(&self, app: &mut App) {
+        // add our gameplay systems
+        app.add_system(health_system);
+        app.add_system(movement_system);
+        // ...
+
+        // if "dev mode" is enabled, add some hacks
+        if self.enable_dev_hacks {
+            app.add_system(player_invincibility);
+            app.add_system(free_camera);
+        }
+    }
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_plugin(MyGameplayPlugin {
+            enable_dev_hacks: false, // change to true for dev testing builds
+        })
+        .run();
+}
+// ANCHOR_END: plugin-config
+
+fn _main2() {
+// ANCHOR: defaultplugins-config
+App::new()
+    .add_plugins(DefaultPlugins.set(
+        // here we configure the main window
+        WindowPlugin {
+            window: WindowDescriptor {
+                width: 800.0,
+                height: 600.0,
+                // ...
+                ..Default::default()
+            },
+            ..Default::default()
+        }
+    ))
+    .run();
+// ANCHOR_END: defaultplugins-config
+}
 }
 
 // ANCHOR: sys-param-tuple

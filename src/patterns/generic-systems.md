@@ -73,7 +73,7 @@ use const generics, you might realize that you actually want a runtime value.
 If you need to "configure" your system by passing in some data, you could,
 instead, use a [Resource][cb::res] or [Local][cb::local].
 
-Note: As of Rust 1.59, support for using `enum` values as const generics is
+Note: As of Rust 1.65, support for using `enum` values as const generics is
 not yet stable. To use `enum`s, you need Rust Nightly, and to enable the
 experimental/unstable feature (put this at the top of your `main.rs` or
 `lib.rs`):

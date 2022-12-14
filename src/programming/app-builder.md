@@ -15,6 +15,10 @@ is how you define the structure of all the things that make up your project:
 [plugins][cb::plugin], [systems][cb::system], [event][cb::event] types,
 [states][cb::state], [stages][cb::stage]…
 
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:app-builder}}
+```
+
 Technically, the [`App`][bevy::App] contains the ECS World(s) (where all
 the data is stored) and Schedule(s) (where all the [systems][cb::system]
 to run are stored). For advanced use-cases, [Sub-apps][cb::subapp] are a
@@ -38,18 +42,9 @@ using [Commands][cb::commands], or [exclusive systems][cb::exclusive] using
 [Resources][cb::res] can also be initialized ahead of time, here in the
 [`App`][bevy::App] builder.
 
----
+## Builtin Bevy Functionality
 
-You also need to add the [plugin group][cb::plugingroup] with Bevy's built-in
-functionality: either
-[`DefaultPlugins`][bevy::DefaultPlugins] if you are making a full game/app, or
-[`MinimalPlugins`][bevy::MinimalPlugins] for something like a headless server.
-
-Note that there are some special [configuration resources][builtins::res-config]
-that must be added first, if you would like to use them, to take effect.
-
----
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:app-builder}}
-```
+The Bevy game engine's own functionality is represented as a [plugin group][cb::plugingroup].
+Every typical Bevy app must first add it, using either:
+ - [`DefaultPlugins`][bevy::DefaultPlugins] if you are making a full game/app
+ - [`MinimalPlugins`][bevy::MinimalPlugins] for something like a headless server.

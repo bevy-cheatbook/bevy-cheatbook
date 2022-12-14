@@ -12,11 +12,15 @@ As your project grows, it can be useful to make it more modular. You can
 split it into "plugins".
 
 Plugins are simply collections of things to be added to the [App
-Builder][cb::app].
+Builder][cb::app]. Think of this as a way to add things to the app from
+multiple places, like different Rust files/modules or crates.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:plugins}}
 ```
+
+Note how you get `&mut` access to the [`App`][bevy::App], so you can
+add whatever you want to it, just like you can do from your `fn main`.
 
 For internal organization in your own project, the main value of plugins
 comes from not having to declare all your Rust types and functions as
@@ -58,6 +62,24 @@ be compiled into your program.
 If you want to slim down your build, you should look at disabling Bevy's
 default [cargo features][cb::features], or depending on the various Bevy
 sub-crates individually.
+
+## Plugin Configuration
+
+Plugins are also a convenient place to store settings/configuration that are
+used during initialization/startup. For settings that can be changed at runtime,
+it is recommended that you put them in [resources][cb::res] instead.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:plugin-config}}
+```
+
+Plugins that are added using [Plugin Groups][cb::plugingroup] can also be
+configured. Many of Bevy's [`DefaultPlugins`][bevy::DefaultPlugins] work
+this way.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:defaultplugins-config}}
+```
 
 ## Publishing Crates
 

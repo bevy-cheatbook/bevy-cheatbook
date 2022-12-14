@@ -7,7 +7,8 @@ Relevant official examples:
 
 ---
 
-Local resources allow you to have per-[system][cb::system] data.
+Local resources allow you to have per-[system][cb::system] data. This data
+is not stored in the ECS World, but rather together with your system.
 
 [`Local<T>`][bevy::Local] is a system parameter similar to
 [`ResMut<T>`][bevy::ResMut], which gives you full mutable access to an
@@ -42,3 +43,11 @@ without using [`Local<T>`][bevy::Local]:
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:local-config}}
 ```
+
+Another way to accomplish the same thing is to "return" the system
+from "constructor" helper, that creates it:
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:local-config-return}}
+```
+
