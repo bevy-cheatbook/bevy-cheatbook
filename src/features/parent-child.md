@@ -24,6 +24,12 @@ which automatically add the correct components:
 {{#include ../code/src/basics.rs:parenting}}
 ```
 
+Note that this only sets up the [`Parent`][bevy::Parent] and
+[`Children`][bevy::Children] components, and nothing else. Notably, it does not
+add [transforms][cb::transform] or [visibility][cb::visibility] for you.  If you
+need that functionality, you need to add those components yourself, using
+something like [`SpatialBundle`][bevy::SpatialBundle].
+
 You can despawn an entire hierarchy with a single [command][cb::commands]:
 
 ```rust,no_run,noplayground
