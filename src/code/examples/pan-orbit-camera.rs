@@ -39,13 +39,10 @@ fn pan_orbit_camera(
     let mut scroll = 0.0;
     let mut orbit_button_changed = false;
 
-    if input_mouse.pressed(orbit_button) {
-        for ev in ev_motion.iter() {
+    for ev in ev_motion.iter() {
+        if input_mouse.pressed(orbit_button) {
             rotation_move += ev.delta;
-        }
-    } else if input_mouse.pressed(pan_button) {
-        // Pan only if we're not rotating at the moment
-        for ev in ev_motion.iter() {
+        } else if input_mouse.pressed(pan_button) {
             pan += ev.delta;
         }
     }
