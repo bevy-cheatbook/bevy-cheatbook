@@ -63,7 +63,7 @@ features = [
   "wayland",              # Linux: Support Wayland windowing system
   "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
   "serialize",            # Support for `serde` Serialize/Deserialize
-  "bevy_dynamic_plugin"   # Support for loading of `DynamicPlugin`s
+  "bevy_dynamic_plugin",   # Support for loading of `DynamicPlugin`s
 
   # File formats:
   "ktx2", # preferred format for GPU textures
