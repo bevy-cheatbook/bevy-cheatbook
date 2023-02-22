@@ -105,6 +105,10 @@ fn pan_orbit_camera(
             transform.translation = pan_orbit.focus + rot_matrix.mul_vec3(Vec3::new(0.0, 0.0, pan_orbit.radius));
         }
     }
+
+    // consume any remaining events, so they don't pile up if we don't need them
+    // (and also to avoid Bevy warning us about not checking events every frame update)
+    ev_motion.clear();
 }
 
 fn get_primary_window_size(windows: &Res<Windows>) -> Vec2 {
