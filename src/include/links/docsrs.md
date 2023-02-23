@@ -176,6 +176,7 @@
 [bevy::TextureCache]: https://docs.rs/bevy/0.9.1/bevy/render/texture/struct.TextureCache.html
 [bevy::Time]: https://docs.rs/bevy/0.9.1/bevy/time/struct.Time.html
 [bevy::Timer]: https://docs.rs/bevy/0.9.1/bevy/time/struct.Timer.html
+[bevy::Tonemapping]: https://docs.rs/bevy/0.9.1/bevy/core_pipeline/tonemapping/enum.Tonemapping.html
 [bevy::TouchInput]: https://docs.rs/bevy/0.9.1/bevy/input/touch/struct.TouchInput.html
 [bevy::TouchPhase]: https://docs.rs/bevy/0.9.1/bevy/input/touch/enum.TouchPhase.html
 [bevy::Touch]: https://docs.rs/bevy/0.9.1/bevy/input/touch/struct.Touch.html

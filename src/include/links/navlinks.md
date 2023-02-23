@@ -27,6 +27,7 @@
 [cb::bundle]: /programming/ec.md#component-bundles
 [cb::camera-2d]: /2d/camera.md
 [cb::camera-3d]: /3d/camera.md
+[cb::camera-projection]: /features/camera.md#projection
 [cb::camera-custom-projection]: /cookbook/custom-projection.md
 [cb::change-detection]: /programming/change-detection.md
 [cb::clearcolor]: /window/clear-color.md
@@ -53,6 +54,7 @@
 [cb::gltf]: /features/gltf.md
 [cb::handle]: /assets/handles.md
 [cb::handleuntyped]: /assets/handles.md#untyped-handles
+[cb::hdr]: /features/hdr-tonemap.md
 [cb::hierarchy]: /features/parent-child.md
 [cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
@@ -105,6 +107,7 @@
 [cb::system]: /programming/systems.md
 [cb::systemset]: /programming/system-sets.md
 [cb::time]: /features/time.md
+[cb::tonemap]: /features/hdr-tonemap.md#tonemapping
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /features/transforms.md
 [cb::visibility]: /features/visibility.md

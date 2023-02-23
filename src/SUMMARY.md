@@ -35,10 +35,12 @@
   - [Coordinate System](./features/coords.md)
   - [Transforms](./features/transforms.md)
   - [Visibility](./features/visibility.md)
+  - [Cameras](./features/camera.md)
   - [Time and Timers](./features/time.md)
   - [Logging, Console Messages](./features/log.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
+  - [HDR, Tonemapping, Bloom, Dithering](./features/hdr-tonemap.md)
   - [Audio](./features/audio.md)
 
 - [Asset Management](./assets.md)
