@@ -6,9 +6,6 @@
 
 ---
 
-Bevy does not yet provide built-in functions to help with finding out what
-the cursor is pointing at.
-
 ## 3D games
 
 There is a good (unofficial) plugin:
@@ -16,11 +13,21 @@ There is a good (unofficial) plugin:
 
 ## 2D games
 
-This code will only work on version 0.9 and higher, for previous versions, see [here](https://github.com/bevy-cheatbook/bevy-cheatbook/blob/5baa8f74860068e9d0714cd2864d4c026acccdc7/src/code/examples/cursor2world.rs
-)!
+Starting from Bevy 0.9, there are camera methods to help you convert between
+screen-space (viewport) and world-space coordinates. We can use this to easily
+find the position of the mouse cursor.
+
+This code will work regardless of the [camera's projection][cb::camera-projection]
+settings and [transform][cb::transform].
 
 (there will likely be *slight* inaccuracy from floating-point calculations)
 
 ```rust,no_run,noplayground
 {{#include ../code/examples/cursor2world.rs:example}}
 ```
+
+In older versions of Bevy, there were no such coordinate conversion methods, and
+the math had to be done manually. If you are interested in how that works, see
+the example from an old version of the book,
+[here](https://github.com/bevy-cheatbook/bevy-cheatbook/blob/5baa8f74860068e9d0714cd2864d4c026acccdc7/src/code/examples/cursor2world.rs).
+
