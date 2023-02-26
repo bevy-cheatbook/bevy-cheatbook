@@ -23,6 +23,8 @@ struct MyMinimapCamera;
 
 fn setup_overlay(mut commands: Commands) {
 // ANCHOR: overlay
+use bevy::core_pipeline::clear_color::ClearColorConfig;
+
 commands.spawn((
     Camera2dBundle {
         camera_2d: Camera2d {
@@ -71,7 +73,7 @@ fn debug_render_targets(
     q: Query<&Camera>,
 ) {
     for camera in &q {
-        match camera.target {
+        match &camera.target {
             RenderTarget::Window(wid) => {
                 eprintln!("Camera renders to window with id: {:?}", wid);
             }
@@ -108,7 +110,7 @@ fn setup_minimap(mut commands: Commands) {
 // ANCHOR_END: set-viewport
 // ANCHOR: get-viewport
 fn debug_viewports(
-    q: Query<&Camera, MyExtraCamera>,
+    q: Query<&Camera, With<MyExtraCamera>>,
 ) {
     let camera = q.single();
 
