@@ -13,7 +13,7 @@ Relevant official examples:
 
 Use the [`ClearColor`][bevy::ClearColor] [resource][cb::res] to choose the
 default background color. This color will be used as the default for all
-cameras, unless overriden.
+[cameras][cb::camera], unless overriden.
 
 Note that the window will be black if no cameras exist. You must spawn at
 least one camera.
