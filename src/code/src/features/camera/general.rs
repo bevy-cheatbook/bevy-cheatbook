@@ -57,6 +57,42 @@ commands.spawn((
 // ANCHOR_END: no-ui
 }
 
+fn setup_renderlayers(mut commands: Commands) {
+// ANCHOR: renderlayers
+use bevy::render::view::visibility::RenderLayers;
+// This camera renders everything in layers 0, 1
+commands.spawn((
+    Camera2dBundle::default(),
+    RenderLayers::from_layers(&[0, 1])
+));
+// This camera renders everything in layers 1, 2
+commands.spawn((
+    Camera2dBundle::default(),
+    RenderLayers::from_layers(&[1, 2])
+));
+// This sprite will only be seen by the first camera
+commands.spawn((
+    SpriteBundle::default(),
+    RenderLayers::layer(0),
+));
+// This sprite will be seen by both cameras
+commands.spawn((
+    SpriteBundle::default(),
+    RenderLayers::layer(1),
+));
+// This sprite will only be seen by the second camera
+commands.spawn((
+    SpriteBundle::default(),
+    RenderLayers::layer(2),
+));
+// This sprite will also be seen by both cameras
+commands.spawn((
+    SpriteBundle::default(),
+    RenderLayers::from_layers(&[0, 2]),
+));
+// ANCHOR_END: renderlayers
+}
+
 // ANCHOR: is_active
 fn toggle_overlay(
     mut q: Query<&mut Camera, With<MyOverlayCamera>>,
@@ -129,6 +165,7 @@ fn main() {
         .add_system(debug_render_targets)
         .add_system(debug_viewports)
         .add_system(setup)
+        .add_system(setup_renderlayers)
         .add_system(setup_minimap)
         .add_system(setup_no_ui);
 }

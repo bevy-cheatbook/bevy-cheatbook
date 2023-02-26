@@ -133,6 +133,28 @@ pixels as they were before.
 
 [See this page for more info.][cb::clearcolor]
 
+## Render Layers
+
+[`RenderLayers`][bevy::RenderLayers] is a way to filter what entities should be
+drawn by what cameras. Insert this [component][cb::component] onto your entities
+to place them in specific "layers". The layers are integers from 0 to 31 (32
+total available).
+
+Inserting this component onto a camera entity selects what layers that camera
+should render. Inserting this component onto renderable entities selects what
+cameras should render those entities. An entity will be rendered if there is any
+overlap between the camera's layers and the entity's layers (they have at least
+one layer in common).
+
+If an entity does not have the [`RenderLayers`][bevy::RenderLayers] component,
+it is assumed to belong to layer 0 (only).
+
+```rust,no_run,noplayground
+{{#include ../code/src/features/camera/general.rs:renderlayers}}
+```
+
+You can also modify the render layers of entities after they are spawned.
+
 ## Camera Ordering
 
 A camera's priority is a simple integer value that controls the order relative
