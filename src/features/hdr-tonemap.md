@@ -1,4 +1,4 @@
-# HDR, Tonemapping, Bloom, Dithering
+# HDR, Tonemapping, Bloom
 
 {{#include ../include/links.md}}
 
@@ -23,7 +23,8 @@ preserve the HDR data internally during rendering.
 If it is enabled, Bevy's intermediate textures will be in HDR format. The
 shaders output HDR values and Bevy will store them, so they can be used in later
 rendering passes. This allows you to enable post-processing effects like Bloom,
-that make use of the HDR data. Tonemapping will happen as a post-processing step.
+that make use of the HDR data. [Tonemapping][cb::tonemap] will happen as a
+post-processing step.
 
 If it is disabled, the shaders are expected to output standard RGB colors in the
 0.0 to 1.0 range. [Tonemapping][cb::tonemap] happens in the shader. The HDR information

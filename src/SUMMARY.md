@@ -40,7 +40,7 @@
   - [Logging, Console Messages](./features/log.md)
   - [Parent/Child Hierarchies](./features/parent-child.md)
   - [Fixed Timestep](./features/fixed-timestep.md)
-  - [HDR, Tonemapping, Bloom, Dithering](./features/hdr-tonemap.md)
+  - [HDR, Tonemapping, Bloom](./features/hdr-tonemap.md)
   - [Audio](./features/audio.md)
 
 - [Asset Management](./assets.md)
