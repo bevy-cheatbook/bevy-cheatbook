@@ -1,5 +1,4 @@
 use bevy::app::AppExit;
-use bevy::ecs::{archetype::Archetypes, component::Components};
 use bevy::prelude::*;
 use bevy::render::{RenderApp, RenderStage};
 
