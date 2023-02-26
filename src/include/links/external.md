@@ -32,6 +32,7 @@
 [intellij-rust::6908]: https://github.com/intellij-rust/intellij-rust/issues/6908
 [itchio::bevy]: https://itch.io/games/tag-bevy
 [mdbook::anchor-syntax]: https://rust-lang.github.io/mdBook/format/mdbook.html#including-portions-of-a-file
+[nvidia::infinite-reverse-z]: https://developer.nvidia.com/content/depth-precision-visualized
 [project::benimator]: https://github.com/jcornaz/benimator
 [project::bevy-ui-navigation]: https://github.com/nicopap/ui-navigation
 [project::bevy]: https://github.com/bevyengine/bevy

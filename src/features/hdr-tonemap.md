@@ -3,7 +3,7 @@
 {{#include ../include/links.md}}
 
 HDR (High Dynamic Range) refers to the ability of the game engine to handle very
-bright lights or colors. Bevy supports HDR rendering. This means you can have
+bright lights or colors. Bevy's rendering is HDR. This means you can have
 objects with colors that go above `1.0`, very bright lights, or bright emissive
 materials. All of this is supported for both 3D and 2D.
 
@@ -14,33 +14,34 @@ capabilities. Bevy has no support for this yet.
 ## Camera HDR configuration
 
 There is a per-camera toggle that lets you decide whether you want Bevy to
-store the HDR data internally during rendering.
+preserve the HDR data internally during rendering.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/features/camera/hdr.rs:hdr-config}}
 ```
 
-If it is enabled, Bevy's intermediate textures will be in HDR format. This
-allows you to enable post-processing effects like Bloom, that make use of the
-HDR rendering data. Tonemapping will happen as a post-processing step.
+If it is enabled, Bevy's intermediate textures will be in HDR format. The
+shaders output HDR values and Bevy will store them, so they can be used in later
+rendering passes. This allows you to enable post-processing effects like Bloom,
+that make use of the HDR data. Tonemapping will happen as a post-processing step.
 
-If it is disabled, the shaders are expected to do any [tonemapping][cb::tonemap]
-internally, and output standard RGB colors. The "physically based" materials can
-still handle bright lights and other "HDR" scenarios, but that information will
-not be stored, and effects like Bloom will not work.
+If it is disabled, the shaders are expected to output standard RGB colors in the
+0.0 to 1.0 range. [Tonemapping][cb::tonemap] happens in the shader. The HDR information
+is not preserved. Effects that require HDR data, like Bloom, will not work.
 
-Make sure to also have [tonemapping][cb::tonemap] enabled, ideally with
-dithering.
+It is disabled by default. If enabling it, make sure to also have
+[tonemapping][cb::tonemap] enabled, ideally with deband dithering.
 
-Bevy's HDR rendering is known to cause issues with MSAA. There might be visual
-artifacts in some cases. It is also unsupported on Web/WASM. Disable MSAA if you
-experience these issues.
+If you have both HDR and MSAA enabled, it is possible you might encounter
+issues. There might be visual artifacts in some cases. It is also unsupported on
+Web/WASM, crashing at runtime. Disable MSAA if you experience any such issues.
 
 ## Bloom
 
 The "Bloom" effect creates a glow around bright lights. It is not a
 physically-accurate effect, but it does a good job of helping the perception of
-very bright light.
+very bright light, especially when outputting HDR to the display hardware is not
+supported.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/features/camera/hdr.rs:bloom-config}}
@@ -70,12 +71,12 @@ it. It can make your graphics look incorrect.
 Bevy does not currently offer any way to customize the tonemapping operation,
 only a simple toggle. The tonemapping operation is Luminance-weighted Reinhard.
 
-### Dithering
+## Deband Dithering
 
-Bevy's tonemapping settings also control dithering. Dithering helps color gradients or other areas with
-subtle changes in color to appear higher-quality, without a "color banding" effect.
+Deband dithering helps color gradients or other areas with subtle changes in
+color to appear higher-quality, without a "color banding" effect.
 
-Dithering is enabled by default.
+It is enabled by default, and can be disabled per-camera.
 
 Here is an example image without dithering (top) and with dithering (bottom).
 Pay attention to the quality/smoothness of the green color gradient on the

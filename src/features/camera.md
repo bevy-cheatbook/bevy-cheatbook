@@ -2,8 +2,8 @@
 
 {{#include ../include/links.md}}
 
-Cameras are what drives all rendering in Bevy. They are responsible for
-configuring what to draw, how to draw it, and where to draw it.
+Cameras drive all rendering in Bevy. They are responsible for configuring what
+to draw, how to draw it, and where to draw it.
 
 You must have at least one camera entity, in order for anything to be displayed
 at all! If you forget to spawn a camera, you will get an empty black screen.
@@ -36,21 +36,21 @@ that feel appropriate to your game's genre and gameplay.
 
 ### Zooming the camera
 
-You *could* use the transform's scale to scale/stretch the camera; however,
-don't confuse that with "zooming"! Typically, zooming should be done
-using the [projection](#projection).
+Do not use the transform scale to "zoom" a camera! It just stretches the image,
+which is not "zooming". It might also cause other issues and incompatibilities.
+Use the [projection][cb::camera-projection] to zoom.
 
 For orthographic projections, change the projection's scale. This way you can be
-confident about how exactly coordinate/units map to the screen, and avoid
-imprecision or visual artifacts. This also helps avoid scaling artifacts with 2D
-assets.
+confident about how exactly coordinate/units map to the screen. This also helps
+avoid scaling artifacts with 2D assets.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/features/camera/d2.rs:zoom}}
 ```
 
-For perspective projections, change the FOV. This achieves the desired 3D effect
-of zooming with a lens. Decrease the FOV to "zoom in" (make objects appear
+For 3D perspective projections, change the FOV. This achieves the desired 3D
+effect of zooming with a lens, while keeping the camera at the same distance
+from what it is looking at. Decrease the FOV to "zoom in" (make objects appear
 closer). Increase the FOV to "zoom out" (make objects appear further away,
 increase the stretching due to the perspective effect).
 
@@ -58,9 +58,8 @@ increase the stretching due to the perspective effect).
 {{#include ../code/src/features/camera/d3.rs:zoom}}
 ```
 
-That said, in some cases (such as editor apps), using the transform scale
-might make sense. The effect it produces (stretching the content as it appears
-on screen) might feel better to control.
+In some applications (like 3D editors), "zooming" might mean moving the camera
+closer or farther away, instead of changing the FOV.
 
 ## Projection
 
@@ -78,6 +77,9 @@ It is possible to implement your own [custom camera
 projections][cb::camera-custom-projection]. This can give you full control over
 the coordinate system. However, beware that things might behave in unexpected
 ways if you violate Bevy's [coordinate system conventions][cb::coords]!
+
+Note that Bevy uses a an [infinite reversed
+Z][nvidia::infinite-reverse-z] configuration for 3D.
 
 ## HDR and Tonemapping
 
@@ -149,12 +151,9 @@ they will behave as multiple "layers". Cameras with higher priority will render
 Bevy UI rendering is integrated into the cameras! Every camera will, by default,
 also draw UI.
 
-Old versions of Bevy required a separate camera to be spawned for the UI. For the
-sake of a simpler user experience, the UI is now automatically drawn.
-
 However, if you are working with multiple cameras, you probably only want your
-UI to be drawn once (probably by the main camera). You can UI rendering on your
-other cameras.
+UI to be drawn once (probably by the main camera). You can disable UI rendering
+on your other cameras.
 
 Also, UI on multiple cameras is currently broken in Bevy. Even if you want
 multiple UI cameras (say, to display UI in an app with multiple windows), it
@@ -232,7 +231,7 @@ If you want to generate an image in memory, you can output to an `Image` asset.
 
 This is useful for intermediate steps in games, such as rendering a minimap or
 the gun in a shooter game. You can then use that image as part of the final
-scene to render to the screen.
+scene to render to the screen. Item previews are a similar use case.
 
 Another use case is window-less applications that want to generate image files.
 For example, you could use Bevy to render something, and then export it to a PNG
