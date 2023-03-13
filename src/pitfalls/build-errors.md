@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Strange Build Errors
 
 {{#include ../include/links.md}}
@@ -53,7 +55,7 @@ error: failed to select a version for `web-sys`.
     ... which is depended on by `bevy_wgpu v0.5.0 (https://github.com/bevyengine/bevy#6a8a8c9d)`
     ... which is depended on by `bevy_internal v0.5.0 (https://github.com/bevyengine/bevy#6a8a8c9d)`
     ... which is depended on by `bevy v0.5.0 (https://github.com/bevyengine/bevy#6a8a8c9d)`
-    ... which is depended on by `bevy-scratchpad v0.1.0 (C:\Users\Alice\Documents\bevy-scratchpad)`
+    ... which is depended on by `bevy-scratchpad v0.1.0 (C:\Users\Alice\Documentsevy-scratchpad)`
 versions that meet the requirements `=0.3.50` are: 0.3.50
 
 all possible versions conflict with previously selected packages.
@@ -64,7 +66,7 @@ all possible versions conflict with previously selected packages.
     ... which is depended on by `bevy_audio v0.5.0 (https://github.com/bevyengine/bevy#6a8a8c9d)`
     ... which is depended on by `bevy_internal v0.5.0 (https://github.com/bevyengine/bevy#6a8a8c9d)`
     ... which is depended on by `bevy v0.5.0 (https://github.com/bevyengine/bevy#6a8a8c9d)`
-    ... which is depended on by `bevy-scratchpad v0.1.0 (C:\Users\Alice\Documents\bevy-scratchpad)`
+    ... which is depended on by `bevy-scratchpad v0.1.0 (C:\Users\Alice\Documentsevy-scratchpad)`
 
 failed to select a version for `web-sys` which could resolve this conflict
 ```

@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # UV coordinates in Bevy
 
 {{#include ../include/links.md}}

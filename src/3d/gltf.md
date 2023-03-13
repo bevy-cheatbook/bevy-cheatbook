@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # 3D Models and Scenes (GLTF)
 
 {{#include ../include/links.md}}

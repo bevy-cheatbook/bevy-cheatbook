@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # List All Resource Types
 
 {{#include ../include/links.md}}

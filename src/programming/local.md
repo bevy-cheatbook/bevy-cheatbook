@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Local Resources
 
 {{#include ../include/links.md}}
@@ -50,4 +52,3 @@ from "constructor" helper, that creates it:
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:local-config-return}}
 ```
-

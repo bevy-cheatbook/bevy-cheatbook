@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Quitting the App
 
 {{#include ../include/links.md}}
@@ -16,4 +18,3 @@ closed, Bevy will quit automatically.
 ```rust,no_run,noplayground
 {{#include ../code/examples/quit.rs:main}}
 ```
-

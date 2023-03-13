@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # React to Changes with Asset Events
 
 {{#include ../include/links.md}}

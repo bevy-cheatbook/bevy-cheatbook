@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # 3D objects not displaying
 
 {{#include ../include/links.md}}

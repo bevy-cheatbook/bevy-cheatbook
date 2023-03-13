@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Load Assets from Files with AssetServer
 
 {{#include ../include/links.md}}

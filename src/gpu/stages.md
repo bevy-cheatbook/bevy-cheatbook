@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Render Stages
 
 {{#include ../include/links.md}}
@@ -182,4 +184,3 @@ add a custom system to the Cleanup stage to do it.
 ```
 // TODO: code example
 ```
-

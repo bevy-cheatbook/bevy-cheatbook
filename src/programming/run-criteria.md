@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Run Criteria
 
 Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which

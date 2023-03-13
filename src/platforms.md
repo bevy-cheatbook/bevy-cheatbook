@@ -1,3 +1,5 @@
+Warning: this chapter has not been updated for Bevy 0.10 yet!
+
 # Bevy on Different Platforms
 
 {{#include ./include/links.md}}

@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Handles
 
 {{#include ../include/links.md}}
@@ -62,5 +64,3 @@ You need to do this to [access the asset data][cb::asset-data].
 You can convert an untyped handle into a typed handle with `.typed::<T>()`,
 specifying the type to use. You need to do this to [access the asset
 data][cb::asset-data].
-
-

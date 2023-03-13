@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # System Piping
 
 {{#include ../include/links.md}}
@@ -46,4 +48,3 @@ performance.
 
 If you create multiple "piped systems" that all contain a common function which
 contains any mutable access, that prevents all of them from running in parallel!
-

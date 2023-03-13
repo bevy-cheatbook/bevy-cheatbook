@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Windows Desktop
 
 {{#include ../include/links.md}}
@@ -92,4 +94,3 @@ Create your icon as `icon.ico` in your project folder.
 ### Setting the Window Icon
 
 See [Bevy Cookbook: Setting the Window Icon][cookbook::window-icon].
-

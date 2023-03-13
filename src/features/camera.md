@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Cameras
 
 {{#include ../include/links.md}}
@@ -258,4 +260,3 @@ scene to render to the screen. Item previews are a similar use case.
 Another use case is window-less applications that want to generate image files.
 For example, you could use Bevy to render something, and then export it to a PNG
 file.
-

@@ -1,3 +1,5 @@
+Warning: this chapter has not been fully updated for Bevy 0.10 yet!
+
 # General Game Engine Features
 
 {{#include ./include/links.md}}

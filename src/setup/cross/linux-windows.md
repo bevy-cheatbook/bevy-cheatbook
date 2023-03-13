@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Build Windows EXEs from Linux
 
 {{#include ../../include/links.md}}
@@ -109,4 +111,3 @@ MinGW:
 ```sh
 cargo build --target=x86_64-pc-windows-gnu --release
 ```
-

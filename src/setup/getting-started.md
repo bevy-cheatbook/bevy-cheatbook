@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Getting Started
 
 {{#include ../include/links.md}}
@@ -92,4 +94,3 @@ If you need help, use [GitHub Discussions][bevy::ghdiscussions], or feel
 welcome to come chat and ask for help in [Discord][bevy::discord].
 
 {{#include ../include/gpu-driver-requirements.md}}
-

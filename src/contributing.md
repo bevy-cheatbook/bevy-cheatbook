@@ -33,7 +33,7 @@ commercial self-promotion allowed).
 ## Contributing Book Text
 
 I do not directly merge book text written by other people. This is because
-I want the book to follow a consistent editorial style.
+I want the book to follow my own editorial style.
 
 If you would like to write new content for the book, feel free to make a
 PR with the content to be included, but note that it will likely not be
@@ -57,11 +57,7 @@ with the rest of the book; see: [License](./introduction.md#license).
 
 ## Bevy version
 
-Content written for the current Bevy release, is accepted for the `main`
-branch of the book.
-
-Content written for new developments in Bevy's main branch, is accepted for the
-`next` branch of the book, in preparation for the next upcoming Bevy release.
+Content must be written only for the current latest release of Bevy.
 
 ## Style Guidelines
 
@@ -84,11 +80,13 @@ it instead.
 
 Avoid long lines of code, to keep it readable on small screens.
 
-Use reasonable formatting that does not deviate much from the common
-conventions used by the Rust language community. I don't enforce it strictly;
-there is no need to use `rustfmt`. If deviating from those standards allows
-for the code to be presented better in the context of the book, then doing
-so is preferable.
+Use reasonable formatting that does not deviate much from the common conventions
+used by the Rust language community. If deviating from those standards allows
+for the code to be presented better in the context of the book, then doing so is
+preferable.
+
+Please do *not* use `rustfmt`. Code should be manually formatted for best
+presentation in the book.
 
 ### Text Style
 
@@ -100,4 +98,3 @@ Make it easy to read.
   - Split things into short paragraphs.
   - Avoid introducing many (even if related) topics at the same time.
   - Cover advanced usage separately from the basics.
-

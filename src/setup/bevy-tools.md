@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Dev Tools and Editors for Bevy
 
 Bevy does not yet have an official editor or other such tools. An official

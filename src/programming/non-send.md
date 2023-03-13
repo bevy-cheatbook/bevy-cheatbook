@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Non-Send Resources
 
 {{#include ../include/links.md}}

@@ -2,9 +2,8 @@
 
 {{#include ./include/links.md}}
 
-While the majority of this book was authored by me, Ida Iyes (`@inodentry`),
-a number of folks have made significant contributions to help! Thank you
-all so much! ❤️
+While the majority of this book was authored by me, Ida Iyes (`@inodentry`), a
+number of folks have made large contributions to help! Thank you all so much! ❤️
 
 ---
 
@@ -12,9 +11,8 @@ all so much! ❤️
  - nile `@TheRawMeatball`: review, useful issue reports
  - `@Zaszi`: writing the initial draft of the WASM chapter
  - `@skairunner` and `@mirenbharta`: developing the Pan+Orbit camera example
- - `@billyb2`: the Fixed Timestep example
 
-Thanks to everyone who has submitted [GitHub issues][project::cb::issues] with suggestions!
+Thanks to everyone who has submitted [GitHub issues][project::cb::issues]!
 
 ---
 

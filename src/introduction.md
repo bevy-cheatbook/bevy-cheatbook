@@ -61,7 +61,12 @@ or [Bevy Assets][bevyassets::games].
 
 ## Maintenance
 
-This version of the book is for Bevy release 0.9.
+The book is currently in the process of being updated for Bevy 0.10.
+
+Some parts of it are already up to date, while others have not been updated yet.
+The pages that might contain outdated information have a warning at the top.
+When I have verified and updated the contents of a page, I will remove the warning
+from that page. Pages without a warning at the top are up-to-date with Bevy 0.10.
 
 I intend to keep this book up-to-date and relevant with every new Bevy release.
 I also try to regularly make improvements to it, when I can manage it.
@@ -83,7 +88,7 @@ If you like the Bevy Game Engine, you should consider donating to the project.
 
 ## License
 
-Copyright © 2021-2022 Ida Iyes.
+Copyright © 2021-2023 Ida (IyesGames)
 
 All code in the book is provided under the
 [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
@@ -132,5 +137,5 @@ is active, Bevy simply hasn't yet had the time to mature.
 
 *There are no stability guarantees and breaking changes happen often!*
 
-Usually, it not hard to adapt to changes with new releases (or even track
-the main git development branch), but you have been warned!
+Usually, it not hard to adapt to changes with new releases, but you have been
+warned!

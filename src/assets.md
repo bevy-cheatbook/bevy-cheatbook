@@ -1,3 +1,5 @@
+Warning: this chapter has not been fully updated for Bevy 0.10 yet!
+
 # Bevy Asset Management
 
 {{#include ./include/links.md}}

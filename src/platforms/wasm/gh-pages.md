@@ -1,3 +1,5 @@
+Warning: this page has not been updated for Bevy 0.10 yet!
+
 # Hosting on GitHub Pages
 
 {{#include ../../include/links.md}}
