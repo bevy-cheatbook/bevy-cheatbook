@@ -359,6 +359,8 @@ In regular [systems][cb::system]:
    The name (string) of the system, may be useful for debugging
  - [`&World`][bevy::World]:
    Read-only [direct access to the ECS World][cb::world]
+ - [`WorldId`][bevy::WorldId]:
+   The ID of the world the system is currently running in
  - [`Entities`][bevy::Entities]:
    Low-level ECS metadata: All entities
  - [`Components`][bevy::Components]:
