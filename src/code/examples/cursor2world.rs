@@ -12,7 +12,7 @@ fn setup(mut commands: Commands) {
 
 fn my_cursor_system(
     // need to get window dimensions
-    primary_window: Query<(&Window, &PrimaryWindow)>,
+    primary_window: Query<&Window, With<PrimaryWindow>>,
     all_windows: Query<&Window>,
     camera_q: Query<(&Camera, &GlobalTransform), With<MainCamera>>,
 ) {
