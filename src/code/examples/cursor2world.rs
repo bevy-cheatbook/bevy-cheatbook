@@ -27,7 +27,7 @@ fn my_cursor_system(
             bevy::window::WindowRef::Primary => primary_window.single().0,
         }
     } else {
-        primary_window.single().0
+        primary_window.single()
     };
 
     // check if the cursor is inside the window and get its position
