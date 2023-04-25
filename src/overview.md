@@ -1,6 +1,6 @@
-# Chapter Overview
+{{#include ./include/header-none.md}}
 
-{{#include ./include/links.md}}
+# Chapter Overview
 
 This book is organized into a number of different chapters, covering different
 aspects of working with Bevy. The is designed to be useful as a reference

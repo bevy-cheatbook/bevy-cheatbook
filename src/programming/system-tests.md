@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Writing Tests for Systems
-
-{{#include ../include/links.md}}
 
 You might want to write and run automated tests for your [systems][cb::system].
 

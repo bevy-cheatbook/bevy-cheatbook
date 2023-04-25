@@ -146,6 +146,7 @@
 [input::mouse-wheel]: /input/mouse.md
 [input::mouse]: /input/mouse.md
 [input::touch]: /input/touch.md
+[maintenance]: /introduction.md#maintenance-policy
 [pitfall::2d-camera-z]: /pitfalls/2d-camera-z.md
 [pitfall::build-errors]: /pitfalls/build-errors.md
 [pitfall::intosystem]: /pitfalls/into-system.md

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header010.md}}
 
 # Coordinate System
-
-{{#include ../include/links.md}}
 
 ## 2D and 3D scenes and cameras
 

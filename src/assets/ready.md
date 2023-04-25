@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Track Loading Progress
-
-{{#include ../include/links.md}}
 
 There are good community plugins that can help with this. See [my
 recommendations for helper crates][cb::3rdparty::code-helpers]. Otherwise,

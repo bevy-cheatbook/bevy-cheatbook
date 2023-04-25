@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Getting Started
-
-{{#include ../include/links.md}}
 
 This page covers the basic setup needed for Bevy development.
 

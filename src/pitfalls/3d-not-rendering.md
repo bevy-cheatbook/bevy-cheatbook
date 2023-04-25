@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # 3D objects not displaying
-
-{{#include ../include/links.md}}
 
 This page will list some common issues that you may encounter, if you are
 trying to spawn a 3D object, but cannot see it on the screen.

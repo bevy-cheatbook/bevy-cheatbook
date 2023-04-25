@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../../include/header09.md}}
 
 # Hosting on GitHub Pages
-
-{{#include ../../include/links.md}}
 
 GitHub Pages is a hosting service that allows you to publish your website
 on GitHub's servers.

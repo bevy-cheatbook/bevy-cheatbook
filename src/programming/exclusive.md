@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Exclusive Systems
-
-{{#include ../include/links.md}}
 
 Exclusive systems are [systems][cb::system] that Bevy will not run in parallel
 with any other system. They can have [full unrestricted access][cb::world]

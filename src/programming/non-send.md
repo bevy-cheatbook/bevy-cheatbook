@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Non-Send Resources
-
-{{#include ../include/links.md}}
 
 "Non-send" refers to data types that must only be accessed from the "main
 thread" of the application. Such data is marked by Rust as `!Send` (lacking

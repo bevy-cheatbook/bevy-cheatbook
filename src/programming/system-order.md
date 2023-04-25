@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # System Order of Execution
-
-{{#include ../include/links.md}}
 
 Bevy's scheduling algorithm is designed to deliver maximum performance
 by running as many systems as possible in parallel across the available

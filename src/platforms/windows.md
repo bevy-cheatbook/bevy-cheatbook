@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Windows Desktop
-
-{{#include ../include/links.md}}
 
 If you have any additional Windows-specific knowledge,
 please help improve this page!

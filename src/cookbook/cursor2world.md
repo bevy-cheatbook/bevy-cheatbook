@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Convert cursor to world coordinates
-
-{{#include ../include/links.md}}
 
 [Click here for the full example code.][cbexample::cursor2world]
 

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # HDR, Tonemapping, Bloom
-
-{{#include ../include/links.md}}
 
 HDR (High Dynamic Range) refers to the ability of the game engine to handle very
 bright lights or colors. Bevy's rendering is HDR. This means you can have

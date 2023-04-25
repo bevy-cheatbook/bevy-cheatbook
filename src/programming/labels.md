@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Labels
-
-{{#include ../include/links.md}}
 
 You need labels to name various things in your [app][cb::app], such as
 [systems][cb::system] (for [order control][cb::system-order]), [run

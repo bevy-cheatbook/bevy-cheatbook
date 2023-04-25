@@ -1,8 +1,6 @@
-Warning: this chapter has not been fully updated for Bevy 0.10 yet!
+{{#include ./include/header-none.md}}
 
 # Bevy Setup Tips
-
-{{#include ./include/links.md}}
 
 This chapter is a collection of additional tips for configuring
 your project or development tools, collected from the Bevy

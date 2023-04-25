@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # 3D Models and Scenes (GLTF)
-
-{{#include ../include/links.md}}
 
 Relevant official examples:
 [`load_gltf`][example::load_gltf],

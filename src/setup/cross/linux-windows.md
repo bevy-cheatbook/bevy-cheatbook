@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../../include/header09.md}}
 
 # Build Windows EXEs from Linux
-
-{{#include ../../include/links.md}}
 
 (also check out the [Windows Platform page][platform::windows] for info
 about developing for Windows generally)

@@ -1,14 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Run Criteria
-
-Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which
-provides an alternative implementation that does not suffer from the
-[usability issues](#known-pitfalls) of the one in Bevy.
-
----
-
-{{#include ../include/links.md}}
 
 Run Criteria are a mechanism for controlling if Bevy should run specific
 [systems][cb::system], at runtime. This is how you can make functionality

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Manual Event Clearing
-
-{{#include ../include/links.md}}
 
 [Click here to download a full example file with the code from this page.][cbexample::manual-event-clear]
 

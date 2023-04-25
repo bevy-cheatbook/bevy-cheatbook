@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Configuring Bevy
-
-{{#include ../include/links.md}}
 
 Bevy is very modular and configurable. It is implemented as many separate
 cargo crates, allowing you to remove the parts you don't need. Higher-level

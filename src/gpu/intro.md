@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Render Architecture Overview
-
-{{#include ../include/links.md}}
 
 **NOTE:** This chapter of the book is an early *Work in Progress*!
 Many links are still broken!

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Removal Detection
-
-{{#include ../include/links.md}}
 
 Relevant official examples:
 [`removal_detection`][example::removal_detection].

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Stages
-
-{{#include ../include/links.md}}
 
 All [systems][cb::system] to be run by Bevy are contained in stages. Every
 frame update, Bevy executes each stage, in order. Within each stage, Bevy's

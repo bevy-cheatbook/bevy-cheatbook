@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # System Sets
-
-{{#include ../include/links.md}}
 
 System Sets allow you to easily apply common properties to multiple systems,
 for purposes such as [labeling][cb::label], [ordering][cb::system-order],

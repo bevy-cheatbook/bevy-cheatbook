@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ./include/header09.md}}
 
 # New to Bevy? Guided Tutorial!
-
-{{#include ./include/links.md}}
 
 Welcome to Bevy! :) We are glad to have you in our community!
 

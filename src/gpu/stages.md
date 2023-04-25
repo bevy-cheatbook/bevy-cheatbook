@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Render Stages
-
-{{#include ../include/links.md}}
 
 Everything on the CPU side (the whole process of driving the GPU workloads)
 is structured in a sequence of "render stages":

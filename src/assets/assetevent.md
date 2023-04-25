@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # React to Changes with Asset Events
-
-{{#include ../include/links.md}}
 
 If you need to perform specific actions when an asset is created,
 modified, or removed, you can make a [system][cb::system] that reacts to

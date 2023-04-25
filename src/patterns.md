@@ -1,6 +1,6 @@
-# Programming Patterns
+{{#include ./include/header-none.md}}
 
-{{#include ./include/links.md}}
+# Programming Patterns
 
 This chapter is about any non-obvious tricks, programming techniques,
 patterns and idioms, that may be useful when programming with Bevy.

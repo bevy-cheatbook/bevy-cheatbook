@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Error adding function as system
-
-{{#include ../include/links.md}}
 
 You can sometimes get confusing arcane compiler errors when you try to add
 systems to your Bevy app.

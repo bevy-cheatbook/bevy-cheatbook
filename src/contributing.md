@@ -1,12 +1,16 @@
-# Contributing
+{{#include ./include/header-none.md}}
 
-{{#include ./include/links.md}}
+# Contributing
 
 Be civil. If you need a code of conduct, have a look at Bevy's.
 
 If you have any suggestions for the book, such as ideas for new content, or
 if you notice anything that is incorrect or misleading, please file issues in
 [the GitHub repository][project::cb]!
+
+## Bevy Version
+
+See the book's [maintenance policy][maintenance].
 
 ## Contributing Code
 
@@ -54,10 +58,6 @@ copyright.
 As described previously, the actual published content in the book will be my
 own derivative work based on your contributions. I will license it consistently
 with the rest of the book; see: [License](./introduction.md#license).
-
-## Bevy version
-
-Content must be written only for the current latest release of Bevy.
 
 ## Style Guidelines
 

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Text / Character Input
-
-{{#include ../include/links.md}}
 
 Relevant official examples:
 [`char_input_events`][example::char_input_events].

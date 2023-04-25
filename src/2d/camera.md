@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header010.md}}
 
 # 2D Camera Setup
-
-{{#include ../include/links.md}}
 
 Page coming soon…
 

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../../include/header09.md}}
 
 # Optimize for Size
-
-{{#include ../../include/links.md}}
 
 When serving a WASM binary, the smaller it is, the faster the browser can
 download it. Faster downloads means faster page load times and less data

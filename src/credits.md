@@ -1,6 +1,6 @@
-# Credits
+{{#include ./include/header-none.md}}
 
-{{#include ./include/links.md}}
+# Credits
 
 While the majority of this book was authored by me, Ida Iyes (`@inodentry`), a
 number of folks have made large contributions to help! Thank you all so much! ❤️

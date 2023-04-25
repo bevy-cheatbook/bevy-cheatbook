@@ -1,15 +1,9 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Fixed Timestep
 
-{{#include ../include/links.md}}
-
 Relevant official examples:
 [`fixed_timestep`][example::fixed_timestep].
-
-Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which
-provides an alternative implementation that does not suffer from the
-[usability issues](#caveats) of the one in Bevy.
 
 ---
 

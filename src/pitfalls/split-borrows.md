@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Borrow multiple fields from struct
-
-{{#include ../include/links.md}}
 
 When you have a [component][cb::component] or [resource][cb::res], that is
 larger struct with multiple fields, sometimes you want to borrow several of

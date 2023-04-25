@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Direct World Access
-
-{{#include ../include/links.md}}
 
 The [`World`][bevy::World] is where Bevy ECS stores all data and
 associated metadata. It keeps track of [resources][cb::res], [entities and

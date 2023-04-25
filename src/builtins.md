@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ./include/header09.md}}
 
 # List of Bevy Builtins
-
-{{#include ./include/links.md}}
 
 This page is a quick condensed listing of all the important things provided
 by Bevy.

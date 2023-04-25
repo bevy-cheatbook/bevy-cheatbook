@@ -1,8 +1,6 @@
-Warning: this chapter has not been fully updated for Bevy 0.10 yet!
+{{#include ./include/header010.md}}
 
 # Bevy Asset Management
-
-{{#include ./include/links.md}}
 
 Assets are the data that the game engine is working with: all of your images,
 3D models, sounds, scenes, game-specific things like item descriptions,

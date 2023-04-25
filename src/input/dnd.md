@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Drag-and-Drop (Files)
-
-{{#include ../include/links.md}}
 
 Relevant official examples:
 [`drag_and_drop`][example::drag_and_drop].

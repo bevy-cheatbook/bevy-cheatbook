@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Generic Systems
-
-{{#include ../include/links.md}}
 
 Bevy [systems][cb::system] are just plain rust functions, which means they
 can be generic. You can add the same system multiple times, parametrized to

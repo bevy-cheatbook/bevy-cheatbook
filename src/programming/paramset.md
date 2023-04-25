@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Param Sets
-
-{{#include ../include/links.md}}
 
 For safety reasons, a [system][cb::system] cannot have multiple parameters
 whose data access might have a chance of mutability conflicts over the

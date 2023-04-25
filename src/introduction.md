@@ -1,6 +1,6 @@
-# Unofficial Bevy Cheat Book
+{{#include ./include/header-none.md}}
 
-{{#include ./include/links.md}}
+# Unofficial Bevy Cheat Book
 
 This is a reference-style book for the [Bevy game engine][bevy::website]
 ([GitHub][project::bevy]).
@@ -59,18 +59,6 @@ Discord][bevy::discord] to chat, ask questions, or get involved in the project!
 If you want to see some games made with Bevy, see [itch.io][itchio::bevy]
 or [Bevy Assets][bevyassets::games].
 
-## Maintenance
-
-The book is currently in the process of being updated for Bevy 0.10.
-
-Some parts of it are already up to date, while others have not been updated yet.
-The pages that might contain outdated information have a warning at the top.
-When I have verified and updated the contents of a page, I will remove the warning
-from that page. Pages without a warning at the top are up-to-date with Bevy 0.10.
-
-I intend to keep this book up-to-date and relevant with every new Bevy release.
-I also try to regularly make improvements to it, when I can manage it.
-
 ## Support Me
 
 <a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @inodentry on GitHub">GitHub Sponsors</a>
@@ -85,6 +73,40 @@ Your donation helps me work on such freely-available content. Thank you! ❤️
 <a class="github-button" href="https://github.com/sponsors/cart" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @cart on GitHub">GitHub Sponsors</a>
 
 If you like the Bevy Game Engine, you should consider donating to the project.
+
+## Maintenance Policy
+
+To ease the maintenance burden, the policy of the project is that the book may
+contain a mixture of content for different versions of Bevy. However, mixing
+outdated and updated content on the same page is not allowed.
+
+Every page in the book must clearly state what version of Bevy it was written
+for, at the top of the page, above the main heading. All content on that page
+must be relevant for the stated Bevy version.
+
+### Current Bevy Version
+
+The current Bevy release is 0.10.
+
+The aim is to try to maintain the book up to date with the current latest
+release of Bevy. New content should be written for this version. Outdated pages
+will be updated on a best-effort basis.
+
+### Old Bevy Version
+
+Content for old releases of Bevy is only allowed in the book if it already
+exists from before and has not been updated yet.
+
+### Unreleased (Bevy's git main branch)
+
+Pages that cover new yet-unreleased features of Bevy are allowed. If there is an
+exciting new feature, and I want to document it, I will write a page, without
+waiting for the next release of Bevy to come out. :)
+
+For functionality that exists in the current release in some form, but has
+changed for the next release, the current version is the one that should be
+documented. The page can be updated in the future. I might sometimes make
+exceptions to this rule.
 
 ## License
 

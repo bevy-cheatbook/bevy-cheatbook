@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Access the Asset Data
-
-{{#include ../include/links.md}}
 
 To access the actual asset data from systems, use the
 [`Assets<T>`][bevy::Assets] [resource][cb::res].

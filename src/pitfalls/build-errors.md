@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Strange Build Errors
-
-{{#include ../include/links.md}}
 
 Sometimes, you can get strange and confusing build errors when trying to
 compile your project.

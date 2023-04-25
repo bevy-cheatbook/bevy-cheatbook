@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Hot-Reloading Assets
-
-{{#include ../include/links.md}}
 
 Relevant official examples:
 [`hot_asset_reloading`][example::hot_asset_reloading].

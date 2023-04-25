@@ -1,8 +1,6 @@
-Warning: this chapter has not been updated for Bevy 0.10 yet!
+{{#include ./include/header-none.md}}
 
 # Bevy Render (GPU) Framework
-
-{{#include ./include/links.md}}
 
 **NOTE:** This chapter of the book is an early *Work in Progress*!
 Many links are still broken!

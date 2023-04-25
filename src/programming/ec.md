@@ -1,6 +1,4 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
-
-{{#include ../include/links.md}}
+{{#include ../include/header09.md}}
 
 Relevant official examples:
 [`ecs_guide`][example::ecs_guide].

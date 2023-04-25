@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Component Storage (Table/Sparse-Set)
-
-{{#include ../include/links.md}}
 
 Bevy ECS provides two different ways of storing data: tables and sparse sets.
 The two storage kinds offer different performance characteristics.

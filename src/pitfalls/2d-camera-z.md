@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # 2D objects not displaying
-
-{{#include ../include/links.md}}
 
 Bevy's 2D [coordinate space][cb::coords] is set up so that your background can
 be at Z=0.0, and other 2D objects can be layered at positive +Z coordinates

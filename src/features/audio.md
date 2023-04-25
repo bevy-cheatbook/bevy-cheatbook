@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Audio
-
-{{#include ../include/links.md}}
 
 Bevy's own built-in audio support is extremely barebones and limited. It
 can play sounds and give some control over its volume and playback.

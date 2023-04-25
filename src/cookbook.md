@@ -1,8 +1,6 @@
-Warning: this chapter has not been updated for Bevy 0.10 yet!
+{{#include ./include/header-none.md}}
 
 # Bevy Cookbook
-
-{{#include ./include/links.md}}
 
 This chapter shows you how to do various practical things using Bevy.
 

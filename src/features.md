@@ -1,8 +1,6 @@
-Warning: this chapter has not been fully updated for Bevy 0.10 yet!
+{{#include ./include/header-none.md}}
 
 # General Game Engine Features
-
-{{#include ./include/links.md}}
 
 This chapter covers various general features of Bevy, important to using it
 as a game engine.

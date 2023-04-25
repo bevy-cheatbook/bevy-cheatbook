@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Community Plugins Ecosystem
-
-{{#include ../include/links.md}}
 
 There is a growing ecosystem of unofficial community-made plugins for Bevy.
 They provide a lot of functionality that is not officially included with the

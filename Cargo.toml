@@ -2,6 +2,7 @@
 resolver = "2"
 members = [
     "src/code",
+    "src/code010",
 ]
 exclude = [
     "bevy",

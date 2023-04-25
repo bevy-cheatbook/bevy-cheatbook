@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header010.md}}
 
 # Bevy Time vs. Rust/OS time
-
-{{#include ../include/links.md}}
 
 Do *not* use [`std::time::Instant::now()`][std::Instant] to get the
 current time. [Get your timing information from Bevy][cb::time], using

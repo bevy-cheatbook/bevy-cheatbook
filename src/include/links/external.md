@@ -6,6 +6,8 @@
 [bevy::2343]: https://github.com/bevyengine/bevy/issues/2343
 [bevy::4669]: https://github.com/bevyengine/bevy/issues/4669
 [bevy::blog::0.6]: https://bevyengine.org/news/bevy-0-6
+[bevy::blog::0.9]: https://bevyengine.org/news/bevy-0-9
+[bevy::blog::0.10]: https://bevyengine.org/news/bevy-0-10
 [bevy::contributing]: https://github.com/bevyengine/bevy/blob/main/CONTRIBUTING.md
 [bevy::discord]: https://discord.gg/bevy
 [bevy::examples]: https://github.com/bevyengine/bevy/tree/latest/examples#examples

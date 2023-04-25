@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Text Editor / IDE
-
-{{#include ../include/links.md}}
 
 This page contains tips for different text editors and IDEs.
 

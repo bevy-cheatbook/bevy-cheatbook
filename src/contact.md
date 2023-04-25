@@ -1,6 +1,6 @@
-# Contact Me
+{{#include ./include/header-none.md}}
 
-{{#include ./include/links.md}}
+# Contact Me
 
 You can find me in the following places:
 

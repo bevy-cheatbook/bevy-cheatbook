@@ -1,8 +1,6 @@
-Warning: this chapter has not been fully updated for Bevy 0.10 yet!
+{{#include ./include/header09.md}}
 
 # Input Handling
-
-{{#include ./include/links.md}}
 
 [Click here to download example code.][cbexample::input]
 

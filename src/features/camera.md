@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Cameras
-
-{{#include ../include/links.md}}
 
 Cameras drive all rendering in Bevy. They are responsible for configuring what
 to draw, how to draw it, and where to draw it.

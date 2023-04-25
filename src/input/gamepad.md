@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Gamepad (Controller, Joystick)
-
-{{#include ../include/links.md}}
 
 Relevant official examples:
 [`gamepad_input`][example::gamepad_input],

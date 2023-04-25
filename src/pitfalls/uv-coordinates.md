@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # UV coordinates in Bevy
-
-{{#include ../include/links.md}}
 
 In Bevy, the vertical axis for the pixels of textures / images, and when
 sampling textures in a shader, points *downwards*, from top to bottom. The

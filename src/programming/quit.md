@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # Quitting the App
-
-{{#include ../include/links.md}}
 
 To cleanly shut down bevy, send an [`AppExit`][bevy::AppExit]
 [event][cb::event] from any [system][cb::system]:

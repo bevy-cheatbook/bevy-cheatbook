@@ -1,8 +1,6 @@
-Warning: this chapter has not been updated for Bevy 0.10 yet!
+{{#include ./include/header09.md}}
 
 # Bevy on Different Platforms
-
-{{#include ./include/links.md}}
 
 This chapter is a collection of platform-specific information, about using
 Bevy with different operating systems or environments.

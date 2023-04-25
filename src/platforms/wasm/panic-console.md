@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../../include/header09.md}}
 
 # Panic Messages
-
-{{#include ../../include/links.md}}
 
 Unless we do something about it, you will not be able to see Rust panic
 messages when running in a web browser. This means that, if your game crashes,

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header010.md}}
 
 # Handles
-
-{{#include ../include/links.md}}
 
 Handles are lightweight IDs that refer to a specific asset. You need them
 to use your assets, for example to [spawn entities][cb::commands] like

@@ -1,8 +1,6 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header-main.md}}
 
 # Using bleeding-edge Bevy (bevy main)
-
-{{#include ../include/links.md}}
 
 Bevy development moves very fast, and there are often exciting new things that
 are yet unreleased. This page will give you advice about using development

@@ -1,15 +1,9 @@
-Warning: this page has not been updated for Bevy 0.10 yet!
+{{#include ../include/header09.md}}
 
 # States
 
-{{#include ../include/links.md}}
-
 Relevant official examples:
 [`state`][example::state].
-
-Consider using the [`iyes_loopless`][project::iyes_loopless] crate, which
-provides an alternative implementation that does not suffer from the
-[usability issues](#known-pitfalls-and-limitations) of the one in Bevy.
 
 ---
 
