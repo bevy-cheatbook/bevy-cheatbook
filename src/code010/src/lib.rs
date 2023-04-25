@@ -3,5 +3,4 @@
 #![allow(dead_code)]
 
 mod assets {
-    mod assetserver;
 }
