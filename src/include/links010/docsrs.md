@@ -37,6 +37,7 @@
 [bevy::Children]: https://docs.rs/bevy/0.10.1/bevy/hierarchy/struct.Children.html
 [bevy::ClearColor]: https://docs.rs/bevy/0.10.1/bevy/core_pipeline/clear_color/struct.ClearColor.html
 [bevy::ClusterConfig]: https://docs.rs/bevy/0.10.1/bevy/pbr/enum.ClusterConfig.html
+[bevy::Color]: https://docs.rs/bevy/0.10.1/bevy/render/color/enum.Color.html
 [bevy::ColorMaterial]: https://docs.rs/bevy/0.10.1/bevy/sprite/struct.ColorMaterial.html
 [bevy::Commands]: https://docs.rs/bevy/0.10.1/bevy/ecs/system/struct.Commands.html
 [bevy::Component]: https://docs.rs/bevy/0.10.1/bevy/ecs/component/trait.Component.html
@@ -138,6 +139,7 @@
 [bevy::SceneBundle]: https://docs.rs/bevy/0.10.1/bevy/scene/struct.SceneBundle.html
 [bevy::SceneSpawner]: https://docs.rs/bevy/0.10.1/bevy/scene/struct.SceneSpawner.html
 [bevy::Scene]: https://docs.rs/bevy/0.10.1/bevy/scene/struct.Scene.html
+[bevy::Schedule]: https://docs.rs/bevy/0.10.1/bevy/ecs/schedule/struct.Schedule.html
 [bevy::Shader]: https://docs.rs/bevy/0.10.1/bevy/render/render_resource/struct.Shader.html
 [bevy::SkinnedMeshInverseBindposes]: https://docs.rs/bevy/0.10.1/bevy/render/mesh/skinning/struct.SkinnedMeshInverseBindposes.html
 [bevy::SpatialBundle]: https://docs.rs/bevy/0.10.1/bevy/render/prelude/struct.SpatialBundle.html

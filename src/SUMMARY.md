@@ -76,6 +76,8 @@
 
 - [Bevy Programming Framework](./programming.md)
   - [Intro to ECS](./programming/ecs-intro.md)
+  - [Intro: Your Data](./programming/intro-data.md)
+  - [Intro: Your Code](./programming/intro-code.md)
   - [Entities and Components](./programming/ec.md)
   - [Resources](./programming/res.md)
   - [Systems](./programming/systems.md)
