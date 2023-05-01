@@ -1,6 +1,6 @@
 {{#include ../include/header09.md}}
 
-# App Builder (main function)
+# The App
 
 Relevant official examples: All of them ;)
 
@@ -48,3 +48,20 @@ The Bevy game engine's own functionality is represented as a [plugin group][cb::
 Every typical Bevy app must first add it, using either:
  - [`DefaultPlugins`][bevy::DefaultPlugins] if you are making a full game/app
  - [`MinimalPlugins`][bevy::MinimalPlugins] for something like a headless server.
+
+## Quitting the App
+
+To cleanly shut down bevy, send an [`AppExit`][bevy::AppExit]
+[event][cb::event] from any [system][cb::system]:
+
+```rust,no_run,noplayground
+{{#include ../code/examples/quit.rs:system}}
+```
+
+For prototyping, Bevy provides a convenient system you can add, to close the
+focused window on pressing the `Esc` key. When all windows are closed, Bevy will
+quit automatically.
+
+```rust,no_run,noplayground
+{{#include ../code/examples/quit.rs:main}}
+```

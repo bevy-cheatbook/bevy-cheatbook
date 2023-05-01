@@ -14,7 +14,7 @@
 [cb::3rdparty::code-helpers]: /setup/unofficial-plugins.md#code-helpers
 [cb::3rdparty::file-formats]: /setup/unofficial-plugins.md#file-formats
 [cb::app]: /programming/app-builder.md
-[cb::appexit]: /programming/quit.md
+[cb::appexit]: /programming/app-builder.md#quitting-the-app
 [cb::asset]: /assets.md
 [cb::asset-data]: /assets/data.md
 [cb::asset-data::add]: /assets/data.md
@@ -69,7 +69,7 @@
 [cb::query]: /programming/queries.md
 [cb::queryset]: /programming/paramset.md
 [cb::quit]: /programming/quit.md
-[cb::removal-detection]: /programming/removal-detection.md
+[cb::removal-detection]: /programming/change-detection.md#removal-detection
 [cb::render-architecture]: /gpu/intro.md
 [cb::render::asset]: /TODO.md
 [cb::render::bindgroup]: /TODO.md
@@ -103,14 +103,14 @@
 [cb::sprite]: /2d/sprites.md
 [cb::stage]: /programming/schedules.md
 [cb::state]: /programming/states.md
-[cb::subapp]: /programming/sub-apps.md
+[cb::subapp]: /programming/app-builder.md#sub-apps
 [cb::system-pipe]: /programming/system-piping.md
 [cb::system-generic]: /patterns/generic-systems.md
 [cb::system-label]: /programming/system-order.md#labels
 [cb::system-order]: /programming/system-order.md
 [cb::system-parallel]: /programming/system-order.md
 [cb::system-param]: /builtins.md#systemparams
-[cb::system-tests]: /programming/system-tests.md
+[cb::system-tests]: /patterns/system-tests.md
 [cb::system]: /programming/systems.md
 [cb::systemset]: /programming/system-sets.md
 [cb::time]: /features/time.md
