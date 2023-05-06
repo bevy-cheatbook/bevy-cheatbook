@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # Configuring Bevy
 
@@ -23,7 +23,7 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.9"
+version = "0.10"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
@@ -32,17 +32,10 @@ features = [
 
   # Bevy functionality:
   "bevy_asset",         # Assets management
-  "bevy_scene",         # Scenes management
-  "bevy_gilrs",         # Gamepad input support
   "bevy_audio",         # Builtin audio
+  "bevy_gilrs",         # Gamepad input support
+  "bevy_scene",         # Scenes management
   "bevy_winit",         # Window management
-  "animation",          # Animation support
-  "x11",                # Linux: Support X11 windowing system
-  "filesystem_watcher", # Asset hot-reloading
-  "render",             # Graphics Rendering
-
-  ## "render" actually just includes:
-  ## (feel free to use just a subset of these, instead of "render")
   "bevy_render",        # Rendering framework core
   "bevy_core_pipeline", # Common rendering abstractions
   "bevy_sprite",        # 2D (sprites) rendering
@@ -50,11 +43,18 @@ features = [
   "bevy_gltf",          # GLTF 3D assets format support
   "bevy_text",          # Text/font rendering
   "bevy_ui",            # UI toolkit
+  "animation",          # Animation support
+  "tonemapping_luts",   # Support different camera Tonemapping modes (embeds extra data)
+  "filesystem_watcher", # Asset hot-reloading
+  "x11",                # Linux: Support X11 windowing system
+  "android_shared_stdcxx", # For Android builds, use shared C++ library
 
   # File formats:
-  "png",
-  "hdr",
-  "vorbis",
+  "png",    # PNG image format for simple 2D images
+  "hdr",    # HDR images
+  "ktx2",   # Preferred format for GPU textures
+  "zstd",   # ZSTD compression support in KTX2 files
+  "vorbis", # Audio: OGG Vorbis
 
   # These are other features that may be of interest:
   # (add any of these that you need)
@@ -63,26 +63,28 @@ features = [
   "wayland",              # Linux: Support Wayland windowing system
   "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
   "serialize",            # Support for `serde` Serialize/Deserialize
-  "bevy_dynamic_plugin",   # Support for loading of `DynamicPlugin`s
+  "bevy_dynamic_plugin",  # Support for loading of `DynamicPlugin`s
+  "accesskit_unix",       # AccessKit integration for UI Accessibility
 
   # File formats:
-  "ktx2", # preferred format for GPU textures
-  "dds",
-  "jpeg",
-  "bmp",
-  "tga",
-  "basis-universal",
-  "zstd", # needed if using zstd in KTX2 files
-  "flac",
-  "mp3",
-  "wav",
+  "dds",  # Alternative DirectX format for GPU textures, instead of KTX2
+  "jpeg", # JPEG lossy format for 2D photos
+  "bmp",  # Uncompressed BMP image format
+  "tga",  # Truevision Targa image format
+  "exr",  # OpenEXR advanced image format
+  "basis-universal", # Basis Universal GPU texture compression format
+  "flac", # Audio: FLAC lossless format
+  "mp3",  # Audio: MP3 format (not recommended)
+  "wav",  # Audio: Uncompressed WAV
+  "symphonia-all", # All Audio formats supported by the Symphonia library
 
   # Development/Debug features:
-  "dynamic",      # Dynamic linking for faster compile-times
-  "trace",        # Enable tracing for performance measurement
-  "trace_tracy",  # Tracing using `tracy`
-  "trace_chrome", # Tracing using the Chrome format
-  "wgpu_trace",   # WGPU/rendering tracing
+  "dynamic_linking", # Dynamic linking for faster compile-times
+  "trace",           # Enable tracing for performance measurement
+  "detailed_trace",  # Make traces more verbose
+  "trace_tracy",     # Tracing using `tracy`
+  "trace_chrome",    # Tracing using the Chrome format
+  "wgpu_trace",      # WGPU/rendering tracing
 ]
 ```
 
@@ -91,12 +93,8 @@ features = [
 ### Graphics / Rendering
 
 For a graphical application or game (most Bevy projects), you can include
-`render` and `bevy_winit`. For [Linux][platform::linux] support, you need
-at least one of `x11` or `wayland`.
-
-However, `render` is a meta-feature; it simply enables all the graphics-related
-features of Bevy. If you want, you can strip it down and include only what
-you need.
+`bevy_winit` and your selection of Rendering features. For
+[Linux][platform::linux] support, you need at least one of `x11` or `wayland`.
 
 `bevy_render` and `bevy_core_pipeline` are required for any application using
 Bevy rendering.
@@ -113,11 +111,9 @@ simulation, etc.), you may remove all of these features.
 
 ### Audio
 
-Bevy's audio is very limited in functionality. It is recommended that you
-use the [`bevy_kira_audio`][project::bevy_kira_audio] plugin instead. Disable
-`bevy_audio` and `vorbis`.
-
-See [this page][cb::audio] for more information.
+Bevy's audio is very limited in functionality. If you want something with more
+features, you can use the [`bevy_kira_audio`][project::bevy_kira_audio] plugin
+instead. Disable `bevy_audio` and `vorbis`.
 
 ### File Formats
 
@@ -140,34 +136,38 @@ smaller and compile faster. You might want to additionally enable `wayland`,
 to fully and natively support modern Linux environments. This will add a few
 extra transitive dependencies to your project.
 
-### Asset hot-reloading
-
-The `filesystem_watcher` feature controls support for [hot-reloading of
-assets][cb::asset-hotreload], supported on desktop platforms.
-
 ### Development Features
 
 While you are developing your project, these features might be useful:
 
+#### Asset hot-reloading
+
+The `filesystem_watcher` feature controls support for [hot-reloading of
+assets][cb::asset-hotreload], supported on desktop platforms.
+
 #### Dynamic Linking
 
-`dynamic` causes Bevy to be built and linked as a shared/dynamic library.
-This will make incremental builds *much* faster.
+`dynamic_linking` causes Bevy to be built and linked as a shared/dynamic
+library. This will make incremental builds *much* faster.
 
 This is only supported on desktop platforms. Known to work very well on Linux.
-Windows and macOS might have issues.
+Windows and macOS are also supported, but are less tested and have had issues in
+the past.
 
-Do not enable this for release builds you intend to publish to other people.
-It introduces unneeded complexity (you need to bundle extra files) and
-potential for things to not work correctly. Use this only during development.
+Do not enable this for release builds you intend to publish to other people,
+unless you have a very good special reason to and you know what you are doing.
+It introduces unneeded complexity (you need to bundle extra files) and potential
+for things to not work correctly. Use this only during development.
 
 For this reason, it may be convenient to specify the feature as a commandline
 option to `cargo`, instead of putting it in your `Cargo.toml`. Simply run your
 project like this:
 
 ```sh
-cargo run --features bevy/dynamic
+cargo run --features bevy/dynamic_linking
 ```
+
+You could also add this to your [IDE/editor configuration][cb::ide].
 
 #### Tracing
 
@@ -176,3 +176,5 @@ diagnosing performance issues.
 
 `trace_chrome` and `trace_tracy` choose the backend you want to use to
 visualize the traces.
+
+See [Bevy's official docs on profiling][bevy::profiling] to learn more.

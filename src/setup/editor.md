@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # Text Editor / IDE
 
@@ -12,9 +12,9 @@ Please help improve this page by providing suggestions for things to add.
 
 ## `CARGO_MANIFEST_DIR`
 
-When running your app/game, Bevy will search for the `assets` folder in
-the path specified in the `CARGO_MANIFEST_DIR` environment variable. This
-allows `cargo run` to work correctly from the terminal.
+When running your app/game, Bevy will search for the `assets` folder in the path
+specified in the `BEVY_ASSET_ROOT` or `CARGO_MANIFEST_DIR` environment variable.
+This allows `cargo run` to work correctly from the terminal.
 
 If you are using your editor/IDE to run your project in a non-standard way
 (say, inside a debugger), you have to be sure to set that correctly.
