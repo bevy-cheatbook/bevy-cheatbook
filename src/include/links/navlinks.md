@@ -11,8 +11,6 @@
 [builtins::stage]: /builtins.md#stages
 [builtins::systemparam]: /builtins.md#systemparams
 [cb::3rdparty]: /setup/unofficial-plugins.md
-[cb::3rdparty::code-helpers]: /setup/unofficial-plugins.md#code-helpers
-[cb::3rdparty::file-formats]: /setup/unofficial-plugins.md#file-formats
 [cb::app]: /programming/app-builder.md
 [cb::appexit]: /programming/app-builder.md#quitting-the-app
 [cb::asset]: /assets.md

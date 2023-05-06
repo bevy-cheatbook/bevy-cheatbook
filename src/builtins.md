@@ -45,8 +45,7 @@ are enabled by default, many are not.
 
 {{#include ./include/builtins.md:file-formats}}
 
-There are [unofficial plugins][cb::3rdparty::file-formats] available for adding
-support for even more file formats.
+There are unofficial plugins available for adding support for even more file formats.
 
 ## `wgpu` Backends
 

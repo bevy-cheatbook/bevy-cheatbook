@@ -2,9 +2,8 @@
 
 # Track Loading Progress
 
-There are good community plugins that can help with this. See [my
-recommendations for helper crates][cb::3rdparty::code-helpers]. Otherwise,
-this page shows you how to do it manually.
+There are good community plugins that can help with this. Otherwise, this page
+shows you how to do it yourself.
 
 ---
 
