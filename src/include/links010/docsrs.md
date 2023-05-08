@@ -150,6 +150,7 @@
 [bevy::Sprite]: https://docs.rs/bevy/0.10.1/bevy/sprite/struct.Sprite.html
 [bevy::StandardMaterial]: https://docs.rs/bevy/0.10.1/bevy/pbr/struct.StandardMaterial.html
 [bevy::State]: https://docs.rs/bevy/0.10.1/bevy/ecs/schedule/struct.State.html
+[bevy::NextState]: https://docs.rs/bevy/0.10.1/bevy/ecs/schedule/struct.NextState.html
 [bevy::StaticSystemParam]: https://docs.rs/bevy/0.10.1/bevy/ecs/system/struct.StaticSystemParam.html
 [bevy::Stopwatch]: https://docs.rs/bevy/0.10.1/bevy/time/struct.Stopwatch.html
 [bevy::Style]: https://docs.rs/bevy/0.10.1/bevy/ui/struct.Style.html

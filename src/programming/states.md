@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # States
 
@@ -23,7 +23,7 @@ To use states, define an enum type and add [system sets][cb::systemset]
 to your [app builder][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:app-states}}
+{{#include ../code010/src/basics.rs:app-states}}
 ```
 
 It is OK to have multiple system sets for the same state.
@@ -34,6 +34,7 @@ system ordering][cb::system-order].
 This can also be useful with [Plugins][cb::plugin]. Each plugin can add
 its own set of systems to the same state.
 
+// TODO: Is this paragraph still true?
 States are implemented using [run criteria][cb::runcriteria] under the hood.
 These special system set constructors are really just helpers to automatically
 add the state management run criteria.
@@ -41,16 +42,17 @@ add the state management run criteria.
 ## Controlling States
 
 Inside of systems, you can check and control the state using the
-[`State<T>`][bevy::State] resource:
+[`State<T>`][bevy::State] and [`NextState<T>`][bevy::NextState]
+resources respectively:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:check-state}}
+{{#include ../code010/src/basics.rs:check-state}}
 ```
 
 To change to another state:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:change-state}}
+{{#include ../code010/src/basics.rs:change-state}}
 ```
 
 After the systems of the current state complete, Bevy will transition to
@@ -60,32 +62,14 @@ You can do arbitrarily many state transitions in a single frame update. Bevy
 will handle all of them and execute all the relevant systems (before moving
 on to the next [stage][cb::stage]).
 
-## State Stack
-
-Instead of completely transitioning from one state to another, you can also
-overlay states, forming a stack.
-
-This is how you can implement things like a "game paused" screen, or an
-overlay menu, with the game world still visible / running in the background.
-
-You can have some systems that are still running even when the state is
-"inactive" (that is, in the background, with other states running on top). You
-can also add one-shot systems to run when "pausing" or "resuming" the state.
-
-In your [app builder][cb::app]:
+Here is a more complex example of setting systems to run during particular
+states or state transitions in your [app builder][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:state-stack}}
+{{#include ../code/src/basics.rs:app-states-complex}}
 ```
 
-To manage states like this, use `push`/`pop`:
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:state-push-pop}}
-```
-
-(using `.set` as shown before replaces the active state at the top of the stack)
-
+// TODO: Is this section still true?
 ## Known Pitfalls and Limitations
 
 ### Combining with Other Run Criteria
@@ -120,7 +104,7 @@ If you want to use [`Input<T>`][bevy::Input] to trigger state transitions using
 a button/key press, you need to clear the input manually by calling `.reset`:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:state-input-clear}}
+{{#include ../code010/src/basics.rs:state-input-clear}}
 ```
 
 (note that this requires [`ResMut`][bevy::ResMut])
