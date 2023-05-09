@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # UV coordinates in Bevy
 
@@ -29,5 +29,5 @@ If the images of your 2D sprites are flipped (for whatever reason), you can
 correct that using Bevy's sprite-flipping feature:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:sprite-flipping}}
+{{#include ../code010/src/pitfalls/uv_coordinates.rs:sprite-flipping}}
 ```

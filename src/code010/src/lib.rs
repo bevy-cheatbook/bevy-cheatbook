@@ -7,6 +7,8 @@
 mod setup {
 }
 mod pitfalls {
+    mod d2_camera_z;
+    mod uv_coordinates;
 }
 mod features {
 }

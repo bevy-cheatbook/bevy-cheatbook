@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # 2D objects not displaying
 
@@ -20,3 +20,7 @@ constructor (`Camera2dBundle::default()`).
 By default, when you create a 2D camera using Bevy's built-in Bundle
 constructor, Bevy sets the camera `Transform` to have Z=999.9. This is close to
 the default clipping plane (visible range of Z axis), which is set to 1000.0.
+
+```rust,no_run,noplayground
+{{#include ../code010/src/pitfalls/d2_camera_z.rs:spawn}}
+```

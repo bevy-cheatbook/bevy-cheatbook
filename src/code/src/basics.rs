@@ -1025,17 +1025,6 @@ fn use_gltf_things(
 
 fn commands_catchall(mut commands: Commands) {
 
-// ANCHOR: sprite-flipping
-commands.spawn(SpriteBundle {
-    sprite: Sprite {
-        flip_y: true,
-        flip_x: false,
-        ..Default::default()
-    },
-    ..Default::default()
-});
-// ANCHOR_END: sprite-flipping
-
 // ANCHOR: commands-current-entity
 let e = commands.spawn(()).id();
 // ANCHOR_END: commands-current-entity
