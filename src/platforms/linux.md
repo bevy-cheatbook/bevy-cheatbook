@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # Linux Desktop
 
@@ -18,10 +18,12 @@ distribution. [See instructions in official Bevy repo.][bevy::linux-dependencies
 
 ## GPU Drivers
 
-Support for the Vulkan graphics API is required to run Bevy apps. You (and your
-users) must ensure that you have compatible hardware and drivers installed.
+Bevy apps need support for the Vulkan graphics API to run best. There is a
+fallback on OpenGL ES 3 for systems where Vulkan is unsupported, but it might not
+work and will have limited features and performance.
 
-On most modern distributions and computers, this should be no problem.
+You (and your users) must ensure that you have compatible hardware and drivers
+installed. On most modern distributions and computers, this should be no problem.
 
 If Bevy apps refuse to run and print an error to the console about not being
 able to find a compatible GPU, the problem is most likely with the Vulkan
@@ -50,13 +52,14 @@ To enable native Wayland support for Bevy, enable the `wayland` cargo feature:
 
 ```toml
 [dependencies]
-bevy = { version = "0.9", features = ["wayland"] }
+bevy = { version = "0.10", features = ["wayland"] }
 ```
 
 Now your app will be built with support for both X11 and Wayland.
 
-If you want to remove X11 support for whatever reason, disable the `x11`
-cargo default feature.
+If you want to remove X11 support for whatever reason, you will have to disable
+the default features and re-enable everything you need, without the `x11`
+feature. [See here to learn how to configure Bevy features.][cb::features]
 
 If both are enabled, you can override which display protocol to use at runtime,
 using an environment variable:
