@@ -50,6 +50,37 @@ builds, like this:
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 ```
 
+## Working in WSL2
+
+If you prefer to have a more Linux-centric development workflow, you might want
+to work inside of WSL2 and build your project there. Another reason to do it is
+compile times; they are often much faster in WSL2 than on the Windows host
+system.
+
+Fortunately, this can actually work quite well! The trick is that you want to
+[cross-compile for Windows][cross::linux-windows]. The Windows EXE you build
+inside of WSL2 can be run just fine from the Linux commandline, and it will
+seamlessly run on the host system! This way, you don't need any GPU drivers or
+GUI support inside your WSL2 Linux environment.
+
+Note that when you run Windows binaries from WSL2, they don't get the Linux
+environment variables. `cargo run` does not just work, because your Bevy game
+will look for its `assets` folder in the path where the EXE is (which would be
+in the `target` build output folder). My simple solution is to just copy the
+EXE into the project folder after building, and run it directly from there.
+
+This can be automated with a little script, to use instead of `cargo run`:
+
+```sh
+#!/bin/sh
+cargo build --target x86_64-pc-windows-msvc &&
+cp target/x86_64-pc-windows-msvc/debug/mygame.exe . &&
+exec ./mygame.exe "$@"
+```
+
+This way you also don't have to type the cross-compilation target every time
+(and you can also add any other options you want there).
+
 ## Creating an icon for your app
 
 There are two places where you might want to put your application icon:
