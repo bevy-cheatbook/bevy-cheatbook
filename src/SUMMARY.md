@@ -120,12 +120,13 @@
   - [Linux Desktop](./platforms/linux.md)
   - [macOS Desktop](./platforms/macos.md)
   - [Windows Desktop](./platforms/windows.md)
-  - [Cross-Compilation](./setup/cross.md)
-    - [From Linux to Windows](./setup/cross/linux-windows.md)
   - [Browser (WebAssembly)](./platforms/wasm.md)
     - [Panic Messages](./platforms/wasm/panic-console.md)
     - [Optimize for Size](./platforms/wasm/size-opt.md)
     - [Hosting on GitHub Pages](./platforms/wasm/gh-pages.md)
+  - [Cross-Compilation](./setup/cross.md)
+    - [From Linux to Windows](./setup/cross/linux-windows.md)
+    - [From macOS to Windows](./setup/cross/macos-windows.md)
 
 ---
 
