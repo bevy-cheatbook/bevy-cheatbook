@@ -55,7 +55,7 @@
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
 [project::egui]: https://github.com/emilk/egui
 [project::gilrs]: https://gitlab.com/gilrs-project/gilrs
-[project::heron]: https://github.com/jcornaz/heron
+[project::homebrew]: https://brew.sh
 [project::iyes_loopless]: https://github.com/IyesGames/iyes_loopless
 [project::iyes_progress]: https://github.com/IyesGames/iyes_progress
 [project::klafsa]: https://github.com/superdump/klafsa

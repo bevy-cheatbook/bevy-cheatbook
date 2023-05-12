@@ -142,6 +142,7 @@
 [cookbook::pan-orbit-camera]: /cookbook/pan-orbit-camera.md
 [cookbook::window-icon]: /window/icon.md
 [cross::linux-windows]: /setup/cross/linux-windows.md
+[cross::macos-windows]: /setup/cross/macos-windows.md
 [input::char]: /input/char.md
 [input::cursor]: /input/mouse.md
 [input::dnd]: /input/dnd.md
