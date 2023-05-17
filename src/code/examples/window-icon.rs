@@ -1,15 +1,17 @@
 use bevy::prelude::*;
 
 // ANCHOR: main
-use bevy::window::WindowId;
+use bevy::window::PrimaryWindow;
 use bevy::winit::WinitWindows;
 use winit::window::Icon;
 
 fn set_window_icon(
-    // we have to use `NonSend` here
     windows: NonSend<WinitWindows>,
+    primary_window_query: Query<Entity, With<PrimaryWindow>>,
 ) {
-    let primary = windows.get_window(WindowId::primary()).unwrap();
+    let primary_window_entity = primary_window_query.single();
+
+    let primary = windows.get_window(primary_window_entity).unwrap();
 
     // here we use the `image` crate to load our icon data from a png file
     // this is not a very bevy-native solution, but it will do
