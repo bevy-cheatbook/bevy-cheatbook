@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header10.md}}
 
 # Setting the Window Icon
 
@@ -31,5 +31,5 @@ resource][cb::nonsend].
 
 Note: you need to add `winit` to your project's dependencies, and it must
 be the same version as the one used by Bevy. You can use `cargo tree` or
-check `Cargo.lock` to see which is the correct version. As of Bevy 0.9,
-that should be `winit = "0.27"`.
+check `Cargo.lock` to see which is the correct version. As of Bevy 0.10,
+that should be `winit = "0.28"`.
