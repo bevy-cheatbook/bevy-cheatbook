@@ -37,7 +37,7 @@ create a valid system that we can add:
 {{#include ../code/src/basics.rs:system-pipe}}
 ```
 
-You can also receive other parameters like commands, resources or queries in a piped system, as if they were regular systems, as long as the first argument is the piped input.
+In a piped system, you can also include additional parameters like commands, resources, or queries. These parameters are passed automatically just as they would be in regular systems. Keep in mind that the piped input has to remain as the first argument.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:system-io-with-params}}
