@@ -1543,6 +1543,16 @@ fn handle_io_errors(In(result): In<std::io::Result<()>>) {
 }
 // ANCHOR_END: system-io
 
+// ANCHOR: system-io-with-params
+fn handle_io_errors(In(result): In<std::io::Result<()>>, my_res: Res<MyResource>) {
+    if let Err(e) = result {
+        eprintln!("I/O error occurred: {}", e);
+    } else {
+        my_res.do_something();
+    }
+}
+// ANCHOR_END: system-io-with-params
+
 // ANCHOR: system-pipe
 fn main() {
     App::new()

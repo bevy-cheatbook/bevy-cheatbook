@@ -37,6 +37,12 @@ create a valid system that we can add:
 {{#include ../code/src/basics.rs:system-pipe}}
 ```
 
+You can also receive other parameters like commands, resources or queries in a piped system, as if they were regular systems. You can specify them in any order, as Bevy will find the specified input parameter from the list.
+
+```rust,no_run,noplayground
+{{#include ../code/src/basics.rs:system-io-with-params}}
+```
+
 ## Performance Warning
 
 Beware that Bevy treats the whole chain as if it was a single big system, with
