@@ -24,6 +24,7 @@ mod d3 {
 }
 mod programming {
     mod intro_code;
+    mod run_conditions;
 }
 mod patterns {
 }

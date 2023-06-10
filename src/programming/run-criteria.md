@@ -1,37 +1,38 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
-# Run Criteria
+# Run Conditions
 
-Run Criteria are a mechanism for controlling if Bevy should run specific
+Run Conditions are a mechanism for controlling if Bevy should run specific
 [systems][cb::system], at runtime. This is how you can make functionality
 that only runs under certain conditions.
 
-Run Criteria can be applied to individual [systems][cb::system], [system
-sets][cb::systemset], and [stages][cb::stage].
+Run Conditions can be applied to individual [systems][cb::system], and [system
+sets][cb::systemset].
 
-Run Criteria are Bevy systems that return a value of type [`enum
-ShouldRun`][bevy::ShouldRun]. They can accept any [system
+Run Conditions are Bevy systems that return a bool. They can accept any [system
 parameters][builtins::systemparam], like a normal system.
 
-This example shows how run criteria might be used to implement different
+This example shows how run conditions might be used to implement different
 multiplayer modes:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:run-criteria}}
+{{#include ../code010/src/programming/run_conditions.rs:conditions}}
+```
+
+Run conditions can (sometimes) provide light optimization benefits, as
+conditions are only evaluated once each schedule update, and failed conditions
+do not schedule systems as tasks.
+
+## Combining conditions
+
+Run conditions can be combined using `not`, `and_then`, and `or_else`. These can
+be nested however you would like to allow for fairly complex conditions.
+
+```rust,no_run,noplayground
+{{#include ../code010/src/programming/run_conditions.rs:combine}}
 ```
 
 ## Known Pitfalls
-
-### Combining Multiple Run Criteria
-
-It is not possible to make a system that is conditional on multiple run
-criteria. Bevy has a `.pipe` method that allows you to "chain" run criteria,
-which could let you modify the output of a run criteria, but this is very
-limiting in practice.
-
-Consider using [`iyes_loopless`][project::iyes_loopless]. It allows you to
-use any number of run conditions to control your systems, and does not prevent
-you from using [states][cb::state] or [fixed timestep][cb::fixedtimestep].
 
 ### Events
 
