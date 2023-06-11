@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header010.md}}
 
 # Exclusive Systems
 
@@ -25,22 +25,17 @@ See the [direct World access page][cb::world] to learn more about how to do
 such things.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:exclusive-fn}}
+{{#include ../code010/src/programming/exclusive.rs:exclusive-fn}}
 ```
 
 You need to add exclusive systems to the [App][cb::app], just like
-regular systems, but you must call `.exclusive_system()` on them.
+regular systems, and exclusive systems can be ordered [just like regular
+systems][cb::system-order].
 
-They cannot be ordered in-between regular parallel systems. Exclusive systems
-always run at one of the following places:
- - `.at_start()`: at the beginning of a [stage][cb::stage]
- - `.at_end()`: at the end of a [stage][cb::stage],
-   after [commands][cb::commands] from regular systems have been applied
- - `.before_commands()`: after all the regular systems in a [stage][cb::stage],
-   but before [commands][cb::commands] are applied
-
-(if you don't specify anything, the default is assumed `.at_start()`)
+One notable, already-provided exclusive system is `apply_system_buffers`. It
+performs a command flush which applies all queued-up [`Commands`][cb::commands]
+added in systems since the last command flush.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:exclusive-app}}
+{{#include ../code010/src/programming/exclusive.rs:command-flush}}
 ```

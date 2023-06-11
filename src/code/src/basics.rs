@@ -2108,38 +2108,6 @@ fn main() {
 }
 
 #[allow(dead_code)]
-mod app17 {
-use super::*;
-
-fn some_more_things(world: &mut World) {}
-
-// ANCHOR: exclusive-fn
-fn do_crazy_things(world: &mut World) {
-    // we can do anything with any data in the Bevy ECS here!
-}
-// ANCHOR_END: exclusive-fn
-
-// ANCHOR: exclusive-app
-fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-
-        // this will run at the start of CoreStage::Update (the default stage)
-        .add_system(do_crazy_things)
-
-        // this will run at the end of CoreStage::PostUpdate
-        .add_system_to_stage(
-            CoreStage::PostUpdate,
-            some_more_things
-                .at_end()
-        )
-
-        .run();
-}
-// ANCHOR_END: exclusive-app
-}
-
-#[allow(dead_code)]
 mod app18 {
 use super::*;
 // ANCHOR: globaltransform
