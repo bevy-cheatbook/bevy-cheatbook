@@ -12,7 +12,7 @@ fn setup(mut commands: Commands) {
 
 fn my_cursor_system(
     // need to get window dimensions
-    windows: Res<Windows>,
+    window_q: Query<&Window>,
     // query to get camera transform
     camera_q: Query<(&Camera, &GlobalTransform), With<MainCamera>>,
 ) {
@@ -20,12 +20,14 @@ fn my_cursor_system(
     // assuming there is exactly one main camera entity, so query::single() is OK
     let (camera, camera_transform) = camera_q.single();
 
-    // get the window that the camera is displaying to (or the primary window)
-    let window = if let RenderTarget::Window(id) = camera.target {
-        windows.get(id).unwrap()
-    } else {
-        windows.get_primary().unwrap()
-    };
+    // ~~get the window that the camera is displaying to (or the primary window)~~
+//     let window = if let RenderTarget::Window(id) = camera.target {
+//         windows.get(id).unwrap()
+//     } else {
+//         windows.get_primary().unwrap()
+//     };
+    // Get the only window, will panic if >1 window (or no windows)
+    let window: &Window = window_q.single();
 
     // check if the cursor is inside the window and get its position
     // then, ask bevy to convert into world coordinates, and truncate to discard Z
