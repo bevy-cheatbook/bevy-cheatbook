@@ -1,4 +1,4 @@
-name: check if code still compiles (next)
+name: check if code still compiles
 
 on:
   schedule:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: next
+          ref: main
 
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install --no-install-recommends pkg-config libx11-dev libasound2-dev libudev-dev
@@ -25,4 +25,4 @@ jobs:
           override: true
 
       - name: Check code
-        run: cargo update && cargo check --lib --examples
+        run: ./check.sh
