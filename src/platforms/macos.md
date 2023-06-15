@@ -9,6 +9,8 @@ Create Issues or PRs on [GitHub][project::cb].
 
 ---
 
+[See here if you also want to build Windows EXEs from macOS][cross::macos-windows].
+
 ## Known Pitfalls
 
 ### Window Management Apps Compatability
