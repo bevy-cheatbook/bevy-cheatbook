@@ -21,3 +21,12 @@ html,body {
 .content {
     padding-bottom: 0px;
 }
+
+.patreon-button {
+    top: -8px;
+    position: relative;
+}
+.patreon-button-small {
+    top: -5px;
+    position: relative;
+}

@@ -65,11 +65,12 @@ or [Bevy Assets][bevyassets::games].
 ## Support Me
 
 <a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @inodentry on GitHub">GitHub Sponsors</a>
+<a href="https://patreon.com/iyesgames"><button class="patreon-button">Patreon</button></a>
+
+If you like this book, please consider sponsoring me. Thank you! ❤️
 
 I'd like to keep improving and maintaining this book, to provide a high-quality
 independent learning resource for the Bevy community.
-
-Your donation helps me work on such freely-available content. Thank you! ❤️
 
 ## Support Bevy
 
