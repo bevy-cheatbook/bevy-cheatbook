@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 check() {
     pushd "${1}" || return 1
