@@ -39,8 +39,11 @@ can find it from the table-of-contents (sidebar) or using the search function
 The [Chapter Overview][chapter::overview] page will give you a general idea
 of how the book is structured.
 
+The text on each page will link to other pages, where you can learn about other
+things mentioned in the text. This helps you jump around the book.
+
 If you are new to Bevy, or would like a more guided experience, try the
-[tutorial page][chapter::tutorial]. It will help you navigate the book in
+[Guided Tour tutorial][cbtut::guide]. It will help you navigate the book in
 an order that makes sense for learning, from beginner to advanced topics.
 
 The [Bevy Builtins][chapter::builtins] page is a concise cheatsheet of useful
@@ -77,12 +80,12 @@ If you like the Bevy Game Engine, you should consider donating to the project.
 ## Maintenance Policy
 
 To ease the maintenance burden, the policy of the project is that the book may
-contain a mixture of content for different versions of Bevy. However, mixing
-outdated and updated content on the same page is not allowed.
+contain a content for different versions of Bevy. However, mixing Bevy versions
+on the same page is not allowed.
 
-Every page in the book must clearly state what version of Bevy it was written
-for, at the top of the page, above the main heading. All content on that page
-must be relevant for the stated Bevy version.
+Every page in the book must clearly state what version of Bevy it was last
+updated for, at the top of the page, above the main heading. All content on that
+page must be relevant for the stated Bevy version.
 
 ### Current Bevy Version
 

@@ -16,15 +16,18 @@ information about types and features provided by Bevy.
 
 The book has the following general chapters:
 
+ - [Bevy Tutorials][chapter::tutorial]: complete tutorials that you can follow to help you learn
  - [Bevy Setup Tips][chapter::setup]: project setup advice, recommendations for tools and plugins
  - [Common Pitfalls][chapter::pitfalls]: solutions for common issues encountered by the community
  - [Bevy Cookbook][chapter::cookbook]: various code examples beyond the ones in Bevy official repos
  - [Bevy on Different Platforms][chapter::platforms]: information about working with specific plaforms / OSs
+ - [Appendix: General Concepts][chapter::concepts]: various general gamedev knowledge, not specific to Bevy
 
 To learn how to program in Bevy, see these chapters:
+
  - [Bevy Programming Framework][chapter::programming]: the ECS+App frameworks, the foundation of everything
  - [Programming Patterns][chapter::patterns]: opinionated advice, patterns, idioms
- - [[WIP] Bevy Render (GPU) Framework][chapter::gpu]: working with the GPU and Bevy's rendering
+ - [Bevy Render (GPU) Framework][chapter::gpu]: working with the GPU and Bevy's rendering
 
 The following chapters cover various Bevy feature areas:
 

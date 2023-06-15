@@ -44,7 +44,6 @@
 [project::bevy_game_template]: https://github.com/NiklasEi/bevy_game_template
 [project::bevy_inspector_egui]: https://github.com/jakobhellermann/bevy-inspector-egui
 [project::bevy_kira_audio]: https://github.com/NiklasEi/bevy_kira_audio
-[project::bevy_midi]: https://github.com/BlackPhlox/bevy_midi
 [project::bevy_mod_debugdump]: https://github.com/jakobhellermann/bevy_mod_debugdump
 [project::bevy_mod_picking]: https://github.com/aevyrie/bevy_mod_picking
 [project::bevyassets]: https://github.com/bevyengine/bevy-assets

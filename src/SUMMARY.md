@@ -5,13 +5,12 @@
 
 ---
 
-[New to Bevy? Guided Tutorial!](./tutorial.md)
-
----
-
 [List of Bevy Builtins](./builtins.md)
 
 ---
+
+- [Bevy Tutorials](./tutorial.md)
+  - [Guided Tour](./tutorial/guide.md)
 
 - [Bevy Setup Tips](./setup.md)
   - [Getting Started](./setup/getting-started.md)
@@ -83,20 +82,19 @@
   - [Gamepad (Controller, Joystick)](./input/gamepad.md)
   - [Touchscreen](./input/touch.md)
   - [Drag-and-Drop (Files)](./input/dnd.md)
-  - [MIDI (Musical Instrument)](./input/midi.md)
 
 - [Window Management](./window.md)
-  - [[WIP] Window Properties](./window/props.md)
+  - [Window Properties](./window/props.md)
   - [Change the Background Color](./window/clear-color.md)
   - [Grab/Capture the Mouse Cursor](./window/mouse-grab.md)
   - [Set the Window Icon](./window/icon.md)
 
 - [Working with 2D](./2d.md)
-  - [[WIP] 2D Camera Setup](./2d/camera.md)
-  - [[WIP] Sprites and Atlases](./2d/sprites.md)
+  - [2D Camera Setup](./2d/camera.md)
+  - [Sprites and Atlases](./2d/sprites.md)
 
 - [Working with 3D](./3d.md)
-  - [[WIP] 3D Camera Setup](./3d/camera.md)
+  - [3D Camera Setup](./3d/camera.md)
   - [3D Models and Scenes (GLTF)](./3d/gltf.md)
 
 - [[WIP] Bevy Render (GPU) Framework](./gpu.md)
@@ -127,6 +125,8 @@
   - [Cross-Compilation](./setup/cross.md)
     - [From Linux to Windows](./setup/cross/linux-windows.md)
     - [From macOS to Windows](./setup/cross/macos-windows.md)
+
+- [Appendix: General Concepts](./concepts.md)
 
 ---
 

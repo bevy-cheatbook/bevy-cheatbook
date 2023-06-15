@@ -22,7 +22,9 @@
 [cb::assetpath]: /assets/assetserver.md#assetpath-and-labels
 [cb::assetserver]: /assets/assetserver.md
 [cb::audio]: /features/audio.md
+[cb::bevy-main]: /setup/bevy-git.md
 [cb::bundle]: /programming/ec.md#component-bundles
+[cb::camera]: /features/camera.md
 [cb::camera-2d]: /2d/camera.md
 [cb::camera-3d]: /3d/camera.md
 [cb::camera-custom-projection]: /cookbook/custom-projection.md
@@ -59,6 +61,7 @@
 [cb::ide]: /setup/editor.md
 [cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
+[cb::log]: /features/log.md
 [cb::multi-world]: /programming/sub-apps.md
 [cb::nonsend]: /programming/non-send.md
 [cb::paramset]: /programming/paramset.md
@@ -120,10 +123,12 @@
 [cb::vsync]: /TODO.md
 [cb::window]: /window/props.md
 [cb::world]: /programming/world.md
+[cbtut::guide]: /tutorial/guide.md
 [chapter::2d]: /2d.md
 [chapter::3d]: /3d.md
 [chapter::assets]: /assets.md
 [chapter::builtins]: /builtins.md
+[chapter::concepts]: /concepts.md
 [chapter::cookbook]: /cookbook.md
 [chapter::features]: /features.md
 [chapter::gpu]: /gpu.md
