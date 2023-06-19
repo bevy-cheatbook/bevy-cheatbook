@@ -1,3 +1,4 @@
+[apple::design-app-icon]: https://developer.apple.com/design/human-interface-guidelines/app-icons
 [bevy::1031]: https://github.com/bevyengine/bevy/issues/1031
 [bevy::1429]: https://github.com/bevyengine/bevy/pull/1429
 [bevy::1700]: https://github.com/bevyengine/bevy/issues/1700

@@ -61,9 +61,9 @@ You should probably handle each of these differently (with different
 sensitivity settings), to provide a good experience on both types of hardware.
 
 **Note:** the `Line` unit is not guaranteed to have whole number values/steps!
-At least macOS does non-linear scaling / acceleration of scrolling at the OS
-level, meaning your app will get a fractional number of lines even when using a
-regular PC mouse with a scroll wheel.
+At least [macOS][platform::macos] does non-linear scaling / acceleration of
+scrolling at the OS level, meaning your app will get weird values for the number
+of lines, even when using a regular PC mouse with a fixed-stepping scroll wheel.
 
 ## Mouse Motion
 

@@ -123,6 +123,7 @@
 [cb::vsync]: /TODO.md
 [cb::window]: /window/props.md
 [cb::world]: /programming/world.md
+[cbdl::macos-info-plist]: /dl/Info.plist
 [cbtut::guide]: /tutorial/guide.md
 [chapter::2d]: /2d.md
 [chapter::3d]: /3d.md
