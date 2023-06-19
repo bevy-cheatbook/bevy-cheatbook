@@ -1,13 +1,6 @@
-{{#include ./include/header09.md}}
+{{#include ./include/header011.md}}
 
 # Input Handling
-
-[Click here to download example code.][cbexample::input]
-
-This is a complete example that you can run. It will print all input activity
-to the console.
-
----
 
 Bevy supports the following inputs:
   - [Keyboard][input::keyboard] (detect when keys are pressed or released)

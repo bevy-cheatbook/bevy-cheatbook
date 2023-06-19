@@ -82,6 +82,7 @@
 [bevy::HierarchyEvent]: https://dev-docs.bevyengine.org/bevy/hierarchy/enum.HierarchyEvent.html
 [bevy::ImageBundle]: https://dev-docs.bevyengine.org/bevy/ui/node_bundles/struct.ImageBundle.html
 [bevy::Image]: https://dev-docs.bevyengine.org/bevy/render/texture/struct.Image.html
+[bevy::Ime]: https://dev-docs.bevyengine.org/bevy/window/enum.Ime.html
 [bevy::Input]: https://dev-docs.bevyengine.org/bevy/input/struct.Input.html
 [bevy::Interaction]: https://dev-docs.bevyengine.org/bevy/ui/enum.Interaction.html
 [bevy::IoTaskPool]: https://dev-docs.bevyengine.org/bevy/tasks/struct.IoTaskPool.html

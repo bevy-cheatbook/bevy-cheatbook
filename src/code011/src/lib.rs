@@ -13,6 +13,7 @@ mod features {
 mod assets {
 }
 mod input {
+    mod r#char;
 }
 mod window {
 }

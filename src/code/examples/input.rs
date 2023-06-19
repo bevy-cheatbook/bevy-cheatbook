@@ -354,25 +354,6 @@ fn configure_gamepads(
 }
 // ANCHOR_END: gamepad-settings
 
-// ANCHOR: text
-/// prints every char coming in; press enter to echo the full string
-fn text_input(
-    mut char_evr: EventReader<ReceivedCharacter>,
-    keys: Res<Input<KeyCode>>,
-    mut string: Local<String>,
-) {
-    for ev in char_evr.iter() {
-        println!("Got char: '{}'", ev.char);
-        string.push(ev.char);
-    }
-
-    if keys.just_pressed(KeyCode::Return) {
-        println!("Text input: {}", *string);
-        string.clear();
-    }
-}
-// ANCHOR_END: text
-
 // ANCHOR: touches
 fn touches(
     touches: Res<Touches>,
@@ -439,7 +420,6 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_startup_system(configure_gamepads)
         .add_system(file_drop)
-        .add_system(text_input)
         .add_system(keyboard_input)
         .add_system(keyboard_events)
         .add_system(mouse_button_input)

@@ -10,3 +10,7 @@ bevy = { git = "https://github.com/bevyengine/bevy" }
 [dev-dependencies]
 # image = "0.24"
 # winit = "0.28"
+
+[[bin]]
+name = "input-char"
+path = "src/input/char.rs"
