@@ -168,6 +168,8 @@
 [bevy::TouchPhase]: https://dev-docs.bevyengine.org/bevy/input/touch/enum.TouchPhase.html
 [bevy::Touch]: https://dev-docs.bevyengine.org/bevy/input/touch/struct.Touch.html
 [bevy::Touches]: https://dev-docs.bevyengine.org/bevy/input/touch/struct.Touches.html
+[bevy::TouchpadMagnify]: https://dev-docs.bevyengine.org/bevy/input/touchpad/struct.TouchpadMagnify.html
+[bevy::TouchpadRotate]: https://dev-docs.bevyengine.org/bevy/input/touchpad/struct.TouchpadRotate.html
 [bevy::TransformBundle]: https://dev-docs.bevyengine.org/bevy/transform/struct.TransformBundle.html
 [bevy::TransformSystem]: https://dev-docs.bevyengine.org/bevy/transform/enum.TransformSystem.html
 [bevy::Transform]: https://dev-docs.bevyengine.org/bevy/transform/components/struct.Transform.html
@@ -191,7 +193,11 @@
 [bevy::With]: https://dev-docs.bevyengine.org/bevy/ecs/query/struct.With.html
 [bevy::Without]: https://dev-docs.bevyengine.org/bevy/ecs/query/struct.Without.html
 [bevy::World]: https://dev-docs.bevyengine.org/bevy/ecs/world/struct.World.html
+[bevy::ecs::common_conditions]: https://dev-docs.bevyengine.org/bevy/ecs/schedule/common_conditions/index.html
 [bevy::features]: https://github.com/bevyengine/bevy/blob/main/Cargo.toml
 [bevy::impl::Bundle]: https://dev-docs.bevyengine.org/bevy/ecs/bundle/trait.Bundle.html#implementors
 [bevy::impl::Component]: https://dev-docs.bevyengine.org/bevy/ecs/component/trait.Component.html#implementors
 [bevy::impl::SystemParam]: https://dev-docs.bevyengine.org/bevy/ecs/system/trait.SystemParam.html#implementors
+[bevy::input::common_conditions]: https://dev-docs.bevyengine.org/bevy/input/common_conditions/index.html
+[bevy::time::common_conditions]: https://dev-docs.bevyengine.org/bevy/time/common_conditions/index.html
+[lwim::common_conditions]: https://docs.rs/leafwing-input-manager/latest/leafwing_input_manager/common_conditions/index.html

@@ -47,102 +47,6 @@ fn keyboard_events(
 }
 // ANCHOR_END: keyboard-events
 
-// ANCHOR: mouse-button-input
-fn mouse_button_input(
-    buttons: Res<Input<MouseButton>>,
-) {
-    if buttons.just_pressed(MouseButton::Left) {
-        // Left button was pressed
-    }
-    if buttons.just_released(MouseButton::Left) {
-        // Left Button was released
-    }
-    if buttons.pressed(MouseButton::Right) {
-        // Right Button is being held down
-    }
-    // we can check multiple at once with `.any_*`
-    if buttons.any_just_pressed([MouseButton::Left, MouseButton::Right]) {
-        // Either the left or the right button was just pressed
-    }
-}
-// ANCHOR_END: mouse-button-input
-
-// ANCHOR: mouse-button-events
-fn mouse_button_events(
-    mut mousebtn_evr: EventReader<MouseButtonInput>,
-) {
-    use bevy::input::ButtonState;
-
-    for ev in mousebtn_evr.iter() {
-        match ev.state {
-            ButtonState::Pressed => {
-                println!("Mouse button press: {:?}", ev.button);
-            }
-            ButtonState::Released => {
-                println!("Mouse button release: {:?}", ev.button);
-            }
-        }
-    }
-}
-// ANCHOR_END: mouse-button-events
-
-// ANCHOR: mouse-motion
-fn mouse_motion(
-    mut motion_evr: EventReader<MouseMotion>,
-) {
-    for ev in motion_evr.iter() {
-        println!("Mouse moved: X: {} px, Y: {} px", ev.delta.x, ev.delta.y);
-    }
-}
-// ANCHOR_END: mouse-motion
-
-// ANCHOR: cursor-events
-fn cursor_events(
-    mut cursor_evr: EventReader<CursorMoved>,
-) {
-    for ev in cursor_evr.iter() {
-        println!(
-            "New cursor position: X: {}, Y: {}, in Window ID: {:?}",
-            ev.position.x, ev.position.y, ev.id
-        );
-    }
-}
-// ANCHOR_END: cursor-events
-
-// ANCHOR: cursor-position
-fn cursor_position(
-    windows: Res<Windows>,
-) {
-    // Games typically only have one window (the primary window).
-    // For multi-window applications, you need to use a specific window ID here.
-    let window = windows.get_primary().unwrap();
-
-    if let Some(_position) = window.cursor_position() {
-        // cursor is inside the window, position given
-    } else {
-        // cursor is not inside the window
-    }
-}
-// ANCHOR_END: cursor-position
-
-// ANCHOR: scroll-events
-fn scroll_events(
-    mut scroll_evr: EventReader<MouseWheel>,
-) {
-    use bevy::input::mouse::MouseScrollUnit;
-    for ev in scroll_evr.iter() {
-        match ev.unit {
-            MouseScrollUnit::Line => {
-                println!("Scroll (line units): vertical: {}, horizontal: {}", ev.y, ev.x);
-            }
-            MouseScrollUnit::Pixel => {
-                println!("Scroll (pixel units): vertical: {}, horizontal: {}", ev.y, ev.x);
-            }
-        }
-    }
-}
-// ANCHOR_END: scroll-events
-
 // ANCHOR: gamepad-connect-disconnect
 /// Simple resource to store the ID of the connected gamepad.
 /// We need to know which gamepad to use for player input.
@@ -422,12 +326,6 @@ fn main() {
         .add_system(file_drop)
         .add_system(keyboard_input)
         .add_system(keyboard_events)
-        .add_system(mouse_button_input)
-        .add_system(mouse_button_events)
-        .add_system(mouse_motion)
-        .add_system(cursor_events)
-        .add_system(cursor_position)
-        .add_system(scroll_events)
         .add_system(gamepad_connections)
         .add_system(gamepad_input)
         .add_system(gamepad_input_events)

@@ -14,6 +14,7 @@ mod assets {
 }
 mod input {
     mod r#char;
+    mod mouse;
 }
 mod window {
 }
