@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header10.md}}
 
 # Audio
 
@@ -27,24 +27,35 @@ about on `bevy_kira_audio` instead of Bevy.
 
 ```toml
 [dependencies.bevy]
-version = "0.9"
+version = "0.10"
 default-features = false
 # These are the remaining default features other than `bevy_audio` and `vorbis`
 features = [
-  "render",
+  "android_shared_stdcxx",
   "animation",
+  "bevy_animation",
   "bevy_asset",
-  "bevy_scene",
-  "bevy_winit",
+  "bevy_core_pipeline",
   "bevy_gilrs",
-  "png",
-  "hdr",
+  "bevy_gltf",
+  "bevy_pbr",
+  "bevy_render",
+  "bevy_scene",
+  "bevy_sprite",
+  "bevy_text",
+  "bevy_ui",
+  "bevy_winit",
   "filesystem_watcher",
-  "x11"
+  "hdr",
+  "ktx2",
+  "png",
+  "tonemapping_luts",
+  "x11",
+  "zstd"
 ]
 
 [dependencies.bevy_kira_audio]
-version = "0.11"
+version = "0.15"
 # `ogg` format support is enabled by default, disable if you don't want it
 default-features = false
 # enable the features you care about
