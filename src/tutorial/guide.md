@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # New to Bevy? Guided Tutorial!
 
@@ -132,6 +132,3 @@ functionality, or do other advanced things with Bevy.
  - [Bevy Setup Tips][chapter::setup]
    - [Customizing Bevy (cargo crates and features)][cb::features]
    - [Using bleeding-edge Bevy (main)][cb::bevy-main]
-
-Tutorials:
- - [GPU: Vertex Pulling][cbtut::vertex-pulling]
