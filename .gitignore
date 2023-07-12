@@ -5,3 +5,4 @@
 /book
 /target
 Cargo.lock
+.DS_Store

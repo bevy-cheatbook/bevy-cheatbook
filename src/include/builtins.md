@@ -29,9 +29,7 @@
  - [`GltfPrimitive`][bevy::GltfPrimitive]:
    Single unit to be rendered, contains the Mesh and Material to use
  - [`AudioSource`][bevy::AudioSource]:
-   Raw audio data for `bevy_audio`
- - [`AudioSink`][bevy::AudioSink]:
-   Audio that is currently active, can be used to control playback
+   Audio data for `bevy_audio`
  - [`FontAtlasSet`][bevy::FontAtlasSet]:
    (internal use for text rendering)
  - [`SkinnedMeshInverseBindposes`][bevy::SkinnedMeshInverseBindposes]:
@@ -41,25 +39,30 @@
 []:#(ANCHOR: file-formats)
 Image formats (loaded as [`Image`][bevy::Image] assets):
 
-|Format|Cargo feature      |Default?|Filename extensions|
-|------|-------------------|--------|-------------------|
-|PNG   |`"png"`            |Yes     |`.png`             |
-|HDR   |`"hdr"`            |Yes     |`.hdr`             |
-|JPEG  |`"jpeg"`           |No      |`.jpg`, `.jpeg`    |
-|TGA   |`"tga"`            |No      |`.tga`             |
-|BMP   |`"bmp"`            |No      |`.bmp`             |
-|DDS   |`"dds"`            |No      |`.dds`             |
-|KTX2  |`"ktx2"`           |No      |`.ktx2`            |
-|Basis |`"basis-universal"`|No      | `.basis`          |
+|Format    |Cargo feature      |Default?|Filename extensions           |
+|----------|-------------------|--------|------------------------------|
+|PNG       |`"png"`            |Yes     |`.png`                        |
+|HDR       |`"hdr"`            |Yes     |`.hdr`                        |
+|KTX2      |`"ktx2"`           |Yes     |`.ktx2`                       |
+|KTX2+zstd |`"ktx2", "zstd"`   |Yes     |`.ktx2`                       |
+|JPEG      |`"jpeg"`           |No      |`.jpg`, `.jpeg`               |
+|WebP      |`"webp"`           |No      |`.webp`                       |
+|OpenEXR   |`"exr"`            |No      |`.exr`                        |
+|TGA       |`"tga"`            |No      |`.tga`                        |
+|PNM       |`"pnm"`            |No      |`.pam`, `.pbm`, `.pgm`, `.ppm`|
+|BMP       |`"bmp"`            |No      |`.bmp`                        |
+|DDS       |`"dds"`            |No      |`.dds`                        |
+|KTX2+zlib |`"ktx2", "zlib"`   |No      |`.ktx2`                       |
+|Basis     |`"basis-universal"`|No      | `.basis`                     |
 
 Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
 
-|Format    |Cargo feature|Default?|Filename extensions|
-|----------|-------------|--------|-------------------|
-|OGG Vorbis|`"vorbis"`   |Yes     |`.ogg`             |
-|FLAC      |`"flac"`     |No      |`.flac`            |
-|WAV       |`"wav"`      |No      |`.wav`             |
-|MP3       |`"mp3"`      |No      |`.mp3`             |
+|Format    |Cargo feature|Default?|Filename extensions    |
+|----------|-------------|--------|-----------------------|
+|OGG Vorbis|`"vorbis"`   |Yes     |`.ogg`, `.oga`, `.spx` |
+|FLAC      |`"flac"`     |No      |`.flac`                |
+|WAV       |`"wav"`      |No      |`.wav`                 |
+|MP3       |`"mp3"`      |No      |`.mp3`                 |
 
 3D asset (model or scene) formats:
 
@@ -69,11 +72,11 @@ Audio formats (loaded as [`AudioSource`][bevy::AudioSource] assets):
 
 Shader formats (loaded as [`Shader`][bevy::Shader] assets):
 
-|Format|Cargo feature|Default?|Filename extensions      |
-|------|-------------|--------|-------------------------|
-|SPIR-V|n/a          |Yes     |`.spv`                   |
-|WGSL  |n/a          |Yes     |`.wgsl`                  |
-|GLSL  |n/a          |Yes     |`.vert`, `.frag`, `.comp`|
+|Format|Cargo feature          |Default?|Filename extensions      |
+|------|-----------------------|--------|-------------------------|
+|WGSL  |n/a                    |Yes     |`.wgsl`                  |
+|GLSL  |`"shader_format_glsl"` |No      |`.vert`, `.frag`, `.comp`|
+|SPIR-V|`"shader_format_spirv"`|No      |`.spv`                   |
 
 Font formats (loaded as [`Font`][bevy::Font] assets):
 
@@ -91,14 +94,20 @@ Bevy Scenes:
 []:#(ANCHOR_END: file-formats)
 
 []:#(ANCHOR: wgpu-backends)
-[`wgpu`][project::wgpu] (and hence Bevy) supports the following backends for each platform:
- - Vulkan (Linux/Windows/Android)
- - DirectX 12 (Windows)
- - Metal (Apple)
- - WebGL2 (Web)
- - WebGPU (Web; experimental)
- - GLES3 (Linux/Android; legacy)
- - DirectX 11 (Windows; legacy; WIP (not yet ready for use))
+[`wgpu`][project::wgpu] (and hence Bevy) supports the following backends:
+
+|Platform|Backends (in order of priority)|
+|--------|-------------------------------|
+|Linux   |Vulkan, GLES3                  |
+|Windows |DirectX 12, Vulkan, GLES3      |
+|macOS   |Metal                          |
+|iOS     |Metal                          |
+|Android |Vulkan, GLES3                  |
+|Web     |WebGPU, WebGL2                 |
+
+On GLES3 and WebGL2, some renderer features are unsupported and performance is worse.
+
+WebGPU is experimental and few browsers support it.
 []:#(ANCHOR_END: wgpu-backends)
 
 []:#(ANCHOR: bundles)
@@ -122,13 +131,27 @@ Scenes:
  - [`DynamicSceneBundle`][bevy::DynamicSceneBundle]:
    Used for spawning dynamic scenes
 
+Audio:
+ - [`AudioBundle`][bevy::AudioBundle]:
+   Play [audio][cb::audio] from an [`AudioSource`][bevy::AudioSource] asset
+ - [`SpatialAudioBundle`][bevy::SpatialAudioBundle]:
+   Play [positional audio][cb::audio-spatial] from an [`AudioSource`][bevy::AudioSource] asset
+ - [`AudioSourceBundle`][bevy::AudioSourceBundle]:
+   Play audio from a [custom data source/stream][cb::audio-custom]
+ - [`SpatialAudioSourceBundle`][bevy::SpatialAudioSourceBundle]:
+   Play positional audio from a [custom data source/stream][cb::audio-custom]
+
 Bevy 3D:
  - [`Camera3dBundle`][bevy::Camera3dBundle]:
    3D camera, can use perspective (default) or orthographic projection
+ - [`TemporalAntiAliasBundle`][bevy::TemporalAntiAliasBundle]:
+   Add this to a 3D camera to enable TAA
+ - [`ScreenSpaceAmbientOcclusionBundle`][bevy::ScreenSpaceAmbientOcclusionBundle]:
+   Add this to a 3D camera to enable SSAO
  - [`MaterialMeshBundle`][bevy::MaterialMeshBundle]:
-   3D Object/Primitive: a Mesh and the Material to draw it with
+   3D Object/Primitive: a Mesh and a custom Material to draw it with
  - [`PbrBundle`][bevy::PbrBundle]:
-   `MaterialMeshBundle` with the standard Physically-Based Material [`StandardMaterial`][bevy::StandardMaterial]
+   `MaterialMeshBundle` with the default Physically-Based Material ([`StandardMaterial`][bevy::StandardMaterial])
  - [`DirectionalLightBundle`][bevy::DirectionalLightBundle]: 
    3D directional light (like the sun)
  - [`PointLightBundle`][bevy::PointLightBundle]: 
@@ -154,66 +177,71 @@ Bevy UI:
  - [`ButtonBundle`][bevy::ButtonBundle]:
    Button element
  - [`ImageBundle`][bevy::ImageBundle]:
-   Image element
+   Image element ([`Image`][bevy::Image] asset type)
+ - [`AtlasImageBundle`][bevy::AtlasImageBundle]:
+   Image element ([`TextureAtlas`][bevy::TextureAtlas] asset type)
  - [`TextBundle`][bevy::TextBundle]:
    Text element
 []:#(ANCHOR_END: bundles)
 
-[]:#(ANCHOR: resources-config-init)
- - [`WgpuSettings`][bevy::WgpuSettings]:
-   Low-level settings for the GPU API and backends
-[]:#(ANCHOR_END: resources-config-init)
-
 []:#(ANCHOR: resources-config)
  - [`ClearColor`][bevy::ClearColor]:
    Global renderer background color to clear the window at the start of each frame
+ - [`GlobalVolume`][bevy::GlobalVolume]:
+   The overall volume for playing audio
  - [`AmbientLight`][bevy::AmbientLight]:
    Global renderer "fake lighting", so that shadows don't look too dark / black
  - [`Msaa`][bevy::Msaa]:
    Global renderer setting for Multi-Sample Anti-Aliasing (some platforms might only support the values 1 and 4)
- - [`ClusterConfig`][bevy::ClusterConfig]:
-   Configuration of the light clustering algorithm, affects the performance of 3D scenes with many lights
+ - [`UiScale`][bevy::UiScale]:
+   Global scale value to make all UIs bigger/smaller
+ - [`GizmoConfig`][bevy::GizmoConfig]:
+   Controls how [gizmos][cb::gizmos] are rendered
  - [`WireframeConfig`][bevy::WireframeConfig]:
    Global toggle to make everything be rendered as wireframe
  - [`GamepadSettings`][bevy::GamepadSettings]:
    Gamepad input device settings, like joystick deadzones and button sensitivities
  - [`WinitSettings`][bevy::WinitSettings]:
    Settings for the OS Windowing backend, including update loop / power-management settings
+ - [`TimeUpdateStrategy`][bevy::TimeUpdateStrategy]:
+   Used to control how the [`Time`][bevy::Time] is updated
+ - [`Schedules`][bevy::Schedules]:
+   Stores all [schedules][cb::schedule], letting you register additional functionality at runtime
+ - [`MainScheduleOrder`][bevy::MainScheduleOrder]:
+   The sequence of [schedules][cb::schedule] that will run every frame update
 []:#(ANCHOR_END: resources-config)
 
 []:#(ANCHOR: resources-main)
  - [`Time`][bevy::Time]:
    Global time-related information (current frame delta time, time since startup, etc.)
+ - [`FixedTime`][bevy::FixedTime]:
+   Tracks remaining time until the next [fixed update][cb::fixedtimestep]
  - [`AssetServer`][bevy::AssetServer]:
    Control the asset system: Load assets, check load status, etc.
  - [`Assets<T>`][bevy::Assets]:
    Contains the actual data of the loaded assets of a given type
  - [`State<T>`][bevy::State]:
-   Control over [app states][cb::state]
+   The current value of a [states type][cb::state]
+ - [`NextState<T>`][bevy::NextState]:
+   Used to queue a transition to another [state][cb::state]
  - [`Gamepads`][bevy::Gamepads]:
-   List of IDs for all currently-detected (connected) gamepad devices
- - [`Windows`][bevy::Windows]:
-   All the open windows (the primary window + any additional windows in a multi-window gui app)
- - [`WinitWindows`][bevy::WinitWindows] ([non-send][cb::nonsend]):
-   Raw state of the `winit` backend for each window
- - [`Audio`][bevy::Audio]:
-   Use this to play sounds via `bevy_audio`
+   Tracks the IDs for all currently-detected (connected) gamepad devices
  - [`SceneSpawner`][bevy::SceneSpawner]:
    Direct control over spawning Scenes into the main app World
+ - [`FrameCount`][bevy::FrameCount]:
+   The total number of frames
+ - [`ScreenshotManager`][bevy::ScreenshotManager]:
+   Used to request a screenshot of a window to be taken/saved
  - [`AppTypeRegistry`][bevy::AppTypeRegistry]:
    Access to the Reflection Type Registry
- - [`FixedTimesteps`][bevy::FixedTimesteps]:
-   The state of all registered [`FixedTimestep`][bevy::FixedTimestep] drivers
  - [`AsyncComputeTaskPool`][bevy::AsyncComputeTaskPool]:
    Task pool for running background CPU tasks
  - [`ComputeTaskPool`][bevy::ComputeTaskPool]:
    Task pool where the main app schedule (all the systems) runs
  - [`IoTaskPool`][bevy::IoTaskPool]:
    Task pool where background i/o tasks run (like asset loading)
- - [`FrameCount`][bevy::FrameCount]:
-   Global time-related information (current frame delta time, time since startup, etc.)
- - [`Diagnostics`][bevy::Diagnostics]:
-   Diagnostic data collected by the engine (like frame times)
+ - [`WinitWindows`][bevy::WinitWindows] ([non-send][cb::nonsend]):
+   Raw state of the `winit` backend for each window
  - [`NonSendMarker`][bevy::NonSendMarker]:
    Dummy resource to ensure a system always runs on the main thread
 []:#(ANCHOR_END: resources-main)
@@ -230,6 +258,8 @@ Bevy UI:
 []:#(ANCHOR_END: resources-wgpu)
 
 []:#(ANCHOR: resources-render)
+ - [`MainWorld`][bevy::MainWorld]:
+   (extract schedule only!) access data from the Main World
  - [`RenderGraph`][bevy::RenderGraph]:
    [The Bevy Render Graph][cb::render::graph]
  - [`PipelineCache`][bevy::PipelineCache]:
@@ -238,6 +268,8 @@ Bevy UI:
  - [`TextureCache`][bevy::TextureCache]:
    Bevy's manager of temporary textures. Useful when you need textures to use internally
    during rendering.
+ - [`DrawFunctions<P>`][bevy::DrawFunctions]:
+   Stores draw functions for a given phase item type
  - [`RenderAssets<T>`][bevy::RenderAssets]:
    Contains handles to the GPU representations of currently loaded asset data
  - [`DefaultImageSampler`][bevy::DefaultImageSampler]:
@@ -277,19 +309,23 @@ Bevy UI:
    Changes in the state of keyboard keys (keypresses, not text)
  - [`ReceivedCharacter`][bevy::ReceivedCharacter]:
    Unicode text input from the OS (correct handling of the user's language and layout)
+ - [`Ime`][bevy::Ime]:
+   Unicode text input from IME (support for advanced text input in different scripts)
  - [`TouchInput`][bevy::TouchInput]:
    Change in the state of a finger touching the touchscreen
  - [`GamepadEvent`][bevy::GamepadEvent]:
    Changes in the state of a gamepad or any of its buttons or axes
- - [`GamepadEventRaw`][bevy::GamepadEventRaw]:
-   Gamepad events unaffected by [`GamepadSettings`][bevy::GamepadSettings]
+ - [`GamepadRumbleRequest`][bevy::GamepadRumbleRequest]:
+   Send these events to control gamepad rumble
+ - [`TouchpadMagnify`][bevy::TouchpadMagnify]:
+   Pinch-to-zoom gesture on laptop touchpad (macOS)
+ - [`TouchpadRotate`][bevy::TouchpadRotate]:
+   Two-finger rotate gesture on laptop touchpad (macOS)
 []:#(ANCHOR_END: events-input)
 
 []:#(ANCHOR: events-system)
  - [`RequestRedraw`][bevy::RequestRedraw]:
    In an app that does not refresh continuously, request one more update before going to sleep
- - [`CreateWindow`][bevy::CreateWindow]:
-   Tell Bevy to open a new window
  - [`FileDragAndDrop`][bevy::FileDragAndDrop]:
    The user drag-and-dropped a file into our app
  - [`CursorEntered`][bevy::CursorEntered]:
@@ -300,6 +336,10 @@ Bevy UI:
    OS wants to close one of our windows
  - [`WindowCreated`][bevy::WindowCreated]:
    New application window opened
+ - [`WindowClosed`][bevy::WindowClosed]:
+   Bevy window closed
+ - [`WindowDestroyed`][bevy::WindowDestroyed]:
+   OS window freed/dropped after window close
  - [`WindowFocused`][bevy::WindowFocused]:
    One of our windows is now focused
  - [`WindowMoved`][bevy::WindowMoved]:
@@ -329,6 +369,8 @@ In regular [systems][cb::system]:
 
  - [`Commands`][bevy::Commands]:
    Manipulate the ECS using [commands][cb::commands]
+ - [`Query<T, F = ()>`][bevy::Query] (can contain tuples of up to 15 types):
+   Access to [entities and components][cb::ec]
  - [`Res<T>`][bevy::Res]:
    Shared access to a [resource][cb::res]
  - [`ResMut<T>`][bevy::ResMut]:
@@ -337,28 +379,32 @@ In regular [systems][cb::system]:
    Shared access to a resource that may not exist
  - `Option<ResMut<T>>`:
    Exclusive (mutable) access to a resource that may not exist
- - [`Query<T, F = ()>`][bevy::Query] (can contain tuples of up to 15 types):
-   Access to [entities and components][cb::ec]
- - [`ParamSet`][bevy::ParamSet] (with up to 8 params):
-   Resolve [conflicts between incompatible system parameters][cb::paramset]
  - [`Local<T>`][bevy::Local]:
    Data [local][cb::local] to the system
  - [`EventReader<T>`][bevy::EventReader]:
    Receive [events][cb::event]
  - [`EventWriter<T>`][bevy::EventWriter]:
    Send [events][cb::event]
- - [`RemovedComponents<T>`][bevy::RemovedComponents]:
-   [Removal detection][cb::removal-detection]
- - [`NonSend<T>`][bevy::NonSend]:
-   Shared access to [Non-`Send`][cb::nonsend] (main thread only) data
- - [`NonSendMut<T>`][bevy::NonSendMut]:
-   Mut access to [Non-`Send`][cb::nonsend] (main thread only) data
- - [`ParallelCommands`][bevy::ParallelCommands]:
-   Abstraction to help use `Commands` when you will do your own parallelism
- - [`SystemName`][bevy::SystemName]:
-   The name (string) of the system, may be useful for debugging
  - [`&World`][bevy::World]:
    Read-only [direct access to the ECS World][cb::world]
+ - [`ParamSet<...>`][bevy::ParamSet] (with up to 8 params):
+   Resolve [conflicts between incompatible system parameters][cb::paramset]
+ - [`Deferred<T>`][bevy::Deferred]:
+   Custom ["deferred mutation"][cb::deferred], similar to `Commands`, but for your own things
+ - [`RemovedComponents<T>`][bevy::RemovedComponents]:
+   [Removal detection][cb::removal-detection]
+ - [`Gizmos`][bevy::Gizmos]:
+   A way to [draw lines and shapes][cb::gizmos] on the screen for debugging and dev purposes
+ - [`Diagnostics`][bevy::Diagnostics]:
+   A way to [report measurements/debug data][cb::diagnostics] to Bevy for tracking and visualization
+ - [`SystemName`][bevy::SystemName]:
+   The name (string) of the system, may be useful for debugging
+ - [`ParallelCommands`][bevy::ParallelCommands]:
+   Abstraction to help use `Commands` when you will do your own parallelism
+ - [`WorldId`][bevy::WorldId]:
+   The World ID of the [world][cb::world] the system is running on
+ - [`ComponentIdFor<T>`][bevy::ComponentIdFor]:
+   Get the [`ComponentId`][bevy::ComponentId] of a given [component][cb::component] type
  - [`Entities`][bevy::Entities]:
    Low-level ECS metadata: All entities
  - [`Components`][bevy::Components]:
@@ -369,6 +415,14 @@ In regular [systems][cb::system]:
    Low-level ECS metadata: All archetypes
  - [`SystemChangeTick`][bevy::SystemChangeTick]:
    Low-level ECS metadata: Tick used for change detection
+ - [`NonSend<T>`][bevy::NonSend]:
+   Shared access to [Non-`Send`][cb::nonsend] (main thread only) data
+ - [`NonSendMut<T>`][bevy::NonSendMut]:
+   Exclusive access to [Non-`Send`][cb::nonsend] (main thread only) data
+ - `Option<NonSend<T>>`:
+   Shared access to [Non-`Send`][cb::nonsend] (main thread only) data that may not exist
+ - `Option<NonSendMut<T>>`:
+   Exclusive access to [Non-`Send`][cb::nonsend] (main thread only) data that may not exist
  - [`StaticSystemParam`][bevy::StaticSystemParam]:
    Helper for generic system abstractions, to avoid lifetime annotations
  - tuples containing any of these types, with up to 16 members
@@ -393,77 +447,11 @@ group them into tuples to work around the limit. Tuples can contain up to
 
 []:#(ANCHOR_END: systemparam-limits)
 
-Systems running during the [Extract stage][cb::render::stage] can also use
+Systems running during the [Extract schedule][cb::render::extract] can also use
 [`Extract<T>`][bevy::Extract], to access data from the Main World instead of the
-Render World. `T` can be any other system parameter type.
+Render World. `T` can be any read-only system parameter type.
 
 []:#(ANCHOR_END: systemparams)
-
-[]:#(ANCHOR: components)
- - [`Transform`][bevy::Transform]:
-   Local transform (relative to parent, if any)
- - [`GlobalTransform`][bevy::GlobalTransform]:
-   Global transform (in the world)
- - [`Parent`][bevy::Parent]:
-   Entity's parent, if in a hierarchy
- - [`Children`][bevy::Children]:
-   Entity's children, if in a hierarchy
- - [`Handle<T>`][bevy::Handle]:
-   Reference to an asset of specific type
- - [`Visibility`][bevy::Visibility]:
-   Manually control visibility, whether to display the entity (hide/show)
- - [`ComputedVisibility`][bevy::ComputedVisibility]:
-   Check if an entity should be rendered (is it hidden? is it culled?)
- - [`RenderLayers`][bevy::RenderLayers]:
-   Group entities into "layers" and control which "layers" a camera should display
- - [`AnimationPlayer`][bevy::AnimationPlayer]:
-   Make the entity capable of playing animations; used to control animations
- - [`Camera`][bevy::Camera]:
-   Camera used for rendering
- - [`UiCameraConfig`][bevy::UiCameraConfig]:
-   Can be used to disable or configure UI rendering for a specific camera
- - [`Camera2d`][bevy::Camera2d]:
-   Configuration parameters for 2D cameras
- - [`Camera3d`][bevy::Camera3d]:
-   Configuration parameters for 3D cameras
- - [`OrthographicProjection`][bevy::OrthographicProjection]:
-   Orthographic projection for a 2D camera
- - [`Projection`][bevy::Projection]:
-   Projection for a 3D camera (perspective or orthographic)
- - [`Sprite`][bevy::Sprite]:
-   (2D) Properties of a sprite, using a whole image
- - [`TextureAtlasSprite`][bevy::TextureAtlasSprite]:
-   (2D) Properties of a sprite, using a sprite sheet
- - [`PointLight`][bevy::PointLight]:
-   (3D) Properties of a point light
- - [`SpotLight`][bevy::SpotLight]:
-   (3D) Properties of a spot light
- - [`DirectionalLight`][bevy::DirectionalLight]:
-   (3D) Properties of a directional light
- - [`NoFrustumCulling`][bevy::NoFrustumCulling]:
-   (3D) Cause this mesh to always be drawn, even when not visible by any camera
- - [`NotShadowCaster`][bevy::NotShadowCaster]:
-   (3D) Disable entity from producing dynamic shadows
- - [`NotShadowReceiver`][bevy::NotShadowReceiver]:
-   (3D) Disable entity from having dynamic shadows of other entities
- - [`Wireframe`][bevy::Wireframe]:
-   (3D) Draw object in wireframe mode
- - [`Node`][bevy::Node]:
-   (UI) Mark entity as being controlled by the UI layout system
- - [`Style`][bevy::Style]:
-   (UI) Layout properties of the node
- - [`Interaction`][bevy::Interaction]:
-   (UI) Track interaction/selection state: if the node is clicked or hovered over
- - [`UiImage`][bevy::UiImage]:
-   (UI) Image to be displayed as part of a UI node
- - [`BackgroundColor`][bevy::BackgroundColor]:
-   (UI) Color to use for a UI node
- - [`Button`][bevy::Button]:
-   (UI) Marker for a pressable button
- - [`Text`][bevy::Text]:
-   Text to be displayed
-
-[]:#(ANCHOR_END: components)
 
 []:#(ANCHOR: gltf-asset-labels)
 The following asset labels are supported (`{}` is the numerical index):
@@ -471,6 +459,7 @@ The following asset labels are supported (`{}` is the numerical index):
   - `Node{}`: GLTF Node as [`GltfNode`][bevy::GltfNode]
   - `Mesh{}`: GLTF Mesh as [`GltfMesh`][bevy::GltfMesh]
   - `Mesh{}/Primitive{}`: GLTF Primitive as Bevy [`Mesh`][bevy::Mesh]
+  - `Mesh{}/Primitive{}/MorphTargets`: Morph target animation data for a GLTF Primitive
   - `Texture{}`: GLTF Texture as Bevy [`Image`][bevy::Image]
   - `Material{}`: GLTF Material as Bevy [`StandardMaterial`][bevy::StandardMaterial]
   - `DefaultMaterial`: as above, if the GLTF file contains a default material with no index
@@ -478,21 +467,47 @@ The following asset labels are supported (`{}` is the numerical index):
   - `Skin{}`: GLTF mesh skin as Bevy [`SkinnedMeshInverseBindposes`][bevy::SkinnedMeshInverseBindposes]
 []:#(ANCHOR_END: gltf-asset-labels)
 
-[]:#(ANCHOR: stages)
-Internally, Bevy has at least these built-in [stages][cb::stage]:
- - In the [main_app][cb::app] ([`StartupStage`][bevy::StartupStage], run once at app startup):
- `PreStartup`, `Startup`, `PostStartup`
- - In the [main app][cb::app] ([`CoreStage`][bevy::CoreStage], run every frame update):
-`First`, `PreUpdate`, `Update`, `PostUpdate`, `Last`
- - In the render [sub-app][cb::subapp] ([`RenderStage`][bevy::RenderStage]):
-`Extract`, `Prepare`, `Queue`, `PhaseSort`, `Render`, `Cleanup`
-[]:#(ANCHOR_END: stages)
+[]:#(ANCHOR: schedules)
+Internally, Bevy has these built-in [schedules][cb::schedule]:
+ - [`Main`][bevy::Main]:
+   runs every frame update cycle, to perform general app logic
+ - [`ExtractSchedule`][bevy::ExtractSchedule]:
+   runs after `Main`, to copy data from the Main World into the Render World
+ - [`Render`][bevy::Render]:
+   runs after `ExtractSchedule`, to perform all rendering/graphics, in parallel with the next `Main` run
 
-[]:#(ANCHOR: render-stages)
- - `Extract`: quickly copy the minimal data you need from the main World to the render World
- - `Prepare`: send data to the GPU (buffers, textures, bind groups)
- - `Queue`: generate the render jobs to be run (usually [phase items][cb::render::phaseitem])
- - `PhaseSort`: sort and batch [phase items][cb::render::phaseitem] for efficient rendering
- - `Render`: execute the [render graph][cb::render::graph] to produce actual GPU commands and do the work
- - `Cleanup`: clear any data from the render World that should not persist to the next frame
-[]:#(ANCHOR_END: render-stages)
+The `Main` schedule simply runs a sequence of other schedules:
+
+On the first run (first frame update of the app):
+ - [`PreStartup`][bevy::PreStartup]
+ - [`Startup`][bevy::Startup]
+ - [`PostStartup`][bevy::PostStartup]
+
+On every run (controlled via the [`MainScheduleOrder`][bevy::MainScheduleOrder] [resource][cb::res]):
+ - [`First`][bevy::First]: any initialization that must be done at the start of every frame
+ - [`PreUpdate`][bevy::PreUpdate]: for engine-internal systems intended to run before user logic
+ - [`StateTransition`][bevy::StateTransition]: perform any pending [state][cb::state] transitions
+ - [`RunFixedUpdateLoop`][bevy::RunFixedUpdateLoop]: runs the [`FixedUpdate`][bevy::FixedUpdate] schedule as many times as needed
+ - [`Update`][bevy::Update]: for all user logic (your systems) that should run every frame
+ - [`PostUpdate`][bevy::PostUpdate]: for engine-internal systems intended to run after user logic
+ - [`Last`][bevy::Last]: any final cleanup that must be done at the end of every frame
+
+`FixedUpdate` is for all user logic (your systems) that should run at a [fixed timestep][cb::fixedtimestep].
+
+`StateTransition` runs the
+[`OnEnter(...)`][bevy::OnEnter]/[`OnTransition(...)`][bevy::OnTransition]/[`OnExit(...)`][bevy::OnExit]
+schedules for your [states][cb::state], when you want to change state.
+
+[]:#(ANCHOR_END: schedules)
+
+[]:#(ANCHOR: render-sets)
+The [`Render`][bevy::Render] schedule is organized using [sets][cb::systemset] ([`RenderSet`][bevy::RenderSet]):
+ - `ExtractCommands`: apply [deferred][cb::deferred] buffers from systems that ran in `ExtractSchedule`
+ - `Prepare`/`PrepareFlush`: set up data on the GPU (buffers, textures, etc.)
+ - `Queue`/`QueueFlush`: generate the render jobs to be run (usually [phase items][cb::render::phaseitem])
+ - `PhaseSort`/`PhaseSortFlush`: sort and batch [phase items][cb::render::phaseitem] for efficient rendering
+ - `Render`/`RenderFlush`: execute the [render graph][cb::render::graph] to actually trigger the GPU to do work
+ - `Cleanup`/`CleanupFlush`: clear any data from the render World that should not persist to the next frame
+
+The `*Flush` variants are just to apply any [deferred][cb::deferred] buffers after every step, if needed.
+[]:#(ANCHOR_END: render-sets)

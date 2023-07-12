@@ -1,4 +1,4 @@
-{{#include ./include/header09.md}}
+{{#include ./include/header011.md}}
 
 # List of Bevy Builtins
 
@@ -8,7 +8,12 @@ by Bevy.
  - [SystemParams](#systemparams)
  - [Assets](#assets)
  - [File Formats](#file-formats)
+ - [GLTF Asset Labels](#gltf-asset-labels)
+ - [Shader Imports](#shader-imports)
  - [`wgpu` Backends](#wgpu-backends)
+ - [Schedules](#schedules)
+ - [Run Conditions](#run-conditions)
+ - [Plugins](#plugins)
  - [Bundles](#bundles)
  - [Resources (Configuration)](#configuration-resources)
  - [Resources (Engine User)](#engine-resources)
@@ -20,8 +25,6 @@ by Bevy.
  - [Events (Engine)](#engine-events)
  - [Events (System/Control)](#system-and-control-events)
  - [Components](#components)
- - [GLTF Asset Labels](#gltf-asset-labels)
- - [Stages](#stages)
 
 ## SystemParams
 
@@ -47,9 +50,33 @@ are enabled by default, many are not.
 
 There are unofficial plugins available for adding support for even more file formats.
 
+## GLTF Asset Labels
+
+[Asset path labels to refer to GLTF sub-assets.][cb::gltf-asset-path]
+
+{{#include ./include/builtins.md:gltf-asset-labels}}
+
+## Shader Imports
+
+TODO
+
 ## `wgpu` Backends
 
 {{#include ./include/builtins.md:wgpu-backends}}
+
+## Schedules
+
+{{#include ./include/builtins.md:schedules}}
+
+{{#include ./include/builtins.md:render-sets}}
+
+## Run Conditions
+
+TODO
+
+## Plugins
+
+TODO
 
 ## Bundles
 
@@ -73,17 +100,6 @@ These may be inserted at the start, but should also be fine to change at runtime
 
 Settings that are not modifiable at runtime are not represented using resources. Instead,
 they are configured via the respective [plugins](#plugins).
-
-In Bevy 0.9, there is an exception to this rule:
-
-{{#include ./include/builtins.md:resources-config-init}}
-
-These settings must be inserted as a resource to the [app][cb::app], at the top,
-before adding `DefaultPlugins`.
-
-This API inconsistency will be addressed in future versions of Bevy. These
-settings will be configurable using the plugin, instead of a resource, just like
-other settings that are only used during engine startup.
 
 ### Engine Resources
 
@@ -150,20 +166,3 @@ The complete list of individual component types is too specific to be useful to 
 
 See: [(List in API Docs)][bevy::impl::Component]
 
-Curated/opinionated list of the most important built-in component types:
-
-{{#include ./include/builtins.md:components}}
-
-## GLTF Asset Labels
-
-[Asset path labels to refer to GLTF sub-assets.][cb::gltf-asset-path]
-
-{{#include ./include/builtins.md:gltf-asset-labels}}
-
-## Stages
-
-{{#include ./include/builtins.md:stages}}
-
-The [Render Stages][cb::render::stage] are each intended for a specific purpose:
-
-{{#include ./include/builtins.md:render-stages}}

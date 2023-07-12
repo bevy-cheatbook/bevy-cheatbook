@@ -1,4 +1,4 @@
-{{#include ./include/header-none.md}}
+{{#include ./include/links-common.md}}
 
 # Unofficial Bevy Cheat Book
 
@@ -90,27 +90,22 @@ page must be relevant for the stated Bevy version.
 
 ### Current Bevy Version
 
-The current Bevy release is 0.10.
+The current Bevy release is 0.11.
 
 The aim is to try to maintain the book up to date with the current latest
-release of Bevy. New content should be written for this version. Outdated pages
-will be updated on a best-effort basis.
+release of Bevy. New content should be written for this version.
 
 ### Old Bevy Version
 
 Content for old releases of Bevy is only allowed in the book if it already
-exists from before and has not been updated yet.
+exists from before and has not been updated yet. Outdated pages will be updated
+on a best-effort basis.
 
 ### Unreleased (Bevy's git main branch)
 
 Pages that cover new yet-unreleased features of Bevy are allowed. If there is an
 exciting new feature, and I want to document it, I will write a page, without
 waiting for the next release of Bevy to come out. :)
-
-For functionality that exists in the current release in some form, but has
-changed for the next release, the current version is the one that should be
-documented. The page can be updated in the future. I might sometimes make
-exceptions to this rule.
 
 ## License
 
