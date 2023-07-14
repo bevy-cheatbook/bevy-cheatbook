@@ -63,54 +63,51 @@ use MyStates::*;
 let mut app = App::new();
 app.add_plugins(DefaultPlugins);
 app.add_state::<MyStates>();
-app.add_system(enemy_detect_player);
+app.add_systems(Update, enemy_detect_player);
 // ANCHOR: example-scheduling
-app.configure_set(MainMenuSet
+// Set configuration is per-schedule. Here we do it for `Update`
+app.configure_set(Update, MainMenuSet
     .run_if(in_state(MainMenu))
 );
-app.configure_set(GameplaySet
+app.configure_set(Update, GameplaySet
     .run_if(in_state(InGame))
 );
-app.configure_set(InputSet
+app.configure_set(Update, InputSet
     .in_set(GameplaySet)
 );
-app.configure_set(EnemyAiSet
+app.configure_set(Update, EnemyAiSet
     .in_set(GameplaySet)
     .run_if(not(cutscene))
     .after(player_movement)
 );
-app.configure_set(AudioSet
+app.configure_set(Update, AudioSet
     .run_if(audio_muted)
 );
-app.add_systems(
+app.add_systems(Update, (
+    (
+        ui_button_animate,
+        menu_logo_animate.in_set(MainMenuSet),
+    ),
     (
         enemy_movement,
         enemy_spawn,
         enemy_despawn.before(enemy_spawn),
-    ).in_set(EnemyAiSet)
-);
-app.add_systems(
+    ).in_set(EnemyAiSet),
     (
         mouse_input.run_if(mouse_enabled),
         controller_input.run_if(gamepad_enabled),
-    ).in_set(InputSet)
-);
-app.add_systems(
+    ).in_set(InputSet),
     (
         footstep_sound.in_set(GameplaySet),
         menu_button_sound.in_set(MainMenuSet),
         background_music,
-    ).in_set(AudioSet)
-);
-app.add_systems(
+    ).in_set(AudioSet),
     (
         player_movement
             .run_if(player_alive)
             .run_if(not(cutscene)),
         camera_movement,
-    ).in_set(GameplaySet).after(InputSet)
-);
-app.add_system(ui_button_animate);
-app.add_system(menu_logo_animate.in_set(MainMenuSet));
+    ).in_set(GameplaySet).after(InputSet),
+));
 // ANCHOR_END: example-scheduling
 }

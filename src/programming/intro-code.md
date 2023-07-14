@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Intro: Your Code
 
@@ -23,7 +23,7 @@ at the function parameters, we know *exactly* what [data][cb::ecs-intro-data]
 can be accessed.
 
 ```rust,no_run,noplayground
-{{#include ../code010/src/programming/intro_code.rs:example-system}}
+{{#include ../code011/src/programming/intro_code.rs:example-system}}
 ```
 
 (learn more about: [systems][cb::system], [queries][cb::query], [commands][cb::commands], [resources][cb::res], [entities][cb::entity], [components][cb::component])
@@ -33,8 +33,8 @@ can be accessed.
 Based on the [parameter][cb::system-param] types of the [systems][cb::system]
 you write, Bevy knows what data each system can access and whether it conflicts
 with any other systems.  Systems that do not conflict (don't access any of the
-same data) will be automatically [run in parallel][cb::system-parallel] on
-different CPU threads. This way, you get multithreading, utilizing modern
+same data mutably) will be automatically [run in parallel][cb::system-parallel]
+on different CPU threads. This way, you get multithreading, utilizing modern
 multi-core CPU hardware effectively, with no extra effort from you!
 
 For best parallelism performance, it is recommended that you keep your
@@ -109,10 +109,10 @@ List of [sets][cb::systemset]:
 |`EnemyAiSet`|`GameplaySet`|`not(cutscene)`|`after(player_movement)`|
 |`AudioSet`||`not(audio_muted)`||
 
-Note that it doesn't matter how systems are listed in the schedule. Their
-[order][cb::system-order] of execution is determined by the metadata. Bevy will
-respect those constraints, but otherwise run systems in parallel as much as it
-can, depending on what CPU threads are available.
+Note that it doesn't matter in what order systems are listed in the schedule.
+Their [order][cb::system-order] of execution is determined by the metadata. Bevy
+will respect those constraints, but otherwise run systems in parallel as much as
+it can, depending on what CPU threads are available.
 
 Also note how our hypothetical game is implemented using many individually-small
 systems. For example, instead of playing audio inside of the `player_movement`
@@ -137,7 +137,7 @@ Here is how [schedule][cb::schedule] that was illustrated above could be
 created in code:
 
 ```rust,no_run,noplayground
-{{#include ../code010/src/programming/intro_code.rs:example-scheduling}}
+{{#include ../code011/src/programming/intro_code.rs:example-scheduling}}
 ```
 
 (learn more about: [schedules][cb::schedule], [system sets][cb::systemset], [states][cb::state], [run conditions][cb::rc], [system ordering][cb::system-order])
