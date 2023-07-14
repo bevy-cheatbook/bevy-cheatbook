@@ -8,6 +8,7 @@
 [builtins::gltf-assetlabel]: /builtins.md#gltf-asset-labels
 [builtins::plugin]: /builtins.md#plugins
 [builtins::rc]: /builtins.md#run-conditions
+[builtins::res]: /builtins.md#resources
 [builtins::res-config]: /builtins.md#configuration-resources
 [builtins::res-core]: /builtins.md#engine-resources
 [builtins::res-input]: /builtins.md#input-handling-resources

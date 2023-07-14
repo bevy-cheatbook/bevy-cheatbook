@@ -27,6 +27,10 @@ derive the [`Resource`][bevy::Resource] trait, similar to
 Types must be unique; there can only be at most one instance of a given type. If
 you might need multiple, consider using [entities and components][cb::ec] instead.
 
+Bevy [uses resources for many things][builtins::res]. You can use these builtin
+resources to access various features of the engine. They work just like your own
+custom types.
+
 ## Accessing Resources
 
 To access the value of a resource from [systems][cb::system], use `Res`/`ResMut`:
