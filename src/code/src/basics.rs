@@ -337,27 +337,6 @@ App::new()
 }
 }
 
-// ANCHOR: sys-param-tuple
-fn complex_system(
-    (a, mut b): (Res<ResourceA>, ResMut<ResourceB>),
-    // this resource might not exist, so wrap it in an Option
-    mut c: Option<ResMut<ResourceC>>,
-) {
-    if let Some(mut c) = c {
-        // do something
-    }
-}
-// ANCHOR_END: sys-param-tuple
-
-// ANCHOR: sys-debug-res
-fn debug_start(
-    // access resource
-    start: Res<StartingLevel>
-) {
-    eprintln!("Starting on level {:?}", *start);
-}
-// ANCHOR_END: sys-debug-res
-
 // ANCHOR: sys-simple-query
 fn check_zero_health(
     // access entities that have `Health` and `Transform` components
@@ -1078,34 +1057,6 @@ fn query_misc(mut query: Query<(&Health, &mut Transform)>) {
         // the entity does not have the components from the query
     }
     // ANCHOR_END: query-get
-}
-
-#[allow(dead_code)]
-mod app0 {
-    use bevy::prelude::*;
-
-    fn init_menu() {}
-    fn debug_start() {}
-    fn move_player() {}
-    fn enemies_ai() {}
-
-// ANCHOR: systems-appbuilder
-fn main() {
-    App::new()
-        // ...
-
-        // run it only once at launch
-        .add_startup_system(init_menu)
-        .add_startup_system(debug_start)
-
-        // run it every frame update
-        .add_system(move_player)
-        .add_system(enemies_ai)
-
-        // ...
-        .run();
-}
-// ANCHOR_END: systems-appbuilder
 }
 
 #[derive(Component)]
@@ -2236,7 +2187,6 @@ fn main() {
 /// REGISTER ALL SYSTEMS TO DETECT COMPILATION ERRORS!
 pub fn _main_all() {
     App::new()
-        .add_startup_system(debug_start)
         .add_startup_system(load_ui_font)
         .add_startup_system(load_extra_assets)
         .add_startup_system(spawn_gltf)
@@ -2263,7 +2213,6 @@ pub fn _main_all() {
         .add_system(reset_health)
         .add_system(my_system1)
         .add_system(my_system2)
-        .add_system(complex_system)
         .add_system(spawn_things)
         .add_system(close_menu)
         .add_system(make_all_players_hostile)

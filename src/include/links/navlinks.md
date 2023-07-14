@@ -38,6 +38,7 @@
 [cb::change-detection]: /programming/change-detection.md
 [cb::clearcolor]: /window/clear-color.md
 [cb::commands]: /programming/commands.md
+[cb::commands-custom]: /patterns/commands-custom.md
 [cb::component-marker]: /programming/ec.md#components
 [cb::component-newtype]: /programming/ec.md#components
 [cb::component-storage]: /patterns/component-storage.md
@@ -112,6 +113,7 @@
 [cb::res]: /programming/res.md
 [cb::runcriteria]: /programming/run-criteria.md
 [cb::schedule]: /programming/schedules.md
+[cb::schedule-dynamic]: /patterns/schedule-dynamic.md
 [cb::sprite]: /2d/sprites.md
 [cb::stage]: /programming/schedules.md
 [cb::state]: /programming/states.md

@@ -23,6 +23,7 @@ mod d2 {
 mod d3 {
 }
 mod programming {
+    mod app_builder;
     mod intro_code;
     mod systems;
 }
