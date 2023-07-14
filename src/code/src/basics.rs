@@ -152,43 +152,6 @@ struct PlayerBundle {
 }
 // ANCHOR_END: bundle
 
-#[allow(dead_code)]
-// ANCHOR: resource
-#[derive(Resource)]
-struct GoalsReached {
-    main_goal: bool,
-    bonus: bool,
-}
-// ANCHOR_END: resource
-
-#[derive(Resource, Default)]
-struct MyOtherResource;
-
-impl MyOtherResource {
-    fn do_mut_stuff(&mut self) {}
-}
-
-// ANCHOR: fromworld
-#[derive(Resource)]
-struct MyFancyResource { /* stuff */ }
-
-impl FromWorld for MyFancyResource {
-    fn from_world(world: &mut World) -> Self {
-        // You have full access to anything in the ECS from here.
-        // For instance, you can mutate other resources:
-        let mut x = world.get_resource_mut::<MyOtherResource>().unwrap();
-        x.do_mut_stuff();
-
-        MyFancyResource { /* stuff */ }
-    }
-}
-// ANCHOR_END: fromworld
-
-// ANCHOR: resource-default
-#[derive(Resource, Default, Debug)]
-struct StartingLevel(usize);
-// ANCHOR_END: resource-default
-
 // ANCHOR: local-resource
 #[derive(Default)]
 struct MyState;
@@ -705,7 +668,7 @@ fn spawn_things(
     mut commands: Commands,
 ) {
     // manage resources
-    commands.insert_resource(GoalsReached { main_goal: false, bonus: false });
+    commands.insert_resource(MyResource);
     commands.remove_resource::<MyResource>();
 
     // create a new entity using `spawn`,
@@ -1008,11 +971,6 @@ fn commands_catchall(mut commands: Commands) {
 let e = commands.spawn(()).id();
 // ANCHOR_END: commands-current-entity
 
-// ANCHOR: commands-resource
-commands.insert_resource(GoalsReached { main_goal: false, bonus: false });
-commands.remove_resource::<MyResource>();
-// ANCHOR_END: commands-resource
-
 // ANCHOR: parenting
 // spawn the parent and get its Entity id
 let parent = commands.spawn(MyParentBundle::default()).id();
@@ -1186,70 +1144,12 @@ fn jump_duration(
 // ANCHOR_END: stopwatch
 
 #[allow(dead_code)]
-mod app1 {
-    use bevy::prelude::*;
-    use super::*;
-
-// ANCHOR: appinit-resource
-fn main() {
-    App::new()
-        // ...
-
-        // if it implements `Default` or `FromWorld`
-        .init_resource::<MyFancyResource>()
-        // if not, or if you want to set a specific value
-        .insert_resource(StartingLevel(3))
-
-        // ...
-        .run();
-}
-// ANCHOR_END: appinit-resource
-}
-
-#[allow(dead_code)]
-mod app2 {
-    use bevy::prelude::*;
-    use super::*;
-
-    fn setup() {}
-    fn debug_levelups() {}
-    fn player_level_up() {}
-
-    struct LevelUpEvent;
-
-// ANCHOR: app-builder
-fn main() {
-    App::new()
-        // Bevy itself:
-        .add_plugins(DefaultPlugins)
-
-        // resources:
-        .insert_resource(StartingLevel(3))
-        // if it implements `Default` or `FromWorld`
-        .init_resource::<MyFancyResource>()
-
-        // events:
-        .add_event::<LevelUpEvent>()
-
-        // systems to run once at startup:
-        .add_startup_system(spawn_things)
-
-        // systems to run each frame:
-        .add_system(player_level_up)
-        .add_system(debug_levelups)
-        .add_system(debug_stats_change)
-        // ...
-
-        // launch the app!
-        .run();
-}
-// ANCHOR_END: app-builder
-}
-
-#[allow(dead_code)]
 mod app3 {
     use bevy::prelude::*;
     use super::*;
+
+    #[derive(Resource, Default)]
+    struct MyOtherResource;
 
     struct MyEvent;
     fn plugin_init() {}
@@ -1830,45 +1730,6 @@ fn main() {
 
 // ANCHOR_END: run-criteria-label
 }
-}
-
-#[allow(dead_code)]
-mod app11 {
-    use bevy::prelude::*;
-    use super::*;
-// ANCHOR: events
-struct LevelUpEvent(Entity);
-
-fn player_level_up(
-    mut ev_levelup: EventWriter<LevelUpEvent>,
-    query: Query<(Entity, &PlayerXp)>,
-) {
-    for (entity, xp) in query.iter() {
-        if xp.0 > 1000 {
-            ev_levelup.send(LevelUpEvent(entity));
-        }
-    }
-}
-
-fn debug_levelups(
-    mut ev_levelup: EventReader<LevelUpEvent>,
-) {
-    for ev in ev_levelup.iter() {
-        eprintln!("Entity {:?} leveled up!", ev.0);
-    }
-}
-// ANCHOR_END: events
-// ANCHOR: events-appbuilder
-fn main() {
-    App::new()
-        // ...
-        .add_event::<LevelUpEvent>()
-        .add_system(player_level_up)
-        .add_system(debug_levelups)
-        // ...
-        .run();
-}
-// ANCHOR_END: events-appbuilder
 }
 
 #[allow(dead_code)]
