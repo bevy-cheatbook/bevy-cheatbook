@@ -30,3 +30,12 @@ html,body {
     top: -5px;
     position: relative;
 }
+
+.bitcoin-button {
+    top: -8px;
+    position: relative;
+}
+.bitcoin-button-small {
+    top: -5px;
+    position: relative;
+}

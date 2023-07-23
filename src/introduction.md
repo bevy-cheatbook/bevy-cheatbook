@@ -66,6 +66,7 @@ or [Bevy Assets][bevyassets::games].
 
 <a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @inodentry on GitHub">GitHub Sponsors</a>
 <a href="https://patreon.com/iyesgames"><button class="patreon-button">Patreon</button></a>
+<a href="bitcoin:bc1qaf32uqsg6mngw9g4aqc3l2jvuv46qx0zw2438p"><button class="bitcoin-button">Bitcoin</button></a>
 
 If you like this book, please consider sponsoring me. Thank you! ❤️
 
