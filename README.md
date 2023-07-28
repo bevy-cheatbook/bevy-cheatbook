@@ -53,6 +53,6 @@ accepts your contribution, the MIT-0 license applies.
 Please file GitHub Issues for any wrong/confusing/misleading information, as
 well as suggestions for new content you'd like to be added to the book.
 
-Contributions are accepted, with some limitations.
+Non-trivial Pull Requests are *not* welcome. File issues instead.
 
 See the [Contributing](./src/contributing.md) page for all the details.
