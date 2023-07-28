@@ -8,43 +8,32 @@ If you have any suggestions for the book, such as ideas for new content, or
 if you notice anything that is incorrect or misleading, please file issues in
 [the GitHub repository][project::cb]!
 
-## Bevy Version
+## GitHub Issues
 
-See the book's [maintenance policy][maintenance].
+If you want something to be added or changed in the book, *file an issue!* Tell
+me what you want, and I will figure out how to present it in the book. If you
+have some code snippet or other thing you want to include, you can
+put it in the issue.
 
-## Contributing Code
+That sort of workflow works much better for me, compared to Pull Requests. I am
+quite opinionated and meticulous about how everything is presented in the book,
+so I often can't just merge/accept things as written by someone else.
 
-If you simply want to contribute code examples to the book, feel free to
-make a PR. I can take care of writing the book text / page that your code
-will be displayed on.
+## GitHub Pull Requests
 
-### Cookbook Examples
+**PLEASE DO NOT CREATE PULL REQUESTS FOR BOOK CONTENT.**
 
-The code for cookbook examples should be provided as a full, runnable,
-example file, under `src/code/examples`. The book page will only show the
-relevant parts of the code, without unnecessary boilerplate.
+The only exception to this might be trivial fixes. If you are just fixing
+a typo or small mistake, or a bug in some code example, that's fine.
 
-Always use [mdbook anchor syntax][mdbook::anchor-syntax], not line numbers,
-to denote the parts of the code to be shown on the page.
+If you are adding or changing any of the book content, your PR will probably be
+ignored or closed. I will probably treat it like I do issues: go do the thing
+myself eventually, and then close your PR.
 
-### Credits
-
-If you contribute a cookbook example, I will credit you in the book by your
-github username with a link to the PR. Please let me know if you prefer not
-to be credited, or if you would like to be credited in another way (but no
-commercial self-promotion allowed).
-
-## Contributing Book Text
-
-I do not directly merge book text written by other people. This is because
-I want the book to follow my own editorial style.
-
-If you would like to write new content for the book, feel free to make a
-PR with the content to be included, but note that it will likely not be
-preserved exactly as you wrote it.
-
-I will likely merge it into a temporary branch and then edit or rewrite it
-as I see fit, for publishing into the book.
+PRs create more work for me. They make life harder, not easier. Every time
+someone has made a PR before, I've had to basically rewrite it / redo
+the work myself. And also figure out how to respond to the author. And
+also wrangle merge conflicts and git branches. Please don't. I'm tired.
 
 ## Licensing
 
@@ -59,42 +48,3 @@ As described previously, the actual published content in the book will be my
 own derivative work based on your contributions. I will license it consistently
 with the rest of the book; see: [License](./introduction.md#license).
 
-## Style Guidelines
-
-Aim for simplicity and minimalism. Do not include things irrelevant to
-getting the point across.
-
-"Perfection is achieved not when there is nothing more to add, but when
-there is nothing more to remove."
-
-Don't forget to point out potential gotchas and other relevant practical
-considerations.
-
-Try to use the most common/standard terminology and keywords, to make things
-easy to find. Don't come up with new/extra terminology of your own.
-
-Avoid repeating information found elsewhere in the book, prefer linking to
-it instead.
-
-### Code Style
-
-Avoid long lines of code, to keep it readable on small screens.
-
-Use reasonable formatting that does not deviate much from the common conventions
-used by the Rust language community. If deviating from those standards allows
-for the code to be presented better in the context of the book, then doing so is
-preferable.
-
-Please do *not* use `rustfmt`. Code should be manually formatted for best
-presentation in the book.
-
-### Text Style
-
-Make it easy to read.
-
-- Be brief. Try to cover all important information without verbose explanations.
-- Prefer simple English with short sentences.
-- Avoid information overload:
-  - Split things into short paragraphs.
-  - Avoid introducing many (even if related) topics at the same time.
-  - Cover advanced usage separately from the basics.
