@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Performance
 
@@ -29,6 +29,12 @@ projects (similar to a full release build), so it is not generally recommended.
 [profile.dev]
 opt-level = 1
 ```
+
+**Warning!** If you are using a debugger (like `gdb` or `lldb`) to step through
+your code, any amount of compiler optimization can mess with the experience.
+Your breakpoints might be skipped, and the code flow might jump around in
+unexpected ways. If you want to debug / step through your code, you might want
+`opt-level = 0`.
 
 ### Why is this necessary?
 
