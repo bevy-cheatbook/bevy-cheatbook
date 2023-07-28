@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header011.md}}
 
 # Logging, Console Messages
 
@@ -23,6 +23,10 @@ Bevy offers a logging framework that is much more advanced than simply using
 `println`/`eprintln` from Rust. Log messages can have metadata, like the
 level, timestamp, and Rust module where it came from. You can see that this
 metadata is printed alongside the contents of the message.
+
+This is set up by Bevy's [`LogPlugin`][bevy::LogPlugin]. It is part of the
+[`DefaultPlugins`][bevy::DefaultPlugins] plugin group, so most Bevy users
+will have it automatically in every typical Bevy project.
 
 ## Levels
 
@@ -57,7 +61,7 @@ To control what messages you would like to see, you can configure Bevy's
 [`LogPlugin`][bevy::LogPlugin]:
 
 ```rust
-{{#include ../code/examples/log-settings.rs:log-settings}}
+{{#include ../code011/src/features/log.rs:log-settings}}
 ```
 
 The `filter` field is a string specifying a list of rules for what level to
@@ -97,7 +101,7 @@ builds, an easy way to achieve it is using conditional compilation on
 "debug assertions".
 
 ```rust
-{{#include ../code/examples/log-settings.rs:log-settings-debugrelease}}
+{{#include ../code011/src/features/log.rs:log-settings-debugrelease}}
 ```
 
 This is a good reason why [you should not use release mode during development

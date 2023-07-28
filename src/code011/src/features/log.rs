@@ -1,7 +1,8 @@
 use bevy::prelude::*;
 
-fn _other() {
+fn main1() {
 let mut app = App::new();
+
 // ANCHOR: log-settings
 use bevy::log::LogPlugin;
 
@@ -12,8 +13,9 @@ app.add_plugins(DefaultPlugins.set(LogPlugin {
 // ANCHOR_END: log-settings
 }
 
-fn main() {
+fn main2() {
 let mut app = App::new();
+
 // ANCHOR: log-settings-debugrelease
 use bevy::log::LogPlugin;
 
@@ -31,5 +33,4 @@ app.add_plugins(DefaultPlugins.set(LogPlugin {
     filter: "info,wgpu_core=warn,wgpu_hal=warn".into(),
 }));
 // ANCHOR_END: log-settings-debugrelease
-app.run();
 }

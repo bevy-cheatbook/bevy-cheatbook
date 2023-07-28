@@ -9,6 +9,7 @@ mod setup {
 mod pitfalls {
 }
 mod features {
+    mod log;
 }
 mod assets {
 }
