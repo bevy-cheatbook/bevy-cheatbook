@@ -30,20 +30,21 @@ If you are new to Bevy, this might not be for you. You might be more
 comfortable using the released version. It will have the best compatibility
 with community plugins and documentation.
 
-The biggest downside to using unreleased versions of Bevy is 3rd-party plugin
-compatibility. Bevy is unstable and breaking changes happen often. However,
-many actively-maintained community plugins have branches for tracking the
-latest Bevy main branch, although they might not be fully up-to-date. It's
-possible that a plugin you want to use does not work with the latest changes
-in Bevy main, and you may have to fix it yourself.
+The in-development version of Bevy has frequent breaking changes. Therefore,
+it can be very annoying to use for any more serious projects, and 3rd-party
+plugin authors often don't bother to stay compatible. You will face breakage
+often and probably have to fix it yourself.
 
-The frequent breaking changes might not be a problem for you, though. Thanks
-to cargo, you can update bevy at your convenience, whenever you feel ready
-to handle any possible breaking changes.
+It is only recommended to do this for more experimental or toy projects. Most
+Bevy users should use the released version.
 
-You may want to consider forking the repositories of any plugins you use.
-This allows you to easily apply fixes if needed, or edit their `Cargo.toml`
-for any special configuration to make your project work.
+Though, there are ways you can manage the breakage and make it less of a
+problem. Thanks to cargo, you can update bevy at your convenience, whenever you
+feel ready to handle any possible breaking changes.
+
+You may want to consider forking the repositories of Bevy and any plugins you
+use. Using your own forks allows you to easily apply fixes if needed, or edit
+their `Cargo.toml` for any special configuration to make your project work.
 
 If you choose to use Bevy main, you are highly encouraged to interact with
 the Bevy community on [Discord][bevy::discord] and [GitHub][project::bevy], so
@@ -68,56 +69,34 @@ to use multiple different versions of bevy in your dependency tree
 simultaneously. This can happen if some of the plugins you use have specified
 a different Bevy version/commit from your project.
 
-Make sure you use the correct branch of each plugin you depend on, with support
-for Bevy main. If you have your own forks, check that the dependencies are
-correctly and consistently specified everywhere.
+If you are using any 3rd-party plugins, please consider forking them, so you can
+edit their `Cargo.toml` and have control over how everything is configured.
 
-If you have issues, they might still be fixable. Read the next section
-below for advice on how to configure your project in a way that minimizes
-the chances of this happening.
+## Cargo Patches
 
-## How to use bleeding-edge bevy?
-
-```toml
-[dependencies]
-# recommended: specify a known-working commit hash to pin to
-# (specify it in the URL, to make the patch tricks below work)
-bevy = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" }
-
-# add any 3rd-party plugins you use, and make sure to use the correct branch
-# (alternatively, you could also specify a commit hash, with "rev")
-bevy_thing = { git = "https://github.com/author/bevy_thing?branch=bevy_main" }
-
-# For each plugin we use, patch them to use the same bevy commit as us:
-
-# If they have specified a different commit:
-# (you need to figure this out)
-[patch."https://github.com/bevyengine/bevy?rev=146123ea"] # their bevy commit
-bevy = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" } # ours
-
-# For those that have not specified anything:
-[patch."https://github.com/bevyengine/bevy"]
-bevy = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" }
-```
-
-Some 3rd-party plugins depend on specific bevy sub-crates, rather than the
-full bevy. You may additionally have to patch those individually:
+In some cases, you might be able to use "cargo patches" to locally override
+dependencies. For example, you might be able to point plugins to use your
+fork of bevy, without forking and editing the plugin's `Cargo.toml`, by
+doing something like this:
 
 ```toml
+# replace the bevy git URL source with ours
 [patch."https://github.com/bevyengine/bevy"]
-# specific crates as needed by the plugins you use (check their `Cargo.toml`)
-bevy_ecs = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" }
-bevy_math = { git = "https://github.com/bevyengine/bevy?rev=a420beb0" }
-# ... and so on
+# if we have our own fork
+bevy = { git = "https://github.com/me/bevy" }
+# if we want to use a local path
+bevy = { path = "../bevy" }
+# some plugins might depend on individual bevy crates,
+# instead of all of bevy, which means we need to patch
+# every individual bevy crate specifically:
+bevy_ecs = { path = "../bevy/crates/bevy_ecs" }
+bevy_app = { path = "../bevy/crates/bevy_app" }
+# ...
+
+# replace released versions of crates (crates.io source) with ours
+[patch.crates-io]
+thing = { git = "https://github.com/me/thing" }
 ```
-
-To collect all the information you need, in order to fully patch all your
-dependencies, you can either look at their `Cargo.toml`, or figure it out
-by running `cargo tree` or searching inside your `Cargo.lock` file for
-duplicate entries (multiple copies of bevy crates).
-
-Make sure to delete `Cargo.lock` every time you make a change to your
-dependencies configuration, to force cargo to resolve everything again.
 
 ## Updating Bevy
 
@@ -126,23 +105,17 @@ It is recommended that you specify a known-good Bevy commit in your
 actually want to do so, avoiding unwanted breakage.
 
 ```toml
-bevy = { git = "https://github.com/bevyengine/bevy?rev=7a1bd34e" }
+bevy = { git = "https://github.com/bevyengine/bevy", rev = "7a1bd34e" }
 ```
 
-Even if you do not, the `Cargo.lock` file always keeps track of the exact
-version (including the git commit) you are working with. You will not be
-affected by new changes in upstream bevy or plugins, until you update it.
-
-To update, run:
+When you change anything, be sure to run:
 ```sh
 cargo update
 ```
 
-or delete `Cargo.lock`.
+(or delete `Cargo.lock`)
 
-Make sure you do this every time you change the configuration in your
-`Cargo.toml`. Otherwise you risk errors from cargo not resolving dependencies
-correctly.
+Otherwise you risk errors from cargo not resolving dependencies correctly.
 
 ## Advice for plugin authors
 
