@@ -8,4 +8,4 @@ title = "Unofficial Bevy Cheat Book"
 [output.html]
 additional-js = ["nagbar.js"]
 additional-css = ["nagbar.css", "sidebar.css"]
-edit-url-template = "https://github.com/bevy-cheatbook/bevy-cheatbook/edit/main/{path}"
+edit-url-template = "https://github.com/bevy-cheatbook/bevy-cheatbook/issues/new"
