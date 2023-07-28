@@ -95,7 +95,7 @@ bevy_app = { path = "../bevy/crates/bevy_app" }
 
 # replace released versions of crates (crates.io source) with ours
 [patch.crates-io]
-thing = { git = "https://github.com/me/thing" }
+bevy_some_plugin = { git = "https://github.com/me/bevy_some_plugin", branch = "bevy_main" }
 ```
 
 ## Updating Bevy
