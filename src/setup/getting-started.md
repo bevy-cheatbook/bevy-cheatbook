@@ -57,6 +57,22 @@ runs should be fast. You can do this from your IDE/editor, or the commandline:
 cargo run
 ```
 
+## Documentation
+
+You can generate your own docs (like what is on [docs.rs](https://docs.rs)), for
+offline use, including everything from your own project and all dependencies, in
+one place.
+
+```sh
+cargo doc --open
+```
+
+This will build all the HTML docs and open them in your web browser.
+
+It does not require an internet connection, and gives you an easy way to search
+the API docs for all crates in your dependency tree all at once. It is more
+useful than the online version of the docs.
+
 ## Optional Extra Setup
 
 You will likely quickly run into unusably slow performance with the default
