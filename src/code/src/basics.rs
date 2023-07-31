@@ -2082,6 +2082,5 @@ pub fn _main_all() {
         .add_system(despawn_child)
         .add_system(inflate_balloons)
         .add_system(reveal_map)
-        .add_system(insert_visibilitybundle)
         .run();
 }
