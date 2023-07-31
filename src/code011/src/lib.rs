@@ -7,6 +7,7 @@
 mod setup {
 }
 mod pitfalls {
+    mod d3_not_rendering;
 }
 mod features {
     mod log;
