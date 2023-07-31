@@ -150,6 +150,7 @@
 [bevy::PreStartup]: https://docs.rs/bevy/0.11.0/bevy/app/struct.PreStartup.html
 [bevy::PreUpdate]: https://docs.rs/bevy/0.11.0/bevy/app/struct.PreUpdate.html
 [bevy::Projection]: https://docs.rs/bevy/0.11.0/bevy/render/camera/enum.Projection.html
+[bevy::Quad]: https://docs.rs/bevy/0.11.0/bevy/prelude/shape/struct.Quad.html
 [bevy::QueryState]: https://docs.rs/bevy/0.11.0/bevy/ecs/query/struct.QueryState.html
 [bevy::Query]: https://docs.rs/bevy/0.11.0/bevy/ecs/system/struct.Query.html
 [bevy::ReceivedCharacter]: https://docs.rs/bevy/0.11.0/bevy/window/struct.ReceivedCharacter.html

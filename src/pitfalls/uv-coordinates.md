@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # UV coordinates in Bevy
 
@@ -29,5 +29,17 @@ If the images of your 2D sprites are flipped (for whatever reason), you can
 correct that using Bevy's sprite-flipping feature:
 
 ```rust,no_run,noplayground
-{{#include ../code010/src/pitfalls/uv_coordinates.rs:sprite-flipping}}
+{{#include ../code011/src/pitfalls/uv_coordinates.rs:sprite-flipping}}
 ```
+
+## Quads
+
+If you want to display an image (or custom shader) on a [`Quad`][bevy::Quad]
+mesh, you can flip it vertically as follows:
+
+```rust,no_run,noplayground
+{{#include ../code011/src/pitfalls/uv_coordinates.rs:quad-flipping}}
+```
+
+(this workaround is necessary, because the `flipped` feature of Bevy's
+[`Quad`][bevy::Quad] primitive only does a horizonal flip, but we want a vertical flip)

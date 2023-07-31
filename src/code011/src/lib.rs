@@ -8,6 +8,7 @@ mod setup {
 }
 mod pitfalls {
     mod d3_not_rendering;
+    mod uv_coordinates;
 }
 mod features {
     mod log;

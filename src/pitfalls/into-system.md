@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Obscure Rust compiler errors
 
@@ -13,6 +13,7 @@ to your Bevy [app][cb::app].
     (forgetting the tuple)
   - Using your resource types directly without [`Res`][bevy::Res] or [`ResMut`][bevy::ResMut].
   - Using your component types directly without putting them in a [`Query`][bevy::Query].
+  - Using a [bundle][cb::bundle] type in a [query][cb::query]. You want individual components.
   - Using other arbitrary types in your function.
 
 Note that `Query<Entity>` is correct, because the Entity ID is special;
@@ -31,9 +32,8 @@ error[E0277]: the trait bound `for<'a, 'b, 'c> fn(...) {system}: IntoSystem<(), 
     |          |
     |          required by a bound introduced by this call
     |
-    = help: the trait `IntoSystemAppConfig<()>` is implemented for `SystemAppConfig`
-    = note: required for `for<'a, 'b, 'c> fn(...) {system}` to implement `IntoSystemConfig<_>`
-    = note: required for `for<'a, 'b, 'c> fn(...) {system}` to implement `IntoSystemAppConfig<_>`
+    = help: the following other types implement trait `IntoSystemConfigs<Marker>`:
+    = ...
 ```
 
 The error (confusingly) points to the place in your code where you try to add the system,

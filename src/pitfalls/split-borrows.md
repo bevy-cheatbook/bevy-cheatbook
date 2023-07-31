@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header-none.md}}
 
 # Borrow multiple fields from struct
 
@@ -38,8 +38,11 @@ error[E0502]: cannot borrow `thing` as mutable because it is also borrowed as im
 The solution is to use the "reborrow" idiom, a common but non-obvious trick in Rust programming:
 
 ```rust,no_run,noplayground
-        // add this at the start of the for loop, before using `thing`:
-        let thing = &mut *thing;
+// add this at the start of the for loop, before using `thing`:
+let thing = &mut *thing;
+
+// or, alternatively, Bevy provides a method, which does the same:
+let thing = thing.into_inner();
 ```
 
 Note that this line triggers [change detection][cb::change-detection]. Even if
