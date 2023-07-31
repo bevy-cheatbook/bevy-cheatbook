@@ -12,8 +12,10 @@ focus on the important information.
 
 ## Support Me
 
-If you like this book, please consider supporting me via [GitHub
-Sponsors](https://github.com/sponsors/inodentry). (Patreon WIP)
+If you like this book, please consider supporting me via
+[GitHub Sponsors](https://github.com/sponsors/inodentry),
+[Patreon](https://patreon.com/iyesgames),
+[Bitcoin](bitcoin:bc1qaf32uqsg6mngw9g4aqc3l2jvuv46qx0zw2438p).
 
 I'd like to keep improving and maintaining this book, to provide a high-quality
 independent learning resource for the Bevy community.
