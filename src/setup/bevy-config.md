@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Configuring Bevy
 
@@ -15,15 +15,14 @@ standalone, or integrated into otherwise non-Bevy projects.
 In Bevy projects, you can enable/disable various parts of Bevy using cargo features.
 
 Many common features are enabled by default. If you want to disable some of
-them, note that, unfortunately, Cargo does not let you disable individual
-default features, so you need to disable all default bevy features and
-re-enable the ones you need.
+them, you need to disable all of them and re-enable the ones you need.
+Unfortunately, Cargo does not let you just disable individual default features.
 
 Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.10"
+version = "0.11"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
@@ -31,6 +30,7 @@ features = [
   # (re-enable whichever you like)
 
   # Bevy functionality:
+  "multi-threaded",     # Run with multithreading
   "bevy_asset",         # Assets management
   "bevy_audio",         # Builtin audio
   "bevy_gilrs",         # Gamepad input support
@@ -38,6 +38,7 @@ features = [
   "bevy_winit",         # Window management
   "bevy_render",        # Rendering framework core
   "bevy_core_pipeline", # Common rendering abstractions
+  "bevy_gizmos",        # Support drawing debug lines and shapes
   "bevy_sprite",        # 2D (sprites) rendering
   "bevy_pbr",           # 3D (physically-based) rendering
   "bevy_gltf",          # GLTF 3D assets format support
@@ -46,8 +47,7 @@ features = [
   "animation",          # Animation support
   "tonemapping_luts",   # Support different camera Tonemapping modes (embeds extra data)
   "filesystem_watcher", # Asset hot-reloading
-  "x11",                # Linux: Support X11 windowing system
-  "android_shared_stdcxx", # For Android builds, use shared C++ library
+  "default_font",       # Embed a minimal default font for text/UI
 
   # File formats:
   "png",    # PNG image format for simple 2D images
@@ -56,33 +56,46 @@ features = [
   "zstd",   # ZSTD compression support in KTX2 files
   "vorbis", # Audio: OGG Vorbis
 
+  # Platform-specific:
+  "x11",                   # Linux: Support X11 windowing system
+  "android_shared_stdcxx", # Android: use shared C++ library
+  "webgl2",                # Web: use WebGL2 instead of WebGPU
+
   # These are other features that may be of interest:
   # (add any of these that you need)
 
   # Bevy functionality:
-  "wayland",              # Linux: Support Wayland windowing system
   "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
   "serialize",            # Support for `serde` Serialize/Deserialize
-  "bevy_dynamic_plugin",  # Support for loading of `DynamicPlugin`s
-  "accesskit_unix",       # AccessKit integration for UI Accessibility
 
   # File formats:
   "dds",  # Alternative DirectX format for GPU textures, instead of KTX2
   "jpeg", # JPEG lossy format for 2D photos
+  "webp", # WebP image format
   "bmp",  # Uncompressed BMP image format
   "tga",  # Truevision Targa image format
   "exr",  # OpenEXR advanced image format
+  "pnm",  # PNM (pam, pbm, pgm, ppm) image format
   "basis-universal", # Basis Universal GPU texture compression format
+  "zlib", # zlib compression support in KTX2 files
   "flac", # Audio: FLAC lossless format
   "mp3",  # Audio: MP3 format (not recommended)
   "wav",  # Audio: Uncompressed WAV
   "symphonia-all", # All Audio formats supported by the Symphonia library
+  "shader_format_glsl", # GLSL shader support
+  "shader_format_spirv", # SPIR-V shader support
+
+  # Platform-specific:
+  "wayland",              # (Linux) Support Wayland windowing system
+  "accesskit_unix",       # (Unix-like) AccessKit integration for UI Accessibility
+  "bevy_dynamic_plugin",  # (Desktop) support for loading of `DynamicPlugin`s
 
   # Development/Debug features:
   "dynamic_linking", # Dynamic linking for faster compile-times
   "trace",           # Enable tracing for performance measurement
   "detailed_trace",  # Make traces more verbose
   "trace_tracy",     # Tracing using `tracy`
+  "trace_tracy_memory", # + memory profiling
   "trace_chrome",    # Tracing using the Chrome format
   "wgpu_trace",      # WGPU/rendering tracing
 ]
@@ -106,14 +119,10 @@ from GLTF files][cb::gltf], add `bevy_gltf`.
 
 If you are using Bevy UI, you need `bevy_text` and `bevy_ui`.
 
+If you want to draw debug lines and shapes on-screen, add `bevy_gizmos`.
+
 If you don't need any graphics (like for a dedicated game server, scientific
 simulation, etc.), you may remove all of these features.
-
-### Audio
-
-Bevy's audio is very limited in functionality. If you want something with more
-features, you can use the [`bevy_kira_audio`][project::bevy_kira_audio] plugin
-instead. Disable `bevy_audio` and `vorbis`.
 
 ### File Formats
 
