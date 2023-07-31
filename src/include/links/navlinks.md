@@ -70,6 +70,11 @@
 [cb::hdr]: /features/hdr-tonemap.md
 [cb::hierarchy]: /features/parent-child.md
 [cb::ide]: /setup/editor.md
+[cb::ide::emacs]: /setup/editor/emacs.md
+[cb::ide::jetbrains]: /setup/editor/jetbrains.md
+[cb::ide::kak]: /setup/editor/kak.md
+[cb::ide::vim]: /setup/editor/vim.md
+[cb::ide::vscode]: /setup/editor/vscode.md
 [cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
 [cb::log]: /features/log.md
