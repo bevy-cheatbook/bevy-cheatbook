@@ -1,12 +1,11 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Coordinate System
 
 ## 2D and 3D scenes and cameras
 
-Bevy uses a right-handed Y-up coordinate system.
-
-Bevy uses the same coordinate system for 3D and 2D, for consistency.
+Bevy uses a right-handed Y-up coordinate system for the game world. The
+coordinate system is the same for 3D and 2D, for consistency.
 
 It is easiest to explain in terms of 2D:
  - The X axis goes from left to right (+X points right).
@@ -31,12 +30,6 @@ is inverted.
 
 (graphic modifed and used with permission; original by [@FreyaHolmer](https://twitter.com/FreyaHolmer))
 
----
-
-Also beware of a common pitfall when working in 2D: [the camera must be
-positioned at a far away Z coordinate (=999.9 by default), or you might not
-be able to see your sprites!][pitfall::2d-camera-z]
-
 ## UI
 
 For UI, Bevy follows the same convention as most other UI toolkits, the Web, etc.
@@ -48,3 +41,8 @@ For UI, Bevy follows the same convention as most other UI toolkits, the Web, etc
 The units represent logical (compensated for DPI scaling) screen pixels.
 
 UI layout flows from top to bottom, similar to a web page.
+
+## Cursor and Screen
+
+The cursor position and any other window (screen-space) coordinates follow the same
+conventions as UI, as described above.

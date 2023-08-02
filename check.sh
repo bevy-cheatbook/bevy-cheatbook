@@ -11,4 +11,4 @@ check() {
     return $c
 }
 
-check src/code011 && check src/code010 && check src/code
+check src/code011 && check src/code

@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Linux Desktop
 
@@ -40,7 +40,7 @@ vulkaninfo
 
 ## X11 and Wayland
 
-As of the year 2022, the Linux desktop ecosystem is fragmented between
+As of the year 2023, the Linux desktop ecosystem is fragmented between
 the legacy X11 stack and the modern Wayland stack. Many distributions are
 switching to Wayland-based desktop environments by default.
 
@@ -52,7 +52,7 @@ To enable native Wayland support for Bevy, enable the `wayland` cargo feature:
 
 ```toml
 [dependencies]
-bevy = { version = "0.10", features = ["wayland"] }
+bevy = { version = "0.11", features = ["wayland"] }
 ```
 
 Now your app will be built with support for both X11 and Wayland.

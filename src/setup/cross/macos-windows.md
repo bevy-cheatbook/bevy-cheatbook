@@ -1,4 +1,4 @@
-{{#include ../../include/header010.md}}
+{{#include ../../include/header-none.md}}
 
 # Build Windows EXEs from macOS
 

@@ -1,4 +1,4 @@
-{{#include ../include/header010.md}}
+{{#include ../include/header011.md}}
 
 # Windows Desktop
 
@@ -122,4 +122,4 @@ Create your icon as `icon.ico` in your project folder.
 
 ### Setting the Window Icon
 
-See [Bevy Cookbook: Setting the Window Icon][cookbook::window-icon].
+See: [Setting the Window Icon][cookbook::window-icon].
