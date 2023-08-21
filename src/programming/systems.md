@@ -62,7 +62,7 @@ running, make sure you added the system!
 
 The above is enough for simple projects.
 
-Systems are contained [schedules][cb::schedule]. [`Update`][bevy::Update] is the
+Systems are contained in [schedules][cb::schedule]. [`Update`][bevy::Update] is the
 schedule where you typically add any systems you want to run every frame.
 [`Startup`][bevy::Startup] is where you typically add systems that should run
 only once on app startup. There are also [other possibilities][builtins::schedule].
