@@ -1,5 +1,3 @@
-{{#include ../include/header09.md}}
-
 # Convert cursor to world coordinates
 
 [Click here for the full example code.][cbexample::cursor2world]
@@ -20,10 +18,10 @@ find the position of the mouse cursor.
 This code will work regardless of the [camera's projection][cb::camera-projection]
 settings and [transform][cb::transform].
 
-(there will likely be *slight* inaccuracy from floating-point calculations)
+(there will likely be _slight_ inaccuracy from floating-point calculations)
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/cursor2world.rs:example}}
+{{#include ../code011/src/cookbook/cursor2world.rs:example}}
 ```
 
 In older versions of Bevy, there were no such coordinate conversion methods, and

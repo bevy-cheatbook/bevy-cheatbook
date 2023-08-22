@@ -39,4 +39,8 @@ mod gpu {
 mod platforms {
 }
 
+mod cookbook {
+    mod cursor2world;
+}
+
 // cookbook chapter uses `examples`, they should be runnable
