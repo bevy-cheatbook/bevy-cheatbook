@@ -27,6 +27,8 @@ mod d3 {
 }
 mod programming {
     mod app_builder;
+    mod bundle;
+    mod ec;
     mod events;
     mod intro_code;
     mod res;

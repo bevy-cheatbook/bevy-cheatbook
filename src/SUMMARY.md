@@ -42,6 +42,7 @@
   - [Systems](./programming/systems.md)
   - [Resources](./programming/res.md)
   - [Entities, Components, Bundles](./programming/ec.md)
+  - [Bundles](./programming/bundle.md)
   - [Queries](./programming/queries.md)
   - [Commands](./programming/commands.md)
   - [Events](./programming/events.md)
