@@ -32,9 +32,10 @@ will have it automatically in every typical Bevy project.
 
 Levels determine how important a message is, and allow messages to be filtered.
 
-The available levels are: `error`, `warn`, `info`, `debug`, `trace`.
+The available levels are: `off`, `error`, `warn`, `info`, `debug`, `trace`.
 
 A rough guideline for when to use each level, could be:
+ - `off`: disable all log messages
  - `error`: something happened that prevents things from working correctly
  - `warn`: something unusual happened, but things can continue to work
  - `info`: general informational messages
