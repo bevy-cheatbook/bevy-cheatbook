@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header011.md}}
 
 # Convert cursor to world coordinates
 
@@ -13,20 +13,30 @@ There is a good (unofficial) plugin:
 
 ## 2D games
 
-Starting from Bevy 0.9, there are camera methods to help you convert between
-screen-space (viewport) and world-space coordinates. We can use this to easily
-find the position of the mouse cursor.
+If you only have one window (the primary window), as is the case for most apps
+and games, you can do this:
 
-This code will work regardless of the [camera's projection][cb::camera-projection]
-settings and [transform][cb::transform].
-
-(there will likely be *slight* inaccuracy from floating-point calculations)
+<details>
+  <summary>
+  <code>Code (simple version):</code>
+  </summary>
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/cursor2world.rs:example}}
+{{#include ../code011/examples/cursor2world.rs:simple}}
 ```
 
-In older versions of Bevy, there were no such coordinate conversion methods, and
-the math had to be done manually. If you are interested in how that works, see
-the example from an old version of the book,
-[here](https://github.com/bevy-cheatbook/bevy-cheatbook/blob/5baa8f74860068e9d0714cd2864d4c026acccdc7/src/code/examples/cursor2world.rs).
+</details>
+
+If you have a more complex application with multiple windows, here is a more
+complex version of the code that can handle that:
+
+<details>
+  <summary>
+  <code>Code (multi-window version):</code>
+  </summary>
+
+```rust,no_run,noplayground
+{{#include ../code011/examples/cursor2world.rs:multiple-windows}}
+```
+
+</details>
