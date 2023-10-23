@@ -5,6 +5,7 @@
 // MUST MIRROR BOOK CHAPTER STRUCTURE / FILENAMES!
 
 mod setup {
+    mod perf;
 }
 mod pitfalls {
 }

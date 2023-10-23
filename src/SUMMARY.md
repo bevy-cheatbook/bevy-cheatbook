@@ -24,6 +24,7 @@
   - [Customizing Bevy (features, modularity)](./setup/bevy-config.md)
   - [Community Plugin Ecosystem](./setup/unofficial-plugins.md)
   - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
+  - [Performance Tunables](./setup/perf.md)
 
 - [Common Pitfalls](./pitfalls.md)
   - [Strange compile errors from Bevy or dependencies](./pitfalls/build-errors.md)
