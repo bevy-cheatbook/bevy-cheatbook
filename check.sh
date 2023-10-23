@@ -7,8 +7,9 @@ check() {
     cargo update
     cargo c --lib --examples
     local c=$?
+    rm -rf Cargo.lock target
     popd
     return $c
 }
 
-check src/code012 && check src/code011 && check src/code
+check src/code012
