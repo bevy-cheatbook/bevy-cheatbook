@@ -1,4 +1,4 @@
-{{#include ../../include/header011.md}}
+{{#include ../../include/header012.md}}
 
 # Visual Studio Code
 
@@ -7,9 +7,37 @@ please file a [GitHub Issue][project::cb::issues].
 
 ## Rust Language Support
 
-For good Rust support, install the Rust Analyzer plugin. Bevy uses a lot of
-procedural macros, so be sure to enable proc-macro support in the RA settings
-(it is not enabled by default).
+For good Rust support, install the Rust Analyzer plugin.
+
+### Speed Up Rust Analyzer
+
+If you have used `.cargo/config.toml` to set a non-default linker for fast
+compiles, Rust Analyzer will ignore it unfortunately. You need to also
+configure RA to use it, with the following setting (in VSCode `settings.json`):
+
+Windows:
+
+```json
+"rust-analyzer.cargo.extraEnv": {
+    "RUSTFLAGS": "-Clinker=rust-lld.exe"
+}
+```
+
+Linux (mold):
+
+```json
+"rust-analyzer.cargo.extraEnv": {
+    "RUSTFLAGS": "-Clinker=clang -Clink-arg=-fuse-ld=mold"
+}
+```
+
+Linux (lld):
+
+```json
+"rust-analyzer.cargo.extraEnv": {
+    "RUSTFLAGS": "-Clinker=clang -Clink-arg=-fuse-ld=lld"
+}
+```
 
 ## `CARGO_MANIFEST_DIR`
 
@@ -56,3 +84,15 @@ Here is a snippet showing how to create a run configuration for debugging Bevy
     }
 }
 ```
+
+To support dynamic linking, you should also add the following, inside the `"env"` section:
+
+Linux:
+
+```json
+"LD_LIBRARY_PATH": "${workspaceFolder}/target/debug/deps:${env:HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib",
+```
+
+(replace `stable-x86_64-unknown-linux-gnu` if you use a different toolchain/architecture)
+
+Windows: I don't know. If you do, please [file an issue][project::cb::issues]!
