@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Getting Started
 
@@ -38,7 +38,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = "0.11"
+bevy = "0.12"
 ```
 
 The `src/main.rs` file is your main source code file. This is where you
@@ -46,7 +46,7 @@ start writing your Rust code. For a minimal Bevy [app][cb::app], you need
 at least the following:
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/minimal.rs}}
+{{#include ../code012/examples/minimal.rs}}
 ```
 
 You can now compile and run your project. The first time, this will take a
