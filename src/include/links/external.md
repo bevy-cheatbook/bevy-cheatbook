@@ -17,6 +17,8 @@
 [bevy::getting-started]: https://bevyengine.org/learn/book/getting-started/setup/
 [bevy::ghdiscussions]: https://github.com/bevyengine/bevy/discussions
 [bevy::jam-01]: https://itch.io/jam/bevy-jam-1/entries
+[bevy::jam-02]: https://itch.io/jam/bevy-jam-2/entries
+[bevy::jam-03]: https://itch.io/jam/bevy-jam-3/entries
 [bevy::linux-dependencies]: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
 [bevy::plugins_guidelines]: https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md
 [bevy::profiling]: https://github.com/bevyengine/bevy/blob/main/docs/profiling.md
@@ -52,6 +54,8 @@
 [project::bevyassets]: https://github.com/bevyengine/bevy-assets
 [project::bevycheck]: https://github.com/jakobhellermann/bevycheck
 [project::binaryen]: https://github.com/WebAssembly/binaryen
+[project::blender]: https://www.blender.org/
+[project::blender_bevy_components_workflow]: https://github.com/kaosat-dev/Blender_bevy_components_workflow
 [project::cb::issues]: https://github.com/bevy-cheatbook/bevy-cheatbook/issues
 [project::cb]: https://github.com/bevy-cheatbook/bevy-cheatbook
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
@@ -64,6 +68,7 @@
 [project::iyes_progress]: https://github.com/IyesGames/iyes_progress
 [project::klafsa]: https://github.com/superdump/klafsa
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
+[project::space_editor]: https://github.com/rewin123/space_editor
 [project::trunkrs]: https://trunkrs.dev
 [project::twiggy]: https://github.com/rustwasm/twiggy
 [project::wasm-pack]: https://github.com/rustwasm/wasm-pack
