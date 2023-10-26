@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Windows Desktop
 
@@ -29,6 +29,17 @@ install the `assets` folder and the EXE to the same path.
 If built with the MSVC toolchain, your users may need the Microsoft C/C++
 Runtime Redistributables installed.
 
+### DXC Compiler Support
+
+Bevy (technically `wgpu`) supports using the Microsoft DXC compiler for
+improved shader compilation when using DirectX 12.
+
+To do this, you need to [download it from Microsoft's
+repo][project::dxc::download] and put `dxcompiler.dll` and `dxil.dll`
+alongside your game's EXE.
+
+Bevy should detect these DLL files automatically and use them.
+
 ## Disabling the Windows Console
 
 By default, when you run a Bevy app (or any Rust program for that matter)
@@ -57,11 +68,26 @@ to work inside of WSL2 and build your project there. Another reason to do it is
 compile times; they are often much faster in WSL2 than on the Windows host
 system.
 
-Fortunately, this can actually work quite well! The trick is that you want to
-[cross-compile for Windows][cross::linux-windows]. The Windows EXE you build
-inside of WSL2 can be run just fine from the Linux commandline, and it will
-seamlessly run on the host system! This way, you don't need any GPU drivers or
-GUI support inside your WSL2 Linux environment.
+### Running Linux builds using WSLg
+
+Newer installs of WSL2 should have support for WSLg: Microsoft's Linux GUI
+support. It should allow you to simply compile your Bevy game in Linux and
+run it. WSLg will do the dark magic needed to forward graphics and audio to
+the Windows host. This will likely have some overhead.
+
+Both Wayland and X11 are supported.
+
+If this doesn't work for you, try the Cross-Compilation workflow described
+below.
+
+### Cross-compiling to run Windows Native
+
+You can also [cross-compile for Windows][cross::linux-windows]. The Windows
+EXE you build inside of WSL2 can be run just fine from the Linux commandline,
+and it will seamlessly run on the host system! This way, you don't need any
+GPU drivers or GUI support inside your WSL2 Linux environment. Also, you
+will be running and testing the Windows build of your game, so you can see
+how it will really perform on Windows.
 
 Note that when you run Windows binaries from WSL2, they don't get the Linux
 environment variables. `cargo run` does not just work, because your Bevy game
