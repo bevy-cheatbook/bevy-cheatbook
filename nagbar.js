@@ -5,7 +5,7 @@ var p1 = document.createElement('p');
 p1.appendChild(document.createTextNode(' If you like this book, please donate to support me!'));
 p1.insertAdjacentHTML('afterbegin', '<a href="bitcoin:bc1qaf32uqsg6mngw9g4aqc3l2jvuv46qx0zw2438p"><button class="bitcoin-button-small">Bitcoin</button></a>');
 p1.insertAdjacentHTML('afterbegin', '<a href="https://patreon.com/iyesgames"><button class="patreon-button-small">Patreon</button></a>');
-p1.insertAdjacentHTML('afterbegin', '<a class="github-button" href="https://github.com/sponsors/inodentry" data-icon="octicon-heart" data-size="small" aria-label="Sponsor @inodentry on GitHub">GitHub Sponsors</a>');
+p1.insertAdjacentHTML('afterbegin', '<a href="https://github.com/sponsors/inodentry"><button class="ghsponsors-button-small">GitHub Sponsors</button></a>');
 nagbar.appendChild(p1);
 var p2 = document.createElement('p');
 p2.insertAdjacentHTML('afterbegin', 'I also offer professional tutoring / private lessons for Bevy and Rust. <a href="/contact.html">Contact me</a> if interested!');

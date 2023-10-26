@@ -39,3 +39,12 @@ html,body {
     top: -5px;
     position: relative;
 }
+
+.ghsponsors-button {
+    top: -8px;
+    position: relative;
+}
+.ghsponsors-button-small {
+    top: -5px;
+    position: relative;
+}
