@@ -30,7 +30,7 @@
 [cb::audio-spatial]: /features/audio.md
 [cb::audio]: /features/audio.md
 [cb::bevy-main]: /setup/bevy-git.md
-[cb::bundle]: /programming/ec.md#component-bundles
+[cb::bundle]: /programming/bundle.md
 [cb::camera-2d]: /2d/camera.md
 [cb::camera-3d]: /3d/camera.md
 [cb::camera-custom-projection]: /cookbook/custom-projection.md
