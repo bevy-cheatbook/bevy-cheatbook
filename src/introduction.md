@@ -75,7 +75,7 @@ independent learning resource for the Bevy community.
 
 ## Support Bevy
 
-<a class="github-button" href="https://github.com/sponsors/cart" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @cart on GitHub">GitHub Sponsors</a>
+<a href="https://github.com/sponsors/cart"><button class="ghsponsors-button">GitHub Sponsors</button></a>
 
 If you like the Bevy Game Engine, you should consider donating to the project.
 
