@@ -19,24 +19,38 @@ bevy = { git = "https://github.com/bevyengine/bevy" }
 However, if you *are* working with external plugins, you should read the rest
 of this page. You will likely need to do more to make everything compatible.
 
-## Should you use bleeding-edge Bevy?
+## Should you use bleeding-edge Bevy? What version of Bevy should you use?
 
-Currently, Bevy does not make patch releases (with rare exceptions for
-critical bugs), only major releases. The latest release is often missing
-the freshest bug fixes, usability improvements, and features. It may be
-compelling to join in on the action!
+Bevy follows a "train release" model, with loose deadlines. Every 3 months,
+a new major release is prepared, which will contain all new developments
+(features, fixes, etc.) since the last release. The release date is not
+strict and is often delayed by a few weeks to tie up loose ends.
+
+Further, Bevy usually follows up every major release with a patch release
+or two, as needed, to fix any bugs discovered soon after release. It will
+not contain all fixes, just small non-breaking things that are considered
+critical enough.
+
+Most Bevy projects should use the latest release on crates.io. If you want
+to play it safe, you can wait until the first patch release (`0.*.1`),
+before upgrading to a new major version. You might also want to wait for
+any 3rd-party plugins you are using to support the new Bevy version.
+
+On the other hand, for experimentation and for Bevy development, you are
+encouraged to try the latest in-development code from git! The latest
+release is often missing the freshest bug fixes, usability improvements,
+and features. It may be compelling to join in on the action!
 
 If you are new to Bevy, this might not be for you. You might be more
 comfortable using the released version. It will have the best compatibility
 with community plugins and documentation.
 
 The in-development version of Bevy has frequent breaking changes. Therefore,
-it can be very annoying to use for any more serious projects, and 3rd-party
-plugin authors often don't bother to stay compatible. You will face breakage
-often and probably have to fix it yourself.
+it can be very annoying to use for real projects. Also, 3rd-party plugin
+authors often don't bother to stay compatible. You will face breakage often
+and probably have to fix it yourself.
 
-It is only recommended to do this for more experimental or toy projects. Most
-Bevy users should use the released version.
+It is only recommended to do this for more experimental or toy projects.
 
 Though, there are ways you can manage the breakage and make it less of a
 problem. Thanks to cargo, you can update bevy at your convenience, whenever you
@@ -96,6 +110,9 @@ bevy_app = { path = "../bevy/crates/bevy_app" }
 # replace released versions of crates (crates.io source) with ours
 [patch.crates-io]
 bevy_some_plugin = { git = "https://github.com/me/bevy_some_plugin", branch = "bevy_main" }
+# also replace bevy itself
+bevy = { path = "../bevy" }
+# ...
 ```
 
 ## Updating Bevy
@@ -109,6 +126,7 @@ bevy = { git = "https://github.com/bevyengine/bevy", rev = "7a1bd34e" }
 ```
 
 When you change anything, be sure to run:
+
 ```sh
 cargo update
 ```
@@ -120,8 +138,9 @@ Otherwise you risk errors from cargo not resolving dependencies correctly.
 ## Advice for plugin authors
 
 If you are publishing a plugin crate, here are some recommendations:
+  - Use the main branch in your repository for targeting the released version of Bevy
   - Have a separate branch in your repository, to keep support for bevy main
-    separate from your main version for the released version of bevy
+    separate from your version for the released version of bevy
   - Put information in your README to tell people how to find it
   - Set up CI to notify you if your plugin is broken by new changes in bevy
 
@@ -153,8 +172,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends pkg-config libx11-dev libasound2-dev libudev-dev
-
+        run: sudo apt-get update && sudo apt-get install g++ pkg-config libx11-dev libasound2-dev libudev-dev
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
