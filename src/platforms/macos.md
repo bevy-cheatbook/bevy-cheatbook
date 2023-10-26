@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # macOS Desktop
 
@@ -215,7 +215,49 @@ It is common for Mac apps downloadable from the internet to be distributed as
 DMG files – Apple's "disk image" format. Users can drag-and-drop the app bundle
 inside into their `Applications` folder on their system.
 
-You can create a very simple one from the command-line, using `hdiutil`:
+### `create-dmg`
+
+If you want to create a fancy DMG file, you can install and use the
+[`create-dmg` tool][project::create-dmg].
+
+If you are using Homebrew, you can install it easily from there:
+
+```sh
+brew install create-dmg
+```
+
+Then, you can use it as follows:
+
+```sh
+create-dmg \
+  --volname "My Bevy Game" \
+  --volicon "AppIcon.icns" \
+  --background "DMG-background.png" \
+  --window-size 800 400 \
+  --icon-size 128 \
+  --icon "MyGame.app" 200 200 \
+  --hide-extension "MyGame.app" \
+  --app-drop-link 600 200 \
+  "mybevygame_release_mac.dmg" \
+  "build/mac/"
+```
+
+The options are:
+ - `--volname`: the name of the device when the user opens the DMG file
+ - `--volicon`: the icon of the device when the user opens the DMG file
+ - `--background`: the background image for the Finder window
+ - `--window-size`: the size of the Finder window
+ - `--icon-size`: the default zoom level (how big the icons should look)
+ - `--icon`: specify the X/Y coordinates where to display a specific file
+ - `--hide-extension`: do not display the file extension for this file
+ - `--app-drop-link`: create a shortcut to Applications for easy drag-and-drop; place at given X/Y coordinates
+ - the name of the DMG file to create
+ - the name of the folder where you have the files to be added to the DMG (your app + anything else you want to add)
+
+### `hdiutil`
+
+If you don't want to install any special tools, you can create a very simple
+DMG file using `hdiutil`, which comes with macOS:
 
 ```sh
 hdiutil create -fs HFS+ \
@@ -229,5 +271,8 @@ bundle, and the name of the output DMG file, respectively. You can use
 `-srcfolder` multiple times, if you want to add more files and folders to the
 DMG image.
 
-If you want to create a DMG file using a GUI, you can use Apple's "Disk Utility"
-app that comes preinstalled with macOS.
+### GUI
+
+If you want to create a DMG file using a GUI, you can use Apple's "Disk
+Utility" app that comes preinstalled with macOS. Then, just use Finder to
+set up everything inside how you like it.

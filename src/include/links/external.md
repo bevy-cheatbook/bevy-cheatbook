@@ -55,6 +55,7 @@
 [project::cb::issues]: https://github.com/bevy-cheatbook/bevy-cheatbook/issues
 [project::cb]: https://github.com/bevy-cheatbook/bevy-cheatbook
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
+[project::create-dmg]: https://github.com/create-dmg/create-dmg
 [project::dxc::download]: https://github.com/microsoft/DirectXShaderCompiler/releases/latest
 [project::egui]: https://github.com/emilk/egui
 [project::gilrs]: https://gitlab.com/gilrs-project/gilrs
