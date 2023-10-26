@@ -17,7 +17,7 @@
   - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
     - [Visual Studio Code](./setup/editor/vscode.md)
-    - [JetBrains (IntelliJ, CLion)](./setup/editor/jetbrains.md)
+    - [JetBrains (RustRover, IntelliJ, CLion)](./setup/editor/jetbrains.md)
     - [Kakoune](./setup/editor/kak.md)
     - [Vim](./setup/editor/vim.md)
     - [Emacs](./setup/editor/emacs.md)

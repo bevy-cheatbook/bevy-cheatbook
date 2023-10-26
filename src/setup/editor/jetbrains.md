@@ -1,6 +1,6 @@
-{{#include ../../include/header011.md}}
+{{#include ../../include/header012.md}}
 
-# JetBrains (IntelliJ, CLion)
+# JetBrains (RustRover, IntelliJ, CLion)
 
 If you are a JetBrains user and you'd like something to be added to this page,
 please file a [GitHub Issue][project::cb::issues].

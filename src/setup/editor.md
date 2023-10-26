@@ -5,8 +5,8 @@
 This sub-chapter contains tips for different text editors and IDEs.
 
 Bevy is, for the most part, like any other Rust project. If your editor/IDE
-is set up for Rust, that might be all you need. This page contains additional
-information that may be useful for Bevy specifically.
+is set up for Rust, that might be all you need. This sub-chapter contains
+additional information that may be useful for Bevy specifically.
 
 If you have any tips/advice/configurations for your editor of choice,
 that you'd like to share with the community, please create a
@@ -14,7 +14,7 @@ that you'd like to share with the community, please create a
 If your editor is not in the list, I will add it.
 
 - [Visual Studio Code][cb::ide::vscode]
-- [JetBrains (IntelliJ, CLion)][cb::ide::jetbrains]
+- [JetBrains (RustRover, IntelliJ, CLion)][cb::ide::jetbrains]
 - [Kakoune][cb::ide::kak]
 - [Vim][cb::ide::vim]
 - [Emacs][cb::ide::emacs]
