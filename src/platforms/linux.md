@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Linux Desktop
 
@@ -52,7 +52,7 @@ To enable native Wayland support for Bevy, enable the `wayland` cargo feature:
 
 ```toml
 [dependencies]
-bevy = { version = "0.11", features = ["wayland"] }
+bevy = { version = "0.12", features = ["wayland"] }
 ```
 
 Now your app will be built with support for both X11 and Wayland.
