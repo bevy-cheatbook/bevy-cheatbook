@@ -1,4 +1,4 @@
-{{#include ./include/header09.md}}
+{{#include ./include/header012.md}}
 
 # Bevy on Different Platforms
 
@@ -28,10 +28,10 @@ desktop platforms:
  - [macOS][platform::macos]
  - [Windows][platform::windows]
 
-All features are fully supported on each of the above.
+All Bevy features are fully supported on each of the above.
 
-If you are working in Linux, [see here for how to build Windows EXEs for
-your Windows users][cross::linux-windows].
+You can also build Windows EXEs for your Windows users, if you are working
+in [Linux][cross::linux-windows] or [macOS][cross::macos-windows].
 
 ### Web
 
@@ -41,10 +41,12 @@ but with some limitations.
 Multithreading is not supported, so you will have limited performance and
 possible audio glitches. Rendering is limited to the features of the WebGL2
 API, meaning worse performance and limitations like only supporting a maximum
-of 256 lights in 3D scenes.
+of 256 lights in 3D scenes. These limitations can be lifted by enabling the
+new WebGPU support, but then you will have limited browser compatibility.
 
-For inspiration, check out the [entries in the first Bevy Game
-Jam][bevy::jam-01]. Many of them have web builds you can play in your browser.
+For inspiration, check out the entries in the Bevy Game Jams
+([third][bevy::jam-03], [second][bevy::jam-02], [first][bevy::jam-01]). Many
+of them have web builds you can play in your browser.
 
 ### Mobile
 
@@ -52,14 +54,8 @@ Apple iOS is well-supported and most features work well. There are developers
 in the Bevy community that have successfully shipped Bevy-based apps to the
 App Store.
 
-Android support is still limited. Your app will build and run. You can get
-started. However, some features may be missing or broken, and there are
-a few major bugs.  The worst one is that Bevy cannot yet handle being put
-into the background, and will crash when the user presses the home button
-to leave the app.
-
-Android support is actively being worked on. Please join the development
-community on [Discord][bevy::discord] if you are interested.
+Android support is not as good as iOS, but very usable (as of Bevy 0.12). If
+you find bugs, broken features, or other issues, please report them.
 
 Bevy has been known to have issues with emulator devices. It is recommended
 you test your app on real hardware.
@@ -70,11 +66,19 @@ Unfortunately, due to NDA requirements, developing for consoles is inaccessible
 to most community developers who work in the open, and Bevy support is still
 mostly nonexistent.
 
-At least one person is working on PlayStation 5 support. If you are interested,
-join [Discord][bevy::discord] and ask around. Maybe you can find each other and
-work together.
+At some point, there was someone in the community working on PlayStation
+support. I do not know if they are still around, or anything about the
+status of that work. If you are interested, join [Discord][bevy::discord]
+and ask around. Maybe you can find each other and work together.
 
 The Rust Programming Language aims to make Nintendo Switch a supported target,
 but that work is in its early days and has not progressed enough to be useful
 for Bevy yet. It should be possible to work on Nintendo Switch support in
 the open, without NDAs, using emulators.
+
+The Steam Deck, and other such "handheld PCs", are well supported. Such
+devices run special versions of standard Desktop OSs (Linux, Windows) and are
+designed to support PC games out of the box. To develop for these devices,
+just make regular Linux/Windows builds of your game and ideally try them on
+an actual device, so you can see how the handheld experience is like and make
+sure your game feels good on such a device.
