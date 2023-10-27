@@ -93,13 +93,17 @@ Beware: When you mutate the [`Transform`][bevy::Transform], the
 [`GlobalTransform`][bevy::GlobalTransform] is not updated immediately. They
 will be out-of-sync until the transform propagation system runs.
 
-If you need to work with [`GlobalTransform`][bevy::GlobalTransform] directly,
-you should add your [system][cb::system] to the [`PostUpdate`][bevy::PostUpdate]
+If you need to work with [`GlobalTransform`][bevy::GlobalTransform]
+directly, you should [add][cb::app] your
+[system][cb::system] to the [`PostUpdate`][bevy::PostUpdate]
 [schedule][cb::schedule] and [order it after][cb::system-order]
 [`TransformSystem::TransformPropagate`][bevy::TransformSystem].
 
 ```rust,no_run,noplayground
 {{#include ../code012/src/features/transforms.rs:globaltransform}}
+```
+```rust,no_run,noplayground
+{{#include ../code012/src/features/transforms.rs:globaltransform-app}}
 ```
 
 ## `TransformHelper`

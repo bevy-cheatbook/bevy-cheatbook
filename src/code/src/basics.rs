@@ -393,35 +393,6 @@ fn spawn_toplevel_entity(
 }
 // ANCHOR_END: propagation
 
-#[derive(Component)]
-struct GameMapEntity;
-
-// ANCHOR: visibility
-/// Prepare the game map, but do not display it until later
-fn setup_map_hidden(
-    mut commands: Commands,
-) {
-    commands.spawn((
-        GameMapEntity,
-        SceneBundle {
-            scene: todo!(),
-            visibility: Visibility {
-                is_visible: false,
-            },
-            ..Default::default()
-        },
-    ));
-}
-
-/// When everything is ready, un-hide the game map
-fn reveal_map(
-    mut query: Query<&mut Visibility, With<GameMapEntity>>,
-) {
-    let mut vis_map = query.single_mut();
-    vis_map.is_visible = true;
-}
-// ANCHOR_END: visibility
-
 // ANCHOR: change-detection
 /// Print the stats of friendly players when they change
 fn debug_stats_change(
@@ -1872,57 +1843,6 @@ fn main() {
         .run();
 }
 // ANCHOR_END: exclusive-app
-}
-
-#[allow(dead_code)]
-mod app19 {
-use super::*;
-// ANCHOR: computedvisibility
-/// Check if the Player was hidden manually
-fn debug_player_visibility(
-    query: Query<&ComputedVisibility, With<Player>>,
-) {
-    let vis = query.single();
-
-    // check if it was manually hidden via Visibility
-    // (incl. by any parent entity)
-    debug!("Player visible due to hierachy: {:?}", vis.is_visible_in_hierarchy());
-}
-
-/// Check if balloons are seen by any Camera, Light, etc… (not culled)
-fn debug_balloon_visibility(
-    query: Query<&ComputedVisibility, With<Balloon>>,
-) {
-    for vis in query.iter() {
-        debug!("Balloon is in view: {:?}", vis.is_visible_in_view());
-
-        // check overall final actual visibility
-        // (combines visible-in-hierarchy and visible-in-view)
-        debug!("Balloon is visible: {:?}", vis.is_visible());
-    }
-}
-
-fn main() {
-    // the labels to use for ordering
-    use bevy::render::view::VisibilitySystems;
-
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_system_to_stage(
-            CoreStage::PostUpdate,
-            debug_balloon_visibility
-                // in-view visibility (culling) is done here:
-                .after(VisibilitySystems::CheckVisibility)
-        )
-        .add_system_to_stage(
-            CoreStage::PostUpdate,
-            debug_player_visibility
-                // hierarchy propagation is done here:
-                .after(VisibilitySystems::VisibilityPropagate)
-        )
-        .run();
-}
-// ANCHOR_END: computedvisibility
 }
 
 #[allow(dead_code)]

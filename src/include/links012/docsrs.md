@@ -8,6 +8,7 @@
 [bevy::App]: https://dev-docs.bevyengine.org/bevy/app/struct.App.html
 [bevy::Archetypes]: https://dev-docs.bevyengine.org/bevy/ecs/archetype/struct.Archetypes.html
 [bevy::AssetEvent]: https://dev-docs.bevyengine.org/bevy/asset/enum.AssetEvent.html
+[bevy::AssetId]: https://dev-docs.bevyengine.org/bevy/asset/enum.AssetId.html
 [bevy::AssetLoader]: https://dev-docs.bevyengine.org/bevy/asset/trait.AssetLoader.html
 [bevy::AssetPath]: https://dev-docs.bevyengine.org/bevy/asset/struct.AssetPath.html
 [bevy::AssetServer]: https://dev-docs.bevyengine.org/bevy/asset/struct.AssetServer.html
@@ -89,14 +90,12 @@
 [bevy::GltfNode]: https://dev-docs.bevyengine.org/bevy/gltf/struct.GltfNode.html
 [bevy::GltfPrimitive]: https://dev-docs.bevyengine.org/bevy/gltf/struct.GltfPrimitive.html
 [bevy::Gltf]: https://dev-docs.bevyengine.org/bevy/gltf/struct.Gltf.html
-[bevy::AssetId]: https://dev-docs.bevyengine.org/bevy/asset/enum.AssetId.html
 [bevy::Handle]: https://dev-docs.bevyengine.org/bevy/asset/enum.Handle.html
-[bevy::UntypedHandle]: https://dev-docs.bevyengine.org/bevy/asset/enum.UntypedHandle.html
-[bevy::UntypedAssetId]: https://dev-docs.bevyengine.org/bevy/asset/enum.UntypedAssetId.html
 [bevy::HierarchyEvent]: https://dev-docs.bevyengine.org/bevy/hierarchy/enum.HierarchyEvent.html
 [bevy::ImageBundle]: https://dev-docs.bevyengine.org/bevy/ui/node_bundles/struct.ImageBundle.html
 [bevy::Image]: https://dev-docs.bevyengine.org/bevy/render/texture/struct.Image.html
 [bevy::Ime]: https://dev-docs.bevyengine.org/bevy/window/enum.Ime.html
+[bevy::InheritedVisibility]: https://dev-docs.bevyengine.org/bevy/render/view/struct.InheritedVisibility.html
 [bevy::Input]: https://dev-docs.bevyengine.org/bevy/input/struct.Input.html
 [bevy::Interaction]: https://dev-docs.bevyengine.org/bevy/ui/enum.Interaction.html
 [bevy::IoTaskPool]: https://dev-docs.bevyengine.org/bevy/tasks/struct.IoTaskPool.html
@@ -217,9 +216,13 @@
 [bevy::UiCameraConfig]: https://dev-docs.bevyengine.org/bevy/ui/camera_config/struct.UiCameraConfig.html
 [bevy::UiImage]: https://dev-docs.bevyengine.org/bevy/ui/struct.UiImage.html
 [bevy::UiScale]: https://dev-docs.bevyengine.org/bevy/ui/struct.UiScale.html
+[bevy::UntypedAssetId]: https://dev-docs.bevyengine.org/bevy/asset/enum.UntypedAssetId.html
+[bevy::UntypedHandle]: https://dev-docs.bevyengine.org/bevy/asset/enum.UntypedHandle.html
 [bevy::Update]: https://dev-docs.bevyengine.org/bevy/app/struct.Update.html
+[bevy::ViewVisibility]: https://dev-docs.bevyengine.org/bevy/render/view/struct.ViewVisibility.html
 [bevy::VisibilityBundle]: https://dev-docs.bevyengine.org/bevy/render/view/visibility/struct.VisibilityBundle.html
 [bevy::VisibilitySystems]: https://dev-docs.bevyengine.org/bevy/render/view/visibility/enum.VisibilitySystems.html
+[bevy::Visibility]: https://dev-docs.bevyengine.org/bevy/render/view/enum.Visibility.html
 [bevy::WgpuSettings]: https://dev-docs.bevyengine.org/bevy/render/settings/struct.WgpuSettings.html
 [bevy::WindowBackendScaleFactorChanged]: https://dev-docs.bevyengine.org/bevy/window/struct.WindowBackendScaleFactorChanged.html
 [bevy::WindowCloseRequested]: https://dev-docs.bevyengine.org/bevy/window/struct.WindowCloseRequested.html

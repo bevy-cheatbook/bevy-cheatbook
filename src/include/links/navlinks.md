@@ -137,6 +137,7 @@
 [cb::tonemap]: /features/hdr-tonemap.md#tonemapping
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /features/transforms.md
+[cb::transform-propagate]: /features/transforms.md#transform-propagation
 [cb::visibility]: /features/visibility.md
 [cb::vsync]: /TODO.md
 [cb::window]: /window/props.md

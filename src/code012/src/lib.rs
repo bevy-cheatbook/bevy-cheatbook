@@ -1,6 +1,7 @@
 #![allow(unused_variables)]
 #![allow(unused_mut)]
 #![allow(dead_code)]
+#![allow(unreachable_code)]
 
 // MUST MIRROR BOOK CHAPTER STRUCTURE / FILENAMES!
 
@@ -11,6 +12,7 @@ mod pitfalls {
 }
 mod features {
     mod transforms;
+    mod visibility;
 }
 mod assets {
 }

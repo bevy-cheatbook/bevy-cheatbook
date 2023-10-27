@@ -98,22 +98,22 @@ fn debug_globaltransform(
     let gxf = query.single();
     debug!("Player at: {:?}", gxf.translation());
 }
+// ANCHOR_END: globaltransform
 
 fn main() {
-    // the label to use for ordering
-    use bevy::transform::TransformSystem;
+let mut app = App::new();
+// ANCHOR: globaltransform-app
+// the label to use for ordering
+use bevy::transform::TransformSystem;
 
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_systems(PostUpdate,
-            debug_globaltransform
-                // we want to read the GlobalTransform after
-                // it has been updated by Bevy for this frame
-                .after(TransformSystem::TransformPropagate)
-        )
-        .run();
+app.add_systems(PostUpdate,
+    debug_globaltransform
+        // we want to read the GlobalTransform after
+        // it has been updated by Bevy for this frame
+        .after(TransformSystem::TransformPropagate)
+);
+// ANCHOR_END: globaltransform-app
 }
-// ANCHOR_END: globaltransform
 
 // ANCHOR: transformhelper
 fn camera_look_follow(
