@@ -10,25 +10,31 @@ mod setup {
 }
 mod pitfalls {
 }
-mod features {
+mod fundamentals {
     mod transforms;
     mod visibility;
 }
-mod assets {
-}
-mod input {
-}
-mod window {
+mod graphics {
 }
 mod d2 {
 }
 mod d3 {
 }
+mod input {
+}
+mod window {
+}
+mod assets {
+}
+mod audio {
+}
+mod ui {
+}
 mod programming {
 }
-mod patterns {
-}
 mod gpu {
+}
+mod patterns {
 }
 mod platforms {
 }
