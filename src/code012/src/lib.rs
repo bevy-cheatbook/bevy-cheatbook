@@ -32,6 +32,7 @@ mod audio {
 mod ui {
 }
 mod programming {
+    mod non_send;
 }
 mod gpu {
 }

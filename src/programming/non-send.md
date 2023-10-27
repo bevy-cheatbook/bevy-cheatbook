@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header012.md}}
 
 # Non-Send Resources
 
@@ -13,7 +13,7 @@ things like creating a Bevy plugin for interfacing with such things, you
 may encounter the need for this.
 
 Normally, Bevy works by running all your [systems][cb::system] on a
-thread-pool, making use of many CPU cores.  However, you might need to ensure
+thread-pool, making use of many CPU cores. However, you might need to ensure
 that some code always runs on the "main thread", or access data that is not
 safe to access in a multithreaded way.
 
@@ -27,12 +27,16 @@ the presence of such a parameter forces the Bevy scheduler to always run the
 [system][cb::system] on the main thread. This ensures that data never has
 to be sent between threads or accessed from different threads.
 
-One example of such a resource is [`WinitWindows`][bevy::WinitWindows]
-in Bevy. This is the low-level version of [`Windows`][bevy::Windows] that
-gives you more direct access to OS window management functionality.
+One example of such a resource is [`WinitWindows`][bevy::WinitWindows] in Bevy.
+This is the low-level layer behind the [window entities][cb::window] that you
+typically use for window management. It gives you more direct access to OS
+window management functionality.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:nonsend}}
+{{#include ../code012/src/programming/non_send.rs:nonsend}}
+```
+```rust,no_run,noplayground
+{{#include ../code012/src/programming/non_send.rs:nonsend-app}}
 ```
 
 ## Custom Non-Send Resources
@@ -51,5 +55,8 @@ system][cb::exclusive], [`FromWorld`][bevy::FromWorld] impl,
 or custom stage.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:insert-nonsend}}
+{{#include ../code012/src/programming/non_send.rs:insert-nonsend}}
+```
+```rust,no_run,noplayground
+{{#include ../code012/src/programming/non_send.rs:insert-nonsend-app}}
 ```
