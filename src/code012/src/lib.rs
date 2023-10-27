@@ -13,6 +13,7 @@ mod pitfalls {
 mod fundamentals {
     mod transforms;
     mod visibility;
+    mod log;
 }
 mod graphics {
 }
