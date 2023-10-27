@@ -62,6 +62,19 @@ Discord][bevy::discord] to chat, ask questions, or get involved in the project!
 If you want to see some games made with Bevy, see [itch.io][itchio::bevy]
 or [Bevy Assets][bevyassets::games].
 
+## Is this book up to date?
+
+Bevy has a very rapid pace of development, with new major releases roughly every
+three months. Every version brings a lot of changes, so keeping this book
+updated can be a major challenge.
+
+To ease the maintenance burden, the policy of the project is that the book may
+contain content for different versions of Bevy. However, mixing Bevy versions
+on the same page is not allowed.
+
+At the top of every page, you will see the version it was last updated for.
+All content on that page must be relevant for the stated Bevy version.
+
 ## Support Me
 
 <a href="https://github.com/sponsors/inodentry"><button class="ghsponsors-button">GitHub Sponsors</button></a>
@@ -78,35 +91,6 @@ independent learning resource for the Bevy community.
 <a href="https://github.com/sponsors/cart"><button class="ghsponsors-button">GitHub Sponsors</button></a>
 
 If you like the Bevy Game Engine, you should consider donating to the project.
-
-## Maintenance Policy
-
-To ease the maintenance burden, the policy of the project is that the book may
-contain a content for different versions of Bevy. However, mixing Bevy versions
-on the same page is not allowed.
-
-Every page in the book must clearly state what version of Bevy it was last
-updated for, at the top of the page, above the main heading. All content on that
-page must be relevant for the stated Bevy version.
-
-### Current Bevy Version
-
-The current Bevy release is 0.11.
-
-The aim is to try to maintain the book up to date with the current latest
-release of Bevy. New content should be written for this version.
-
-### Old Bevy Version
-
-Content for old releases of Bevy is only allowed in the book if it already
-exists from before and has not been updated yet. Outdated pages will be updated
-on a best-effort basis.
-
-### Unreleased (Bevy's git main branch)
-
-Pages that cover new yet-unreleased features of Bevy are allowed. If there is an
-exciting new feature, and I want to document it, I will write a page, without
-waiting for the next release of Bevy to come out. :)
 
 ## License
 
