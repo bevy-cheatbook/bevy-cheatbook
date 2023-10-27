@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # New to Bevy? Guided Tutorial!
 
@@ -32,39 +32,36 @@ You could conceivably make something like a simple game-jam game or prototype,
 using just this knowledge. Though, as your project grows, you will likely
 quickly need to learn more.
 
- - [Bevy Setup Tips][chapter::setup]:
-   Configuring your development tools and environment
+ - [Bevy Setup Tips][chapter::setup]
    - [Getting Started][cb::getting-started]
- - [Bevy Programming Framework][chapter::programming]:
-   How to write Bevy code, structure your data and logic
+ - [Bevy Programming Framework][chapter::programming]
    - [Intro to ECS][cb::ecs-intro]
-   - [Entities, Components, Bundles][cb::ec]
+   - [Entities, Components][cb::ec]
+   - [Bundles][cb::bundle]
    - [Resources][cb::res]
    - [Systems][cb::system]
    - [App Builder][cb::app]
    - [Queries][cb::query]
    - [Commands][cb::commands]
-   - [Events][cb::event]
- - [General Game Engine Features][chapter::features]:
-   Basic features of Bevy, needed for making any game
+ - [Game Engine Fundamentals][chapter::fundamentals]
    - [Coordinate System][cb::coords]
    - [Transforms][cb::transform]
    - [Time and Timers][cb::time]
-   - [Parent/Child Hierarchies][cb::hierarchy]
- - [Bevy Asset Management][chapter::assets]:
-   How to work with assets
-   - [Handles][cb::handle]
+ - [General Graphics Features][chapter::graphics]
+   - [Cameras][cb::camera]
+ - [Bevy Asset Management][chapter::assets]
    - [Load Assets with AssetServer][cb::assetserver]
- - [Input Handling][chapter::input]:
-   Using various input devices
+   - [Handles][cb::handle]
+ - [Input Handling][chapter::input]
    - [Keyboard][input::keyboard]
    - [Mouse][input::mouse]
    - [Gamepad (Controller)][input::gamepad]
    - [Touchscreen][input::touch]
- - [Window Management][chapter::window]:
-   Setting up the OS Window (or fullscreen) for your game
+ - [Window Management][chapter::window]
    - [Window Properties][cb::window]
    - [Change the Background Color][cb::clearcolor]
+ - [Audio][chapter::audio]
+   - [Playing Sounds][cb::audio-basic]
 
 ## Next Steps
 
@@ -72,6 +69,7 @@ You will likely need to learn most of these topics to make a non-trivial Bevy
 project. After you are confident with the basics, you should learn these.
 
  - [Bevy Programming Framework][chapter::programming]
+   - [Events][cb::event]
    - [System Order of Execution][cb::system-order]
    - [Run Conditions][cb::rc]
    - [System Sets][cb::systemset]
@@ -80,21 +78,20 @@ project. After you are confident with the basics, you should learn these.
    - [States][cb::state]
    - [Plugins][cb::plugin]
    - [Change Detection][cb::change-detection]
-   - [Removal Detection][cb::removal-detection]
- - [General Game Engine Features][chapter::features]:
+ - [Game Engine Fundamentals][chapter::fundamentals]
+   - [Parent/Child Hierarchies][cb::hierarchy]
    - [Visibility][cb::visibility]
-   - [Cameras][cb::camera]
    - [Logging / Console Messages][cb::log]
- - [Input Handling][chapter::input]:
+ - [Input Handling][chapter::input]
    - [Convert cursor to world coordinates][cookbook::cursor2world]
- - [Bevy Asset Management][chapter::assets]:
+ - [Bevy Asset Management][chapter::assets]
    - [Access the Asset Data][cb::asset-data]
-   - [React to Changes with Asset Events][cb::assetevent]
-   - [Track asset loading progress][cb::asset-ready]
    - [Hot-Reloading Assets][cb::asset-hotreload]
  - [Bevy Setup Tips][chapter::setup]
    - [Bevy Dev Tools and Editors][cb::tools]
    - [Community Plugin Ecosystem][cb::3rdparty]
+ - [Audio][chapter::audio]:
+   - [Spatial Audio][cb::audio-spatial]
 
 ## Intermediate
 
@@ -106,18 +103,26 @@ project.
    - [Exclusive Systems][cb::exclusive]
    - [Param Sets][cb::paramset]
    - [System Piping][cb::system-pipe]
- - [General Game Engine Features][chapter::features]:
+ - [Game Engine Fundamentals][chapter::fundamentals]
    - [Fixed Timestep][cb::fixedtimestep]
- - [Input Handling][chapter::input]:
+ - [General Graphics Features][chapter::graphics]
+   - [HDR, Tonemapping][cb::hdr]
+   - [Bloom][cb::bloom]
+ - [Input Handling][chapter::input]
    - [Input Text][input::char]
    - [Drag-and-Drop files][input::dnd]
+ - [Bevy Asset Management][chapter::assets]
+   - [React to Changes with Asset Events][cb::assetevent]
+   - [Track asset loading progress][cb::asset-ready]
  - [Programming Patterns][chapter::patterns]
    - [Write tests for systems][cb::system-tests]
    - [Generic Systems][cb::system-generic]
    - [Manual Event Clearing][cb::event-manual]
- - [Window Management][chapter::window]:
+ - [Window Management][chapter::window]
    - [Grab/Capture the Mouse Cursor][cookbook::mouse-grab]
    - [Set the Window Icon][cookbook::window-icon]
+ - [Audio][chapter::audio]
+   - [Custom Audio Streams][cb::audio-custom]
 
 ## Advanced
 
@@ -132,3 +137,6 @@ functionality, or do other advanced things with Bevy.
  - [Bevy Setup Tips][chapter::setup]
    - [Customizing Bevy (cargo crates and features)][cb::features]
    - [Using bleeding-edge Bevy (main)][cb::bevy-main]
+ - [Bevy Render (GPU) Framework][chapter::gpu]
+   - [Render Architecture Overview][cb::render-architecture]
+   - [Render Stages][cb::render::stage]

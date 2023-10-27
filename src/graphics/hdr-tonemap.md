@@ -37,19 +37,6 @@ If you have both HDR and MSAA enabled, it is possible you might encounter
 issues. There might be visual artifacts in some cases. It is also unsupported on
 Web/WASM, crashing at runtime. Disable MSAA if you experience any such issues.
 
-## Bloom
-
-The "Bloom" effect creates a glow around bright lights. It is not a
-physically-accurate effect, but it does a good job of helping the perception of
-very bright light, especially when outputting HDR to the display hardware is not
-supported.
-
-```rust,no_run,noplayground
-{{#include ../code/src/features/camera/hdr.rs:bloom-config}}
-```
-
-![The Bloom effect on street lamps.](/img/bloom.png)
-
 ## Tonemapping
 
 Tonemapping is the step of the rendering process where the colors of pixels are

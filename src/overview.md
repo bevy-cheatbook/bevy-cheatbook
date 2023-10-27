@@ -25,15 +25,18 @@ The book has the following general chapters:
 
 To learn how to program in Bevy, see these chapters:
 
- - [Bevy Programming Framework][chapter::programming]: the ECS+App frameworks, the foundation of everything
+ - [Bevy Core Programming Framework][chapter::programming]: the ECS+App frameworks, the foundation of everything
  - [Programming Patterns][chapter::patterns]: opinionated advice, patterns, idioms
  - [Bevy Render (GPU) Framework][chapter::gpu]: working with the GPU and Bevy's rendering
 
 The following chapters cover various Bevy feature areas:
 
- - [General Game Engine Features][chapter::features]: general features that don't belong in any other chapter
- - [Asset Management][chapter::assets]: working with data assets
- - [Input Handling][chapter::input]: working with different input devices
- - [Window Management][chapter::window]: working with the OS window
- - [Working with 2D][chapter::2d]: Bevy's features for 2D games
- - [Working with 3D][chapter::3d]: Bevy's features for 3D games
+ - [Game Engine Fundamentals][chapter::fundamentals]
+ - [General Graphics Features][chapter::graphics]
+ - [Working with 2D][chapter::2d]
+ - [Working with 3D][chapter::3d]
+ - [Input Handling][chapter::input]
+ - [Window Management][chapter::window]
+ - [Asset Management][chapter::assets]
+ - [Audio][chapter::audio]
+ - [Bevy UI Framework][chapter::ui]

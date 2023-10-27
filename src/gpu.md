@@ -14,4 +14,5 @@ Framework][chapter::programming]. Everything here builds on top of it.
 
 Here you will learn how to write custom rendering code. If you are simply
 interested in using the existing graphical features provided by Bevy, check
-out the chapters about [2D][chapter::2d] and [3D][chapter::3d].
+out the chapters about [General Graphics Features][chapter::graphics],
+[2D][chapter::2d], and [3D][chapter::3d].
