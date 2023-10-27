@@ -193,6 +193,7 @@
 [platform::macos]: /platforms/macos.md
 [platform::wasm]: /platforms/wasm.md
 [platform::windows::noconsole]: /platforms/windows.md#disabling-the-windows-console
+[platform::windows::wsl2]: /platforms/windows/wsl2.md
 [platform::windows]: /platforms/windows.md
 [wasm::gh-pages]: /platforms/wasm/gh-pages.md
 [wasm::panic-console]: /platforms/wasm/panic-console.md

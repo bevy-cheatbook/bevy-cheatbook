@@ -124,6 +124,7 @@
   - [Linux Desktop](./platforms/linux.md)
   - [macOS Desktop](./platforms/macos.md)
   - [Windows Desktop](./platforms/windows.md)
+    - [Working in WSL2](./platforms/windows/wsl2.md)
   - [Browser (WebAssembly)](./platforms/wasm.md)
     - [Panic Messages](./platforms/wasm/panic-console.md)
     - [Optimize for Size](./platforms/wasm/size-opt.md)
