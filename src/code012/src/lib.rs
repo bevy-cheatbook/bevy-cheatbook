@@ -10,6 +10,7 @@ mod setup {
 mod pitfalls {
 }
 mod features {
+    mod transforms;
 }
 mod assets {
 }

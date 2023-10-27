@@ -211,6 +211,7 @@
 [bevy::TouchpadMagnify]: https://dev-docs.bevyengine.org/bevy/input/touchpad/struct.TouchpadMagnify.html
 [bevy::TouchpadRotate]: https://dev-docs.bevyengine.org/bevy/input/touchpad/struct.TouchpadRotate.html
 [bevy::TransformBundle]: https://dev-docs.bevyengine.org/bevy/transform/struct.TransformBundle.html
+[bevy::TransformHelper]: https://dev-docs.bevyengine.org/bevy/transform/helper/struct.TransformHelper.html
 [bevy::TransformSystem]: https://dev-docs.bevyengine.org/bevy/transform/enum.TransformSystem.html
 [bevy::Transform]: https://dev-docs.bevyengine.org/bevy/transform/components/struct.Transform.html
 [bevy::UiCameraConfig]: https://dev-docs.bevyengine.org/bevy/ui/camera_config/struct.UiCameraConfig.html
