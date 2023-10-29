@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Intro: Your Code
 
@@ -23,7 +23,7 @@ at the function parameters, we know *exactly* what [data][cb::ecs-intro-data]
 can be accessed.
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/intro_code.rs:example-system}}
+{{#include ../code012/src/programming/intro_code.rs:example-system}}
 ```
 
 (learn more about: [systems][cb::system], [queries][cb::query], [commands][cb::commands], [resources][cb::res], [entities][cb::entity], [components][cb::component])
@@ -54,6 +54,10 @@ different and unpredictable order relative to one another, unless you add
 access][cb::world] to the ECS [`World`][cb::World]. They cannot run in parallel
 with other systems, because they can access anything and do anything. Sometimes,
 you might need this additonal power.
+
+```rust,no_run,noplayground
+{{#include ../code012/src/programming/intro_code.rs:exclusive}}
+```
 
 ## Schedules
 
@@ -137,7 +141,7 @@ Here is how [schedule][cb::schedule] that was illustrated above could be
 created in code:
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/intro_code.rs:example-scheduling}}
+{{#include ../code012/src/programming/intro_code.rs:example-scheduling}}
 ```
 
 (learn more about: [schedules][cb::schedule], [system sets][cb::systemset], [states][cb::state], [run conditions][cb::rc], [system ordering][cb::system-order])

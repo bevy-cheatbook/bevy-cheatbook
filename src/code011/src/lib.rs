@@ -17,7 +17,6 @@ mod programming {
     mod bundle;
     mod ec;
     mod events;
-    mod intro_code;
     mod res;
     mod systems;
 }

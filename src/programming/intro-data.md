@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Intro: Your Data
 
@@ -70,6 +70,10 @@ specify what component types you want to access, and do your thing. You can eith
 iterate through all entities that match your specification, or access specific
 ones (if you know their [`Entity`][bevy::Entity] ID).
 
+```rust,no_run,noplayground
+{{#include ../code012/src/programming/intro_data.rs:query}}
+```
+
 Bevy can automatically keep track of what data your [systems][cb::system] have
 access to and [run them in parallel][cb::system-parallel] on multiple CPU
 cores. This way, you get multithreading with no extra effort from you!
@@ -82,6 +86,13 @@ systems might be running. These operations can be buffered/deferred using
 also get [direct World access][cb::world] using [exclusive
 systems][cb::exclusive], if you want to perform such operations
 immediately (but without multithreading).
+
+[Bundles][cb::bundle] serve as "templates" for common sets of components, to
+help you when you spawn new entities, so you don't accidentally forget anything.
+
+```rust,no_run,noplayground
+{{#include ../code012/src/programming/intro_data.rs:commands}}
+```
 
 ### Comparison with Object-Oriented Programming
 
@@ -110,8 +121,8 @@ standard Bevy components like [`Transform`][bevy::Transform] ([transforms
 explained][cb::transform]) to it.
 
 Then, each piece of functionality (each [system][cb::system]) can just
-query for the data it needs. Common functionality (like a health/damage
-system) can be applied to any entity with the matching components,
+[query][cb::query] for the data it needs. Common functionality (like a
+health/damage system) can be applied to any entity with the matching components,
 regardless of whether that's the player or something else in the game.
 
 However, if some data always makes sense to be accessed together, then you
@@ -131,6 +142,10 @@ Archetype, which may require Bevy to copy the data to a different location.
 
 [Learn more about Bevy's component storage.][cb::component-storage]
 
+Entity IDs can also be reused. The [`Entity`][bevy::Entity] type is actually two
+integers: the ID and a "generation". After you despawn some entities, their IDs can
+be reused for newly-spawned entities, but Bevy will increase the generation value.
+
 ## Resources
 
 If there is only one global instance (singleton) of something, and it is
@@ -141,3 +156,7 @@ settings, or the data for the currently active game mode or session.
 
 This is a simple way of storing data, when you know you don't need the
 flexibility of Entities/Components.
+
+```rust,no_run,noplayground
+{{#include ../code012/src/programming/intro_data.rs:res}}
+```

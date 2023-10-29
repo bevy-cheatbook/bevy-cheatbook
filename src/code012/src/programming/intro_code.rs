@@ -24,6 +24,15 @@ fn enemy_detect_player(
 }
 // ANCHOR_END: example-system
 
+// ANCHOR: exclusive
+fn save_game(
+    // get full access to the World, so we can access all data and do anything
+    world: &mut World,
+) {
+    // ... save game data to disk, or something ...
+}
+// ANCHOR_END: exclusive
+
 fn enemy_movement() {}
 fn enemy_spawn() {}
 fn enemy_despawn() {}
@@ -66,23 +75,20 @@ app.add_state::<MyStates>();
 app.add_systems(Update, enemy_detect_player);
 // ANCHOR: example-scheduling
 // Set configuration is per-schedule. Here we do it for `Update`
-app.configure_set(Update, MainMenuSet
-    .run_if(in_state(MainMenu))
-);
-app.configure_set(Update, GameplaySet
-    .run_if(in_state(InGame))
-);
-app.configure_set(Update, InputSet
-    .in_set(GameplaySet)
-);
-app.configure_set(Update, EnemyAiSet
-    .in_set(GameplaySet)
-    .run_if(not(cutscene))
-    .after(player_movement)
-);
-app.configure_set(Update, AudioSet
-    .run_if(audio_muted)
-);
+app.configure_sets(Update, (
+    MainMenuSet
+        .run_if(in_state(MainMenu)),
+    GameplaySet
+        .run_if(in_state(InGame)),
+    InputSet
+        .in_set(GameplaySet),
+    EnemyAiSet
+        .in_set(GameplaySet)
+        .run_if(not(cutscene))
+        .after(player_movement),
+    AudioSet
+        .run_if(not(audio_muted)),
+));
 app.add_systems(Update, (
     (
         ui_button_animate,
