@@ -34,6 +34,7 @@ mod ui {
 mod programming {
     mod intro_data;
     mod intro_code;
+    mod app_builder;
     mod non_send;
 }
 mod gpu {

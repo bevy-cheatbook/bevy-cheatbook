@@ -13,7 +13,6 @@ mod input {
     mod mouse;
 }
 mod programming {
-    mod app_builder;
     mod bundle;
     mod ec;
     mod events;
