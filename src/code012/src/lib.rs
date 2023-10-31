@@ -44,6 +44,7 @@ mod programming {
     mod ec;
     mod bundle;
     mod events;
+    mod paramset;
     mod non_send;
 }
 mod gpu {

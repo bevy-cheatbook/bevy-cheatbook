@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header012.md}}
 
 # Param Sets
 
@@ -11,10 +11,14 @@ Some examples:
  - Using [`&World`][bevy::World] while also having other system parameters to access specific data.
  - …
 
+Such code will compile (Rust cannot know about Bevy ECS semantics), but will
+result in a runtime panic. When Bevy tries to run the system, it will panic with
+a message about conflicting system parameters:
+
 Bevy provides a solution: wrap them in a [`ParamSet`][bevy::ParamSet]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:sys-query-set}}
+{{#include ../code012/src/programming/paramset.rs:paramset}}
 ```
 
 This ensures only one of the conflicting parameters can be used at the same time.

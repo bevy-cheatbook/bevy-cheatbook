@@ -340,35 +340,6 @@ fn debug_player_hp(
 }
 // ANCHOR_END: sys-query-filter
 
-// ANCHOR: sys-query-set
-fn reset_health(
-    // access the health of enemies and the health of players
-    // (note: some entities could be both!)
-    mut set: ParamSet<(
-        Query<&mut Health, With<Enemy>>,
-        Query<&mut Health, With<Player>>,
-        // also access the whole world ... why not
-        &World,
-    )>,
-) {
-    // set health of enemies (use the 1st param in the set)
-    for mut health in set.p0().iter_mut() {
-        health.hp = 50.0;
-    }
-
-    // set health of players (use the 2nd param in the set))
-    for mut health in set.p1().iter_mut() {
-        health.hp = 100.0;
-    }
-
-    // read some data from the world (use the 3rd param in the set)
-    let my_resource = set.p2().resource::<MyResource>();
-
-    // since we only used the conflicting system params one at a time,
-    // everything is safe and our code can compile; ParamSet guarantees this
-}
-// ANCHOR_END: sys-query-set
-
 // ANCHOR: propagation
 fn spawn_toplevel_entity(
     mut commands: Commands,
