@@ -9,6 +9,8 @@ mod setup {
     mod perf;
 }
 mod pitfalls {
+    mod d3_not_rendering;
+    mod uv_coordinates;
 }
 mod fundamentals {
     mod transforms;
@@ -22,6 +24,8 @@ mod d2 {
 mod d3 {
 }
 mod input {
+    mod mouse;
+    mod char;
 }
 mod window {
 }
@@ -35,6 +39,11 @@ mod programming {
     mod intro_data;
     mod intro_code;
     mod app_builder;
+    mod systems;
+    mod res;
+    mod ec;
+    mod bundle;
+    mod events;
     mod non_send;
 }
 mod gpu {
