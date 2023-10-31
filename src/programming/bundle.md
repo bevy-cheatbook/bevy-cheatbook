@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 Relevant official examples:
 [`ecs_guide`][example::ecs_guide].
@@ -22,30 +22,30 @@ to spawn common kinds of entities.
 Here is how to create your own bundle:
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/bundle.rs:bundle}}
+{{#include ../code012/src/programming/bundle.rs:bundle}}
 ```
 
 You can then use your bundle when you spawn your entities:
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/bundle.rs:bundle-spawn}}
+{{#include ../code012/src/programming/bundle.rs:bundle-spawn}}
 ```
 
 If you want to have default values (similar to Bevy's bundles):
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/bundle.rs:bundle-default}}
+{{#include ../code012/src/programming/bundle.rs:bundle-default}}
 ```
 
 Now you can do this:
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/bundle.rs:bundle-spawn-default}}
+{{#include ../code012/src/programming/bundle.rs:bundle-spawn-default}}
 ```
 
 ## Loose components as bundles
 
-Bevy also considers arbitrary tuples of components as bundles:
+Technically, Bevy also considers arbitrary tuples of components as bundles:
 
 ```
 (ComponentA, ComponentB, ComponentC)
@@ -57,7 +57,7 @@ this way you don't have the compile-time correctness advantages that a
 well-defined `struct` gives you.
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/bundle.rs:bundle-spawn-loose}}
+{{#include ../code012/src/programming/bundle.rs:bundle-spawn-loose}}
 ```
 
 You should strongly consider creating proper `struct`s, especially if you are

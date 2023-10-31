@@ -12,12 +12,9 @@ struct StartingLevel(u32);
 // ANCHOR: sys-param-tuple
 fn complex_system(
     (a, mut b): (Res<ResourceA>, ResMut<ResourceB>),
-    // this resource might not exist, so wrap it in an Option
-    mut c: Option<ResMut<ResourceC>>,
+    (q0, q1, q2): (Query<(/* … */)>, Query<(/* … */)>, Query<(/* … */)>),
 ) {
-    if let Some(mut c) = c {
-        // do something
-    }
+    // …
 }
 // ANCHOR_END: sys-param-tuple
 
@@ -29,6 +26,12 @@ fn debug_start(
     eprintln!("Starting on level {:?}", *start);
 }
 // ANCHOR_END: sys-debug-res
+
+// ANCHOR: exclusive
+fn reload_game(world: &mut World) {
+    // ... access whatever we want from the World
+}
+// ANCHOR_END: exclusive
 
 fn setup_camera() {}
 fn move_player() {}
