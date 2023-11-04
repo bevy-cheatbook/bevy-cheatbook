@@ -62,7 +62,7 @@ To control what messages you would like to see, you can configure Bevy's
 [`LogPlugin`][bevy::LogPlugin]:
 
 ```rust
-{{#include ../code011/src/features/log.rs:log-settings}}
+{{#include ../code012/src/fundamentals/log.rs:log-settings}}
 ```
 
 The `filter` field is a string specifying a list of rules for what level to
@@ -102,7 +102,7 @@ builds, an easy way to achieve it is using conditional compilation on
 "debug assertions".
 
 ```rust
-{{#include ../code011/src/features/log.rs:log-settings-debugrelease}}
+{{#include ../code012/src/fundamentals/log.rs:log-settings-debugrelease}}
 ```
 
 This is a good reason why [you should not use release mode during development
