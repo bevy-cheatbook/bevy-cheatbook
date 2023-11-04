@@ -11,6 +11,18 @@ struct Player;
 #[derive(Resource)]
 struct MyResource;
 
+mod conflict {
+use super::*;
+// ANCHOR: conflict
+fn reset_health(
+    mut q_player: Query<&mut Health, With<Player>>,
+    mut q_enemy: Query<&mut Health, With<Enemy>>,
+) {
+    // ...
+}
+// ANCHOR_END: conflict
+}
+
 // ANCHOR: paramset
 fn reset_health(
     // access the health of enemies and the health of players
@@ -37,3 +49,7 @@ fn reset_health(
 }
 // ANCHOR_END: paramset
 
+fn _main() {
+    App::new()
+        .add_systems(Update, reset_health);
+}
