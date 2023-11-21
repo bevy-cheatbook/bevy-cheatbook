@@ -50,6 +50,9 @@ If the current entity has any [children][cb::hierarchy] that have `Inherited`,
 their visibility will be affected if you set the current entity to `Visible`
 or `Hidden`.
 
+If an entity has a parent, but the parent entity is missing the
+visibility-related components, things will behave as if there was no parent.
+
 ### `InheritedVisibility`
 
 [`InheritedVisibility`][bevy::InheritedVisibility] represents the state the
