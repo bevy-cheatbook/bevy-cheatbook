@@ -82,24 +82,24 @@ fn main() {
 let mut app = App::new();
 
 {
-// ANCHOR: inheritedvisibility-app
+// ANCHOR: viewvisibility-app
 use bevy::render::view::VisibilitySystems;
 
 app.add_systems(PostUpdate,
     debug_balloon_visibility
         .after(VisibilitySystems::CheckVisibility)
 );
-// ANCHOR_END: inheritedvisibility-app
+// ANCHOR_END: viewvisibility-app
 }
 {
-// ANCHOR: viewvisibility-app
+// ANCHOR: inheritedvisibility-app
 use bevy::render::view::VisibilitySystems;
 
 app.add_systems(PostUpdate,
     debug_player_visibility
         .after(VisibilitySystems::VisibilityPropagate)
 );
-// ANCHOR_END: viewvisibility-app
+// ANCHOR_END: inheritedvisibility-app
 }
 }
 // ANCHOR_END: computedvisibility
