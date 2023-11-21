@@ -21,6 +21,7 @@
 [cb::asset-data::add]: /assets/data.md
 [cb::asset-data]: /assets/data.md
 [cb::asset-hotreload]: /assets/hot-reload.md
+[cb::asset-processor]: /assets/processing.md
 [cb::asset-ready]: /assets/ready.md
 [cb::asset]: /assets.md
 [cb::assetevent]: /assets/assetevent.md

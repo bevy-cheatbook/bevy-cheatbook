@@ -78,6 +78,7 @@
   - [React to Changes with Asset Events](./assets/assetevent.md)
   - [Track Loading Progress](./assets/ready.md)
   - [Hot-Reloading Assets](./assets/hot-reload.md)
+  - [Processing Assets](./assets/processing.md)
 
 - [Audio](./audio.md)
   - [Playing Sounds](./audio/basic.md)

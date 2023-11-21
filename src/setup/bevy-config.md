@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Configuring Bevy
 
@@ -22,7 +22,7 @@ Here is how you might configure your Bevy:
 
 ```toml
 [dependencies.bevy]
-version = "0.11"
+version = "0.12"
 # Disable the default features if there are any that you do not want
 default-features = false
 features = [
@@ -35,7 +35,7 @@ features = [
   "bevy_audio",         # Builtin audio
   "bevy_gilrs",         # Gamepad input support
   "bevy_scene",         # Scenes management
-  "bevy_winit",         # Window management
+  "bevy_winit",         # Window management (cross-platform Winit backend)
   "bevy_render",        # Rendering framework core
   "bevy_core_pipeline", # Common rendering abstractions
   "bevy_gizmos",        # Support drawing debug lines and shapes
@@ -45,8 +45,7 @@ features = [
   "bevy_text",          # Text/font rendering
   "bevy_ui",            # UI toolkit
   "animation",          # Animation support
-  "tonemapping_luts",   # Support different camera Tonemapping modes (embeds extra data)
-  "filesystem_watcher", # Asset hot-reloading
+  "tonemapping_luts",   # Support different camera Tonemapping modes (enables KTX2+zstd)
   "default_font",       # Embed a minimal default font for text/UI
 
   # File formats:
@@ -61,12 +60,17 @@ features = [
   "android_shared_stdcxx", # Android: use shared C++ library
   "webgl2",                # Web: use WebGL2 instead of WebGPU
 
-  # These are other features that may be of interest:
+  # These are other (non-default) features that may be of interest:
   # (add any of these that you need)
 
   # Bevy functionality:
+  "asset_processor",      # Asset processing
+  "file_watcher",         # Asset hot-reloading
   "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
   "serialize",            # Support for `serde` Serialize/Deserialize
+  "async-io",             # Make bevy use `async-io` instead of `futures-lite`
+  "pbr_transmission_textures", # Enable Transmission textures in PBR materials
+                               # (may cause issues on old/lowend GPUs)
 
   # File formats:
   "dds",  # Alternative DirectX format for GPU textures, instead of KTX2
@@ -91,13 +95,15 @@ features = [
   "bevy_dynamic_plugin",  # (Desktop) support for loading of `DynamicPlugin`s
 
   # Development/Debug features:
-  "dynamic_linking", # Dynamic linking for faster compile-times
-  "trace",           # Enable tracing for performance measurement
-  "detailed_trace",  # Make traces more verbose
-  "trace_tracy",     # Tracing using `tracy`
+  "dynamic_linking",   # Dynamic linking for faster compile-times
+  "trace",             # Enable tracing for performance measurement
+  "detailed_trace",    # Make traces more verbose
+  "trace_tracy",       # Tracing using `tracy`
   "trace_tracy_memory", # + memory profiling
-  "trace_chrome",    # Tracing using the Chrome format
-  "wgpu_trace",      # WGPU/rendering tracing
+  "trace_chrome",      # Tracing using the Chrome format
+  "wgpu_trace",        # WGPU/rendering tracing
+  "debug_glam_assert", # Assertions to validate math (glam) usage
+  "embedded_watcher",  # Hot-reloading for Bevy's internal/builtin assets
 ]
 ```
 
@@ -117,7 +123,11 @@ If you only need 2D and no 3D, add `bevy_sprite`.
 If you only need 3D and no 2D, add `bevy_pbr`. If you are [loading 3D models
 from GLTF files][cb::gltf], add `bevy_gltf`.
 
-If you are using Bevy UI, you need `bevy_text` and `bevy_ui`.
+If you are using Bevy UI, you need `bevy_text` and `bevy_ui`. `default_font`
+embeds a simple font file, which can be useful for prototyping, so you don't
+need to have a font asset in your project. In a real project, you probably
+want to use your own fonts, so your text can look good with your game's art
+style. In that case, you can disable the `default_font` feature.
 
 If you want to draw debug lines and shapes on-screen, add `bevy_gizmos`.
 
@@ -136,7 +146,9 @@ See [here][builtins::file-formats] for more information.
 If you do not care about [gamepad (controller/joystick)][input::gamepad]
 support, you can disable `bevy_gilrs`.
 
-### Linux Windowing Backend
+### Platform-specific
+
+#### Linux Windowing Backend
 
 On [Linux][platform::linux], you can choose to support X11, Wayland,
 or both. Only `x11` is enabled by default, as it is the legacy system
@@ -145,28 +157,49 @@ smaller and compile faster. You might want to additionally enable `wayland`,
 to fully and natively support modern Linux environments. This will add a few
 extra transitive dependencies to your project.
 
+Some Linux distros or platforms might struggle with X11 and work better with
+Wayland. You should enable both for best compatibility.
+
+#### WebGPU vs WebGL2
+
+On [Web/WASM][platform::web], you have a choice between these two rendering backends.
+
+WebGPU is the modern experimental solution, offering good performance and
+full feature support, but browser support for it is limited (only known to
+work in very recent versions of Chrome and Firefox nightly).
+
+WebGL2 gives the best compatibility with all browsers, but has worse performance
+and some limitations on what kinds of graphics features you can use in Bevy.
+
+The `webgl2` cargo feature selects WebGL2 if enabled. If disabled, WebGPU is used.
+
 ### Development Features
 
 While you are developing your project, these features might be useful:
 
-#### Asset hot-reloading
+#### Asset hot-reloading and processing
 
-The `filesystem_watcher` feature controls support for [hot-reloading of
+The `file_watcher` feature enables support for [hot-reloading of
 assets][cb::asset-hotreload], supported on desktop platforms.
+
+The `asset_processor` feature enables support for [asset
+processing][cb::asset-processor], allowing you to automatically convert and
+optimize assets during development.
 
 #### Dynamic Linking
 
 `dynamic_linking` causes Bevy to be built and linked as a shared/dynamic
-library. This will make incremental builds *much* faster.
+library. This will make recompilation *much* faster during development.
 
 This is only supported on desktop platforms. Known to work very well on Linux.
 Windows and macOS are also supported, but are less tested and have had issues in
 the past.
 
-Do not enable this for release builds you intend to publish to other people,
-unless you have a very good special reason to and you know what you are doing.
-It introduces unneeded complexity (you need to bundle extra files) and potential
-for things to not work correctly. Use this only during development.
+It is not recommended to enable this for release builds you intend to publish
+to other people, unless you have a very good special reason to and you know
+what you are doing. It introduces unneeded complexity (you need to bundle
+extra files) and potential for things to not work correctly. You should only
+use it during development.
 
 For this reason, it may be convenient to specify the feature as a commandline
 option to `cargo`, instead of putting it in your `Cargo.toml`. Simply run your
