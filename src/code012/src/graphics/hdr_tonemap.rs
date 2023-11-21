@@ -34,23 +34,54 @@ use bevy::core_pipeline::tonemapping::Tonemapping;
 
 commands.spawn((
     Camera3dBundle {
-        tonemapping: Tonemapping::Disabled,
+        // no tonemapping
+        tonemapping: Tonemapping::None,
         ..default()
     },
 ));
 commands.spawn((
     Camera3dBundle {
         // this is the default:
-        tonemapping: Tonemapping::Enabled {
-            deband_dither: true, // dithering
-        },
+        tonemapping: Tonemapping::TonyMcMapface,
+        ..default()
+    },
+));
+commands.spawn((
+    Camera3dBundle {
+        // another common choice:
+        tonemapping: Tonemapping::ReinhardLuminance,
         ..default()
     },
 ));
 // ANCHOR_END: tonemap-config
+// ANCHOR: deband-dither
+use bevy::core_pipeline::tonemapping::DebandDither;
+
+commands.spawn((
+    Camera3dBundle {
+        dither: DebandDither::Disabled,
+        ..default()
+    },
+));
+// ANCHOR_END: deband-dither
+// ANCHOR: color-grading
+use bevy::render::view::ColorGrading;
+
+commands.spawn((
+    Camera3dBundle {
+        color_grading: ColorGrading {
+            exposure: 0.0,
+            gamma: 1.0,
+            pre_saturation: 1.0,
+            post_saturation: 1.0,
+        },
+        ..default()
+    },
+));
+// ANCHOR_END: color-grading
 }
 
 fn main() {
     App::new()
-        .add_startup_system(setup);
+        .add_systems(Startup, setup);
 }

@@ -23,6 +23,7 @@
 [bevy::AxisSettings]: https://docs.rs/bevy/0.12.0/bevy/input/gamepad/struct.AxisSettings.html
 [bevy::Axis]: https://docs.rs/bevy/0.12.0/bevy/input/struct.Axis.html
 [bevy::BackgroundColor]: https://docs.rs/bevy/0.12.0/bevy/ui/struct.BackgroundColor.html
+[bevy::BloomSettings]: https://docs.rs/bevy/0.12.0/bevy/core_pipeline/bloom/struct.BloomSettings.html
 [bevy::Bundle]: https://docs.rs/bevy/0.12.0/bevy/ecs/bundle/trait.Bundle.html
 [bevy::Bundles]: https://docs.rs/bevy/0.12.0/bevy/ecs/bundle/struct.Bundles.html
 [bevy::ButtonBundle]: https://docs.rs/bevy/0.12.0/bevy/ui/node_bundles/struct.ButtonBundle.html
@@ -38,6 +39,7 @@
 [bevy::Children]: https://docs.rs/bevy/0.12.0/bevy/hierarchy/struct.Children.html
 [bevy::ClearColor]: https://docs.rs/bevy/0.12.0/bevy/core_pipeline/clear_color/struct.ClearColor.html
 [bevy::ClusterConfig]: https://docs.rs/bevy/0.12.0/bevy/pbr/enum.ClusterConfig.html
+[bevy::ColorGrading]: https://docs.rs/bevy/0.12.0/bevy/render/view/struct.ColorGrading.html
 [bevy::ColorMaterial]: https://docs.rs/bevy/0.12.0/bevy/sprite/struct.ColorMaterial.html
 [bevy::Color]: https://docs.rs/bevy/0.12.0/bevy/render/color/enum.Color.html
 [bevy::Commands]: https://docs.rs/bevy/0.12.0/bevy/ecs/system/struct.Commands.html

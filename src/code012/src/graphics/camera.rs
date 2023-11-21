@@ -34,7 +34,7 @@ commands.spawn((
         },
         camera: Camera {
             // renders after / on top of the main camera
-            priority: 1,
+            order: 1,
             ..default()
         },
         ..default()
@@ -116,6 +116,9 @@ fn debug_render_targets(
             RenderTarget::Image(handle) => {
                 eprintln!("Camera renders to image asset with id: {:?}", handle);
             }
+            RenderTarget::TextureView(_) => {
+                eprintln!("This is a special camera that outputs to something outside of Bevy.");
+            }
         }
     }
 }
@@ -129,7 +132,7 @@ fn setup_minimap(mut commands: Commands) {
         Camera2dBundle {
             camera: Camera {
                 // renders after / on top of other cameras
-                priority: 2,
+                order: 2,
                 // set the viewport to a 256x256 square in the top left corner
                 viewport: Some(Viewport {
                     physical_position: UVec2::new(0, 0),
@@ -153,19 +156,19 @@ fn debug_viewports(
     // the size of the area being rendered to
     let view_dimensions = camera.logical_viewport_size().unwrap();
 
-    // the top-left and bottom-right coordinates
-    let (corner1, corner2) = camera.logical_viewport_rect().unwrap();
+    // the coordinates of the rectangle covered by the viewport
+    let rect = camera.logical_viewport_rect().unwrap();
 }
 // ANCHOR_END: get-viewport
 
 fn main() {
     App::new()
-        .add_system(toggle_overlay)
-        .add_system(setup_overlay)
-        .add_system(debug_render_targets)
-        .add_system(debug_viewports)
-        .add_system(setup)
-        .add_system(setup_renderlayers)
-        .add_system(setup_minimap)
-        .add_system(setup_no_ui);
+        .add_systems(Update, toggle_overlay)
+        .add_systems(Update, setup_overlay)
+        .add_systems(Update, debug_render_targets)
+        .add_systems(Update, debug_viewports)
+        .add_systems(Update, setup)
+        .add_systems(Update, setup_renderlayers)
+        .add_systems(Update, setup_minimap)
+        .add_systems(Update, setup_no_ui);
 }

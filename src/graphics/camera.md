@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header012.md}}
 
 # Cameras
 
@@ -20,7 +20,7 @@ Practical advice: always create [marker components][cb::component-marker] for
 your camera entities, so that you can [query][cb::query] your cameras easily!
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:simple}}
+{{#include ../code012/src/graphics/camera.rs:simple}}
 ```
 
 ## The Camera Transform
@@ -94,7 +94,7 @@ could be a window (for outputting directly to the screen) or an
 By default, cameras output to the primary window.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:render-target}}
+{{#include ../code012/src/graphics/camera.rs:render-target}}
 ```
 
 ## Viewport
@@ -107,14 +107,14 @@ An obvious use-case are split-screen games, where you want a camera to only draw
 to one half of the screen.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:set-viewport}}
+{{#include ../code012/src/graphics/camera.rs:set-viewport}}
 ```
 
 If you need to find out the area a camera renders to (the viewport, if
 configured, or the entire window, if not):
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:get-viewport}}
+{{#include ../code012/src/graphics/camera.rs:get-viewport}}
 ```
 
 ## Coordinate Conversion
@@ -150,22 +150,22 @@ If an entity does not have the [`RenderLayers`][bevy::RenderLayers] component,
 it is assumed to belong to layer 0 (only).
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:renderlayers}}
+{{#include ../code012/src/graphics/camera.rs:renderlayers}}
 ```
 
 You can also modify the render layers of entities after they are spawned.
 
 ## Camera Ordering
 
-A camera's priority is a simple integer value that controls the order relative
+A camera's `order` is a simple integer value that controls the order relative
 to any other cameras with the same render target.
 
 For example, if you have multiple cameras that all render to the primary window,
-they will behave as multiple "layers". Cameras with higher priority will render
-"on top of" cameras with lower priority.
+they will behave as multiple "layers". Cameras with a higher order value will render
+"on top of" cameras with a lower value. `0` is the default.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:overlay}}
+{{#include ../code012/src/graphics/camera.rs:overlay}}
 ```
 
 ## UI Rendering
@@ -182,7 +182,7 @@ multiple UI cameras (say, to display UI in an app with multiple windows), it
 does not work correctly.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:no-ui}}
+{{#include ../code012/src/graphics/camera.rs:no-ui}}
 ```
 
 ## Disabling Cameras
@@ -194,7 +194,7 @@ easily re-enable it later.
 Some example use cases: toggling an overlay, switching between a 2D and 3D view.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/features/camera/general.rs:is_active}}
+{{#include ../code012/src/graphics/camera.rs:is_active}}
 ```
 
 ## Multiple Cameras
@@ -224,8 +224,8 @@ render target. This way, a camera can be made to render one half of the screen
 Official example: [`two_passes`][example::two_passes].
 
 You might want to render multiple "layers" (passes) to the same render target.
-An example of this might be an overlay/HUD to be displayed as an overlay on top
-of the main game.
+An example of this might be an overlay/HUD to be displayed on top of the
+main game.
 
 The overlay camera could be completely different from the main camera. For
 example, the main camera might draw a 3D scene, and the overlay camera might

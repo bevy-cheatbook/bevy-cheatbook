@@ -18,6 +18,9 @@ mod fundamentals {
     mod log;
 }
 mod graphics {
+    mod camera;
+    mod hdr_tonemap;
+    mod bloom;
 }
 mod d2 {
 }
