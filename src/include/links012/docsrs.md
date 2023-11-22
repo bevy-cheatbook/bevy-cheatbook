@@ -168,6 +168,7 @@
 [bevy::Resource]: https://docs.rs/bevy/0.12.0/bevy/ecs/system/trait.Resource.html
 [bevy::RunFixedUpdateLoop]: https://docs.rs/bevy/0.12.0/bevy/app/struct.RunFixedUpdateLoop.html
 [bevy::SamplerDescriptor]: https://docs.rs/bevy/0.12.0/bevy/render/render_resource/struct.SamplerDescriptor.html
+[bevy::ScalingMode]: https://docs.rs/bevy/0.12.0/bevy/render/camera/enum.ScalingMode.html
 [bevy::ScanCode]: https://docs.rs/bevy/0.12.0/bevy/input/keyboard/struct.ScanCode.html
 [bevy::SceneBundle]: https://docs.rs/bevy/0.12.0/bevy/scene/struct.SceneBundle.html
 [bevy::SceneSpawner]: https://docs.rs/bevy/0.12.0/bevy/scene/struct.SceneSpawner.html

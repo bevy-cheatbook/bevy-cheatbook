@@ -33,9 +33,12 @@
 [cb::bevy-main]: /setup/bevy-git.md
 [cb::bundle]: /programming/bundle.md
 [cb::camera-2d]: /2d/camera.md
+[cb::camera-2d::projection]: /2d/camera.md#projection
 [cb::camera-3d]: /3d/camera.md
+[cb::camera-3d::projection]: /3d/camera.md#projection
 [cb::camera-custom-projection]: /cookbook/custom-projection.md
 [cb::camera-projection]: /graphics/camera.md#projection
+[cb::camera-viewport]: /graphics/camera.md#viewport
 [cb::camera]: /graphics/camera.md
 [cb::change-detection]: /programming/change-detection.md
 [cb::clearcolor]: /window/clear-color.md

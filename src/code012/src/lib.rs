@@ -23,8 +23,10 @@ mod graphics {
     mod bloom;
 }
 mod d2 {
+    mod camera;
 }
 mod d3 {
+    mod camera;
 }
 mod input {
     mod mouse;

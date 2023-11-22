@@ -40,46 +40,42 @@ Do not use the transform scale to "zoom" a camera! It just stretches the image,
 which is not "zooming". It might also cause other issues and incompatibilities.
 Use the [projection][cb::camera-projection] to zoom.
 
-For orthographic projections, change the projection's scale. This way you can be
-confident about how exactly coordinate/units map to the screen. This also helps
-avoid scaling artifacts with 2D assets.
+For an orthographic projection, change the scale. For a perspective projection,
+change the FOV. The FOV mimics the effect of zooming with a lens.
 
-```rust,no_run,noplayground
-{{#include ../code/src/features/camera/d2.rs:zoom}}
-```
-
-For 3D perspective projections, change the FOV. This achieves the desired 3D
-effect of zooming with a lens, while keeping the camera at the same distance
-from what it is looking at. Decrease the FOV to "zoom in" (make objects appear
-closer). Increase the FOV to "zoom out" (make objects appear further away,
-increase the stretching due to the perspective effect).
-
-```rust,no_run,noplayground
-{{#include ../code/src/features/camera/d3.rs:zoom}}
-```
-
-In some applications (like 3D editors), "zooming" might mean moving the camera
-closer or farther away, instead of changing the FOV.
+Learn more about how to do this in [2D][cb::camera-2d::projection] or
+[3D][cb::camera-3d::projection].
 
 ## Projection
 
 The camera projection is responsible for mapping the coordinate system to the
-viewport. This effectively determines the "coordinate space" you are working in.
+viewport (commonly, the screen/window). It is what configures the coordinate
+space, as well as any scaling/stretching of the image.
 
 Bevy provides two kinds of projections:
 [`OrthographicProjection`][bevy::OrthographicProjection] and
 [`PerspectiveProjection`][bevy::PerspectiveProjection]. They are configurable,
-to be able to serve a variety of different use cases. See the dedicated pages
-for [2D cameras][cb::camera-2d] and [3D cameras][cb::camera-3d] to learn more
-about what you can do with them.
+to be able to serve a variety of different use cases.
+
+Orthographic means that everything always appears the same size, regardless of
+how far away it is from the camera.
+
+Perspective means that things appear smaller the further away they are from
+the camera. This is the effect that gives 3D graphics a sense of depth and
+distance.
+
+[2D cameras][cb::camera-2d] are always orthographic.
+
+[3D cameras][cb::camera-3d] can use either kind of projection. Perspective is
+the most common (and default) choice. Orthographic is useful for applications
+such as CAD and engineering, where you want to accurately represent the
+dimensions of an object, instead of creating a realistic sense of 3D space. Some
+games (notably simulation games) use orthographic as an artistic choice.
 
 It is possible to implement your own [custom camera
 projections][cb::camera-custom-projection]. This can give you full control over
 the coordinate system. However, beware that things might behave in unexpected
 ways if you violate Bevy's [coordinate system conventions][cb::coords]!
-
-Note that Bevy uses a an [infinite reversed
-Z][nvidia::infinite-reverse-z] configuration for 3D.
 
 ## HDR and Tonemapping
 
