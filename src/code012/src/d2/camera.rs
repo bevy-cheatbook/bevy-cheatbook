@@ -3,16 +3,32 @@ use bevy::prelude::*;
 #[derive(Component)]
 struct MyCameraMarker;
 
-fn setup(mut commands: Commands) {
+mod basic_setup {
+use super::*;
 // ANCHOR: basic-setup
-commands.spawn((
-    Camera2dBundle {
-        transform: Transform::from_xyz(100.0, 200.0, 0.0),
-        ..default()
-    },
-    MyCameraMarker,
-));
+#[derive(Component)]
+struct MyCameraMarker;
+
+fn setup_camera(mut commands: Commands) {
+    commands.spawn((
+        Camera2dBundle {
+            transform: Transform::from_xyz(100.0, 200.0, 0.0),
+            ..default()
+        },
+        MyCameraMarker,
+    ));
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_systems(Startup, setup_camera)
+        .run();
+}
 // ANCHOR_END: basic-setup
+}
+
+fn setup(mut commands: Commands) {
 // ANCHOR: scalingmode
 use bevy::render::camera::ScalingMode;
 

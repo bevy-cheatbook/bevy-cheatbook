@@ -3,17 +3,33 @@ use bevy::prelude::*;
 #[derive(Component)]
 struct MyCameraMarker;
 
-fn setup(mut commands: Commands) {
+mod basic_setup {
+use super::*;
 // ANCHOR: basic-setup
-commands.spawn((
-    Camera3dBundle {
-        transform: Transform::from_xyz(10.0, 12.0, 16.0)
-            .looking_at(Vec3::ZERO, Vec3::Y),
-        ..default()
-    },
-    MyCameraMarker,
-));
+#[derive(Component)]
+struct MyCameraMarker;
+
+fn setup_camera(mut commands: Commands) {
+    commands.spawn((
+        Camera3dBundle {
+            transform: Transform::from_xyz(10.0, 12.0, 16.0)
+                .looking_at(Vec3::ZERO, Vec3::Y),
+            ..default()
+        },
+        MyCameraMarker,
+    ));
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_systems(Startup, setup_camera)
+        .run();
+}
 // ANCHOR_END: basic-setup
+}
+
+fn setup(mut commands: Commands) {
 // ANCHOR: fov
 commands.spawn((
     Camera3dBundle {
