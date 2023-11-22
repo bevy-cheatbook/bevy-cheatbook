@@ -85,5 +85,6 @@ fn main() {
                 .set(ImagePlugin::default_nearest())
         )
         // ...
+        .run();
 }
 // ANCHOR_END: default-nearest
