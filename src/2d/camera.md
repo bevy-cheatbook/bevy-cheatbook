@@ -45,6 +45,33 @@ cameras. You should create separate [systems][cb::system], or at least two
 separate queries, to handle each kind of camera. This makes sense, as you will
 likely need different logic for 2D vs. 3D anyway.
 
+### Caveat: near/far values
+
+The projection contains the `near` and `far` values, which indicate the minimum
+and maximum Z coordinate (depth) that can be rendered, relative to the position
+([transform][cb::transform]) of the camera.
+
+[`Camera2dBundle`][bevy::Camera2dBundle] sets them appropriately for 2D:
+`-1000.0` to `1000.0`, allowing entities to be displayed on both positive and
+negative Z coordinates. However, if you create the
+[`OrthographicProjection`][bevy::OrthographicProjection] yourself, to change any
+other settings, you need to set these values yourself. The default value of the
+[`OrthographicProjection`][bevy::OrthographicProjection] struct is designed for
+3D and has a `near` value of `0.0`, which means you might not be able to see
+your 2D entities.
+
+```rust,no_run,noplayground
+{{#include ../code012/src/d2/camera.rs:projection-near-far}}
+```
+
+A more foolproof way to go about this is to use a temporary variable, to let the
+bundle do its thing, and then mutate whatever you want. This way, you don't have
+to worry about the exact values or getting anything wrong:
+
+```rust,no_run,noplayground
+{{#include ../code012/src/d2/camera.rs:projection-mut}}
+```
+
 ### Scaling Mode
 
 You can set the [`ScalingMode`][bevy::ScalingMode] according to how you want to
