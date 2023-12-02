@@ -1,11 +1,6 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header012.md}}
 
 # Convert cursor to world coordinates
-
-## 3D games
-
-There is a good (unofficial) plugin:
-[`bevy_mod_picking`][project::bevy_mod_picking].
 
 ## 2D games
 
@@ -18,7 +13,11 @@ and games, you can do this:
   </summary>
 
 ```rust,no_run,noplayground
-{{#include ../code011/examples/cursor2world.rs:simple}}
+{{#include ../code012/src/cookbook/cursor2world.rs:simple}}
+```
+
+```rust,no_run,noplayground
+{{#include ../code012/src/cookbook/cursor2world.rs:simple-app}}
 ```
 
 </details>
@@ -32,7 +31,45 @@ complex version of the code that can handle that:
   </summary>
 
 ```rust,no_run,noplayground
-{{#include ../code011/examples/cursor2world.rs:multiple-windows}}
+{{#include ../code012/src/cookbook/cursor2world.rs:multiple-windows}}
 ```
+
+```rust,no_run,noplayground
+{{#include ../code012/src/cookbook/cursor2world.rs:multiple-windows-app}}
+```
+
+</details>
+
+## 3D games
+
+If you'd like to be able to detect what 3D object the cursor is pointing at, select
+objects, etc., there is a good (unofficial) plugin:
+[`bevy_mod_picking`][project::bevy_mod_picking].
+
+For a simple top-down camera view game with a flat ground plane, it might be
+sufficient to just compute the coordinates on the ground under the cursor:
+
+<details>
+  <summary>
+  <code>Code and explanation:</code>
+  </summary>
+
+```rust,no_run,noplayground
+{{#include ../code012/src/cookbook/cursor2world.rs:3d-ground-plane}}
+```
+
+```rust,no_run,noplayground
+{{#include ../code012/src/cookbook/cursor2world.rs:3d-ground-plane-app}}
+```
+
+If the ground is tilted/rotated or moved, the global and local coordinates
+will differ, and may be useful for different use cases, so we compute both.
+
+For some examples:
+ - if you want to spawn a [child][cb::hierarchy] entity, or to quantize
+   the coordinates to a grid (for a tile-based game, to detect the grid tile under the cursor),
+   the local coordinates will be more useful
+ - if you want to spawn some overlays, particle effects, other independent game entities,
+   at the position of the cursor, the global coordinates will be more useful
 
 </details>

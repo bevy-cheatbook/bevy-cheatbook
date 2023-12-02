@@ -60,6 +60,7 @@ mod patterns {
 }
 mod cookbook {
     mod print_framerate;
+    mod cursor2world;
 }
 mod platforms {
 }
