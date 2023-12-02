@@ -63,4 +63,5 @@ mod cookbook {
     mod cursor2world;
 }
 mod platforms {
+    mod wasm;
 }

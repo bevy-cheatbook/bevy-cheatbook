@@ -204,5 +204,7 @@
 [platform::windows::wsl2]: /platforms/windows/wsl2.md
 [platform::windows]: /platforms/windows.md
 [wasm::gh-pages]: /platforms/wasm/gh-pages.md
+[wasm::itch]: /platforms/wasm/itch.md
 [wasm::panic-console]: /platforms/wasm/panic-console.md
 [wasm::size-opt]: /platforms/wasm/size-opt.md
+[wasm::webpage]: /platforms/wasm/webpage.md
