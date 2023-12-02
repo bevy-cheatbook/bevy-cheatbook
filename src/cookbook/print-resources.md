@@ -2,10 +2,6 @@
 
 # List All Resource Types
 
-[Click here for the full example code.][cbexample::print-resources]
-
----
-
 This example shows how to print a list of all types that have been added as
 [resources][cb::res].
 

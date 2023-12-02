@@ -7,10 +7,6 @@ Relevant official examples:
 
 ---
 
-[Click here for the full example code.][cbexample::clear-color]
-
----
-
 Use the [`ClearColor`][bevy::ClearColor] [resource][cb::res] to choose the
 default background color. This color will be used as the default for all
 [cameras][cb::camera], unless overriden.

@@ -2,10 +2,6 @@
 
 # Manual Event Clearing
 
-[Click here to download a full example file with the code from this page.][cbexample::manual-event-clear]
-
----
-
 The [event][cb::event] queue needs to be cleared periodically,
 so that it does not grow indefinitely and waste unbounded memory.
 

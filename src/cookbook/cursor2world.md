@@ -2,10 +2,6 @@
 
 # Convert cursor to world coordinates
 
-[Click here for the full example code.][cbexample::cursor2world]
-
----
-
 ## 3D games
 
 There is a good (unofficial) plugin:

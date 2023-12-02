@@ -2,10 +2,6 @@
 
 # Custom Camera Projection
 
-[Click here for the full example code.][cbexample::custom-projection]
-
----
-
 **Note**: this example is showing you how to do something not officially
 supported/endorsed by Bevy. Do at your own risk.
 

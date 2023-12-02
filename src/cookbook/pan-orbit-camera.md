@@ -2,10 +2,6 @@
 
 # Pan + Orbit Camera
 
-[Click here for the full example code.][cbexample::pan-orbit-camera]
-
----
-
 This code is a community contribution.
 
 Current version developed by [**@mirenbharta**][cb::1].
