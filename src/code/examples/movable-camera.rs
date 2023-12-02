@@ -1,0 +1,388 @@
+#![allow(clippy::too_many_arguments)]
+
+use std::ops::{Div, Mul, Neg};
+
+use bevy::{
+   input::mouse::{MouseMotion, MouseWheel},
+   prelude::*,
+};
+
+// ANCHOR: example
+/// Struct for customizing camera behavior.
+#[derive(Component)]
+pub struct MovableCameraParams {
+   pub default_speed: f32,
+   pub acceleration: f32,
+   pub slow_speed: f32,
+   pub scroll_snap: f32,
+   pub forward: KeyCode,
+   pub back: KeyCode,
+   pub left: KeyCode,
+   pub right: KeyCode,
+   pub up: KeyCode,
+   pub down: KeyCode,
+   pub change_speed: KeyCode,
+   pub focus: KeyCode,
+}
+
+impl Default for MovableCameraParams {
+   fn default() -> Self {
+      Self {
+         default_speed: 1.0,
+         acceleration: 1.0,
+         slow_speed: 0.1,
+         scroll_snap: 1.0,
+         forward: KeyCode::W,
+         back: KeyCode::S,
+         left: KeyCode::A,
+         right: KeyCode::D,
+         up: KeyCode::E,
+         down: KeyCode::Q,
+         change_speed: KeyCode::LShift,
+         focus: KeyCode::F,
+      }
+   }
+}
+
+/// Tags an entity as being capable of moving, rotating, and orbiting.
+#[derive(Component)]
+struct MovableCamera {
+   pub speed: f32,
+   pub angular_speed: f32,
+   pub slow: bool,
+   pub cursor_pos: Vec2,
+   pub focused: bool,
+}
+
+impl Default for MovableCamera {
+   fn default() -> Self {
+      Self {
+         speed: MovableCameraParams::default().default_speed,
+         angular_speed: MovableCameraParams::default().default_speed,
+         slow: false,
+         cursor_pos: Vec2::default(),
+         focused: false,
+      }
+   }
+}
+
+/// Takes a quaternion as input and clamps it between -tau/4 and tau/4.
+fn limit_pitch(tq: Quat) -> Quat {
+   // Produce new quaternion with zeroed x and z and normalized y and w
+   // from the input quaternion.
+   // This results in a quaternion that represents the yaw component
+   // of the original quaternion.
+   // Not tested for quaternions that have roll other than 0.
+   let qy = Quat::from_xyzw(0.0, tq.y, 0.0, tq.w).normalize();
+   // Remove yaw from input quaternion, leaving pitch
+   let qp = qy.inverse().mul(tq);
+   // Convert quaternion to Euler angle
+   let pitch = Vec3::X.dot(qp.xyz()).asin().mul(2.0);
+   // Clamp angle to range
+   let quarter_tau = std::f32::consts::TAU / 4.0;
+   let clamped_pitch = pitch.clamp(quarter_tau.neg(), quarter_tau);
+   // Convert angle back to quaternion
+   let qp = Quat::from_rotation_x(clamped_pitch);
+   // Multiply yaw quaternion by pitch quaternion to get constrained quaternion
+   qy.mul(qp)
+}
+
+/// Rotates a camera quat by a linear amount.
+fn rotate_cam_quat(window_size: Vec2, motion: Vec2, speed: f32, mut tq: Quat) -> Quat {
+   let delta_x = motion
+      .x
+      .div(window_size.x)
+      .mul(std::f32::consts::TAU)
+      .mul(speed);
+   let delta_y = motion
+      .y
+      .div(window_size.y)
+      .mul(std::f32::consts::TAU.div(2.0))
+      .mul(speed);
+   let delta_yaw = Quat::from_rotation_y(delta_x.neg());
+   let delta_pitch = Quat::from_rotation_x(delta_y.neg());
+   // note the order of the following multiplications
+   tq = delta_yaw.mul(tq); // yaw around GLOBAL y axis
+   tq = tq.mul(delta_pitch); // pitch around LOCAL x axis
+   limit_pitch(tq)
+}
+
+fn get_primary_window_size(windows: &ResMut<Windows>) -> Vec2 {
+   let window = windows.get_primary().unwrap();
+   Vec2::new(window.width() as f32, window.height() as f32)
+}
+
+fn net_movement(keys: &Res<Input<KeyCode>>, negative: KeyCode, positive: KeyCode) -> f32 {
+   match (keys.pressed(negative), keys.pressed(positive)) {
+      (true, false) => -1.0,
+      (false, true) => 1.0,
+      _ => 0.0,
+   }
+}
+
+/// Prevents the cursor from moving.
+fn lock_cursor(
+   mut windows: ResMut<Windows>,
+   buttons: Res<Input<MouseButton>>,
+   mut cam: Query<&mut MovableCamera>,
+) {
+   let mut cam = cam.single_mut();
+   if buttons.just_pressed(MouseButton::Right) {
+      if let Some(window) = windows.get_primary_mut() {
+         window.set_cursor_lock_mode(true);
+         if let Some(pos) = window.cursor_position() {
+            cam.cursor_pos = pos;
+         }
+      }
+   }
+
+   if buttons.just_released(MouseButton::Right) {
+      if let Some(window) = windows.get_primary_mut() {
+         window.set_cursor_lock_mode(false);
+      }
+   }
+
+   if buttons.pressed(MouseButton::Right) {
+      if let Some(window) = windows.get_primary_mut() {
+         window.set_cursor_position(cam.cursor_pos);
+      }
+   }
+}
+
+/// Adjusts the camera speed based on user input.
+fn adjust_cam_speed(
+   time: Res<Time>,
+   keys: Res<Input<KeyCode>>,
+   cam_params: Res<MovableCameraParams>,
+   mut cam: Query<&mut MovableCamera>,
+) {
+   let mut cam = cam.single_mut();
+   if keys.just_pressed(cam_params.change_speed) {
+      cam.slow = !cam.slow;
+      if !cam.slow {
+         cam.speed = cam_params.default_speed;
+         cam.angular_speed = cam_params.default_speed;
+      }
+   }
+
+   if cam.slow {
+      cam.speed = cam_params.slow_speed;
+      cam.angular_speed = cam_params.slow_speed;
+   } else if keys.any_pressed([
+      cam_params.left,
+      cam_params.right,
+      cam_params.up,
+      cam_params.back,
+      cam_params.down,
+      cam_params.forward,
+   ]) {
+      cam.speed += cam_params.acceleration.mul(time.delta_seconds());
+   } else {
+      cam.speed = cam_params.default_speed;
+      cam.angular_speed = cam_params.default_speed;
+   }
+}
+
+/// Move the camera with QWEASD, zoom with wheel, focus at
+/// camera pos with F, and rotate/orbit with right mouse button.
+fn movable_camera(
+   windows: ResMut<Windows>,
+   time: Res<Time>,
+   keys: Res<Input<KeyCode>>,
+   buttons: Res<Input<MouseButton>>,
+   mut motion: EventReader<MouseMotion>,
+   mut scroll_events: EventReader<MouseWheel>,
+   cam_params: Res<MovableCameraParams>,
+   mut q_child: Query<(
+      &Parent,
+      &mut Transform,
+      &mut MovableCamera,
+      &PerspectiveProjection,
+   )>,
+   mut q_parent: Query<(&mut Transform, &GlobalTransform), Without<PerspectiveProjection>>,
+) {
+   for (parent, mut transform_child, mut cam, ..) in q_child.iter_mut() {
+      if cam.focused {
+         if keys.any_pressed([
+            cam_params.left,
+            cam_params.right,
+            cam_params.up,
+            cam_params.back,
+            cam_params.down,
+            cam_params.forward,
+         ]) {
+            if let Ok((mut transform_parent, ..)) = q_parent.get_mut(parent.0) {
+               let zoom = transform_child.translation.z;
+               // Set child transform to parent transform
+               *transform_child = *transform_parent;
+               // Offset child by its zoom
+               transform_child.translation += zoom.mul(transform_parent.back());
+               // Set parent transform to origin
+               *transform_parent = Transform::default();
+            }
+            cam.focused = false;
+         }
+      } else if keys.just_pressed(cam_params.focus) {
+         if let Ok((mut transform_parent, ..)) = q_parent.get_mut(parent.0) {
+            // Hand off position and orientation information to parent
+            *transform_parent = *transform_child;
+         }
+         *transform_child = Transform::default();
+         cam.focused = true;
+      }
+
+      let mut rotation_move = Vec2::ZERO;
+      let mut scroll = 0.0;
+
+      if buttons.pressed(MouseButton::Right) {
+         for ev in motion.iter() {
+            rotation_move += ev.delta;
+         }
+      }
+
+      for event in scroll_events.iter() {
+         scroll += event.y;
+      }
+
+      // Focused Camera
+      if cam.focused {
+         // Orbit the camera
+         if rotation_move.length_squared() > 0.0 {
+            if let Ok((mut transform_parent, ..)) = q_parent.get_mut(parent.0) {
+               let window_size = get_primary_window_size(&windows);
+               transform_parent.rotation = rotate_cam_quat(
+                  window_size,
+                  rotation_move,
+                  cam.angular_speed,
+                  transform_parent.rotation,
+               );
+            }
+         }
+
+         // Zoom the camera. Parent has orientation information so just
+         // mutate child's z
+         if scroll.abs() > 0.0 {
+            transform_child.translation -= Vec3::new(0.0, 0.0, 1.0)
+               .mul(cam_params.scroll_snap)
+               .mul(scroll)
+               .mul(cam.speed);
+            // Clamp the child's translation so it can't go past focus (the parent)
+            transform_child.translation = transform_child.translation.max(Vec3::new(0.0, 0.0, 0.0));
+         }
+      // Free Camera
+      } else {
+         // Rotate the camera
+         if rotation_move.length_squared() > 0.0 {
+            let window_size = get_primary_window_size(&windows);
+            transform_child.rotation = rotate_cam_quat(
+               window_size,
+               rotation_move,
+               cam.angular_speed,
+               transform_child.rotation,
+            );
+         }
+
+         // Zoom the camera relative to camera orientation
+         if scroll.abs() > 0.0 {
+            let transform_clone = *transform_child;
+            transform_child.translation += transform_clone
+               .forward()
+               .mul(cam_params.scroll_snap)
+               .mul(scroll)
+               .mul(cam.speed);
+         }
+
+         let mut translate_move = Vec3::new(
+            net_movement(&keys, cam_params.right, cam_params.left),
+            net_movement(&keys, cam_params.down, cam_params.up),
+            net_movement(&keys, cam_params.back, cam_params.forward),
+         )
+         .normalize_or_zero();
+
+         // Translate the camera
+         if translate_move.length_squared() > 0.0 {
+            translate_move = translate_move.mul(time.delta_seconds()).mul(cam.speed);
+            // Clone the child's transform so we can use its immutable methods
+            let transform_clone = *transform_child;
+            // Translate camera along each of its local axes
+            transform_child.translation += transform_clone.left().mul(translate_move.x);
+            transform_child.translation += transform_clone.up().mul(translate_move.y);
+            transform_child.translation += transform_clone.forward().mul(translate_move.z);
+         }
+      }
+   }
+}
+
+/// Spawn a camera like this. Note the extra bundle.
+fn spawn_camera(mut commands: Commands) {
+   commands
+      .spawn_bundle((
+         Transform::from_xyz(0.0, 0.0, 0.0),
+         GlobalTransform::default(),
+      ))
+      .with_children(|parent| {
+         parent
+            .spawn_bundle(PerspectiveCameraBundle {
+               transform: Transform::from_xyz(0.0, 3.0, 4.0).looking_at(Vec3::ZERO, Vec3::Y),
+               ..Default::default()
+            })
+            .insert(MovableCamera::default());
+      });
+}
+// ANCHOR_END: example
+
+/// set up a simple 3D scene
+fn setup(
+   mut commands: Commands,
+   mut meshes: ResMut<Assets<Mesh>>,
+   mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+   // plane
+   commands.spawn_bundle(PbrBundle {
+      mesh: meshes.add(Mesh::from(shape::Plane { size: 5.0 })),
+      material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+      ..Default::default()
+   });
+   // cubes
+   commands.spawn_bundle(PbrBundle {
+      mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+      material: materials.add(Color::rgb(0.0, 0.0, 1.0).into()),
+      transform: Transform::from_xyz(0.0, 0.5, 0.0),
+      ..Default::default()
+   });
+   commands.spawn_bundle(PbrBundle {
+      mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+      material: materials.add(Color::rgb(0.0, 1.0, 0.0).into()),
+      transform: Transform::from_xyz(0.82, 2.0, -0.41),
+      ..Default::default()
+   });
+   commands.spawn_bundle(PbrBundle {
+      mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+      material: materials.add(Color::rgb(1.0, 0.0, 0.0).into()),
+      transform: Transform::from_xyz(-0.68, 2.0, 0.74),
+      ..Default::default()
+   });
+   // light
+   commands.spawn_bundle(PointLightBundle {
+      point_light: PointLight {
+         intensity: 1500.0,
+         shadows_enabled: true,
+         ..Default::default()
+      },
+      transform: Transform::from_xyz(4.0, 8.0, 4.0),
+      ..Default::default()
+   });
+}
+
+fn main() {
+   App::new()
+      .insert_resource(Msaa { samples: 4 })
+      .add_plugins(DefaultPlugins)
+      .add_startup_system(setup)
+      .add_startup_system(spawn_camera)
+      .insert_resource(MovableCameraParams::default())
+      .add_system(adjust_cam_speed)
+      .add_system(movable_camera)
+      .add_system(lock_cursor)
+      .run();
+}

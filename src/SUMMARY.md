@@ -128,6 +128,7 @@
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
   - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
+  - [Movable Camera](./cookbook/movable-camera.md)
   - [List All Resource Types](./cookbook/print-resources.md)
 
 - [Bevy on Different Platforms](./platforms.md)
