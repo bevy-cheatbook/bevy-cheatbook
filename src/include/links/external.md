@@ -1,5 +1,6 @@
 [apple::design-app-icon]: https://developer.apple.com/design/human-interface-guidelines/app-icons
 [bevy::1031]: https://github.com/bevyengine/bevy/issues/1031
+[bevy::1163]: https://github.com/bevyengine/bevy/issues/1163
 [bevy::1429]: https://github.com/bevyengine/bevy/pull/1429
 [bevy::1700]: https://github.com/bevyengine/bevy/issues/1700
 [bevy::2052]: https://github.com/bevyengine/bevy/issues/2052
@@ -7,6 +8,8 @@
 [bevy::2343]: https://github.com/bevyengine/bevy/issues/2343
 [bevy::279]: https://github.com/bevyengine/bevy/issues/279
 [bevy::4669]: https://github.com/bevyengine/bevy/issues/4669
+[bevy::5488]: https://github.com/bevyengine/bevy/issues/5488
+[bevy::8130]: https://github.com/bevyengine/bevy/issues/8130
 [bevy::blog::0.10]: https://bevyengine.org/news/bevy-0-10
 [bevy::blog::0.11]: https://bevyengine.org/news/bevy-0-11
 [bevy::blog::0.12]: https://bevyengine.org/news/bevy-0-12
