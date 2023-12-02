@@ -19,6 +19,8 @@
   - [3D Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
   - [List All Resource Types](./cookbook/print-resources.md)
 
+---
+
 - [Bevy Setup Tips](./setup.md)
   - [Getting Started](./setup/getting-started.md)
   - [Text Editor / IDE](./setup/editor.md)
