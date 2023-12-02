@@ -1,6 +1,6 @@
 use bevy::app::AppExit;
 use bevy::prelude::*;
-use bevy::render::{RenderApp, RenderStage};
+use bevy::render::{RenderApp, Render, RenderSet};
 
 // ANCHOR: example
 fn print_resources(world: &World) {
@@ -28,14 +28,16 @@ fn main() {
     let mut app = App::new();
     app.add_plugins(DefaultPlugins);
 
-    // print main world resources
-    app.add_system_to_stage(CoreStage::Last, print_resources);
+// ANCHOR: app
+// print main world resources
+app.add_systems(Last, print_resources);
 
-    // print render world resources
-    app.sub_app_mut(RenderApp)
-        .add_system_to_stage(RenderStage::Render, print_resources);
+// print render world resources
+app.sub_app_mut(RenderApp)
+    .add_systems(Render, print_resources.in_set(RenderSet::Render));
+// ANCHOR_END: app
 
-    app.add_system_to_stage(CoreStage::Last, quit);
+    app.add_systems(Last, quit);
 
     app.run();
 }
