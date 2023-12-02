@@ -2,6 +2,7 @@
 #![allow(unused_mut)]
 #![allow(dead_code)]
 #![allow(unreachable_code)]
+#![allow(unused_imports)]
 
 // MUST MIRROR BOOK CHAPTER STRUCTURE / FILENAMES!
 
@@ -57,7 +58,8 @@ mod gpu {
 }
 mod patterns {
 }
+mod cookbook {
+    mod print_framerate;
+}
 mod platforms {
 }
-
-// cookbook chapter uses `examples`, they should be runnable
