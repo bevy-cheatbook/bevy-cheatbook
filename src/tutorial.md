@@ -16,10 +16,11 @@ table of contents (the left side bar), if you are just learning Bevy and don't
 know how to progress. If you are new to Bevy, you can start here to find your
 way around.
 
-The other tutorials are more specialized. They cover specific workflows or
-advanced use cases.
+If you would like more narrow-scoped examples that teach you how to solve
+specific problems, those can be found in the [Bevy Cookbook][chapter::cookbook]
+chapter.
 
 You should also look at Bevy's [official collection of
 examples][bevy::examples]. There is something for almost every area of the
-engine, though they usually only show the usage of the APIs without much
+engine, though they usually only show simple usage of the APIs without much
 explanation.

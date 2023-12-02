@@ -12,9 +12,15 @@
 - [Bevy Tutorials](./tutorial.md)
   - [Guided Tour](./tutorial/guide.md)
 
+- [Bevy Cookbook](./cookbook.md)
+  - [Show Framerate](./cookbook/print-framerate.md)
+  - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
+  - [Custom Camera Projection](./cookbook/custom-projection.md)
+  - [3D Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
+  - [List All Resource Types](./cookbook/print-resources.md)
+
 - [Bevy Setup Tips](./setup.md)
   - [Getting Started](./setup/getting-started.md)
-  - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
   - [Text Editor / IDE](./setup/editor.md)
     - [Visual Studio Code](./setup/editor/vscode.md)
     - [JetBrains (RustRover, IntelliJ, CLion)](./setup/editor/jetbrains.md)
@@ -25,6 +31,7 @@
   - [Community Plugin Ecosystem](./setup/unofficial-plugins.md)
   - [Dev Tools and Editors for Bevy](./setup/bevy-tools.md)
   - [Performance Tunables](./setup/perf.md)
+  - [Using bleeding-edge Bevy (main)](./setup/bevy-git.md)
 
 - [Common Pitfalls](./pitfalls.md)
   - [Strange compile errors from Bevy or dependencies](./pitfalls/build-errors.md)
@@ -123,13 +130,6 @@
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
   - [Writing Tests for Systems](./patterns/system-tests.md)
 
-- [Bevy Cookbook](./cookbook.md)
-  - [Show Framerate in Console](./cookbook/print-framerate.md)
-  - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
-  - [Custom Camera Projection](./cookbook/custom-projection.md)
-  - [Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
-  - [List All Resource Types](./cookbook/print-resources.md)
-
 - [Bevy on Different Platforms](./platforms.md)
   - [Linux Desktop](./platforms/linux.md)
   - [macOS Desktop](./platforms/macos.md)
@@ -142,8 +142,6 @@
   - [Cross-Compilation](./setup/cross.md)
     - [From Linux to Windows](./setup/cross/linux-windows.md)
     - [From macOS to Windows](./setup/cross/macos-windows.md)
-
-- [Appendix: General Concepts](./concepts.md)
 
 ---
 
