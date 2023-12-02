@@ -33,6 +33,7 @@ mod input {
     mod char;
 }
 mod window {
+    mod mouse_grab;
 }
 mod assets {
 }

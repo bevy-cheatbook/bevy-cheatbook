@@ -1,21 +1,46 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header012.md}}
 
 # Grabbing the Mouse
-
-[Click here for the full example code.][cbexample::mouse-grab]
 
 Relevant official examples:
 [`mouse_grab`][example::mouse_grab].
 
 ---
 
-You can lock/release the mouse cursor using bevy's [window settings
-API][example::window_settings].
+For some genres of games, you want to the mouse to be restricted to the window,
+to prevent it from leaving the window during gameplay.
 
-Here is an example that locks and hides the cursor in the primary window
-on [mouse click][input::mouse-button] and releases it when [pressing
-`Esc`][input::keyboard]:
+To grab the cursor:
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/mouse-grab.rs:example}}
+{{#include ../code012/examples/mouse-grab.rs:grab}}
+```
+
+To release the cursor:
+
+```rust,no_run,noplayground
+{{#include ../code012/examples/mouse-grab.rs:ungrab}}
+```
+
+You should grab the cursor during active gameplay and release it when
+the player pauses the game / exits to menu / etc.
+
+For relative mouse movement, you should use [mouse motion][input::mouse-motion]
+instead of [cursor input][input::cursor] to implement your gameplay.
+
+## Platform Differences
+
+macOS does not natively support `Confined` mode. Bevy will fallback to `Locked`.
+If you want to support macOS and you want to use [cursor input][input::cursor],
+you might want to implement a "virtual cursor" instead.
+
+Windows does not natively support `Locked` mode. Bevy will fallback to `Confined`.
+You could emulate the locked behavior by re-centering the cursor every frame:
+
+```rust,no_run,noplayground
+{{#include ../code012/examples/mouse-grab.rs:recenter}}
+```
+
+```rust,no_run,noplayground
+{{#include ../code012/examples/mouse-grab.rs:recenter-app}}
 ```
