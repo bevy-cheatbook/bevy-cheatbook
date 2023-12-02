@@ -47,7 +47,15 @@ objects, etc., there is a good (unofficial) plugin:
 [`bevy_mod_picking`][project::bevy_mod_picking].
 
 For a simple top-down camera view game with a flat ground plane, it might be
-sufficient to just compute the coordinates on the ground under the cursor:
+sufficient to just compute the coordinates on the ground under the cursor.
+
+<button class="button_wasm_cbexample" id="button_cursor_3d_ground_plane">Load Interactive Example</button>
+
+In the interactive example, there is a ground plane with a non-default position
+and rotation. There is a red cube, which is positioned using the global
+coordinates, and a blue cube, which is a [child entity][cb::hierarchy] of the
+ground plane and positioned using local coordinates. They should both follow the
+cursor.
 
 <details>
   <summary>
@@ -73,3 +81,5 @@ For some examples:
    at the position of the cursor, the global coordinates will be more useful
 
 </details>
+
+<script type="module" src="/loadwasm.js"/>
