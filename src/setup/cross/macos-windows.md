@@ -5,11 +5,21 @@
 (also check out the [Windows Platform page][platform::windows] for info
 about developing for Windows generally)
 
+**Note: As of Bevy 0.12, the instructions on this page no longer work!**
+
+There are some dependencies that assume you are running Windows and they
+can run Windows EXEs from their build scripts, which is not the case when
+cross-compiling.
+
+However, I decided to leave this page in the book, because it could be useful
+for other Rust projects (that do not use Bevy or something else that pulls
+in broken dependencies).
+
 ---
 
 Rust offers two different toolchains for building for Windows:
- - [MSVC](#first-time-setup-msvc): the default when working in Windows, requires downloading Microsoft SDKs
- - [GNU](#first-time-setup-gnu): alternative MINGW-based build
+ - [MSVC](#first-time-setup-msvc)
+ - [GNU](#first-time-setup-gnu)
 
 On macOS, the GNU software is not readily-available. I don't know how it could
 be installed. Even if possible, it might be difficult to set up.

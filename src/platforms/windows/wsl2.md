@@ -16,6 +16,7 @@ be run just fine from the Linux commandline, and it will seamlessly run on the
 host system! This way, you don't need any GPU drivers or GUI support inside
 your WSL2 Linux environment. Also, you will be running and testing the Windows
 build of your game, so you can see how it will really perform on Windows.
+It will run with full performance and use your host Windows GPU drivers.
 
 Note that when you run Windows binaries from WSL2, they don't get the Linux
 environment variables. `cargo run` does not just work, because your Bevy game
@@ -28,8 +29,8 @@ The process can be automated with a little script, to use instead of `cargo run`
 
 ```sh
 #!/bin/sh
-cargo build --target x86_64-pc-windows-msvc &&
-cp target/x86_64-pc-windows-msvc/debug/mygame.exe . &&
+cargo build --target x86_64-pc-windows-gnu &&
+cp target/x86_64-pc-windows-gnu/debug/mygame.exe . &&
 exec ./mygame.exe "$@"
 ```
 
@@ -53,9 +54,9 @@ support. It should allow you to simply compile your Bevy game in Linux and
 run it. WSLg will do the dark magic needed to forward graphics and audio to
 the Windows host.
 
-Your game will only run with 60 FPS, and there will be other performance
-overheads. WSLg is effectively RDP (Remote Desktop) under the hood. It's
-like streaming video from the VM to the host. Some things might be
+Your game will run locked to 60 FPS, and there will be other performance
+problems. WSLg is effectively RDP (Remote Desktop) under the hood. It's
+like streaming video from the VM to the host. Some functionality might be
 broken/unsupported.
 
 Both Wayland and X11 should work. Wayland is recommended, so be sure to
@@ -88,7 +89,7 @@ sudo apt install vulkan-tools
 (`dzn`, Microsoft's Vulkan driver for WSL2, is technically non-conformant,
 so there may be bugs and other issues, but it seems to work fine)
 
-Now, you can simply run your Bevy project in Linux:
+Now, you can simply run your Bevy project in Linux in the usual way:
 
 ```sh
 cargo run
