@@ -26,7 +26,7 @@ hand to visualize the 3 axes: thumb=X, index=Y, middle=Z.
 It is the same as Godot, Maya, and OpenGL. Compared to Unity, the Z axis
 is inverted.
 
-![Chart comparing coordinate system orientation in different game engines and 3D software](/img/handedness.png)
+![Chart comparing coordinate system orientation in different game engines and 3D software](../img/handedness.png)
 
 (graphic modifed and used with permission; original by [@FreyaHolmer](https://twitter.com/FreyaHolmer))
 

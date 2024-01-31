@@ -78,7 +78,7 @@ For reference, a good neutral value is 45° (narrower, Bevy default) or 60°
 {{#include ../code012/src/d3/camera.rs:fov}}
 ```
 
-![Side-by-side comparison of different FOV values.](/img/camera-3d-fov.png)
+![Side-by-side comparison of different FOV values.](../img/camera-3d-fov.png)
 
 In the above image, we are halving/doubling the FOV and doubling/halving
 how far away the camera is positioned, to compensate. Note how you can see
@@ -101,14 +101,14 @@ If the camera does not move, decreasing the FOV makes everything appear closer
 and increasing it makes everything appear more distant:
 
 ![Side-by-side comparison of a "zoomed in" (small FOV) and a "zoomed out" (large FOV)
-3D scene](/img/camera-3d-fov-zoom.png)
+3D scene](../img/camera-3d-fov-zoom.png)
 
 Contrast this with moving the camera itself (using the
 [transform][cb::transform]) closer or further away, while keeping the FOV the
 same:
 
 ![Side-by-side comparison of a camera positioned nearer to vs. further away from a
-3D scene](/img/camera-3d-position.png)
+3D scene](../img/camera-3d-position.png)
 
 In some applications (such as 3D editors), moving the camera might be preferable,
 instead of changing the FOV.
@@ -135,7 +135,7 @@ to handle window size / resolution.
 {{#include ../code012/src/d3/camera.rs:ortho}}
 ```
 
-![Visualization of a 3D scene with orthographic projection](/img/camera-3d-orthographic.png)
+![Visualization of a 3D scene with orthographic projection](../img/camera-3d-orthographic.png)
 
 #### Zooming
 
@@ -146,4 +146,4 @@ how much of the scene is visible.
 {{#include ../code012/src/d3/camera.rs:orthographic-zoom}}
 ```
 
-![Side-by-side comparison of different orthographic projection scale in 3D](/img/camera-3d-orthographic-zoom.png)
+![Side-by-side comparison of different orthographic projection scale in 3D](../img/camera-3d-orthographic-zoom.png)

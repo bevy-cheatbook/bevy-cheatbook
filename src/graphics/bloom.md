@@ -91,8 +91,8 @@ BloomSettings {
 
 Here is an example of Bloom in 3D:
 
-![The Bloom effect on street lamps.](/img/bloom_3d.png)
+![The Bloom effect on street lamps.](../img/bloom_3d.png)
 
 And here is a 2D example:
 
-![The Bloom effect on a simple hexagon.](/img/bloom_2d.png)
+![The Bloom effect on a simple hexagon.](../img/bloom_2d.png)

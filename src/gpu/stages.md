@@ -14,7 +14,7 @@ explains the intended behavior, which will land in a future Bevy version. You
 have to understand it, because any custom rendering code you write will have to
 work with it in mind.
 
-![Diagram of pipelined rendering timings in app-bound and render-bound cases](/img/pipelined-rendering.png)
+![Diagram of pipelined rendering timings in app-bound and render-bound cases](../img/pipelined-rendering.png)
 
 Every frame, [Extract](#extract) serves as the synchronization point.
 
