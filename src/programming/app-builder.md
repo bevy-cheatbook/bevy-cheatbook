@@ -34,8 +34,8 @@ multiple things at once.
 Schedules cannot [(yet)][bevy::279] be modified at runtime; all
 [systems][cb::system] you want to run must be added/configured in the
 [`App`][bevy::App] ahead of time. You can control individual systems using [run
-conditions][cb::rc]. You can also [dynamically enable/disable entire
-schedules][cb::schedule-dynamic] using the
+conditions][cb::rc]. You can also dynamically enable/disable entire
+[schedules][cb::schedule] using the
 [`MainScheduleOrder`][bevy::MainScheduleOrder] [resource][cb::res].
 
 ## Builtin Bevy Functionality

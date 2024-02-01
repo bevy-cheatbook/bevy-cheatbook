@@ -123,7 +123,6 @@
 [cb::render::vertexattribute]: /TODO.md
 [cb::res]: /programming/res.md
 [cb::runcriteria]: /programming/run-criteria.md
-[cb::schedule-dynamic]: /patterns/schedule-dynamic.md
 [cb::schedule]: /programming/schedules.md
 [cb::sprite]: /2d/sprites.md
 [cb::stage]: /programming/schedules.md
