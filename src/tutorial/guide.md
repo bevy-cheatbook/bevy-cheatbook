@@ -72,7 +72,6 @@ project. After you are confident with the basics, you should learn these.
    - [Events][cb::event]
    - [System Order of Execution][cb::system-order]
    - [Run Conditions][cb::rc]
-   - [System Sets][cb::systemset]
    - [Local Resources][cb::local]
    - [Schedules][cb::schedule]
    - [States][cb::state]

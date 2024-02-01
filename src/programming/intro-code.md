@@ -144,4 +144,4 @@ created in code:
 {{#include ../code012/src/programming/intro_code.rs:example-scheduling}}
 ```
 
-(learn more about: [schedules][cb::schedule], [system sets][cb::systemset], [states][cb::state], [run conditions][cb::rc], [system ordering][cb::system-order])
+(learn more about: [schedules][cb::schedule], [states][cb::state], [run conditions][cb::rc], [system ordering][cb::system-order])

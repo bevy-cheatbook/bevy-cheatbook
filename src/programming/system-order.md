@@ -55,7 +55,7 @@ you can add ordering constraints:
 
 ## Labels
 
-For more advanced use cases, you can use [labels][cb::label]. Labels can
+For more advanced use cases, you can use [labels][cb::system-label]. Labels can
 either be strings, or custom types (like `enum`s) that derive `SystemLabel`.
 
 This allows you to affect multiple systems at once, with the same constraints. 
@@ -67,9 +67,6 @@ Each label is a reference point that other systems can be ordered around.
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:system-labels}}
 ```
-
-When you have multiple systems with common labels or ordering, it may be
-convenient to use [system sets][cb::systemset].
 
 ## Circular Dependencies
 

@@ -80,7 +80,6 @@
 [cb::ide::vim]: /setup/editor/vim.md
 [cb::ide::vscode]: /setup/editor/vscode.md
 [cb::ide]: /setup/editor.md
-[cb::label]: /programming/labels.md
 [cb::local]: /programming/local.md
 [cb::log]: /fundamentals/log.md
 [cb::multi-world]: /programming/sub-apps.md
@@ -136,7 +135,6 @@
 [cb::system-pipe]: /programming/system-piping.md
 [cb::system-tests]: /patterns/system-tests.md
 [cb::system]: /programming/systems.md
-[cb::systemset]: /programming/system-sets.md
 [cb::time]: /fundamentals/time.md
 [cb::tonemap]: /graphics/hdr-tonemap.md#tonemapping
 [cb::tools]: /setup/bevy-tools.md

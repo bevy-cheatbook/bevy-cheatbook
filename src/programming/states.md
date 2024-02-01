@@ -19,16 +19,11 @@ In every state, you can have different [systems][cb::system] running. You
 can also add one-shot setup and cleanup systems to run when entering or
 exiting a state.
 
-To use states, define an enum type and add [system sets][cb::systemset]
-to your [app builder][cb::app]:
-
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:app-states}}
 ```
 
-It is OK to have multiple system sets for the same state.
-
-This is useful when you want to place [labels][cb::label] and use [explicit
+This is useful when you want to place [labels][cb::system-label] and use [explicit
 system ordering][cb::system-order].
 
 This can also be useful with [Plugins][cb::plugin]. Each plugin can add
