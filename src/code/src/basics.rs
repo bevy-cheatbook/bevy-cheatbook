@@ -1102,7 +1102,7 @@ fn play_music(
 // ANCHOR_END: check-state
 
 // ANCHOR: change-state
-fn enter_game(mut app_state: ResMut<State<AppState>>) {
+fn enter_game(mut app_state: ResMut<NextState<AppState>>) {
     app_state.set(AppState::InGame).unwrap();
     // ^ this can fail if we are already in the target state
     // or if another state change is already queued
@@ -1149,22 +1149,14 @@ fn main() {
         .add_system(play_music)
 
         // systems to run only in the main menu
-        .add_system_set(
-            SystemSet::on_update(AppState::MainMenu)
-                .with_system(handle_ui_buttons)
-        )
+        .add_systems(Update, handle_ui_buttons.run_if(in_state(AppState::MainMenu)))
 
         // setup when entering the state
-        .add_system_set(
-            SystemSet::on_enter(AppState::MainMenu)
-                .with_system(setup_menu)
-        )
+        .add_systems(OnExit::<AppState>(AppState::MainMenu), close_menu)       
 
         // cleanup when exiting the state
-        .add_system_set(
-            SystemSet::on_exit(AppState::MainMenu)
-                .with_system(close_menu)
-        )
+        .add_systems(OnExit::<AppState>(AppState::MainMenu), close_menu)
+
         .run();
 }
 // ANCHOR_END: app-states
