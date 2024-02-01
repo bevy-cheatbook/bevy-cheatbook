@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = { version = "0.9.1" }
+bevy = { version = "0.12.1" }
 # bevy = { git = "https://github.com/bevyengine/bevy" }
 
 [dev-dependencies]
