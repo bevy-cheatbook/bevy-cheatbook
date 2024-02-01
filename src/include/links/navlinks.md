@@ -65,7 +65,7 @@
 [cb::getting-started]: /setup/getting-started.md
 [cb::git-plugins]: /setup/bevy-git.md#advice-for-plugin-authors
 [cb::git]: /setup/bevy-git.md
-[cb::gizmos]: /fundamentals/gizmos.md
+[cb::gizmos]: https://docs.rs/bevy/0.12.1/bevy/gizmos/gizmos/struct.Gizmos.html
 [cb::gltf-asset-path]: /3d/gltf.md#assetpath-with-labels
 [cb::gltf-master]: /3d/gltf.md#gltf-master-asset
 [cb::gltf]: /3d/gltf.md
