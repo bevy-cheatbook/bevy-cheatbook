@@ -1087,7 +1087,7 @@ fn play_music(
     app_state: Res<State<AppState>>,
     // ...
 ) {
-    match app_state.current() {
+    match app_state.get() {
         AppState::MainMenu => {
             // TODO: play menu music
         }
