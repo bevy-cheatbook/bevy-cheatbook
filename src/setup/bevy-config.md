@@ -65,7 +65,7 @@ features = [
 
   # Bevy functionality:
   "asset_processor",      # Asset processing
-  "file_watcher",         # Asset hot-reloading
+  "filesystem_watcher",   # Asset hot-reloading
   "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
   "serialize",            # Support for `serde` Serialize/Deserialize
   "async-io",             # Make bevy use `async-io` instead of `futures-lite`
@@ -179,7 +179,7 @@ While you are developing your project, these features might be useful:
 
 #### Asset hot-reloading and processing
 
-The `file_watcher` feature enables support for [hot-reloading of
+The `filesystem_watcher` feature enables support for [hot-reloading of
 assets][cb::asset-hotreload], supported on desktop platforms.
 
 The `asset_processor` feature enables support for [asset
