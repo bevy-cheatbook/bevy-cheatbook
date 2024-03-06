@@ -30,11 +30,6 @@ If you are adding or changing any of the book content, your PR will probably be
 ignored or closed. I will probably treat it like I do issues: go do the thing
 myself eventually, and then close your PR.
 
-PRs create more work for me. They make life harder, not easier. Every time
-someone has made a PR before, I've had to basically rewrite it / redo
-the work myself. And also figure out how to respond to the author. And
-also wrangle merge conflicts and git branches. Please don't. I'm tired.
-
 ## Licensing
 
 To avoid complications with copyright and licensing, you agree to provide

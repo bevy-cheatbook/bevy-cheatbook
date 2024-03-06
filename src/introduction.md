@@ -94,7 +94,7 @@ If you like the Bevy Game Engine, you should consider donating to the project.
 
 ## License
 
-Copyright © 2021-2023 Ida (IyesGames)
+Copyright © 2021-2024 Ida Borisova (IyesGames)
 
 All code in the book is provided under the
 [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
@@ -129,7 +129,9 @@ Development of this book is hosted on [GitHub][project::cb].
 Please file GitHub Issues for any wrong/confusing/misleading information,
 as well as suggestions for new content you'd like to be added to the book.
 
-Contributions are accepted, with some limitations.
+Please do not create PRs. Or if you do, be prepared for them to be ignored
+or closed if I find that they take up too much of my time or don't help me
+enough.
 
 See the [Contributing][cb::contributing] section for all the details.
 

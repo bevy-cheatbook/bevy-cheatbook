@@ -4,5 +4,6 @@
 .idea/
 /book
 /target
+/src/code*/target
 Cargo.lock
 .DS_Store

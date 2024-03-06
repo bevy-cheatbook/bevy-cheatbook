@@ -13,6 +13,7 @@
 [bevy::blog::0.10]: https://bevyengine.org/news/bevy-0-10
 [bevy::blog::0.11]: https://bevyengine.org/news/bevy-0-11
 [bevy::blog::0.12]: https://bevyengine.org/news/bevy-0-12
+[bevy::blog::0.13]: https://bevyengine.org/news/bevy-0-13
 [bevy::blog::0.6]: https://bevyengine.org/news/bevy-0-6
 [bevy::blog::0.9]: https://bevyengine.org/news/bevy-0-9
 [bevy::contributing]: https://github.com/bevyengine/bevy/blob/main/CONTRIBUTING.md
