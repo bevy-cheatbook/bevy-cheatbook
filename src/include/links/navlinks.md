@@ -118,6 +118,7 @@
 [cb::render::rendercommand]: /TODO.md
 [cb::render::shader]: /TODO.md
 [cb::render::stage]: /gpu/stages.md
+[cb::render::renderset]: /gpu/stages.md
 [cb::render::texture]: /TODO.md
 [cb::render::texturecache]: /TODO.md
 [cb::render::vertexattribute]: /TODO.md
