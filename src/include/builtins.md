@@ -249,7 +249,7 @@ Bevy UI:
 []:#(ANCHOR: resources-wgpu)
  - [`RenderDevice`][bevy::RenderDevice]:
    The GPU device, used for creating hardware resources for rendering/compute
- - [`RenderQueue`][bevy::RenderDevice]:
+ - [`RenderQueue`][bevy::RenderQueue]:
    The GPU queue for submitting work to the hardware
  - [`RenderAdapter`][bevy::RenderAdapter]:
    Handle to the physical GPU hardware
