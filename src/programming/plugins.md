@@ -86,9 +86,6 @@ this way.
 Plugins give you a nice way to publish Bevy-based libraries for other people
 to easily include into their projects.
 
-If you intend to publish plugins as crates for public use, you should read
-[the official guidelines for plugin authors][bevy::plugins_guidelines].
-
 Don't forget to submit an entry to [Bevy Assets][bevyassets] on the official
 website, so that people can find your plugin more easily. You can do this
 by making a PR in [the Github repo][project::bevyassets].
