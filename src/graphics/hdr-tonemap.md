@@ -130,4 +130,4 @@ Pay attention to the quality/smoothness of the green color gradient on the
 ground plane. In games with photorealistic graphics, similar situations can
 arise in the sky, in dark rooms, or lights glowing with a bloom effect.
 
-![Visual comparison of a scene simple cube on a flat green plane, with dithering disabled/enabled.](/img/dithering.png)
+![Visual comparison of a scene simple cube on a flat green plane, with dithering disabled/enabled.](../img/dithering.png)

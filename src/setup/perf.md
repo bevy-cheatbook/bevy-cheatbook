@@ -171,7 +171,7 @@ framerate, or it might not be. Here is a diagram to visualize what happens:
 
 ![Timeline comparing pipelined and non-pipelined rendering. In the pipelined
 case, one additional frame is displayed before the effects of the mouse click
-can be seen on-screen.](/img/pipelined-latency.png)
+can be seen on-screen.](../img/pipelined-latency.png)
 
 The actual mouse click happens in-between frames. In both cases, frame #4 is
 when the input is detected by Bevy. In the pipelined case, rendering
