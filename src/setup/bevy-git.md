@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header-none.md}}
 
 # Using bleeding-edge Bevy (bevy main)
 
@@ -41,7 +41,7 @@ encouraged to try the latest in-development code from git! The latest
 release is often missing the freshest bug fixes, usability improvements,
 and features. It may be compelling to join in on the action!
 
-If you are new to Bevy, this might not be for you. You might be more
+If you are new to Bevy, this might not be for you. You will be more
 comfortable using the released version. It will have the best compatibility
 with community plugins and documentation.
 
@@ -169,10 +169,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          ref: 'my-bevy-main-support-branch'
 
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install g++ pkg-config libx11-dev libasound2-dev libudev-dev
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable

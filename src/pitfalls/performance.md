@@ -21,8 +21,7 @@ The above is enough to make Bevy run fast. It will only slow down clean
 builds, without affecting recompilation times for your project.
 
 If your own code does CPU-intensive work, you might want to also enable some
-optimization for it. However, this might greatly affect compile times in some
-projects (similar to a full release build), so it is not generally recommended.
+optimization for it.
 
 ```toml
 # Enable only a small amount of optimization in debug mode
@@ -72,9 +71,15 @@ it for *actual* release builds that you send to your users.
 
 If you want, you can also enable LTO (Link-Time-Optimization) for the actual
 release builds, to squeeze out even more performance at the cost of very
-slow compile times:
+slow compile times.
+
+Here is a configuration for the most aggressive optimizations possible:
 
 ```toml
 [profile.release]
-lto = "thin"
+lto = true
+opt-level = 3
+codegen-units = 1
+incremental = false
+debug = false
 ```

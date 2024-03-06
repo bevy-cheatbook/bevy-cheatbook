@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # New to Bevy? Guided Tutorial!
 
@@ -139,4 +139,4 @@ functionality, or do other advanced things with Bevy.
    - [Using bleeding-edge Bevy (main)][cb::bevy-main]
  - [Bevy Render (GPU) Framework][chapter::gpu]
    - [Render Architecture Overview][cb::render-architecture]
-   - [Render Stages][cb::render::stage]
+   - [Render Sets][cb::render::stage]

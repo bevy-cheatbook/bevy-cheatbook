@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Show Framerate
 
@@ -8,7 +8,7 @@ monitoring performance.
 To enable it, add Bevy's diagnostic plugin to your [app][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/cookbook/print_framerate.rs:setup}}
+{{#include ../code013/src/cookbook/print_framerate.rs:setup}}
 ```
 
 ## Print to Console / Log
@@ -18,7 +18,7 @@ The simplest way to use it is to print the diagnostics to the console
 a conditional-compilation attribute.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/cookbook/print_framerate.rs:log}}
+{{#include ../code013/src/cookbook/print_framerate.rs:log}}
 ```
 
 ## In-Game / On-Screen FPS counter
@@ -39,11 +39,11 @@ readable FPS counter:
   </summary>
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/cookbook/print_framerate.rs:ui}}
+{{#include ../code013/src/cookbook/print_framerate.rs:ui}}
 ```
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/cookbook/print_framerate.rs:ui-app}}
+{{#include ../code013/src/cookbook/print_framerate.rs:ui-app}}
 ```
 
 </details>

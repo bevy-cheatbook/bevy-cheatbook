@@ -31,7 +31,9 @@ let xf_rot2d = Transform::from_rotation(Quat::from_rotation_z((30.0_f32).to_radi
 
 // Simple 3D rotation by Euler-angles (X, Y, Z)
 let xf_rot2d = Transform::from_rotation(Quat::from_euler(
-    EulerRot::XYZ,
+    // YXZ order corresponds to the common
+    // "yaw"/"pitch"/"roll" convention
+    EulerRot::YXZ,
     (20.0_f32).to_radians(),
     (10.0_f32).to_radians(),
     (30.0_f32).to_radians(),

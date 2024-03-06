@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Transforms
 
@@ -16,7 +16,7 @@ anything that spawns 2D or 3D objects.
 
 First, a quick definition, if you are new to game development:
 
-a Transform is what allows you to place an object in the game world. It
+A Transform is what allows you to place an object in the game world. It
 is a combination of the object's "translation" (position/coordinates),
 "rotation", and "scale" (size adjustment).
 
@@ -24,7 +24,7 @@ You move objects around by modifying the translation, rotate them by modifying
 the rotation, and make them larger or smaller by modifying the scale.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/transforms.rs:transform-init}}
+{{#include ../code013/src/fundamentals/transforms.rs:transform-init}}
 ```
 
 ## Transform Components
@@ -42,7 +42,7 @@ you can use one of the following to ensure you don't miss them:
  - [`TransformBundle`][bevy::TransformBundle] for just the transforms
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/transforms.rs:spatialbundle}}
+{{#include ../code013/src/fundamentals/transforms.rs:spatialbundle}}
 ```
 
 ### `Transform`
@@ -57,7 +57,7 @@ component is relative to the parent. This means that the child object will
 move/rotate/scale along with the parent.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/transforms.rs:transform-mut}}
+{{#include ../code013/src/fundamentals/transforms.rs:transform-mut}}
 ```
 
 ### `GlobalTransform`
@@ -100,10 +100,10 @@ directly, you should [add][cb::app] your
 [`TransformSystem::TransformPropagate`][bevy::TransformSystem].
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/transforms.rs:globaltransform}}
+{{#include ../code013/src/fundamentals/transforms.rs:globaltransform}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/transforms.rs:globaltransform-app}}
+{{#include ../code013/src/fundamentals/transforms.rs:globaltransform-app}}
 ```
 
 ## `TransformHelper`
@@ -123,7 +123,7 @@ but you also need to know the current up-to-date position of the entity you
 are following.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/transforms.rs:transformhelper}}
+{{#include ../code013/src/fundamentals/transforms.rs:transformhelper}}
 ```
 
 Internally, [`TransformHelper`][bevy::TransformHelper] behaves like two

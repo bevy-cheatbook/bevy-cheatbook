@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # List All Resource Types
 
@@ -6,11 +6,11 @@ This example shows how to print a list of all types that have been added as
 [resources][cb::res].
 
 ```rust,no_run,noplayground
-{{#include ../code012/examples/print-resources.rs:example}}
+{{#include ../code013/examples/print-resources.rs:example}}
 ```
 
 ```rust,no_run,noplayground
-{{#include ../code012/examples/print-resources.rs:app}}
+{{#include ../code013/examples/print-resources.rs:app}}
 ```
 
 It lists the types of all the resources *that currently exist* in your [ECS
