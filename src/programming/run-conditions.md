@@ -11,14 +11,14 @@ any [system parameters][builtins::systemparam], like a normal system, but
 they must all be read-only (immutable).
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/rc.rs:fn}}
+{{#include ../code013/src/programming/run_conditions.rs:fn}}
 ```
 
 RCs can be applied to individual [systems][cb::system] or to entire [system
 sets][cb::systemset].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/rc.rs:app}}
+{{#include ../code013/src/programming/run_conditions.rs:app}}
 ```
 
 When applied to a single [system][cb::system], Bevy will evaluate the RC at
