@@ -114,7 +114,7 @@
   - [Direct ECS World Access](./programming/world.md)
   - [Schedules](./programming/schedules.md)
   - [System Order of Execution](./programming/system-order.md)
-  - [Run Criteria](./programming/run-criteria.md)
+  - [Run Conditions](./programming/run-conditions.md)
   - [System Sets](./programming/system-sets.md)
   - [States](./programming/states.md)
   - [Plugins](./programming/plugins.md)

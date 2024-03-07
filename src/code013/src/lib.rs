@@ -57,7 +57,7 @@ mod programming {
     mod events;
     mod local;
     mod exclusive;
-    mod rc;
+    mod run_conditions;
     mod system_sets;
     mod paramset;
     mod non_send;
