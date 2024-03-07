@@ -1,52 +1,211 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
-# Stages
+# Schedules
 
-All [systems][cb::system] to be run by Bevy are contained in stages. Every
-frame update, Bevy executes each stage, in order. Within each stage, Bevy's
-scheduling algorithm can run many systems in parallel, using multiple CPU
-cores for good performance.
+See also: [ECS Intro: Your Code][cb::ecs-intro-code], for a general overview
+of Bevy's scheduling framework.
 
-The boundaries between stages are effectively hard synchronization points.
-They ensure that all systems of the previous stage have completed before any
-systems of the next stage begin, and that there is a moment in time when no
-systems are in-progress.
+---
 
-This makes it possible/safe to apply [Commands][cb::commands]. Any operations
-performed by systems using [`Commands`][bevy::Commands] are applied at the
-end of that stage.
+All [systems][cb::system] to be run by Bevy are contained and organized using
+schedules. A schedule is a collection of systems, with metadata for how they
+should run, and an associated executor algorithm to run the systems.
 
-{{#include ../include/builtins.md:stages}}
+## Scheduling Systems
 
-By default, when you add your systems, they are added to
-[`CoreStage::Update`][bevy::CoreStage]. Startup systems are added to
-[`StartupStage::Startup`][bevy::StartupStage].
+If you want a [system][cb::system] to be run by Bevy, you need to add it to a
+schedule. Writing a new Rust function and forgetting to add it / register it
+with Bevy is a common mistake.
 
-Bevy's internal systems are in the other stages, to ensure they are ordered
-correctly relative to your game logic.
-
-If you want to add your own systems to any of Bevy's internal stages, you
-need to beware of potential unexpected interactions with Bevy's own internal
-systems. Remember: Bevy's internals are implemented using ordinary systems
-and ECS, just like your own stuff!
-
-You can add your own additional stages. For example, if we want our debug
-systems to run after our game logic:
+Whenever you add a system, you specify what schedule to put it in:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:custom-stage}}
+{{#include ../code013/src/programming/schedules.rs:add-system}}
 ```
 
-If you need to manage when your systems run, relative to one another, it
-is generally preferable to avoid using stages, and to use [explicit system
-ordering][cb::system-order] instead. Stages limit parallel execution and
-the performance of your game.
+### Per-System Configuration
 
-However, stages can make it easier to organize things, when you really want
-to be sure that all previous systems have completed. Stages are also the
-only way to apply [Commands][cb::commands].
+You can add metadata to your systems, to affect how they will be run.
 
-If you have systems that need to rely on the actions that other systems have
-performed by using [Commands][cb::commands], and need to do so during the
-same frame, placing those systems into separate stages is the only way to
-accomplish that.
+This can include:
+ - [Run Conditions][cb::rc] to control if a system should run
+ - [Ordering Dependencies][cb::system-order], if a system should run before/after specific other systems in the same schedule
+ - [System Sets][cb::systemset] to group systems together, so common configuration can be applied to all of them
+
+When the schedule runs, the executor algorithm will honor all of this
+configuration when determining if a system is ready to run. A system is ready
+when all of the following is true:
+ - No other currently-running system is accessing any of the same data mutably (as per the [system parameters][cb::system-param])
+ - All of the systems [ordered][cb::system-order] "before" have finished or have been skipped due to run conditions
+ - The system's [run conditions][cb::rc] all return true
+
+When a system becomes ready, it will be run on an available CPU thread. Systems
+run in a non-deterministic order by default! A system might run at different
+times every frame. If you care about its relationship to other systems, add
+[ordering dependencies][cb::system-order].
+
+### Dynamically Adding/Removing Systems
+
+Bevy's schedules do not (yet?) support adding and removing systems at runtime.
+You need to configure everything ahead of time.
+
+You should add all systems you might want to run, and then control them using
+[run conditions][cb::rc]. That is the mechanism for disabling them if they
+shouldn't run.
+
+## Bevy's App Structure
+
+Bevy has three primary/foundational schedules: `Main`, `Extract`, `Render`. There
+are also other schedules, which are managed and run within `Main`.
+
+In a normal Bevy app, the `Main`+`Extract`+`Render` schedules are run repeatedly
+in a loop. Together, they produce one frame of your game. Every time `Main`
+runs, it runs a sequence of other schedules. On its first run, it also first
+runs a sequence of "startup" schedules.
+
+Most Bevy users only have to deal with the sub-schedules of `Main`. `Extract`
+and `Render` are only relevant to graphics developers who want to develop
+new/custom rendering features for the engine. This page is only focused on
+`Main`. If you want to learn more about `Extract` and `Render`, [see this
+page about Bevy's rendering architecture][cb::render-architecture].
+
+## The Main Schedule
+
+`Main` is where all the application logic runs. It is a sort of meta-schedule,
+whose job is to run other schedules in a specific order. You should not add
+any custom systems directly to `Main`. You should add your systems to the various
+schedules managed by `Main`.
+
+Bevy provides the following schedules, to organize all the systems:
+
+ - [`First`][bevy::First],
+   [`PreUpdate`][bevy::PreUpdate],
+   [`StateTransition`][bevy::StateTransition],
+   [`RunFixedMainLoop`][bevy::RunFixedMainLoop],
+   [`Update`][bevy::Update],
+   [`PostUpdate`][bevy::PostUpdate],
+   [`Last`][bevy::Last]
+   - These schedules are run by `Main` every time it runs
+ - `PreStartup`, `Startup`, `PostStartup`
+   - These schedules are run by `Main` once, the first time it runs
+ - [`FixedMain`][bevy::FixedMain]
+   - The [fixed timestep][cb::fixedtimestep] equivalent of the `Main` schedule.
+   - Run by `RunFixedMainLoop` as many times as needed, to catch up to the fixed timestep interval.
+ - [`FixedFirst`][bevy::FixedFirst],
+   [`FixedPreUpdate`][bevy::FixedPreUpdate],
+   [`FixedUpdate`][bevy::FixedUpdate],
+   [`FixedPostUpdate`][bevy::FixedPostUpdate],
+   [`FixedLast`][bevy::FixedLast]
+   - The [fixed timestep][cb::fixedtimestep] equivalents of the `Main` sub-schedules.
+ - `OnEnter(…)`/`OnExit(…)`/`OnTransition(…)`
+   - These schedules are run by `StateTransition` on [state][cb::state] changes
+
+The intended places for most user systems (your game logic) are `Update`,
+`FixedUpdate`, `Startup`, and the [state][cb::state] transition schedules.
+
+`Update` is for your usual game logic that should run every frame. `Startup` is
+useful to perform initialization tasks, before the first normal frame update
+loop. `FixedUpdate` is if you want to use a [fixed timestep][cb::fixedtimestep].
+
+The other schedules are intended for engine-internal functionality. Splitting
+them like that ensures that Bevy's internal engine systems will run correctly
+with respect to your systems, without any configuration on your part.
+Remember: Bevy's internals are implemented using ordinary systems
+and ECS, just like your own stuff!
+
+If you are developing plugins to be used by other people, you might be
+interested in adding functionality to `PreUpdate`/`PostUpdate` (or the `Fixed`
+equivalents), so it can run alongside other "engine systems". Also consider
+`PreStartup` and `PostStartup` if you have startup systems that should be
+separated from your users' startup systems.
+
+`First` and `Last` exist only for special edge cases, if you really need to
+ensure something runs before/after *everything* else, including all the normal
+"engine-internal" code.
+
+## Configuring Schedules
+
+Bevy also offers some features that can be configured at the schedule level.
+
+### Single-Threaded Schedules
+
+If you consider multi-threading to not be working well for you, for whatever reason,
+you can disable it per-schedule.
+
+In a single-threaded schedule, systems will run one at a time, on the main
+thread.  However, the same "readiness" algorithm is still applied and so
+systems can run in an undefined order. You should still specify [ordering
+dependencies][cb::system-order] where you need determinism.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/schedules.rs:single-threaded}}
+```
+
+### Ambiguity Detection
+
+The Ambiguity Detector is an optional Bevy feature that can help you debug issues
+related to non-determinism.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/schedules.rs:ambiguity-detector}}
+```
+
+It will print warnings for any combination of systems where at least one of
+them accesses some piece of data ([resource][cb::res] or
+[component][cb::component]) mutably, but the others don't have explicit
+[ordering dependencies][cb::system-order] on that system.
+
+Such situations might indicate a bug, because you don't know if the systems that
+read the data would run before or after the system that mutates the data.
+
+It is up to you to decide if you care about this, on a case-by-case basis.
+
+### Deferred Application
+
+Normally, Bevy will automatically manage where [Commands][cb::commands]
+and other deferred operations get applied. If [systems][cb::system] have
+[ordering dependencies][cb::system-order] on one another, Bevy will make
+sure to apply any pending deferred operations from the first system before
+the second system runs.
+
+If you would like to disable this automatic behavior and manually manage
+the sync points, you can do that.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/schedules.rs:disable-auto-apply-deferred}}
+```
+
+Now, to manually create sync points, add special `apply_deferred` systems
+where you like them:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/schedules.rs:apply-deferred}}
+```
+
+## Main Schedule Configuration
+
+The order of schedules to be run by `Main` every frame is configured in
+the [`MainScheduleOrder`][bevy::MainScheduleOrder] [resource][cb::res].
+For advanced use cases, if Bevy's predefined schedules don't work for your
+needs, you can change it.
+
+### Creating a New Custom Schedule
+
+As an example, let's say we want to add an additional schedule, that runs every
+frame (like `Update`), but runs before [fixed timestep][cb::fixedtimestep].
+
+First, we need to create a name/label for our new schedule, by creating a Rust
+type (a `struct` or `enum`) and deriving [`ScheduleLabel`][bevy::ScheduleLabel]
++ an assortment of required standard Rust traits.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/schedules.rs:custom-schedule}}
+```
+
+Now, we can init the schedule in the [app][cb::app], add it to
+[`MainScheduleOrder`][bevy::MainScheduleOrder] to make it run every frame
+where we like it, and add some systems to it!
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/schedules.rs:custom-schedule-app}}
+```

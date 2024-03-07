@@ -57,6 +57,7 @@ mod programming {
     mod events;
     mod local;
     mod exclusive;
+    mod schedules;
     mod run_conditions;
     mod system_sets;
     mod states;

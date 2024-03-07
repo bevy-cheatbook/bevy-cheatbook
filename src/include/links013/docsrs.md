@@ -262,3 +262,4 @@
 [bevy::input::common_conditions]: https://docs.rs/bevy/0.13.0/bevy/input/common_conditions/index.html
 [bevy::time::common_conditions]: https://docs.rs/bevy/0.13.0/bevy/time/common_conditions/index.html
 [lwim::common_conditions]: https://docs.rs/leafwing-input-manager/latest/leafwing_input_manager/common_conditions/index.html
+[bevy::ScheduleLabel]: https://docs.rs/bevy/0.13.0/bevy/ecs/schedule/trait.ScheduleLabel.html
