@@ -10,7 +10,7 @@ to serve as a label/identifier. For simple use cases, create an empty `struct`.
 If you need to create multiple related sets, create an `enum`. Every variant
 of the `enum` is a separate system set.
 
-You need to derive `SystemSet` + an assortment of required standard Rust traits:
+You need to derive [`SystemSet`][bevy::SystemSet] + an assortment of required standard Rust traits:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/system_sets.rs:definition}}

@@ -59,6 +59,7 @@ mod programming {
     mod exclusive;
     mod run_conditions;
     mod system_sets;
+    mod states;
     mod paramset;
     mod non_send;
 }

@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # States
 
@@ -16,124 +16,149 @@ This is how you can implement things like:
  - …
 
 In every state, you can have different [systems][cb::system] running. You
-can also add one-shot setup and cleanup systems to run when entering or
-exiting a state.
+can also add setup and cleanup systems to run when entering or exiting a state.
 
-To use states, define an enum type and add [system sets][cb::systemset]
-to your [app builder][cb::app]:
+---
+
+To use states, first define an `enum` type. You need to derive
+[`States`][bevy::States] + an assortment of required standard Rust traits:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:app-states}}
+{{#include ../code013/src/programming/states.rs:definition}}
 ```
 
-It is OK to have multiple system sets for the same state.
+Note: you can have multiple orthogonal states! Create multiple types
+if you want to track multiple things independently!
 
-This is useful when you want to place [labels][cb::label] and use [explicit
-system ordering][cb::system-order].
+You then need to register the state type(s) in the [app builder][cb::app]:
 
-This can also be useful with [Plugins][cb::plugin]. Each plugin can add
-its own set of systems to the same state.
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/states.rs:app-register}}
+```
 
-States are implemented using [run criteria][cb::runcriteria] under the hood.
-These special system set constructors are really just helpers to automatically
-add the state management run criteria.
+## Running Different Systems for Different States
+
+If you want some [systems][cb::system] to only run in specific states,
+Bevy offers an [`in_state`][bevy::in_state] [run condition][cb::rc]. Add it
+to your systems. You probably want to create [system sets][cb::systemset]
+to help you group many systems and control them at once.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/states.rs:app-example}}
+```
+
+Bevy also creates special [`OnEnter`][bevy::OnEnter], [`OnExit`][bevy::OnExit],
+and [`OnTransition`][bevy::OnTransition] [schedules][cb::schedule] for each
+possible value of your state type. Use them to perform setup and cleanup for
+specific states. Any systems you add to them will run once every time the state
+is changed to/from the respective values.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/states.rs:app-example-transitions}}
+```
+
+### With Plugins
+
+This can also be useful with [Plugins][cb::plugin]. You can set up all the state
+types for your project in one place, and then your different plugins can just add
+their systems to the relevant states.
+
+You can also make plugins that are configurable, so that it is possible to specify
+what state they should add their systems to:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/states.rs:plugin-config}}
+```
+
+Now you can configure the plugin when adding it to the app:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/states.rs:plugin-config-app}}
+```
+
+When you are just using [plugins][cb::plugin] to help with internal
+organization of your project, and you know what systems should go into each
+state, you probably don't need to bother with making the plugin configurable
+as shown above. Just hardcode the states / add things to the correct states
+directly.
 
 ## Controlling States
 
-Inside of systems, you can check and control the state using the
-[`State<T>`][bevy::State] resource:
+Inside of systems, you can check the current state using the
+[`State<T>`][bevy::State] [resource][cb::res]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:check-state}}
+{{#include ../code013/src/programming/states.rs:check-state}}
 ```
 
-To change to another state:
+To change to another state, you can use the [`NextState<T>`][bevy::NextState]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:change-state}}
+{{#include ../code013/src/programming/states.rs:change-state}}
 ```
 
-After the systems of the current state complete, Bevy will transition to
-the next state you set.
+This will queue up state transitions to be performed during the next frame
+update cycle.
 
-You can do arbitrarily many state transitions in a single frame update. Bevy
-will handle all of them and execute all the relevant systems (before moving
-on to the next [stage][cb::stage]).
+## State Transitions
 
-## State Stack
+Every frame update, a [schedule][cb::schedule] called
+[`StateTransition`][bevy::StateTransition] runs. There, Bevy will check if
+any new state is queued up in [`NextState<T>`][bevy::NextState] and perform
+the transition for you.
 
-Instead of completely transitioning from one state to another, you can also
-overlay states, forming a stack.
+The transition involves several steps:
+ - A [`StateTransitionEvent`][bevy::StateTransitionEvent] [event][cb::event] is sent.
+ - The [`OnExit(old_state)`][bevy::OnExit] [schedule][cb::schedule] is run.
+ - The [`OnTransition { from: old_state, to: new_state }`][bevy::OnTransition] [schedule][cb::schedule] is run.
+ - The [`OnEnter(new_state)`][bevy::OnEnter] [schedule][cb::schedule] is run.
 
-This is how you can implement things like a "game paused" screen, or an
-overlay menu, with the game world still visible / running in the background.
+[`StateTransitionEvent`][bevy::StateTransitionEvent] is useful in any
+[systems][cb::system] that run regardless of state, but want to know if a
+transition has occurred. You can use it to detect state transitions.
 
-You can have some systems that are still running even when the state is
-"inactive" (that is, in the background, with other states running on top). You
-can also add one-shot systems to run when "pausing" or "resuming" the state.
+The [`StateTransition`][bevy::StateTransition] [schedule][cb::schedule] runs
+after [`PreUpdate`][bevy::PreUpdate] (which contains Bevy engine internals),
+but before [`FixedMain`][bevy::FixedMain] ([fixed timestep][cb::fixedtimestep])
+and [`Update`][bevy::Update], where your game's [systems][cb::system]
+usually live.
 
-In your [app builder][cb::app]:
+Therefore, state transitions happen before your game logic for the current frame.
+
+If doing state transitions once per frame is not enough for
+you, you can add additional transition points, by adding Bevy's
+[`apply_state_transition`][bevy::apply_state_transition] [system][cb::system]
+wherever you like.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:state-stack}}
+{{#include ../code013/src/programming/states.rs:app-custom-transition}}
 ```
 
-To manage states like this, use `push`/`pop`:
+## Known Pitfalls
 
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:state-push-pop}}
-```
+### System set configuration is per-schedule!
 
-(using `.set` as shown before replaces the active state at the top of the stack)
+This is the same general caveat that applies any time you configure [system sets][cb::set].
 
-## Known Pitfalls and Limitations
+Note that `app.configure_sets()` is *per-[schedule][cb::schedule]!* If you configure some sets
+in one [schedule][cb::schedule], that configuration does not carry over to other schedules.
 
-### Combining with Other Run Criteria
+Because states are so schedule-heavy, you have to be especially careful. Don't assume
+that just because you configured a set, you can use it anywhere.
 
-Because states are implemented using [run criteria][cb::runcriteria],
-they cannot be combined with other uses of run criteria, such as [fixed
-timestep][cb::fixedtimestep].
-
-If you try to add another run criteria to your system set, it would replace
-Bevy's state-management run criteria! This would make the system set no
-longer constrained to run as part of a state!
-
-Consider using [`iyes_loopless`][project::iyes_loopless], which does not
-have such limitations.
-
-### Multiple Stages
-
-Bevy states cannot work across multiple [stages][cb::stage]. Workarounds
-are available, but they are broken and buggy.
-
-This is a huge limitation in practice, as it greatly limits how you can use
-[commands][cb::commands]. Not being able to use Commands is a big deal,
-as you cannot do things like spawn entities and operate on them during the
-same frame, among other important use cases.
-
-Consider using [`iyes_loopless`][project::iyes_loopless], which does not
-have such limitations.
-
-### With Input
-
-If you want to use [`Input<T>`][bevy::Input] to trigger state transitions using
-a button/key press, you need to clear the input manually by calling `.reset`:
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:state-input-clear}}
-```
-
-(note that this requires [`ResMut`][bevy::ResMut])
-
-Not doing this can cause [issues][bevy::1700].
-
-[`iyes_loopless`][project::iyes_loopless] does not have this issue.
+For example, your sets from [`Update`][bevy::Update]
+and [`FixedUpdate`][bevy::FixedUpdate] will not work in
+[`OnEnter`][bevy::OnEnter]/[`OnExit`][bevy::OnExit] for your various state
+transitions.
 
 ### Events
 
+This is the same general caveat that applies to any [systems][cb::system] with
+[run conditions][cb::rc] that want to receive [events][cb::event].
+
 When receiving [events][cb::event] in systems that don't run all the time, such
-as during a pause state, you will miss any events that are sent during the frames
-when the receiving systems are not running!
+as during a pause state, you will miss any events that are sent while when
+the receiving systems are not running!
 
 To mitigate this, you could implement a [custom cleanup
 strategy][cb::event-manual], to manually manage the lifetime of the relevant
