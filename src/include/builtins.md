@@ -367,6 +367,8 @@ Bevy UI:
 
 In regular [systems][cb::system]:
 
+[]:#(ANCHOR: systemparam-regular)
+
  - [`Commands`][bevy::Commands]:
    Manipulate the ECS using [commands][cb::commands]
  - [`Query<T, F = ()>`][bevy::Query] (can contain tuples of up to 15 types):
@@ -427,17 +429,24 @@ In regular [systems][cb::system]:
    Helper for generic system abstractions, to avoid lifetime annotations
  - tuples containing any of these types, with up to 16 members
 
+[]:#(ANCHOR_END: systemparam-regular)
+
 In [exclusive systems][cb::exclusive]:
+
+[]:#(ANCHOR: systemparam-exclusive)
+
  - [`&mut World`][bevy::World]:
    Full [direct access to the ECS World][cb::world]
  - [`Local<T>`][bevy::Local]:
    Data [local][cb::local] to the system
- - [`SystemState<P>`][bevy::SystemState]:
+ - [`&mut SystemState<P>`][bevy::SystemState]:
    Emulates a regular system, allowing you to easily access data from the World.
    `P` are the system parameters.
- - [`QueryState<Q, F = ()>`][bevy::QueryState]:
+ - [`&mut QueryState<Q, F = ()>`][bevy::QueryState]:
    Allows you to perform queries on the World, similar to a [`Query`][bevy::Query]
    in regular systems.
+
+[]:#(ANCHOR_END: systemparam-exclusive)
  
 []:#(ANCHOR: systemparam-limits)
 

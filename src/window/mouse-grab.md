@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Grabbing the Mouse
 
@@ -13,13 +13,13 @@ to prevent it from leaving the window during gameplay.
 To grab the cursor:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/window/mouse_grab.rs:grab}}
+{{#include ../code013/src/window/mouse_grab.rs:grab}}
 ```
 
 To release the cursor:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/window/mouse_grab.rs:ungrab}}
+{{#include ../code013/src/window/mouse_grab.rs:ungrab}}
 ```
 
 You should grab the cursor during active gameplay and release it when
@@ -38,9 +38,9 @@ Windows does not natively support `Locked` mode. Bevy will fallback to `Confined
 You could emulate the locked behavior by re-centering the cursor every frame:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/window/mouse_grab.rs:recenter}}
+{{#include ../code013/src/window/mouse_grab.rs:recenter}}
 ```
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/window/mouse_grab.rs:recenter-app}}
+{{#include ../code013/src/window/mouse_grab.rs:recenter-app}}
 ```

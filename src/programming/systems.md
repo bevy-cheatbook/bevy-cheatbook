@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Systems
 
@@ -30,25 +30,25 @@ Some of the possibilities are:
 [See here for a full list!][builtins::systemparam]
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/systems.rs:sys-debug-res}}
+{{#include ../code013/src/programming/systems.rs:sys-debug-res}}
 ```
 
 System parameters can be grouped into tuples (which can be nested). This is
 useful for organization.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/systems.rs:sys-param-tuple}}
+{{#include ../code013/src/programming/systems.rs:sys-param-tuple}}
 ```
 
 {{#include ../include/builtins.md:systemparam-limits}}
 
-There is also a different kind of systems: [exclusive systems][cb::exclusive].
+There is also a different kind of system: [exclusive systems][cb::exclusive].
 They have [full direct access to the ECS World][cb::world], so you can access
 any data you want and do anything, but cannot run in parallel. For most use
 cases, you should use regular parallel systems.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/systems.rs:exclusive}}
+{{#include ../code013/src/programming/systems.rs:exclusive}}
 ```
 
 ## Runtime
@@ -56,7 +56,7 @@ cases, you should use regular parallel systems.
 To run your systems, you need to add them to Bevy via the [app builder][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/systems.rs:systems-appbuilder}}
+{{#include ../code013/src/programming/systems.rs:systems-appbuilder}}
 ```
 
 Be careful: writing a new system `fn` and forgetting to add it to your app is a

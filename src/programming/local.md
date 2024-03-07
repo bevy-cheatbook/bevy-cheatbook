@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # Local Resources
 
@@ -9,6 +9,8 @@ Relevant official examples:
 
 Local resources allow you to have per-[system][cb::system] data. This data
 is not stored in the ECS World, but rather together with your system.
+Nothing outside of your system can access it. The value will be kept across
+subsequent runs of the system.
 
 [`Local<T>`][bevy::Local] is a system parameter similar to
 [`ResMut<T>`][bevy::ResMut], which gives you full mutable access to an
@@ -20,18 +22,20 @@ instance of the type, shared between all systems. On the other hand, every
 that system.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:local-resource}}
+{{#include ../code013/src/programming/local.rs:local-resource}}
 ```
 
 The type must implement [`Default`][std::Default] or
 [`FromWorld`][bevy::FromWorld]. It is automatically initialized.
+It is not possible to specify a custom initial value.
 
 A system can have multiple [`Local`][bevy::Local]s of the same type.
 
 ## Specify an initial value
 
 [`Local<T>`][bevy::Local] is always automatically initialized using the
-default value for the type.
+default value for the type. If that doesn't work for you, there is an
+alternative way to pass data into a system.
 
 If you need specific data, you can use a closure instead. Rust closures
 that take system parameters are valid Bevy systems, just like standalone
@@ -41,12 +45,12 @@ This example shows how to initialize some data to configure a system,
 without using [`Local<T>`][bevy::Local]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:local-config}}
+{{#include ../code013/src/programming/local.rs:closure}}
 ```
 
 Another way to accomplish the same thing is to "return" the system
-from "constructor" helper, that creates it:
+from "constructor" helper function that creates it:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:local-config-return}}
+{{#include ../code013/src/programming/local.rs:constructor}}
 ```

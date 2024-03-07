@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Visibility
 
@@ -11,7 +11,7 @@ Visibility is used to control if something is to be rendered or not. If you
 want an entity to exist in the world, just not be displayed, you can hide it.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/visibility.rs:visibility}}
+{{#include ../code013/src/fundamentals/visibility.rs:visibility}}
 ```
 
 ## Visibility Components
@@ -31,7 +31,7 @@ you can use one of the following to ensure you don't miss them:
  - [`VisibilityBundle`][bevy::VisibilityBundle] for just visibility
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/visibility.rs:spatialbundle}}
+{{#include ../code013/src/fundamentals/visibility.rs:spatialbundle}}
 ```
 
 If you don't do this correctly (say, you manually add just the `Visibility`
@@ -70,10 +70,10 @@ If you want to read the up-to-date value for the current frame, you should
 [`VisibilitySystems::VisibilityPropagate`][bevy::VisibilitySystems].
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/visibility.rs:inheritedvisibility}}
+{{#include ../code013/src/fundamentals/visibility.rs:inheritedvisibility}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/visibility.rs:inheritedvisibility-app}}
+{{#include ../code013/src/fundamentals/visibility.rs:inheritedvisibility-app}}
 ```
 
 ### `ViewVisibility`
@@ -98,8 +98,8 @@ If you want to read the up-to-date value for the current frame, you should
 [`VisibilitySystems::CheckVisibility`][bevy::VisibilitySystems].
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/visibility.rs:viewvisibility}}
+{{#include ../code013/src/fundamentals/visibility.rs:viewvisibility}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code012/src/fundamentals/visibility.rs:viewvisibility-app}}
+{{#include ../code013/src/fundamentals/visibility.rs:viewvisibility-app}}
 ```

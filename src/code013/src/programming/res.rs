@@ -37,9 +37,15 @@ struct MyFancyResource { /* stuff */ }
 impl FromWorld for MyFancyResource {
     fn from_world(world: &mut World) -> Self {
         // You have full access to anything in the ECS World from here.
-        // For example, you can access (and mutate!) other resources:
-        let mut x = world.resource_mut::<MyOtherResource>();
-        x.do_mut_stuff();
+
+        // For example, you can access (and mutate!) other things:
+        {
+            let mut x = world.resource_mut::<MyOtherResource>();
+            x.do_mut_stuff();
+        }
+
+        // You can load assets:
+        let font: Handle<Font> = world.resource::<AssetServer>().load("myfont.ttf");
 
         MyFancyResource { /* stuff */ }
     }
@@ -76,9 +82,9 @@ enum GameMode {
 
 // ANCHOR: commands
 fn my_setup(mut commands: Commands, /* ... */) {
-    // add (or overwrite) resource, using the provided data
+    // add (or overwrite if existing) a resource, with the given value
     commands.insert_resource(GoalsReached { main_goal: false, bonus: 100 });
-    // ensure resource exists (creating if necessary)
+    // ensure resource exists (create it with its default value if necessary)
     commands.init_resource::<MyFancyResource>();
     // remove a resource (if it exists)
     commands.remove_resource::<MyOtherResource>();

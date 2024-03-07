@@ -1,4 +1,4 @@
-{{#include ./include/header012.md}}
+{{#include ./include/header-none.md}}
 
 # General Graphics Features
 

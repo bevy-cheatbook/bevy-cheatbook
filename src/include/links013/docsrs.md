@@ -73,7 +73,11 @@
 [bevy::FallbackImage]: https://docs.rs/bevy/0.13.0/bevy/render/texture/struct.FallbackImage.html
 [bevy::FileDragAndDrop]: https://docs.rs/bevy/0.13.0/bevy/window/enum.FileDragAndDrop.html
 [bevy::First]: https://docs.rs/bevy/0.13.0/bevy/app/struct.First.html
+[bevy::FixedFirst]: https://docs.rs/bevy/0.13.0/bevy/app/struct.FixedFirst.html
+[bevy::FixedLast]: https://docs.rs/bevy/0.13.0/bevy/app/struct.FixedLast.html
 [bevy::FixedMain]: https://docs.rs/bevy/0.13.0/bevy/app/struct.FixedMain.html
+[bevy::FixedPostUpdate]: https://docs.rs/bevy/0.13.0/bevy/app/struct.FixedPostUpdate.html
+[bevy::FixedPreUpdate]: https://docs.rs/bevy/0.13.0/bevy/app/struct.FixedPreUpdate.html
 [bevy::FixedUpdate]: https://docs.rs/bevy/0.13.0/bevy/app/struct.FixedUpdate.html
 [bevy::FontAtlasSet]: https://docs.rs/bevy/0.13.0/bevy/text/struct.FontAtlasSet.html
 [bevy::Font]: https://docs.rs/bevy/0.13.0/bevy/text/struct.Font.html
@@ -100,6 +104,7 @@
 [bevy::Image]: https://docs.rs/bevy/0.13.0/bevy/render/texture/struct.Image.html
 [bevy::Ime]: https://docs.rs/bevy/0.13.0/bevy/window/enum.Ime.html
 [bevy::InheritedVisibility]: https://docs.rs/bevy/0.13.0/bevy/render/view/struct.InheritedVisibility.html
+[bevy::InputSystem]: https://docs.rs/bevy/0.13.0/bevy/input/struct.InputSystem.html
 [bevy::Interaction]: https://docs.rs/bevy/0.13.0/bevy/ui/enum.Interaction.html
 [bevy::IoTaskPool]: https://docs.rs/bevy/0.13.0/bevy/tasks/struct.IoTaskPool.html
 [bevy::KeyCode]: https://docs.rs/bevy/0.13.0/bevy/input/keyboard/enum.KeyCode.html

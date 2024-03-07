@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Non-Send Resources
 
@@ -33,10 +33,10 @@ typically use for window management. It gives you more direct access to OS
 window management functionality.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/non_send.rs:nonsend}}
+{{#include ../code013/src/programming/non_send.rs:nonsend}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/non_send.rs:nonsend-app}}
+{{#include ../code013/src/programming/non_send.rs:nonsend-app}}
 ```
 
 ## Custom Non-Send Resources
@@ -52,11 +52,17 @@ It is not possible to insert non-send resources using
 [`Commands`][cb::commands], only using [direct World access][cb::world].
 This means that you have to initialize them in an [exclusive
 system][cb::exclusive], [`FromWorld`][bevy::FromWorld] impl,
-or custom stage.
+or from the [app builder][cb::app].
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/non_send.rs:insert-nonsend}}
+{{#include ../code013/src/programming/non_send.rs:insert-nonsend}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/non_send.rs:insert-nonsend-app}}
+{{#include ../code013/src/programming/non_send.rs:insert-nonsend-app}}
+```
+
+Or, for simple things, if you don't need a full-blown system:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/non_send.rs:insert-nonsend-app-world}}
 ```

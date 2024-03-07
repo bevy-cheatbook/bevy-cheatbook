@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # ECS Programming Introduction
 
@@ -31,6 +31,9 @@ is flexible and reusable. For example, you can implement:
 Of course, when you need specialized behavior only for specific entities (say,
 player movement, which only applies to the player), that is naturally easy to
 express, too.
+
+If you are familiar with database programming, you will feel right at home. ECS
+is conceptually very similar to a lightweight in-memory database.
 
 [Read more about how to represent your data.][cb::ecs-intro-data]
 

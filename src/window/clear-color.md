@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # Changing the Background Color
 
@@ -15,15 +15,14 @@ Note that the window will be black if no cameras exist. You must spawn at
 least one camera.
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/clear-color.rs:main}}
+{{#include ../code013/src/window/clear_color.rs:main}}
 ```
 
-To override the default and use a different color for a specific
-camera, you can set it using the [`Camera2d`][bevy::Camera2d] or
-[`Camera3d`][bevy::Camera3d] components.
+To override the default and use a different color for a specific camera,
+you can set it using the [`Camera`][bevy::Camera] [component][cb::component].
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/clear-color.rs:camera}}
+{{#include ../code013/src/window/clear_color.rs:camera}}
 ```
 
 All of these locations (the components on specific cameras, the global

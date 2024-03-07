@@ -38,6 +38,9 @@ let mut app = App::new();
 // ANCHOR: insert-nonsend-app
 app.add_systems(Startup, setup_platform_audio);
 // ANCHOR_END: insert-nonsend-app
+// ANCHOR: insert-nonsend-app-world
+app.world.insert_non_send_resource(OSAudioMagic::init());
+// ANCHOR_END: insert-nonsend-app-world
 // ANCHOR: nonsend-app
 // just add it as a normal system;
 // Bevy will notice the NonSend parameter

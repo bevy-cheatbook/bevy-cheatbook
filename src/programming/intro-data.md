@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Intro: Your Data
 
@@ -13,10 +13,10 @@ you and allows you easy and flexible access to whatever you need, wherever you
 need it.
 
 The ECS's data structure is called the [`World`][bevy::World]. That is what
-stores and manages all of the data. For advanced scenarios, is possible to have
-[multiple worlds][cb::multi-world], and then each one will behave as its own
-separate ECS. However, normally, you just work with the main World that Bevy
-sets up for your [App][cb::app].
+stores and manages all of the data. For advanced scenarios, is possible to
+have [multiple worlds][cb::multi-world], and then each one will behave as
+its own separate ECS instance. However, normally, you just work with the
+main World that Bevy sets up for your [App][cb::app].
 
 You can represent your data in two different ways:
 [Entities/Components](#entities--components), and [Resources](#resources).
@@ -64,14 +64,15 @@ general-purpose data structure. You can create entities and components to store
 any data. For example, you could create an entity to store a bunch of settings
 or configuration parameters, or other abstract things.
 
-Data stored using Entities and Components is accessed using [queries][cb::query].
-For example, if you want to implement a game mechanic, write a [system][cb::system],
-specify what component types you want to access, and do your thing. You can either
-iterate through all entities that match your specification, or access specific
-ones (if you know their [`Entity`][bevy::Entity] ID).
+Data stored using Entities and Components is accessed using
+[queries][cb::query]. For example, if you want to implement a new game
+mechanic, write a [system][cb::system] (just a Rust function that takes
+special parameters), specify what component types you want to access, and do
+your thing. You can either iterate through all entities that match your query,
+or access the data of a specific one (using the [`Entity`][bevy::Entity] ID).
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/intro_data.rs:query}}
+{{#include ../code013/src/programming/intro_data.rs:query}}
 ```
 
 Bevy can automatically keep track of what data your [systems][cb::system] have
@@ -91,7 +92,7 @@ immediately (but without multithreading).
 help you when you spawn new entities, so you don't accidentally forget anything.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/intro_data.rs:commands}}
+{{#include ../code013/src/programming/intro_data.rs:commands}}
 ```
 
 ### Comparison with Object-Oriented Programming
@@ -125,6 +126,11 @@ Then, each piece of functionality (each [system][cb::system]) can just
 health/damage system) can be applied to any entity with the matching components,
 regardless of whether that's the player or something else in the game.
 
+If you have functionality that should only be applied to the player entity,
+you can use a [marker component][cb::component-marker] (like `struct Player;`)
+to narrow down your query (using a [query filter][cb::query-filter] like
+`With<Player>`).
+
 However, if some data always makes sense to be accessed together, then you
 should put it in a single `struct`. For example, Bevy's
 [`Transform`][bevy::Transform] or [`Color`][bevy::Color]. With these types, the
@@ -132,19 +138,20 @@ fields are not likely to be useful independently.
 
 ### Additional Internal Details
 
-The set / combination of components that a given entity has, is called the
-entity's Archetype. Bevy keeps track of that internally, to organize the data in
-RAM. Entities of the same Archetype have their data stored together, which
-allows the CPU to access and cache it efficiently.
+The set / combination of components that a given entity has is called the
+entity's Archetype. Bevy keeps track of that internally, to organize the
+data in RAM. Entities of the same Archetype have their data stored together
+in contiguous arrays, which allows the CPU to access and cache it efficiently.
 
 If you add/remove component types on existing entities, you are changing the
 Archetype, which may require Bevy to copy the data to a different location.
 
 [Learn more about Bevy's component storage.][cb::component-storage]
 
-Entity IDs can also be reused. The [`Entity`][bevy::Entity] type is actually two
-integers: the ID and a "generation". After you despawn some entities, their IDs can
-be reused for newly-spawned entities, but Bevy will increase the generation value.
+Bevy will reuse Entity IDs. The [`Entity`][bevy::Entity] type is actually
+two integers: the ID and a "generation". After you despawn some entities,
+their IDs can be reused for newly-spawned entities, but Bevy will increase
+the generation value.
 
 ## Resources
 
@@ -158,5 +165,5 @@ This is a simple way of storing data, when you know you don't need the
 flexibility of Entities/Components.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/intro_data.rs:res}}
+{{#include ../code013/src/programming/intro_data.rs:res}}
 ```

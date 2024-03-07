@@ -17,6 +17,7 @@ mod fundamentals {
     mod transforms;
     mod visibility;
     mod log;
+    mod fixed_timestep;
 }
 mod graphics {
     mod camera;
@@ -35,6 +36,7 @@ mod input {
 }
 mod window {
     mod mouse_grab;
+    mod clear_color;
 }
 mod assets {
 }
@@ -50,7 +52,13 @@ mod programming {
     mod res;
     mod ec;
     mod bundle;
+    mod queries;
+    mod commands;
     mod events;
+    mod local;
+    mod exclusive;
+    mod rc;
+    mod system_sets;
     mod paramset;
     mod non_send;
 }

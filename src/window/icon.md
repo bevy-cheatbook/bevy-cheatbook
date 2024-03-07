@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Setting the Window Icon
 
@@ -20,14 +20,14 @@ This example shows how to set the icon for the primary/main window, from
 a Bevy startup system.
 
 ```rust,no_run,noplayground
-{{#include ../code012/examples/window-icon.rs:main}}
+{{#include ../code013/examples/window-icon.rs:main}}
 ```
 
 Note: that [`WinitWindows`][bevy::WinitWindows] is a [non-send
 resource][cb::nonsend].
 
-Note: you need to add `winit` to your project's dependencies, and it must
-be the same version as the one used by Bevy. You can use `cargo tree` or
-check `Cargo.lock` to see which is the correct version. As of Bevy 0.12,
-that should be `winit = "0.28"`. You should also try to match the version
-of the `image` library; Bevy uses `image = "0.24"`.
+Note: you need to add `winit` and `image` to your project's dependencies,
+and they must be the same versions as used by Bevy. As of Bevy 0.13, that
+should be `winit = "0.29"` and `image = "0.24"`. If you don't know which
+version to use, you can use `cargo tree` or check `Cargo.lock` to see which
+is the correct version.

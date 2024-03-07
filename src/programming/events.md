@@ -1,4 +1,4 @@
-{{#include ../include/header011.md}}
+{{#include ../include/header013.md}}
 
 # Events
 
@@ -23,13 +23,13 @@ Every reader tracks the events it has read independently, so you can handle
 the same events from multiple [systems][cb::system].
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/events.rs:events}}
+{{#include ../code013/src/programming/events.rs:events}}
 ```
 
 You need to register your custom event types via the [app builder][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code011/src/programming/events.rs:events-appbuilder}}
+{{#include ../code013/src/programming/events.rs:events-appbuilder}}
 ```
 
 ## Usage Advice
@@ -54,13 +54,15 @@ events, it would be unwieldy for future development of the game.
 
 When you register an event type, Bevy will create an [`Events<T>`][bevy::Events]
 [resource][cb::res], which acts as the backing storage for the event queue. Bevy
-also adds an "event maintenance" [system][cb::system] to clear events every
-frame, preventing them from accumulating and using up memory.
+also adds an "event maintenance" [system][cb::system] to clear events periodically,
+preventing them from accumulating and using up memory.
 
-The events storage is double-buffered, meaning that events stay for one extra
-frame after the frame when they were sent. This gives your systems a chance to
-read the events on the next frame, if they did not get a chance during the
-current frame.
+Bevy ensures that events are kept around for at least two frame update cycles,
+or two [fixed timestep][cb::fixedtimestep] cycles, whichever is longer. After
+that, they are silently dropped. This gives your systems enough opportunity
+to handle them, assuming your systems are running all the time. Beware when
+adding [run conditions][cb::rc] to your systems, as you might miss some events
+when your systems are not running!
 
 If you don't like this, [you can have manual control over when events are
 cleared][cb::event-manual] (at the risk of leaking / wasting memory if you
@@ -75,17 +77,18 @@ also needs the `mut` keyword.
 
 ## Possible Pitfalls
 
-Beware of frame delay / 1-frame-lag. This can occur if Bevy runs the receiving
-system before the sending system. The receiving system will only get a chance
-to receive the events on the next frame update. If you need to ensure that
-events are handled immediately / during the same frame, you can use [explicit
+Beware of frame delay / 1-frame-lag. This can occur if Bevy runs the
+receiving system before the sending system. The receiving system will only
+get a chance to receive the events the next time it runs. If you need to
+ensure that events are handled immediately / on time, you can use [explicit
 system ordering][cb::system-order].
 
-Beware of lost events if you do not read events every frame, or at least once
-every other frame update. A common situation where this can occur is when
-using a [fixed timestep][cb::fixedtimestep] or [run conditions][cb::rc].
+If your systems have [run conditions][cb::rc], beware that they might miss
+some events when they are not running! If your system does not check for events
+at least once every other frame or [fixed timestep][cb::fixedtimestep], the
+events will be lost.
 
-If you want events to persist for longer than two frames, you can [implement a
-custom cleanup/management strategy][cb::event-manual]. However, you can only do
-this for your own event types. There is no solution for Bevy's
+If you want events to persist for longer than that, you can [implement a
+custom cleanup/management strategy][cb::event-manual]. However, you can
+only do this for your own event types. There is no solution for Bevy's
 [built-in][builtins::event] types.

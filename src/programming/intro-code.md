@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Intro: Your Code
 
@@ -23,7 +23,7 @@ at the function parameters, we know *exactly* what [data][cb::ecs-intro-data]
 can be accessed.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/intro_code.rs:example-system}}
+{{#include ../code013/src/programming/intro_code.rs:example-system}}
 ```
 
 (learn more about: [systems][cb::system], [queries][cb::query], [commands][cb::commands], [resources][cb::res], [entities][cb::entity], [components][cb::component])
@@ -37,12 +37,12 @@ same data mutably) will be automatically [run in parallel][cb::system-parallel]
 on different CPU threads. This way, you get multithreading, utilizing modern
 multi-core CPU hardware effectively, with no extra effort from you!
 
-For best parallelism performance, it is recommended that you keep your
-functionality and [your data][cb::ecs-intro-data] granular. Create many small
-systems, each one with a narrowly-scoped purpose and accessing only the data it
-needs. This gives Bevy more opportunities for parallelism. Putting too much
-functionality in one system, or too much data in a single
-[component][cb::component] or [resource][cb::res] `struct`, limits parallelism.
+For best parallelism, it is recommended that you keep your functionality and
+[your data][cb::ecs-intro-data] granular. Split up your systems, so each
+one has a narrowly-scoped purpose and access to only the data it needs. This
+gives Bevy more opportunities for parallelism. Putting too much functionality
+in one system, or too much data in a single [component][cb::component] or
+[resource][cb::res] `struct`, limits parallelism.
 
 Bevy's parallelism is non-deterministic by default. Your systems might run in a
 different and unpredictable order relative to one another, unless you add
@@ -56,7 +56,7 @@ with other systems, because they can access anything and do anything. Sometimes,
 you might need this additonal power.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/intro_code.rs:exclusive}}
+{{#include ../code013/src/programming/intro_code.rs:exclusive}}
 ```
 
 ## Schedules
@@ -141,7 +141,7 @@ Here is how [schedule][cb::schedule] that was illustrated above could be
 created in code:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/intro_code.rs:example-scheduling}}
+{{#include ../code013/src/programming/intro_code.rs:example-scheduling}}
 ```
 
 (learn more about: [schedules][cb::schedule], [system sets][cb::systemset], [states][cb::state], [run conditions][cb::rc], [system ordering][cb::system-order])

@@ -11,9 +11,10 @@ struct Health {
 }
 
 fn level_up(
-    // operate on anything that has Xp and Health
+    // We want to access the Xp and Health data:
     mut query: Query<(&mut Xp, &mut Health)>,
 ) {
+    // process all relevant entities
     for (mut xp, mut health) in query.iter_mut() {
         if xp.0 > 1000 {
             xp.0 -= 1000;
@@ -30,7 +31,8 @@ fn level_up(
 struct Player;
 
 fn spawn_player(
-    // needed for creating/removing data in the ECS World
+    // needed for safely creating/removing data in the ECS World
+    // (anything done via Commands will be applied later)
     mut commands: Commands,
     // needed for loading assets
     asset_server: Res<AssetServer>,
@@ -46,7 +48,7 @@ fn spawn_player(
         },
         Xp(0),
         // give it a 2D sprite to render on-screen
-        // (Bevy's SpriteBundle lets us add everything necessary)
+        // (Bevy's SpriteBundle adds all necessary components for rendering a sprite)
         SpriteBundle {
             texture: asset_server.load("player.png"),
             transform: Transform::from_xyz(25.0, 50.0, 0.0),
@@ -54,6 +56,9 @@ fn spawn_player(
             ..Default::default()
         },
     ));
+
+    // Call .id() if you want to store the Entity ID of your new entity
+    let my_entity = commands.spawn((/* ... */)).id();
 }
 // ANCHOR_END: commands
 

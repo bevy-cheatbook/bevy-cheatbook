@@ -16,8 +16,16 @@ struct SomeBundle {
 
 fn spawn_things() {}
 fn debug_stats_change() {}
-fn player_level_up() {}
+fn camera_follow_player() {}
 fn debug_levelups() {}
+
+mod ui {
+    use bevy::prelude::*;
+    pub struct MyUiPlugin;
+    impl Plugin for MyUiPlugin {
+        fn build(&self, _: &mut App) {}
+    }
+}
 
 // ANCHOR: appexit
 use bevy::app::AppExit;
@@ -33,6 +41,9 @@ fn main() {
         // Bevy itself:
         .add_plugins(DefaultPlugins)
 
+        // Plugins from our game/project:
+        .add_plugins(ui::MyUiPlugin)
+
         // events:
         .add_event::<LevelUpEvent>()
 
@@ -41,7 +52,7 @@ fn main() {
 
         // systems to run each frame:
         .add_systems(Update, (
-            player_level_up,
+            camera_follow_player,
             debug_levelups,
             debug_stats_change,
         ))

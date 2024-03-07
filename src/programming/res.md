@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header013.md}}
 
 # Resources
 
@@ -21,7 +21,7 @@ derive the [`Resource`][bevy::Resource] trait, similar to
 [components][cb::component] and [events][cb::event].
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:struct}}
+{{#include ../code013/src/programming/res.rs:struct}}
 ```
 
 Types must be unique; there can only be at most one instance of a given type. If
@@ -36,7 +36,7 @@ custom types.
 To access the value of a resource from [systems][cb::system], use `Res`/`ResMut`:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:systemparam}}
+{{#include ../code013/src/programming/res.rs:systemparam}}
 ```
 
 ## Managing Resources
@@ -45,35 +45,38 @@ If you need to create/remove resources at runtime, you can do so using
 [commands][cb::commands] ([`Commands`][bevy::Commands]):
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:commands}}
+{{#include ../code013/src/programming/res.rs:commands}}
 ```
 
 Alternatively, using [direct World access][cb::world] from an [exclusive
 system][cb::exclusive]:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:exclusive}}
+{{#include ../code013/src/programming/res.rs:exclusive}}
 ```
 
 Resources can also be set up from the [app builder][cb::app]. Do this for
 resources that are meant to always exist from the start.
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:app}}
+{{#include ../code013/src/programming/res.rs:app}}
 ```
 
 ## Resource Initialization
 
+If you want to be able to use `.init_resource` to create your resource,
+here is how you can provide the default value.
+
 Implement [`Default`][std::Default] for simple resources:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:default}}
+{{#include ../code013/src/programming/res.rs:default}}
 ```
 
 For resources that need complex initialization, implement [`FromWorld`][bevy::FromWorld]:
 
 ```rust,no_run,noplayground
-{{#include ../code012/src/programming/res.rs:fromworld}}
+{{#include ../code013/src/programming/res.rs:fromworld}}
 ```
 
 Beware: it can be easy to get yourself into a mess of unmaintainable code
