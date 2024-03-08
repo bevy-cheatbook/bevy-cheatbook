@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # System Order of Execution
 
@@ -40,7 +40,7 @@ to bother with it. If you don't care, leaving the order ambiguous may also
 result in better performance.
 
 On the other hand, for things like handling the player input controls,
-this would result in annoying lag, so you should probably fix it.
+this would result in annoying lag or worse, so you should probably fix it.
 
 ## Explicit System Ordering
 
@@ -48,28 +48,13 @@ If a specific system must always run before or after some other systems,
 you can add ordering constraints:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:system-order}}
+{{#include ../code013/src/programming/system_order.rs:app}}
 ```
 
 `.before`/`.after` may be used as many times as you need on one system.
 
-## Labels
-
-For more advanced use cases, you can use [labels][cb::label]. Labels can
-either be strings, or custom types (like `enum`s) that derive `SystemLabel`.
-
-This allows you to affect multiple systems at once, with the same constraints. 
-You can place multiple labels on one system. You can also use the same label
-on multiple systems.
-
-Each label is a reference point that other systems can be ordered around.
-
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:system-labels}}
-```
-
-When you have multiple systems with common labels or ordering, it may be
-convenient to use [system sets][cb::systemset].
+If you need to apply the same ordering constraints to many systems,
+consider using [system sets][cb::systemset].
 
 ## Circular Dependencies
 
