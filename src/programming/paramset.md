@@ -8,7 +8,7 @@ same data.
 
 Some examples:
  - Multiple incompatible [queries][cb::query].
- - Using [`&World`][bevy::World] while also having other system parameters to access specific data.
+ - Using [`&World`] while also having other system parameters to access specific data.
  - …
 
 Consider this example [system][cb::system]:
@@ -20,7 +20,7 @@ Consider this example [system][cb::system]:
 The two [queries][cb::query] are both trying to mutably access `Health`. They
 have different [filters][cb::query-filter], but what if there are entities that
 have both `Player` and `Enemy` components? If we know that shouldn't happen, we
-can add `Without` filters, but what if it is actually valid for our game?
+can add [`Without`] filters, but what if it is actually valid for our game?
 
 Such code will compile (Rust cannot know about Bevy ECS semantics), but will
 result in a runtime panic. When Bevy tries to run the system, it will panic with
@@ -34,7 +34,7 @@ with a previous system parameter. Consider using `Without<T>` to create disjoint
 or merging conflicting Queries into a `ParamSet`.
 ```
 
-Bevy provides a solution: wrap any incompatible parameters in a [`ParamSet`][bevy::ParamSet]:
+Bevy provides a solution: wrap any incompatible parameters in a [`ParamSet`]:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/paramset.rs:paramset}}

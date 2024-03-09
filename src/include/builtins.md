@@ -435,16 +435,15 @@ In [exclusive systems][cb::exclusive]:
 
 []:#(ANCHOR: systemparam-exclusive)
 
- - [`&mut World`][bevy::World]:
+ - [`&mut World`]:
    Full [direct access to the ECS World][cb::world]
- - [`Local<T>`][bevy::Local]:
+ - [`Local<T>`]:
    Data [local][cb::local] to the system
- - [`&mut SystemState<P>`][bevy::SystemState]:
+ - [`&mut SystemState<P>`][`SystemState`]:
    Emulates a regular system, allowing you to easily access data from the World.
    `P` are the system parameters.
- - [`&mut QueryState<Q, F = ()>`][bevy::QueryState]:
-   Allows you to perform queries on the World, similar to a [`Query`][bevy::Query]
-   in regular systems.
+ - [`&mut QueryState<Q, F = ()>`][`QueryState`]:
+   Allows you to perform queries on the World, similar to a [`Query`] in regular systems.
 
 []:#(ANCHOR_END: systemparam-exclusive)
  

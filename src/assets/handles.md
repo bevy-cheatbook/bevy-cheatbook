@@ -49,8 +49,8 @@ Bevy also has a [`HandleUntyped`][bevy::HandleUntyped] type. Use this type
 of handle if you need to be able to refer to any asset, regardless of the
 asset type.
 
-This allows you to store a collection (such as [`Vec`][std::Vec] or
-[`HashMap`][std::HashMap]) containing assets of mixed types.
+This allows you to store a collection (such as [`Vec`] or [`HashMap`])
+containing assets of mixed types.
 
 You can create an untyped handle using `.clone_untyped()` on an existing
 handle.

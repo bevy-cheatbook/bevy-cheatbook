@@ -16,6 +16,20 @@ In such situations, the order is *nondeterministic* by default. Bevy takes
 no regard for when each system will run, and the order could even change
 every frame!
 
+## Explicit System Ordering
+
+If a specific system must always run before or after some other systems,
+you can add ordering constraints:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/system_order.rs:app}}
+```
+
+`.before`/`.after` may be used as many times as you need on one system.
+
+If you need to apply the same ordering constraints to many systems,
+consider using [system sets][cb::systemset].
+
 ## Does it even matter?
 
 In many cases, you don't need to worry about this.
@@ -41,20 +55,6 @@ result in better performance.
 
 On the other hand, for things like handling the player input controls,
 this would result in annoying lag or worse, so you should probably fix it.
-
-## Explicit System Ordering
-
-If a specific system must always run before or after some other systems,
-you can add ordering constraints:
-
-```rust,no_run,noplayground
-{{#include ../code013/src/programming/system_order.rs:app}}
-```
-
-`.before`/`.after` may be used as many times as you need on one system.
-
-If you need to apply the same ordering constraints to many systems,
-consider using [system sets][cb::systemset].
 
 ## Circular Dependencies
 

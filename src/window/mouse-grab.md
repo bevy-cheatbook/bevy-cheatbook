@@ -10,6 +10,11 @@ Relevant official examples:
 For some genres of games, you want to the mouse to be restricted to the window,
 to prevent it from leaving the window during gameplay.
 
+There are two variations on this behavior ([`CursorGrabMode`]):
+ - `Confined` allows the cursor to be moved, but only within the bounds of the window.
+ - `Locked` fixes the cursor in place and does not allow it to move.
+   - Relative [mouse motion][input::mouse-motion] [events][cb::event] still work.
+
 To grab the cursor:
 
 ```rust,no_run,noplayground

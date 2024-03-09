@@ -17,7 +17,7 @@ from anywhere.
 ---
 
 To create a new resource type, simply define a Rust `struct` or `enum`, and
-derive the [`Resource`][bevy::Resource] trait, similar to
+derive the [`Resource`] trait, similar to
 [components][cb::component] and [events][cb::event].
 
 ```rust,no_run,noplayground
@@ -33,7 +33,8 @@ custom types.
 
 ## Accessing Resources
 
-To access the value of a resource from [systems][cb::system], use `Res`/`ResMut`:
+To access the value of a resource from [systems][cb::system], use
+[`Res`]/[`ResMut`]:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/res.rs:systemparam}}
@@ -42,7 +43,7 @@ To access the value of a resource from [systems][cb::system], use `Res`/`ResMut`
 ## Managing Resources
 
 If you need to create/remove resources at runtime, you can do so using
-[commands][cb::commands] ([`Commands`][bevy::Commands]):
+[commands][cb::commands] ([`Commands`]):
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/res.rs:commands}}
@@ -67,20 +68,20 @@ resources that are meant to always exist from the start.
 If you want to be able to use `.init_resource` to create your resource,
 here is how you can provide the default value.
 
-Implement [`Default`][std::Default] for simple resources:
+Implement [`Default`] for simple resources:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/res.rs:default}}
 ```
 
-For resources that need complex initialization, implement [`FromWorld`][bevy::FromWorld]:
+For resources that need complex initialization, implement [`FromWorld`]:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/res.rs:fromworld}}
 ```
 
 Beware: it can be easy to get yourself into a mess of unmaintainable code
-if you overuse [`FromWorld`][bevy::FromWorld] to do complex things.
+if you overuse [`FromWorld`] to do complex things.
 
 ## Usage Advice
 

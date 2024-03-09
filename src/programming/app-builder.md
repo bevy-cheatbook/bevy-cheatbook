@@ -10,15 +10,15 @@ In particular, check out the complete game examples:
 
 ---
 
-To enter the Bevy runtime, you need to configure an [`App`][bevy::App]. The app
-is how you define the structure of all the things that make up your project:
+To enter the Bevy runtime, you need to configure an [`App`]. The app is how you
+define the structure of all the things that make up your project:
 [plugins][cb::plugin], [systems][cb::system] (and their configuration/metadata:
 [run conditions][cb::rc], [ordering][cb::system-order], [sets][cb::systemset]),
 [event][cb::event] types, [states][cb::state], [schedules][cb::schedule]…
 
-You typically create your [`App`][bevy::App] in your project's `main` function.
-However, you don't have to add everything from there. If you want to add things
-to your app from multiple places (like other Rust files or crates), use
+You typically create your [`App`] in your project's `main` function.  However,
+you don't have to add everything from there. If you want to add things to your
+app from multiple places (like other Rust files or crates), use
 [plugins][cb::plugin]. As your project grows, you will need to do that to keep
 everything organized.
 
@@ -31,18 +31,18 @@ multiple things at once.
 
 [Component][cb::component] types do not need to be registered.
 
-Schedules cannot [(yet)][bevy::279] be modified at runtime; all
-[systems][cb::system] you want to run must be added/configured in the
-[`App`][bevy::App] ahead of time. You can control individual systems using [run
-conditions][cb::rc]. You can also dynamically enable/disable entire schedules
-using the [`MainScheduleOrder`][bevy::MainScheduleOrder] [resource][cb::res].
+Schedules cannot [(yet)] be modified at runtime; all [systems][cb::system] you
+want to run must be added/configured in the [`App`] ahead of time. You can
+control individual systems using [run conditions][cb::rc]. You can also
+dynamically enable/disable entire schedules using the [`MainScheduleOrder`]
+[resource][cb::res].
 
 ## Builtin Bevy Functionality
 
 The Bevy game engine's own functionality is represented as a [plugin group][cb::plugingroup].
 Every typical Bevy app must first add it, using either:
- - [`DefaultPlugins`][bevy::DefaultPlugins] if you are making a full game/app.
- - [`MinimalPlugins`][bevy::MinimalPlugins] for something like a headless server.
+ - [`DefaultPlugins`] if you are making a full game/app.
+ - [`MinimalPlugins`] for something like a headless server.
 
 ## Setting up data
 
@@ -64,8 +64,8 @@ times. You can also get [direct World access][cb::world].
 
 ## Quitting the App
 
-To cleanly shut down bevy, send an [`AppExit`][bevy::AppExit]
-[event][cb::event] from any [system][cb::system]:
+To cleanly shut down bevy, send an [`AppExit`] [event][cb::event] from any
+[system][cb::system]:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/app_builder.rs:appexit}}

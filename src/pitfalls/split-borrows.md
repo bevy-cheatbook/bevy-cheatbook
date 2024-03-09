@@ -51,19 +51,17 @@ you don't modify the data afterwards, the component gets marked as changed.
 ## Explanation
 
 Bevy typically gives you access to your data via special wrapper types (like
-[`Res<T>`][bevy::Res], [`ResMut<T>`][bevy::ResMut], and [`Mut<T>`][bevy::Mut]
-(when [querying][cb::query] for components mutably)). This lets Bevy track
-access to the data.
+[`Res<T>`], [`ResMut<T>`], and [`Mut<T>`] (when [querying][cb::query] for
+components mutably)). This lets Bevy track access to the data.
 
-These are "smart pointer" types that use the Rust [`Deref`][std::Deref]
-trait to dereference to your data. They usually work seamlessly and you
-don't even notice them.
+These are "smart pointer" types that use the Rust [`Deref`] trait to dereference
+to your data. They usually work seamlessly and you don't even notice them.
 
-However, in a sense, they are opaque to the compiler. The Rust language
-allows fields of a struct to be borrowed individually, when you have direct
-access to the struct, but this does not work when it is wrapped in another type.
+However, in a sense, they are opaque to the compiler. The Rust language allows
+fields of a struct to be borrowed individually, when you have direct access to
+the struct, but this does not work when it is wrapped in another type.
 
-The "reborrow" trick shown above, effectively converts the wrapper
-into a regular Rust reference. `*thing` dereferences the wrapper via
-[`DerefMut`][std::DerefMut], and then `&mut` borrows it mutably. You now have
-`&mut MyStuff` instead of `Mut<MyStuff>`.
+The "reborrow" trick shown above, effectively converts the wrapper into a
+regular Rust reference. `*thing` dereferences the wrapper via [`DerefMut`], and
+then `&mut` borrows it mutably. You now have `&mut MyStuff` instead of
+`Mut<MyStuff>`.

@@ -16,7 +16,7 @@ Individual pieces of functionality are called [systems][cb::system]. Each system
 is a Rust function (`fn`) you write, which accepts [special parameter
 types][cb::system-param] to indicate what [data][cb::ecs-intro-data] it needs to
 access. Think of the function signature as a "specification" for what to fetch
-from the ECS [`World`][bevy::World].
+from the ECS [`World`].
 
 Here is what a [system][cb::system] might look like. Note how, just by looking
 at the function parameters, we know *exactly* what [data][cb::ecs-intro-data]
@@ -62,7 +62,7 @@ you might need this additonal power.
 ## Schedules
 
 Bevy stores systems inside of [schedules][cb::schedule]
-([`Schedule`][bevy::Schedule]). The schedule contains the systems and all
+([`Schedule`]). The schedule contains the systems and all
 relevant metadata to organize them, telling Bevy when and how to run them. Bevy
 [Apps][cb::App] typically contain many schedules. Each one is a collection of
 systems to be invoked in different scenarios (every frame update, [fixed

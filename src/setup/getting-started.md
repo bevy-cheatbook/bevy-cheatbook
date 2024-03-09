@@ -91,7 +91,7 @@ about additional external dev tools that may be helpful.
 Have a look at the [guided tutorial][chapter::tutorial] page of this book,
 and Bevy's [official examples][bevy::examples].
 
-Check out the [Bevy Assets Website][bevy::assets] to find other tutorials
+Check out the [Bevy Assets Website][bevyassets] to find other tutorials
 and learning resources from the community, and [plugins][cb::3rdparty]
 to use in your project.
 

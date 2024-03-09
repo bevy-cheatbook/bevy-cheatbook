@@ -17,7 +17,7 @@ Technically, an entity is just a simple integer ID (imagine the "row number" in
 a table/spreadsheet) that can be used to find related data values (in different
 "columns" of that table).
 
-In Bevy, [`Entity`][bevy::Entity] is this value. It consists of two integers:
+In Bevy, [`Entity`] is this value. It consists of two integers:
 the ID and the "generation" (allowing IDs to be reused, after you despawn old
 entities).
 
@@ -36,7 +36,7 @@ Many of your entities might need to have the same common components. You can use
 Components are the data associated with entities.
 
 To create a new component type, simply define a Rust `struct` or `enum`, and
-derive the [`Component`][bevy::Component] trait.
+derive the [`Component`] trait.
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/ec.rs:component}}

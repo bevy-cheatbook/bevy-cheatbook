@@ -23,8 +23,7 @@ a Bevy startup system.
 {{#include ../code013/examples/window-icon.rs:main}}
 ```
 
-Note: that [`WinitWindows`][bevy::WinitWindows] is a [non-send
-resource][cb::nonsend].
+Note: that [`WinitWindows`] is a [non-send resource][cb::nonsend].
 
 Note: you need to add `winit` and `image` to your project's dependencies,
 and they must be the same versions as used by Bevy. As of Bevy 0.13, that

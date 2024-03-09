@@ -19,7 +19,7 @@ Note that system piping is *not* a way of communicating between systems.
 If you want to pass data between systems, you should use [Events][cb::event]
 instead.
 
-## Example: Handling [`Result`][std::Result]s
+## Example: Handling [`Result`]s
 
 One useful application of system piping is to be able to return errors (allowing
 the use of Rust's `?` operator) and then have a separate function for handling

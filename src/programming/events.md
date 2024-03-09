@@ -11,13 +11,13 @@ Send data between systems! Let your [systems][cb::system] communicate with each 
 
 Like [resources][cb::res] or [components][cb::component], events are
 simple Rust `struct`s or `enum`s. When creating a new event type, derive
-the [`Event`][bevy::Event] trait.
+the [`Event`] trait.
 
 Then, any [system][cb::system] can send (broadcast) values of that type,
 and any system can receive those events.
 
- - To send events, use an [`EventWriter<T>`][bevy::EventWriter].
- - To receive events, use an [`EventReader<T>`][bevy::EventReader].
+ - To send events, use an [`EventWriter<T>`].
+ - To receive events, use an [`EventReader<T>`].
 
 Every reader tracks the events it has read independently, so you can handle
 the same events from multiple [systems][cb::system].
@@ -52,7 +52,7 @@ events, it would be unwieldy for future development of the game.
 
 ## How it all works
 
-When you register an event type, Bevy will create an [`Events<T>`][bevy::Events]
+When you register an event type, Bevy will create an [`Events<T>`]
 [resource][cb::res], which acts as the backing storage for the event queue. Bevy
 also adds an "event maintenance" [system][cb::system] to clear events periodically,
 preventing them from accumulating and using up memory.
@@ -68,12 +68,11 @@ If you don't like this, [you can have manual control over when events are
 cleared][cb::event-manual] (at the risk of leaking / wasting memory if you
 forget to clear them).
 
-The [`EventWriter<T>`][bevy::EventWriter] system parameter is just syntax sugar
-for mutably accessing the [`Events<T>`][bevy::Events] [resource][cb::res] to
-add events to the queue. The [`EventReader<T>`][bevy::EventReader] is a little
-more complex: it accesses the events storage immutably, but also stores an
-integer counter to keep track of how many events you have read. This is why it
-also needs the `mut` keyword.
+The [`EventWriter<T>`] system parameter is just syntax sugar for mutably
+accessing the [`Events<T>`] [resource][cb::res] to add events to the queue. The
+[`EventReader<T>`] is a little more complex: it accesses the events storage
+immutably, but also stores an integer counter to keep track of how many events
+you have read. This is why it also needs the `mut` keyword.
 
 ## Possible Pitfalls
 

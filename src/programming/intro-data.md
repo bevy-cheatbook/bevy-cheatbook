@@ -12,7 +12,7 @@ As mentioned in [the ECS Intro][cb::ecs-intro], Bevy stores all your data for
 you and allows you easy and flexible access to whatever you need, wherever you
 need it.
 
-The ECS's data structure is called the [`World`][bevy::World]. That is what
+The ECS's data structure is called the [`World`]. That is what
 stores and manages all of the data. For advanced scenarios, is possible to
 have [multiple worlds][cb::multi-world], and then each one will behave as
 its own separate ECS instance. However, normally, you just work with the
@@ -27,7 +27,7 @@ Conceptually, you can think of it by analogy with tables, like in a database or
 spreadsheet. Your different data types ([Components][cb::component]) are like
 the "columns" of a table, and there can be arbitrarily many "rows"
 ([Entities][cb::entity]) containing values / instances of various components.
-The [`Entity`][bevy::Entity] ID is like the row number. It's an integer index
+The [`Entity`] ID is like the row number. It's an integer index
 that lets you find specific component values.
 
 Component types that are empty `struct`s (contain no data) are called [marker
@@ -41,7 +41,7 @@ checkmarks show what component types are present on each entity. Empty cells
 mean that the component is not present. In this example, we have a player,
 a camera, and several enemies.
 
-|[`Entity`][bevy::Entity] (ID)|[`Transform`][bevy::Transform]|`Player`|`Enemy`|[`Camera`][bevy::Camera]|`Health`|...|
+|[`Entity`] (ID)|[`Transform`]|`Player`|`Enemy`|[`Camera`]|`Health`|...|
 |---|---|---|---|---|---|---|
 |...|||||||
 |107|✓ `<translation>` `<rotation>` `<scale>`|✓|||✓ `50.0`||
@@ -69,7 +69,7 @@ Data stored using Entities and Components is accessed using
 mechanic, write a [system][cb::system] (just a Rust function that takes
 special parameters), specify what component types you want to access, and do
 your thing. You can either iterate through all entities that match your query,
-or access the data of a specific one (using the [`Entity`][bevy::Entity] ID).
+or access the data of a specific one (using the [`Entity`] ID).
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/intro_data.rs:query}}
@@ -115,11 +115,10 @@ In Bevy, this is considered bad practice, because doing it that way can make it
 more difficult to work with your data and limit performance. Instead, you should
 make things granular, when different pieces of data may be accessed independently.
 
-For example, represent the player in your game as an entity, composed
-of separate component types (separate `struct`s) for things like the
-health, XP, or whatever is relevant to your game. You can also attach
-standard Bevy components like [`Transform`][bevy::Transform] ([transforms
-explained][cb::transform]) to it.
+For example, represent the player in your game as an entity, composed of
+separate component types (separate `struct`s) for things like the health, XP, or
+whatever is relevant to your game. You can also attach standard Bevy components
+like [`Transform`] ([transforms explained][cb::transform]) to it.
 
 Then, each piece of functionality (each [system][cb::system]) can just
 [query][cb::query] for the data it needs. Common functionality (like a
@@ -132,9 +131,9 @@ to narrow down your query (using a [query filter][cb::query-filter] like
 `With<Player>`).
 
 However, if some data always makes sense to be accessed together, then you
-should put it in a single `struct`. For example, Bevy's
-[`Transform`][bevy::Transform] or [`Color`][bevy::Color]. With these types, the
-fields are not likely to be useful independently.
+should put it in a single `struct`. For example, Bevy's [`Transform`] or
+[`Color`]. With these types, the fields are not likely to be useful
+independently.
 
 ### Additional Internal Details
 
@@ -148,7 +147,7 @@ Archetype, which may require Bevy to copy the data to a different location.
 
 [Learn more about Bevy's component storage.][cb::component-storage]
 
-Bevy will reuse Entity IDs. The [`Entity`][bevy::Entity] type is actually
+Bevy will reuse Entity IDs. The [`Entity`] type is actually
 two integers: the ID and a "generation". After you despawn some entities,
 their IDs can be reused for newly-spawned entities, but Bevy will increase
 the generation value.

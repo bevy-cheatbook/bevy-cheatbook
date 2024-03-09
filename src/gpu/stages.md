@@ -40,7 +40,7 @@ The final render (the framebuffer with the pixels to show in the
 Bevy updates its [timing information][cb::time] (in [`Res<Time>`][bevy::Time])
 at the start of the First stage in the main App schedule. The value to
 use is measured at "presentation time", in the render world, and the
-[`Instant`][std::Instant] is sent over a channel, to be applied on the
+[`Instant`] is sent over a channel, to be applied on the
 next frame.
 
 ## Adding Systems to Render Stages

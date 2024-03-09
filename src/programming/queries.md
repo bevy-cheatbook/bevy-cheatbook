@@ -47,9 +47,8 @@ together with iteration, so you can identify the entities that the query found:
 
 If you know that the query is expected to only ever match a single entity, you
 can use `single`/`single_mut` (panic on error) or `get_single`/`get_single_mut`
-(return [`Result`][std::Result]). These methods ensure that there exists exactly
-one candidate entity that can match your query, and will produce an error
-otherwise.
+(return [`Result`]). These methods ensure that there exists exactly one
+candidate entity that can match your query, and will produce an error otherwise.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:query-single}}

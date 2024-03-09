@@ -67,7 +67,7 @@ Note that change detection cannot currently be used to detect
 ## What gets detected?
 
 [`Changed`][bevy::Changed] detection is triggered by
-[`DerefMut`][std::DerefMut]. Simply accessing components via a mutable query,
+[`DerefMut`]. Simply accessing components via a mutable query,
 without actually performing a `&mut` access, will *not* trigger it.
 
 This makes change detection quite accurate. You can rely on it to optimize
@@ -144,9 +144,8 @@ this frame.
 
 Bevy does not provide any API for detecting when [resources][cb::res] are removed.
 
-You can work around this using [`Option`][std::Option] and a separate
-[`Local`][cb::local] system parameter, effectively implementing your own
-detection.
+You can work around this using [`Option`] and a separate [`Local`][cb::local]
+system parameter, effectively implementing your own detection.
 
 ```rust,no_run,noplayground
 {{#include ../code/src/basics.rs:res-removal-detection}}

@@ -22,10 +22,10 @@ unsupported parameter types in your function, [you will get confusing compiler
 errors!][pitfall::intosystem]
 
 Some of the possibilities are:
- - accessing [resources][cb::res] using [`Res`][bevy::Res]/[`ResMut`][bevy::ResMut]
- - accessing [components of entities][cb::component] using [queries][cb::query] ([`Query`][bevy::Query])
- - creating/destroying entities, components, and resources using [Commands][cb::commands] ([`Commands`][bevy::Commands])
- - sending/receiving [events][cb::event] using [`EventWriter`][bevy::EventWriter]/[`EventReader`][bevy::EventReader]
+ - accessing [resources][cb::res] using [`Res`]/[`ResMut`]
+ - accessing [components of entities][cb::component] using [queries][cb::query] ([`Query`])
+ - creating/destroying entities, components, and resources using [Commands][cb::commands] ([`Commands`])
+ - sending/receiving [events][cb::event] using [`EventWriter`]/[`EventReader`]
 
 [See here for a full list!][builtins::systemparam]
 
@@ -65,10 +65,10 @@ running, make sure you added the system!
 
 The above is enough for simple projects.
 
-Systems are contained in [schedules][cb::schedule]. [`Update`][bevy::Update] is the
-schedule where you typically add any systems you want to run every frame.
-[`Startup`][bevy::Startup] is where you typically add systems that should run
-only once on app startup. There are also [other possibilities][builtins::schedule].
+Systems are contained in [schedules][cb::schedule]. [`Update`] is the schedule
+where you typically add any systems you want to run every frame. [`Startup`] is
+where you typically add systems that should run only once on app startup. There
+are also [other possibilities][builtins::schedule].
 
 As your project grows more complex, you might want to make use of some of the
 powerful tools that Bevy offers for managing when/how your systems run, such as:

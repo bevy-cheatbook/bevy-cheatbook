@@ -11,11 +11,14 @@ All [systems][cb::system] to be run by Bevy are contained and organized using
 schedules. A schedule is a collection of systems, with metadata for how they
 should run, and an associated executor algorithm to run the systems.
 
+A Bevy app has many different schedules for different purposes, to run them
+in different situations.
+
 ## Scheduling Systems
 
 If you want a [system][cb::system] to be run by Bevy, you need to add it to a
-schedule. Writing a new Rust function and forgetting to add it / register it
-with Bevy is a common mistake.
+schedule via the [app builder][cb::app]. Writing a new Rust function and
+forgetting to add it / register it with Bevy is a common mistake.
 
 Whenever you add a system, you specify what schedule to put it in:
 
@@ -55,57 +58,47 @@ shouldn't run.
 
 ## Bevy's App Structure
 
-Bevy has three primary/foundational schedules: `Main`, `Extract`, `Render`. There
-are also other schedules, which are managed and run within `Main`.
+Bevy has three primary/foundational schedules: [`Main`], [`Extract`], [`Render`].
+There are also other schedules, which are managed and run within [`Main`].
 
-In a normal Bevy app, the `Main`+`Extract`+`Render` schedules are run repeatedly
-in a loop. Together, they produce one frame of your game. Every time `Main`
+In a normal Bevy app, the [`Main`]+[`Extract`]+[`Render`] schedules are run repeatedly
+in a loop. Together, they produce one frame of your game. Every time [`Main`]
 runs, it runs a sequence of other schedules. On its first run, it also first
 runs a sequence of "startup" schedules.
 
-Most Bevy users only have to deal with the sub-schedules of `Main`. `Extract`
-and `Render` are only relevant to graphics developers who want to develop
-new/custom rendering features for the engine. This page is only focused on
-`Main`. If you want to learn more about `Extract` and `Render`, [see this
-page about Bevy's rendering architecture][cb::render-architecture].
+Most Bevy users only have to deal with the sub-schedules of [`Main`].
+[`Extract`] and [`Render`] are only relevant to graphics developers who want to
+develop new/custom rendering features for the engine. This page is only focused
+on [`Main`]. If you want to learn more about [`Extract`] and [`Render`], [see
+this page about Bevy's rendering architecture][cb::render-architecture].
 
 ## The Main Schedule
 
-`Main` is where all the application logic runs. It is a sort of meta-schedule,
-whose job is to run other schedules in a specific order. You should not add
-any custom systems directly to `Main`. You should add your systems to the various
-schedules managed by `Main`.
+[`Main`] is where all the application logic runs. It is a sort of meta-schedule,
+whose job is to run other schedules in a specific order. You should not add any
+custom systems directly to [`Main`]. You should add your systems to the various
+schedules managed by [`Main`].
 
 Bevy provides the following schedules, to organize all the systems:
 
- - [`First`][bevy::First],
-   [`PreUpdate`][bevy::PreUpdate],
-   [`StateTransition`][bevy::StateTransition],
-   [`RunFixedMainLoop`][bevy::RunFixedMainLoop],
-   [`Update`][bevy::Update],
-   [`PostUpdate`][bevy::PostUpdate],
-   [`Last`][bevy::Last]
-   - These schedules are run by `Main` every time it runs
- - `PreStartup`, `Startup`, `PostStartup`
-   - These schedules are run by `Main` once, the first time it runs
- - [`FixedMain`][bevy::FixedMain]
-   - The [fixed timestep][cb::fixedtimestep] equivalent of the `Main` schedule.
-   - Run by `RunFixedMainLoop` as many times as needed, to catch up to the fixed timestep interval.
- - [`FixedFirst`][bevy::FixedFirst],
-   [`FixedPreUpdate`][bevy::FixedPreUpdate],
-   [`FixedUpdate`][bevy::FixedUpdate],
-   [`FixedPostUpdate`][bevy::FixedPostUpdate],
-   [`FixedLast`][bevy::FixedLast]
-   - The [fixed timestep][cb::fixedtimestep] equivalents of the `Main` sub-schedules.
- - `OnEnter(…)`/`OnExit(…)`/`OnTransition(…)`
-   - These schedules are run by `StateTransition` on [state][cb::state] changes
+ - [`First`], [`PreUpdate`], [`StateTransition`], [`RunFixedMainLoop`], [`Update`], [`PostUpdate`], [`Last`]
+   - These schedules are run by [`Main`] every time it runs
+ - [`PreStartup`], [`Startup`], [`PostStartup`]
+   - These schedules are run by [`Main`] once, the first time it runs
+ - [`FixedMain`]
+   - The [fixed timestep][cb::fixedtimestep] equivalent of the [`Main`] schedule.
+   - Run by [`RunFixedMainLoop`] as many times as needed, to catch up to the fixed timestep interval.
+ - [`FixedFirst`], [`FixedPreUpdate`], [`FixedUpdate`], [`FixedPostUpdate`], [`FixedLast`]
+   - The [fixed timestep][cb::fixedtimestep] equivalents of the [`Main`] sub-schedules.
+ - [`OnEnter(…)`][`OnEnter`]/[`OnExit(…)`][`OnExit`]/[`OnTransition(…)`][`OnTransition`]
+   - These schedules are run by [`StateTransition`] on [state][cb::state] changes
 
-The intended places for most user systems (your game logic) are `Update`,
-`FixedUpdate`, `Startup`, and the [state][cb::state] transition schedules.
+The intended places for most user systems (your game logic) are [`Update`],
+[`FixedUpdate`], [`Startup`], and the [state][cb::state] transition schedules.
 
-`Update` is for your usual game logic that should run every frame. `Startup` is
+[`Update`] is for your usual game logic that should run every frame. [`Startup`] is
 useful to perform initialization tasks, before the first normal frame update
-loop. `FixedUpdate` is if you want to use a [fixed timestep][cb::fixedtimestep].
+loop. [`FixedUpdate`] is if you want to use a [fixed timestep][cb::fixedtimestep].
 
 The other schedules are intended for engine-internal functionality. Splitting
 them like that ensures that Bevy's internal engine systems will run correctly
@@ -114,12 +107,12 @@ Remember: Bevy's internals are implemented using ordinary systems
 and ECS, just like your own stuff!
 
 If you are developing plugins to be used by other people, you might be
-interested in adding functionality to `PreUpdate`/`PostUpdate` (or the `Fixed`
+interested in adding functionality to [`PreUpdate`]/[`PostUpdate`] (or the `Fixed`
 equivalents), so it can run alongside other "engine systems". Also consider
-`PreStartup` and `PostStartup` if you have startup systems that should be
+[`PreStartup`] and [`PostStartup`] if you have startup systems that should be
 separated from your users' startup systems.
 
-`First` and `Last` exist only for special edge cases, if you really need to
+[`First`] and [`Last`] exist only for special edge cases, if you really need to
 ensure something runs before/after *everything* else, including all the normal
 "engine-internal" code.
 
@@ -175,7 +168,7 @@ the sync points, you can do that.
 {{#include ../code013/src/programming/schedules.rs:disable-auto-apply-deferred}}
 ```
 
-Now, to manually create sync points, add special `apply_deferred` systems
+Now, to manually create sync points, add special [`apply_deferred`] systems
 where you like them:
 
 ```rust,no_run,noplayground
@@ -184,27 +177,26 @@ where you like them:
 
 ## Main Schedule Configuration
 
-The order of schedules to be run by `Main` every frame is configured in
-the [`MainScheduleOrder`][bevy::MainScheduleOrder] [resource][cb::res].
-For advanced use cases, if Bevy's predefined schedules don't work for your
-needs, you can change it.
+The order of schedules to be run by [`Main`] every frame is configured in the
+[`MainScheduleOrder`] [resource][cb::res]. For advanced use cases, if Bevy's
+predefined schedules don't work for your needs, you can change it.
 
 ### Creating a New Custom Schedule
 
 As an example, let's say we want to add an additional schedule, that runs every
-frame (like `Update`), but runs before [fixed timestep][cb::fixedtimestep].
+frame (like [`Update`]), but runs before [fixed timestep][cb::fixedtimestep].
 
 First, we need to create a name/label for our new schedule, by creating a Rust
-type (a `struct` or `enum`) and deriving [`ScheduleLabel`][bevy::ScheduleLabel]
-+ an assortment of required standard Rust traits.
+type (a `struct` or `enum`) and deriving [`ScheduleLabel`] + an assortment of
+required standard Rust traits.
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/schedules.rs:custom-schedule}}
 ```
 
 Now, we can init the schedule in the [app][cb::app], add it to
-[`MainScheduleOrder`][bevy::MainScheduleOrder] to make it run every frame
-where we like it, and add some systems to it!
+[`MainScheduleOrder`] to make it run every frame where we like it, and add some
+systems to it!
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/schedules.rs:custom-schedule-app}}

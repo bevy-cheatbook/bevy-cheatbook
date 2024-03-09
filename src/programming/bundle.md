@@ -19,7 +19,7 @@ the fields of a struct, thus helping you make sure your code is correct.
 Bevy provides many [built-in bundle types][builtins::bundle] that you can use
 to spawn common kinds of entities.
 
-Here is how to create your own bundle:
+To create your own bundle, derive [`Bundle`] on a `struct`:
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/bundle.rs:bundle}}
