@@ -3,6 +3,9 @@ mod plugins {
 use bevy::prelude::*;
 
 #[derive(Resource, Default)]
+struct MyCustomResource;
+
+#[derive(Resource, Default)]
 struct MyOtherResource;
 
 #[derive(Event)]
@@ -10,8 +13,20 @@ struct MyEvent;
 
 fn plugin_init() {}
 fn my_system() {}
+fn do_some_things() {}
+fn do_other_things() {}
 
-// ANCHOR: plugins
+// ANCHOR: plugin-fn
+fn my_plugin(app: &mut App) {
+    app.init_resource::<MyCustomResource>();
+    app.add_systems(Update, (
+        do_some_things,
+        do_other_things,
+    ));
+}
+// ANCHOR_END: plugin-fn
+
+// ANCHOR: plugin-struct
 struct MyPlugin;
 
 impl Plugin for MyPlugin {
@@ -22,14 +37,19 @@ impl Plugin for MyPlugin {
         app.add_systems(Update, my_system);
     }
 }
+// ANCHOR_END: plugin-struct
 
+// ANCHOR: plugin-app
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_plugins(MyPlugin)
+        .add_plugins((
+            my_plugin, // the `fn`-based plugin
+            MyPlugin,  // the `struct`-based plugin
+        ))
         .run();
 }
-// ANCHOR_END: plugins
+// ANCHOR_END: plugin-app
 }
 
 mod plugin_groups {

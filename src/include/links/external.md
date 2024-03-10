@@ -25,6 +25,7 @@
 [bevy::jam-02]: https://itch.io/jam/bevy-jam-2/entries
 [bevy::jam-03]: https://itch.io/jam/bevy-jam-3/entries
 [bevy::linux-dependencies]: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
+[bevy::plugin-guidelines]: https://bevyengine.org/learn/book/plugin-development/
 [bevy::profiling]: https://github.com/bevyengine/bevy/blob/main/docs/profiling.md
 [bevy::readme]: https://github.com/bevyengine/bevy/blob/main/README.md
 [bevy::system-test]: https://github.com/bevyengine/bevy/blob/main/tests/how_to_test_systems.rs
