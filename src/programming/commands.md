@@ -39,3 +39,40 @@ Otherwise, Commands are normally applied at the end of every
 will see the changes. For example, Bevy's engine systems (that live in
 [`PostUpdate`]) will see the entities you spawn in your systems (that live in
 [`Update`]).
+
+## Custom Commands
+
+Commands can also serve as a convenient way to do any custom manipulations
+that require [full access][cb::world] to the ECS [`World`]. You can queue up
+any custom code to run in a deferred fashion, the same way as the standard
+commands work.
+
+For a one-off thing, you can just pass a closure:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/commands.rs:command-closure}}
+```
+
+If you want something reusable, you can create a custom type and implement
+the [`Command`] trait:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/commands.rs:command-impl}}
+```
+
+And if you want to make it extra nice to use, you can create
+an extension trait to add extra methods to [`Commands`]:
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/commands.rs:command-ext}}
+```
+
+Now, your custom commands will "feel native", as if they were integrated
+into Bevy. :)
+
+Note: if you want to use your custom extension method from other Rust
+files, you will have to import your trait, or it will not be available:
+
+```rust,no_run,noplayground
+use crate::thing::MyCustomCommandsExt;
+```

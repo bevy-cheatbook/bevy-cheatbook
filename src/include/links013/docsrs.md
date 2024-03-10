@@ -46,6 +46,7 @@
 [`ColorGrading`]: https://docs.rs/bevy/0.13.0/bevy/render/view/struct.ColorGrading.html
 [`ColorMaterial`]: https://docs.rs/bevy/0.13.0/bevy/sprite/struct.ColorMaterial.html
 [`Color`]: https://docs.rs/bevy/0.13.0/bevy/render/color/enum.Color.html
+[`Command`]: https://docs.rs/bevy/0.13.0/bevy/ecs/system/trait.Command.html
 [`Commands`]: https://docs.rs/bevy/0.13.0/bevy/ecs/system/struct.Commands.html
 [`ComponentIdFor`]: https://docs.rs/bevy/0.13.0/bevy/ecs/component/struct.ComponentIdFor.html
 [`ComponentId`]: https://docs.rs/bevy/0.13.0/bevy/ecs/component/struct.ComponentId.html

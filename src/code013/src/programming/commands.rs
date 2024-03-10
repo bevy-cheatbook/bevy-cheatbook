@@ -81,6 +81,10 @@ fn spawn_things(
         .insert(ComponentC::default())
         .remove::<ComponentA>()
         .remove::<(ComponentB, MyBundle)>();
+
+    // remove everything except the given components / bundles
+    commands.entity(my_entity_id)
+        .retain::<(TransformBundle, ComponentC)>();
 }
 
 fn make_all_players_hostile(
@@ -105,8 +109,63 @@ fn despawn_all_enemies(
         commands.entity(entity).despawn();
     }
 }
-
 // ANCHOR_END: example-commands
+
+// ANCHOR: command-closure
+fn my_system(mut commands: Commands) {
+    let x = 420;
+
+    commands.add(move |world: &mut World| {
+        // do whatever you want with `world` here
+
+        // note: it's a closure, you can use variables from
+        // the parent scope/function
+        eprintln!("{}", x);
+    });
+}
+// ANCHOR_END: command-closure
+
+// ANCHOR: command-impl
+use bevy::ecs::system::Command;
+
+struct MyCustomCommand {
+    // you can have some parameters
+    data: u32,
+}
+
+impl Command for MyCustomCommand {
+    fn apply(self, world: &mut World) {
+        // do whatever you want with `world` and `self.data` here
+    }
+}
+
+fn my_other_system(mut commands: Commands) {
+    commands.add(MyCustomCommand {
+        data: 920, // set your value
+    });
+}
+// ANCHOR_END: command-impl
+
+// ANCHOR: command-ext
+pub trait MyCustomCommandsExt {
+    // define a method that we will be able to call on `commands`
+    fn do_custom_thing(&mut self, data: u32);
+}
+
+// implement our trait for Bevy's `Commands`
+impl<'w, 's> MyCustomCommandsExt for Commands<'w, 's> {
+    fn do_custom_thing(&mut self, data: u32) {
+        self.add(MyCustomCommand {
+            data,
+        });
+    }
+}
+
+fn my_fancy_system(mut commands: Commands) {
+    // now we can call our custom method just like Bevy's `spawn`, etc.
+    commands.do_custom_thing(42);
+}
+// ANCHOR_END: command-ext
 
 fn spawn_new_enemies_if_needed() {}
 fn enemy_ai() {}
