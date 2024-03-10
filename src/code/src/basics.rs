@@ -796,44 +796,6 @@ fn jump_duration(
 // ANCHOR_END: stopwatch
 
 #[allow(dead_code)]
-mod app6 {
-use bevy::prelude::*;
-
-#[derive(Resource)]
-struct MyNetProto;
-
-impl MyNetProto {
-    fn receive_updates(&mut self) -> std::io::Result<()> {
-        Ok(())
-    }
-}
-
-// ANCHOR: system-io
-fn net_receive(mut netcode: ResMut<MyNetProto>) -> std::io::Result<()> {
-    netcode.receive_updates()?;
-
-    Ok(())
-}
-
-fn handle_io_errors(In(result): In<std::io::Result<()>>) {
-    if let Err(e) = result {
-        eprintln!("I/O error occurred: {}", e);
-    }
-}
-// ANCHOR_END: system-io
-
-// ANCHOR: system-pipe
-fn main() {
-    App::new()
-        // ...
-        .add_system(net_receive.pipe(handle_io_errors))
-        // ...
-        .run();
-}
-// ANCHOR_END: system-pipe
-}
-
-#[allow(dead_code)]
 mod app9 {
 use bevy::prelude::*;
 

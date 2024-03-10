@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # System Piping
 
@@ -19,6 +19,10 @@ Note that system piping is *not* a way of communicating between systems.
 If you want to pass data between systems, you should use [Events][cb::event]
 instead.
 
+Your functions will be combined and Bevy will treat them as if they were a
+single big [system][cb::system] with all the combined system parameters for
+data access.
+
 ## Example: Handling [`Result`]s
 
 One useful application of system piping is to be able to return errors (allowing
@@ -26,15 +30,15 @@ the use of Rust's `?` operator) and then have a separate function for handling
 them:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:system-io}}
+{{#include ../code013/src/programming/system_piping.rs:system-io}}
 ```
 
-Such functions cannot be [registered][cb::app] individually as systems (Bevy
-doesn't know what to do with the input/output). By "piping" them together, we
-create a valid system that we can add:
+Such functions cannot be [added][cb::app] individually as systems (Bevy
+doesn't know what to do with the input/output). By "piping" them together,
+we create a valid system that we can add:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:system-pipe}}
+{{#include ../code013/src/programming/system_piping.rs:system-pipe}}
 ```
 
 ## Performance Warning

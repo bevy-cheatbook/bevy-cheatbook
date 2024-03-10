@@ -63,6 +63,7 @@ mod programming {
     mod run_conditions;
     mod system_sets;
     mod states;
+    mod system_piping;
     mod paramset;
     mod non_send;
 }
