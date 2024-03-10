@@ -152,65 +152,6 @@ struct PlayerBundle {
 }
 // ANCHOR_END: bundle
 
-#[allow(dead_code)]
-mod pluginconfig {
-use bevy::prelude::*;
-fn health_system() {}
-fn movement_system() {}
-fn player_invincibility() {}
-fn free_camera() {}
-// ANCHOR: plugin-config
-
-struct MyGameplayPlugin {
-    /// Should we enable dev hacks?
-    enable_dev_hacks: bool,
-}
-
-impl Plugin for MyGameplayPlugin {
-    fn build(&self, app: &mut App) {
-        // add our gameplay systems
-        app.add_system(health_system);
-        app.add_system(movement_system);
-        // ...
-
-        // if "dev mode" is enabled, add some hacks
-        if self.enable_dev_hacks {
-            app.add_system(player_invincibility);
-            app.add_system(free_camera);
-        }
-    }
-}
-
-fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_plugin(MyGameplayPlugin {
-            enable_dev_hacks: false, // change to true for dev testing builds
-        })
-        .run();
-}
-// ANCHOR_END: plugin-config
-
-fn _main2() {
-// ANCHOR: defaultplugins-config
-App::new()
-    .add_plugins(DefaultPlugins.set(
-        // here we configure the main window
-        WindowPlugin {
-            window: WindowDescriptor {
-                width: 800.0,
-                height: 600.0,
-                // ...
-                ..Default::default()
-            },
-            ..Default::default()
-        }
-    ))
-    .run();
-// ANCHOR_END: defaultplugins-config
-}
-}
-
 // ANCHOR: sys-simple-query
 fn check_zero_health(
     // access entities that have `Health` and `Transform` components
@@ -855,40 +796,6 @@ fn jump_duration(
 // ANCHOR_END: stopwatch
 
 #[allow(dead_code)]
-mod app3 {
-    use bevy::prelude::*;
-    use super::*;
-
-    #[derive(Resource, Default)]
-    struct MyOtherResource;
-
-    struct MyEvent;
-    fn plugin_init() {}
-    fn my_system() {}
-
-// ANCHOR: plugins
-struct MyPlugin;
-
-impl Plugin for MyPlugin {
-    fn build(&self, app: &mut App) {
-        app
-            .init_resource::<MyOtherResource>()
-            .add_event::<MyEvent>()
-            .add_startup_system(plugin_init)
-            .add_system(my_system);
-    }
-}
-
-fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_plugin(MyPlugin)
-        .run();
-}
-// ANCHOR_END: plugins
-}
-
-#[allow(dead_code)]
 mod app6 {
 use bevy::prelude::*;
 
@@ -970,54 +877,6 @@ fn main() {
         .run();
 }
 // ANCHOR_END: systemset-labels
-}
-
-#[allow(dead_code)]
-mod app12 {
-    use super::*;
-    use bevy::{app::PluginGroupBuilder, log::LogPlugin};
-
-    struct FooPlugin;
-
-    impl Plugin for FooPlugin {
-        fn build(&self, app: &mut App) {}
-    }
-
-    struct BarPlugin;
-
-    impl Plugin for BarPlugin {
-        fn build(&self, app: &mut App) {}
-    }
-
-// ANCHOR: plugin-groups
-struct MyPluginGroup;
-
-impl PluginGroup for MyPluginGroup {
-    fn build(self) -> PluginGroupBuilder {
-        PluginGroupBuilder::start::<Self>()
-            .add(FooPlugin)
-            .add(BarPlugin)
-    }
-}
-
-fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_plugins(MyPluginGroup)
-        .run();
-}
-// ANCHOR_END: plugin-groups
-
-    fn disable_plugins() {
-// ANCHOR: plugin-groups-disable
-App::new()
-    .add_plugins(
-        DefaultPlugins.build()
-            .disable::<LogPlugin>()
-    )
-    .run();
-// ANCHOR_END: plugin-groups-disable
-    }
 }
 
 #[allow(dead_code)]

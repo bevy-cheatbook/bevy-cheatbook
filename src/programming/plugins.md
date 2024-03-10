@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # Plugins
 
@@ -16,10 +16,10 @@ Builder][cb::app]. Think of this as a way to add things to the app from
 multiple places, like different Rust files/modules or crates.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:plugins}}
+{{#include ../code013/src/programming/plugins.rs:plugins}}
 ```
 
-Note how you get `&mut` access to the [`App`][bevy::App], so you can
+Note how you get `&mut` access to the [`App`], so you can
 add whatever you want to it, just like you can do from your `fn main`.
 
 For internal organization in your own project, the main value of plugins
@@ -36,23 +36,23 @@ Some suggestions:
 
 ## Plugin groups
 
-Plugin groups register multiple plugins at once.
-Bevy's [`DefaultPlugins`][bevy::DefaultPlugins] and
-[`MinimalPlugins`][bevy::MinimalPlugins] are examples of this.
+Plugin groups register multiple plugins at once.  Bevy's [`DefaultPlugins`]
+and [`MinimalPlugins`] are examples of this.
+
 To create your own plugin group:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:plugin-groups}}
+{{#include ../code013/src/programming/plugins.rs:plugin-groups}}
 ```
 
 When adding a plugin group to the [app][cb::app], you can disable some
 plugins while keeping the rest.
 
 For example, if you want to manually set up logging (with your own `tracing`
-subscriber), you can disable Bevy's [`LogPlugin`][bevy::LogPlugin]:
+subscriber), you can disable Bevy's [`LogPlugin`]:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:plugin-groups-disable}}
+{{#include ../code013/src/programming/plugins.rs:plugin-groups-disable}}
 ```
 
 Note that this simply disables the functionality, but it cannot actually
@@ -70,15 +70,14 @@ used during initialization/startup. For settings that can be changed at runtime,
 it is recommended that you put them in [resources][cb::res] instead.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:plugin-config}}
+{{#include ../code013/src/programming/plugins.rs:plugin-config}}
 ```
 
 Plugins that are added using [Plugin Groups][cb::plugingroup] can also be
-configured. Many of Bevy's [`DefaultPlugins`][bevy::DefaultPlugins] work
-this way.
+configured. Many of Bevy's [`DefaultPlugins`] work this way.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:defaultplugins-config}}
+{{#include ../code013/src/programming/plugins.rs:defaultplugins-config}}
 ```
 
 ## Publishing Crates

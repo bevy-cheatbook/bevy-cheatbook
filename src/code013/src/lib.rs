@@ -55,6 +55,7 @@ mod programming {
     mod queries;
     mod commands;
     mod events;
+    mod plugins;
     mod local;
     mod exclusive;
     mod schedules;
