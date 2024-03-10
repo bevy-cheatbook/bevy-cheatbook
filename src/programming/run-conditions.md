@@ -35,6 +35,17 @@ to one system, and it will also inherit the RCs of any [sets][cb::systemset]
 it belongs to. Bevy will evaluate all the RCs, and the system will only run
 if all of them return `true`.
 
+## Common Conditions
+
+Bevy provides some built-in RCs for some common scenarios, that you can just
+apply to your systems:
+ - [ECS common conditions][bevy::ecs::common_conditions]:
+   - For checking [states][cb::state], [resource][cb::res] values and [changes][cb::change-detection], [events][cb::event], if [entities][cb::ecs-intro-data] with specific [components][cb::component] exist, etc...
+ - [Input common conditions][bevy::input::common_conditions]:
+   - For [input handling][chapter::input]: running on key/button press/release.
+ - [Time common conditions][bevy::time::common_conditions]:
+   - For controlling systems based on [time][cb::time]: repeating on a timer, running after a delay, etc...
+
 ## Known Pitfalls
 
 When receiving [events][cb::event] in systems that don't run every frame
