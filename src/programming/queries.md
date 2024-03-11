@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # Queries
 
@@ -9,49 +9,76 @@ Relevant official examples:
 
 Queries let you access [components of entities][cb::ecs-intro].
 
-Use the [`Query`][bevy::Query] [system parameter][cb::system], where you can
-specify the data you want to access, and optionally additional
-[filters][cb::query-filter] for selecting entities.
+Use the [`Query`] [system parameter][cb::system], where you can specify the data
+you want to access, and optionally additional [filters][cb::query-filter].
 
-Think of the types you put in your `Query` as a "specification" for selecting
+Think of the types you put in your [`Query`] as a "specification" for selecting
 what entities you want to access. Queries will match only those entities in the
 ECS World that fit your specification. You are then able to access the relevant
-data from individual such entities (using an [`Entity`][bevy::Entity] ID), or
-iterate to access all entities that qualify.
+data from any such entities.
 
 The first type parameter for a query is the data you want to access. Use `&` for
-shared/readonly access and `&mut` for exclusive/mutable access. Use `Option` if
+shared/readonly access and `&mut` for exclusive/mutable access. Use [`Option`] if
 the component is not required (you want to find entities with or without that
 component. If you want multiple components, put them in a tuple.
 
-```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:sys-simple-query}}
-```
+### Iterating
 
-The above example used iteration to access all entities that the query could find.
-
-To access the [components][cb::component] from specific [entity][cb::entity]
-only:
+The most common operation is to simply iterate to access the component values of
+every entity that matches the query:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:query-get}}
+{{#include ../code013/src/programming/queries.rs:sys-simple-query}}
 ```
 
 If you want to know the entity IDs of the entities you are accessing, you can
-put the special [`Entity`][bevy::Entity] type in your query. This is useful
-together with iteration, so you can identify the entities that the query found:
+put the special [`Entity`] type in your query. This is useful if you need
+to later perform specific operations on those entities.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:query-entity}}
+{{#include ../code013/src/programming/queries.rs:query-entity}}
 ```
 
-If you know that the query is expected to only ever match a single entity, you
-can use `single`/`single_mut` (panic on error) or `get_single`/`get_single_mut`
-(return [`Result`]). These methods ensure that there exists exactly one
-candidate entity that can match your query, and will produce an error otherwise.
+### Accessing Specific Entities
+
+To access the [components][cb::component] from one specific [entity][cb::entity]
+only, you need to know the [`Entity`] ID:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:query-single}}
+{{#include ../code013/src/programming/queries.rs:query-get}}
+```
+
+If you want to access the data from several entities all at once, you can use
+`many`/`many_mut` (panic on error) or `get_many`/`get_many_mut` (return
+[`Result`]).  These methods ensure that all the requested entities exist and
+match the query, and will produce an error otherwise.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/queries.rs:query-many}}
+```
+
+### Unique Entities
+
+If you know that only one matching entity is supposed to exist (the query is
+expected to only ever match a single entity), you can use `single`/`single_mut`
+(panic on error) or `get_single`/`get_single_mut` (return [`Result`]). These
+methods ensure that there exists exactly one candidate entity that can match
+your query, and will produce an error otherwise.
+
+You do not need to know the [`Entity`] ID.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/queries.rs:query-single}}
+```
+
+### Combinations
+
+If you want to iterate over all possible combinations of N entities, Bevy
+provides a method for that too. Be careful: with a lot of entities, this
+can easily become very slow!
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/queries.rs:query-combinations}}
 ```
 
 ## Bundles
@@ -67,17 +94,16 @@ A common beginner mistake is to query for the bundle type!
 Add query filters to narrow down the entities you get from the query.
 
 This is done using the second (optional) generic type parameter of the
-[`Query`][bevy::Query] type.
+[`Query`] type.
 
 Note the syntax of the query: first you specify the data you want to access
 (using a tuple to access multiple things), and then you add any additional
 filters (can also be a tuple, to add multiple).
 
-Use [`With`][bevy::With]/[`Without`][bevy::Without] to only get entities
-that have specific components.
+Use [`With`]/[`Without`] to only get entities that have specific components.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:sys-query-filter}}
+{{#include ../code013/src/programming/queries.rs:sys-query-filter}}
 ```
 
 This is useful if you don't actually care about the data stored inside these
@@ -89,3 +115,21 @@ Multiple filters can be combined:
  - in a tuple to apply all of them (AND logic)
  - using the `Or<(…)>` wrapper to detect any of them (OR logic).
    - (note the tuple inside)
+
+## Query Transmutation
+
+If you want one function with a [`Query`] parameter to call another function
+with a different (but compatible) [`Query`] parameter, you can create the
+needed [`Query`] from the one you have using something called [`QueryLens`].
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/queries.rs:query-transmute}}
+```
+
+Note: when we call `debug_positions` from each function, it will access
+different entities! Even though the `Query<&Transform>` parameter type does not
+have any additional [filters][cb::query-filter], it was created by transmuting
+via [`QueryLens`], and therefore it can only access the entities and components
+of the original [`Query`] that it was derived from. If we were to add
+`debug_positions` to Bevy as a regular system, it would access the transforms of
+all entities.

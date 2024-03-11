@@ -152,46 +152,6 @@ struct PlayerBundle {
 }
 // ANCHOR_END: bundle
 
-// ANCHOR: sys-simple-query
-fn check_zero_health(
-    // access entities that have `Health` and `Transform` components
-    // get read-only access to `Health` and mutable access to `Transform`
-    // optional component: get access to `Player` if it exists
-    mut query: Query<(&Health, &mut Transform, Option<&Player>)>,
-) {
-    // get all matching entities
-    for (health, mut transform, player) in query.iter_mut() {
-        eprintln!("Entity at {} has {} HP.", transform.translation, health.hp);
-
-        // center if hp is zero
-        if health.hp <= 0.0 {
-            transform.translation = Vec3::ZERO;
-        }
-
-        if let Some(player) = player {
-            // the current entity is the player!
-            // do something special!
-        }
-    }
-}
-// ANCHOR_END: sys-simple-query
-
-// ANCHOR: sys-query-filter
-fn debug_player_hp(
-    // access the health (and optionally the PlayerName, if present), only for friendly players
-    query: Query<(&Health, Option<&PlayerName>), (With<Player>, Without<Enemy>)>,
-) {
-    // get all matching entities
-    for (health, name) in query.iter() {
-        if let Some(name) = name {
-            eprintln!("Player {} has {} HP.", name.0, health.hp);
-        } else {
-            eprintln!("Unknown player has {} HP.", health.hp);
-        }
-    }
-}
-// ANCHOR_END: sys-query-filter
-
 // ANCHOR: propagation
 fn spawn_toplevel_entity(
     mut commands: Commands,
@@ -527,34 +487,6 @@ commands.spawn(MyParentBundle::default())
 // ANCHOR_END: parenting
 }
 
-// ANCHOR: query-entity
-// add `Entity` to `Query` to get Entity IDs
-fn query_entities(q: Query<(Entity, /* ... */)>) {
-    for (e, /* ... */) in q.iter() {
-        // `e` is the Entity ID of the entity we are accessing
-    }
-}
-// ANCHOR_END: query-entity
-
-// ANCHOR: query-single
-fn query_player(mut q: Query<(&Player, &mut Transform)>) {
-    let (player, mut transform) = q.single_mut();
-
-    // do something with the player and its transform
-}
-// ANCHOR_END: query-single
-
-fn query_misc(mut query: Query<(&Health, &mut Transform)>) {
-    let entity = Entity::from_raw(0);
-    // ANCHOR: query-get
-    if let Ok((health, mut transform)) = query.get_mut(entity) {
-        // do something with the components
-    } else {
-        // the entity does not have the components from the query
-    }
-    // ANCHOR_END: query-get
-}
-
 #[derive(Component)]
 struct Asteroid;
 
@@ -760,14 +692,6 @@ fn remove_components(
     }
 }
 
-fn detect_removals(
-    removals: RemovedComponents<Seen>,
-    // ... (maybe Commands or a Query ?) ...
-) {
-    for entity in removals.iter() {
-        // do something with the entity
-    }
-}
 // ANCHOR_END: removal-detection
 }
 

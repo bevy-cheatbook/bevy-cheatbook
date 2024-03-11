@@ -172,6 +172,7 @@
 [`Projection`]: https://docs.rs/bevy/0.13.0/bevy/render/camera/enum.Projection.html
 [`Quad`]: https://docs.rs/bevy/0.13.0/bevy/prelude/shape/struct.Quad.html
 [`QueryState`]: https://docs.rs/bevy/0.13.0/bevy/ecs/query/struct.QueryState.html
+[`QueryLens`]: https://docs.rs/bevy/0.13.0/bevy/ecs/system/struct.QueryLens.html
 [`Query`]: https://docs.rs/bevy/0.13.0/bevy/ecs/system/struct.Query.html
 [`ReceivedCharacter`]: https://docs.rs/bevy/0.13.0/bevy/window/struct.ReceivedCharacter.html
 [`RemovedComponents<T>`]: https://docs.rs/bevy/0.13.0/bevy/ecs/removal_detection/struct.RemovedComponents.html
