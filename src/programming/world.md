@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # Direct World Access
 
@@ -6,24 +6,23 @@
 
 ---
 
-The [`World`][bevy::World] is where Bevy ECS stores all data and
-associated metadata. It keeps track of [resources][cb::res], [entities and
-components][cb::ec].
+The [`World`] is where Bevy ECS stores all data and associated metadata. It
+keeps track of [resources][cb::res], [entities and components][cb::ec].
 
-Typically, the [`App`][bevy::App]'s runner will run all
-[schedules][cb::schedule] (which, in turn, run their [systems][cb::system]) on
-the main world. Regular [systems][cb::system] are limited in what data they can
-access from the world, by their [system parameter types][builtins::systemparam].
-Operations that manipulate the world itself are only done indirectly using
+Typically, the [`App`]'s runner will run all [schedules][cb::schedule] (which,
+in turn, run their [systems][cb::system]) on the main world. Regular
+[systems][cb::system] are limited in what data they can access from the world,
+by their [system parameter types][builtins::systemparam].  Operations that
+manipulate the world itself are only done indirectly using
 [`Commands`][cb::commands]. This is how most typical Bevy user code behaves.
 
 However, there are also ways you can get full direct access to the world, which
 gives you full control and freedom to do anything with any data stored in the
 Bevy ECS:
  - [Exclusive systems][cb::exclusive]
- - [`FromWorld`][bevy::FromWorld] impls
- - Via the [`App`][bevy::App] [builder][cb::app]
- - Manually created [`World`][bevy::World]s for purposes like [tests][cb::system-tests] or scenes
+ - [`FromWorld`] impls
+ - Via the [`App`] [builder][cb::app]
+ - Manually created [`World`]s for purposes like [tests][cb::system-tests] or scenes
  - [Custom Commands][cb::commands-custom]
 
 Direct world access lets you do things like:
@@ -46,24 +45,23 @@ Here are some ways that you can make use of the direct world access APIs.
 
 ### `SystemState`
 
-The easiest way to do things is using a [`SystemState`][bevy::SystemState].
+The easiest way to do things is using a [`SystemState`].
 
 This is a type that "imitates a system", behaving the same way as a
-[system][cb::system] with various parameters would. All the same behaviors
-like [queries][cb::query], [change detection][cb::change-detection], and
-even [`Commands`][cb::commands] are available. You can use any [system
+[system][cb::system] with various parameters would. All the same behaviors like
+[queries][cb::query], [change detection][cb::change-detection], and even
+[`Commands`][cb::commands] are available. You can use any [system
 params][builtins::systemparam].
 
 It also tracks any persistent state, used for things like [change
 detection][cb::change-detection] or caching to improve performance. Therefore,
-if you plan on reusing the same [`SystemState`][bevy::SystemState] multiple
-times, you should store it somewhere, rather than creating a new one every
-time. Every time you call `.get(world)`, it behaves like another "run"
-of a system.
+if you plan on reusing the same [`SystemState`] multiple times, you should store
+it somewhere, rather than creating a new one every time. Every time you call
+`.get(world)`, it behaves like another "run" of a system.
 
-If you are using [`Commands`][bevy::Commands], you can choose when you
-want to apply them to the world. You need to manually call `.apply(world)`
-on the [`SystemState`][bevy::SystemState], to apply them.
+If you are using [`Commands`], you can choose when you want to apply them to the
+world. You need to manually call `.apply(world)` on the [`SystemState`], to
+apply them.
 
 ```rust,no_run,noplayground
 // TODO: write code example
