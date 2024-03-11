@@ -8,7 +8,7 @@ struct Enemy;
 #[derive(Resource)]
 struct MyResource;
 
-#[derive(Component)]
+#[derive(Component, PartialEq)]
 struct PlayerXp(f32);
 
 #[derive(Component)]
