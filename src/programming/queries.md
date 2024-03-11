@@ -133,3 +133,7 @@ via [`QueryLens`], and therefore it can only access the entities and components
 of the original [`Query`] that it was derived from. If we were to add
 `debug_positions` to Bevy as a regular system, it would access the transforms of
 all entities.
+
+Also note: this has some performance overhead; the transmute operation is not
+free. Bevy normally caches some query metadata across multiple runs of a
+system. When you create the new query, it has to make a copy of it.
