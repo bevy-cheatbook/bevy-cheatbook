@@ -55,6 +55,10 @@ some data.
 {{#include ../code013/src/programming/exclusive.rs:systemstate}}
 ```
 
+Note: if your [`SystemState`] includes [`Commands`], you must call `.apply()`
+after you are done! That is when the deferred operations queued via
+[commands][cb::commands] will be applied to the [`World`].
+
 ## Performance Considerations
 
 Exclusive systems, by definition, limit parallelism and multi-threading, as

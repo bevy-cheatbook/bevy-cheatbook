@@ -42,7 +42,7 @@
 [cb::camera]: /graphics/camera.md
 [cb::change-detection]: /programming/change-detection.md
 [cb::clearcolor]: /window/clear-color.md
-[cb::commands-custom]: /patterns/commands-custom.md
+[cb::commands-custom]: /programming/commands.md#custom-commands
 [cb::commands]: /programming/commands.md
 [cb::component-marker]: /programming/ec.md#marker-components
 [cb::component-newtype]: /programming/ec.md#newtype-components

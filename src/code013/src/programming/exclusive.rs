@@ -37,6 +37,8 @@ fn spawn_particles_for_enemies(
         ResMut<MyParticleTracker>,
         Query<&mut Transform, With<Player>>,
         EventReader<MyDamageEvent>,
+        // yes, even Commands ;)
+        Commands,
     )>,
     // local resource, just like in a regular system
     mut has_run_once: Local<bool>,
@@ -49,11 +51,15 @@ fn spawn_particles_for_enemies(
 
     // create a scope where we can access our things like a regular system
     {
-        let (mut settings, mut tracker, mut q_player, mut evr) =
+        let (mut settings, mut tracker, mut q_player, mut evr, commands) =
             params.get_mut(world);
 
-        // TODO: do things with our resources, query, events, ...
+        // TODO: do things with our resources, query, events, commands, ...
     }
+
+    // because our SystemState includes Commands,
+    // we must apply them when we are done
+    params.apply(world);
 
     // we are now free to directly spawn entities
     // because the World is no longer used by anything
