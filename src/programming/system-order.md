@@ -2,9 +2,9 @@
 
 # System Order of Execution
 
-Bevy's scheduling algorithm is designed to deliver maximum performance
-by running as many systems as possible in parallel across the available
-CPU threads.
+Bevy's scheduling algorithm is designed to deliver maximum performance by
+running as many [systems][cb::system] as possible in parallel across the
+available CPU threads.
 
 This is possible when the systems do not conflict over the data they need
 to access. However, when a system needs to have mutable (exclusive) access
@@ -25,10 +25,9 @@ you can add ordering constraints:
 {{#include ../code013/src/programming/system_order.rs:app}}
 ```
 
-`.before`/`.after` may be used as many times as you need on one system.
-
-If you need to apply the same ordering constraints to many systems,
-consider using [system sets][cb::systemset].
+When you have a lot of systems that you need to configure, it can start to
+get unwieldy. Consider using [system sets][cb::systemset] to organize and
+manage your systems.
 
 ## Does it even matter?
 
