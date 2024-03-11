@@ -1,6 +1,7 @@
 [`&World`]: https://docs.rs/bevy/0.13.0/bevy/ecs/world/struct.World.html
 [`&mut World`]: https://docs.rs/bevy/0.13.0/bevy/ecs/world/struct.World.html
 [`AdapterInfo`]: https://docs.rs/bevy/0.13.0/bevy/render/render_resource/struct.WgpuAdapterInfo.html
+[`Added<T>`]: https://docs.rs/bevy/0.13.0/bevy/ecs/query/struct.Added.html
 [`Added`]: https://docs.rs/bevy/0.13.0/bevy/ecs/query/struct.Added.html
 [`Affine3A`]: https://docs.rs/bevy/0.13.0/bevy/math/struct.Affine3A.html
 [`AmbientLight`]: https://docs.rs/bevy/0.13.0/bevy/pbr/struct.AmbientLight.html
@@ -39,6 +40,7 @@
 [`Camera3d`]: https://docs.rs/bevy/0.13.0/bevy/core_pipeline/core_3d/struct.Camera3d.html
 [`CameraProjection`]: https://docs.rs/bevy/0.13.0/bevy/render/camera/trait.CameraProjection.html
 [`Camera`]: https://docs.rs/bevy/0.13.0/bevy/render/camera/struct.Camera.html
+[`Changed<T>`]: https://docs.rs/bevy/0.13.0/bevy/ecs/query/struct.Changed.html
 [`Changed`]: https://docs.rs/bevy/0.13.0/bevy/ecs/query/struct.Changed.html
 [`Children`]: https://docs.rs/bevy/0.13.0/bevy/hierarchy/struct.Children.html
 [`ClearColor`]: https://docs.rs/bevy/0.13.0/bevy/render/camera/struct.ClearColor.html
@@ -172,6 +174,7 @@
 [`QueryState`]: https://docs.rs/bevy/0.13.0/bevy/ecs/query/struct.QueryState.html
 [`Query`]: https://docs.rs/bevy/0.13.0/bevy/ecs/system/struct.Query.html
 [`ReceivedCharacter`]: https://docs.rs/bevy/0.13.0/bevy/window/struct.ReceivedCharacter.html
+[`RemovedComponents<T>`]: https://docs.rs/bevy/0.13.0/bevy/ecs/removal_detection/struct.RemovedComponents.html
 [`RemovedComponents`]: https://docs.rs/bevy/0.13.0/bevy/ecs/removal_detection/struct.RemovedComponents.html
 [`RenderAdapterInfo`]: https://docs.rs/bevy/0.13.0/bevy/render/renderer/struct.RenderAdapterInfo.html
 [`RenderAdapter`]: https://docs.rs/bevy/0.13.0/bevy/render/renderer/struct.RenderAdapter.html

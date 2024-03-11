@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header013.md}}
 
 # Change Detection
 
@@ -23,70 +23,69 @@ You can make a [query][cb::query] that only yields entities if specific
 [components][cb::component] on them have been modified.
 
 Use [query filters][cb::query-filter]:
- - [`Added<T>`][bevy::Added]: detect new component instances
+ - [`Added<T>`]: detect new component instances
    - if the component was added to an existing entity
    - if a new entity with the component was spawned
- - [`Changed<T>`][bevy::Changed]: detect component instances that have been changed
-   - triggers when the component is accessed mutably
-   - also triggers if the component is newly-added (as per [`Added`][bevy::Added])
+ - [`Changed<T>`]: detect component instances that have been changed
+   - triggers when the component is mutated
+   - also triggers if the component is newly-added (as per [`Added`])
 
-(If you want to react to removals, see the page on [removal
-detection][cb::removal-detection]. It works differently and is much
-trickier to use.)
+(If you want to react to removals, see [removal
+detection][cb::removal-detection]. It works differently.)
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:change-detection}}
+{{#include ../code013/src/programming/change_detection.rs:change-detection}}
 ```
 
 ### Checking
 
 If you want to access all the entities, as normal, regardless of if they have
-been modified, but you just want to check the status, you can use the special
-[`ChangeTrackers<T>`][bevy::ChangeTrackers] query parameter.
+been modified, but you just want to know if a component has been changed,
+you can use special [`Ref<T>`] query parameters instead of `&` for immutable access.
+
+For mutable access, the change detection methods are always available (because
+Bevy queries actually return a special [`Mut<T>`] type whenever you have `&mut`
+in the query).
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:changetrackers}}
+{{#include ../code013/src/programming/change_detection.rs:ref}}
 ```
-
-This is useful for processing all entities, but doing different things
-depending on if they have been modified.
 
 ## Resources
 
 For [resources][cb::res], change detection is provided via methods on the
-[`Res`][bevy::Res]/[`ResMut`][bevy::ResMut] system parameters.
+[`Res<T>`]/[`ResMut<T>`] system parameters.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:changed-res}}
+{{#include ../code013/src/programming/change_detection.rs:changed-res}}
 ```
-
-Note that change detection cannot currently be used to detect
-[states][cb::state] changes (via the [`State`][bevy::State]
-[resource][cb::res]) ([bug][bevy::2343]).
 
 ## What gets detected?
 
-[`Changed`][bevy::Changed] detection is triggered by
-[`DerefMut`]. Simply accessing components via a mutable query,
-without actually performing a `&mut` access, will *not* trigger it.
+[`Changed`] detection is triggered by [`DerefMut`]. Simply accessing
+[components][cb::component] via a mutable [query][cb::query], or
+[resources][cb::res] via [`ResMut`], without actually performing a `&mut`
+access, will *not* trigger it. This makes change detection quite accurate.
 
-This makes change detection quite accurate. You can rely on it to optimize
-your game's performance, or to otherwise trigger things to happen.
+Note: if you call a Rust function that takes a `&mut T` (mutable borrow),
+that counts! It will trigger change detection even if the function does
+not actually do any mutation. Be careful with helper functions!
 
-Also note that when you mutate a component, Bevy does not track if the new
-value is actually different from the old value. It will always trigger the
-change detection. If you want to avoid that, simply check it yourself:
+Also, when you mutate a component, Bevy does not check if the new value
+is actually different from the old value. It will always trigger the change
+detection. If you want to avoid that, simply check it yourself:
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:change-if-wrap}}
+{{#include ../code013/src/programming/change_detection.rs:change-if-wrap}}
 ```
 
 Change detection works on a per-[system][cb::system] granularity, and is
-reliable. A system will not detect changes that it made itself, only those
-done by other systems, and only if it has not seen them before (the changes
-happened since the last time it ran). If your system only runs sometimes
-(such as with [states][cb::state] or [run criteria][cb::runcriteria]),
-you do *not* have to worry about missing changes.
+reliable. A system will detect changes only if it has not seen them before
+(the changes happened since the last time it ran).
+
+Unlike [events][cb::event], you do *not* have to worry about missing changes
+If your system only runs sometimes (such as when using [states][cb::state]
+or [run conditions][cb::rc]).
 
 ## Possible Pitfalls
 
@@ -97,9 +96,7 @@ the next time it runs, typically on the next frame update.
 If you need to ensure that changes are handled immediately / during the same
 frame, you can use [explicit system ordering][cb::system-order].
 
-However, when detecting component additions with [`Added<T>`][bevy::Added]
-(which are typically done using [`Commands`][cb::commands]), this is not
-enough; you need [stages][cb::stage].
+---
 
 # Removal Detection
 
@@ -117,24 +114,20 @@ applications, so Bevy offers a limited form of it.
 
 ## Components
 
-You can check for [components][cb::component] that have been removed during
-the current frame. The data is cleared at the end of every frame update. Note
-that this makes this feature tricky to use, and requires you to use multiple
-[stages][cb::stage].
+You can check for [components][cb::component] that have been removed during the
+current frame. The data is cleared at the end of every frame update. You must
+make sure your detecting [system][cb::system] [is ordered after][cb::system-order]
+(or is in another [schedule][cb::schedule] that runs after) the system that
+does the removing.
 
-When you remove a component (using [Commands][cb::commands]
-([`Commands`][bevy::Commands])), the operation is applied at the end of the
-[stage][cb::stage]. The [system][cb::system] that checks for the removal
-must run in a later stage during the same frame update. Otherwise, it will
-not detect the removal.
+Note: removal detection also includes despawned entities!
 
-Use the [`RemovedComponents<T>`][bevy::RemovedComponents] special system
-parameter type, to get an iterator for the [`Entity`][bevy::Entity] IDs of
-all the entities that had a component of type `T` that was removed earlier
-this frame.
+Use the [`RemovedComponents<T>`] special system parameter type. Internally, it
+is implemented using [events][cb::event] and behaves like an [`EventReader`],
+but it gives you the [`Entity`] IDs of entities whose component `T` was removed.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:removal-detection}}
+{{#include ../code013/src/programming/change_detection.rs:removal-detection}}
 ```
 
 (To do things with these entities, you can just use the `Entity` IDs with
@@ -148,7 +141,7 @@ You can work around this using [`Option`] and a separate [`Local`][cb::local]
 system parameter, effectively implementing your own detection.
 
 ```rust,no_run,noplayground
-{{#include ../code/src/basics.rs:res-removal-detection}}
+{{#include ../code013/src/programming/change_detection.rs:res-removal-detection}}
 ```
 
 Note that, since this detection is local to your system, it does not have
