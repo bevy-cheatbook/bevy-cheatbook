@@ -35,6 +35,11 @@ fn mouse_clicks() {}
 fn gamepad_cursor_tracking() {}
 fn gamepad_buttons() {}
 fn touch_gestures() {}
+fn system_a() {}
+fn system_b() {}
+fn system_c() {}
+fn some_system() {}
+fn common_run_condition() -> bool { true }
 
 fn audio_enabled() -> bool {
     true
@@ -77,7 +82,8 @@ app.add_systems(Update, (
     ).in_set(MyGameplaySet::Player),
     (
         enemy_movement,
-        enemy_ai,
+        enemy_ai
+            .after(MyGameplaySet::Player),
         enemy_footsteps
             .in_set(MyAudioSet),
     ).in_set(MyGameplaySet::Enemies),
@@ -113,4 +119,16 @@ app.configure_sets(Update, (
         .run_if(gamepad_connected),
 ));
 // ANCHOR_END: configure
+// ANCHOR: anonymous
+app.add_systems(
+    Update,
+    (
+        system_a,
+        system_b,
+        system_c
+    )
+    .run_if(common_run_condition)
+    .after(some_system)
+);
+// ANCHOR_END: anonymous
 }

@@ -5,10 +5,37 @@
 System Sets allow you to easily apply common properties to multiple systems,
 such as [ordering][cb::system-order] and [run conditions][cb::rc].
 
-To create a system set, you must first create a Rust type (`struct` or `enum`)
-to serve as a label/identifier. For simple use cases, create an empty `struct`.
-If you need to create multiple related sets, create an `enum`. Every variant
-of the `enum` is a separate system set.
+Anything you add to the set will automatically be applied to all systems
+belonging to the set.
+
+A system can belong to multiple different sets, and will inherit all the
+properties from all of them. You can also add additional properties to
+individual systems.
+
+All of this combined gives you a lot of flexibility and control over how your systems run.
+
+## Anonymous Sets
+
+The simplest kind of system set is when you just [add][cb::app] a tuple of
+multiple [systems][cb::system] using `.add_systems`.
+
+```rust,no_run,noplayground
+{{#include ../code013/src/programming/system_sets.rs:anonymous}}
+```
+
+This syntax is useful when you just want to apply some common configuration to
+multiple systems.
+
+## Named Sets
+
+This is the more formal and powerful way to use system sets.
+
+You can create a Rust type (`struct` or `enum`) to serve as a label/identifier,
+so you can refer to the set from different places.
+
+For a single set, create an empty `struct`. If you need to create multiple
+related sets, create an `enum`. Every variant of the `enum` is a separate system
+set.
 
 You need to derive [`SystemSet`] + an assortment of required standard Rust traits:
 
@@ -29,28 +56,18 @@ dependencies][cb::system-order] on your set using `.configure_sets`:
 {{#include ../code013/src/programming/system_sets.rs:configure}}
 ```
 
-Anything you add to the set will automatically be applied to all systems
-belonging to the set.
-
-A system can belong to multiple different sets, and will inherit all the
-properties from all of them. You can also add additional properties to
-individual systems.
-
-All of this combined gives you a lot of flexibility and control over how your systems run.
-
-## Usage Advice
-
-The main use case of system sets is to group together related systems, so you can
-manage them more easily as a group.
+The main use case of named system sets is for logical organization, so that you
+can manage your systems and refer to the whole group.
 
 Some examples:
  - A set for all your audio-related systems, so you can disable them all if sound is muted.
  - A set for all your touchscreen input systems, so you can disable them all if there is no touchscreen.
  - A set for all your input handling systems, so you can order them to run before gameplay systems.
+ - A set for all your gameplay systems, so that they only run during the in-game [state][cb::state].
 
 ### With Plugins
 
-System sets are also very useful together with [plugins][cb::plugin]. When you are writing
+Named sets are also very useful together with [plugins][cb::plugin]. When you are writing
 a plugin, you can expose (make `pub`) some system set types, to allow users of your
 plugin to control how things in your plugin run, or how their things run in relation to
 your plugin. This way, you don't have to expose any of your individual systems.
