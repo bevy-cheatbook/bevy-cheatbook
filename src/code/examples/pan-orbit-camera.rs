@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy::window::PrimaryWindow;
 use bevy::input::mouse::{MouseWheel,MouseMotion};
 use bevy::render::camera::Projection;
 
@@ -24,7 +25,7 @@ impl Default for PanOrbitCamera {
 
 /// Pan the camera with middle mouse click, zoom with scroll wheel, orbit with right mouse click.
 fn pan_orbit_camera(
-    windows: Res<Windows>,
+    windows: Query<&Window, With<PrimaryWindow>>,
     mut ev_motion: EventReader<MouseMotion>,
     mut ev_scroll: EventReader<MouseWheel>,
     input_mouse: Res<Input<MouseButton>>,
@@ -111,9 +112,12 @@ fn pan_orbit_camera(
     ev_motion.clear();
 }
 
-fn get_primary_window_size(windows: &Res<Windows>) -> Vec2 {
-    let window = windows.get_primary().unwrap();
-    let window = Vec2::new(window.width() as f32, window.height() as f32);
+fn get_primary_window_size(windows: &Query<&Window, With<PrimaryWindow>>) -> Vec2 {
+    let window = windows.single();
+    let window = Vec2::new(
+        window.resolution.width() as f32,
+        window.resolution.height() as f32
+        );
     window
 }
 
