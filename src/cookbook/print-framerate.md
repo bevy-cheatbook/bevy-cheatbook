@@ -23,6 +23,18 @@ a conditional-compilation attribute.
 
 ## In-Game / On-Screen FPS counter
 
+UPDATE! I have now released a Bevy plugin which provides a much better
+version of the code on this page, ready for you to use! Consider trying
+my [`iyes_perf_ui`][project::iyes_perf_ui] plugin!
+
+Bevy maintainers have expressed interest in upstreaming it, and we will
+try to make it official in the next Bevy release (0.14)!
+
+For now, I am also keeping the old code example below in the book, for
+completeness:
+
+---
+
 You can use Bevy UI to create an in-game FPS counter.
 
 It is recommended that you create a new UI root (entity without

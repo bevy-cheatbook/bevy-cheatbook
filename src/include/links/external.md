@@ -25,6 +25,10 @@
 [bevy::jam-02]: https://itch.io/jam/bevy-jam-2/entries
 [bevy::jam-03]: https://itch.io/jam/bevy-jam-3/entries
 [bevy::linux-dependencies]: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
+[bevy::migration-010-011]: https://bevyengine.org/learn/migration-guides/0-10-to-0-11/
+[bevy::migration-011-012]: https://bevyengine.org/learn/migration-guides/0-11-to-0-12/
+[bevy::migration-012-013]: https://bevyengine.org/learn/migration-guides/0-12-to-0-13/
+[bevy::migration-09-010]: https://bevyengine.org/learn/migration-guides/0-9-to-0-10/
 [bevy::plugin-guidelines]: https://bevyengine.org/learn/book/plugin-development/
 [bevy::profiling]: https://github.com/bevyengine/bevy/blob/main/docs/profiling.md
 [bevy::readme]: https://github.com/bevyengine/bevy/blob/main/README.md
@@ -74,6 +78,7 @@
 [project::homebrew]: https://brew.sh
 [project::iyes_loopless]: https://github.com/IyesGames/iyes_loopless
 [project::iyes_progress]: https://github.com/IyesGames/iyes_progress
+[project::iyes_perf_ui]: https://github.com/IyesGames/iyes_perf_ui
 [project::kira]: https://github.com/tesselode/kira
 [project::klafsa]: https://github.com/superdump/klafsa
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
