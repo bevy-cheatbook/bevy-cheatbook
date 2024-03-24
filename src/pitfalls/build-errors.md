@@ -30,7 +30,7 @@ rm -rf target Cargo.lock
 Try building your project again after doing this. It is likely that the
 mysterious errors will go away.
 
-If not, another reason might be that you have multiple versions of Bevy if
+If not, another reason might be that you have multiple versions of Bevy in
 your dependency tree. If you are using 3rd-party plugins, make sure you have
 specified the correct versions of all the plugins you use and that they are
 compatible with the Bevy version you are using.
