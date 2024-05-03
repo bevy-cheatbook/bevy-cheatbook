@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use bevy::input::mouse::{MouseWheel,MouseMotion};
 use bevy::render::camera::Projection;
+use bevy::window::PrimaryWindow;
 
 // ANCHOR: example
 /// Tags an entity as capable of panning and orbiting.
@@ -24,7 +25,7 @@ impl Default for PanOrbitCamera {
 
 /// Pan the camera with middle mouse click, zoom with scroll wheel, orbit with right mouse click.
 fn pan_orbit_camera(
-    windows: Res<Windows>,
+    windows: Query<&Window, With<PrimaryWindow>>,
     mut ev_motion: EventReader<MouseMotion>,
     mut ev_scroll: EventReader<MouseWheel>,
     input_mouse: Res<Input<MouseButton>>,
@@ -111,9 +112,11 @@ fn pan_orbit_camera(
     ev_motion.clear();
 }
 
-fn get_primary_window_size(windows: &Res<Windows>) -> Vec2 {
-    let window = windows.get_primary().unwrap();
-    let window = Vec2::new(window.width() as f32, window.height() as f32);
+fn get_primary_window_size(windows: &Query<&Window, With<PrimaryWindow>>) -> Vec2 {
+    let Ok(window) = windows.get_single() else {
+         panic!("failed to get window size") 
+    };
+    let window = Vec2::new(window.width(), window.height());
     window
 }
 
@@ -159,11 +162,13 @@ fn spawn_scene(
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(spawn_scene)
-        .add_system(pan_orbit_camera)
+        .add_systems(Startup, spawn_scene)
+        .add_systems(Update, pan_orbit_camera)
         .run();
 
     // just to catch compilation errors
     let _ = App::new()
-        .add_startup_system(spawn_camera);
+        .add_systems(Startup, spawn_camera);
 }
+
+
