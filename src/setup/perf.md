@@ -11,7 +11,7 @@ these settings, but if your game does not perform well with Bevy's default
 configuration, this page will show you some things you can try to change, to see
 if they help your project.
 
-Bevy's default configruation is designed with *scalability* in mind. That is, so
+Bevy's default configuration is designed with *scalability* in mind. That is, so
 that you don't have to worry too much about performance, as you add more
 features and complexity to your project. Bevy will automatically take care to
 distribute the workload as to make good use of the available hardware (GPU, CPU

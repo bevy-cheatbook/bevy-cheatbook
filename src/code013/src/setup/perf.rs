@@ -90,7 +90,7 @@ use bevy::pbr::ClusterConfig;
 
 commands.spawn((
     Camera3dBundle {
-        // ... your 3D camera configruation
+        // ... your 3D camera configuration
         ..Default::default()
     },
     ClusterConfig::FixedZ {
@@ -108,7 +108,7 @@ commands.spawn((
 // ANCHOR: cluster-single
 commands.spawn((
     Camera3dBundle {
-        // ... your 3D camera configruation
+        // ... your 3D camera configuration
         ..Default::default()
     },
     ClusterConfig::Single,

@@ -24,7 +24,7 @@ The book has the following general chapters:
 
  - [Bevy Setup Tips][chapter::setup]: project setup advice, recommendations for tools and plugins
  - [Common Pitfalls][chapter::pitfalls]: solutions for common issues encountered by the community
- - [Bevy on Different Platforms][chapter::platforms]: information about working with specific plaforms / OSs
+ - [Bevy on Different Platforms][chapter::platforms]: information about working with specific platforms / OSs
 
 <!-- - [Appendix: General Concepts][chapter::concepts]: various general gamedev knowledge, not specific to Bevy -->
 

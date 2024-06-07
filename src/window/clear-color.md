@@ -9,7 +9,7 @@ Relevant official examples:
 
 Use the [`ClearColor`] [resource][cb::res] to choose the default background
 color. This color will be used as the default for all [cameras][cb::camera],
-unless overriden.
+unless overridden.
 
 Note that the window will be black if no cameras exist. You must spawn at
 least one camera.

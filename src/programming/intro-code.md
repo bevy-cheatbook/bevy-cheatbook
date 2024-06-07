@@ -53,7 +53,7 @@ different and unpredictable order relative to one another, unless you add
 [Exclusive][cb::exclusive] systems provide you with a way to get [full direct
 access][cb::world] to the ECS [`World`][cb::World]. They cannot run in parallel
 with other systems, because they can access anything and do anything. Sometimes,
-you might need this additonal power.
+you might need this additional power.
 
 ```rust,no_run,noplayground
 {{#include ../code013/src/programming/intro_code.rs:exclusive}}

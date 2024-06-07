@@ -33,7 +33,7 @@ Some keyboard keys have a somewhat-unintuitive mapping:
 
 Other key codes have their intuitive names.
 
-### Window Management Apps Compatability
+### Window Management Apps Compatibility
 
 Bevy apps can encounter performance issues (such as lag when dragging the window
 around the screen) when window management apps like "Magnet" are used. This is a
