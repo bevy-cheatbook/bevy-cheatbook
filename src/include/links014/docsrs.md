@@ -222,6 +222,7 @@
 [`Stopwatch`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/time/struct.Stopwatch.html
 [`Style`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ui/struct.Style.html
 [`SystemChangeTick`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.SystemChangeTick.html
+[`SystemId`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.SystemId.html
 [`SystemName`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.SystemName.html
 [`SystemSet`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/schedule/trait.SystemSet.html
 [`SystemState`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.SystemState.html

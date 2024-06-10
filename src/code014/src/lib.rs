@@ -64,6 +64,7 @@ mod programming {
     mod system_sets;
     mod states;
     mod change_detection;
+    mod one_shot_systems;
     mod system_piping;
     mod paramset;
     mod non_send;

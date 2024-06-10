@@ -85,6 +85,7 @@
 [cb::log]: /fundamentals/log.md
 [cb::multi-world]: /programming/sub-apps.md
 [cb::nonsend]: /programming/non-send.md
+[cb::oneshot]: /programming/one-shot-systems.md
 [cb::paramset]: /programming/paramset.md
 [cb::plugin]: /programming/plugins.md
 [cb::plugingroup]: /programming/plugins.md#plugin-groups

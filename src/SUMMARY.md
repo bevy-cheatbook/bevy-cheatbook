@@ -119,6 +119,7 @@
   - [System Sets](./programming/system-sets.md)
   - [States](./programming/states.md)
   - [Change Detection](./programming/change-detection.md)
+  - [One-Shot Systems](./programming/one-shot-systems.md)
   - [System Piping](./programming/system-piping.md)
   - [ParamSet](./programming/paramset.md)
   - [Non-Send](./programming/non-send.md)
