@@ -139,6 +139,7 @@ impl Command for MyCustomCommand {
     }
 }
 
+// use it like this
 fn my_other_system(mut commands: Commands) {
     commands.add(MyCustomCommand {
         data: 920, // set your value

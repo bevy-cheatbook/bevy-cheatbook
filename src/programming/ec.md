@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 Relevant official examples:
 [`ecs_guide`][example::ecs_guide].
@@ -25,7 +25,7 @@ You can create ("spawn") new entities and destroy ("despawn") entities using
 [`Commands`][cb::commands] or [exclusive `World` access][cb::world].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/ec.rs:spawn-despawn}}
+{{#include ../code014/src/programming/ec.rs:spawn-despawn}}
 ```
 
 Many of your entities might need to have the same common components. You can use
@@ -39,7 +39,7 @@ To create a new component type, simply define a Rust `struct` or `enum`, and
 derive the [`Component`] trait.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/ec.rs:component}}
+{{#include ../code014/src/programming/ec.rs:component}}
 ```
 
 Types must be unique – an entity can only have one component per Rust type.
@@ -49,7 +49,7 @@ Types must be unique – an entity can only have one component per Rust type.
 Use wrapper (newtype) structs to make unique components out of simpler types:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/ec.rs:component-newtype}}
+{{#include ../code014/src/programming/ec.rs:component-newtype}}
 ```
 
 ## Marker Components
@@ -58,7 +58,7 @@ You can use empty structs to help you identify specific entities. These are
 known as "marker components". Useful with [query filters][cb::query-filter].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/ec.rs:component-marker}}
+{{#include ../code014/src/programming/ec.rs:component-marker}}
 ```
 
 ## Accessing Components
@@ -70,7 +70,7 @@ to access. It gives you access to specific component values from entities
 that match the query's signature.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/ec.rs:query}}
+{{#include ../code014/src/programming/ec.rs:query}}
 ```
 
 ## Adding/removing Components
@@ -79,5 +79,5 @@ You can add/remove components on existing entities, using [`Commands`][cb::comma
 [exclusive `World` access][cb::world].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/ec.rs:insert-remove}}
+{{#include ../code014/src/programming/ec.rs:insert-remove}}
 ```

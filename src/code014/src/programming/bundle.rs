@@ -15,6 +15,14 @@ struct Enemy;
 struct Player;
 #[derive(Component)]
 struct Friendly;
+#[derive(Component)]
+struct LowHpMarker;
+#[derive(Component)]
+struct CurrentModifier;
+#[derive(Component)]
+struct PlayerPendingAction;
+#[derive(Component)]
+struct StatusEffect;
 
 // ANCHOR: bundle
 #[derive(Bundle)]
@@ -29,6 +37,19 @@ struct PlayerBundle {
     sprite: SpriteBundle,
 }
 // ANCHOR_END: bundle
+
+// ANCHOR: cleanup-bundle
+/// Contains all components to remove when
+/// resetting the player between rooms/levels.
+#[derive(Bundle)]
+struct PlayerResetCleanupBundle {
+    status_effect: StatusEffect,
+    pending_action: PlayerPendingAction,
+    modifier: CurrentModifier,
+    low_hp_marker: LowHpMarker,
+}
+// ANCHOR_END: cleanup-bundle
+
 // ANCHOR: bundle-default
 impl Default for PlayerBundle {
     fn default() -> Self {
@@ -47,6 +68,7 @@ impl Default for PlayerBundle {
 // ANCHOR_END: bundle-default
 
 fn setup(mut commands: Commands) {
+let e_player = Entity::PLACEHOLDER;
 // ANCHOR: bundle-spawn
 commands.spawn(PlayerBundle {
     xp: PlayerXp(0),
@@ -82,6 +104,10 @@ commands.spawn((
     // ...
 ));
 // ANCHOR_END: bundle-spawn-loose
+// ANCHOR: cleanup-bundle-remove
+commands.entity(e_player)
+    .remove::<PlayerResetCleanupBundle>();
+// ANCHOR_END: cleanup-bundle-remove
 }
 
 fn main() {
