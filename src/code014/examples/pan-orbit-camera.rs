@@ -1,6 +1,4 @@
 use bevy::prelude::*;
-use bevy::input::mouse::{MouseMotion, MouseScrollUnit, MouseWheel};
-use winit::keyboard::KeyCode;
 
 // ANCHOR: types
 // Bundle to spawn our custom camera easily
@@ -14,22 +12,29 @@ pub struct PanOrbitCameraBundle {
 // The internal state of the pan-orbit controller
 #[derive(Component)]
 pub struct PanOrbitState {
-    center: Vec3,
-    radius: f32,
-    upside_down: bool,
-    pitch: f32,
-    yaw: f32,
+    pub center: Vec3,
+    pub radius: f32,
+    pub upside_down: bool,
+    pub pitch: f32,
+    pub yaw: f32,
 }
 
 /// The configuration of the pan-orbit controller
 #[derive(Component)]
 pub struct PanOrbitSettings {
+    /// World units per pixel of mouse motion
     pub pan_sensitivity: f32,
+    /// Radians per pixel of mouse motion
     pub orbit_sensitivity: f32,
+    /// Exponent per pixel of mouse motion
     pub zoom_sensitivity: f32,
+    /// Key to hold for panning
     pub pan_key: Option<KeyCode>,
+    /// Key to hold for orbiting
     pub orbit_key: Option<KeyCode>,
+    /// Key to hold for zooming
     pub zoom_key: Option<KeyCode>,
+    /// What action is bound to the scroll wheel?
     pub scroll_action: Option<PanOrbitAction>,
     /// For devices with a notched scroll wheel, like desktop mice
     pub scroll_line_sensitivity: f32,
@@ -50,7 +55,7 @@ impl Default for PanOrbitState {
     fn default() -> Self {
         PanOrbitState {
             center: Vec3::ZERO,
-            radius: 10.0,
+            radius: 1.0,
             upside_down: false,
             pitch: 0.0,
             yaw: 0.0,
@@ -61,14 +66,14 @@ impl Default for PanOrbitState {
 impl Default for PanOrbitSettings {
     fn default() -> Self {
         PanOrbitSettings {
-            pan_sensitivity: 1.0,
-            orbit_sensitivity: 1.0,
-            zoom_sensitivity: 1.0,
+            pan_sensitivity: 0.001, // 1000 pixels per world unit
+            orbit_sensitivity: 0.1f32.to_radians(), // 0.1 degree per pixel
+            zoom_sensitivity: 0.01,
             pan_key: Some(KeyCode::ControlLeft),
             orbit_key: Some(KeyCode::AltLeft),
             zoom_key: Some(KeyCode::ShiftLeft),
             scroll_action: Some(PanOrbitAction::Zoom),
-            scroll_line_sensitivity: 8.0,
+            scroll_line_sensitivity: 16.0, // 1 "line" == 16 "pixels of motion"
             scroll_pixel_sensitivity: 1.0,
         }
     }
@@ -77,11 +82,22 @@ impl Default for PanOrbitSettings {
 
 // ANCHOR: setup
 fn spawn_camera(mut commands: Commands) {
-    commands.spawn(PanOrbitCameraBundle::default());
+    let mut camera = PanOrbitCameraBundle::default();
+    // Position our camera using our component,
+    // not Transform (it would get overwritten)
+    camera.state.center = Vec3::new(1.0, 2.0, 3.0);
+    camera.state.radius = 50.0;
+    camera.state.pitch = 15.0f32.to_radians();
+    camera.state.yaw = 30.0f32.to_radians();
+    commands.spawn(camera);
 }
 // ANCHOR_END: setup
 
 // ANCHOR: impl
+use bevy::input::mouse::{MouseMotion, MouseScrollUnit, MouseWheel};
+
+use std::f32::consts::{FRAC_PI_2, PI, TAU};
+
 fn pan_orbit_camera(
     kbd: Res<ButtonInput<KeyCode>>,
     mut evr_motion: EventReader<MouseMotion>,
@@ -94,8 +110,12 @@ fn pan_orbit_camera(
 ) {
     // First, accumulate the total amount of
     // mouse motion and scroll, from all pending events:
-    let total_motion: Vec2 = evr_motion.read()
+    let mut total_motion: Vec2 = evr_motion.read()
         .map(|ev| ev.delta).sum();
+
+    // Reverse Y (Bevy's Worldspace coordinate system is Y-Up,
+    // but events are in window/ui coordinates, which are Y-Down)
+    total_motion.y = -total_motion.y;
 
     let mut total_scroll_lines = Vec2::ZERO;
     let mut total_scroll_pixels = Vec2::ZERO;
@@ -103,20 +123,13 @@ fn pan_orbit_camera(
         match ev.unit {
             MouseScrollUnit::Line => {
                 total_scroll_lines.x += ev.x;
-                total_scroll_lines.y += ev.y;
+                total_scroll_lines.y -= ev.y;
             }
             MouseScrollUnit::Pixel => {
                 total_scroll_pixels.x += ev.x;
-                total_scroll_pixels.y += ev.y;
+                total_scroll_pixels.y -= ev.y;
             }
         }
-    }
-    let any_scroll =
-        total_scroll_lines != Vec2::ZERO || total_scroll_pixels != Vec2::ZERO;
-
-    // if nothing happened, we don't need to go any further
-    if !any_scroll && total_motion == Vec2::ZERO {
-        return;
     }
 
     for (settings, mut state, mut transform) in &mut q_camera {
@@ -126,56 +139,51 @@ fn pan_orbit_camera(
 
         let mut total_pan = Vec2::ZERO;
         if settings.pan_key.map(|key| kbd.pressed(key)).unwrap_or(false) {
-            total_pan += total_motion * settings.pan_sensitivity;
+            total_pan -= total_motion * settings.pan_sensitivity;
         }
-        if any_scroll && settings.scroll_action == Some(PanOrbitAction::Pan) {
-            total_pan += total_scroll_lines
+        if settings.scroll_action == Some(PanOrbitAction::Pan) {
+            total_pan -= total_scroll_lines
                 * settings.scroll_line_sensitivity * settings.pan_sensitivity;
-            total_pan += total_scroll_pixels
+            total_pan -= total_scroll_pixels
                 * settings.scroll_pixel_sensitivity * settings.pan_sensitivity;
         }
 
         let mut total_orbit = Vec2::ZERO;
         if settings.orbit_key.map(|key| kbd.pressed(key)).unwrap_or(false) {
-            total_orbit += total_motion * settings.orbit_sensitivity;
+            total_orbit -= total_motion * settings.orbit_sensitivity;
         }
-        if any_scroll && settings.scroll_action == Some(PanOrbitAction::Orbit) {
-            total_orbit += total_scroll_lines
+        if settings.scroll_action == Some(PanOrbitAction::Orbit) {
+            total_orbit -= total_scroll_lines
                 * settings.scroll_line_sensitivity * settings.orbit_sensitivity;
-            total_orbit += total_scroll_pixels
+            total_orbit -= total_scroll_pixels
                 * settings.scroll_pixel_sensitivity * settings.orbit_sensitivity;
         }
 
         let mut total_zoom = Vec2::ZERO;
         if settings.zoom_key.map(|key| kbd.pressed(key)).unwrap_or(false) {
-            total_zoom += total_motion * settings.zoom_sensitivity;
+            total_zoom -= total_motion * settings.zoom_sensitivity;
         }
-        if any_scroll && settings.scroll_action == Some(PanOrbitAction::Zoom) {
-            total_zoom += total_scroll_lines
+        if settings.scroll_action == Some(PanOrbitAction::Zoom) {
+            total_zoom -= total_scroll_lines
                 * settings.scroll_line_sensitivity * settings.zoom_sensitivity;
-            total_zoom += total_scroll_pixels
+            total_zoom -= total_scroll_pixels
                 * settings.scroll_pixel_sensitivity * settings.zoom_sensitivity;
+        }
+
+        // Upon starting a new orbit maneuver (key is just pressed),
+        // check if we are starting it upside-down
+        if settings.orbit_key.map(|key| kbd.just_pressed(key)).unwrap_or(false) {
+            state.upside_down = state.pitch < -FRAC_PI_2 || state.pitch > FRAC_PI_2;
+        }
+
+        // If we are upside down, reverse the X orbiting
+        if state.upside_down {
+            total_orbit.x = -total_orbit.x;
         }
 
         // Now we can actually do the things!
 
         let mut any = false;
-
-        // To PAN, we can get the UP and RIGHT direction
-        // vectors from the camera's transform, and use
-        // them to move the center point.
-        if total_pan != Vec2::ZERO {
-            any = true;
-            state.center += transform.right() * total_pan.x;
-            state.center += transform.up() * total_pan.y;
-        }
-
-        // To ORBIT, we change our pitch and yaw values
-        if total_orbit != Vec2::ZERO {
-            any = true;
-            state.yaw += total_pan.x;
-            state.pitch += total_pan.y;
-        }
 
         // To ZOOM, we need to multiply our radius.
         if total_zoom != Vec2::ZERO {
@@ -188,7 +196,38 @@ fn pan_orbit_camera(
 
             // so we compute the exponential of our
             // accumulated value and multiply by that
-            state.radius *= total_zoom.y.exp();
+            state.radius *= (-total_zoom.y).exp();
+        }
+
+        // To ORBIT, we change our pitch and yaw values
+        if total_orbit != Vec2::ZERO {
+            any = true;
+            state.yaw += total_orbit.x;
+            state.pitch += total_orbit.y;
+            // wrap around, to stay between +- 180 degrees
+            if state.yaw > PI {
+                state.yaw -= TAU; // 2 * PI
+            }
+            if state.yaw < -PI {
+                state.yaw += TAU; // 2 * PI
+            }
+            if state.pitch > PI {
+                state.pitch -= TAU; // 2 * PI
+            }
+            if state.pitch < -PI {
+                state.pitch += TAU; // 2 * PI
+            }
+        }
+
+        // To PAN, we can get the UP and RIGHT direction
+        // vectors from the camera's transform, and use
+        // them to move the center point. Multiply by the
+        // radius to make the pan adapt to the current zoom.
+        if total_pan != Vec2::ZERO {
+            any = true;
+            let radius = state.radius;
+            state.center += transform.right() * total_pan.x * radius;
+            state.center += transform.up() * total_pan.y * radius;
         }
 
         // Finally, compute the new camera transform.
@@ -214,7 +253,7 @@ fn spawn_scene(
 ) {
     // spawn a cube and a light
     commands.spawn(PbrBundle {
-        mesh: meshes.add(bevy::math::primitives::Cuboid::new(1.0, 2.0, 3.0).mesh()),
+        mesh: meshes.add(bevy::math::primitives::Cuboid::new(10.0, 20.0, 30.0).mesh()),
         material: materials.add(StandardMaterial::from(Color::srgb(0.8, 0.7, 0.6))),
         transform: Transform::from_translation(Vec3::new(0.0, 0.5, 0.0)),
         ..Default::default()
