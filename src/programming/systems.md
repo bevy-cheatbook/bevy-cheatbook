@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Systems
 
@@ -9,12 +9,9 @@ Relevant official examples:
 
 ---
 
-Systems are pieces of functionality, which are run by Bevy. They are typically
-implemented using regular Rust functions.
-
-This is how you implement all your game logic. Each system specifies what data
-it needs to access to do its thing, and Bevy will run them in parallel when
-possible.
+Systems are pieces of functionality to be run by Bevy. They are typically
+implemented using regular Rust functions. This is how you implement all
+your game logic.
 
 These functions can only take [special parameter types][builtins::systemparam],
 to specify what [data][cb::ecs-intro-data] you need access to. If you use
@@ -30,14 +27,14 @@ Some of the possibilities are:
 [See here for a full list!][builtins::systemparam]
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/systems.rs:sys-debug-res}}
+{{#include ../code014/src/programming/systems.rs:sys-debug-res}}
 ```
 
 System parameters can be grouped into tuples (which can be nested). This is
 useful for organization.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/systems.rs:sys-param-tuple}}
+{{#include ../code014/src/programming/systems.rs:sys-param-tuple}}
 ```
 
 {{#include ../include/builtins.md:systemparam-limits}}
@@ -48,15 +45,16 @@ any data you want and do anything, but cannot run in parallel. For most use
 cases, you should use regular parallel systems.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/systems.rs:exclusive}}
+{{#include ../code014/src/programming/systems.rs:exclusive}}
 ```
 
 ## Runtime
 
-To run your systems, you need to add them to Bevy via the [app builder][cb::app]:
+In order for your systems to actually be run by Bevy, you need to configure
+them via the [app builder][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/systems.rs:systems-appbuilder}}
+{{#include ../code014/src/programming/systems.rs:systems-appbuilder}}
 ```
 
 Be careful: writing a new system `fn` and forgetting to add it to your app is a
@@ -74,3 +72,12 @@ As your project grows more complex, you might want to make use of some of the
 powerful tools that Bevy offers for managing when/how your systems run, such as:
 [explicit ordering][cb::system-order], [run conditions][cb::rc], [system
 sets][cb::systemset], [states][cb::state].
+
+### One-Shot Systems
+
+Sometimes you don't want Bevy to run your system for you. In that case,
+don't add it to a schedule.
+
+If you are a writing a system that you want to call yourself whenever
+you want (such as on a button press), you can do that using [one-shot
+systems][cb::oneshot].

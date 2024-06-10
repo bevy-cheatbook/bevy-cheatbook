@@ -11,8 +11,15 @@ struct StartingLevel(u32);
 
 // ANCHOR: sys-param-tuple
 fn complex_system(
-    (a, mut b): (Res<ResourceA>, ResMut<ResourceB>),
-    (q0, q1, q2): (Query<(/* … */)>, Query<(/* … */)>, Query<(/* … */)>),
+    (a, mut b): (
+        Res<ResourceA>,
+        ResMut<ResourceB>,
+    ),
+    (q0, q1, q2): (
+        Query<(/* … */)>,
+        Query<(/* … */)>,
+        Query<(/* … */)>,
+    ),
 ) {
     // …
 }

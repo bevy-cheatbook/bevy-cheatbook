@@ -26,9 +26,20 @@ fn level_up(
 // ANCHOR_END: query
 
 // ANCHOR: commands
-// Marker for the player
+/// Marker for the player
 #[derive(Component)]
 struct Player;
+
+/// Bundle to make it easy to spawn the player entity
+/// with all the correct components:
+#[derive(Bundle)]
+struct PlayerBundle {
+    marker: Player,
+    health: Health,
+    xp: Xp,
+    // including all the components from another bundle
+    sprite: SpriteBundle,
+}
 
 fn spawn_player(
     // needed for safely creating/removing data in the ECS World
@@ -38,24 +49,20 @@ fn spawn_player(
     asset_server: Res<AssetServer>,
 ) {
     // create a new entity with whatever components we want
-    commands.spawn((
-        // give it a marker
-        Player,
-        // give it health and xp
-        Health {
+    commands.spawn(PlayerBundle {
+        marker: Player,
+        health: Health {
             current: 100,
             max: 125,
         },
-        Xp(0),
-        // give it a 2D sprite to render on-screen
-        // (Bevy's SpriteBundle adds all necessary components for rendering a sprite)
-        SpriteBundle {
+        xp: Xp(0),
+        sprite: SpriteBundle {
             texture: asset_server.load("player.png"),
             transform: Transform::from_xyz(25.0, 50.0, 0.0),
             // use the default values for all other components in the bundle
             ..Default::default()
         },
-    ));
+    });
 
     // Call .id() if you want to store the Entity ID of your new entity
     let my_entity = commands.spawn((/* ... */)).id();

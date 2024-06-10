@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Intro: Your Data
 
@@ -72,27 +72,26 @@ your thing. You can either iterate through all entities that match your query,
 or access the data of a specific one (using the [`Entity`] ID).
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/intro_data.rs:query}}
+{{#include ../code014/src/programming/intro_data.rs:query}}
 ```
 
 Bevy can automatically keep track of what data your [systems][cb::system] have
 access to and [run them in parallel][cb::system-parallel] on multiple CPU
 cores. This way, you get multithreading with no extra effort from you!
 
-If you want to modify the data structure itself (as opposed to just accessing
-existing data), such as to create or remove entities and components, that
-requires special consideration. Bevy cannot change the memory layout while other
-systems might be running. These operations can be buffered/deferred using
-[Commands][cb::commands], to be applied later when it is safe to do so. You can
-also get [direct World access][cb::world] using [exclusive
-systems][cb::exclusive], if you want to perform such operations
-immediately (but without multithreading).
+What if you want to create or remove entities and components, not just access
+existing data? That requires special consideration. Bevy cannot change the
+memory layout while other systems might be running. These operations can be
+buffered/deferred using [Commands][cb::commands]. Bevy will apply them later
+when it is safe to do so. You can also get [direct World access][cb::world]
+using [exclusive systems][cb::exclusive], if you want to perform such
+operations immediately.
 
 [Bundles][cb::bundle] serve as "templates" for common sets of components, to
 help you when you spawn new entities, so you don't accidentally forget anything.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/intro_data.rs:commands}}
+{{#include ../code014/src/programming/intro_data.rs:commands}}
 ```
 
 ### Comparison with Object-Oriented Programming
@@ -131,9 +130,8 @@ to narrow down your query (using a [query filter][cb::query-filter] like
 `With<Player>`).
 
 However, if some data always makes sense to be accessed together, then you
-should put it in a single `struct`. For example, Bevy's [`Transform`] or
-[`Color`]. With these types, the fields are not likely to be useful
-independently.
+should put it in a single `struct`. For example, Bevy's [`Transform`].
+With these types, the fields are not likely to be useful independently.
 
 ### Additional Internal Details
 
@@ -142,8 +140,9 @@ entity's Archetype. Bevy keeps track of that internally, to organize the
 data in RAM. Entities of the same Archetype have their data stored together
 in contiguous arrays, which allows the CPU to access and cache it efficiently.
 
-If you add/remove component types on existing entities, you are changing the
-Archetype, which may require Bevy to copy the data to a different location.
+If you add/remove component types on existing entities, you are changing
+the Archetype, which may require Bevy to move previously-existing data to
+a different location.
 
 [Learn more about Bevy's component storage.][cb::component-storage]
 
@@ -158,11 +157,11 @@ If there is only one global instance (singleton) of something, and it is
 standalone (not associated with other data), create a [Resource][cb::res].
 
 For example, you could create a resource to store your game's graphics
-settings, or the data for the currently active game mode or session.
+settings, or an interface to a non-Bevy library.
 
 This is a simple way of storing data, when you know you don't need the
 flexibility of Entities/Components.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/intro_data.rs:res}}
+{{#include ../code014/src/programming/intro_data.rs:res}}
 ```
