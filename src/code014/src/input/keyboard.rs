@@ -23,6 +23,22 @@ fn keyboard_input(
 }
 // ANCHOR_END: res
 
+// ANCHOR: res-iter
+fn keyboard_iter(
+    keys: Res<ButtonInput<KeyCode>>,
+) {
+    for key in keys.get_pressed() {
+        println!("{:?} is currently held down", key);
+    }
+    for key in keys.get_just_pressed() {
+        println!("{:?} was pressed", key);
+    }
+    for key in keys.get_just_released() {
+        println!("{:?} was released", key);
+    }
+}
+// ANCHOR_END: res-iter
+
 // ANCHOR: events
 fn keyboard_events(
     mut evr_kbd: EventReader<KeyboardInput>,
@@ -96,11 +112,27 @@ fn text_input(
 }
 // ANCHOR_END: char
 
+fn handle_jump() {}
+fn handle_shooting() {}
+
 fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_systems(Update, keyboard_input)
-        .add_systems(Update, keyboard_events)
-        .add_systems(Update, text_input)
-        .run();
+    let mut app = App::new();
+    app.add_plugins(DefaultPlugins);
+    app.add_systems(Update, keyboard_input);
+    app.add_systems(Update, keyboard_iter);
+    app.add_systems(Update, keyboard_events);
+    app.add_systems(Update, text_input);
+
+// ANCHOR: run-conditions
+use bevy::input::common_conditions::*;
+
+app.add_systems(Update, (
+    handle_jump
+        .run_if(input_just_pressed(KeyCode::Space)),
+    handle_shooting
+        .run_if(input_pressed(KeyCode::Enter)),
+));
+// ANCHOR_END: run-conditions
+
+    app.run();
 }

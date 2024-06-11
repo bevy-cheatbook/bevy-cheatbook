@@ -12,6 +12,11 @@ This page shows how to handle keyboard keys being pressed and released.
 
 Note: Command Key on Mac corresponds to the Super/Windows Key on PC.
 
+Similar to [mouse buttons][input::mouse-button], keyboard input is available
+as a [`ButtonInput`] [resource][cb::res], [events][cb::event], and [run
+conditions][cb::rc] ([see list][bevy::input::common_conditions]). Use
+whichever pattern feels most appropriate to your use case.
+
 ## Checking Key State
 
 Most commonly for games, you might be interested in specific known keys and
@@ -19,10 +24,32 @@ detecting when they are pressed or released. You can check specific keys
 using the [`ButtonInput<KeyCode>`][`ButtonInput`] [resource][cb::res].
 
  - Use `.pressed(…)`/`.released(…)` to check if a key is being held down
+   - These return `true` every frame, for as long as the key is in the respective state.
  - Use `.just_pressed(…)`/`.just_released(…)` to detect the actual press/release
+   - These return `true` only on the frame update when the press/release happened.
 
 ```rust,no_run,noplayground
 {{#include ../code014/src/input/keyboard.rs:res}}
+```
+
+To iterate over any keys that are currently held, or that have been pressed/released:
+
+```rust,no_run,noplayground
+{{#include ../code014/src/input/keyboard.rs:res-iter}}
+```
+
+## Run Conditions
+
+Another workflow is to add [run conditions][cb::rc] to your systems,
+so that they only run when the appropriate inputs happen.
+
+It is highly recommended you write your own [run conditions][cb::rc],
+so that you can check for whatever you want, support configurable bindings, etc…
+
+For prototyping, Bevy offers some [built-in run conditions][input::rc]:
+
+```rust,no_run,noplayground
+{{#include ../code014/src/input/keyboard.rs:run-conditions}}
 ```
 
 ## Keyboard Events

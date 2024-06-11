@@ -14,8 +14,8 @@ fn mouse_button_input(
         // Right Button is being held down
     }
     // we can check multiple at once with `.any_*`
-    if buttons.any_just_pressed([MouseButton::Left, MouseButton::Right]) {
-        // Either the left or the right button was just pressed
+    if buttons.any_just_pressed([MouseButton::Left, MouseButton::Middle]) {
+        // Either the left or the middle (wheel) button was just pressed
     }
 }
 // ANCHOR_END: mouse-button-input
@@ -61,9 +61,9 @@ fn mouse_button_events(
 use bevy::input::mouse::MouseMotion;
 
 fn mouse_motion(
-    mut motion_evr: EventReader<MouseMotion>,
+    mut evr_motion: EventReader<MouseMotion>,
 ) {
-    for ev in motion_evr.read() {
+    for ev in evr_motion.read() {
         println!("Mouse moved: X: {} px, Y: {} px", ev.delta.x, ev.delta.y);
     }
 }
@@ -71,9 +71,9 @@ fn mouse_motion(
 
 // ANCHOR: cursor-events
 fn cursor_events(
-    mut cursor_evr: EventReader<CursorMoved>,
+    mut evr_cursor: EventReader<CursorMoved>,
 ) {
-    for ev in cursor_evr.read() {
+    for ev in evr_cursor.read() {
         println!(
             "New cursor position: X: {}, Y: {}, in Window ID: {:?}",
             ev.position.x, ev.position.y, ev.window
@@ -101,10 +101,10 @@ fn cursor_position(
 use bevy::input::mouse::MouseWheel;
 
 fn scroll_events(
-    mut scroll_evr: EventReader<MouseWheel>,
+    mut evr_scroll: EventReader<MouseWheel>,
 ) {
     use bevy::input::mouse::MouseScrollUnit;
-    for ev in scroll_evr.read() {
+    for ev in evr_scroll.read() {
         match ev.unit {
             MouseScrollUnit::Line => {
                 println!("Scroll (line units): vertical: {}, horizontal: {}", ev.y, ev.x);
@@ -116,39 +116,6 @@ fn scroll_events(
     }
 }
 // ANCHOR_END: scroll-events
-
-// ANCHOR: touchpad-gesture-events
-use bevy::input::gestures::{
-    DoubleTapGesture, PanGesture, PinchGesture, RotationGesture
-};
-
-// these only work on macOS and iOS
-fn touchpad_gestures(
-    mut evr_gesture_pinch: EventReader<PinchGesture>,
-    mut evr_gesture_rotate: EventReader<RotationGesture>,
-    mut evr_gesture_pan: EventReader<PanGesture>,
-    mut evr_gesture_doubletap: EventReader<PanGesture>,
-) {
-    for ev_pinch in evr_gesture_pinch.read() {
-        // Positive numbers are zooming in
-        // Negative numbers are zooming out
-        println!("Two-finger zoom by {}", ev_pinch.0);
-    }
-    for ev_rotate in evr_gesture_rotate.read() {
-        // Positive numbers are anticlockwise
-        // Negative numbers are clockwise
-        println!("Two-finger rotate by {}", ev_rotate.0);
-    }
-    for ev_pan in evr_gesture_pan.read() {
-        // Each event is a Vec2 giving you the X/Y pan amount
-        println!("Two-finger pan by X: {}, Y: {}", ev_pan.0.x, ev_pan.0.y);
-    }
-    for ev_doubletap in evr_gesture_doubletap.read() {
-        // This one has no data
-        println!("Double-Tap gesture!");
-    }
-}
-// ANCHOR_END: touchpad-gesture-events
 
 fn handle_middleclick() {}
 
@@ -165,7 +132,6 @@ fn main() {
         cursor_events,
         cursor_position,
         scroll_events,
-        touchpad_gestures,
     ));
 
 // ANCHOR: run-conditions

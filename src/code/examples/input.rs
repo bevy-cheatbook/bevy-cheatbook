@@ -263,32 +263,3 @@ fn touch_events(
     }
 }
 // ANCHOR_END: touch-events
-
-// ANCHOR: dnd-file
-fn file_drop(
-    mut dnd_evr: EventReader<FileDragAndDrop>,
-) {
-    for ev in dnd_evr.iter() {
-        println!("{:?}", ev);
-        if let FileDragAndDrop::DroppedFile { id, path_buf } = ev {
-            println!("Dropped file with path: {:?}, in window id: {:?}", path_buf, id);
-        }
-    }
-}
-// ANCHOR_END: dnd-file
-
-fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_startup_system(configure_gamepads)
-        .add_system(file_drop)
-        .add_system(keyboard_input)
-        .add_system(keyboard_events)
-        .add_system(gamepad_connections)
-        .add_system(gamepad_input)
-        .add_system(gamepad_input_events)
-        .add_system(gamepad_print_allevents)
-        .add_system(touches)
-        .add_system(touch_events)
-        .run();
-}

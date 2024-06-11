@@ -34,6 +34,7 @@ mod input {
     mod keyboard;
     mod mouse;
     mod ime;
+    mod gesture;
 }
 mod window {
     mod mouse_grab;

@@ -72,6 +72,7 @@
   - [Mouse](./input/mouse.md)
   - [Gamepad (Controller, Joystick)](./input/gamepad.md)
   - [Touchscreen](./input/touch.md)
+  - [Gestures](./input/gesture.md)
   - [Drag-and-Drop (Files)](./input/dnd.md)
   - [IME (Advanced Text)](./input/ime.md)
 
