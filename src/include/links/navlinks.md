@@ -180,10 +180,11 @@
 [cookbook::window-icon]: /window/icon.md
 [cross::linux-windows]: /setup/cross/linux-windows.md
 [cross::macos-windows]: /setup/cross/macos-windows.md
-[input::char]: /input/char.md
 [input::cursor]: /input/mouse.md#mouse-cursor-position
 [input::dnd]: /input/dnd.md
 [input::gamepad]: /input/gamepad.md
+[input::ime]: /input/ime.md
+[input::keyboard-text]: /input/keyboard.md#text-input
 [input::keyboard]: /input/keyboard.md
 [input::mouse-button]: /input/mouse.md#mouse-buttons
 [input::mouse-motion]: /input/mouse.md#mouse-motion

@@ -5,48 +5,6 @@ use bevy::prelude::*;
 use bevy::input::mouse::{MouseMotion, MouseButtonInput, MouseWheel};
 use bevy::input::keyboard::KeyboardInput;
 
-// ANCHOR: keyboard-input
-fn keyboard_input(
-    keys: Res<Input<KeyCode>>,
-) {
-    if keys.just_pressed(KeyCode::Space) {
-        // Space was pressed
-    }
-    if keys.just_released(KeyCode::LControl) {
-        // Left Ctrl was released
-    }
-    if keys.pressed(KeyCode::W) {
-        // W is being held down
-    }
-    // we can check multiple at once with `.any_*`
-    if keys.any_pressed([KeyCode::LShift, KeyCode::RShift]) {
-        // Either the left or right shift are being held down
-    }
-    if keys.any_just_pressed([KeyCode::Delete, KeyCode::Back]) {
-        // Either delete or backspace was just pressed
-    }
-}
-// ANCHOR_END: keyboard-input
-
-// ANCHOR: keyboard-events
-fn keyboard_events(
-    mut key_evr: EventReader<KeyboardInput>,
-) {
-    use bevy::input::ButtonState;
-
-    for ev in key_evr.iter() {
-        match ev.state {
-            ButtonState::Pressed => {
-                println!("Key press: {:?} ({})", ev.key_code, ev.scan_code);
-            }
-            ButtonState::Released => {
-                println!("Key release: {:?} ({})", ev.key_code, ev.scan_code);
-            }
-        }
-    }
-}
-// ANCHOR_END: keyboard-events
-
 // ANCHOR: gamepad-connect-disconnect
 /// Simple resource to store the ID of the connected gamepad.
 /// We need to know which gamepad to use for player input.

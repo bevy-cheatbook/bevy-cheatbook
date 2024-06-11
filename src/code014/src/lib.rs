@@ -31,8 +31,9 @@ mod d3 {
     mod camera;
 }
 mod input {
+    mod keyboard;
     mod mouse;
-    mod char;
+    mod ime;
 }
 mod window {
     mod mouse_grab;

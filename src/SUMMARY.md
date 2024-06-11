@@ -70,10 +70,10 @@
 - [Input Handling](./input.md)
   - [Keyboard](./input/keyboard.md)
   - [Mouse](./input/mouse.md)
-  - [Text / Character](./input/char.md)
   - [Gamepad (Controller, Joystick)](./input/gamepad.md)
   - [Touchscreen](./input/touch.md)
   - [Drag-and-Drop (Files)](./input/dnd.md)
+  - [IME (Advanced Text)](./input/ime.md)
 
 - [Window Management](./window.md)
   - [Window Properties](./window/props.md)

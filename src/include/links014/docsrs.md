@@ -117,7 +117,9 @@
 [`InputSystem`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/struct.InputSystem.html
 [`Interaction`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ui/enum.Interaction.html
 [`IoTaskPool`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/tasks/struct.IoTaskPool.html
+[`Key`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/keyboard/enum.Key.html
 [`KeyCode`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/keyboard/enum.KeyCode.html
+[`KeyboardFocusLost`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/keyboard/struct.KeyboardFocusLost.html
 [`KeyboardInput`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/keyboard/struct.KeyboardInput.html
 [`Last`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/app/struct.Last.html
 [`LoadState`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/asset/enum.LoadState.html
