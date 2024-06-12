@@ -33,8 +33,10 @@ mod d3 {
 mod input {
     mod keyboard;
     mod mouse;
-    mod ime;
+    mod gamepad;
     mod gesture;
+    mod dnd;
+    mod ime;
 }
 mod window {
     mod mouse_grab;
