@@ -63,7 +63,7 @@ after you are done! That is when the deferred operations queued via
 
 Exclusive systems, by definition, limit parallelism and multi-threading, as
 nothing else can access the same ECS World while they run. The whole schedule
-needs to come to a stop, to accomodate the exclusive system. This can easily
+needs to come to a stop, to accommodate the exclusive system. This can easily
 introduce a performance bottleneck.
 
 Generally speaking, you should avoid using exclusive systems, unless you need

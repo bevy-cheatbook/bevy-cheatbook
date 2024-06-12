@@ -82,7 +82,7 @@ of your gameplay/physics simulation, but you also want it to look smooth on-scre
 For input handling, you want it to be responsive and handled every frame, but
 you also have game mechanics that need to respond to it.
 
-The most elegant solution to both of these problems is to handle synchonization
+The most elegant solution to both of these problems is to handle synchronization
 yourself using custom types.
 
 #### Movement

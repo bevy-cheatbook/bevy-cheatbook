@@ -54,7 +54,7 @@ You don't need any files from Microsoft.
 ## First-Time Setup (MSVC)
 
 The MSVC toolchain is the native Microsoft way to target Windows. It is what
-the Rust community usually recommends for targetting the Windows platform. It
+the Rust community usually recommends for targeting the Windows platform. It
 may provide better compatibility with Windows DLLs / libraries and tooling.
 
 Even though it is meant to be used on Windows, you can actually set it up

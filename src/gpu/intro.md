@@ -55,7 +55,7 @@ with regard to one another.
 
 ## Layers of Abstraction
 
-The Bevy rendering framework can accomodate you working at various different
+The Bevy rendering framework can accommodate you working at various different
 levels of abstraction, depending on how much you want to integrate with the
 Bevy ecosystem and built-in features, vs. have more direct control over the GPU.
 
