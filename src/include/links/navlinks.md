@@ -86,6 +86,7 @@
 [cb::multi-world]: /programming/sub-apps.md
 [cb::nonsend]: /programming/non-send.md
 [cb::oneshot]: /programming/one-shot-systems.md
+[cb::par-iter]: /programming/par-iter.md
 [cb::paramset]: /programming/paramset.md
 [cb::plugin]: /programming/plugins.md
 [cb::plugingroup]: /programming/plugins.md#plugin-groups
@@ -141,6 +142,7 @@
 [cb::system]: /programming/systems.md
 [cb::systemset]: /programming/system-sets.md
 [cb::time]: /fundamentals/time.md
+[cb::timer]: /fundamentals/time.md#timer
 [cb::tonemap]: /graphics/hdr-tonemap.md#tonemapping
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform-propagate]: /fundamentals/transforms.md#transform-propagation

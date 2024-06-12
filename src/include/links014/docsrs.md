@@ -26,6 +26,7 @@
 [`Axis`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/struct.Axis.html
 [`AxisSettings`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/gamepad/struct.AxisSettings.html
 [`BackgroundColor`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ui/struct.BackgroundColor.html
+[`BatchingStrategy`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/batching/struct.BatchingStrategy.html
 [bevy::ecs::common_conditions]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/schedule/common_conditions/index.html
 [bevy::features]: https://docs.rs/crate/bevy/0.14.0-rc.2/features
 [bevy::impl::Bundle]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/bundle/trait.Bundle.html#implementors
@@ -78,6 +79,8 @@
 [`Entities`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/entity/struct.Entities.html
 [`Entity`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/entity/struct.Entity.html
 [`Event`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/event/trait.Event.html
+[`EventId`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/event/struct.EventId.html
+[`EventParIter`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/event/struct.EventParIter.html
 [`EventReader`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/event/struct.EventReader.html
 [`EventReader<T>`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/event/struct.EventReader.html
 [`Events`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/event/struct.Events.html
@@ -187,6 +190,7 @@
 [`Quad`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/prelude/shape/struct.Quad.html
 [`Query`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.Query.html
 [`QueryLens`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.QueryLens.html
+[`QueryParIter`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/query/struct.QueryParIter.html
 [`QueryState`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/query/struct.QueryState.html
 [`ReceivedCharacter`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/window/struct.ReceivedCharacter.html
 [`RemovedComponents`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/removal_detection/struct.RemovedComponents.html
