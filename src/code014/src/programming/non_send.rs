@@ -1,3 +1,4 @@
+use bevy::core::NonSendMarker;
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
 use bevy::winit::WinitWindows;
@@ -32,6 +33,15 @@ fn setup_raw_window(
     // do some special things using `winit` APIs
 }
 // ANCHOR_END: nonsend
+
+// ANCHOR: nonsend-marker
+fn my_main_thread_system(
+    marker: NonSend<NonSendMarker>,
+    // ...
+) {
+    // TODO: do stuff ...
+}
+// ANCHOR_END: nonsend-marker
 
 fn main() {
 let mut app = App::new();
