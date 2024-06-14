@@ -85,6 +85,7 @@
 [project::oddio]: https://github.com/Ralith/oddio
 [project::rodio]: https://github.com/RustAudio/rodio
 [project::space_editor]: https://github.com/rewin123/space_editor
+[project::tokio]: https://tokio.rs/
 [project::trunkrs]: https://trunkrs.dev
 [project::twiggy]: https://github.com/rustwasm/twiggy
 [project::wasm-pack]: https://github.com/rustwasm/wasm-pack

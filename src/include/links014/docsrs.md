@@ -245,6 +245,7 @@
 [`SystemName`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.SystemName.html
 [`SystemSet`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/schedule/trait.SystemSet.html
 [`SystemState`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.SystemState.html
+[`Task`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/tasks/struct.Task.html
 [`TemporalAntiAliasBundle`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/core_pipeline/experimental/taa/struct.TemporalAntiAliasBundle.html
 [`Text2dBundle`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/text/struct.Text2dBundle.html
 [`TextBundle`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ui/node_bundles/struct.TextBundle.html

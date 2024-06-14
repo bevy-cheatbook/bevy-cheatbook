@@ -18,6 +18,7 @@ mod fundamentals {
     mod visibility;
     mod log;
     mod fixed_timestep;
+    mod async_compute;
 }
 mod graphics {
     mod camera;

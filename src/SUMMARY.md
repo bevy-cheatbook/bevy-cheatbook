@@ -53,6 +53,7 @@
   - [Logging, Console Messages](./fundamentals/log.md)
   - [Parent/Child Hierarchies](./fundamentals/hierarchy.md)
   - [Fixed Timestep](./fundamentals/fixed-timestep.md)
+  - [Background Computation](./fundamentals/async-compute.md)
   - [Gizmos](./fundamentals/gizmos.md)
 
 - [General Graphics Features](./graphics.md)
