@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Fixed Timestep
 
@@ -11,7 +11,7 @@ If you need to run some [systems][cb::system] at a fixed rate, independent
 of the display frame rate, Bevy provides a solution.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/fundamentals/fixed_timestep.rs:basic}}
+{{#include ../code014/src/fundamentals/fixed_timestep.rs:basic}}
 ```
 
 Every frame update, Bevy will run the [`FixedUpdate`] schedule as many times as
@@ -25,7 +25,7 @@ The default fixed timestep interval is 64 Hz. If you want something else,
 you can configure it as follows:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/fundamentals/fixed_timestep.rs:configure}}
+{{#include ../code014/src/fundamentals/fixed_timestep.rs:configure}}
 ```
 
 ## Checking the Time
@@ -36,15 +36,15 @@ information (such as delta) will represent the fixed timestep instead of the
 display frame rate.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/fundamentals/fixed_timestep.rs:time}}
+{{#include ../code014/src/fundamentals/fixed_timestep.rs:time}}
 ```
+
+If you need to access the fixed-timestep-time from a system running outside
+of fixed timestep, you can use `Res<Time<Fixed>>` instead.
 
 If you need to access the regular frame-time from a system running under
 fixed timestep, you can use `Res<Time<Virtual>>` instead. `Res<Time<Real>>`
 gives you the real (wall-clock) time, without pausing or scaling.
-
-If you need to access the fixed-timestep-time from a system running outside
-of fixed timestep, you can use `Res<Time<Fixed>>` instead.
 
 ## Should I put my systems in `Update` or `FixedUpdate`?
 
@@ -72,31 +72,12 @@ The following things should probably be done in [`Update`]:
  - Anything that is part of your game's graphics/visuals or interactivity
  - [App state][cb::state] transitions
 
-### Bridging the Gap
+Player movement and other movement that is part of gameplay
+should be done in [`FixedUpdate`], so it works reliably and
+consistently. To *also* make it look smooth on-screen, see [transform
+interpolation/extrapolation][cookbook::smooth-movement].
 
-Sometimes there is a logical conflict:
-
-For something like player movement, you want it to be computed reliably as part
-of your gameplay/physics simulation, but you also want it to look smooth on-screen.
-
-For input handling, you want it to be responsive and handled every frame, but
-you also have game mechanics that need to respond to it.
-
-The most elegant solution to both of these problems is to handle synchonization
-yourself using custom types.
-
-#### Movement
-
-For player (and other) movement, you could create your own custom component type
-to use instead of [`Transform`]. Implement your player movement using your own
-types. Then have a system in [`Update`] to sync/update [`Transform`] from that,
-with some interpolation to make it look smooth.
-
-```rust,no_run,noplayground
-// TODO show how to do this
-```
-
-#### Input Handling
+## Input Handling
 
 If you use [`Res<ButtonInput<...>>`][`ButtonInput`] and
 `.just_pressed`/`.just_released` to check for key/button presses, beware that

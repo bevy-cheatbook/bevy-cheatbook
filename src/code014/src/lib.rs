@@ -81,6 +81,7 @@ mod patterns {
 mod cookbook {
     mod print_framerate;
     mod cursor2world;
+    mod smooth_movement;
 }
 mod platforms {
     mod wasm;

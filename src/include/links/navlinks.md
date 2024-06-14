@@ -177,6 +177,7 @@
 [chapter::window]: /window.md
 [contact]: /contact.md
 [cookbook::cursor2world]: /cookbook/cursor2world.md
+[cookbook::smooth-movement]: /cookbook/smooth-movement.md
 [cookbook::mouse-grab]: /window/mouse-grab.md
 [cookbook::pan-orbit-camera]: /cookbook/pan-orbit-camera.md
 [cookbook::window-icon]: /window/icon.md

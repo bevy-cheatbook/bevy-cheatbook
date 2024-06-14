@@ -15,8 +15,9 @@
 - [Bevy Cookbook](./cookbook.md)
   - [Show Framerate](./cookbook/print-framerate.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
-  - [Custom Camera Projection](./cookbook/custom-projection.md)
+  - [Transform Interpolation/Extrapolation](./cookbook/smooth-movement.md)
   - [3D Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
+  - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [List All Resource Types](./cookbook/print-resources.md)
 
 ---
