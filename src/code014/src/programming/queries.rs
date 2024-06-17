@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{ecs::system::QueryLens, prelude::*};
 
 #[derive(Component)]
 struct Player;
@@ -13,6 +13,15 @@ struct PlayerName(String);
 struct Health {
     hp: f32,
     extra: f32,
+
+}
+#[derive(Component)]
+struct EnemyAiState;
+
+impl EnemyAiState {
+    fn needs_recenter(&self) -> bool {
+        true
+    }
 }
 
 // ANCHOR: sys-simple-query
@@ -23,7 +32,7 @@ fn check_zero_health(
     mut query: Query<(&Health, &mut Transform, Option<&Player>)>,
 ) {
     // get all matching entities
-    for (health, mut transform, player) in query.iter_mut() {
+    for (health, mut transform, player) in &mut query {
         eprintln!("Entity at {} has {} HP.", transform.translation, health.hp);
 
         // center if hp is zero
@@ -38,6 +47,16 @@ fn check_zero_health(
     }
 }
 // ANCHOR_END: sys-simple-query
+
+// ANCHOR: iter-for-each
+fn enemy_pathfinding(
+    mut query_enemies: Query<(&Transform, &mut EnemyAiState)>,
+) {
+    query_enemies.iter_mut().for_each(|(transform, mut enemy_state)| {
+        // TODO: do something with `transform` and `enemy_state`
+    })
+}
+// ANCHOR_END: iter-for-each
 
 // ANCHOR: sys-query-filter
 fn debug_player_hp(
@@ -113,6 +132,30 @@ if let Ok((health, mut transform)) = query.get_mut(entity) {
     // ANCHOR_END: query-get
 }
 
+// ANCHOR: query-join
+fn query_join(
+    mut query_common: Query<(&Transform, &Health)>,
+    mut query_player: Query<&PlayerName, With<Player>>,
+    mut query_enemy: Query<&EnemyAiState, With<Enemy>>,
+) {
+    let mut player_with_common:
+        QueryLens<(&Transform, &Health, &PlayerName), With<Player>> =
+            query_player.join_filtered(&mut query_common);
+
+    for (transform, health, player_name) in &player_with_common.query() {
+        // TODO: do something with all these components
+    }
+
+    let mut enemy_with_common:
+        QueryLens<(&Transform, &Health, &EnemyAiState), With<Enemy>> =
+            query_enemy.join_filtered(&mut query_common);
+
+    for (transform, health, enemy_ai) in &enemy_with_common.query() {
+        // TODO: do something with all these components
+    }
+}
+// ANCHOR_END: query-join
+
 // ANCHOR: query-transmute
 fn debug_positions(
     query: Query<&Transform>,
@@ -177,8 +220,10 @@ fn _main() {
         query_entities,
         query_player,
         query_misc,
+        query_join,
         move_enemies,
         move_player,
+        enemy_pathfinding,
         debug_positions,
         update_ui_hud_indicators,
     ));
