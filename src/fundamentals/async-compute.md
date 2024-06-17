@@ -101,7 +101,9 @@ Feel free to use anything from its ecosystem of compatible crates:
  - `async-process` - Async interface for working with processes
  - `async-lock` - Async locks (barrier, mutex, reader-writer lock, semaphore)
  - `async-io` - Async adapter for I/O types, also timers
- - `futures-lite` - Futures helper and extension APIs
+ - `futures-lite` - Misc helper and extension APIs
+ - `futures` - More helper and extension APIs
+   (notably the powerful [`select!`][futures::select] and [`join!`][futures::join] macros)
  - Any Rust async library that supports [`smol`][project::smol].
 
 ## Using Your Own Threads

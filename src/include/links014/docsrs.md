@@ -301,3 +301,5 @@
 [`&World`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/world/struct.World.html
 [`World`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/world/struct.World.html
 [`WorldId`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/world/struct.WorldId.html
+[futures::select]: https://docs.rs/futures/latest/futures/macro.select.html
+[futures::join]: https://docs.rs/futures/latest/futures/macro.join.html
