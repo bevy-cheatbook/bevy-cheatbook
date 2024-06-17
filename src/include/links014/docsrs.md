@@ -172,6 +172,8 @@
 [`OrthographicProjection`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/render/camera/struct.OrthographicProjection.html
 [`PanGesture`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/input/gestures/struct.PanGesture.html
 [`ParallelCommands`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.ParallelCommands.html
+[`ParallelSlice`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/tasks/trait.ParallelSlice.html
+[`ParallelSliceMut`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/tasks/trait.ParallelSliceMut.html
 [`ParamSet`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/system/struct.ParamSet.html
 [`Parent`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/hierarchy/struct.Parent.html
 [`PbrBundle`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/pbr/type.PbrBundle.html
@@ -220,6 +222,7 @@
 [`Schedule`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/schedule/struct.Schedule.html
 [`ScheduleLabel`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/schedule/trait.ScheduleLabel.html
 [`Schedules`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/ecs/schedule/struct.Schedules.html
+[`Scope`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/tasks/struct.Scope.html
 [`ScreenshotManager`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/render/view/window/screenshot/struct.ScreenshotManager.html
 [`ScreenSpaceAmbientOcclusionBundle`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/pbr/struct.ScreenSpaceAmbientOcclusionBundle.html
 [`Shader`]: https://docs.rs/bevy/0.14.0-rc.2/bevy/render/render_resource/struct.Shader.html

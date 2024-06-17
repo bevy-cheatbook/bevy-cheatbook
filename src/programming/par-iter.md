@@ -111,3 +111,62 @@ a minimum and maximum using [`BatchingStrategy`].
 ```rust,no_run,noplayground
 {{#include ../code014/src/programming/par_iter.rs:batching-strategy}}
 ```
+
+## Parallel Processing of Arbitrary Data
+
+Internal parallelism isn't limited to just ECS constructs like
+[entities/components][cb::ecs-intro-data] or [events][cb::event].
+
+It is also possible to process a slice (or anything that can be referenced
+as a slice, such as a [`Vec`]) in parallel chunks. If you just have a big
+buffer of arbitrary data, this is for you.
+
+Use [`.par_splat_map`][`ParallelSlice`]/[`.par_splat_map_mut`][`ParallelSliceMut`]
+to spread the work across a number of parallel tasks. Specify `None` for
+the task count to automatically use the total number of CPU threads available.
+
+Use [`.par_chunk_map`][`ParallelSlice`]/[`.par_chunk_map_mut`][`ParallelSliceMut`]
+to manually specify a specific chunk size.
+
+In both cases, you provide a closure to process each chunk (sub-slice). It will
+be given the starting index of its chunk + the reference to its chunk slice.
+You can return values from the closure, and they will be concatenated and
+returned to the call site as a [`Vec`].
+
+```rust,no_run,noplayground
+{{#include ../code014/src/programming/par_iter.rs:parallel-slice}}
+```
+
+When you are using this API from within a Bevy [system][cb::system], spawn
+your tasks on the [`ComputeTaskPool`].
+
+This API can also be useful when you are doing [background
+computation][cb::async-compute], to get some extra parallelism.
+In that case, use the [`AsyncComputeTaskPool`] instead.
+
+## Scoped Tasks
+
+Scoped tasks are actually the underlying primitive that all of the
+above abstractions (parallel iterators and slices) are built on. If the
+previously-discussed abstractions aren't useful to you, you can implement
+whatever custom processing flow you want, by spawning scoped tasks yourself.
+
+Scoped tasks let you borrow whatever you want out of the parent function. The
+[`Scope`] will wait until the tasks return, before returning back to the parent
+function. This ensures your parallel tasks do not outlive the parent function,
+thus accomplishing "internal parallelism".
+
+To get a performance benefit, make sure each of your tasks has a significant
+and roughly similar amount of work to do. If your tasks complete very quickly,
+it is possible that the overhead of parallelism outweighs the gains.
+
+```rust,no_run,noplayground
+{{#include ../code014/src/programming/par_iter.rs:scoped-task}}
+```
+
+When you are using this API from within a Bevy [system][cb::system], spawn
+your tasks on the [`ComputeTaskPool`].
+
+This API can also be useful when you are doing [background
+computation][cb::async-compute], to dispatch additional tasks for extra
+parallelism. In that case, use the [`AsyncComputeTaskPool`] instead.

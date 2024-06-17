@@ -31,6 +31,22 @@ the tasks complete.
 {{#include ../code014/src/fundamentals/async_compute.rs:async-compute-app}}
 ```
 
+### Internal Parallelism
+
+Your tasks can also spawn additional independent tasks themselves, for extra
+parallelism, using the same API as shown above, from within the closure.
+
+If you'd like your background computation tasks to process data in parallel,
+you can use [scoped tasks][cb::scoped-task]. This allows you to create
+tasks that borrow data from the function that spawns them.
+
+Using the scoped API can also be easier, even if you don't need to borrow data,
+because you don't have to worry about storing and `await`ing the [`Task`] handles.
+
+A common pattern is to have your main task (the one you initiate from your
+[systems][cb::system], as shown earlier) act as a "dispacher", spawning a bunch
+of [scoped tasks][cb::scoped-task] to do the actual work.
+
 ## Using Your Own Threads
 
 While not typically recommended, sometimes you might want to manage an
