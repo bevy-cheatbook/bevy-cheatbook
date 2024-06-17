@@ -16,5 +16,6 @@
 [`Result`]: https://doc.rust-lang.org/stable/std/result/enum.Result.html
 [`Send`]: https://doc.rust-lang.org/stable/std/marker/trait.Send.html
 [std::fmt]: https://doc.rust-lang.org/std/fmt/
+[std::mpsc]: https://doc.rust-lang.org/stable/std/sync/mpsc/index.html
 [`Sync`]: https://doc.rust-lang.org/stable/std/marker/trait.Sync.html
 [`Vec`]: https://doc.rust-lang.org/stable/std/vec/struct.Vec.html

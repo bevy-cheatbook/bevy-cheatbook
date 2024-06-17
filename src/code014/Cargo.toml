@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 bevy = { version = "0.14.0-rc.2" }
 # bevy = { git = "https://github.com/bevyengine/bevy" }
+async-channel = "2.3.1"
 
 [dev-dependencies]
 image = "0.25"
