@@ -32,5 +32,7 @@ fn main() {
 // ANCHOR: events-appbuilder
 app.add_event::<LevelUpEvent>();
 // ANCHOR_END: events-appbuilder
+    // ANCHOR: events-update-system
     app.add_systems(Update, (player_level_up, debug_levelups));
+    // ANCHOR_END: events-update-system
 }
