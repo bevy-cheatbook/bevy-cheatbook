@@ -26,10 +26,11 @@ the same events from multiple [systems][cb::system].
 {{#include ../code014/src/programming/events.rs:events}}
 ```
 
-You need to register your custom event types via the [app builder][cb::app]:
+You need to register your custom event types and update systems via the [app builder][cb::app]:
 
 ```rust,no_run,noplayground
 {{#include ../code014/src/programming/events.rs:events-appbuilder}}
+{{#include ../code014/src/programming/events.rs:events-update-system}}
 ```
 
 ## Usage Advice
