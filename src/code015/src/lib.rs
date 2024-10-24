@@ -19,7 +19,9 @@ mod window {}
 mod assets {}
 mod audio {}
 mod ui {}
-mod programming {}
+mod programming {
+    mod ec;
+}
 mod gpu {}
 mod patterns {}
 mod platforms {}
