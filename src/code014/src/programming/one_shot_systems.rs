@@ -18,7 +18,7 @@ enum MyMagicEvent {
 }
 
 // ANCHOR: example
-fn item_handler_health(
+fn item_handler_health_potion(
     mut q_player: Query<&mut Health, With<Player>>,
 ) {
     let mut health = q_player.single_mut();
@@ -46,7 +46,7 @@ impl FromWorld for MyItemSystems {
 
         my_item_systems.0.insert(
             "health".into(),
-            world.register_system(item_handler_health)
+            world.register_system(item_handler_health_potion)
         );
         my_item_systems.0.insert(
             "magic".into(),
@@ -64,7 +64,7 @@ fn register_item_handler_systems(world: &mut World) {
 
     my_item_systems.0.insert(
         "health".into(),
-        world.register_system(item_handler_health)
+        world.register_system(item_handler_health_potion)
     );
     my_item_systems.0.insert(
         "magic".into(),
@@ -115,7 +115,7 @@ fn my_plugin(app: &mut App) {
 
     my_item_systems.0.insert(
         "health".into(),
-        app.register_system(item_handler_health)
+        app.register_system(item_handler_health_potion)
     );
     my_item_systems.0.insert(
         "magic".into(),
