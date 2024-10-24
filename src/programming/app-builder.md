@@ -71,6 +71,9 @@ To cleanly shut down bevy, send an [`AppExit`] [event][cb::event] from any
 {{#include ../code014/src/programming/app_builder.rs:appexit}}
 ```
 
+In a real app, you could do this from various places, such as
+a handler for an "Exit" button in your main menu, etc.
+
 You can specify the exit code to return to the OS. If Bevy receives
 multiple [`AppExit`] events, success will only be returned if all
 of them report success. If some report an error, the last event will
