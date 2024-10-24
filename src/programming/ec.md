@@ -82,7 +82,7 @@ You can add/remove components on existing entities, using [`Commands`][cb::comma
 {{#include ../code015/src/programming/ec.rs:insert-remove}}
 ```
 
-## Component Dependencies
+## Required Components
 
 Components can require other components. When you spawn an entity, Bevy will
 ensure that any additional components required by the components you provide are
