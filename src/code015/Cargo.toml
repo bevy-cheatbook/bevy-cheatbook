@@ -1,0 +1,19 @@
+[package]
+name = "cheatbook015"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = { version = "0.15.0-rc.1" }
+# bevy = { git = "https://github.com/bevyengine/bevy" }
+async-channel = "2.3.1"
+image = "0.25"
+winit = "0.30"
+
+[dev-dependencies]
+image = "0.25"
+winit = "0.30"
+
+# [[bin]]
+# name = "input-char"
+# path = "src/input/char.rs"
