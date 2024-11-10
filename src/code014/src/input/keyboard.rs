@@ -63,7 +63,7 @@ fn detect_special_sequence(
     mut evr_focus_lost: EventReader<KeyboardFocusLost>,
     mut remembered_keys: Local<Vec<KeyCode>>,
 ) {
-    // Imagine we need to remeber a sequence of keypresses
+    // Imagine we need to remember a sequence of keypresses
     // for some special gameplay reason.
     // TODO: implement that; store state in `remembered_keys`
 
