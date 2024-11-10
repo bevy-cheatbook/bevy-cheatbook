@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header014.md}}
 
 # Keyboard Input
 
@@ -10,63 +10,107 @@ Relevant official examples:
 
 This page shows how to handle keyboard keys being pressed and released.
 
-If you are interested in text input, see the [Character Input][input::char] page instead.
-
 Note: Command Key on Mac corresponds to the Super/Windows Key on PC.
+
+Similar to [mouse buttons][input::mouse-button], keyboard input is available
+as a [`ButtonInput`] [resource][cb::res], [events][cb::event], and [run
+conditions][cb::rc] ([see list][bevy::input::common_conditions]). Use
+whichever pattern feels most appropriate to your use case.
 
 ## Checking Key State
 
-Most commonly, you might be interested in specific known keys and detecting when
-they are pressed or released. You can check specific [Key Codes or Scan
-Codes](#key-codes-and-scan-codes) using the
-[`Input<KeyCode>` / `Input<ScanCode>`][bevy::Input] [resources][cb::res].
+Most commonly for games, you might be interested in specific known keys and
+detecting when they are pressed or released. You can check specific keys
+using the [`ButtonInput<KeyCode>`][`ButtonInput`] [resource][cb::res].
+
+ - Use `.pressed(…)`/`.released(…)` to check if a key is being held down
+   - These return `true` every frame, for as long as the key is in the respective state.
+ - Use `.just_pressed(…)`/`.just_released(…)` to detect the actual press/release
+   - These return `true` only on the frame update when the press/release happened.
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/input.rs:keyboard-input}}
+{{#include ../code014/src/input/keyboard.rs:res}}
+```
+
+To iterate over any keys that are currently held, or that have been pressed/released:
+
+```rust,no_run,noplayground
+{{#include ../code014/src/input/keyboard.rs:res-iter}}
+```
+
+## Run Conditions
+
+Another workflow is to add [run conditions][cb::rc] to your systems,
+so that they only run when the appropriate inputs happen.
+
+It is highly recommended you write your own [run conditions][cb::rc],
+so that you can check for whatever you want, support configurable bindings, etc…
+
+For prototyping, Bevy offers some [built-in run conditions][input::rc]:
+
+```rust,no_run,noplayground
+{{#include ../code014/src/input/keyboard.rs:run-conditions}}
 ```
 
 ## Keyboard Events
 
-To get all keyboard activity, you can use
-[`KeyboardInput`][bevy::KeyboardInput] [events][cb::event]:
+To get all keyboard activity, you can use [`KeyboardInput`] [events][cb::event]:
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/input.rs:keyboard-events}}
+{{#include ../code014/src/input/keyboard.rs:events}}
 ```
 
-These events give you both the Key Code and Scan Code.
+### Physical [`KeyCode`] vs. Logical [`Key`]
 
-## Key Codes and Scan Codes
+When a key is pressed, the [event][cb::event] contains two important pieces of information:
+ - The [`KeyCode`], which always represents a specific key on the keyboard,
+   regardless of the OS layout or language settings.
+ - The [`Key`], which contains the logical meaning of the key as interpreted by the OS.
 
-Keyboard keys can be identified by Key Code or Scan Code.
+When you want to implement gameplay mechanics, you want to use the [`KeyCode`].
+This will give you reliable keybindings that always work, including for multilingual
+users with multiple keyboard layouts configured in their OS.
 
-Key Codes represent the logical meaning of each key (usually the symbol/letter,
-or function it performs). They are dependent on the keyboard layout currently
-active in the user's OS. Bevy represents them with the [`KeyCode`][bevy::KeyCode] enum.
+When you want to implement text/character input, you want to use the [`Key`].
+This can give you Unicode characters that you can append to your text string and
+will allow your users to type just like they do in other applications.
 
-Scan Codes represent the physical key on the keyboard, regardless of the system
-layout. Bevy represents them using [`ScanCode`][bevy::ScanCode], which contains
-an integer ID. The exact value of the integer is meaningless and OS-dependent,
-but a given physical key on the keyboard will always produce the same value,
-regardless of the user's language and keyboard layout settings.
+If you'd like to handle special function keys or media keys on keyboards that
+have them, that can also be done via the logical [`Key`].
 
-## Best Practices for Key Bindings
+## Text Input
 
-Here is some advice for how to implement user-friendly remappable key-bindings
-for your game, that can work well for international users or those with
-non-QWERTY keyboard layouts.
+Here is a simple example of how to implement text input into a string (here
+stored as a [local][cb::local]).
 
-This section assumes that you have implemented some sort of system to allow the
-user to reconfigure their keybindings. You want to prompt the user to press
-their preferred key for a given in-game action, so you can store/remember it
-and later use it for gameplay.
+```rust,no_run,noplayground
+{{#include ../code014/src/input/keyboard.rs:char}}
+```
 
-The problem is that, if you simply use Key Codes, then users might accidentally
-switch their OS keyboard layout mid-game and suddenly have their keyboard not
-work as expected.
+Note how we implement special handling for keys like `Backspace` and `Enter`.
+You can easily add special handling for other keys that make sense in your
+application, like arrow keys or the `Escape` key.
 
-You should detect and store the user's chosen keys using Scan Codes, and use
-Scan Codes for detecting keyboard input during gameplay.
+Keys that produce useful characters for our text come in as small Unicode
+strings. It is possible that there might be more than one `char` per keypress
+in some languages.
 
-Key Codes can still be used for UI purposes, like to display the chosen key
-to the user.
+Note: To support text input for international users who use languages
+with complex scripts (such as East Asian languages), or users who use
+assistive methods like handwriting recognition, you also need to support
+[IME input][input::ime], in addition to keyboard input.
+
+## Keyboard Focus
+
+If you are doing advanced things like caching state to detect multi-key
+sequences or combinations of keys, you might end up in an inconsistent
+state if the Bevy OS window loses focus in the middle of keyboard input,
+such as with Alt-Tab or similar OS window switching mechanisms.
+
+If you are doing such things and you think your algorithm might be getting
+stuck, Bevy offers a [`KeyboardFocusLost`] [event][cb::event] to let you
+know when you should reset your state.
+
+```rust,no_run,noplayground
+{{#include ../code014/src/input/keyboard.rs:focus-lost}}
+```

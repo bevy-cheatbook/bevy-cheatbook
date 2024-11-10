@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Borrow multiple fields from struct
 
@@ -57,11 +57,15 @@ components mutably)). This lets Bevy track access to the data.
 These are "smart pointer" types that use the Rust [`Deref`] trait to dereference
 to your data. They usually work seamlessly and you don't even notice them.
 
-However, in a sense, they are opaque to the compiler. The Rust language allows
-fields of a struct to be borrowed individually, when you have direct access to
-the struct, but this does not work when it is wrapped in another type.
+However, in a sense, they are opaque to the compiler. The Rust language
+normally allows fields of a struct to be borrowed individually, when you
+have direct access to the struct, but this does not work when it is wrapped
+in another type.
 
 The "reborrow" trick shown above, effectively converts the wrapper into a
 regular Rust reference. `*thing` dereferences the wrapper via [`DerefMut`], and
 then `&mut` borrows it mutably. You now have `&mut MyStuff` instead of
-`Mut<MyStuff>`.
+`Mut<MyStuff>`/`ResMut<MyStuff>`.
+
+As it is now a regular Rust `&mut` reference, instead of a special type,
+the Rust compiler can allow access to the individual fields of your `struct`.

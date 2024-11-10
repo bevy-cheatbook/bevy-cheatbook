@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Events
 
@@ -23,13 +23,13 @@ Every reader tracks the events it has read independently, so you can handle
 the same events from multiple [systems][cb::system].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/events.rs:events}}
+{{#include ../code014/src/programming/events.rs:events}}
 ```
 
 You need to register your custom event types via the [app builder][cb::app]:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/events.rs:events-appbuilder}}
+{{#include ../code014/src/programming/events.rs:events-appbuilder}}
 ```
 
 ## Usage Advice
@@ -74,12 +74,17 @@ accessing the [`Events<T>`] [resource][cb::res] to add events to the queue. The
 immutably, but also stores an integer counter to keep track of how many events
 you have read. This is why it also needs the `mut` keyword.
 
+[`Events<T>`] itself is internally implemented using simple [`Vec`]s. Sending
+events is equivalent to just pushing to a [`Vec`]. It is very fast,
+low overhead. Events are often the most performant way to implement things
+in Bevy, better than using [change detection][cb::change-detection].
+
 ## Possible Pitfalls
 
 Beware of frame delay / 1-frame-lag. This can occur if Bevy runs the
 receiving system before the sending system. The receiving system will only
 get a chance to receive the events the next time it runs. If you need to
-ensure that events are handled immediately / on time, you can use [explicit
+ensure that events are handled on the same frame, you can use [explicit
 system ordering][cb::system-order].
 
 If your systems have [run conditions][cb::rc], beware that they might miss

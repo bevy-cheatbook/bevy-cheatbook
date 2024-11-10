@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # The App
 
@@ -23,7 +23,7 @@ app from multiple places (like other Rust files or crates), use
 everything organized.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/app_builder.rs:main}}
+{{#include ../code014/src/programming/app_builder.rs:main}}
 ```
 
 Note: use tuples with `add_systems`/`add_plugins`/`configure_sets` to add
@@ -31,7 +31,7 @@ multiple things at once.
 
 [Component][cb::component] types do not need to be registered.
 
-Schedules cannot [(yet)] be modified at runtime; all [systems][cb::system] you
+Schedules cannot (yet) be modified at runtime; all [systems][cb::system] you
 want to run must be added/configured in the [`App`] ahead of time. You can
 control individual systems using [run conditions][cb::rc]. You can also
 dynamically enable/disable entire schedules using the [`MainScheduleOrder`]
@@ -50,16 +50,16 @@ Normally, you can set up [your data][cb::ecs-intro-data] from
 [systems][cb::system]. Use [Commands][cb::commands] from regular systems, or
 use [exclusive systems][cb::exclusive] to get [full World access][cb::world].
 
-Add your setup systems as startup systems for things you want to initialize
-at launch, or use [state][cb::state] enter/exit systems to do things when
-transitioning between menus, game modes, levels, etc.
+Add your setup systems to the [`Startup`] [schedule][cb::schedule] for
+things you want to initialize at launch, or use [state][cb::state] enter/exit
+systems to do things when transitioning between menus, game modes, levels, etc.
 
 However, you can also initialize data directly from the app builder. This
 is common for [resources][cb::res], if they need to be present at all
 times. You can also get [direct World access][cb::world].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/app_builder.rs:world}}
+{{#include ../code014/src/programming/app_builder.rs:world}}
 ```
 
 ## Quitting the App
@@ -68,13 +68,13 @@ To cleanly shut down bevy, send an [`AppExit`] [event][cb::event] from any
 [system][cb::system]:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/app_builder.rs:appexit}}
+{{#include ../code014/src/programming/app_builder.rs:appexit}}
 ```
 
-For prototyping, Bevy provides a convenient system you can add, to close the
-focused window on pressing the `Esc` key. When all windows are closed, Bevy will
-quit automatically.
+In a real app, you could do this from various places, such as
+a handler for an "Exit" button in your main menu, etc.
 
-```rust,no_run,noplayground
-{{#include ../code013/src/programming/app_builder.rs:close_on_esc}}
-```
+You can specify the exit code to return to the OS. If Bevy receives
+multiple [`AppExit`] events, success will only be returned if all
+of them report success. If some report an error, the last event will
+determine the actual exit code of the process.

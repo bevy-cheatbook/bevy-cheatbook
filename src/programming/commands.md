@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Commands
 
@@ -11,7 +11,7 @@ Use [`Commands`] to spawn/despawn entities, add/remove components on existing
 entities, manage resources, from your [systems][cb::system].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/commands.rs:example-commands}}
+{{#include ../code014/src/programming/commands.rs:example-commands}}
 ```
 
 ## When do these actions get applied?
@@ -27,7 +27,7 @@ automatically make sure that Commands get applied in-between if necessary, so
 that the second system can see the changes made by the first system.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/commands.rs:order}}
+{{#include ../code014/src/programming/commands.rs:order}}
 ```
 
 If you do not have explicit ordering dependencies, it is undefined when Commands
@@ -50,25 +50,29 @@ commands work.
 For a one-off thing, you can just pass a closure:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/commands.rs:command-closure}}
+{{#include ../code014/src/programming/commands.rs:command-closure}}
 ```
 
-If you want something reusable, you can create a custom type and implement
-the [`Command`] trait:
+If you want something reusable, consider [one-shot systems][cb::oneshot].
+They are a way to write regular Bevy systems and run them on-demand.
+
+### Extending the Commands API
+
+If you want something more integrated, that feels like as if it was
+part of Bevy's Commands API, here is how to do it.
+
+Create a custom type and implement the [`Command`] trait:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/commands.rs:command-impl}}
+{{#include ../code014/src/programming/commands.rs:command-impl}}
 ```
 
 And if you want to make it extra nice to use, you can create
 an extension trait to add extra methods to [`Commands`]:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/commands.rs:command-ext}}
+{{#include ../code014/src/programming/commands.rs:command-ext}}
 ```
-
-Now, your custom commands will "feel native", as if they were integrated
-into Bevy. :)
 
 Note: if you want to use your custom extension method from other Rust
 files, you will have to import your trait, or it will not be available:

@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 Relevant official examples:
 [`ecs_guide`][example::ecs_guide].
@@ -7,9 +7,9 @@ Relevant official examples:
 
 # Bundles
 
-You can think of Bundles like "templates" or "blueprints" for creating entities.
+You can think of Bundles like "templates" for creating entities.
 They make it easy to create [entities][cb::entity] with a common set of
-[components][cb::component].
+[components][cb::component] types.
 
 By creating a bundle type, instead of adding your components one by one, you
 can make sure that you will never accidentally forget some important component
@@ -19,29 +19,53 @@ the fields of a struct, thus helping you make sure your code is correct.
 Bevy provides many [built-in bundle types][builtins::bundle] that you can use
 to spawn common kinds of entities.
 
+## Creating Bundles
+
 To create your own bundle, derive [`Bundle`] on a `struct`:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/bundle.rs:bundle}}
+{{#include ../code014/src/programming/bundle.rs:bundle}}
 ```
+
+When you have nested bundles, everything gets flattened.
+You end up with an entity that has all the included component
+types. If a type appears more than once, that's an error.
+
+### Using Bundles
 
 You can then use your bundle when you spawn your entities:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/bundle.rs:bundle-spawn}}
+{{#include ../code014/src/programming/bundle.rs:bundle-spawn}}
 ```
 
 If you want to have default values (similar to Bevy's bundles):
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/bundle.rs:bundle-default}}
+{{#include ../code014/src/programming/bundle.rs:bundle-default}}
 ```
 
 Now you can do this:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/bundle.rs:bundle-spawn-default}}
+{{#include ../code014/src/programming/bundle.rs:bundle-spawn-default}}
 ```
+
+### Bundles for Removal
+
+Bundles can also be useful to represent a set of components that you
+want to be able to easily remove from an entity.
+
+```rust,no_run,noplayground
+{{#include ../code014/src/programming/bundle.rs:cleanup-bundle}}
+```
+
+```rust,no_run,noplayground
+{{#include ../code014/src/programming/bundle.rs:cleanup-bundle-remove}}
+```
+
+The component types included in the bundle will be removed from the
+entity, if any of them exist on the entity.
 
 ## Loose components as bundles
 
@@ -57,7 +81,7 @@ this way you don't have the compile-time correctness advantages that a
 well-defined `struct` gives you.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/bundle.rs:bundle-spawn-loose}}
+{{#include ../code014/src/programming/bundle.rs:bundle-spawn-loose}}
 ```
 
 You should strongly consider creating proper `struct`s, especially if you are

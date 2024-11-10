@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Non-Send Resources
 
@@ -32,10 +32,10 @@ for window management. It gives you more direct access to OS window management
 functionality.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/non_send.rs:nonsend}}
+{{#include ../code014/src/programming/non_send.rs:nonsend}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/non_send.rs:nonsend-app}}
+{{#include ../code014/src/programming/non_send.rs:nonsend-app}}
 ```
 
 ## Custom Non-Send Resources
@@ -51,14 +51,23 @@ means that you have to initialize them in an [exclusive system][cb::exclusive],
 [`FromWorld`] impl, or from the [app builder][cb::app].
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/non_send.rs:insert-nonsend}}
+{{#include ../code014/src/programming/non_send.rs:insert-nonsend}}
 ```
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/non_send.rs:insert-nonsend-app}}
+{{#include ../code014/src/programming/non_send.rs:insert-nonsend-app}}
 ```
 
 Or, for simple things, if you don't need a full-blown system:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/non_send.rs:insert-nonsend-app-world}}
+{{#include ../code014/src/programming/non_send.rs:insert-nonsend-app-world}}
 ```
+
+If you just need to write a [system][cb::system] that must run on
+the main thread, but you don't actually have any data to store,
+you can use [`NonSendMarker`] as a dummy.
+
+```rust,no_run,noplayground
+{{#include ../code014/src/programming/non_send.rs:nonsend-marker}}
+```
+

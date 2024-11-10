@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Exclusive Systems
 
@@ -23,7 +23,7 @@ See the [direct World access page][cb::world] to learn more about how to do
 such things.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/exclusive.rs:fn}}
+{{#include ../code014/src/programming/exclusive.rs:fn}}
 ```
 
 You need to add exclusive systems to the [App][cb::app], just like
@@ -32,7 +32,7 @@ conditions][cb::rc], [sets][cb::systemset]) are supported and work the same
 as with regular systems.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/exclusive.rs:app}}
+{{#include ../code014/src/programming/exclusive.rs:app}}
 ```
 
 ## Exclusive System Parameters
@@ -52,7 +52,7 @@ alternative to [`SystemState`] for when you just need to be able to query for
 some data.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/exclusive.rs:systemstate}}
+{{#include ../code014/src/programming/exclusive.rs:systemstate}}
 ```
 
 Note: if your [`SystemState`] includes [`Commands`], you must call `.apply()`
@@ -69,12 +69,12 @@ introduce a performance bottleneck.
 Generally speaking, you should avoid using exclusive systems, unless you need
 to do something that is only possible with them.
 
-On the other hand, they can have less overhead (by avoiding
-[Commands][cb::commands]), and so can be faster for some use cases.
+On the other hand, if your alternative is to use [commands][cb::commands],
+and you need to process a huge number of entities, exclusive systems are faster.
 
-[`Commands`] has a lot of overhead, as it needs to store your data in a queue
-and then process / copy it into the [`World`] later. Directly spawning entities
-into the [`World`] is much more efficient.
+[`Commands`] is effectively just a way to ask Bevy do to exclusive [`World`]
+access for you, at a later time. Going through the commands queue is much
+slower than just doing the exclusive access yourself.
 
 Some examples for when exclusive systems can be faster:
  - You want to spawn/despawn a ton of entities.
@@ -82,17 +82,8 @@ Some examples for when exclusive systems can be faster:
  - You want to do it every frame.
    - Example: Managing hordes of enemies.
 
-You can think of it this way: in order to apply Commands, Bevy effectively
-needs to run an "exclusive system" internally to do it for you. Normally,
-that is hidden / automatic. By just writing an exclusive system yourself,
-you are saving on the additional regular system that you would normally run.
-
-On the other hand, if you have a system that runs every frame, but only
-needs to manage entities every once in a while, then Commands are likely
-to be more performant, because, by making your system a normal system,
-you avoid making it a bottleneck for parallelism.
-
-Some examples for when normal systems can be faster:
- - You need to check some stuff every frame, and maybe spawn/despawn something sometimes.
+Some examples for when normal systems with [`Commands`] can be faster:
+ - You need to check some stuff every frame, but only use [commands][cb::commands] sometimes.
    - Example: Despawn enemies when they reach 0 HP.
+   - Example: Spawn/despawn entities when [timers][cb::timer] finish.
    - Example: Add/remove some UI elements depending on what is happening in-game.

@@ -1,4 +1,4 @@
-{{#include ../include/header013.md}}
+{{#include ../include/header014.md}}
 
 # Plugins
 
@@ -19,13 +19,13 @@ The simplest way to create a plugin is by just writing a Rust function
 that takes [`&mut App`][`App`]:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:plugin-fn}}
+{{#include ../code014/src/programming/plugins.rs:plugin-fn}}
 ```
 
 An alternative way is by creating a `struct` and implementing the [`Plugin`] trait:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:plugin-struct}}
+{{#include ../code014/src/programming/plugins.rs:plugin-struct}}
 ```
 
 The benefit of using a `struct` is that you could extend it with configuration
@@ -40,7 +40,7 @@ everything the plugin adds will be flattened into your [`App`] alongside
 everything that is already there.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:plugin-app}}
+{{#include ../code014/src/programming/plugins.rs:plugin-app}}
 ```
 
 For internal organization in your own project, the main value of plugins
@@ -55,15 +55,15 @@ Some suggestions:
  - Create plugins for different [states][cb::state].
  - Create plugins for various sub-systems, like physics or input handling.
 
-## Plugin groups
+## Plugin Groups
 
 Plugin groups register multiple plugins at once.  Bevy's [`DefaultPlugins`]
 and [`MinimalPlugins`] are examples of this.
 
-To create your own plugin group:
+To create your own plugin group, implement the [`PluginGroup`] trait:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:plugin-groups}}
+{{#include ../code014/src/programming/plugins.rs:plugin-groups}}
 ```
 
 When adding a plugin group to the [app][cb::app], you can disable some
@@ -73,7 +73,7 @@ For example, if you want to manually set up logging (with your own `tracing`
 subscriber), you can disable Bevy's [`LogPlugin`]:
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:plugin-groups-disable}}
+{{#include ../code014/src/programming/plugins.rs:plugin-groups-disable}}
 ```
 
 Note that this simply disables the functionality, but it cannot actually
@@ -91,14 +91,14 @@ used during initialization/startup. For settings that can be changed at runtime,
 it is recommended that you put them in [resources][cb::res] instead.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:plugin-config}}
+{{#include ../code014/src/programming/plugins.rs:plugin-config}}
 ```
 
 Plugins that are added using [Plugin Groups][cb::plugingroup] can also be
 configured. Many of Bevy's [`DefaultPlugins`] work this way.
 
 ```rust,no_run,noplayground
-{{#include ../code013/src/programming/plugins.rs:defaultplugins-config}}
+{{#include ../code014/src/programming/plugins.rs:defaultplugins-config}}
 ```
 
 ## Publishing Crates

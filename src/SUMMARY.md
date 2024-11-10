@@ -15,8 +15,9 @@
 - [Bevy Cookbook](./cookbook.md)
   - [Show Framerate](./cookbook/print-framerate.md)
   - [Convert cursor to world coordinates](./cookbook/cursor2world.md)
-  - [Custom Camera Projection](./cookbook/custom-projection.md)
+  - [Transform Interpolation/Extrapolation](./cookbook/smooth-movement.md)
   - [3D Pan+Orbit Camera](./cookbook/pan-orbit-camera.md)
+  - [Custom Camera Projection](./cookbook/custom-projection.md)
   - [List All Resource Types](./cookbook/print-resources.md)
 
 ---
@@ -52,6 +53,7 @@
   - [Logging, Console Messages](./fundamentals/log.md)
   - [Parent/Child Hierarchies](./fundamentals/hierarchy.md)
   - [Fixed Timestep](./fundamentals/fixed-timestep.md)
+  - [Background Computation](./fundamentals/async-compute.md)
   - [Gizmos](./fundamentals/gizmos.md)
 
 - [General Graphics Features](./graphics.md)
@@ -70,10 +72,11 @@
 - [Input Handling](./input.md)
   - [Keyboard](./input/keyboard.md)
   - [Mouse](./input/mouse.md)
-  - [Text / Character](./input/char.md)
   - [Gamepad (Controller, Joystick)](./input/gamepad.md)
   - [Touchscreen](./input/touch.md)
+  - [Gestures](./input/gesture.md)
   - [Drag-and-Drop (Files)](./input/dnd.md)
+  - [IME (Advanced Text)](./input/ime.md)
 
 - [Window Management](./window.md)
   - [Window Properties](./window/props.md)
@@ -119,6 +122,8 @@
   - [System Sets](./programming/system-sets.md)
   - [States](./programming/states.md)
   - [Change Detection](./programming/change-detection.md)
+  - [One-Shot Systems](./programming/one-shot-systems.md)
+  - [Internal Parallelism](./programming/par-iter.md)
   - [System Piping](./programming/system-piping.md)
   - [ParamSet](./programming/paramset.md)
   - [Non-Send](./programming/non-send.md)
