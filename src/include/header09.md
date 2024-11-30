@@ -1,4 +1,4 @@
-|[Bevy Version:][maintenance]|[0.9][bevy::blog::0.9] |(outdated!)|
+|[Bevy Version:][maintenance]|[0.9][bevy::blog::0.9]|(outdated!)|
 |---|---|---|
 
 <p style="text-align: center;">
@@ -9,6 +9,7 @@ to cover the differences:
 <a href="https://bevyengine.org/learn/migration-guides/0-11-to-0-12/">0.11 to 0.12</a>,
 <a href="https://bevyengine.org/learn/migration-guides/0-12-to-0-13/">0.12 to 0.13</a>,
 <a href="https://bevyengine.org/learn/migration-guides/0-13-to-0-14/">0.13 to 0.14</a>.
+<a href="https://bevyengine.org/learn/migration-guides/0-14-to-0-15/">0.14 to 0.15</a>.
 
 </p>
 <p style="text-align: center;">

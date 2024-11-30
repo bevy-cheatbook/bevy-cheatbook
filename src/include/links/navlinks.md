@@ -216,3 +216,4 @@
 [wasm::panic-console]: /platforms/wasm/panic-console.md
 [wasm::size-opt]: /platforms/wasm/size-opt.md
 [wasm::webpage]: /platforms/wasm/webpage.md
+[cb::scene]: /fundamentals/scenes.md

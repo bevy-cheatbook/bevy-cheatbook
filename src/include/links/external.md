@@ -10,6 +10,7 @@
 [bevy::4669]: https://github.com/bevyengine/bevy/issues/4669
 [bevy::5488]: https://github.com/bevyengine/bevy/issues/5488
 [bevy::8130]: https://github.com/bevyengine/bevy/issues/8130
+[bevy::9538]: https://github.com/bevyengine/bevy/discussions/9538
 [bevyassets::games]: https://bevyengine.org/assets/#input
 [bevyassets]: https://bevyengine.org/assets
 [bevyassets::input]: https://bevyengine.org/assets/#input
@@ -18,6 +19,7 @@
 [bevy::blog::0.12]: https://bevyengine.org/news/bevy-0-12
 [bevy::blog::0.13]: https://bevyengine.org/news/bevy-0-13
 [bevy::blog::0.14]: https://bevyengine.org/news/bevy-0-14
+[bevy::blog::0.15]: https://bevyengine.org/news/bevy-0-15
 [bevy::blog::0.6]: https://bevyengine.org/news/bevy-0-6
 [bevy::blog::0.9]: https://bevyengine.org/news/bevy-0-9
 [bevy::contributing]: https://github.com/bevyengine/bevy/blob/main/CONTRIBUTING.md
@@ -87,6 +89,7 @@
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
 [project::oddio]: https://github.com/Ralith/oddio
 [project::rodio]: https://github.com/RustAudio/rodio
+[project::ron]: https://github.com/ron-rs/ron
 [project::smol]: https://github.com/smol-rs/smol
 [project::space_editor]: https://github.com/rewin123/space_editor
 [project::tokio]: https://tokio.rs/
