@@ -48,7 +48,7 @@ Web/WASM, crashing at runtime. Disable MSAA if you experience any such issues.
 ## Tonemapping
 
 Tonemapping is the step of the rendering process where the colors of pixels are
-converted from their in-engine intermediate repesentation into the final values
+converted from their in-engine intermediate representation into the final values
 as they should be displayed on-screen.
 
 This is very important with HDR applications, as in that case the image can
