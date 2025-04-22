@@ -5,7 +5,7 @@
 The [Bevy Builtins][chapter::builtins] page is a concise cheatsheet of useful
 information about types and features provided by Bevy.
 
-The [Bevy Tutorials][chapter::tutorial] chapter is for tutorials/guides
+The [Bevy Tutorials][chapter::tutorial] chapter is for tutorials / guides
 that you can follow from start to finish.
 
 The [Bevy Cookbook][chapter::cookbook] is for more self-contained /
@@ -32,7 +32,7 @@ To learn how to program in Bevy, see these chapters:
 
  - [Bevy Core Programming Framework][chapter::programming]: the ECS+App frameworks, the foundation of everything
  - [Programming Patterns][chapter::patterns]: opinionated advice, patterns, idioms
- - [Bevy Render (GPU) Framework][chapter::gpu]: working with the GPU and Bevy's rendering
+ - [Bevy Render (GPU) Framework][chapter::gpu]: advanced (lower-level) GPU programming
 
 The following chapters cover various Bevy feature areas:
 

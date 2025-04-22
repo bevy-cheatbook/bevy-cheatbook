@@ -21,13 +21,14 @@ of this page. You will likely need to do more to make everything compatible.
 
 ## Should you use bleeding-edge Bevy? What version of Bevy should you use?
 
-Bevy follows a "train release" model, with loose deadlines. Every 3 months,
-a new major release is prepared, which will contain all new developments
-(features, fixes, etc.) since the last release. The release date is not
-strict and is often delayed by a few weeks to tie up loose ends.
+Bevy follows a very loose "train release" model. Every 3 months, a new major
+release is prepared, which will contain all new developments (features,
+fixes, etc.) since the last release. This begins the Release Candidate (RC)
+process. RC releases are done frequently over the subsequent weeks / months,
+while the final release is prepared.
 
 Further, Bevy usually follows up every major release with a patch release
-or two, as needed, to fix any bugs discovered soon after release. It will
+or several, as needed, to fix any bugs discovered after release. It will
 not contain all fixes, just small non-breaking things that are considered
 critical enough.
 
@@ -36,21 +37,22 @@ to play it safe, you can wait until the first patch release (`0.*.1`),
 before upgrading to a new major version. You might also want to wait for
 any 3rd-party plugins you are using to support the new Bevy version.
 
-On the other hand, for experimentation and for Bevy development, you are
-encouraged to try the latest in-development code from git! The latest
-release is often missing the freshest bug fixes, usability improvements,
-and features. It may be compelling to join in on the action!
+On the other hand, before an upcoming release, you are highly encouraged to
+try the Release Candidate and provide feedback and bug reports before the
+final release.
+
+The latest in-development code from git is only really useful for
+experimentation and Bevy development during each dev cycle. If you want
+to join in on the action, feel free to give it a try!
 
 If you are new to Bevy, this might not be for you. You will be more
 comfortable using the released version. It will have the best compatibility
 with community plugins and documentation.
 
-The in-development version of Bevy has frequent breaking changes. Therefore,
-it can be very annoying to use for real projects. Also, 3rd-party plugin
-authors often don't bother to stay compatible. You will face breakage often
-and probably have to fix it yourself.
-
-It is only recommended to do this for more experimental or toy projects.
+The in-development version of Bevy has frequent and reckless breaking
+changes. Therefore, it can be very annoying to use for real projects. Also,
+3rd-party plugin authors often don't bother to stay compatible. You will
+face breakage often and probably have to fix it yourself.
 
 Though, there are ways you can manage the breakage and make it less of a
 problem. Thanks to cargo, you can update bevy at your convenience, whenever you
@@ -59,6 +61,7 @@ feel ready to handle any possible breaking changes.
 You may want to consider forking the repositories of Bevy and any plugins you
 use. Using your own forks allows you to easily apply fixes if needed, or edit
 their `Cargo.toml` for any special configuration to make your project work.
+It also makes it easy to contribute your fixes upstream.
 
 If you choose to use Bevy main, you are highly encouraged to interact with
 the Bevy community on [Discord][bevy::discord] and [GitHub][project::bevy], so

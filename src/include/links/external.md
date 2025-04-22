@@ -22,9 +22,10 @@
 [bevy::blog::0.15]: https://bevyengine.org/news/bevy-0-15
 [bevy::blog::0.6]: https://bevyengine.org/news/bevy-0-6
 [bevy::blog::0.9]: https://bevyengine.org/news/bevy-0-9
-[bevy::contributing]: https://github.com/bevyengine/bevy/blob/main/CONTRIBUTING.md
+[bevy::contributing]: https://bevyengine.org/learn/contribute/introduction/
 [bevy::discord]: https://discord.gg/bevy
 [bevy::examples]: https://github.com/bevyengine/bevy/tree/latest/examples#examples
+[bevy::foundation]: https://bevyengine.org/donate
 [bevy::getting-started]: https://bevyengine.org/learn/book/getting-started/setup/
 [bevy::ghdiscussions]: https://github.com/bevyengine/bevy/discussions
 [bevy::jam-01]: https://itch.io/jam/bevy-jam-1/entries
@@ -59,7 +60,7 @@
 [project::bevyassets]: https://github.com/bevyengine/bevy-assets
 [project::bevycheck]: https://github.com/jakobhellermann/bevycheck
 [project::bevy_common_assets]: https://github.com/NiklasEi/bevy_common_assets
-[project::bevy_editor_pls]: https://github.com/jakobhellermann/bevy_editor_pls
+[project::bevy_editor_prototypes]: https://github.com/bevyengine/bevy_editor_prototypes
 [project::bevy_fundsp]: https://github.com/harudagondi/bevy_fundsp
 [project::bevy_game_template]: https://github.com/NiklasEi/bevy_game_template
 [project::bevy]: https://github.com/bevyengine/bevy
@@ -70,8 +71,8 @@
 [project::bevy_mod_picking]: https://github.com/aevyrie/bevy_mod_picking
 [project::bevy_oddio]: https://github.com/harudagondi/bevy_oddio
 [project::binaryen]: https://github.com/WebAssembly/binaryen
-[project::blender_bevy_components_workflow]: https://github.com/kaosat-dev/Blender_bevy_components_workflow
 [project::blender]: https://www.blender.org/
+[project::blenvy]: https://github.com/kaosat-dev/Blenvy
 [project::cb]: https://github.com/bevy-cheatbook/bevy-cheatbook
 [project::cb::issues]: https://github.com/bevy-cheatbook/bevy-cheatbook/issues
 [project::console_error_panic_hook]: https://github.com/rustwasm/console_error_panic_hook
@@ -84,6 +85,7 @@
 [project::iyes_loopless]: https://github.com/IyesGames/iyes_loopless
 [project::iyes_perf_ui]: https://github.com/IyesGames/iyes_perf_ui
 [project::iyes_progress]: https://github.com/IyesGames/iyes_progress
+[project::kakoune-lsp]: https://github.com/kakoune-lsp/kakoune-lsp
 [project::kira]: https://github.com/tesselode/kira
 [project::klafsa]: https://github.com/superdump/klafsa
 [project::lwim]: https://github.com/leafwing-studios/leafwing-input-manager
@@ -91,7 +93,6 @@
 [project::rodio]: https://github.com/RustAudio/rodio
 [project::ron]: https://github.com/ron-rs/ron
 [project::smol]: https://github.com/smol-rs/smol
-[project::space_editor]: https://github.com/rewin123/space_editor
 [project::tokio]: https://tokio.rs/
 [project::trunkrs]: https://trunkrs.dev
 [project::twiggy]: https://github.com/rustwasm/twiggy

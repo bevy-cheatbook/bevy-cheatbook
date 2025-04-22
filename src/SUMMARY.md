@@ -128,15 +128,15 @@
   - [ParamSet](./programming/paramset.md)
   - [Non-Send](./programming/non-send.md)
 
-- [Bevy Render (GPU) Framework](./gpu.md)
-  - [Render Architecture Overview](./gpu/intro.md)
-  - [Render Stages](./gpu/stages.md)
-
 - [Programming Patterns](./patterns.md)
   - [Generic Systems](./patterns/generic-systems.md)
   - [Component Storage (Table/Sparse-Set)](./patterns/component-storage.md)
   - [Manual Event Clearing](./patterns/manual-event-clear.md)
   - [Writing Tests for Systems](./patterns/system-tests.md)
+
+- [Bevy Render (GPU) Framework](./gpu.md)
+  - [Render Architecture Overview](./gpu/intro.md)
+  - [Render Stages](./gpu/stages.md)
 
 - [Bevy on Different Platforms](./platforms.md)
   - [Linux Desktop](./platforms/linux.md)

@@ -1,4 +1,4 @@
-{{#include ../include/header012.md}}
+{{#include ../include/header016.md}}
 
 # Configuring Bevy
 
@@ -12,11 +12,14 @@ standalone, or integrated into otherwise non-Bevy projects.
 
 ## Bevy Cargo Features
 
-In Bevy projects, you can enable/disable various parts of Bevy using cargo features.
+You can enable/disable various parts of Bevy using cargo features.
 
-Many common features are enabled by default. If you want to disable some of
-them, you need to disable all of them and re-enable the ones you need.
-Unfortunately, Cargo does not let you just disable individual default features.
+Many common features are enabled by default. Unfortunately, Cargo does not
+let you just disable individual default features. If you want to disable
+some of them, you need to disable all of them and re-enable the ones you need.
+
+This is highly recommended if you are developing a library crate. It is also
+a good way to reduce binary sizes, if you care about that.
 
 Here is how you might configure your Bevy:
 
@@ -29,81 +32,140 @@ features = [
   # These are the default features:
   # (re-enable whichever you like)
 
-  # Bevy functionality:
-  "multi-threaded",     # Run with multithreading
-  "bevy_asset",         # Assets management
-  "bevy_audio",         # Builtin audio
-  "bevy_gilrs",         # Gamepad input support
-  "bevy_scene",         # Scenes management
-  "bevy_winit",         # Window management (cross-platform Winit backend)
-  "bevy_render",        # Rendering framework core
-  "bevy_core_pipeline", # Common rendering abstractions
-  "bevy_gizmos",        # Support drawing debug lines and shapes
-  "bevy_sprite",        # 2D (sprites) rendering
-  "bevy_pbr",           # 3D (physically-based) rendering
-  "bevy_gltf",          # GLTF 3D assets format support
-  "bevy_text",          # Text/font rendering
-  "bevy_ui",            # UI toolkit
-  "animation",          # Animation support
-  "tonemapping_luts",   # Support different camera Tonemapping modes (enables KTX2+zstd)
-  "default_font",       # Embed a minimal default font for text/UI
+  # Parts of Bevy:
+  "animation",                   # Enable animation for everything that supports it
+  "bevy_asset",                  # Asset management
+  "bevy_audio",                  # Audio support
+  "bevy_color",                  # Color management
+  "bevy_core_pipeline",          # Bevy's GPU rendering architecture
+  "bevy_gilrs",                  # Gamepad/controller support
+  "bevy_gizmos",                 # Gizmos (drawing debug lines and shapes)
+  "bevy_image",                  # Image support
+  "bevy_input_focus",            # Input focusing system for UI
+  "bevy_log",                    # Logging to console
+  "bevy_mesh_picking_backend",   # 3D mesh picking (selection by cursor)
+  "bevy_pbr",                    # 3D rendering and Physically Based Shading
+  "bevy_picking",                # Picking (selection of objects by cursor)
+  "bevy_render",                 # GPU support (based on `wgpu`)
+  "bevy_scene",                  # ECS Scenes
+  "bevy_sprite",                 # 2D rendering (sprites, meshes, text)
+  "bevy_sprite_picking_backend", # 2D sprite picking (selection by cursor)
+  "bevy_state",                  # App state management
+  "bevy_text",                   # Text rendering
+  "bevy_ui",                     # UI toolkit
+  "bevy_ui_picking_backend",     # UI node picking (selection by cursor)
+  "bevy_window",                 # Window management
+  "bevy_winit",                  # Cross-platform window management support
 
-  # File formats:
-  "png",    # PNG image format for simple 2D images
-  "hdr",    # HDR images
-  "ktx2",   # Preferred format for GPU textures
-  "zstd",   # ZSTD compression support in KTX2 files
-  "vorbis", # Audio: OGG Vorbis
+  # Low-level tunables
+  "std",            # Use the Rust standard library (important!)
+  "async_executor", # Enable the Async Executor (Bevy task pools)
+  "multi_threaded", # Enable CPU multithreading
+  "sysinfo_plugin", # Support CPU and RAM usage diagnostics
+  "custom_cursor",  # Support custom cursors
 
-  # Platform-specific:
+  # Platform-Specific
   "x11",                   # Linux: Support X11 windowing system
   "android_shared_stdcxx", # Android: use shared C++ library
+  "android-game-activity", # Android: use GameActivity instead of NativeActivity
   "webgl2",                # Web: use WebGL2 instead of WebGPU
+
+  # Built-in Data
+  "default_font",       # Built-in default font for UI (Fira Mono)
+  "smaa_luts",          # Support SMAA antialiasing
+  "tonemapping_luts",   # Support different camera Tonemapping modes (enables KTX2+zstd)
+
+  # Asset File Format Support
+  "bevy_gltf", # GLTF 3D asset support
+  "png",       # PNG image format for simple 2D images
+  "hdr",       # HDR image format
+  "ktx2",      # KTX2 format for GPU texture data
+  "zstd",      # ZSTD compression support in KTX2 files
+  "vorbis",    # Audio: OGG Vorbis
+
 
   # These are other (non-default) features that may be of interest:
   # (add any of these that you need)
 
-  # Bevy functionality:
-  "asset_processor",      # Asset processing
-  "filesystem_watcher",   # Asset hot-reloading
-  "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
+  # General Bevy features
+  "ghost_nodes", # UI ghost nodes
+
+  # Low level tunables
+  "async-io",             # Use `async-io` instead of `futures-lite`
   "serialize",            # Support for `serde` Serialize/Deserialize
-  "async-io",             # Make bevy use `async-io` instead of `futures-lite`
-  "pbr_transmission_textures", # Enable Transmission textures in PBR materials
-                               # (may cause issues on old/lowend GPUs)
+  "subpixel_glyph_atlas", # Subpixel antialiasing for text/fonts
+  "reflect_documentation", # Documentation reflection support
+  "reflect_functions",    # Function reflection support
 
-  # File formats:
-  "dds",  # Alternative DirectX format for GPU textures, instead of KTX2
-  "jpeg", # JPEG lossy format for 2D photos
-  "webp", # WebP image format
-  "bmp",  # Uncompressed BMP image format
-  "tga",  # Truevision Targa image format
-  "exr",  # OpenEXR advanced image format
-  "pnm",  # PNM (pam, pbm, pgm, ppm) image format
+  # Platform-Specific
+  "wayland",                  # Linux: Support Wayland windowing system
+  "accesskit_unix",           # UNIX-like: AccessKit Accessibility Framework support
+  "android-native-activity",  # Android: Use NativeActivity instead of GameActivity
+  "spirv_shader_passthrough", # Vulkan: allow direct loading of SPIR-V shader blobs without validation
+  "webgpu",                   # Web: use the faster, modern, experimental WebGPU API instead of WebGL2
+  "statically-linked-dxc",    # Windows: embed the DirectX Shader Compiler into your game binary
+  "web",                      # Web platform integration
+  "libm",                     # Use libm for math on non-std / embedded platforms
+  "critical-section",         # For supporting no-std / embedded
+  "default_no_std",
+
+  # Graphics/rendering features (may cause issues on old/weak GPUs)
+  "experimental_pbr_pcss", # PCSS shadow filtering
+  "meshlet",               # Meshlet / virtual geometry rendering (like Unreal's Nanite)
+  "pbr_anisotropy_texture", # Support Anisotropy Map texture
+  "pbr_multi_layer_material_textures", # Support multi-layer textures
+  "pbr_specular_textures",  # Support specular map textures
+  "pbr_transmission_textures", # Support textures for light transimssion (translucency)
+
+  # Development features
+  "dynamic_linking",     # Dynamic linking for faster compile-times
+  "asset_processor",     # Enable asset processing support
+  "bevy_debug_stepping", # Enable stepping through ECS systems for debugging
+  "bevy_dev_tools",      # Extra dev functionality (like FPS overlay)
+  "bevy_remote",         # Enable BRP (Bevy Remote Protocol) for integration with editors and external dev tools
+  "file_watcher",        # Asset hot-reloading
+  "meshlet_processor",   # Asset processor to convert meshes into meshlet format
+  "glam_assert",         # Math validation / debug assertions
+  "debug_glam_assert",   # Math validation / debug assertions
+  "bevy_ui_debug",       # UI debugging functionality
+  "bevy_ci_testing",     # For testing of Bevy itself in CI
+  "embedded_watcher",    # Hot-reloading for Bevy's internal/builtin assets
+  "configurable_error_handler",
+  "trace",               # Enable tracing
+  "trace_chrome",        # Enable tracing using the Chrome backend
+  "trace_tracy",         # Enable tracing using Tracy
+  "trace_tracy_memory",  # Enable memory tracking for Tracy
+  "track_location",      # Enable location tracking
+  "detailed_trace",      # Extra verbose tracing
+
+  # Asset File Format Support
   "basis-universal", # Basis Universal GPU texture compression format
-  "zlib", # zlib compression support in KTX2 files
+  "bmp",  # Uncompressed BMP image format
+  "dds",  # DDS (DirectX) format for GPU textures, alternative to KTX2
+  "exr",  # OpenEXR advanced image format
+  "ff",   # FF image support
   "flac", # Audio: FLAC lossless format
+  "gif",  # GIF legacy image format
+  "ico",  # ICO image format (Windows icons)
+  "jpeg", # JPEG lossy format for photos
   "mp3",  # Audio: MP3 format (not recommended)
-  "wav",  # Audio: Uncompressed WAV
-  "symphonia-all", # All Audio formats supported by the Symphonia library
-  "shader_format_glsl", # GLSL shader support
+  "minimp3", # Alternative MP3 decoder
+  "pnm",  # PNM (pam, pbm, pgm, ppm) image format
+  "qoi",  # QOI image format
+  "shader_format_glsl",  # GLSL shader support
   "shader_format_spirv", # SPIR-V shader support
-
-  # Platform-specific:
-  "wayland",              # (Linux) Support Wayland windowing system
-  "accesskit_unix",       # (Unix-like) AccessKit integration for UI Accessibility
-  "bevy_dynamic_plugin",  # (Desktop) support for loading of `DynamicPlugin`s
-
-  # Development/Debug features:
-  "dynamic_linking",   # Dynamic linking for faster compile-times
-  "trace",             # Enable tracing for performance measurement
-  "detailed_trace",    # Make traces more verbose
-  "trace_tracy",       # Tracing using `tracy`
-  "trace_tracy_memory", # + memory profiling
-  "trace_chrome",      # Tracing using the Chrome format
-  "wgpu_trace",        # WGPU/rendering tracing
-  "debug_glam_assert", # Assertions to validate math (glam) usage
-  "embedded_watcher",  # Hot-reloading for Bevy's internal/builtin assets
+  "shader_format_wesl",  # WESL (Extended WGSL) shader support
+  "tga",  # Truevision Targa image format
+  "tiff", # TIFF image format
+  "wav",  # Audio: Uncompressed WAV
+  "webp", # WebP image format
+  "zlib", # zlib compression support in KTX2 files
+  "symphonia-aac", # AAC audio format (via Symphonia library)
+  "symphonia-flac", # Alternative FLAC audio decoder (via Symphonia library)
+  "symphonia-isomp4", # MP4 format (via Symphonia library)
+  "symphonia-vorbis", # Alternative Ogg Vorbis audio support (via Symphonia library)
+  "symphonia-wav", # Alternative WAV audio support (via Symphonia library)
+  "symphonia-all", # All Audio formats supported by the Symphonia library
 ]
 ```
 
@@ -111,12 +173,13 @@ features = [
 
 ### Graphics / Rendering
 
-For a graphical application or game (most Bevy projects), you can include
-`bevy_winit` and your selection of Rendering features. For
+For a graphical application or game (most Bevy projects), you can
+include `bevy_winit` and your selection of Rendering features. For
 [Linux][platform::linux] support, you need at least one of `x11` or `wayland`.
 
 `bevy_render` and `bevy_core_pipeline` are required for any application using
-Bevy rendering.
+Bevy rendering. They are automatically added if you enable higher-level stuff
+like `bevy_ui`, `bevy_pbr`, `bevy_sprite`, etc.
 
 If you only need 2D and no 3D, add `bevy_sprite`.
 
@@ -171,7 +234,8 @@ work in very recent versions of Chrome and Firefox nightly).
 WebGL2 gives the best compatibility with all browsers, but has worse performance
 and some limitations on what kinds of graphics features you can use in Bevy.
 
-The `webgl2` cargo feature selects WebGL2 if enabled. If disabled, WebGPU is used.
+The `webgl2` cargo feature selects WebGL2, `webgpu` selects WebGPU. Also
+consider enabling `web` for general web support.
 
 ### Development Features
 
@@ -179,7 +243,7 @@ While you are developing your project, these features might be useful:
 
 #### Asset hot-reloading and processing
 
-The `filesystem_watcher` feature enables support for [hot-reloading of
+The `file_watcher` feature enables support for [hot-reloading of
 assets][cb::asset-hotreload], supported on desktop platforms.
 
 The `asset_processor` feature enables support for [asset
@@ -213,8 +277,7 @@ You could also add this to your [IDE/editor configuration][cb::ide].
 
 #### Tracing
 
-The features `trace` and `wgpu_trace` may be useful for profiling and
-diagnosing performance issues.
+The `trace` feature is useful for profiling and diagnosing performance issues.
 
 `trace_chrome` and `trace_tracy` choose the backend you want to use to
 visualize the traces.

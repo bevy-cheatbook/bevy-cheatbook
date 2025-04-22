@@ -51,8 +51,7 @@ information about types and features provided by Bevy.
 
 ## Recommended Additional Resources
 
-Bevy has a rich collection of [official code
-examples][bevy::examples].
+Bevy has a rich collection of [official code examples][bevy::examples].
 
 Check out [bevy-assets][bevyassets], for community-made resources.
 
@@ -64,8 +63,8 @@ or [Bevy Assets][bevyassets::games].
 
 ## Is this book up to date?
 
-Bevy has a very rapid pace of development, with new major releases roughly every
-three months. Every version brings a lot of changes, so keeping this book
+Bevy has a very rapid pace of development, with new major releases around
+3 times a year. Every version brings a lot of changes, so keeping this book
 updated can be a major challenge.
 
 To ease the maintenance burden, the policy of the project is that the book may
@@ -88,9 +87,9 @@ independent learning resource for the Bevy community.
 
 ## Support Bevy
 
-<a href="https://github.com/sponsors/cart"><button class="ghsponsors-button">GitHub Sponsors</button></a>
-
 If you like the Bevy Game Engine, you should consider donating to the project.
+
+You can do that via the [Bevy Foundation][bevy::foundation].
 
 ## License
 
@@ -128,6 +127,8 @@ Development of this book is hosted on [GitHub][project::cb].
 
 Please file GitHub Issues for any wrong/confusing/misleading information,
 as well as suggestions for new content you'd like to be added to the book.
+
+I generally work on the book on my own and ignore pull requests.
 
 Please do not create PRs. Or if you do, be prepared for them to be ignored
 or closed if I find that they take up too much of my time or don't help me

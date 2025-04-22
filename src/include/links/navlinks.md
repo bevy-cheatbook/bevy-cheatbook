@@ -147,6 +147,7 @@
 [cb::time]: /fundamentals/time.md
 [cb::timer]: /fundamentals/time.md#timer
 [cb::tonemap]: /graphics/hdr-tonemap.md#tonemapping
+[cb::toolchain]: /setup/toolchain.md
 [cb::tools]: /setup/bevy-tools.md
 [cb::transform]: /fundamentals/transforms.md
 [cb::transform-propagate]: /fundamentals/transforms.md#transform-propagation
@@ -205,6 +206,8 @@
 [pitfall::perf]: /pitfalls/performance.md
 [pitfall::time]: /pitfalls/time.md
 [pitfall::ui-camera]: /pitfalls/ui-camera.md
+[platform::android]: /platforms/android.md
+[platform::ios]: /platforms/ios.md
 [platform::linux]: /platforms/linux.md
 [platform::macos]: /platforms/macos.md
 [platform::wasm]: /platforms/wasm.md

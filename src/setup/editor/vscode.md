@@ -1,4 +1,4 @@
-{{#include ../../include/header013.md}}
+{{#include ../../include/header016.md}}
 
 # Visual Studio Code
 
@@ -12,7 +12,7 @@ For good Rust support, install the Rust Analyzer plugin.
 ### Speed Up Rust Analyzer
 
 If you have used `.cargo/config.toml` to set a non-default linker for fast
-compiles, Rust Analyzer will ignore it unfortunately. You need to also
+compiles, Rust Analyzer will, unfortunately, ignore it. You need to also
 configure RA to use it, with the following setting (in VSCode `settings.json`):
 
 Windows:
@@ -39,7 +39,7 @@ Linux (lld):
 }
 ```
 
-## `CARGO_MANIFEST_DIR`
+## Run configuration
 
 When running your app/game, Bevy will search for the `assets` folder in the path
 specified in the `BEVY_ASSET_ROOT` or `CARGO_MANIFEST_DIR` environment variable.
@@ -57,9 +57,25 @@ find the `assets`.
 Here is a snippet showing how to create a run configuration for debugging Bevy
 (with `lldb`):
 
-(this is for development on Bevy itself, and testing with the `breakout` example)
+```json
+{
+    "type": "lldb",
+    "request": "launch",
+    "name": "Debug my game",
+    "cargo": {
+        "args": [
+            "build",
+        ],
+    },
+    "args": [],
+    "cwd": "${workspaceFolder}",
+    "env": {
+        "CARGO_MANIFEST_DIR": "${workspaceFolder}",
+    }
+}
+```
 
-(adapt to your needs if using for your project)
+If you are working on Bevy itself, here is a config for running the `breakout` example:
 
 ```json
 {
