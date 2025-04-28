@@ -30,7 +30,7 @@ let xf_rot2d = Transform::from_rotation(Quat::from_rotation_z((30.0_f32).to_radi
 // 3D rotations can be complicated; explore the methods available on `Quat`
 
 // Simple 3D rotation by Euler-angles (X, Y, Z)
-let xf_rot2d = Transform::from_rotation(Quat::from_euler(
+let xf_rot3d = Transform::from_rotation(Quat::from_euler(
     EulerRot::XYZ,
     (20.0_f32).to_radians(),
     (10.0_f32).to_radians(),
