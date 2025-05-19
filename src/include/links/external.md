@@ -20,6 +20,7 @@
 [bevy::blog::0.13]: https://bevyengine.org/news/bevy-0-13
 [bevy::blog::0.14]: https://bevyengine.org/news/bevy-0-14
 [bevy::blog::0.15]: https://bevyengine.org/news/bevy-0-15
+[bevy::blog::0.16]: https://bevyengine.org/news/bevy-0-16
 [bevy::blog::0.6]: https://bevyengine.org/news/bevy-0-6
 [bevy::blog::0.9]: https://bevyengine.org/news/bevy-0-9
 [bevy::contributing]: https://bevyengine.org/learn/contribute/introduction/
