@@ -63,7 +63,7 @@ use bevy::input::mouse::MouseMotion;
 fn mouse_motion(
     mut motion_evr: EventReader<MouseMotion>,
 ) {
-    for ev in motion_evr.iter() {
+    for ev in motion_evr.read() {
         println!("Mouse moved: X: {} px, Y: {} px", ev.delta.x, ev.delta.y);
     }
 }
