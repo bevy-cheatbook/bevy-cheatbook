@@ -23,7 +23,7 @@ to single-threaded iteration, and it will behave the same way as if you
 had just iterated normally. With a few entities/events, that is faster than
 multi-threading.
 
-Even through parallel iteration should automatically make a good decision
+Even though parallel iteration should automatically make a good decision
 regardless of the number of entities/events, it is more awkward to use and
 not always suitable, as you have to do everything from inside a closure
 and there are other limitations.
