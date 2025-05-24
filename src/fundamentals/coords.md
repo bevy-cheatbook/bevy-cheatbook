@@ -28,7 +28,7 @@ is inverted.
 
 ![Chart comparing coordinate system orientation in different game engines and 3D software](../img/handedness.png)
 
-(graphic modifed and used with permission; original by [@FreyaHolmer](https://twitter.com/FreyaHolmer))
+(graphic modified and used with permission; original by [@FreyaHolmer](https://twitter.com/FreyaHolmer))
 
 ## UI
 

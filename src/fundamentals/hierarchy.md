@@ -90,7 +90,7 @@ your entities have all the necessary components.
 If you despawn an entity that has a parent, Bevy does not remove it from the
 parent's [`Children`][bevy::Children].
 
-If you then query for that parent entity's children, you will get an invaild
+If you then query for that parent entity's children, you will get an invalid
 entity, and any attempt to manipulate it will likely lead to this error:
 
 ```

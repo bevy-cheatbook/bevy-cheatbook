@@ -44,7 +44,7 @@ The final list of files for a minimal website will look something like this:
 assets/ index.html mygame.js mygame_bg.wasm
 ```
 
-In a more compex website, you might want to have the game files be in a
+In a more complex website, you might want to have the game files be in a
 subdirectory somewhere, and load them from a HTML file elsewhere.
 
 For the HTML file, you can use this as a starting point:
