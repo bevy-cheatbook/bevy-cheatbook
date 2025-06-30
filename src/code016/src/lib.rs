@@ -14,7 +14,11 @@ mod fundamentals {}
 mod graphics {}
 mod d2 {}
 mod d3 {}
-mod input {}
+mod input {
+    mod keyboard;
+    mod mouse;
+    mod touch;
+}
 mod window {}
 mod assets {}
 mod audio {}

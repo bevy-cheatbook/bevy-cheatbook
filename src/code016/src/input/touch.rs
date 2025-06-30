@@ -1,5 +1,3 @@
-#![allow(unused_variables)]
-
 use bevy::input::gamepad::{GamepadSettings, AxisSettings, ButtonSettings};
 use bevy::prelude::*;
 use bevy::input::mouse::{MouseMotion, MouseButtonInput, MouseWheel};
@@ -25,15 +23,22 @@ fn touches(
             finger.start_position().y,
         );
     }
+
+    for finger in touches.iter_just_released() {
+        println!("Touch with ID {} just ended.", finger.id());
+    }
+    for finger in touches.iter_just_canceled() {
+        println!("Touch with ID {} was canceled.", finger.id());
+    }
 }
 // ANCHOR_END: touches
 
 // ANCHOR: touch-events
 fn touch_events(
-    mut touch_evr: EventReader<TouchInput>,
+    mut evr_touch: EventReader<TouchInput>,
 ) {
     use bevy::input::touch::TouchPhase;
-    for ev in touch_evr.iter() {
+    for ev in evr_touch.read() {
         // in real apps you probably want to store and track touch ids somewhere
         match ev.phase {
             TouchPhase::Started => {
@@ -45,8 +50,8 @@ fn touch_events(
             TouchPhase::Ended => {
                 println!("Touch {} ended at: {:?}", ev.id, ev.position);
             }
-            TouchPhase::Cancelled => {
-                println!("Touch {} cancelled at: {:?}", ev.id, ev.position);
+            TouchPhase::Canceled => {
+                println!("Touch {} canceled at: {:?}", ev.id, ev.position);
             }
         }
     }

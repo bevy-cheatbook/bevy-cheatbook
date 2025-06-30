@@ -1,4 +1,4 @@
-{{#include ../include/header014.md}}
+{{#include ../include/header016.md}}
 
 # Mouse
 
@@ -26,13 +26,13 @@ You can check the state of specific mouse buttons using the
    - These return `true` only on the frame update when the press/release happened.
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:mouse-button-input}}
+{{#include ../code016/src/input/mouse.rs:mouse-button-input}}
 ```
 
 You can also iterate over any buttons that have been pressed or released:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:mouse-button-input-iter}}
+{{#include ../code016/src/input/mouse.rs:mouse-button-input-iter}}
 ```
 
 ### Run Conditions
@@ -46,7 +46,7 @@ so that you can check for whatever you want, support configurable bindings, etcâ
 For prototyping, Bevy offers some [built-in run conditions][input::rc]:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:run-conditions}}
+{{#include ../code016/src/input/mouse.rs:run-conditions}}
 ```
 
 ### Mouse Button Events
@@ -55,7 +55,7 @@ Alternatively, you can use [`MouseButtonInput`] [events][cb::event] to get
 all activity:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:mouse-button-events}}
+{{#include ../code016/src/input/mouse.rs:mouse-button-events}}
 ```
 
 ## Mouse Scrolling / Wheel
@@ -63,7 +63,7 @@ all activity:
 To detect scrolling input, use [`MouseWheel`] [events][cb::event]:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:scroll-events}}
+{{#include ../code016/src/input/mouse.rs:scroll-events}}
 ```
 
 The [`MouseScrollUnit`] enum is important: it tells you the type of scroll
@@ -89,7 +89,7 @@ Use [`MouseMotion`] [events][cb::event]. Whenever the mouse is moved, you
 will get an event with the delta.
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:mouse-motion}}
+{{#include ../code016/src/input/mouse.rs:mouse-motion}}
 ```
 
 You might want to [grab/lock the mouse inside the game
@@ -105,14 +105,14 @@ You can get the current coordinates of the mouse pointer, from the respective
 [`Window`] (if the mouse is currently inside that window):
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:cursor-position}}
+{{#include ../code016/src/input/mouse.rs:cursor-position}}
 ```
 
 To detect when the pointer is moved, use [`CursorMoved`] [events][cb::event]
 to get the updated coordinates:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/mouse.rs:cursor-events}}
+{{#include ../code016/src/input/mouse.rs:cursor-events}}
 ```
 
 Note that you can only get the position of the mouse inside a window;
@@ -128,3 +128,13 @@ cursor coordinates into world-space coordinates.
 
 To track when the mouse cursor enters and leaves your window(s), use
 [`CursorEntered`] and [`CursorLeft`] [events][cb::event].
+
+```rust,no_run,noplayground
+{{#include ../code016/src/input/mouse.rs:enter-leave}}
+```
+
+Note: to detect whether the cursor is inside a specific window, it is often more
+convenient to just check the cursor position by querying the window (see earlier
+code snippet), instead of using these events. You probably want to know the
+cursor coordinates anyway. If you get `None`, you know the cursor is not inside
+that window.

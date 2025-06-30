@@ -1,4 +1,4 @@
-{{#include ../include/header09.md}}
+{{#include ../include/header016.md}}
 
 # Touchscreen
 
@@ -12,15 +12,15 @@ Multi-touch touchscreens are supported. You can track multiple fingers on
 the screen, with position and pressure/force information. Bevy does not
 offer gesture recognition.
 
-The [`Touches`][bevy::Touches] [resource][cb::res] allows you to track any
+The [`Touches`] [resource][cb::res] allows you to track any
 fingers currently on the screen:
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/input.rs:touches}}
+{{#include ../code016/src/input/touch.rs:touches}}
 ```
 
-Alternatively, you can use [`TouchInput`][bevy::TouchInput] [events][cb::event]:
+Alternatively, you can use [`TouchInput`] [events][cb::event]:
 
 ```rust,no_run,noplayground
-{{#include ../code/examples/input.rs:touch-events}}
+{{#include ../code016/src/input/touch.rs:touch-events}}
 ```

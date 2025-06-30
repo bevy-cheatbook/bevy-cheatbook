@@ -1,4 +1,4 @@
-{{#include ../include/header014.md}}
+{{#include ../include/header016.md}}
 
 # Keyboard Input
 
@@ -29,13 +29,13 @@ using the [`ButtonInput<KeyCode>`][`ButtonInput`] [resource][cb::res].
    - These return `true` only on the frame update when the press/release happened.
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/keyboard.rs:res}}
+{{#include ../code016/src/input/keyboard.rs:res}}
 ```
 
 To iterate over any keys that are currently held, or that have been pressed/released:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/keyboard.rs:res-iter}}
+{{#include ../code016/src/input/keyboard.rs:res-iter}}
 ```
 
 ## Run Conditions
@@ -49,7 +49,7 @@ so that you can check for whatever you want, support configurable bindings, etcâ
 For prototyping, Bevy offers some [built-in run conditions][input::rc]:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/keyboard.rs:run-conditions}}
+{{#include ../code016/src/input/keyboard.rs:run-conditions}}
 ```
 
 ## Keyboard Events
@@ -57,7 +57,7 @@ For prototyping, Bevy offers some [built-in run conditions][input::rc]:
 To get all keyboard activity, you can use [`KeyboardInput`] [events][cb::event]:
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/keyboard.rs:events}}
+{{#include ../code016/src/input/keyboard.rs:events}}
 ```
 
 ### Physical [`KeyCode`] vs. Logical [`Key`]
@@ -84,7 +84,7 @@ Here is a simple example of how to implement text input into a string (here
 stored as a [local][cb::local]).
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/keyboard.rs:char}}
+{{#include ../code016/src/input/keyboard.rs:char}}
 ```
 
 Note how we implement special handling for keys like `Backspace` and `Enter`.
@@ -112,5 +112,5 @@ stuck, Bevy offers a [`KeyboardFocusLost`] [event][cb::event] to let you
 know when you should reset your state.
 
 ```rust,no_run,noplayground
-{{#include ../code014/src/input/keyboard.rs:focus-lost}}
+{{#include ../code016/src/input/keyboard.rs:focus-lost}}
 ```
