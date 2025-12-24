@@ -82,4 +82,4 @@ For some examples:
 
 </details>
 
-<script type="module" src="/loadwasm.js"/>
+<script type="module" src="/loadwasm.js"></script>
