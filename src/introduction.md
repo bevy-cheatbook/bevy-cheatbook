@@ -98,7 +98,7 @@ this in the past, my sponsor links are still open.
 
 ## License
 
-Copyright © 2021-2024 Ida Borisova (IyesGames)
+Copyright © 2021-2025 Ida Borisova (IyesGames)
 
 All code in the book is provided under the
 [MIT-0 License](https://github.com/bevy-cheatbook/mit-0).
