@@ -12,7 +12,7 @@ some community-made tools to help you.
 
 You can use [Blender][project::blender] as a level/scene
 editor, by exporting your scenes to [GLTF][cb::gltf]. The
-[Blenvy][project::blender_bevy_components_workflow] project provides
+[Blenvy][project::blenvy] project provides
 a nice experience / workflow, by allowing you to setup your Bevy ECS
 [Components][cb::component] in Blender, include them in the exported GLTF,
 and use them in Bevy.
