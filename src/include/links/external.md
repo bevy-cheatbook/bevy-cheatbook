@@ -95,7 +95,7 @@
 [project::ron]: https://github.com/ron-rs/ron
 [project::smol]: https://github.com/smol-rs/smol
 [project::tokio]: https://tokio.rs/
-[project::trunkrs]: https://trunkrs.dev
+[project::trunkrs]: https://trunk-rs.github.io/trunk/
 [project::twiggy]: https://github.com/rustwasm/twiggy
 [project::wasm-pack]: https://github.com/rustwasm/wasm-pack
 [project::wasm-server-runner]: https://github.com/jakobhellermann/wasm-server-runner
